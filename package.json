@@ -1,0 +1,29 @@
+{
+  "name": "shopify-rhinolapidary",
+  "version": "1.0.0",
+  "description": "Refer to the [Upstream Baseline](docs/architecture/trade-upstream-baseline.md) for the baseline of the Shopify Trade theme used in this project.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:ally": "playwright test tests/accessibility.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Gem-Shop-Inc/shopify-rhinolapidary.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/The-Gem-Shop-Inc/shopify-rhinolapidary/issues"
+  },
+  "homepage": "https://github.com/The-Gem-Shop-Inc/shopify-rhinolapidary#readme",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.61.1"
+  }
+}
