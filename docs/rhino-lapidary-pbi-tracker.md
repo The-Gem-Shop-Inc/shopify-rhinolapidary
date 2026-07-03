@@ -13,13 +13,13 @@ Status values:
 
 ## Current execution batch
 
-| Order | PBI | Title | Priority | Size | Status            | Why now |
-|---:|---|---|:---:|:---:|-------------------|---|
-| 1 | A-007 | Define `settings_data.json` ownership and safety rules | P0 | M | Guidance provided | Protect theme-editor state before changing configuration files. |
-| 2 | A-008 | Establish development, preview, and production theme workflow | P0 | M | Guidance provided | Establish a safe preview and production workflow before implementation begins. |
-| 3 | A-033 | Verify product template purchase architecture | P0 | M | Guidance provided | Resolve the current purchase-path risk: the default product template lacks normal buy controls. |
-| 4 | A-002 | Record the Trade base version and upstream source | P0 | S | Complete          | Record the clean Trade baseline before Rhino-specific changes begin. |
-| 5 | A-052 | Create a Shopify admin discovery checklist issue | P0 | S | Guidance provided | Expose Shopify-admin dependencies that cannot be verified from repository code. |
+| Order | PBI | Title | Priority | Size | Status                 | Why now |
+|---:|---|---|:---:|:---:|------------------------|---|
+| 1 | A-007 | Define `settings_data.json` ownership and safety rules | P0 | M | Complete               | Protect theme-editor state before changing configuration files. |
+| 2 | A-008 | Establish development, preview, and production theme workflow | P0 | M | Ready for verification | Establish a safe preview and production workflow before implementation begins. |
+| 3 | A-033 | Verify product template purchase architecture | P0 | M | Guidance provided      | Resolve the current purchase-path risk: the default product template lacks normal buy controls. |
+| 4 | A-002 | Record the Trade base version and upstream source | P0 | S | Complete               | Record the clean Trade baseline before Rhino-specific changes begin. |
+| 5 | A-052 | Create a Shopify admin discovery checklist issue | P0 | S | Guidance provided      | Expose Shopify-admin dependencies that cannot be verified from repository code. |
 
 ## Full Epic A backlog
 

@@ -1,0 +1,16 @@
+# Replace the placeholder store and theme IDs.
+# Do not commit access tokens or passwords.
+
+[environments.default]
+store = "rhino-lapidary.myshopify.com"
+ignore = ["config/settings_data.json"]
+
+[environments.preview]
+store = "rhino-lapidary.myshopify.com"
+theme = "158631198917"
+ignore = ["config/settings_data.json"]
+
+[environments.production]
+store = "rhino-lapidary.myshopify.com"
+theme = "PUBLISHED_THEME_ID"
+ignore = ["config/settings_data.json"]
