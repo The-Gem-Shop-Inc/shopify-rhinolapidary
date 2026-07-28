@@ -228,6 +228,16 @@ A suppression requires:
 * An owner
 * A review date
 
+## Shopify preview UI exclusion
+
+Automated accessibility scans exclude Shopify's injected unpublished-theme preview bar:
+
+- `#PBarNextFrame`
+
+This iframe is Shopify-owned preview UI, not Rhino Lapidary storefront code. Accessibility failures inside this frame are not actionable in this repository.
+
+The exclusion must not be expanded to Rhino-owned theme elements without a documented issue and owner.
+
 ## Manual release check
 
 Before publishing:

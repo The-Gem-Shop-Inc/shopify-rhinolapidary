@@ -1,7 +1,13 @@
+require('dotenv').config();
+
 const { defineConfig, devices } = require('@playwright/test');
 
 if (!process.env.PREVIEW_BASE_URL) {
     throw new Error('PREVIEW_BASE_URL must identify the Shopify preview storefront.');
+}
+
+if (!process.env.PREVIEW_THEME_ID) {
+    throw new Error('PREVIEW_THEME_ID must identify the persistent unpublished preview theme.');
 }
 
 module.exports = defineConfig({
