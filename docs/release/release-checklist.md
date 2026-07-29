@@ -22,6 +22,13 @@ A release is not approved until every applicable item is complete.
 * [ ] Production backup theme name:
 * [ ] Production backup date:
 
+Backup and rollback procedure: `docs/release/backup-and-rollback-procedures.md`
+
+- [ ] Backup procedure followed.
+- [ ] Backup theme ID recorded.
+- [ ] Admin-impacting changes have rollback notes.
+- [ ] Domain/redirect/analytics rollback owner is identified when applicable.
+
 ## 2. Repository state
 
 ```sh
