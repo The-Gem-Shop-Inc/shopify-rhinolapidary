@@ -199,6 +199,8 @@ Publish the reviewed preview theme through the Shopify admin or approved CLI wor
 
 Do not push unreviewed local files directly into the currently published theme.
 
+Use `docs/release/release-notes-template.md` for every production publish.
+
 ## 14. Post-publish verification
 
 Immediately verify production:

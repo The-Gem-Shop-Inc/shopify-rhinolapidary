@@ -176,6 +176,25 @@ See:
 
 Do not use direct live-theme pushes as the normal release workflow.
 
+## Shopify upload policy
+
+The repository includes documentation, tests, scripts, local environment files, and CI configuration that must not be uploaded to Shopify as theme assets.
+
+`.shopifyignore` defines the files excluded from `shopify theme push`.
+
+Before changing `.shopifyignore`, verify that required Shopify theme directories remain uploadable:
+
+- `assets`
+- `blocks`
+- `config`
+- `layout`
+- `locales`
+- `sections`
+- `snippets`
+- `templates`
+
+Do not ignore runtime theme files merely to hide local changes.
+
 ## Quality standards
 
 Browser support, responsive testing, accessibility requirements, and performance budgets are defined in:
