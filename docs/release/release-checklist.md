@@ -61,6 +61,14 @@ shopify theme check --fail-level warning
 * [ ] Review app embeds.
 * [ ] Review Custom Liquid blocks.
 * [ ] Review navigation or template changes made through the Shopify admin.
+* [ ] Review `docs/privacy/security-privacy-review-checklist.md`.
+
+### Custom Liquid and app embeds
+
+- [ ] Review `docs/apps/theme-editor-code-register.md`.
+- [ ] Confirm no unregistered Custom Liquid blocks are present.
+- [ ] Confirm no unregistered app embeds are enabled.
+- [ ] Confirm app embeds have owner, purpose, privacy notes, and rollback path.
 
 ## 5. Preview deployment
 

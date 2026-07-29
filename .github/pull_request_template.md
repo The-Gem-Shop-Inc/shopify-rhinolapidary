@@ -128,3 +128,5 @@ Rollback notes:
 * [ ] Required documentation is updated.
 * [ ] Required tests pass.
 * [ ] The release checklist is updated if needed.
+* [ ] App block surface audit updated when section schemas or templates change.
+* [ ] Review `docs/privacy/security-privacy-review-checklist.md`.
