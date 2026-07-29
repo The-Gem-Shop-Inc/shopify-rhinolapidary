@@ -10,7 +10,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:ally": "playwright test tests/accessibility.spec.js",
     "check:placeholders": "node scripts/check-placeholder-content.js",
-    "audit:app-blocks": "node scripts/audit-app-block-surfaces.js"
+    "audit:app-blocks": "node scripts/audit-app-block-surfaces.js",
+    "validate:registers": "node scripts/validate-json-registers.js",
+    "validate:fixtures": "node scripts/validate-storefront-fixtures.js",
+    "validate:product-data": "node scripts/validate-product-csv.js",
+    "validate:product-templates": "node scripts/validate-product-templates.js",
+    "validate:filters": "node scripts/validate-filter-spec.js",
+    "validate:data-architecture": "npm run validate:registers && npm run validate:product-templates && npm run validate:filters"
   },
   "repository": {
     "type": "git",
@@ -27,6 +33,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.61.1",
+    "ajv": "^8.20.0",
     "dotenv": "^17.4.2"
   }
 }

@@ -1,0 +1,86 @@
+{
+  "$schema": "../../schemas/admin-dependency-register.schema.json",
+  "lastReviewed": "2026-07-29",
+  "dependencies": [
+    {
+      "id": "ADM-001",
+      "area": "products",
+      "name": "Product catalog",
+      "owner": "TBD",
+      "shopifyLocation": "Shopify Admin → Products",
+      "purpose": "Defines products, variants, pricing, publication status, media, SEO fields, and handles.",
+      "verification": {
+        "method": "script",
+        "command": "npm run validate:product-data"
+      },
+      "releaseImpact": "high",
+      "rollback": "Use product CSV/import snapshot or manually restore changed products.",
+      "relatedPbis": ["A-030", "A-034", "A-051"],
+      "status": "active"
+    },
+    {
+      "id": "ADM-002",
+      "area": "collections",
+      "name": "Collections and collection handles",
+      "owner": "TBD",
+      "shopifyLocation": "Shopify Admin → Products → Collections",
+      "purpose": "Defines customer-facing navigation groups and filter contexts.",
+      "verification": {
+        "method": "script",
+        "command": "npm run validate:fixtures && npm run validate:filters"
+      },
+      "releaseImpact": "high",
+      "rollback": "Restore collection handles/rules/products from release notes and redirect map.",
+      "relatedPbis": ["A-030", "A-035"],
+      "status": "active"
+    },
+    {
+      "id": "ADM-003",
+      "area": "metafields",
+      "name": "Product and variant metafield definitions",
+      "owner": "TBD",
+      "shopifyLocation": "Shopify Admin → Settings → Custom data",
+      "purpose": "Stores machine specifications, compatibility, consumable attributes, warranty/support fields, and filter sources.",
+      "verification": {
+        "method": "script",
+        "command": "npm run validate:filters && npm run validate:product-data"
+      },
+      "releaseImpact": "high",
+      "rollback": "Restore definitions manually from register and release notes.",
+      "relatedPbis": ["A-035", "A-037", "A-051"],
+      "status": "proposed"
+    },
+    {
+      "id": "ADM-004",
+      "area": "search-discovery",
+      "name": "Shopify Search and Discovery",
+      "owner": "TBD",
+      "shopifyLocation": "Shopify Admin → Apps → Search & Discovery",
+      "purpose": "Controls storefront filters, search behavior, recommendations, synonyms, and product boosts.",
+      "verification": {
+        "method": "manual-admin-plus-script",
+        "command": "npm run validate:filters"
+      },
+      "releaseImpact": "high",
+      "rollback": "Restore previous Search and Discovery filter/synonym/boost configuration manually.",
+      "relatedPbis": ["A-035", "A-036"],
+      "status": "proposed"
+    },
+    {
+      "id": "ADM-005",
+      "area": "navigation",
+      "name": "Header and footer navigation",
+      "owner": "TBD",
+      "shopifyLocation": "Shopify Admin → Online Store → Navigation",
+      "purpose": "Defines storefront paths to products, collections, support pages, policies, and contact routes.",
+      "verification": {
+        "method": "script",
+        "command": "npm run test:ally"
+      },
+      "releaseImpact": "medium",
+      "rollback": "Restore menu links from release notes/admin screenshot.",
+      "relatedPbis": ["A-038"],
+      "status": "active"
+    }
+  ]
+}

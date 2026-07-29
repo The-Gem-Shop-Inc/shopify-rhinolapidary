@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "requiredColumns",
+    "allowedStatuses",
+    "launchRequiredStatuses",
+    "keyProductHandles",
+    "requiredTagsByProductClass",
+    "forbiddenTitleFragments",
+    "forbiddenDescriptionFragments"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "requiredColumns": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "allowedStatuses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "launchRequiredStatuses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "keyProductHandles": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "requiredTagsByProductClass": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "forbiddenTitleFragments": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "forbiddenDescriptionFragments": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

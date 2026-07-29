@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["baseUrlEnv", "fixtures"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "baseUrlEnv": { "type": "string", "minLength": 2 },
+    "fixtures": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path", "required"],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^/"
+          },
+          "required": { "type": "boolean" },
+          "expectedTemplate": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "../schemas/product-data-rules.schema.json",
+  "requiredColumns": [
+    "Handle",
+    "Title",
+    "Body (HTML)",
+    "Vendor",
+    "Type",
+    "Tags",
+    "Published",
+    "Variant SKU",
+    "Variant Price",
+    "Image Src",
+    "Image Alt Text",
+    "Status"
+  ],
+  "allowedStatuses": ["active", "draft", "archived"],
+  "launchRequiredStatuses": ["active"],
+  "keyProductHandles": [
+    "left-moss-pad"
+  ],
+  "requiredTagsByProductClass": {
+    "machine": ["rhino", "machine"],
+    "consumable": ["rhino", "consumable"],
+    "accessory": ["rhino", "accessory"],
+    "replacement-part": ["rhino", "replacement-part"]
+  },
+  "forbiddenTitleFragments": [
+    "TODO",
+    "Test Product",
+    "Sample Product",
+    "Untitled"
+  ],
+  "forbiddenDescriptionFragments": [
+    "Lorem ipsum",
+    "Add product description",
+    "TODO"
+  ]
+}

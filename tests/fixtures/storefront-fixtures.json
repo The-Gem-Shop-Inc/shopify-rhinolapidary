@@ -1,0 +1,42 @@
+{
+  "$schema": "../../schemas/storefront-fixtures.schema.json",
+  "baseUrlEnv": "https://rhino-lapidary.myshopify.com?preview_theme_id=158631198917",
+  "fixtures": {
+    "homepage": {
+      "path": "/",
+      "required": true
+    },
+    "collection": {
+      "path": "/collections/machines",
+      "required": true,
+      "expectedTemplate": "collection"
+    },
+    "search": {
+      "path": "/search?q=rhino",
+      "required": true
+    },
+    "simpleProduct": {
+      "path": "/products/left-moss-pad",
+      "required": true,
+      "expectedTemplate": "product"
+    },
+    "machineProduct": {
+      "path": "/products/TODO-machine-product-handle",
+      "required": false,
+      "expectedTemplate": "product.machine"
+    },
+    "consumableProduct": {
+      "path": "/products/TODO-consumable-product-handle",
+      "required": false,
+      "expectedTemplate": "product.consumable"
+    },
+    "cart": {
+      "path": "/cart",
+      "required": true
+    },
+    "contact": {
+      "path": "/pages/contact",
+      "required": false
+    }
+  }
+}

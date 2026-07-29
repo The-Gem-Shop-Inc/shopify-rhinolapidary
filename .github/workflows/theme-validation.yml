@@ -63,3 +63,28 @@ jobs:
 
       - name: Check placeholder content
         run: node scripts/check-placeholder-content.js
+
+  data-architecture:
+    name: Data architecture validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate JSON registers
+        run: npm run validate:registers
+
+      - name: Validate product templates
+        run: npm run validate:product-templates
+
+      - name: Validate filter spec
+        run: npm run validate:filters

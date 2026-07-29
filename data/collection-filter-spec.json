@@ -1,0 +1,60 @@
+{
+  "$schema": "../schemas/collection-filter-spec.schema.json",
+  "filters": [
+    {
+      "id": "availability",
+      "label": "Availability",
+      "source": "shopify-native",
+      "customerFacing": true,
+      "requiredForLaunch": true,
+      "adminDependency": "ADM-004"
+    },
+    {
+      "id": "price",
+      "label": "Price",
+      "source": "shopify-native",
+      "customerFacing": true,
+      "requiredForLaunch": true,
+      "adminDependency": "ADM-004"
+    },
+    {
+      "id": "product-class",
+      "label": "Product class",
+      "source": "product-metafield",
+      "namespace": "rhino",
+      "key": "product_class",
+      "customerFacing": true,
+      "requiredForLaunch": true,
+      "adminDependency": "ADM-003"
+    },
+    {
+      "id": "compatibility",
+      "label": "Compatibility",
+      "source": "product-metafield",
+      "namespace": "rhino",
+      "key": "compatibility",
+      "customerFacing": true,
+      "requiredForLaunch": false,
+      "adminDependency": "ADM-003"
+    },
+    {
+      "id": "grit",
+      "label": "Grit",
+      "source": "product-metafield",
+      "namespace": "rhino",
+      "key": "grit",
+      "customerFacing": true,
+      "requiredForLaunch": false,
+      "adminDependency": "ADM-003"
+    },
+    {
+      "id": "voltage",
+      "label": "Voltage",
+      "source": "variant-option",
+      "optionName": "Voltage",
+      "customerFacing": true,
+      "requiredForLaunch": false,
+      "adminDependency": "ADM-004"
+    }
+  ]
+}
