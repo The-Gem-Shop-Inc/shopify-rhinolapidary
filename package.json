@@ -9,6 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:ally": "playwright test tests/accessibility.spec.js",
+    "test:smoke": "playwright test tests/storefront-smoke.spec.js --workers=1",
+    "test:cart": "playwright test tests/cart.spec.js --workers=1",
+    "test:navigation": "playwright test tests/navigation.spec.js --workers=1",
     "check:placeholders": "node scripts/check-placeholder-content.js",
     "audit:app-blocks": "node scripts/audit-app-block-surfaces.js",
     "validate:registers": "node scripts/validate-json-registers.js",
@@ -16,7 +19,16 @@
     "validate:product-data": "node scripts/validate-product-csv.js",
     "validate:product-templates": "node scripts/validate-product-templates.js",
     "validate:filters": "node scripts/validate-filter-spec.js",
-    "validate:data-architecture": "npm run validate:registers && npm run validate:product-templates && npm run validate:filters"
+    "validate:data-architecture": "npm run validate:registers && npm run validate:product-templates && npm run validate:filters",
+    "validate:cart-config": "node scripts/validate-cart-config.js",
+    "validate:search-discovery": "node scripts/validate-search-discovery-state.js",
+    "validate:metafields": "node scripts/validate-metafield-architecture.js",
+    "validate:navigation": "node scripts/validate-navigation-spec.js",
+    "validate:design-tokens": "node scripts/validate-design-tokens.js",
+    "validate:css-architecture": "node scripts/validate-css-architecture.js",
+    "validate:storefront-js": "node scripts/validate-storefront-js-contracts.js",
+    "validate:rhino-sections": "node scripts/validate-rhino-sections.js",
+    "validate:theme-architecture": "npm run validate:navigation && npm run validate:design-tokens && npm run validate:css-architecture && npm run validate:storefront-js && npm run validate:rhino-sections"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const Ajv = require('ajv');
+const Ajv2020 = require('ajv/dist/2020');
 
 const ROOT = process.cwd();
 
@@ -25,13 +25,41 @@ const targets = [
         schemaPath: 'schemas/collection-filter-spec.schema.json',
         dataPath: 'data/collection-filter-spec.json',
     },
+    {
+        name: 'search discovery desired state',
+        schemaPath: 'schemas/search-discovery-desired-state.schema.json',
+        dataPath: 'data/search-discovery-desired-state.json',
+    },
+    {
+        name: 'metafield and metaobject definitions',
+        schemaPath: 'schemas/metafield-metaobject-definitions.schema.json',
+        dataPath: 'data/metafield-metaobject-definitions.json',
+    },
+    {
+        name: 'navigation spec',
+        schemaPath: 'schemas/navigation-spec.schema.json',
+        dataPath: 'data/navigation-spec.json',
+    },
+    {
+        name: 'design token inventory',
+        schemaPath: 'schemas/design-token-inventory.schema.json',
+        dataPath: 'data/design-token-inventory.json',
+    },
+    {
+        name: 'storefront event contracts',
+        schemaPath: 'schemas/storefront-event-contracts.schema.json',
+        dataPath: 'data/storefront-event-contracts.json',
+    },
 ].filter((target) => fs.existsSync(path.join(ROOT, target.schemaPath)) || fs.existsSync(path.join(ROOT, target.dataPath)));
 
 function readJson(relativePath) {
     return JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
 }
 
-const ajv = new Ajv({ allErrors: true });
+const ajv = new Ajv2020({
+    allErrors: true,
+    strict: false,
+});
 let failed = false;
 
 for (const target of targets) {

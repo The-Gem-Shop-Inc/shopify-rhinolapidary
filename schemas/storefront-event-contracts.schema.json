@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["events"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "owner", "status", "description", "payload"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "pattern": "^rhino:[a-z0-9:-]+$" },
+          "owner": { "type": "string", "minLength": 2 },
+          "status": { "enum": ["proposed", "active", "deprecated"] },
+          "description": { "type": "string", "minLength": 5 },
+          "payload": { "type": "object" }
+        }
+      }
+    }
+  }
+}

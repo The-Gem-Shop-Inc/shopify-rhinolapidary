@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["tokens"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "tokens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "value", "owner", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "pattern": "^--rhino-[a-z0-9-]+$" },
+          "type": { "enum": ["color", "spacing", "typography", "radius", "shadow", "motion", "layout"] },
+          "value": { "type": "string", "minLength": 1 },
+          "owner": { "type": "string", "minLength": 2 },
+          "status": { "enum": ["proposed", "active", "deprecated"] },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

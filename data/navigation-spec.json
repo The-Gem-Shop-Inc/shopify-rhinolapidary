@@ -1,0 +1,40 @@
+{
+  "$schema": "../schemas/navigation-spec.schema.json",
+  "routes": [
+    {
+      "id": "home",
+      "label": "Home",
+      "path": "/",
+      "group": "header",
+      "requiredForLaunch": true
+    },
+    {
+      "id": "machines",
+      "label": "Machines",
+      "path": "/collections/machines",
+      "group": "header",
+      "requiredForLaunch": true
+    },
+    {
+      "id": "search",
+      "label": "Search",
+      "path": "/search?q=rhino",
+      "group": "utility",
+      "requiredForLaunch": true
+    },
+    {
+      "id": "cart",
+      "label": "Cart",
+      "path": "/cart",
+      "group": "utility",
+      "requiredForLaunch": true
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "path": "/pages/contact",
+      "group": "footer",
+      "requiredForLaunch": false
+    }
+  ]
+}
