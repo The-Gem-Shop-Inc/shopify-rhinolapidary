@@ -70,6 +70,11 @@ const targets = [
         schemaPath: 'schemas/hardcoded-string-allowlist.schema.json',
         dataPath: 'data/hardcoded-string-allowlist.json',
     },
+    {
+        name: 'theme environments',
+        schemaPath: 'schemas/theme-environments.schema.json',
+        dataPath: 'data/theme-environments.json',
+    },
 ].filter((target) => fs.existsSync(path.join(ROOT, target.schemaPath)) || fs.existsSync(path.join(ROOT, target.dataPath)));
 
 function readJson(relativePath) {

@@ -15,12 +15,13 @@
     "check:placeholders": "node scripts/check-placeholder-content.js",
     "audit:app-blocks": "node scripts/audit-app-block-surfaces.js",
     "audit:theme-assets": "node scripts/audit-theme-assets.js",
+    "audit:production-files": "node scripts/audit-production-push-files.js",
     "validate:registers": "node scripts/validate-json-registers.js",
     "validate:fixtures": "node scripts/validate-storefront-fixtures.js",
     "validate:product-data": "node scripts/validate-product-csv.js",
     "validate:product-templates": "node scripts/validate-product-templates.js",
     "validate:filters": "node scripts/validate-filter-spec.js",
-    "validate:data-architecture": "npm run validate:registers && npm run validate:product-templates && npm run validate:filters",
+    "validate:data-architecture": "npm run validate:registers && npm run validate:product-templates && npm run validate:filters && node scripts/validate-product-purchase-architecture.js",
     "validate:cart-config": "node scripts/validate-cart-config.js",
     "validate:search-discovery": "node scripts/validate-search-discovery-state.js",
     "validate:metafields": "node scripts/validate-metafield-architecture.js",
@@ -34,7 +35,11 @@
     "validate:media": "node scripts/validate-media-manifest.js",
     "validate:stock-remnants": "node scripts/validate-stock-trade-remnants.js",
     "validate:hardcoded-strings": "node scripts/validate-hardcoded-strings.js",
-    "validate:cleanup-architecture": "npm run audit:theme-assets && npm run validate:stock-assets && npm run validate:media && npm run validate:stock-remnants && npm run validate:hardcoded-strings"
+    "validate:cleanup-architecture": "npm run audit:theme-assets && npm run validate:stock-assets && npm run validate:media && npm run validate:stock-remnants && npm run validate:hardcoded-strings",
+    "validate:production-readiness": "node scripts/validate-production-readiness.js && node scripts/audit-production-push-files.js",
+    "validate:settings-data": "node scripts/validate-settings-data.js",
+    "validate:theme-environments": "node scripts/validate-theme-environments.js",
+    "validate:product-purchase": "node scripts/validate-product-purchase-architecture.js"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["environments"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "environments": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["name", "purpose", "requiresThemeId", "requiresPreviewUrl", "production"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "enum": ["local", "preview", "production"] },
+          "purpose": { "type": "string", "minLength": 5 },
+          "requiresThemeId": { "type": "boolean" },
+          "requiresPreviewUrl": { "type": "boolean" },
+          "production": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}
