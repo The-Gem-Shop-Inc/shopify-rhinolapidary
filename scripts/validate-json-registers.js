@@ -75,6 +75,16 @@ const targets = [
         schemaPath: 'schemas/theme-environments.schema.json',
         dataPath: 'data/theme-environments.json',
     },
+    {
+        name: 'launch fixture ownership',
+        schemaPath: 'schemas/launch-fixture-ownership.schema.json',
+        dataPath: 'data/launch-fixture-ownership.json',
+    },
+    {
+        name: 'release risk register',
+        schemaPath: 'schemas/release-risk-register.schema.json',
+        dataPath: 'data/release-risk-register.json',
+    },
 ].filter((target) => fs.existsSync(path.join(ROOT, target.schemaPath)) || fs.existsSync(path.join(ROOT, target.dataPath)));
 
 function readJson(relativePath) {

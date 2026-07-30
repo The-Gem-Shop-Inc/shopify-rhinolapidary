@@ -1,0 +1,14 @@
+{
+  "$schema": "../schemas/release-risk-register.schema.json",
+  "risks": [
+    {
+      "id": "preview-password-test-instability",
+      "title": "Password-protected preview can make Playwright tests flaky",
+      "status": "accepted",
+      "severity": "medium",
+      "owner": "Storefront engineering",
+      "mitigation": "Run preview-dependent tests with one worker and prioritize desktop Chromium for launch gate.",
+      "relatedPbis": ["A-028", "A-032", "A-054"]
+    }
+  ]
+}

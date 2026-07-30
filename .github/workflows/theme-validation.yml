@@ -88,3 +88,12 @@ jobs:
 
       - name: Validate filter spec
         run: npm run validate:filters
+
+      - name: Validate Search and Discovery desired state
+        run: npm run validate:search-discovery
+
+      - name: Validate metafield architecture
+        run: npm run validate:metafields
+
+      - name: Validate cart config
+        run: npm run validate:cart-config

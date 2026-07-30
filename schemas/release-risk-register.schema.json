@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["risks"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status", "severity", "owner", "mitigation", "relatedPbis"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "title": { "type": "string", "minLength": 5 },
+          "status": { "enum": ["open", "mitigated", "accepted", "closed"] },
+          "severity": { "enum": ["low", "medium", "high", "launch-blocking"] },
+          "owner": { "type": "string", "minLength": 2 },
+          "mitigation": { "type": "string", "minLength": 10 },
+          "relatedPbis": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^[A-Z]-[0-9]{3}$" }
+          }
+        }
+      }
+    }
+  }
+}

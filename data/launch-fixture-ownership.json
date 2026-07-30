@@ -1,0 +1,37 @@
+{
+  "$schema": "../schemas/launch-fixture-ownership.schema.json",
+  "fixtures": [
+    {
+      "fixtureId": "homepage",
+      "path": "/",
+      "owner": "Storefront engineering",
+      "requiredForLaunch": true,
+      "source": "theme",
+      "validatedBy": ["test:smoke", "test:ally", "test:navigation"]
+    },
+    {
+      "fixtureId": "collection",
+      "path": "/collections/machines",
+      "owner": "Storefront engineering",
+      "requiredForLaunch": true,
+      "source": "shopify-admin",
+      "validatedBy": ["test:smoke", "test:navigation"]
+    },
+    {
+      "fixtureId": "simpleProduct",
+      "path": "/products/left-moss-pad",
+      "owner": "Storefront engineering",
+      "requiredForLaunch": true,
+      "source": "shopify-admin",
+      "validatedBy": ["test:smoke", "test:cart", "test:ally"]
+    },
+    {
+      "fixtureId": "cart",
+      "path": "/cart",
+      "owner": "Storefront engineering",
+      "requiredForLaunch": true,
+      "source": "theme",
+      "validatedBy": ["test:smoke", "test:cart"]
+    }
+  ]
+}
