@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["media"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "type", "owner", "source", "status", "altTextRequired"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "type": { "enum": ["theme-ui", "product-media", "support-file", "manual", "diagram", "video", "other"] },
+          "owner": { "type": "string", "minLength": 2 },
+          "source": { "enum": ["rhino-owned", "vendor", "shopify-admin", "external-approved", "unknown"] },
+          "status": { "enum": ["proposed", "active", "deprecated", "remove"] },
+          "altTextRequired": { "type": "boolean" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

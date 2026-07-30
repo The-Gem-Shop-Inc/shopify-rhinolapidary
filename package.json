@@ -14,6 +14,7 @@
     "test:navigation": "playwright test tests/navigation.spec.js --workers=1",
     "check:placeholders": "node scripts/check-placeholder-content.js",
     "audit:app-blocks": "node scripts/audit-app-block-surfaces.js",
+    "audit:theme-assets": "node scripts/audit-theme-assets.js",
     "validate:registers": "node scripts/validate-json-registers.js",
     "validate:fixtures": "node scripts/validate-storefront-fixtures.js",
     "validate:product-data": "node scripts/validate-product-csv.js",
@@ -28,7 +29,12 @@
     "validate:css-architecture": "node scripts/validate-css-architecture.js",
     "validate:storefront-js": "node scripts/validate-storefront-js-contracts.js",
     "validate:rhino-sections": "node scripts/validate-rhino-sections.js",
-    "validate:theme-architecture": "npm run validate:navigation && npm run validate:design-tokens && npm run validate:css-architecture && npm run validate:storefront-js && npm run validate:rhino-sections"
+    "validate:theme-architecture": "npm run validate:navigation && npm run validate:design-tokens && npm run validate:css-architecture && npm run validate:storefront-js && npm run validate:rhino-sections",
+    "validate:stock-assets": "node scripts/validate-stock-assets.js",
+    "validate:media": "node scripts/validate-media-manifest.js",
+    "validate:stock-remnants": "node scripts/validate-stock-trade-remnants.js",
+    "validate:hardcoded-strings": "node scripts/validate-hardcoded-strings.js",
+    "validate:cleanup-architecture": "npm run audit:theme-assets && npm run validate:stock-assets && npm run validate:media && npm run validate:stock-remnants && npm run validate:hardcoded-strings"
   },
   "repository": {
     "type": "git",

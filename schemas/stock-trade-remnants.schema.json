@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["remnants"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "remnants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "surface", "path", "status", "owner", "decision"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "surface": { "enum": ["copy", "section", "template", "asset", "setting", "schema", "other"] },
+          "path": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["review", "accepted", "replaced", "removed", "deferred"] },
+          "owner": { "type": "string", "minLength": 2 },
+          "decision": { "enum": ["keep", "replace-before-launch", "remove-before-launch", "defer"] },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

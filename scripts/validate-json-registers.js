@@ -50,6 +50,26 @@ const targets = [
         schemaPath: 'schemas/storefront-event-contracts.schema.json',
         dataPath: 'data/storefront-event-contracts.json',
     },
+    {
+        name: 'stock asset ledger',
+        schemaPath: 'schemas/stock-asset-ledger.schema.json',
+        dataPath: 'data/stock-asset-ledger.json',
+    },
+    {
+        name: 'media manifest',
+        schemaPath: 'schemas/media-manifest.schema.json',
+        dataPath: 'data/media-manifest.json',
+    },
+    {
+        name: 'stock Trade remnants',
+        schemaPath: 'schemas/stock-trade-remnants.schema.json',
+        dataPath: 'data/stock-trade-remnants.json',
+    },
+    {
+        name: 'hardcoded string allowlist',
+        schemaPath: 'schemas/hardcoded-string-allowlist.schema.json',
+        dataPath: 'data/hardcoded-string-allowlist.json',
+    },
 ].filter((target) => fs.existsSync(path.join(ROOT, target.schemaPath)) || fs.existsSync(path.join(ROOT, target.dataPath)));
 
 function readJson(relativePath) {

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["assets"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "type", "origin", "decision", "owner"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "type": { "enum": ["icon", "illustration", "svg", "image", "font", "other"] },
+          "origin": { "enum": ["shopify-trade", "rhino-owned", "vendor", "unknown"] },
+          "decision": { "enum": ["keep", "replace", "remove", "review"] },
+          "owner": { "type": "string", "minLength": 2 },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}
