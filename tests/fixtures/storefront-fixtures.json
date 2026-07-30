@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/storefront-fixtures.schema.json",
-  "baseUrlEnv": "https://rhino-lapidary.myshopify.com?preview_theme_id=158631198917",
+  "baseUrlEnv": "PREVIEW_URL",
   "fixtures": {
     "homepage": {
       "path": "/",
@@ -21,13 +21,13 @@
       "expectedTemplate": "product"
     },
     "machineProduct": {
-      "path": "/products/TODO-machine-product-handle",
-      "required": false,
+      "path": "/products/trimmaster",
+      "required": true,
       "expectedTemplate": "product.machine"
     },
     "consumableProduct": {
-      "path": "/products/TODO-consumable-product-handle",
-      "required": false,
+      "path": "/products/mr16",
+      "required": true,
       "expectedTemplate": "product.consumable"
     },
     "cart": {

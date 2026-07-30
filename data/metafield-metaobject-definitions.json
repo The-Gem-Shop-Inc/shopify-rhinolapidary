@@ -1,0 +1,67 @@
+{
+  "$schema": "../schemas/metafield-metaobject-definitions.schema.json",
+  "metafields": [
+    {
+      "ownerType": "product",
+      "namespace": "rhino",
+      "key": "product_class",
+      "name": "Product class",
+      "type": "single_line_text_field",
+      "requiredForLaunch": true,
+      "usedForFiltering": true,
+      "owner": "TBD"
+    },
+    {
+      "ownerType": "product",
+      "namespace": "rhino",
+      "key": "compatibility",
+      "name": "Compatibility",
+      "type": "list.single_line_text_field",
+      "requiredForLaunch": false,
+      "usedForFiltering": true,
+      "owner": "TBD"
+    },
+    {
+      "ownerType": "product",
+      "namespace": "rhino",
+      "key": "grit",
+      "name": "Grit",
+      "type": "single_line_text_field",
+      "requiredForLaunch": false,
+      "usedForFiltering": true,
+      "owner": "TBD"
+    },
+    {
+      "ownerType": "product",
+      "namespace": "rhino",
+      "key": "machine_specs",
+      "name": "Machine specifications",
+      "type": "json",
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "owner": "TBD"
+    }
+  ],
+  "metaobjects": [
+    {
+      "type": "machine_family",
+      "name": "Machine family",
+      "requiredForLaunch": false,
+      "owner": "TBD",
+      "fields": [
+        {
+          "key": "name",
+          "name": "Name",
+          "type": "single_line_text_field",
+          "required": true
+        },
+        {
+          "key": "description",
+          "name": "Description",
+          "type": "multi_line_text_field",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
