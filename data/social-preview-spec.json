@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "defaultImagePath": "assets/rhino-og-default.jpg",
+  "minimumImage": {
+    "width": 600,
+    "height": 315
+  },
+  "defaultImage": {
+    "width": 1200,
+    "height": 630
+  },
+  "routes": [
+    {
+      "name": "homepage",
+      "path": "/",
+      "required": true,
+      "expectedType": "website",
+      "requiresDefaultDimensions": true
+    },
+    {
+      "name": "collection",
+      "env": "TEST_COLLECTION_PATH",
+      "fallback": "/collections/all",
+      "required": true,
+      "expectedType": "website",
+      "requiresDefaultDimensions": false
+    },
+    {
+      "name": "product",
+      "env": "TEST_PRODUCT_PATH",
+      "required": true,
+      "expectedType": "product",
+      "requiresDefaultDimensions": false
+    },
+    {
+      "name": "contact",
+      "env": "TEST_CONTACT_PATH",
+      "fallback": "/pages/contact",
+      "required": true,
+      "expectedType": "website",
+      "requiresDefaultDimensions": true
+    },
+    {
+      "name": "policy",
+      "env": "TEST_POLICY_PATH",
+      "fallback": "/policies/privacy-policy",
+      "required": true,
+      "expectedType": "website",
+      "requiresDefaultDimensions": true
+    }
+  ]
+}

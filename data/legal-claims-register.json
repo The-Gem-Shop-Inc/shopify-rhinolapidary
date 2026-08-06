@@ -1,0 +1,402 @@
+{
+  "schemaVersion": 1,
+  "claims": [
+    {
+      "id": "CLAIM-001",
+      "label": "Rhino Lapidary operating brand name",
+      "category": "brand_name",
+      "status": "approved_plain_use",
+      "patterns": [
+        "\\bRhino Lapidary\\b"
+      ],
+      "approvedWording": [
+        "Rhino Lapidary"
+      ],
+      "prohibitedWording": [
+        "Rhino Lapidary®",
+        "Rhino Lapidary™"
+      ],
+      "allowedSurfaces": [
+        "all"
+      ],
+      "sourcePaths": [
+        "docs/brand/rhino-brand-evidence-inventory.md",
+        "docs/brand/rhino-identity-architecture.md"
+      ],
+      "owner": "Brand Owner",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Before adding any trademark symbol or registration claim",
+      "notes": "Plain operating-name use is allowed. Registration status is not asserted."
+    },
+    {
+      "id": "CLAIM-002",
+      "label": "The Everything Machine positioning",
+      "category": "positioning",
+      "status": "approved_plain_use",
+      "patterns": [
+        "\\bThe Everything Machine\\b"
+      ],
+      "approvedWording": [
+        "The Everything Machine"
+      ],
+      "prohibitedWording": [
+        "The Everything Machine®",
+        "The Everything Machine™"
+      ],
+      "allowedSurfaces": [
+        "em_1_product",
+        "homepage",
+        "campaign"
+      ],
+      "sourcePaths": [
+        "docs/brand/rhino-product-terminology-source-audit.md",
+        "docs/product/rhino-machine-specification-resolution-register.md"
+      ],
+      "owner": "Product Owner",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Before trademark-symbol use or expansion beyond EM-1 positioning",
+      "notes": "Approved as an EM-1 positioning line, not the canonical product title."
+    },
+    {
+      "id": "CLAIM-003",
+      "label": "CE or TSEK certification",
+      "category": "certification",
+      "status": "blocked",
+      "patterns": [
+        "\\bCE\\s*(?:and|/)\\s*TSEK\\b",
+        "\\bTSEK\\b",
+        "\\bCE certified\\b",
+        "\\bTSEK certified\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "All parts are CE and TSEK certified"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-product-terminology-source-audit.md",
+        "docs/product/rhino-machine-specification-resolution-register.md"
+      ],
+      "owner": "Business and Technical Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Certification documents, product scope, market scope, and current validity supplied",
+      "notes": "Do not implement until certification evidence is approved."
+    },
+    {
+      "id": "CLAIM-004",
+      "label": "Patent and patent-pending claims",
+      "category": "patent",
+      "status": "blocked",
+      "patterns": [
+        "\\bpatent(?:ed| pending)?\\b",
+        "\\bpatent-pending\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "patented",
+        "patent pending",
+        "patent-pending"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-product-terminology-source-audit.md",
+        "docs/product/rhino-machine-specification-resolution-register.md"
+      ],
+      "owner": "Business Owner",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Current patent identifier, jurisdiction, owner, product scope, and legal approval supplied",
+      "notes": "Do not infer patent status from old catalog copy."
+    },
+    {
+      "id": "CLAIM-005",
+      "label": "Exclusive American supplier",
+      "category": "supplier_exclusivity",
+      "status": "blocked",
+      "patterns": [
+        "\\bexclusive American supplier\\b",
+        "\\bexclusive supplier\\b",
+        "\\bexclusive distributor\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "exclusive American supplier",
+        "exclusive supplier",
+        "exclusive distributor"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-brand-evidence-inventory.md",
+        "docs/brand/rhino-identity-architecture.md"
+      ],
+      "owner": "Business Owner",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Current agreement, entity, territory, product scope, and expiration supplied",
+      "notes": "Do not reuse legacy exclusivity wording."
+    },
+    {
+      "id": "CLAIM-006",
+      "label": "Manufacturer and partner roles",
+      "category": "entity_role",
+      "status": "blocked",
+      "patterns": [
+        "\\bmanufactured by Silica-Gem\\b",
+        "\\bSilica-Gem manufactures\\b",
+        "\\bThe Gem Shop fulfills\\b",
+        "\\bThe Gem Shop provides warranty\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-identity-architecture.md"
+      ],
+      "owner": "Business Owner",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Entity responsibility model approved",
+      "notes": "Neutral entity names may appear, but role assertions remain blocked."
+    },
+    {
+      "id": "CLAIM-007",
+      "label": "One-year warranty",
+      "category": "warranty",
+      "status": "blocked",
+      "patterns": [
+        "\\bone[- ]year warranty\\b",
+        "\\b1[- ]year warranty\\b",
+        "\\bwarrant(?:y|ed) for one year\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "one-year warranty",
+        "1-year warranty"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-reassurance-microcopy.md",
+        "docs/policy/Rhino Lapidary Policies - Warranty, Shipping, Returns.pdf"
+      ],
+      "owner": "Business and Product Data Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Product-specific warranty class and approved policy supplied",
+      "notes": "A universal warranty duration is inaccurate because exceptions exist."
+    },
+    {
+      "id": "CLAIM-008",
+      "label": "Ninety-day warranty",
+      "category": "warranty",
+      "status": "blocked",
+      "patterns": [
+        "\\b90[- ]day warranty\\b",
+        "\\bninety[- ]day warranty\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "90-day warranty"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-reassurance-microcopy.md",
+        "docs/policy/Rhino Lapidary Policies - Warranty, Shipping, Returns.pdf"
+      ],
+      "owner": "Business and Product Data Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Product-specific warranty class and approved policy supplied",
+      "notes": "Use only for products explicitly assigned the applicable warranty class."
+    },
+    {
+      "id": "CLAIM-009",
+      "label": "Universal international shipping",
+      "category": "international",
+      "status": "blocked",
+      "patterns": [
+        "\\bships worldwide\\b",
+        "\\bship anywhere in the world\\b",
+        "\\bavailable worldwide\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "Ships worldwide",
+        "Available worldwide"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-reassurance-microcopy.md"
+      ],
+      "owner": "Operations and Business Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Market, product, voltage, freight, customs, warranty, and service eligibility approved",
+      "notes": "Use international-review language instead."
+    },
+    {
+      "id": "CLAIM-010",
+      "label": "Unqualified durability or safety",
+      "category": "performance",
+      "status": "blocked",
+      "patterns": [
+        "\\bindestructible\\b",
+        "\\bmaintenance[- ]free\\b",
+        "\\bcompletely safe\\b",
+        "\\bwithout any problems for years\\b",
+        "\\bbuilt to last\\b",
+        "\\bsuper fast\\b",
+        "\\b100%\\s+torque\\b",
+        "\\bhigh[- ]end special features\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "indestructible",
+        "maintenance-free",
+        "completely safe",
+        "without any problems for years",
+        "super fast",
+        "100% Torque"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-brand-voice-and-copy.md",
+        "docs/brand/rhino-product-terminology-source-audit.md"
+      ],
+      "owner": "Technical and Content Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Specific measurable evidence and approved qualification supplied",
+      "notes": "Operational facts are preferred to broad durability claims."
+    },
+    {
+      "id": "CLAIM-011",
+      "label": "Four-machine or multi-operation equivalence",
+      "category": "performance",
+      "status": "blocked",
+      "patterns": [
+        "\\b4 machines in 1\\b",
+        "\\bfour machines in one\\b",
+        "\\bmulti[- ]operation\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "4 machines in 1",
+        "four machines in one"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-brand-evidence-inventory.md",
+        "docs/brand/rhino-product-terminology-source-audit.md",
+        "docs/product/rhino-machine-specification-resolution-register.md"
+      ],
+      "owner": "Product and Technical Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Approved structured EM-1 capability list and claim qualification supplied",
+      "notes": "The Everything Machine positioning is separately approved as plain positioning. Equivalence claims still require technical and legal review."
+    },
+    {
+      "id": "CLAIM-012",
+      "label": "Freight, delivery timing, and shipping cost promises",
+      "category": "shipping",
+      "status": "blocked",
+      "patterns": [
+        "\\b3[- ]?10 days\\b",
+        "\\bup to 4 weeks\\b",
+        "\\bfree freight\\b",
+        "\\bflat[- ]rate freight\\b",
+        "\\bfreight included\\b",
+        "\\bpacked safely\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "Free freight",
+        "Flat-rate freight",
+        "Freight included",
+        "Packed safely"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-reassurance-microcopy.md",
+        "docs/brand/rhino-content-migration-rules.md",
+        "docs/policy/Rhino Lapidary Policies - Warranty, Shipping, Returns.pdf"
+      ],
+      "owner": "Operations and Product Data Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Current carrier, freight, pickup, lead-time, destination, and product eligibility rules supplied",
+      "notes": "Shipping and freight details must come from current operations and product data, not old policy or catalog wording alone."
+    },
+    {
+      "id": "CLAIM-013",
+      "label": "Return period and restocking terms",
+      "category": "returns",
+      "status": "blocked",
+      "patterns": [
+        "\\b30[- ]day returns?\\b",
+        "\\breturned within 30 days\\b",
+        "\\b50% restocking\\b",
+        "\\brestocking fee\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "30-day returns",
+        "50% restocking fee"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-reassurance-microcopy.md",
+        "docs/brand/rhino-content-migration-rules.md",
+        "docs/policy/Rhino Lapidary Policies - Warranty, Shipping, Returns.pdf"
+      ],
+      "owner": "Legal and Operations",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Approved current return policy, product exclusions, condition rules, and cost responsibilities supplied",
+      "notes": "Return terms require legal and operational approval before any customer-facing migration."
+    },
+    {
+      "id": "CLAIM-014",
+      "label": "Support, warranty administration, and repair responsibility",
+      "category": "support",
+      "status": "blocked",
+      "patterns": [
+        "\\bmail@thegemshop\\.com\\b",
+        "\\b262[- ]377[- ]4666\\b",
+        "\\bwarranty assistance\\b",
+        "\\brepair requests?\\b",
+        "\\brepair responsibility\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-identity-architecture.md",
+        "docs/brand/rhino-reassurance-microcopy.md",
+        "docs/policy/Rhino Lapidary Policies - Warranty, Shipping, Returns.pdf"
+      ],
+      "owner": "Business, Support, and Legal Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Current support owner, contact channels, warranty administrator, repair process, and geographic scope supplied",
+      "notes": "Source contact details are evidence only until the identity and support routing model is approved."
+    },
+    {
+      "id": "CLAIM-015",
+      "label": "Parts availability and compatibility promises",
+      "category": "compatibility",
+      "status": "blocked",
+      "patterns": [
+        "\\bparts always available\\b",
+        "\\bguaranteed compatibility\\b",
+        "\\bworks with most Rhino machines\\b",
+        "\\bfits all Rhino\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "Parts always available",
+        "Guaranteed compatibility",
+        "Works with most Rhino machines",
+        "Fits all Rhino"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-product-naming-and-terminology.md",
+        "docs/brand/rhino-reassurance-microcopy.md"
+      ],
+      "owner": "Product Data and Support Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Structured compatibility and inventory/service policy supplied",
+      "notes": "Compatibility and parts availability must be explicit and structured."
+    }
+  ]
+}

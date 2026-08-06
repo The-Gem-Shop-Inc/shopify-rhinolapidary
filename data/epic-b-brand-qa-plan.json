@@ -1,0 +1,544 @@
+{
+  "schemaVersion": 1,
+  "status": "approved_plan",
+  "evidenceRoot": "docs/qa/evidence/epic-b",
+  "resultRoot": "test-results/epic-b",
+  "evidenceNaming": {
+    "manualEvidenceFile": "YYYY-MM-DD-epic-b-{scope}.md",
+    "screenshotFile": "YYYY-MM-DD-epic-b-{page}-{viewport}-{check}.png",
+    "automatedReportFile": "epic-b-qa-{mode}-{timestamp}.json",
+    "rules": [
+      "Use lowercase scope names and hyphen separators.",
+      "Include the preview theme ID or preview URL in each manual evidence file.",
+      "Attach screenshots for responsive, crop, focus, and visual review failures.",
+      "Store automated runner output under resultRoot; copy release evidence summaries to evidenceRoot when a release review begins."
+    ]
+  },
+  "pages": [
+    {
+      "id": "homepage",
+      "category": "homepage",
+      "path": "/",
+      "fixtureKey": "homepage",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true,
+      "notes": "Primary identity and introductory content surface."
+    },
+    {
+      "id": "collection-machines",
+      "category": "collection",
+      "env": "TEST_COLLECTION_PATH",
+      "fallback": "/collections/machines",
+      "fixtureKey": "collection",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true,
+      "notes": "Stable fixture collection from the storefront fixture file."
+    },
+    {
+      "id": "search-rhino",
+      "category": "search",
+      "env": "TEST_SEARCH_PATH",
+      "fallback": "/search?q=rhino",
+      "fixtureKey": "search",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true,
+      "notes": "Search results and no-results behavior use the existing query fixture."
+    },
+    {
+      "id": "product-simple",
+      "category": "product",
+      "path": "/products/left-moss-pad",
+      "fixtureKey": "simpleProduct",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true,
+      "notes": "Working purchase-path fixture from the storefront fixture file."
+    },
+    {
+      "id": "product-machine",
+      "category": "product",
+      "env": "TEST_MACHINE_PRODUCT_PATH",
+      "fallback": "/products/trimmaster",
+      "fixtureKey": "machineProduct",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true,
+      "notes": "Representative machine product fixture; technical copy remains review-gated."
+    },
+    {
+      "id": "cart",
+      "category": "cart",
+      "path": "/cart",
+      "fixtureKey": "cart",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true,
+      "notes": "Cart state and purchase-path continuation surface."
+    },
+    {
+      "id": "contact",
+      "category": "contact",
+      "env": "TEST_CONTACT_PATH",
+      "fallback": "/pages/contact",
+      "fixtureKey": "contact",
+      "source": "tests/fixtures/storefront-fixtures.json and data/brand-performance-budget.json",
+      "required": true,
+      "notes": "Support/contact route must be confirmed in preview before release evidence is accepted."
+    },
+    {
+      "id": "policy",
+      "category": "policy",
+      "env": "TEST_POLICY_PATH",
+      "fallback": "/policies/privacy-policy",
+      "source": "data/brand-performance-budget.json",
+      "required": true,
+      "notes": "Representative policy route for legal, support, and metadata review."
+    }
+  ],
+  "viewports": [
+    {
+      "id": "mobile-360",
+      "width": 360,
+      "height": 800,
+      "required": true,
+      "purpose": "Narrow mobile layout and product-control wrapping."
+    },
+    {
+      "id": "mobile-390",
+      "width": 390,
+      "height": 844,
+      "required": true,
+      "purpose": "Primary modern phone evidence."
+    },
+    {
+      "id": "tablet-768",
+      "width": 768,
+      "height": 1024,
+      "required": true,
+      "purpose": "Tablet portrait layout and navigation."
+    },
+    {
+      "id": "desktop-1440",
+      "width": 1440,
+      "height": 900,
+      "required": true,
+      "purpose": "Primary desktop review."
+    },
+    {
+      "id": "desktop-1920",
+      "width": 1920,
+      "height": 1080,
+      "required": false,
+      "purpose": "Supplemental wide-desktop evidence when practical."
+    }
+  ],
+  "journeys": [
+    {
+      "id": "identity-baseline",
+      "category": "identity",
+      "pages": ["homepage", "product-machine", "policy"],
+      "customerState": "new visitor using persistent preview",
+      "checks": [
+        "Logo, favicon, theme color, and default social metadata are present in preview evidence.",
+        "Brand marks remain legible at required viewports.",
+        "No unapproved manufacturer, supplier, certification, patent, warranty, or exclusivity claim appears."
+      ],
+      "expectedResult": "Preview communicates Rhino identity with approved assets and no unsupported claims.",
+      "evidence": ["screenshots", "metadata report", "claims validation output"]
+    },
+    {
+      "id": "discovery-flow",
+      "category": "discovery",
+      "pages": ["homepage", "collection-machines", "search-rhino"],
+      "customerState": "new buyer comparing machines and parts",
+      "checks": [
+        "Product cards remain readable and scannable.",
+        "Search and collection contexts use consistent card language.",
+        "No stock Trade placeholder copy remains on included surfaces."
+      ],
+      "expectedResult": "Customers can discover products without layout overlap, misleading badges, or placeholder copy.",
+      "evidence": ["screenshots", "smoke test output", "manual notes"]
+    },
+    {
+      "id": "purchase-summary",
+      "category": "purchase",
+      "pages": ["product-simple", "product-machine"],
+      "customerState": "buyer evaluating price, quantity, variants, and add-to-cart action",
+      "checks": [
+        "Title, price, quantity, variant controls, primary purchase action, and support links wrap correctly.",
+        "Focus, loading, disabled, and error states are visible and understandable.",
+        "Technical, compatibility, included-component, warranty, and freight claims remain absent unless approved."
+      ],
+      "expectedResult": "The purchase summary remains usable and claim-safe on product fixtures.",
+      "evidence": ["screenshots", "keyboard notes", "purchase-path test output"]
+    },
+    {
+      "id": "cart-continuation",
+      "category": "cart",
+      "pages": ["product-simple", "cart"],
+      "customerState": "buyer after adding a product to cart",
+      "checks": [
+        "Cart notification or cart page shows the expected product, quantity, price, and recovery actions.",
+        "Quantity update and removal controls remain keyboard reachable.",
+        "Cart styling does not change checkout or commerce architecture."
+      ],
+      "expectedResult": "Cart state is stable and purchase progression remains intact.",
+      "evidence": ["smoke test output", "manual keyboard evidence"]
+    },
+    {
+      "id": "support-route",
+      "category": "support",
+      "pages": ["contact", "product-machine"],
+      "customerState": "customer seeking help before or after purchase",
+      "checks": [
+        "Support links have clear destinations.",
+        "Contact form labels and errors are usable.",
+        "Support, repair, warranty administration, and entity-role claims are reviewed before publication."
+      ],
+      "expectedResult": "Support surfaces are reachable, accessible, and free of unapproved responsibility claims.",
+      "evidence": ["manual form evidence", "claims validation output"]
+    },
+    {
+      "id": "policy-review",
+      "category": "policy",
+      "pages": ["policy", "contact"],
+      "customerState": "customer checking return, warranty, shipping, or support terms",
+      "checks": [
+        "Policy pages remain readable at mobile and desktop widths.",
+        "Legal-sensitive copy links to the claims register and migration decisions.",
+        "No legacy policy copy is treated as approved without legal and operations signoff."
+      ],
+      "expectedResult": "Policy evidence is visible to reviewers without publishing unapproved customer promises.",
+      "evidence": ["manual notes", "claims validation output", "release signoff reference"]
+    }
+  ],
+  "automatedSuites": [
+    {
+      "id": "epic-b-architecture",
+      "capability": "repository",
+      "mode": "static",
+      "npmScript": "validate:epic-b-architecture",
+      "required": true,
+      "evidence": "Console output and Epic B QA runner report."
+    },
+    {
+      "id": "brand-launch-governance",
+      "capability": "repository",
+      "mode": "static",
+      "npmScript": "validate:brand-launch-governance",
+      "required": true,
+      "evidence": "Console output and Epic B QA runner report."
+    },
+    {
+      "id": "brand-performance-static",
+      "capability": "performance",
+      "mode": "static",
+      "npmScript": "validate:brand-performance",
+      "required": true,
+      "evidence": "test-results/brand-performance-static.json and Epic B QA runner report."
+    },
+    {
+      "id": "register-validation",
+      "capability": "repository",
+      "mode": "static",
+      "npmScript": "validate:registers",
+      "required": true,
+      "evidence": "Console output and Epic B QA runner report."
+    },
+    {
+      "id": "claims-scan",
+      "capability": "repository",
+      "mode": "static",
+      "npmScript": "validate:brand-claims",
+      "required": true,
+      "evidence": "Console output and Epic B QA runner report."
+    },
+    {
+      "id": "brand-assets",
+      "capability": "repository",
+      "mode": "static",
+      "npmScript": "validate:brand-assets",
+      "required": true,
+      "evidence": "Console output and Epic B QA runner report."
+    },
+    {
+      "id": "epic-b-finalization",
+      "capability": "repository",
+      "mode": "static",
+      "npmScript": "validate:epic-b-finalization",
+      "required": true,
+      "evidence": "Console output and Epic B QA runner report."
+    },
+    {
+      "id": "storefront-smoke",
+      "capability": "smoke",
+      "mode": "preview",
+      "npmScript": "test:smoke",
+      "required": true,
+      "evidence": "Playwright report and manual summary copied to evidenceRoot."
+    },
+    {
+      "id": "storefront-accessibility",
+      "capability": "accessibility",
+      "mode": "preview",
+      "npmScript": "test:ally",
+      "required": true,
+      "evidence": "Axe/Playwright output with any approved suppressions recorded."
+    },
+    {
+      "id": "brand-performance-release",
+      "capability": "performance",
+      "mode": "preview",
+      "npmScript": "test:brand-performance:release",
+      "required": true,
+      "evidence": "Runtime performance reports under resultRoot."
+    },
+    {
+      "id": "social-metadata-preview",
+      "capability": "social-metadata",
+      "mode": "preview",
+      "npmScript": "test:social-metadata",
+      "required": true,
+      "evidence": "Rendered metadata validation output and preview URL."
+    }
+  ],
+  "manualChecks": [
+    {
+      "id": "keyboard",
+      "owner": "QA and Release Approver",
+      "pages": ["homepage", "collection-machines", "search-rhino", "product-simple", "cart", "contact", "policy"],
+      "evidence": ["manual QA notes", "failure screenshots when applicable"],
+      "passCriteria": "All interactive controls are reachable and operable without a pointer."
+    },
+    {
+      "id": "zoom-200",
+      "owner": "QA and Release Approver",
+      "pages": ["homepage", "collection-machines", "product-simple", "cart", "policy"],
+      "evidence": ["viewport screenshots", "manual QA notes"],
+      "passCriteria": "Content remains readable and controls remain usable at 200 percent zoom."
+    },
+    {
+      "id": "text-spacing",
+      "owner": "QA and Release Approver",
+      "pages": ["homepage", "collection-machines", "product-simple", "policy"],
+      "evidence": ["screenshots", "manual QA notes"],
+      "passCriteria": "Increased text spacing does not overlap, clip, or hide content."
+    },
+    {
+      "id": "reduced-motion",
+      "owner": "Accessibility and Frontend Engineering",
+      "pages": ["homepage", "collection-machines", "search-rhino", "product-simple", "cart"],
+      "evidence": ["manual QA notes"],
+      "passCriteria": "Decorative motion is removed or minimized and state changes remain understandable."
+    },
+    {
+      "id": "forced-colors",
+      "owner": "Accessibility and Frontend Engineering",
+      "pages": ["homepage", "product-simple", "cart", "contact"],
+      "evidence": ["screenshots", "manual QA notes"],
+      "passCriteria": "Focus, controls, and required content remain visible in forced-colors mode."
+    },
+    {
+      "id": "mobile-crops",
+      "owner": "Media Owner",
+      "pages": ["homepage", "collection-machines", "product-simple", "product-machine"],
+      "evidence": ["mobile screenshots"],
+      "passCriteria": "Product and identity imagery does not hide important product or logo details."
+    },
+    {
+      "id": "placeholder-content",
+      "owner": "Content Owner",
+      "pages": ["homepage", "collection-machines", "search-rhino", "product-simple", "contact", "policy"],
+      "evidence": ["manual QA notes", "placeholder validator output when applicable"],
+      "passCriteria": "No stock Trade placeholder text remains on Epic B included surfaces."
+    },
+    {
+      "id": "claims-review",
+      "owner": "Legal or Claims Reviewer",
+      "pages": ["homepage", "product-machine", "contact", "policy"],
+      "evidence": ["claims validation output", "approval record"],
+      "passCriteria": "Blocked legal, warranty, certification, patent, supplier, freight, and support claims do not appear."
+    },
+    {
+      "id": "logo-legibility",
+      "owner": "Brand Owner",
+      "pages": ["homepage", "product-simple", "policy"],
+      "evidence": ["screenshots at required viewports"],
+      "passCriteria": "Rhino logo and mark remain legible and are not altered from approved assets."
+    },
+    {
+      "id": "focus-visibility",
+      "owner": "Accessibility and Frontend Engineering",
+      "pages": ["homepage", "collection-machines", "search-rhino", "product-simple", "cart", "contact"],
+      "evidence": ["keyboard screenshots", "manual QA notes"],
+      "passCriteria": "Focus ring and focus halo are visible without relying only on color."
+    },
+    {
+      "id": "heading-hierarchy",
+      "owner": "Content and Accessibility Owners",
+      "pages": ["homepage", "collection-machines", "product-simple", "contact", "policy"],
+      "evidence": ["manual heading notes"],
+      "passCriteria": "Each page has a clear main heading and logical heading order."
+    },
+    {
+      "id": "product-card-wrapping",
+      "owner": "Frontend Engineering and Merchandising",
+      "pages": ["collection-machines", "search-rhino"],
+      "evidence": ["screenshots at mobile-360, mobile-390, and desktop-1440"],
+      "passCriteria": "Long product names, prices, badges, and availability states wrap without overlap."
+    },
+    {
+      "id": "product-purchase-path",
+      "owner": "Product Owner and QA and Release Approver",
+      "pages": ["product-simple", "cart"],
+      "evidence": ["smoke test output", "manual add-to-cart notes"],
+      "passCriteria": "A fixture product can be added to cart and the cart state is correct."
+    },
+    {
+      "id": "cart-state",
+      "owner": "Cart Owner and QA and Release Approver",
+      "pages": ["cart"],
+      "evidence": ["screenshots", "manual cart notes"],
+      "passCriteria": "Empty, populated, quantity update, removal, and checkout-entry states remain usable."
+    },
+    {
+      "id": "form-labels-errors",
+      "owner": "Accessibility, Content, and Support Owners",
+      "pages": ["contact"],
+      "evidence": ["screenshots", "manual form notes"],
+      "passCriteria": "Visible labels, required states, errors, and success messages are clear and programmatically associated."
+    },
+    {
+      "id": "responsive-image-crops",
+      "owner": "Media Owner",
+      "pages": ["homepage", "collection-machines", "product-simple", "product-machine"],
+      "evidence": ["screenshots at required viewports"],
+      "passCriteria": "Images preserve important product, logo, and crop details at all required widths."
+    },
+    {
+      "id": "social-preview",
+      "owner": "SEO, Brand, and Media Owners",
+      "pages": ["homepage", "collection-machines", "product-simple", "policy"],
+      "evidence": ["test:social-metadata output", "preview metadata notes"],
+      "passCriteria": "Open Graph and Twitter metadata use approved images and alt text."
+    },
+    {
+      "id": "favicon-browser-identity",
+      "owner": "Brand and Shopify Admin Owners",
+      "pages": ["homepage"],
+      "evidence": ["browser screenshots", "theme setting notes"],
+      "passCriteria": "Favicon, Apple touch icon, mask icon, and theme color match approved assets in preview."
+    },
+    {
+      "id": "settings-persistence",
+      "owner": "Shopify Admin and Engineering Owners",
+      "pages": ["homepage", "collection-machines", "product-simple"],
+      "evidence": ["settings diff", "preview screenshots", "rollback note"],
+      "passCriteria": "Preview settings survive pull/push workflow and production settings remain unchanged."
+    },
+    {
+      "id": "rollback-rehearsal",
+      "owner": "QA and Release Approver",
+      "pages": ["homepage"],
+      "evidence": ["rollback notes", "release checklist reference"],
+      "passCriteria": "The team can restore pre-change settings and revert repository changes before any production publish."
+    }
+  ],
+  "evidenceMappings": [
+    {
+      "changeType": "code",
+      "owner": "Engineering Owner",
+      "requiredEvidence": [
+        "Git diff or pull request",
+        "Repository validation output",
+        "Theme Check output",
+        "Relevant automated suite output",
+        "Rollback instructions"
+      ],
+      "destination": "Pull request and docs/project/implementation-records"
+    },
+    {
+      "changeType": "admin",
+      "owner": "Shopify Admin Owner",
+      "requiredEvidence": [
+        "Before and after setting values or screenshots",
+        "Preview theme ID or URL",
+        "Admin rollback notes",
+        "Confirmation that production was not changed"
+      ],
+      "destination": "Manual QA evidence and release checklist"
+    },
+    {
+      "changeType": "content",
+      "owner": "Content Owner",
+      "requiredEvidence": [
+        "Source register or approved copy source",
+        "Claims review when sensitive wording appears",
+        "Screenshots at required viewports",
+        "Localization or future translation notes"
+      ],
+      "destination": "Manual QA evidence and migration register"
+    },
+    {
+      "changeType": "media",
+      "owner": "Media Owner",
+      "requiredEvidence": [
+        "Media manifest or product-media record",
+        "Source owner and rights status",
+        "Alt text or accessibility alternative",
+        "Crop and performance screenshots",
+        "Rollback or replacement path"
+      ],
+      "destination": "Media manifest, manual QA evidence, or Shopify product media record"
+    }
+  ],
+  "signoffs": [
+    {
+      "role": "Brand Owner",
+      "requiredFor": ["identity", "visual", "logo", "color", "typography", "media presentation", "style guide"],
+      "evidence": "Approved style-guide and preview screenshots."
+    },
+    {
+      "role": "Engineering Owner",
+      "requiredFor": ["repository code", "CSS", "Liquid", "JavaScript", "validation", "rollback"],
+      "evidence": "Validation output, implementation records, and rollback notes."
+    },
+    {
+      "role": "QA and Release Approver",
+      "requiredFor": ["automated QA", "manual QA", "preview acceptance", "release gate"],
+      "evidence": "Epic B QA runner output and manual evidence files."
+    },
+    {
+      "role": "Product Owner",
+      "requiredFor": ["scope acceptance", "preview go/no-go", "follow-up prioritization"],
+      "evidence": "Accepted implementation records and preview-slice decision."
+    },
+    {
+      "role": "Business Owner",
+      "requiredFor": ["entity responsibility", "supplier role", "support ownership", "commercial availability"],
+      "evidence": "Approval record when business facts are used."
+    },
+    {
+      "role": "Legal or Claims Reviewer",
+      "requiredFor": ["warranty", "freight", "return", "certification", "patent", "exclusivity", "support responsibility"],
+      "evidence": "Legal claims register status and approval record."
+    },
+    {
+      "role": "Content Owner",
+      "requiredFor": ["homepage copy", "product copy", "support copy", "metadata", "migration decisions"],
+      "evidence": "Migration register, claims review, and viewport screenshots."
+    },
+    {
+      "role": "Media Owner",
+      "requiredFor": ["logo assets", "product media", "social images", "video posters", "diagrams"],
+      "evidence": "Media manifest, rights notes, crop review, and alt-text review."
+    },
+    {
+      "role": "Shopify Admin Owner",
+      "requiredFor": ["theme settings", "logo and favicon uploads", "pages", "policies", "products", "Files"],
+      "evidence": "Admin-change evidence and rollback note."
+    },
+    {
+      "role": "Support Owner",
+      "requiredFor": ["contact routes", "support copy", "repair and warranty routing"],
+      "evidence": "Support-flow evidence and approved responsibility language."
+    }
+  ]
+}

@@ -2,20 +2,820 @@
   "$schema": "../schemas/design-token-inventory.schema.json",
   "tokens": [
     {
+      "name": "--rhino-color-red-500",
+      "type": "color",
+      "value": "#ed1c24",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 brand source color: Rhino red."
+    },
+    {
+      "name": "--rhino-color-red-700",
+      "type": "color",
+      "value": "#b51820",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 accessible interface color: primary action red."
+    },
+    {
+      "name": "--rhino-color-red-900",
+      "type": "color",
+      "value": "#791716",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 brand source color: Deep Rhino."
+    },
+    {
+      "name": "--rhino-color-gold-500",
+      "type": "color",
+      "value": "#b6830d",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 brand source color: Workshop gold, for sparse highlights only."
+    },
+    {
+      "name": "--rhino-color-black",
+      "type": "color",
+      "value": "#000000",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 brand source color: black."
+    },
+    {
+      "name": "--rhino-color-white",
+      "type": "color",
+      "value": "#ffffff",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 brand and interface color: white."
+    },
+    {
+      "name": "--rhino-color-carbon",
+      "type": "color",
+      "value": "#111111",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 accessible interface color: primary text and dark surfaces."
+    },
+    {
+      "name": "--rhino-color-graphite",
+      "type": "color",
+      "value": "#2b2d30",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 accessible interface color: secondary dark surfaces and strong borders."
+    },
+    {
+      "name": "--rhino-color-steel",
+      "type": "color",
+      "value": "#5d6670",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 accessible interface color: muted text."
+    },
+    {
+      "name": "--rhino-color-alloy",
+      "type": "color",
+      "value": "#c9cdd2",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 accessible interface color: borders and dividers."
+    },
+    {
+      "name": "--rhino-color-mist",
+      "type": "color",
+      "value": "#f3f4f5",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 accessible interface color: alternate surface and media backdrop."
+    },
+    {
+      "name": "--rhino-color-warm-white",
+      "type": "color",
+      "value": "#fcfbf8",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 accessible interface color: editorial or support surface."
+    },
+    {
+      "name": "--rhino-color-link",
+      "type": "color",
+      "value": "#a3151c",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 and B-008 link color."
+    },
+    {
+      "name": "--rhino-color-info",
+      "type": "color",
+      "value": "#0b5ea8",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-005 and B-009 functional information color."
+    },
+    {
+      "name": "--rhino-color-success",
+      "type": "color",
+      "value": "#1f6b45",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-005 and B-009 functional success color."
+    },
+    {
+      "name": "--rhino-color-warning",
+      "type": "color",
+      "value": "#7a4a00",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-005 and B-009 functional warning color."
+    },
+    {
+      "name": "--rhino-color-error",
+      "type": "color",
+      "value": "#b42318",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-005 and B-009 functional error color."
+    },
+    {
+      "name": "--rhino-color-info-surface",
+      "type": "color",
+      "value": "#eef6fc",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-009 functional information surface."
+    },
+    {
+      "name": "--rhino-color-success-surface",
+      "type": "color",
+      "value": "#eef8f2",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-009 functional success surface."
+    },
+    {
+      "name": "--rhino-color-warning-surface",
+      "type": "color",
+      "value": "#fff7e8",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-009 functional warning surface."
+    },
+    {
+      "name": "--rhino-color-error-surface",
+      "type": "color",
+      "value": "#fff1f0",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-009 functional error surface."
+    },
+    {
       "name": "--rhino-color-brand-primary",
       "type": "color",
-      "value": "rgb(var(--color-button))",
-      "owner": "Storefront engineering",
-      "status": "proposed",
-      "notes": "Delegates to current Trade button color until Rhino brand palette is finalized."
+      "value": "var(--rhino-color-red-500)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 compatible alias for the primary Rhino brand color."
+    },
+    {
+      "name": "--rhino-color-action",
+      "type": "color",
+      "value": "var(--rhino-color-red-700)",
+      "owner": "Product, Brand, and Engineering",
+      "status": "active",
+      "notes": "Approved B-008 semantic color alias for primary commerce actions."
+    },
+    {
+      "name": "--rhino-color-action-hover",
+      "type": "color",
+      "value": "var(--rhino-color-red-900)",
+      "owner": "Product, Brand, and Engineering",
+      "status": "active",
+      "notes": "Approved B-008 semantic color alias for primary action hover state."
+    },
+    {
+      "name": "--rhino-color-focus",
+      "type": "color",
+      "value": "var(--rhino-color-red-500)",
+      "owner": "Product, Brand, and Engineering",
+      "status": "active",
+      "notes": "Approved B-008 semantic color alias for visible focus treatment."
+    },
+    {
+      "name": "--rhino-color-surface",
+      "type": "color",
+      "value": "var(--rhino-color-white)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 semantic surface alias: primary surface."
+    },
+    {
+      "name": "--rhino-color-surface-alternate",
+      "type": "color",
+      "value": "var(--rhino-color-mist)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 semantic surface alias: alternate technical grouping."
+    },
+    {
+      "name": "--rhino-color-surface-editorial",
+      "type": "color",
+      "value": "var(--rhino-color-warm-white)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 semantic surface alias: editorial and support content."
+    },
+    {
+      "name": "--rhino-color-surface-dark",
+      "type": "color",
+      "value": "var(--rhino-color-carbon)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 semantic surface alias: selective dark surfaces."
+    },
+    {
+      "name": "--rhino-color-text",
+      "type": "color",
+      "value": "var(--rhino-color-carbon)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 semantic text color."
+    },
+    {
+      "name": "--rhino-color-text-muted",
+      "type": "color",
+      "value": "var(--rhino-color-steel)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-005 semantic muted text color."
+    },
+    {
+      "name": "--rhino-color-border",
+      "type": "color",
+      "value": "var(--rhino-color-alloy)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 semantic standard border color."
+    },
+    {
+      "name": "--rhino-color-border-strong",
+      "type": "color",
+      "value": "var(--rhino-color-graphite)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 semantic strong border color."
+    },
+    {
+      "name": "--rhino-font-family-sans",
+      "type": "typography",
+      "value": "\"DM Sans\", var(--font-heading-family), Arial, sans-serif",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 launch font-family stack."
+    },
+    {
+      "name": "--rhino-font-weight-regular",
+      "type": "typography",
+      "value": "400",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 body weight."
+    },
+    {
+      "name": "--rhino-font-weight-medium",
+      "type": "typography",
+      "value": "500",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 secondary emphasis weight."
+    },
+    {
+      "name": "--rhino-font-weight-semibold",
+      "type": "typography",
+      "value": "600",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 labels, navigation, buttons, and table heading weight."
+    },
+    {
+      "name": "--rhino-font-weight-bold",
+      "type": "typography",
+      "value": "700",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 page, product, and section heading weight."
+    },
+    {
+      "name": "--rhino-font-size-xs",
+      "type": "typography",
+      "value": "1.2rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 type scale: 12 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-sm",
+      "type": "typography",
+      "value": "1.3rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 type scale: 13 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-compact",
+      "type": "typography",
+      "value": "1.4rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 compact body type scale: 14 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-button",
+      "type": "typography",
+      "value": "1.5rem",
+      "owner": "Product, Brand, and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 and B-008 button label size: 15 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-body",
+      "type": "typography",
+      "value": "1.6rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 body type scale: 16 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-lg",
+      "type": "typography",
+      "value": "1.8rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 product subtitle type scale: 18 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-xl",
+      "type": "typography",
+      "value": "2rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 subsection heading mobile size: 20 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-2xl",
+      "type": "typography",
+      "value": "2.4rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 section heading mobile size: 24 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-3xl",
+      "type": "typography",
+      "value": "2.8rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 product title mobile size: 28 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-4xl",
+      "type": "typography",
+      "value": "3.2rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 page title mobile and product title desktop size: 32 px equivalent."
+    },
+    {
+      "name": "--rhino-font-size-5xl",
+      "type": "typography",
+      "value": "4rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 page title desktop size: 40 px equivalent."
+    },
+    {
+      "name": "--rhino-type-page-title-size",
+      "type": "typography",
+      "value": "var(--rhino-font-size-4xl)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic page-title size; desktop override is defined in CSS."
+    },
+    {
+      "name": "--rhino-type-page-title-line-height",
+      "type": "typography",
+      "value": "1.25",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic page-title line height."
+    },
+    {
+      "name": "--rhino-type-product-title-size",
+      "type": "typography",
+      "value": "var(--rhino-font-size-3xl)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic product-title size; desktop override is defined in CSS."
+    },
+    {
+      "name": "--rhino-type-product-title-line-height",
+      "type": "typography",
+      "value": "1.285",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic product-title line height."
+    },
+    {
+      "name": "--rhino-type-section-title-size",
+      "type": "typography",
+      "value": "var(--rhino-font-size-2xl)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic section-title size; desktop override is defined in CSS."
+    },
+    {
+      "name": "--rhino-type-section-title-line-height",
+      "type": "typography",
+      "value": "1.333",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic section-title line height."
+    },
+    {
+      "name": "--rhino-type-subsection-title-size",
+      "type": "typography",
+      "value": "var(--rhino-font-size-xl)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic subsection-title size; desktop override is defined in CSS."
+    },
+    {
+      "name": "--rhino-type-subsection-title-line-height",
+      "type": "typography",
+      "value": "1.4",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic subsection-title line height."
+    },
+    {
+      "name": "--rhino-type-body-line-height",
+      "type": "typography",
+      "value": "1.625",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic body line height."
+    },
+    {
+      "name": "--rhino-type-compact-line-height",
+      "type": "typography",
+      "value": "1.571",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 semantic compact body line height."
+    },
+    {
+      "name": "--rhino-type-label-letter-spacing",
+      "type": "typography",
+      "value": "0.08em",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 technical label letter spacing."
+    },
+    {
+      "name": "--rhino-space-1",
+      "type": "spacing",
+      "value": "0.4rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 spacing scale step: 4 px equivalent."
+    },
+    {
+      "name": "--rhino-space-2",
+      "type": "spacing",
+      "value": "0.8rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 spacing scale step: 8 px equivalent."
+    },
+    {
+      "name": "--rhino-space-3",
+      "type": "spacing",
+      "value": "1.2rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 spacing scale step: 12 px equivalent."
+    },
+    {
+      "name": "--rhino-space-4",
+      "type": "spacing",
+      "value": "1.6rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 spacing scale step: 16 px equivalent."
+    },
+    {
+      "name": "--rhino-space-5",
+      "type": "spacing",
+      "value": "2.4rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 spacing scale step: 24 px equivalent."
+    },
+    {
+      "name": "--rhino-space-6",
+      "type": "spacing",
+      "value": "3.2rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 spacing scale step: 32 px equivalent."
+    },
+    {
+      "name": "--rhino-space-7",
+      "type": "spacing",
+      "value": "4.8rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 spacing scale step: 48 px equivalent."
+    },
+    {
+      "name": "--rhino-space-8",
+      "type": "spacing",
+      "value": "6.4rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 spacing scale step: 64 px equivalent."
+    },
+    {
+      "name": "--rhino-space-9",
+      "type": "spacing",
+      "value": "9.6rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 spacing scale step: 96 px equivalent."
+    },
+    {
+      "name": "--rhino-width-canvas",
+      "type": "layout",
+      "value": "140rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 global storefront canvas width."
+    },
+    {
+      "name": "--rhino-width-content",
+      "type": "layout",
+      "value": "112rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 standard content width."
+    },
+    {
+      "name": "--rhino-width-prose",
+      "type": "layout",
+      "value": "72rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-006 and B-007 long-form prose width."
+    },
+    {
+      "name": "--rhino-width-form",
+      "type": "layout",
+      "value": "64rem",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-007 and B-009 compact technical form width."
+    },
+    {
+      "name": "--rhino-page-gutter",
+      "type": "spacing",
+      "value": "var(--rhino-space-4)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 page gutter; tablet and desktop overrides are defined in CSS."
     },
     {
       "name": "--rhino-section-spacing-y",
       "type": "spacing",
       "value": "4rem",
-      "owner": "Storefront engineering",
-      "status": "proposed",
-      "notes": "Default vertical rhythm for future Rhino custom sections."
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 compatible alias for standard section spacing; desktop override is defined in CSS."
+    },
+    {
+      "name": "--rhino-section-spacing-dense-y",
+      "type": "spacing",
+      "value": "var(--rhino-space-5)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 dense technical section spacing; desktop override is defined in CSS."
+    },
+    {
+      "name": "--rhino-section-spacing-major-y",
+      "type": "spacing",
+      "value": "var(--rhino-space-8)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 major landing transition spacing; desktop override is defined in CSS."
+    },
+    {
+      "name": "--rhino-border-width",
+      "type": "layout",
+      "value": "0.1rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 standard border width."
+    },
+    {
+      "name": "--rhino-border-width-accent",
+      "type": "layout",
+      "value": "0.4rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 brand rule accent width."
+    },
+    {
+      "name": "--rhino-border-standard",
+      "type": "layout",
+      "value": "var(--rhino-border-width) solid var(--rhino-color-border)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 standard border shorthand."
+    },
+    {
+      "name": "--rhino-border-strong",
+      "type": "layout",
+      "value": "var(--rhino-border-width) solid var(--rhino-color-border-strong)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 strong border shorthand."
+    },
+    {
+      "name": "--rhino-radius-control",
+      "type": "radius",
+      "value": "0.4rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 control radius."
+    },
+    {
+      "name": "--rhino-radius-panel",
+      "type": "radius",
+      "value": "0.4rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 technical panel radius."
+    },
+    {
+      "name": "--rhino-radius-media",
+      "type": "radius",
+      "value": "0.6rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 product media radius."
+    },
+    {
+      "name": "--rhino-radius-overlay",
+      "type": "radius",
+      "value": "0.6rem",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 overlay radius."
+    },
+    {
+      "name": "--rhino-radius-round",
+      "type": "radius",
+      "value": "50%",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 round utility radius."
+    },
+    {
+      "name": "--rhino-control-min-height",
+      "type": "layout",
+      "value": "4.4rem",
+      "owner": "Product, Brand, and Engineering",
+      "status": "active",
+      "notes": "Approved B-008 minimum interactive target height."
+    },
+    {
+      "name": "--rhino-control-comfortable-height",
+      "type": "layout",
+      "value": "4.8rem",
+      "owner": "Product, Content, Engineering, Privacy, and Support",
+      "status": "active",
+      "notes": "Approved B-009 comfortable form control height."
+    },
+    {
+      "name": "--rhino-icon-button-size",
+      "type": "layout",
+      "value": "4.4rem",
+      "owner": "Product, Brand, and Engineering",
+      "status": "active",
+      "notes": "Approved B-008 icon button target size."
+    },
+    {
+      "name": "--rhino-focus-width",
+      "type": "layout",
+      "value": "0.3rem",
+      "owner": "Product, Brand, and Engineering",
+      "status": "active",
+      "notes": "Approved B-008 focus ring width."
+    },
+    {
+      "name": "--rhino-focus-offset",
+      "type": "layout",
+      "value": "0.2rem",
+      "owner": "Product, Brand, and Engineering",
+      "status": "active",
+      "notes": "Approved B-008 focus ring offset."
+    },
+    {
+      "name": "--rhino-focus-ring",
+      "type": "layout",
+      "value": "var(--rhino-focus-width) solid var(--rhino-color-focus)",
+      "owner": "Product, Brand, and Engineering",
+      "status": "active",
+      "notes": "Approved B-008 focus ring shorthand."
+    },
+    {
+      "name": "--rhino-shadow-overlay",
+      "type": "shadow",
+      "value": "0 1.6rem 4rem rgba(17, 17, 17, 0.18)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 overlay-only elevation shadow."
+    },
+    {
+      "name": "--rhino-shadow-drawer",
+      "type": "shadow",
+      "value": "0 0 3.2rem rgba(17, 17, 17, 0.2)",
+      "owner": "Brand and Engineering",
+      "status": "active",
+      "notes": "Approved B-007 drawer elevation shadow."
+    },
+    {
+      "name": "--rhino-motion-duration-instant",
+      "type": "motion",
+      "value": "80ms",
+      "owner": "Brand, Engineering, Accessibility, Performance, and QA",
+      "status": "active",
+      "notes": "Approved B-020 immediate feedback duration."
+    },
+    {
+      "name": "--rhino-motion-duration-fast",
+      "type": "motion",
+      "value": "160ms",
+      "owner": "Brand, Engineering, Accessibility, Performance, and QA",
+      "status": "active",
+      "notes": "Approved B-020 standard interface transition duration."
+    },
+    {
+      "name": "--rhino-motion-duration-standard",
+      "type": "motion",
+      "value": "240ms",
+      "owner": "Brand, Engineering, Accessibility, Performance, and QA",
+      "status": "active",
+      "notes": "Approved B-020 overlay transition duration."
+    },
+    {
+      "name": "--rhino-motion-easing-standard",
+      "type": "motion",
+      "value": "cubic-bezier(0.2, 0, 0, 1)",
+      "owner": "Brand, Engineering, Accessibility, Performance, and QA",
+      "status": "active",
+      "notes": "Approved B-020 standard easing for entering, expanding, and ordinary state changes."
+    },
+    {
+      "name": "--rhino-motion-easing-exit",
+      "type": "motion",
+      "value": "cubic-bezier(0.4, 0, 1, 1)",
+      "owner": "Brand, Engineering, Accessibility, Performance, and QA",
+      "status": "active",
+      "notes": "Approved B-020 exit easing for closing and removal transitions."
+    },
+    {
+      "name": "--rhino-motion-distance",
+      "type": "motion",
+      "value": "0.8rem",
+      "owner": "Brand, Engineering, Accessibility, Performance, and QA",
+      "status": "active",
+      "notes": "Approved B-020 maximum small transform distance: 8 px equivalent."
+    },
+    {
+      "name": "--rhino-color-focus-shadow",
+      "type": "color",
+      "value": "rgba(237, 28, 36, 0.2)",
+      "owner": "Brand and Frontend Engineering",
+      "status": "active",
+      "notes": "Approved and implemented for B-025 and B-027. Purpose: focus-ring halo. Constraint: not a general text or surface color."
+    },
+    {
+      "name": "--rhino-color-overlay-dark",
+      "type": "color",
+      "value": "rgba(17, 17, 17, 0.88)",
+      "owner": "Brand and Frontend Engineering",
+      "status": "active",
+      "notes": "Approved and implemented for B-019, B-025, and B-027. Purpose: readable dark media metadata overlay. Constraint: not a primary page surface."
     }
   ]
 }

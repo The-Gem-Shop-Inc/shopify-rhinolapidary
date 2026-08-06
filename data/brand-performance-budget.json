@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "static": {
+    "rhinoCssGzipBytes": 30720,
+    "rhinoJsGzipBytes": 10240,
+    "rhinoIconSvgBytes": 2048,
+    "textureAssetBytes": 30720,
+    "externalFontHostCount": 0,
+    "synchronousThirdPartyScriptCount": 0,
+    "immediateVideoEmbedCount": 0,
+    "autoplayMediaCount": 0
+  },
+  "runtime": {
+    "settleMs": 1500,
+    "interRunDelayMs": 2500,
+    "lcpMs": 2500,
+    "cls": 0.1,
+    "tbtMs": 200,
+    "mobileInitialImageBytes": 512000,
+    "desktopInitialImageBytes": 921600,
+    "mobileMaxImageBytes": 358400,
+    "desktopMaxImageBytes": 512000,
+    "immediateVideoIframeCount": 0,
+    "autoplayMediaCount": 0,
+    "thirdPartyScriptHostCount": 0
+  },
+  "allowedHostSuffixes": [
+    ".myshopify.com",
+    ".shopify.com",
+    ".shopifycdn.com",
+    ".shopifysvc.com"
+  ],
+  "routes": [
+    {
+      "name": "homepage",
+      "path": "/",
+      "required": true
+    },
+    {
+      "name": "collection",
+      "env": "TEST_COLLECTION_PATH",
+      "fallback": "/collections/all",
+      "required": true
+    },
+    {
+      "name": "search",
+      "env": "TEST_SEARCH_PATH",
+      "fallback": "/search?q=rhino",
+      "required": true
+    },
+    {
+      "name": "product",
+      "env": "TEST_PRODUCT_PATH",
+      "required": true
+    },
+    {
+      "name": "machine-product",
+      "env": "TEST_MACHINE_PRODUCT_PATH",
+      "required": false
+    },
+    {
+      "name": "consumable-product",
+      "env": "TEST_CONSUMABLE_PRODUCT_PATH",
+      "required": false
+    },
+    {
+      "name": "replacement-product",
+      "env": "TEST_REPLACEMENT_PRODUCT_PATH",
+      "required": false
+    },
+    {
+      "name": "cart",
+      "path": "/cart",
+      "required": true
+    },
+    {
+      "name": "contact",
+      "env": "TEST_CONTACT_PATH",
+      "fallback": "/pages/contact",
+      "required": true
+    },
+    {
+      "name": "policy",
+      "env": "TEST_POLICY_PATH",
+      "fallback": "/policies/privacy-policy",
+      "required": true
+    }
+  ]
+}

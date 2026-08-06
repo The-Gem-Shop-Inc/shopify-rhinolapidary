@@ -1,0 +1,467 @@
+{
+  "schemaVersion": 1,
+  "target": "persistent_preview",
+  "productionPublishAllowed": false,
+  "status": "approved_plan",
+  "includedSurfaces": [
+    {
+      "id": "global-theme-settings",
+      "owner": "Brand, Shopify Admin, and Frontend Engineering",
+      "purpose": "Apply the approved B-026 candidate settings to the persistent preview theme only.",
+      "changeTypes": ["admin", "settings", "repository-snapshot"],
+      "filesOrAdminAreas": [
+        "data/rhino-launch-theme-settings.json",
+        "config/settings_data.json in the persistent preview workflow",
+        "Shopify theme editor global settings"
+      ],
+      "dependencies": [
+        "B-026 settings plan",
+        "Persistent preview theme access",
+        "Pre-change settings snapshot",
+        "Approved logo and favicon assets"
+      ],
+      "requiredEvidence": [
+        "Before and after settings values",
+        "Preview theme ID or preview URL",
+        "Validated candidate and rollback snapshot",
+        "Screenshots proving DM Sans, palette, width, spacing, radii, card styles, badge styles, and disabled scroll reveal"
+      ],
+      "requiredTests": [
+        "validate:rhino-theme-settings-plan",
+        "check:rhino-theme-settings",
+        "validate:epic-b-architecture",
+        "qa:epic-b:static"
+      ],
+      "rollback": [
+        "Restore the captured pre-change preview settings snapshot.",
+        "Revert related repository settings snapshot changes.",
+        "Rerun settings plan and Epic B static QA."
+      ],
+      "releaseNoteImpact": "Record preview-only global settings and explicitly state no cart behavior or commerce architecture changed."
+    },
+    {
+      "id": "browser-identity",
+      "owner": "Brand, Media, Shopify Admin, and Frontend Engineering",
+      "purpose": "Preview the approved logo, favicon, Apple touch icon, mask icon, theme color, and default social metadata.",
+      "changeTypes": ["admin", "media", "liquid", "metadata"],
+      "filesOrAdminAreas": [
+        "assets/rhino-mark-tile.svg",
+        "assets/rhino-logo-horizontal-dark.svg",
+        "assets/rhino-pinned-tab.svg",
+        "assets/rhino-favicon-upload.png",
+        "assets/rhino-apple-touch-icon.png",
+        "assets/rhino-og-default.jpg",
+        "snippets/rhino-browser-assets.liquid",
+        "snippets/meta-tags.liquid",
+        "Shopify theme editor logo and favicon settings"
+      ],
+      "dependencies": [
+        "B-016 browser assets",
+        "B-017 social metadata support",
+        "data/media-manifest.json",
+        "data/brand-launch-assets.json"
+      ],
+      "requiredEvidence": [
+        "Media manifest entries for all used repository-owned assets",
+        "Browser tab and favicon screenshots",
+        "Rendered metadata validation output",
+        "Confirmation that no production hostname or social account URL was hardcoded"
+      ],
+      "requiredTests": [
+        "validate:brand-assets",
+        "test:social-metadata",
+        "validate:media",
+        "shopify theme check --fail-level warning"
+      ],
+      "rollback": [
+        "Restore prior logo and favicon theme-editor settings.",
+        "Remove preview-only metadata references if the slice is reverted.",
+        "Keep repository-owned source assets unless the owning PBI is reverted."
+      ],
+      "releaseNoteImpact": "Record preview browser identity and social fallback behavior; production remains unchanged."
+    },
+    {
+      "id": "homepage-intro",
+      "owner": "Brand, Content, Shopify Admin, and Frontend Engineering",
+      "purpose": "Replace stock placeholder introduction copy with approved neutral Rhino positioning using an existing appropriate Trade section when possible.",
+      "changeTypes": ["content", "admin", "template-json", "css-adapter"],
+      "filesOrAdminAreas": [
+        "templates/index.json",
+        "Existing Trade section selected in preview",
+        "assets/rhino-custom.css when a scoped adapter is required"
+      ],
+      "dependencies": [
+        "docs/brand/rhino-brand-positioning.md",
+        "docs/brand/rhino-brand-voice-and-copy.md",
+        "data/legal-claims-register.json",
+        "data/brand-content-migration-register.json"
+      ],
+      "requiredEvidence": [
+        "Before and after homepage screenshots",
+        "Source link for approved neutral positioning",
+        "Claims validation output",
+        "Confirmation that manufacturer, supplier, warranty, certification, exclusivity, and performance claims are absent"
+      ],
+      "requiredTests": [
+        "validate:brand-claims",
+        "validate:epic-b-architecture",
+        "test:smoke",
+        "test:ally"
+      ],
+      "rollback": [
+        "Restore the prior preview homepage section configuration.",
+        "Revert any scoped CSS adapter.",
+        "Rerun placeholder and claims checks."
+      ],
+      "releaseNoteImpact": "Record preview-only homepage introduction replacement; no complete homepage redesign."
+    },
+    {
+      "id": "collection-product-card",
+      "owner": "Brand, Merchandising, Product Data, and Frontend Engineering",
+      "purpose": "Prove typography, image treatment, card spacing, price, availability, badge restraint, focus, and wrapping on one stable fixture collection.",
+      "changeTypes": ["liquid", "css-adapter", "content-review"],
+      "filesOrAdminAreas": [
+        "snippets/card-product.liquid",
+        "sections/main-collection-product-grid.liquid",
+        "assets/rhino-custom.css",
+        "Fixture collection /collections/machines"
+      ],
+      "dependencies": [
+        "tests/fixtures/storefront-fixtures.json",
+        "docs/brand/rhino-product-badges-and-trust-markers.md",
+        "docs/brand/rhino-typography-system.md",
+        "docs/brand/rhino-layout-and-surface-system.md"
+      ],
+      "requiredEvidence": [
+        "Collection screenshots at required viewports",
+        "Keyboard focus screenshots",
+        "Product-card wrapping review",
+        "Confirmation that compatibility and freight badges are absent unless structured source data exists"
+      ],
+      "requiredTests": [
+        "test:smoke",
+        "test:ally",
+        "validate:epic-b-architecture",
+        "validate:brand-performance"
+      ],
+      "rollback": [
+        "Revert card snippet and scoped CSS adapter changes.",
+        "Restore prior preview collection configuration when changed.",
+        "Rerun smoke and accessibility tests."
+      ],
+      "releaseNoteImpact": "Record product-card visual adapter and affected collection fixture."
+    },
+    {
+      "id": "search-product-card",
+      "owner": "Brand, Search, Product Data, and Frontend Engineering",
+      "purpose": "Confirm the same product-card language survives search context and no-results states without redesigning predictive search.",
+      "changeTypes": ["liquid", "css-adapter", "content-review"],
+      "filesOrAdminAreas": [
+        "templates/search.json",
+        "sections/main-search.liquid",
+        "snippets/card-product.liquid",
+        "assets/rhino-custom.css",
+        "Search fixture /search?q=rhino"
+      ],
+      "dependencies": [
+        "tests/fixtures/storefront-fixtures.json",
+        "docs/brand/rhino-form-and-state-patterns.md",
+        "docs/brand/rhino-product-badges-and-trust-markers.md"
+      ],
+      "requiredEvidence": [
+        "Search results screenshots at required viewports",
+        "No-results state screenshot or note",
+        "Keyboard search flow notes",
+        "Confirmation that predictive search was not redesigned"
+      ],
+      "requiredTests": [
+        "test:smoke",
+        "test:ally",
+        "validate:search-discovery",
+        "validate:epic-b-architecture"
+      ],
+      "rollback": [
+        "Revert search/card adapter changes.",
+        "Restore prior preview search configuration if changed.",
+        "Rerun smoke and accessibility tests."
+      ],
+      "releaseNoteImpact": "Record search-context card proof and no predictive-search redesign."
+    },
+    {
+      "id": "product-purchase-summary",
+      "owner": "Product, Cart, Brand, Accessibility, and Frontend Engineering",
+      "purpose": "Prove product title, price, variants, quantity, primary purchase action, secondary/support link hierarchy, focus, loading, error, and mobile wrapping on a fixture with a working purchase path.",
+      "changeTypes": ["liquid", "css-adapter", "content-review", "purchase-path"],
+      "filesOrAdminAreas": [
+        "sections/main-product.liquid",
+        "snippets/product-variant-picker.liquid",
+        "snippets/product-variant-options.liquid",
+        "assets/section-main-product.css when narrowly required",
+        "assets/rhino-custom.css",
+        "Fixture product /products/left-moss-pad"
+      ],
+      "dependencies": [
+        "tests/fixtures/storefront-fixtures.json",
+        "docs/architecture/cart-and-checkout-entry-architecture.md",
+        "docs/brand/rhino-action-hierarchy.md",
+        "docs/brand/rhino-product-naming-and-terminology.md",
+        "data/legal-claims-register.json"
+      ],
+      "requiredEvidence": [
+        "Product summary screenshots at required viewports",
+        "Keyboard add-to-cart path evidence",
+        "Cart continuation evidence",
+        "Loading and error state review notes",
+        "Confirmation that unresolved technical specifications, compatibility relations, warranty durations, freight estimates, and included-component claims are absent"
+      ],
+      "requiredTests": [
+        "test:smoke",
+        "test:cart",
+        "test:ally",
+        "validate:product-purchase",
+        "validate:brand-claims",
+        "validate:brand-performance"
+      ],
+      "rollback": [
+        "Revert product summary Liquid and CSS adapter changes.",
+        "Restore prior preview product template configuration when changed.",
+        "Rerun product purchase, cart, smoke, and accessibility tests."
+      ],
+      "releaseNoteImpact": "Record product purchase-summary visual adapter and confirm no commerce architecture change."
+    }
+  ],
+  "excludedSurfaces": [
+    {
+      "id": "production-publish",
+      "reason": "This slice is persistent preview only and cannot publish to production."
+    },
+    {
+      "id": "navigation-redesign",
+      "reason": "Navigation requires separate IA, content, and admin review."
+    },
+    {
+      "id": "footer-identity-claims",
+      "reason": "Footer identity and role claims depend on unresolved business/legal decisions."
+    },
+    {
+      "id": "structured-specifications",
+      "reason": "Structured specs remain blocked by unresolved product data and B-022 conflicts."
+    },
+    {
+      "id": "compatibility",
+      "reason": "Compatibility requires structured source data and approved relationships."
+    },
+    {
+      "id": "checkout",
+      "reason": "Checkout is Shopify-controlled and out of scope for this theme preview slice."
+    },
+    {
+      "id": "full-homepage-redesign",
+      "reason": "The slice proves an introduction only, not a complete homepage redesign."
+    },
+    {
+      "id": "new-product-templates",
+      "reason": "The slice uses existing templates and narrowly scoped adapters."
+    },
+    {
+      "id": "new-metafields-or-metaobjects",
+      "reason": "No new data model is approved for this slice."
+    },
+    {
+      "id": "product-renaming",
+      "reason": "Product titles and handles are not edited in this slice."
+    },
+    {
+      "id": "policy-migration",
+      "reason": "Policy copy remains legal and operations gated."
+    },
+    {
+      "id": "notification-changes",
+      "reason": "Shopify notifications are not touched by this preview proof."
+    },
+    {
+      "id": "social-account-links",
+      "reason": "Authoritative account ownership is unresolved."
+    },
+    {
+      "id": "third-party-applications",
+      "reason": "No app or app embed is required to prove the first brand slice."
+    },
+    {
+      "id": "video-embeds",
+      "reason": "Video requires separate ownership, privacy, caption, transcript, and performance review."
+    },
+    {
+      "id": "technical-diagrams",
+      "reason": "Diagrams require approved source-controlled technical evidence."
+    },
+    {
+      "id": "geological-image-textures",
+      "reason": "Launch texture remains CSS-only and restrained."
+    },
+    {
+      "id": "final-product-photography-migration",
+      "reason": "Product media migration requires media-rights and alt-text review."
+    },
+    {
+      "id": "broad-content-migration",
+      "reason": "Content migration remains governed by B-024 and is out of scope."
+    }
+  ],
+  "fixtures": [
+    {
+      "category": "homepage",
+      "fixtureKey": "homepage",
+      "path": "/",
+      "required": true
+    },
+    {
+      "category": "collection",
+      "fixtureKey": "collection",
+      "path": "/collections/machines",
+      "required": true
+    },
+    {
+      "category": "search",
+      "fixtureKey": "search",
+      "path": "/search?q=rhino",
+      "required": true
+    },
+    {
+      "category": "product",
+      "fixtureKey": "simpleProduct",
+      "path": "/products/left-moss-pad",
+      "required": true
+    },
+    {
+      "category": "cart",
+      "fixtureKey": "cart",
+      "path": "/cart",
+      "required": true
+    }
+  ],
+  "goNoGoCriteria": [
+    {
+      "category": "repository",
+      "blockers": [
+        "A required validator fails.",
+        "Required fixture routes return errors.",
+        "Repository files are changed outside the approved included surfaces without a documented scope decision."
+      ]
+    },
+    {
+      "category": "accessibility",
+      "blockers": [
+        "Serious or critical axe violations are introduced.",
+        "Keyboard purchase flow fails.",
+        "Product-card or purchase controls break at required widths.",
+        "Focus visibility is missing or inconsistent."
+      ]
+    },
+    {
+      "category": "performance",
+      "blockers": [
+        "LCP, CLS, TBT, image, script, or media budgets fail.",
+        "Immediate video embeds, autoplay media, or new synchronous third-party scripts appear.",
+        "Decorative preference conflicts with the approved performance budget."
+      ]
+    },
+    {
+      "category": "content",
+      "blockers": [
+        "Stock Trade placeholder content remains on included surfaces.",
+        "Unsupported claims appear.",
+        "Homepage introduction copy contains unapproved manufacturer, supplier, warranty, certification, exclusivity, or performance language."
+      ]
+    },
+    {
+      "category": "media",
+      "blockers": [
+        "Media reuse permission is missing.",
+        "Approved generated assets cannot be confirmed.",
+        "Responsive crops hide product or logo details."
+      ]
+    },
+    {
+      "category": "admin",
+      "blockers": [
+        "Preview settings cannot be rolled back.",
+        "Production was changed.",
+        "Theme-editor changes lack before/after evidence."
+      ]
+    },
+    {
+      "category": "purchase-path",
+      "blockers": [
+        "Primary purchase action is missing, hidden, or unusable.",
+        "Quantity or variant controls fail.",
+        "Cart continuation fails after add-to-cart."
+      ]
+    },
+    {
+      "category": "rollback",
+      "blockers": [
+        "Rollback steps are incomplete.",
+        "Pre-change settings snapshot is missing.",
+        "Repository and admin rollback paths disagree."
+      ]
+    },
+    {
+      "category": "stakeholder",
+      "blockers": [
+        "Required stakeholder approval is missing.",
+        "Brand, Product, Engineering, QA, or Admin owner rejects preview evidence.",
+        "Business or Legal review is missing for any newly exposed sensitive claim."
+      ]
+    }
+  ],
+  "followUps": [
+    {
+      "key": "BRAND-PREVIEW-01",
+      "title": "Implement persistent preview global settings and browser identity",
+      "dependsOn": ["B-026", "B-016", "B-017", "B-034"]
+    },
+    {
+      "key": "BRAND-PREVIEW-02",
+      "title": "Implement preview homepage introduction",
+      "dependsOn": ["BRAND-PREVIEW-01", "B-021", "B-024", "B-033"]
+    },
+    {
+      "key": "BRAND-PREVIEW-03",
+      "title": "Implement card and search visual adapters",
+      "dependsOn": ["BRAND-PREVIEW-01", "B-010", "B-027", "B-028"]
+    },
+    {
+      "key": "BRAND-PREVIEW-04",
+      "title": "Implement product purchase-summary visual adapters",
+      "dependsOn": ["BRAND-PREVIEW-01", "B-008", "B-009", "B-022"]
+    },
+    {
+      "key": "BRAND-PREVIEW-05",
+      "title": "Execute Epic B preview QA and collect evidence",
+      "dependsOn": ["BRAND-PREVIEW-02", "BRAND-PREVIEW-03", "BRAND-PREVIEW-04", "B-031"]
+    },
+    {
+      "key": "BRAND-PREVIEW-06",
+      "title": "Stakeholder review and go/no-go",
+      "dependsOn": ["BRAND-PREVIEW-05", "B-032", "B-034"]
+    },
+    {
+      "key": "BRAND-PREVIEW-07",
+      "title": "Broader rollout planning after preview acceptance",
+      "dependsOn": ["BRAND-PREVIEW-06"]
+    }
+  ],
+  "overallRollback": [
+    "Restore the persistent preview theme settings from the pre-change snapshot.",
+    "Revert repository commits for the preview slice.",
+    "Remove or disable preview-only homepage, card, search, and product-summary adapters.",
+    "Restore prior logo, favicon, and browser-identity theme-editor values.",
+    "Rerun static validation and a focused smoke check after rollback."
+  ],
+  "notes": [
+    "This is a planning artifact only; it does not implement the slice.",
+    "No Shopify admin changes, production publish, product renaming, handle changes, metafield changes, policy migration, video embeds, or third-party applications are authorized by this plan.",
+    "Preview credentials and fixture routes are required before preview suites run."
+  ]
+}

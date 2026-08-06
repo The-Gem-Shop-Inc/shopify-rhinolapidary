@@ -4,12 +4,7 @@ const { test, expect } = require('@playwright/test');
 const {
     getFixture,
     gotoUnlocked,
-    unlockStorefront,
 } = require('./helpers/storefront');
-
-test.beforeEach(async ({ page }) => {
-    await unlockStorefront(page);
-});
 
 test('homepage loads storefront shell', async ({ page }) => {
     await gotoUnlocked(page, '/', 'homepage');
@@ -76,7 +71,7 @@ test('search fixture loads search page', async ({ page }) => {
 test('product fixture has purchase-critical elements', async ({ page }) => {
     const fixture = getFixture('simpleProduct');
 
-    await gotoUnlocked(page, fixture.path,'simple product');
+    await gotoUnlocked(page, fixture.path, 'simple product');
 
     await expect(page.locator('h1').first()).toBeVisible();
 

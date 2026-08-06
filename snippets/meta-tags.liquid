@@ -1,17 +1,86 @@
 {%- liquid
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
+  assign og_url = og_url | split: '?' | first
   assign og_type = 'website'
   assign og_description = page_description | default: shop.description | default: shop.name
+  assign default_social_image_alt = 'Rhino Lapidary brand image with logo on a dark background'
+  assign default_social_image_url = 'rhino-og-default.jpg' | asset_url
+  assign social_image = nil
+  assign social_image_alt = ''
+  assign social_image_height = ''
+  assign social_image_url = ''
+  assign social_image_width = ''
 
   if request.page_type == 'product'
     assign og_type = 'product'
+    assign product_social_image = product.featured_media.preview_image | default: product.featured_image
+    if product_social_image
+      assign social_image = product_social_image
+      assign product_social_image_alt = product.featured_media.alt | default: product_social_image.alt
+      if product_social_image_alt != blank
+        assign social_image_alt = product_social_image_alt
+      endif
+    endif
   elsif request.page_type == 'article'
     assign og_type = 'article'
+    if article.image
+      assign social_image = article.image
+    endif
+  elsif request.page_type == 'collection'
+    if collection.image
+      assign social_image = collection.image
+    endif
   elsif request.page_type == 'password'
     assign og_url = request.origin
   endif
+
+  if social_image
+    assign social_image_width = social_image.width | default: 1200
+    assign social_image_height = social_image.height | default: 630
+    assign social_image_url = social_image | image_url: width: social_image_width
+
+    if social_image_alt == blank and social_image.alt != blank
+      assign social_image_alt = social_image.alt
+    endif
+  endif
+
+  if social_image_alt == blank
+    if request.page_type == 'product' and product.title != blank
+      assign social_image_alt = product.title
+    elsif request.page_type == 'collection' and collection.title != blank
+      assign social_image_alt = collection.title
+    elsif request.page_type == 'article' and article.title != blank
+      assign social_image_alt = article.title
+    else
+      assign social_image_alt = default_social_image_alt
+    endif
+  endif
+
+  if social_image_url == blank
+    assign social_image_url = default_social_image_url
+    assign social_image_width = 1200
+    assign social_image_height = 630
+    assign social_image_alt = default_social_image_alt
+  endif
+
+  assign social_image_url_prefix = social_image_url | slice: 0, 2
+
+  if social_image_url contains 'http://'
+    assign social_image_url = social_image_url | replace_first: 'http://', 'https://'
+  elsif social_image_url_prefix == '//'
+    assign social_image_url = social_image_url | prepend: 'https:'
+  elsif social_image_url != blank
+    assign social_image_url = social_image_url | prepend: request.origin
+  endif
 %}
+
+{% comment %}
+  Rhino B-017 social metadata extension. Preserves Trade's core title,
+  description, type, price, and Shopify image selection behavior, then adds the
+  repository default fallback image, image alt metadata, Twitter image metadata,
+  and query-free public URLs for preview-theme compatibility.
+{% endcomment %}
 
 <meta property="og:site_name" content="{{ shop.name }}">
 <meta property="og:url" content="{{ og_url }}">
@@ -19,11 +88,16 @@
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
 
-{%- if page_image -%}
-  <meta property="og:image" content="http:{{ page_image | image_url }}">
-  <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
-  <meta property="og:image:width" content="{{ page_image.width }}">
-  <meta property="og:image:height" content="{{ page_image.height }}">
+{%- if social_image_url != blank -%}
+  <meta property="og:image" content="{{ social_image_url }}">
+  <meta property="og:image:secure_url" content="{{ social_image_url }}">
+  <meta property="og:image:alt" content="{{ social_image_alt | escape }}">
+  {%- if social_image_width != blank -%}
+    <meta property="og:image:width" content="{{ social_image_width }}">
+  {%- endif -%}
+  {%- if social_image_height != blank -%}
+    <meta property="og:image:height" content="{{ social_image_height }}">
+  {%- endif -%}
 {%- endif -%}
 
 {%- if request.page_type == 'product' -%}
@@ -37,3 +111,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
 <meta name="twitter:description" content="{{ og_description | escape }}">
+{%- if social_image_url != blank -%}
+  <meta name="twitter:image" content="{{ social_image_url }}">
+  <meta name="twitter:image:alt" content="{{ social_image_alt | escape }}">
+{%- endif -%}

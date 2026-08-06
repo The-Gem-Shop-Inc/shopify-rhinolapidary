@@ -1,13 +1,1597 @@
 /*
- * Rhino Lapidary custom CSS entrypoint.
+ * Rhino Lapidary brand and interface foundation.
  *
  * Rules:
  * - Keep Rhino-specific styling here or in future assets/rhino-*.css files.
  * - Prefer --rhino-* custom properties.
  * - Do not edit inherited Trade CSS for Rhino-specific visual changes unless documented.
+ *
+ * Source PBIs:
+ * - B-005 Accessible color system
+ * - B-006 Typography and technical hierarchy
+ * - B-007 Layout, spacing, and surfaces
+ * - B-008 Buttons, links, and CTA hierarchy
+ * - B-009 Forms and storefront states
+ *
+ * Architecture:
+ * - Keep Rhino-owned selectors prefixed with `.rhino-`.
+ * - Keep Rhino-owned customer properties prefixed with `--rhino-`.
+ * - Do not reproduce Trade component CSS in this file.
+ * - Apply component classes intentionally during preview implementation.
  */
 
 :root {
-    --rhino-color-brand-primary: rgb(var(--color-button));
+    /* Code brand colors */
+    --rhino-color-red-500: #ed1c24;
+    --rhino-color-red-700: #b51820;
+    --rhino-color-red-900: #791716;
+    --rhino-color-gold-500: #b6830d;
+    --rhino-color-black: #000000;
+    --rhino-color-white: #ffffff;
+
+    /* Neutral interface colors */
+    --rhino-color-carbon: #111111;
+    --rhino-color-graphite: #2b2d30;
+    --rhino-color-steel: #5d6670;
+    --rhino-color-alloy: #c9cdd2;
+    --rhino-color-mist: #f3f4f5;
+    --rhino-color-warm-white: #fcfbf8;
+
+    /* Functional colors */
+    --rhino-color-link: #a3151c;
+    --rhino-color-info: #0b5ea8;
+    --rhino-color-success: #1f6b45;
+    --rhino-color-warning: #7a4a00;
+    --rhino-color-error: #b42318;
+
+    /* Functional surfaces */
+    --rhino-color-info-surface: #eef6fc;
+    --rhino-color-success-surface: #eef8f2;
+    --rhino-color-warning-surface: #fff7e8;
+    --rhino-color-error-surface: #fff1f0;
+
+    /* Semantic color aliases */
+    --rhino-color-brand-primary: var(--rhino-color-red-500);
+    --rhino-color-action: var(--rhino-color-red-700);
+    --rhino-color-action-hover: var(--rhino-color-red-900);
+    --rhino-color-focus: var(--rhino-color-red-500);
+    --rhino-color-surface: var(--rhino-color-white);
+    --rhino-color-surface-alternate: var(--rhino-color-mist);
+    --rhino-color-surface-editorial: var(--rhino-color-warm-white);
+    --rhino-color-surface-dark: var(--rhino-color-carbon);
+    --rhino-color-text: var(--rhino-color-carbon);
+    --rhino-color-text-muted: var(--rhino-color-steel);
+    --rhino-color-border: var(--rhino-color-alloy);
+    --rhino-color-border-strong: var(--rhino-color-graphite);
+    --rhino-color-focus-shadow: rgba(237, 28, 36, 0.2);
+    --rhino-color-overlay-dark: rgba(17, 17, 17, 0.88);
+
+    /* Font family and weight */
+    --rhino-font-family-sans:
+        "DM Sans",
+        var(--font-heading-family),
+        Arial,
+        sans-serif;
+    --rhino-font-weight-regular: 400;
+    --rhino-font-weight-medium: 500;
+    --rhino-font-weight-semibold: 600;
+    --rhino-font-weight-bold: 700;
+
+    /* General type scale */
+    --rhino-font-size-xs: 1.2rem;
+    --rhino-font-size-sm: 1.3rem;
+    --rhino-font-size-compact: 1.4rem;
+    --rhino-font-size-button: 1.5rem;
+    --rhino-font-size-body: 1.6rem;
+    --rhino-font-size-lg: 1.8rem;
+    --rhino-font-size-xl: 2rem;
+    --rhino-font-size-2xl: 2.4rem;
+    --rhino-font-size-3xl: 2.8rem;
+    --rhino-font-size-4xl: 3.2rem;
+    --rhino-font-size-5xl: 4rem;
+
+    /* Semantic type roles */
+    --rhino-type-page-title-size: var(--rhino-font-size-4xl);
+    --rhino-type-page-title-line-height: 1.25;
+    --rhino-type-product-title-size: var(--rhino-font-size-3xl);
+    --rhino-type-product-title-line-height: 1.285;
+    --rhino-type-section-title-size: var(--rhino-font-size-2xl);
+    --rhino-type-section-title-line-height: 1.333;
+    --rhino-type-subsection-title-size: var(--rhino-font-size-xl);
+    --rhino-type-subsection-title-line-height: 1.4;
+    --rhino-type-body-line-height: 1.625;
+    --rhino-type-compact-line-height: 1.571;
+    --rhino-type-label-letter-spacing: 0.08em;
+
+    /* Spacing scale */
+    --rhino-space-1: 0.4rem;
+    --rhino-space-2: 0.8rem;
+    --rhino-space-3: 1.2rem;
+    --rhino-space-4: 1.6rem;
+    --rhino-space-5: 2.4rem;
+    --rhino-space-6: 3.2rem;
+    --rhino-space-7: 4.8rem;
+    --rhino-space-8: 6.4rem;
+    --rhino-space-9: 9.6rem;
+
+    /* Width and gutters */
+    --rhino-width-canvas: 140rem;
+    --rhino-width-content: 112rem;
+    --rhino-width-prose: 72rem;
+    --rhino-width-form: 64rem;
+    --rhino-page-gutter: var(--rhino-space-4);
+
+    /* Section rhythm */
     --rhino-section-spacing-y: 4rem;
+    --rhino-section-spacing-dense-y: var(--rhino-space-5);
+    --rhino-section-spacing-major-y: var(--rhino-space-8);
+
+    /* Borders */
+    --rhino-border-width: 0.1rem;
+    --rhino-border-width-accent: 0.4rem;
+    --rhino-border-standard:
+        var(--rhino-border-width)
+        solid
+        var(--rhino-color-border);
+    --rhino-border-strong:
+        var(--rhino-border-width)
+        solid
+        var(--rhino-color-border-strong);
+
+    /* Radii */
+    --rhino-radius-control: 0.4rem;
+    --rhino-radius-panel: 0.4rem;
+    --rhino-radius-media: 0.6rem;
+    --rhino-radius-overlay: 0.6rem;
+    --rhino-radius-round: 50%;
+
+    /* Control sizing */
+    --rhino-control-min-height: 4.4rem;
+    --rhino-control-comfortable-height: 4.8rem;
+    --rhino-icon-button-size: 4.4rem;
+
+    /* Focus */
+    --rhino-focus-width: 0.3rem;
+    --rhino-focus-offset: 0.2rem;
+    --rhino-focus-ring:
+        var(--rhino-focus-width)
+        solid
+        var(--rhino-color-focus);
+
+    /* Overlay elevation only */
+    --rhino-shadow-overlay:
+        0 1.6rem 4rem rgba(17, 17, 17, 0.18);
+    --rhino-shadow-drawer:
+        0 0 3.2rem rgba(17, 17, 17, 0.2);
+
+    /* Motion */
+    --rhino-motion-duration-instant: 80ms;
+    --rhino-motion-duration-fast: 160ms;
+    --rhino-motion-duration-standard: 240ms;
+    --rhino-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+    --rhino-motion-easing-exit: cubic-bezier(0.4, 0, 1, 1);
+    --rhino-motion-distance: 0.8rem;
+}
+
+@media screen and (min-width: 750px) {
+    :root {
+        --rhino-page-gutter: var(--rhino-space-5);
+        --rhino-section-spacing-y: var(--rhino-space-8);
+        --rhino-section-spacing-dense-y: var(--rhino-space-6);
+        --rhino-section-spacing-major-y: var(--rhino-space-9);
+        --rhino-type-page-title-size: var(--rhino-font-size-5xl);
+        --rhino-type-product-title-size: var(--rhino-font-size-4xl);
+        --rhino-type-section-title-size: var(--rhino-font-size-3xl);
+        --rhino-type-subsection-title-size: 2.2rem;
+    }
+}
+
+@media screen and (min-width: 990px) {
+    :root {
+        --rhino-page-gutter: var(--rhino-space-6);
+    }
+}
+
+/* --------------------------------------------------------------------------
+ * Global foundation
+ * -------------------------------------------------------------------------- */
+body {
+    color: var(--rhino-color-text);
+    font-family: var(--rhino-font-family-sans);
+    font-size: var(--rhino-font-size-body);
+    font-variant-numeric: lining-nums;
+    line-height: var(--rhino-type-body-line-height);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.button,
+button,
+input,
+select,
+textarea {
+    font-family: var(--rhino-font-family-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: inherit;
+    font-weight: var(--rhino-font-weight-bold);
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
+p,
+li,
+dd {
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+}
+
+:where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]:not([tabindex="-1"])
+):focus-visible {
+    outline: var(--rhino-focus-ring);
+    outline-offset: var(--rhino-focus-offset);
+}
+
+::selection {
+    background: var(--rhino-color-red-900);
+    color: var(--rhino-color-white);
+}
+
+/* --------------------------------------------------------------------------
+ * Typography roles
+ * -------------------------------------------------------------------------- */
+
+.rhino-page-title {
+    font-size: var(--rhino-type-page-title-size);
+    font-weight: var(--rhino-font-weight-bold);
+    letter-spacing: -0.02em;
+    line-height: var(--rhino-type-page-title-line-height);
+    margin-block: 0;
+}
+
+.rhino-product-title {
+    font-size: var(--rhino-type-product-title-size);
+    font-weight: var(--rhino-font-weight-bold);
+    letter-spacing: -0.015em;
+    line-height: var(--rhino-type-product-title-line-height);
+    margin-block: 0;
+    overflow-wrap: anywhere;
+}
+
+.rhino-section-title {
+    font-size: var(--rhino-type-section-title-size);
+    font-weight: var(--rhino-font-weight-bold);
+    line-height: var(--rhino-type-section-title-line-height);
+    margin-block: 0;
+}
+
+.rhino-subsection-title {
+    font-size: var(--rhino-type-subsection-title-size);
+    font-weight: var(--rhino-font-weight-semibold);
+    line-height: var(--rhino-type-subsection-title-line-height);
+    margin-block: 0;
+}
+
+.rhino-product-subtitle {
+    color: var(--rhino-color-text-muted);
+    font-size: var(--rhino-font-size-lg);
+    font-weight: var(--rhino-font-weight-medium);
+    line-height: 1.555;
+    margin-block: 0;
+}
+
+.rhino-technical-label,
+.rhino-eyebrow {
+    color: var(--rhino-color-text-muted);
+    font-size: var(--rhino-font-size-xs);
+    font-weight: var(--rhino-font-weight-semibold);
+    letter-spacing: var(--rhino-type-label-letter-spacing);
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.rhino-spec-value {
+    color: var(--rhino-color-text);
+    font-size: var(--rhino-font-size-body);
+    font-variant-numeric: tabular-nums lining-nums;
+    font-weight: var(--rhino-font-weight-semibold);
+    line-height: 1.5;
+}
+
+.rhino-price {
+    color: var(--rhino-color-text);
+    font-size: 2.6rem;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-weight: var(--rhino-font-weight-bold);
+    line-height: 1.307;
+}
+
+.rhino-caption {
+    color: var(--rhino-color-text-muted);
+    font-size: var(--rhino-font-size-sm);
+    line-height: 1.538;
+}
+
+.rhino-prose {
+    font-size: var(--rhino-font-size-body);
+    line-height: var(--rhino-type-body-line-height);
+    max-width: var(--rhino-width-prose);
+}
+
+.rhino-prose > *:first-child {
+    margin-block-start: 0;
+}
+
+.rhino-prose > *:last-child {
+    margin-block-end: 0;
+}
+
+.rhino-nowrap {
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+ * Layout primitives
+ * ------------------------------------------------------------------------- */
+
+.rhino-container,
+.rhino-container--wide,
+.rhino-container--prose,
+.rhino-container--form {
+    margin-inline: auto;
+    width: calc(100% - (var(--rhino-page-gutter) * 2));
+}
+
+.rhino-container {
+    max-width: var(--rhino-width-content);
+}
+
+.rhino-container--wide {
+    max-width: var(--rhino-width-canvas);
+}
+
+.rhino-container--prose {
+    max-width: var(--rhino-width-prose);
+}
+
+.rhino-container--form {
+    max-width: var(--rhino-width-form);
+}
+
+.rhino-section {
+    padding-block: var(--rhino-section-spacing-y);
+}
+
+.rhino-section--dense {
+    padding-block: var(--rhino-section-spacing-dense-y);
+}
+
+.rhino-section--major {
+    padding-block: var(--rhino-section-spacing-major-y);
+}
+
+.rhino-stack {
+    --rhino-stack-gap: var(--rhino-space-4);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.rhino-stack > * {
+    margin-block: 0;
+}
+
+.rhino-stack > * + * {
+    margin-block-start: var(--rhino-stack-gap);
+}
+
+.rhino-stack--compact {
+    --rhino-stack-gap: var(--rhino-space-2);
+}
+
+.rhino-stack--technical {
+    --rhino-stack-gap: var(--rhino-space-3);
+}
+
+.rhino-stack--spacious {
+    --rhino-stack-gap: var(--rhino-space-6);
+}
+
+.rhino-cluster {
+    --rhino-cluster-gap: var(--rhino-space-3);
+
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--rhino-cluster-gap);
+}
+
+.rhino-grid {
+    --rhino-grid-min: 24rem;
+    --rhino-grid-gap: var(--rhino-space-5);
+
+    display: grid;
+    gap: var(--rhino-grid-gap);
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(min(100%, var(--rhino-grid-min)), 1fr)
+        );
+}
+
+.rhino-divider {
+    border: 0;
+    border-block-start: var(--rhino-border-standard);
+    margin-block: var(--rhino-space-5);
+}
+
+/* ---------------------------------------------------------------------------
+ * Surfaces and panels
+ * ------------------------------------------------------------------------- */
+
+.rhino-panel {
+    background: var(--rhino-color-surface);
+    border: var(--rhino-border-standard);
+    border-radius: var(--rhino-radius-panel);
+    color: var(--rhino-color-text);
+    padding: var(--rhino-space-5);
+}
+
+.rhino-panel--alternate {
+    background: var(--rhino-color-surface-alternate);
+}
+
+.rhino-panel--editorial {
+    background: var(--rhino-color-surface-editorial);
+}
+
+.rhino-panel--strong {
+    border-color: var(--rhino-color-border-strong);
+}
+
+.rhino-panel--accent {
+    border-inline-start:
+        var(--rhino-border-width-accent)
+        solid
+        var(--rhino-color-red-700);
+}
+
+.rhino-panel--dark {
+    background: var(--rhino-color-surface-dark);
+    border-color: var(--rhino-color-graphite);
+    color: var(--rhino-color-white);
+}
+
+.rhino-media-frame {
+    background: var(--rhino-color-surface-alternate);
+    border: var(--rhino-border-standard);
+    border-radius: var(--rhino-radius-media);
+    overflow: hidden;
+}
+
+/* ---------------------------------------------------------------------------
+ * Links
+ * ------------------------------------------------------------------------- */
+
+.rhino-link {
+    color: var(--rhino-color-link);
+    font-weight: var(--rhino-font-weight-medium);
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.18em;
+}
+
+.rhino-link:hover {
+    color: var(--rhino-color-red-900);
+    text-decoration-thickness: 0.14em;
+}
+
+.rhino-link--muted {
+    color: var(--rhino-color-text-muted);
+}
+
+.rhino-link--muted:hover {
+    color: var(--rhino-color-text);
+}
+
+/* -------------------------------------------------------------------------
+ * Buttons and action groups
+ * ------------------------------------------------------------------------- */
+
+.rhino-button {
+    align-items: center;
+    appearance: none;
+    background: transparent;
+    border: var(--rhino-border-width) solid transparent;
+    border-radius: var(--rhino-radius-control);
+    box-shadow: none;
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: var(--rhino-font-size-button);
+    font-weight: var(--rhino-font-weight-semibold);
+    gap: var(--rhino-space-2);
+    justify-content: center;
+    line-height: 1.333;
+    min-height: var(--rhino-control-min-height);
+    padding: var(--rhino-space-3) var(--rhino-space-5);
+    text-align: center;
+    text-decoration: none;
+}
+
+.rhino-button--primary {
+    background: var(--rhino-color-action);
+    border-color: var(--rhino-color-action);
+    color: var(--rhino-color-white);
+}
+
+.rhino-button--primary:hover {
+    background: var(--rhino-color-action-hover);
+    border-color: var(--rhino-color-action-hover);
+    color: var(--rhino-color-white);
+}
+
+.rhino-button--secondary {
+    background: var(--rhino-color-white);
+    border-color: var(--rhino-color-border-strong);
+    color: var(--rhino-color-carbon);
+}
+
+.rhino-button--secondary:hover {
+    background: var(--rhino-color-mist);
+}
+
+.rhino-button--tertiary {
+    border-color: transparent;
+    color: var(--rhino-color-link);
+    padding-inline: var(--rhino-space-2);
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.18em;
+}
+
+.rhino-button--tertiary:hover {
+    color: var(--rhino-color-red-900);
+    text-decoration-thickness: 0.14em;
+}
+
+.rhino-button--support {
+    background: var(--rhino-color-info-surface);
+    border-color: var(--rhino-color-info);
+    color: var(--rhino-color-info);
+}
+
+.rhino-button--support:hover {
+    background: var(--rhino-color-info);
+    color: var(--rhino-color-white);
+}
+
+.rhino-button--danger {
+    background: var(--rhino-color-white);
+    border-color: var(--rhino-color-error);
+    color: var(--rhino-color-error);
+}
+
+.rhino-button--danger:hover {
+    background: var(--rhino-color-error);
+    color: var(--rhino-color-white);
+}
+
+.rhino-button--icon {
+    min-width: var(--rhino-icon-button-size);
+    padding: var(--rhino-space-2);
+    width: var(--rhino-icon-button-size);
+}
+
+.rhino-button:is(
+    :disabled,
+    [disabled],
+    [aria-disabled="true"]
+) {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.rhino-button[aria-busy="true"],
+.rhino-button.is-loading {
+    cursor: progress;
+}
+
+.rhino-action-group {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--rhino-space-3);
+}
+
+@media screen and (max-width: 749px) {
+    .rhino-action-group--stack-mobile {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .rhino-action-group--stack-mobile .rhino-button {
+        width: 100%;
+    }
+}
+
+/* --------------------------------------------------------------------------
+ * Forms
+ * ------------------------------------------------------------------------- */
+
+.rhino-form {
+    max-width: var(--rhino-width-form);
+}
+
+.rhino-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--rhino-space-2);
+}
+
+.rhino-field + .rhino-field {
+    margin-block-start: var(--rhino-space-5);
+}
+
+.rhino-field__label {
+    color: var(--rhino-color-text);
+    font-size: var(--rhino-font-size-compact);
+    font-weight: var(--rhino-font-weight-semibold);
+    line-height: var(--rhino-type-compact-line-height);
+}
+
+.rhino-field__requirement {
+    color: var(--rhino-color-text-muted);
+    font-weight: var(--rhino-font-weight-regular);
+}
+
+.rhino-field__hint {
+    color: var(--rhino-color-text-muted);
+    font-size: var(--rhino-font-size-sm);
+    line-height: 1.538;
+}
+
+.rhino-field__control {
+    background: var(--rhino-color-white);
+    border: var(--rhino-border-standard);
+    border-radius: var(--rhino-radius-control);
+    color: var(--rhino-color-text);
+    font: inherit;
+    min-height: var(--rhino-control-comfortable-height);
+    padding: var(--rhino-space-3) var(--rhino-space-4);
+    width: 100%;
+}
+
+textarea.rhino-field__control {
+    min-height: 14rem;
+    resize: vertical;
+}
+
+.rhino-field__control:hover {
+    border-color: var(--rhino-color-steel);
+}
+
+.rhino-field__control:focus-visible {
+    border-color: var(--rhino-color-focus);
+    box-shadow:
+        0 0 0
+        var(--rhino-focus-width)
+        var(--rhino-color-focus-shadow);
+    outline: none;
+}
+
+.rhino-field__control[aria-invalid="true"] {
+    border-color: var(--rhino-color-error);
+}
+
+.rhino-field__control:disabled {
+    background: var(--rhino-color-mist);
+    color: var(--rhino-color-text-muted);
+    cursor: not-allowed;
+}
+
+.rhino-field__message {
+    color: var(--rhino-color-text-muted);
+    font-size: var(--rhino-font-size-sm);
+    line-height: 1.538;
+}
+
+.rhino-field__message--error {
+    color: var(--rhino-color-error);
+    font-weight: var(--rhino-font-weight-medium);
+}
+
+.rhino-field__message--success {
+    color: var(--rhino-color-success);
+    font-weight: var(--rhino-font-weight-medium);
+}
+
+.rhino-form-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--rhino-space-3);
+    margin-block-start: var(--rhino-space-6);
+}
+
+/* ---------------------------------------------------------------------------
+ * Storefront states
+ * ------------------------------------------------------------------------- */
+
+.rhino-state {
+    --rhino-state-accent: var(--rhino-color-info);
+    --rhino-state-background: var(--rhino-color-info-surface);
+
+    background: var(--rhino-state-background);
+    border: var(--rhino-border-standard);
+    border-inline-start:
+        var(--rhino-border-width-accent)
+        solid
+        var(--rhino-state-accent);
+    border-radius: var(--rhino-radius-panel);
+    color: var(--rhino-color-text);
+    padding: var(--rhino-space-4);
+}
+
+.rhino-state__title {
+    color: inherit;
+    font-size: var(--rhino-font-size-body);
+    font-weight: var(--rhino-font-weight-semibold);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.rhino-state__message {
+    margin-block:
+        var(--rhino-space-2)
+        0;
+}
+
+.rhino-state--success {
+    --rhino-state-accent: var(--rhino-color-success);
+    --rhino-state-background: var(--rhino-color-success-surface);
+}
+
+.rhino-state--warning {
+    --rhino-state-accent: var(--rhino-color-warning);
+    --rhino-state-background: var(--rhino-color-warning-surface);
+}
+
+.rhino-state--error {
+    --rhino-state-accent: var(--rhino-color-error);
+    --rhino-state-background: var(--rhino-color-error-surface);
+}
+
+.rhino-state--neutral,
+.rhino-empty-state {
+    --rhino-state-accent: var(--rhino-color-steel);
+    --rhino-state-background: var(--rhino-color-mist);
+}
+
+.rhino-empty-state {
+    background: var(--rhino-color-mist);
+    border: var(--rhino-border-standard);
+    border-radius: var(--rhino-radius-panel);
+    padding: var(--rhino-space-7) var(--rhino-space-5);
+    text-align: center;
+}
+
+.rhino-empty-state > * {
+    margin-inline: auto;
+    max-width: var(--rhino-width-form);
+}
+
+/* ---------------------------------------------------------------------------
+ * Specification tables
+ * ------------------------------------------------------------------------- */
+
+.rhino-spec-table-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.rhino-spec-table {
+    border-collapse: collapse;
+    color: var(--rhino-color-text);
+    font-variant-numeric: tabular-nums lining-nums;
+    width: 100%;
+}
+
+.rhino-spec-table th,
+.rhino-spec-table td {
+    border-block-end: var(--rhino-border-standard);
+    padding:
+        var(--rhino-space-3)
+        var(--rhino-space-4);
+    text-align: start;
+    vertical-align: top;
+}
+
+.rhino-spec-tabl th {
+    color: var(--rhino-color-text-muted);
+    font-size: var(--rhino-font-size-xs);
+    font-weight: var(--rhino-font-weight-semibold);
+    letter-spacing: var(--rhino-type-label-letter-spacing);
+    text-transform: uppercase;
+}
+
+.rhino-spec-table tbody th {
+    color: var(--rhino-color-text);
+    font-size: var(--rhino-font-size-compact);
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.rhino-spec-table tbody tr:hover {
+    background: var(--rhino-color-mist);
+}
+
+/* ---------------------------------------------------------------------------
+ * Accessibility preferences
+ * ------------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+    .rhino-button,
+    .rhino-field__control,
+    .rhino-panel,
+    .rhino-panel,
+    .rhino-empty-state {
+        forced-color-adjust: auto;
+    }
+
+    :where(
+        a,
+        button,
+        input,
+        select,
+        textarea,
+        summary,
+        [tabindex]:not([tabindex="-1"])
+    ):focus-visible {
+        outline-color: Highlight;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rhino-button,
+    .rhino-link,
+    .rhino-field__control {
+        scroll-behavior: auto;
+        transition-duration: 0.01ms;
+    }
+}
+
+/* --------------------------------------------------------------------------
+ * Product badges and trust markers
+ * Source PBIs: B-010, B-012, B-023
+ * -------------------------------------------------------------------------- */
+
+.rhino-badge-list {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--rhino-space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rhino-badge {
+    align-items: center;
+    background: var(--rhino-color-white);
+    border: var(--rhino-border-standard);
+    border-radius: var(--rhino-radius-control);
+    color: var(--rhino-color-graphite);
+    display: inline-flex;
+    font-size: var(--rhino-font-size-xs);
+    font-weight: var(--rhino-font-weight-semibold);
+    gap: var(--rhino-space-1);
+    letter-spacing: 0.02em;
+    line-height: 1.333;
+    min-height: 2.8rem;
+    padding: var(--rhino-space-1) var(--rhino-space-2);
+    text-transform: none;
+}
+
+.rhino-badge .rhino-icon {
+    flex: 0 0 auto;
+    height: 1.6rem;
+    width: 1.6rem;
+}
+
+.rhino-badge--product-class {
+    background: var(--rhino-color-mist);
+    color: var(--rhino-color-carbon);
+}
+
+.rhino-badge--availability {
+    border-color: var(--rhino-color-error);
+    color: var(--rhino-color-error);
+}
+
+.rhino-badge--warning {
+    background: var(--rhino-color-warning-surface);
+    border-color: var(--rhino-color-warning);
+    color: var(--rhino-color-warning);
+}
+
+.rhino-badge--freight {
+    background: var(--rhino-color-info-surface);
+    border-color: var(--rhino-color-info);
+    color: var(--rhino-color-info);
+}
+
+.rhino-badge--compatibility {
+    background: var(--rhino-color-success-surface);
+    border-color: var(--rhino-color-success);
+    color: var(--rhino-color-success);
+}
+
+.rhino-badge--sale {
+    background: var(--rhino-color-red-900);
+    border-color: var(--rhino-color-red-900);
+    color: var(--rhino-color-white);
+}
+
+.rhino-badge--new {
+    background: var(--rhino-color-white);
+    border-color: var(--rhino-color-red-700);
+    color: var(--rhino-color-red-700);
+}
+
+.rhino-trust-list {
+    border-block:
+            var(--rhino-border-standard);
+    display: grid;
+    margin: 0;
+}
+
+.rhino-trust-marker {
+    align-items: start;
+    display: grid;
+    gap: var(--rhino-space-3);
+    grid-template-columns: auto minmax(0, 1fr);
+    padding-block: var(--rhino-space-4);
+}
+
+.rhino-trust-marker + .rhino-trust-marker {
+    border-block-start: var(--rhino-border-standard);
+}
+
+.rhino-trust-marker__icon {
+    align-items: center;
+    color: var(--rhino-color-info);
+    display: inline-flex;
+    height: 2.4rem;
+    justify-content: center;
+    width: 2.4rem;
+}
+
+.rhino-trust-marker__content {
+    min-width: 0;
+}
+
+.rhino-trust-marker__title {
+    color: var(--rhino-color-text);
+    font-size: var(--rhino-font-size-compact);
+    font-weight: var(--rhino-font-weight-semibold);
+    line-height: var(--rhino-type-compact-line-height);
+    margin: 0;
+}
+
+.rhino-trust-marker__text {
+    color: var(--rhino-color-text-muted);
+    font-size: var(--rhino-font-size-compact);
+    line-height: var(--rhino-type-compact-line-height);
+    margin:
+            var(--rhino-space-1)
+            0
+            0;
+}
+
+.rhino-trust-marker__action {
+    display: inline-block;
+    margin-block-start: var(--rhino-space-2);
+}
+
+/* --------------------------------------------------------------------------
+ * Machine family identifiers
+ * Source PBI: B-012
+ * -------------------------------------------------------------------------- */
+
+.rhino-family-identifier {
+    --rhino-family-accent: var(--rhino-color-red-700);
+
+    align-items: center;
+    background: var(--rhino-color-white);
+    border: var(--rhino-border-standard);
+    border-inline-start:
+            var(--rhino-border-width-accent)
+            solid
+            var(--rhino-family-accent);
+    border-radius: var(--rhino-radius-control);
+    color: var(--rhino-color-carbon);
+    display: inline-flex;
+    gap: var(--rhino-space-2);
+    max-width: 100%;
+    min-height: 3.6rem;
+    padding:
+            var(--rhino-space-1)
+            var(--rhino-space-3);
+}
+
+.rhino-family-identifier__icon,
+.rhino-family-identifier__code {
+    align-items: center;
+    color: var(--rhino-family-accent);
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: var(--rhino-font-size-xs);
+    font-weight: var(--rhino-font-weight-bold);
+    justify-content: center;
+    letter-spacing: 0.04em;
+    min-width: 2.8rem;
+}
+
+.rhino-family-identifier__icon {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+
+.rhino-family-identifier__name {
+    font-size: var(--rhino-font-size-compact);
+    font-weight: var(--rhino-font-weight-semibold);
+    line-height: var(--rhino-type-compact-line-height);
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.rhino-family-identifier--compact {
+    min-height: 3.2rem;
+    padding:
+            var(--rhino-space-1)
+            var(--rhino-space-2);
+}
+
+.rhino-family-identifier--compact .rhino-family-identifier__name {
+    font-size: var(--rhino-font-size-sm);
+}
+
+.rhino-family-identifier--muted {
+    --rhino-family-accent: var(--rhino-color-steel);
+
+    background: var(--rhino-color-mist);
+}
+
+.rhino-family-identifier[data-family="jademaster"] {
+    --rhino-family-accent: var(--rhino-color-steel);
+}
+
+/*
+ * TumbleMaster is intentionally not assigned a customer-facing selector while
+ * its commercial and technical status remains unavailable.
+ */
+
+/* --------------------------------------------------------------------------
+ * Rhino icon sizing foundation
+ * Source PBI: B-011
+ * -------------------------------------------------------------------------- */
+
+.rhino-icon-wrapper {
+    align-items: center;
+    color: currentColor;
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    line-height: 0;
+    vertical-align: middle;
+}
+
+.rhino-icon {
+    color: currentColor;
+    display: inline-block;
+    fill: none;
+    flex: 0 0 auto;
+    height: 2.4rem;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.75;
+    vertical-align: middle;
+    width: 2.4rem;
+}
+
+.rhino-icon-wrapper--default .rhino-icon {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+
+.rhino-icon-wrapper--compact .rhino-icon,
+.rhino-icon--compact {
+    height: 1.6rem;
+    width: 1.6rem;
+}
+
+.rhino-icon-wrapper--small .rhino-icon,
+.rhino-icon--small {
+    height: 2rem;
+    width: 2rem;
+}
+
+.rhino-icon-wrapper--large .rhino-icon,
+.rhino-icon--large {
+    height: 3.2rem;
+    width: 3.2rem;
+}
+
+.rhino-icon--filled {
+    fill: currentColor;
+    stroke: none;
+}
+
+@media screen and (max-width: 749px) {
+    .rhino-trust-marker {
+        gap: var(--rhino-space-2);
+    }
+
+    .rhino-family-identifier {
+        max-width: 100%;
+    }
+}
+
+@media (forced-colors: active) {
+    .rhino-badge,
+    .rhino-family-identifier,
+    .rhino-trust-list {
+        forced-color-adjust: auto;
+    }
+}
+
+/* --------------------------------------------------------------------------
+ * Motion and loading
+ * Source PBI: B-020
+ * -------------------------------------------------------------------------- */
+
+.rhino-transition {
+    transition-duration: var(--rhino-motion-duration-fast);
+    transition-property:
+            background-color,
+            border-color,
+            color,
+            opacity,
+            transform;
+    transition-timing-function: var(--rhino-motion-easing-standard);
+}
+
+.rhino-transition--overlay {
+    transition-duration: var(--rhino-motion-duration-standard);
+}
+
+.rhino-fade-enter {
+    opacity: 0;
+}
+
+.rhino-fade-enter.is-visible {
+    opacity: 1;
+}
+
+.rhino-busy-region {
+    min-height: 1px;
+    position: relative;
+}
+
+.rhino-busy-region[aria-busy="true"] {
+    cursor: progress;
+}
+
+.rhino-loading {
+    align-items: center;
+    color: var(--rhino-color-text-muted);
+    display: inline-flex;
+    font-size: var(--rhino-font-size-compact);
+    gap: var(--rhino-space-2);
+    line-height: var(--rhino-type-compact-line-height);
+}
+
+.rhino-spinner {
+    animation: rhino-spinner-rotate 800ms linear infinite;
+    border:
+            0.2rem
+            solid
+            var(--rhino-color-alloy);
+    border-block-start-color: var(--rhino-color-red-700);
+    border-radius: var(--rhino-radius-round);
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+}
+
+.rhino-spinner--small {
+    border-width: 0.15rem;
+    height: 1.6rem;
+    width: 1.6rem;
+}
+
+.rhino-skeleton {
+    background: var(--rhino-color-mist);
+    border-radius: var(--rhino-radius-control);
+    display: block;
+    min-height: 1.6rem;
+}
+
+.rhino-skeleton--text {
+    max-width: 32rem;
+    width: 100%;
+}
+
+.rhino-skeleton--short {
+    max-width: 16rem;
+}
+
+.rhino-skeleton--media {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    width: 100%;
+}
+
+@keyframes rhino-spinner-rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --------------------------------------------------------------------------
+ * Technical diagrams
+ * Source PBI: B-013
+ * -------------------------------------------------------------------------- */
+
+.rhino-diagram {
+    background: var(--rhino-color-white);
+    border: var(--rhino-border-standard);
+    border-radius: var(--rhino-radius-media);
+    color: var(--rhino-color-text);
+    margin: 0;
+    overflow: hidden;
+}
+
+.rhino-diagram__canvas {
+    background: var(--rhino-color-mist);
+    overflow-x: auto;
+    padding: var(--rhino-space-4);
+}
+
+.rhino-diagram__canvas svg {
+    display: block;
+    height: auto;
+    margin-inline: auto;
+    max-width: 100%;
+}
+
+.rhino-diagram__caption {
+    border-block-start: var(--rhino-border-standard);
+    padding: var(--rhino-space-4);
+}
+
+.rhino-diagram__caption > *:first-child {
+    margin-block-start: 0;
+}
+
+.rhino-diagram__caption > *:last-child {
+    margin-block-end: 0;
+}
+
+.rhino-diagram__title {
+    font-size: var(--rhino-font-size-body);
+    font-weight: var(--rhino-font-weight-semibold);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.rhino-diagram__description {
+    color: var(--rhino-color-text-muted);
+    font-size: var(--rhino-font-size-compact);
+    line-height: var(--rhino-type-compact-line-height);
+    margin:
+            var(--rhino-space-2)
+            0
+            0;
+}
+
+.rhino-diagram__legend {
+    display: grid;
+    gap: var(--rhino-space-2);
+    list-style: none;
+    margin:
+            var(--rhino-space-4)
+            0
+            0;
+    padding: 0;
+}
+
+.rhino-diagram__legend-item {
+    align-items: start;
+    display: grid;
+    font-size: var(--rhino-font-size-compact);
+    gap: var(--rhino-space-2);
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+    line-height: var(--rhino-type-compact-line-height);
+}
+
+.rhino-diagram__callout-number {
+    align-items: center;
+    background: var(--rhino-color-red-700);
+    border-radius: var(--rhino-radius-round);
+    color: var(--rhino-color-white);
+    display: inline-flex;
+    font-size: var(--rhino-font-size-xs);
+    font-variant-numeric: tabular-nums;
+    font-weight: var(--rhino-font-weight-bold);
+    height: 2.4rem;
+    justify-content: center;
+    width: 2.4rem;
+}
+
+.rhino-diagram-line {
+    fill: none;
+    stroke: var(--rhino-color-graphite);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.rhino-diagram-line--secondary {
+    stroke: var(--rhino-color-steel);
+    stroke-width: 1.5;
+}
+
+.rhino-diagram-line--callout {
+    stroke: var(--rhino-color-red-700);
+}
+
+.rhino-diagram-line--water {
+    stroke: var(--rhino-color-info);
+    stroke-dasharray: 6 4;
+}
+
+.rhino-diagram-line--dimension {
+    stroke: var(--rhino-color-graphite);
+    stroke-width: 1.25;
+}
+
+.rhino-diagram-line--warning {
+    stroke: var(--rhino-color-warning);
+}
+
+.rhino-diagram-label {
+    fill: var(--rhino-color-carbon);
+    font-family: var(--rhino-font-family-sans);
+    font-size: 14px;
+    font-weight: var(--rhino-font-weight-medium);
+}
+
+/* --------------------------------------------------------------------------
+ * Restrained geological motif
+ * Source PBI: B-014
+ * -------------------------------------------------------------------------- */
+
+.rhino-strata-rule {
+    display: grid;
+    gap: var(--rhino-space-1);
+    margin-block: var(--rhino-space-6);
+    max-width: 18rem;
+}
+
+.rhino-strata-rule::before,
+.rhino-strata-rule::after {
+    content: "";
+    display: block;
+    height: 0.2rem;
+}
+
+.rhino-strata-rule::before {
+    background: var(--rhino-color-red-700);
+    width: 100%;
+}
+
+.rhino-strata-rule::after {
+    background: var(--rhino-color-alloy);
+    box-shadow:
+            0 var(--rhino-space-1)
+            0
+            var(--rhino-color-steel);
+    width: 72%;
+}
+
+.rhino-strata-rule--center {
+    margin-inline: auto;
+}
+
+.rhino-strata-rule--right {
+    margin-inline-start: auto;
+}
+
+/* --------------------------------------------------------------------------
+ * Video thumbnails and click-to-load presentation
+ * Source PBI: B-019
+ * -------------------------------------------------------------------------- */
+
+.rhino-video-card {
+    background: var(--rhino-color-carbon);
+    border: var(--rhino-border-standard);
+    border-color: var(--rhino-color-graphite);
+    border-radius: var(--rhino-radius-media);
+    color: var(--rhino-color-white);
+    margin: 0;
+    overflow: hidden;
+}
+
+.rhino-video-card__media {
+    aspect-ratio: 16 / 9;
+    background: var(--rhino-color-graphite);
+    position: relative;
+}
+
+.rhino-video-card__poster {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.rhino-video-card__button {
+    align-items: center;
+    background: var(--rhino-color-action);
+    border:
+            var(--rhino-border-width)
+            solid
+            var(--rhino-color-action);
+    border-radius: var(--rhino-radius-round);
+    color: var(--rhino-color-white);
+    cursor: pointer;
+    display: inline-flex;
+    height: 5.6rem;
+    justify-content: center;
+    left: 50%;
+    min-height: 4.8rem;
+    min-width: 4.8rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5.6rem;
+}
+
+.rhino-video-card__button:hover {
+    background: var(--rhino-color-action-hover);
+    border-color: var(--rhino-color-action-hover);
+}
+
+.rhino-video-card__button:focus-visible {
+    outline-color: var(--rhino-color-white);
+}
+
+.rhino-video-card__button .rhino-icon,
+.rhino-video-card__button .rhino-icon-wrapper {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+
+.rhino-video-card__duration {
+    background: var(--rhino-color-overlay-dark);
+    border-radius: var(--rhino-radius-control);
+    bottom: var(--rhino-space-3);
+    color: var(--rhino-color-white);
+    font-size: var(--rhino-font-size-xs);
+    font-variant-numeric: tabular-nums;
+    font-weight: var(--rhino-font-weight-semibold);
+    line-height: 1.333;
+    padding:
+            var(--rhino-space-1)
+            var(--rhino-space-2);
+    position: absolute;
+    right: var(--rhino-space-3);
+}
+
+.rhino-video-card__content {
+    padding: var(--rhino-space-4);
+}
+
+.rhino-video-card__category {
+    color: var(--rhino-color-alloy);
+    font-size: var(--rhino-font-size-xs);
+    font-weight: var(--rhino-font-weight-semibold);
+    letter-spacing: var(--rhino-type-label-letter-spacing);
+    line-height: 1.5;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.rhino-video-card__title {
+    color: var(--rhino-color-white);
+    font-size: var(--rhino-font-size-lg);
+    font-weight: var(--rhino-font-weight-semibold);
+    line-height: 1.555;
+    margin:
+            var(--rhino-space-2)
+            0
+            0;
+}
+
+.rhino-video-card__description {
+    color: var(--rhino-color-alloy);
+    font-size: var(--rhino-font-size-compact);
+    line-height: var(--rhino-type-compact-line-height);
+    margin:
+            var(--rhino-space-2)
+            0
+            0;
+}
+
+.rhino-video-card__privacy {
+    color: var(--rhino-color-alloy);
+    font-size: var(--rhino-font-size-sm);
+    line-height: 1.538;
+    margin:
+            var(--rhino-space-3)
+            0
+            0;
+}
+
+.rhino-video-card__player {
+    aspect-ratio: 16 / 9;
+    background: var(--rhino-color-black);
+    width: 100%;
+}
+
+.rhino-video-card__player iframe,
+.rhino-video-card__player video {
+    border: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rhino-transition,
+    .rhino-transition--overlay,
+    .rhino-fade-enter,
+    .rhino-fade-enter.is-visible,
+    .rhino-video-card__button {
+        transition: none;
+    }
+
+    .rhino-spinner {
+        animation: none;
+        border-color: var(--rhino-color-steel);
+        border-block-start-color: var(--rhino-color-red-700);
+    }
+
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+}
+
+@media (forced-colors: active) {
+    .rhino-spinner,
+    .rhino-diagram,
+    .rhino-video-card,
+    .rhino-video-card__button {
+        forced-color-adjust: auto;
+    }
 }

@@ -3,6 +3,7 @@ const path = require('path');
 
 const ROOT = process.cwd();
 const ledger = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/stock-asset-ledger.json'), 'utf8'));
+const mediaManifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/media-manifest.json'), 'utf8'));
 
 const errors = [];
 const warnings = [];
@@ -38,6 +39,7 @@ const stockAssetCandidates = listFiles(path.join(ROOT, 'assets'), (file) =>
 );
 
 const ledgerPaths = new Set(ledger.assets.map((asset) => asset.path));
+const mediaManifestPaths = new Set(mediaManifest.media.map((asset) => asset.path));
 
 for (const asset of ledger.assets) {
     if (!fs.existsSync(path.join(ROOT, asset.path))) {
@@ -50,8 +52,8 @@ for (const asset of ledger.assets) {
 }
 
 for (const candidate of stockAssetCandidates) {
-    if (!ledgerPaths.has(candidate)) {
-        warnings.push(`${candidate}: visual asset not listed in data/stock-asset-ledger.json`);
+    if (!ledgerPaths.has(candidate) && !mediaManifestPaths.has(candidate)) {
+        warnings.push(`${candidate}: visual asset not listed in data/stock-asset-ledger.json or data/media-manifest.json`);
     }
 }
 
