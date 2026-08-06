@@ -118,6 +118,9 @@ jobs:
       - name: Run Epic B static QA
         run: npm run qa:epic-b:static
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
+
       - name: Run Epic B preview QA
         env:
           PREVIEW_BASE_URL: ${{ secrets.PREVIEW_BASE_URL }}
