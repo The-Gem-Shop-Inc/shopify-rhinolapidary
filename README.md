@@ -254,17 +254,26 @@ Changes to these areas require focused testing:
 * Upstream update strategy
 * Theme customization inventory
 * Theme Check decisions
+* Rhino brand CSS implementation plan
+* Rhino custom section/block strategy
 
 ### Development
 
 * Settings-data policy
 * Shopify environment configuration
 
+### Brand
+
+* Rhino brand style guide
+* Rhino theme settings launch plan
+* Rhino preview implementation slice
+
 ### Quality assurance
 
 * Browser and device support
 * Accessibility baseline
 * Performance budget
+* Epic B brand QA plan
 
 ### Release
 

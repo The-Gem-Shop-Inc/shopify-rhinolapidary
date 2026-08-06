@@ -2,12 +2,716 @@
   "$schema": "../schemas/stock-asset-ledger.schema.json",
   "assets": [
     {
-      "path": "assets/icon.svg",
+      "path": "assets/email-signup-banner-background-mobile.svg",
+      "type": "svg",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Non-icon stock SVG. Keep as upstream until the email signup banner is redesigned; replace when that surface is touched. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/email-signup-banner-background.svg",
+      "type": "svg",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Non-icon stock SVG. Keep as upstream until the email signup banner is redesigned; replace when that surface is touched. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-3d-model.svg",
       "type": "icon",
       "origin": "shopify-trade",
-      "decision": "review",
-      "owner": "Storefront engineering",
-      "notes": "Confirm whether this stock icon is actually used and appropriate for Rhino."
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-account.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-apple.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-arrow.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-banana.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-bottle.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-box.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Product classification, kit/bundle, and parcel/package semantics need Rhino-specific treatment. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-caret.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-carrot.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-cart-empty.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-cart.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-chat-bubble.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Support and repair communication need Rhino-specific service iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-check-mark.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Compatibility, included component, and positive confirmation states require structured-data-safe Rhino treatment. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-checkmark.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-clipboard.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Manual, document, documentation, and specification record semantics need Rhino-specific treatment. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-close-small.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-close.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-copy.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-dairy-free.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-dairy.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-discount.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-dryer.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-error.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-eye.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-facebook.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-filter.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-fire.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-gluten-free.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-hamburger.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-heart.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-info.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-instagram.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-inventory-status.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-iron.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-leaf.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-leather.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-lightning-bolt.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Voltage, motor, and power semantics need Rhino-specific technical iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-lipstick.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-lock.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-map-pin.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Pickup and local availability semantics need Rhino-specific delivery iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-minus.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-nut-free.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-padlock.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-pants.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-pause.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-paw-print.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-pepper.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-perfume.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-pinterest.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-plane.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. International review semantics need Rhino-specific delivery iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-plant.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-play.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-plus.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-price-tag.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-question-mark.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-recycle.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-remove.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-reset.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-return.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Return semantics need Rhino-specific support iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-ruler.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Dimensions, diameter, arbor, and size semantics need Rhino-specific technical iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-search.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-serving-dish.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-share.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-shirt.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-shoe.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-shopify.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-silhouette.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-snapchat.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-snowflake.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-star.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-stopwatch.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Speed semantics need Rhino-specific technical iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-success.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-tick.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-tiktok.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-truck.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: rhino_replacement_planned. Freight and parcel delivery semantics need Rhino-specific delivery iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-tumblr.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-twitter.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-unavailable.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference, CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-vimeo.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-warning.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-washing.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Dynamic Shopify Trade stock product icon is selectable in admin but is not approved final Rhino iconography. Evidence: dynamic schema option. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-youtube.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/icon-zoom.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/loading-spinner.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/mask-arch.svg",
+      "type": "svg",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Non-icon stock SVG mask. Keep as upstream until collection/search decorative masks are redesigned; replace when those surfaces are touched. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/sparkle.gif",
+      "type": "image",
+      "origin": "shopify-trade",
+      "decision": "replace",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: replace_when_touched. Non-icon stock raster remnant used by upstream motion styling. Replace when the owning decorative motion surface is touched. Evidence: CSS/URL reference. See docs/brand/rhino-stock-icon-asset-audit.md."
+    },
+    {
+      "path": "assets/square.svg",
+      "type": "icon",
+      "origin": "shopify-trade",
+      "decision": "keep",
+      "owner": "Design + frontend engineering",
+      "notes": "B-011 disposition: retain_as_upstream. Inherited Shopify Trade utility, state, media-control, social, or form-control icon currently supporting baseline theme behavior. Evidence: direct inline reference. See docs/brand/rhino-stock-icon-asset-audit.md."
     }
   ]
 }

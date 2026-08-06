@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { expect } = require('@playwright/test');
+const storefrontAuth = require('./storefront-auth');
 
 function loadFixtures() {
     return JSON.parse(
@@ -11,30 +12,8 @@ function loadFixtures() {
     );
 }
 
-function storefrontUrl(routePath) {
-    if (!process.env.PREVIEW_URL) {
-        throw new Error('PREVIEW_URL must be set.');
-    }
-
-    const base = new URL(process.env.PREVIEW_URL);
-    const target = new URL(routePath, base.origin);
-
-    const allowedPreviewParams = new Set([
-        'preview_theme_id',
-        'preview_key'
-    ]);
-
-    for (const [key, value] of base.searchParams.entries()) {
-        if (allowedPreviewParams.has(key) && !target.searchParams.has(key)) {
-            target.searchParams.set(key, value);
-        }
-    }
-
-    return target.toString();
-}
-
 async function gotoStorefront(page, routePath, label = routePath) {
-    const response = await page.goto(storefrontUrl(routePath), {
+    const response = await page.goto(storefrontAuth.storefrontUrl(routePath), {
         waitUntil: 'domcontentloaded',
     });
 
@@ -44,72 +23,6 @@ async function gotoStorefront(page, routePath, label = routePath) {
     ).toBeLessThan(400);
 
     return response;
-}
-
-async function isPasswordPage(page) {
-    const body = await page.locator('body').innerText().catch(() => '');
-
-    return /enter using password|enter store using password|opening soon/i.test(body);
-}
-
-async function unlockStorefront(page) {
-    await gotoStorefront(page, '/', 'password unlock homepage');
-
-    if (!(await isPasswordPage(page))) {
-        return;
-    }
-
-    const password = process.env.STOREFRONT_PASSWORD;
-
-    if (!password) {
-        throw new Error(
-            'Storefront is password protected. Set STOREFRONT_PASSWORD in .env.'
-        );
-    }
-
-    const revealPasswordForm = page.getByRole('button', {
-        name: /enter using password/i,
-    });
-
-    if (await revealPasswordForm.isVisible().catch(() => false)) {
-        await revealPasswordForm.click();
-    }
-
-    const passwordInput = page
-        .locator('input[name="password"], input[type="password"]')
-        .first();
-
-    await expect(passwordInput, 'Password input should be visible').toBeVisible();
-
-    await passwordInput.fill(password);
-
-    const submit = page
-        .getByRole('button', { name: /^enter$/i })
-        .or(page.locator('button[type="submit"]'))
-        .first();
-
-    await submit.click();
-
-    await page.waitForLoadState('domcontentloaded');
-
-    expect(
-        await isPasswordPage(page),
-        'Storefront remained on password page after submitting password'
-    ).toBe(false);
-}
-
-async function gotoUnlocked(page, routePath, label = routePath) {
-    await gotoStorefront(page, routePath, label);
-
-    if (await isPasswordPage(page)) {
-        await unlockStorefront(page);
-        await gotoStorefront(page, routePath, label);
-    }
-
-    expect(
-        await isPasswordPage(page),
-        `${label} is still showing the password page`
-    ).toBe(false);
 }
 
 function getFixture(name) {
@@ -132,9 +45,12 @@ function getFixture(name) {
 module.exports = {
     loadFixtures,
     getFixture,
-    storefrontUrl,
+    storefrontUrl: storefrontAuth.storefrontUrl,
     gotoStorefront,
-    gotoUnlocked,
-    unlockStorefront,
-    isPasswordPage,
+    gotoUnlocked: storefrontAuth.gotoUnlocked,
+    unlockStorefront: storefrontAuth.unlockStorefront,
+    isPasswordPage: storefrontAuth.isPasswordPage,
+    assertStorefrontPage: storefrontAuth.assertStorefrontPage,
+    applyCachedStorefrontState: storefrontAuth.applyCachedStorefrontState,
+    STORAGE_STATE_PATH: storefrontAuth.STORAGE_STATE_PATH,
 };

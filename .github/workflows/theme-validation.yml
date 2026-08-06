@@ -97,3 +97,31 @@ jobs:
 
       - name: Validate cart config
         run: npm run validate:cart-config
+
+      - name: Validate Rhino brand performance budget
+        run: npm run validate:brand-performance
+
+      - name: Validate brand launch governance
+        run: npm run validate:brand-launch-governance
+
+      - name: Validate Epic B architecture
+        run: npm run validate:epic-b-architecture
+
+      - name: Validate Epic B final artifacts
+        run: npm run validate:epic-b-finalization
+
+      - name: Run Epic B static QA
+        run: npm run qa:epic-b:static
+
+      - name: Run Epic B preview QA
+        env:
+          PREVIEW_BASE_URL: ${{ secrets.PREVIEW_BASE_URL }}
+          PREVIEW_THEME_ID: ${{ secrets.PREVIEW_THEME_ID }}
+          STOREFRONT_PASSWORD: ${{ secrets.STOREFRONT_PASSWORD }}
+          TEST_PRODUCT_PATH: ${{ vars.TEST_PRODUCT_PATH }}
+          TEST_MACHINE_PRODUCT_PATH: ${{ vars.TEST_MACHINE_PRODUCT_PATH }}
+          TEST_COLLECTION_PATH: ${{ vars.TEST_COLLECTION_PATH }}
+          TEST_SEARCH_PATH: ${{ vars.TEST_SEARCH_PATH }}
+          TEST_CONTACT_PATH: ${{ vars.TEST_CONTACT_PATH }}
+          TEST_POLICY_PATH: ${{ vars.TEST_POLICY_PATH }}
+        run: npm run qa:epic-b:preview

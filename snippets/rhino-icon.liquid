@@ -1,0 +1,118 @@
+{%- comment -%}
+  Renders a repository-owned Rhino icon.
+
+  Accepts:
+  - name: required icon name
+  - class: optional additional wrapper class
+  - label: optional accessible name
+  - size: optional value: compact, small, default, or large
+
+  Usage:
+  {% render 'rhino-icon', name: 'freight', label: 'Freight delivery' %}
+{%- endcomment -%}
+{%- liquid
+  assign icon_name = name | default: ''
+  assign icon_asset = ''
+  assign icon_size = size | default: 'default'
+  assign wrapper_class = 'rhino-icon-wrapper'
+
+  case icon_size
+    when 'compact'
+      assign wrapper_class = wrapper_class | append: ' rhino-icon-wrapper--compact'
+    when 'small'
+      assign wrapper_class = wrapper_class | append: ' rhino-icon-wrapper--small'
+    when 'large'
+      assign wrapper_class = wrapper_class | append: ' rhino-icon-wrapper--large'
+    else
+      assign wrapper_class = wrapper_class | append: ' rhino-icon-wrapper--default'
+  endcase
+
+  if class != blank
+    assign wrapper_class = wrapper_class | append: ' ' | append: class
+  endif
+
+  case icon_name
+    when 'machine'
+      assign icon_asset = 'rhino-icon-machine.svg'
+    when 'replacement-part'
+      assign icon_asset = 'rhino-icon-replacement-part.svg'
+    when 'accessory'
+      assign icon_asset = 'rhino-icon-accessory.svg'
+    when 'consumable'
+      assign icon_asset = 'rhino-icon-consumable.svg'
+    when 'bundle'
+      assign icon_asset = 'rhino-icon-bundle.svg'
+    when 'compatible'
+      assign icon_asset = 'rhino-icon-compatible.svg'
+    when 'included'
+      assign icon_asset = 'rhino-icon-included.svg'
+    when 'optional'
+      assign icon_asset = 'rhino-icon-optional.svg'
+    when 'manual'
+      assign icon_asset = 'rhino-icon-manual.svg'
+    when 'voltage'
+      assign icon_asset = 'rhino-icon-voltage.svg'
+    when 'speed'
+      assign icon_asset = 'rhino-icon-speed.svg'
+    when 'dimensions'
+      assign icon_asset = 'rhino-icon-dimensions.svg'
+    when 'weight'
+      assign icon_asset = 'rhino-icon-weight.svg'
+    when 'water'
+      assign icon_asset = 'rhino-icon-water.svg'
+    when 'diameter'
+      assign icon_asset = 'rhino-icon-diameter.svg'
+    when 'arbor'
+      assign icon_asset = 'rhino-icon-arbor.svg'
+    when 'grit'
+      assign icon_asset = 'rhino-icon-grit.svg'
+    when 'blade'
+      assign icon_asset = 'rhino-icon-blade.svg'
+    when 'wheel'
+      assign icon_asset = 'rhino-icon-wheel.svg'
+    when 'freight'
+      assign icon_asset = 'rhino-icon-freight.svg'
+    when 'parcel'
+      assign icon_asset = 'rhino-icon-parcel.svg'
+    when 'pickup'
+      assign icon_asset = 'rhino-icon-pickup.svg'
+    when 'international'
+      assign icon_asset = 'rhino-icon-international.svg'
+    when 'warranty'
+      assign icon_asset = 'rhino-icon-warranty.svg'
+    when 'support'
+      assign icon_asset = 'rhino-icon-support.svg'
+    when 'repair'
+      assign icon_asset = 'rhino-icon-repair.svg'
+    when 'return'
+      assign icon_asset = 'rhino-icon-return.svg'
+    when 'em-1'
+      assign icon_asset = 'rhino-icon-em-1.svg'
+    when 'beadmaster'
+      assign icon_asset = 'rhino-icon-beadmaster.svg'
+    when 'shapemaster'
+      assign icon_asset = 'rhino-icon-shapemaster.svg'
+    when 'trimmaster'
+      assign icon_asset = 'rhino-icon-trimmaster.svg'
+    when 'lapmaster'
+      assign icon_asset = 'rhino-icon-lapmaster.svg'
+    when 'sawmaster'
+      assign icon_asset = 'rhino-icon-sawmaster.svg'
+    when 'jademaster'
+      assign icon_asset = 'rhino-icon-jademaster.svg'
+  endcase
+-%}
+
+{%- if icon_asset != blank -%}
+  {%- if label != blank -%}
+    <span class="{{ wrapper_class | escape }}" role="img" aria-label="{{ label | escape }}">
+      {{- icon_asset | inline_asset_content -}}
+    </span>
+  {%- else -%}
+    <span class="{{ wrapper_class | escape }}" aria-hidden="true">
+      {{- icon_asset | inline_asset_content -}}
+    </span>
+  {%- endif -%}
+{%- elsif request.design_mode and icon_name != blank -%}
+  <!-- Unknown Rhino icon: {{ icon_name | escape }} -->
+{%- endif -%}

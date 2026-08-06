@@ -111,4 +111,4 @@ if (matches.length > 0) {
     process.exit(1);
 }
 
-console.log('Placeholder content check failed.');
+console.log('Placeholder content check passed.');

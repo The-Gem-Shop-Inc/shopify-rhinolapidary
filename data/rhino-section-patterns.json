@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "patterns": [
+    {
+      "id": "technical-specs",
+      "name": "Technical specifications",
+      "status": "approved",
+      "launchPriority": "critical",
+      "preferredImplementation": "rhino_section",
+      "contentSources": [
+        "product_metafields",
+        "machine_family_metaobject",
+        "approved_product_data"
+      ],
+      "emptyBehavior": "omit_section",
+      "merchantAddable": true,
+      "requiresProductContext": true,
+      "javascriptPolicy": "none",
+      "notes": "Use structured rows and groups. Never parse product descriptions or tags into specifications."
+    },
+    {
+      "id": "trust-support",
+      "name": "Trust and support",
+      "status": "approved",
+      "launchPriority": "critical",
+      "preferredImplementation": "rhino_section_or_block",
+      "contentSources": [
+        "approved_policy_content",
+        "product_warranty_reference",
+        "product_freight_data",
+        "support_page"
+      ],
+      "emptyBehavior": "omit_missing_items",
+      "merchantAddable": true,
+      "requiresProductContext": false,
+      "javascriptPolicy": "none",
+      "notes": "Do not hardcode warranty durations, freight estimates, contact details, or entity roles."
+    },
+    {
+      "id": "compatibility",
+      "name": "Compatibility",
+      "status": "approved",
+      "launchPriority": "critical",
+      "preferredImplementation": "rhino_section",
+      "contentSources": [
+        "product_reference_metafields",
+        "machine_family_metaobjects",
+        "approved_compatibility_status"
+      ],
+      "emptyBehavior": "show_unconfirmed_only_when_explicit",
+      "merchantAddable": true,
+      "requiresProductContext": true,
+      "javascriptPolicy": "none",
+      "notes": "Tags, title similarity, dimensions, and family resemblance are not compatibility evidence."
+    },
+    {
+      "id": "technical-diagram",
+      "name": "Technical diagram",
+      "status": "approved",
+      "launchPriority": "important",
+      "preferredImplementation": "rhino_section",
+      "contentSources": [
+        "shopify_product_media",
+        "shopify_files",
+        "media_manifest",
+        "approved_diagram_description"
+      ],
+      "emptyBehavior": "omit_section",
+      "merchantAddable": true,
+      "requiresProductContext": false,
+      "javascriptPolicy": "none",
+      "notes": "A complex diagram requires an adjacent text explanation or structured list."
+    },
+    {
+      "id": "video",
+      "name": "Instructional video",
+      "status": "approved",
+      "launchPriority": "important",
+      "preferredImplementation": "rhino_section",
+      "contentSources": [
+        "approved_video_register",
+        "shopify_product_media",
+        "shopify_files",
+        "approved_external_provider"
+      ],
+      "emptyBehavior": "omit_section",
+      "merchantAddable": true,
+      "requiresProductContext": false,
+      "javascriptPolicy": "click_to_load_only",
+      "notes": "No autoplay and no third-party player request before deliberate activation."
+    },
+    {
+      "id": "education",
+      "name": "Educational content",
+      "status": "approved",
+      "launchPriority": "important",
+      "preferredImplementation": "trade_first",
+      "contentSources": [
+        "shopify_pages",
+        "shopify_articles",
+        "approved_metaobjects"
+      ],
+      "emptyBehavior": "omit_section",
+      "merchantAddable": true,
+      "requiresProductContext": false,
+      "javascriptPolicy": "none",
+      "notes": "Use an existing Trade rich-text or article section when it satisfies the content and accessibility requirements."
+    },
+    {
+      "id": "comparison",
+      "name": "Product comparison",
+      "status": "planned",
+      "launchPriority": "post_launch",
+      "preferredImplementation": "rhino_section",
+      "contentSources": [
+        "approved_structured_product_data",
+        "product_references"
+      ],
+      "emptyBehavior": "omit_incomplete_products",
+      "merchantAddable": false,
+      "requiresProductContext": false,
+      "javascriptPolicy": "none_until_approved",
+      "notes": "Do not implement until the compared attributes and technical conflicts are resolved."
+    }
+  ]
+}

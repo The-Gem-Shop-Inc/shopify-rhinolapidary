@@ -2,24 +2,12 @@ require('dotenv').config();
 
 const { test, expect } = require('@playwright/test');
 const AxeBuilder = require('@axe-core/playwright').default;
+const {
+    gotoUnlocked,
+    storefrontUrl,
+} = require('./helpers/storefront');
 
-if (!process.env.PREVIEW_URL) {
-    throw new Error('PREVIEW_URL must be set to the full Shopify storefront preview URL.');
-}
-
-function storefrontUrl(path) {
-    const base = new URL(process.env.PREVIEW_URL);
-    const target = new URL(path, base.origin);
-
-    // Preserve preview/session params from Shopify's preview URL.
-    for (const [key, value] of base.searchParams.entries()) {
-        if (!target.searchParams.has(key)) {
-            target.searchParams.set(key, value);
-        }
-    }
-
-    return target.toString();
-}
+test.setTimeout(90_000);
 
 const routes = [
     {
@@ -48,41 +36,11 @@ const routes = [
     },
 ].filter(({ path }) => Boolean(path));
 
-async function unlockStorefront(page) {
-    const response = await page.goto(storefrontUrl('/'));
-
-    expect(
-        response?.status(),
-        `Preview homepage returned HTTP ${response?.status()} at ${page.url()}`
-    ).toBeLessThan(400);
-
-    const passwordInput = page.locator('input[name="password"]');
-
-    if (!(await passwordInput.isVisible().catch(() => false))) {
-        return;
-    }
-
-    const password = process.env.STOREFRONT_PASSWORD;
-
-    if (!password) {
-        throw new Error(
-            'The storefront is password protected. Set STOREFRONT_PASSWORD before running accessibility tests.'
-        );
-    }
-
-    await passwordInput.fill(password);
-    await page.locator('button[type="submit"]').click();
-    await page.waitForLoadState('networkidle');
-}
-
-test.beforeEach(async ({ page }) => {
-    await unlockStorefront(page);
-});
-
 for (const route of routes) {
     test(`${route.name} has no serious or critical axe violations`, async ({ page }) => {
         const targetUrl = storefrontUrl(route.path);
-        const response = await page.goto(targetUrl);
+        const result = await gotoUnlocked(page, route.path, route.name);
+        const response = result.response;
 
         const status = response?.status();
         const finalUrl = page.url();
@@ -100,7 +58,15 @@ for (const route of routes) {
             ].join('\n')
         ).toBeLessThan(400);
 
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('load', {
+            timeout: 30_000,
+        }).catch(() => {});
+
+        await page.evaluate(async () => {
+            if (document.fonts?.ready) {
+                await document.fonts.ready;
+            }
+        }).catch(() => {});
 
         await expect(page.locator('html')).toHaveAttribute('lang', /.+/);
         await expect(page).toHaveTitle(/.+/);

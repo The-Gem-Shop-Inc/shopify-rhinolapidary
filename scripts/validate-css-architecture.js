@@ -14,6 +14,13 @@ function read(file) {
     return fs.readFileSync(path.join(ROOT, file), 'utf8');
 }
 
+function stripRhinoRootTokenBlocks(source) {
+    return source.replace(
+        /:root\s*\{[\s\S]*?\}/gi,
+        '',
+    );
+}
+
 if (!exists('assets/rhino-custom.css')) {
     errors.push('Missing assets/rhino-custom.css');
 }
@@ -33,7 +40,15 @@ if (exists('assets/rhino-custom.css')) {
         warnings.push('assets/rhino-custom.css does not define or use any --rhino-* token yet.');
     }
 
-    const hexColorMatches = css.match(/#[0-9a-fA-F]{3,8}\b/g) || [];
+    const rhinoComponentCss = stripRhinoRootTokenBlocks(
+        css,
+    );
+
+    const hexColorMatches = [
+        ...rhinoComponentCss.matchAll(
+            /#[0-9a-f]{3,8}\b/gi,
+        ),
+    ];
 
     if (hexColorMatches.length > 0) {
         warnings.push(

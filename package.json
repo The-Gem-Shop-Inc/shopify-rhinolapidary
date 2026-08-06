@@ -8,14 +8,24 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:ally": "playwright test tests/accessibility.spec.js",
-    "test:smoke": "playwright test tests/storefront-smoke.spec.js --workers=1",
+    "test:ally": "playwright test tests/accessibility.spec.js --workers=1",
+    "test:smoke": "playwright test tests/storefront-auth.spec.js tests/storefront-smoke.spec.js --workers=1",
     "test:cart": "playwright test tests/cart.spec.js --workers=1",
     "test:navigation": "playwright test tests/navigation.spec.js --workers=1",
+    "test:brand-performance": "node scripts/validate-brand-performance-budget.js --runtime --runs=1",
+    "test:brand-performance:release": "node scripts/validate-brand-performance-budget.js --runtime --runs=3",
+    "test:brand-performance:desktop": "node scripts/validate-brand-performance-budget.js --runtime --desktop --runs=3",
+    "test:social-metadata": "node scripts/validate-social-metadata-contract.js && node scripts/validate-social-metadata.js",
+    "qa:epic-b:static": "node scripts/run-epic-b-brand-qa.js --mode=static",
+    "qa:epic-b:preview": "node scripts/run-epic-b-brand-qa.js --mode=preview",
+    "qa:epic-b:all": "node scripts/run-epic-b-brand-qa.js --mode=all",
     "check:placeholders": "node scripts/check-placeholder-content.js",
+    "check:rhino-theme-settings": "node scripts/manage-rhino-theme-settings.js --check",
     "audit:app-blocks": "node scripts/audit-app-block-surfaces.js",
     "audit:theme-assets": "node scripts/audit-theme-assets.js",
     "audit:production-files": "node scripts/audit-production-push-files.js",
+    "generate:brand-assets": "node scripts/generate-brand-launch-assets.js",
+    "generate:rhino-theme-settings-candidate": "node scripts/manage-rhino-theme-settings.js --candidate",
     "validate:registers": "node scripts/validate-json-registers.js",
     "validate:fixtures": "node scripts/validate-storefront-fixtures.js",
     "validate:product-data": "node scripts/validate-product-csv.js",
@@ -28,6 +38,7 @@
     "validate:navigation": "node scripts/validate-navigation-spec.js",
     "validate:design-tokens": "node scripts/validate-design-tokens.js",
     "validate:css-architecture": "node scripts/validate-css-architecture.js",
+    "validate:rhino-icons": "node scripts/validate-rhino-icons.js",
     "validate:storefront-js": "node scripts/validate-storefront-js-contracts.js",
     "validate:rhino-sections": "node scripts/validate-rhino-sections.js",
     "validate:theme-architecture": "npm run validate:navigation && npm run validate:design-tokens && npm run validate:css-architecture && npm run validate:storefront-js && npm run validate:rhino-sections",
@@ -41,7 +52,17 @@
     "validate:theme-environments": "node scripts/validate-theme-environments.js",
     "validate:product-purchase": "node scripts/validate-product-purchase-architecture.js",
     "validate:launch-fixtures": "node scripts/validate-launch-fixtures.js",
-    "validate:release-risks": "node scripts/validate-release-risks.js"
+    "validate:release-risks": "node scripts/validate-release-risks.js",
+    "validate:brand-performance": "node scripts/validate-brand-performance-budget.js",
+    "validate:brand-assets": "node scripts/validate-brand-launch-assets.js",
+    "validate:brand-migration": "node scripts/validate-brand-content-migration.js",
+    "validate:brand-claims": "node scripts/validate-brand-claims.js",
+    "validate:brand-launch-governance": "npm run validate:brand-assets && npm run validate:brand-migration && npm run validate:brand-claims",
+    "validate:rhino-style-contract": "node scripts/validate-rhino-style-contract.js",
+    "validate:rhino-section-patterns": "node scripts/validate-rhino-section-patterns.js",
+    "validate:rhino-theme-settings-plan": "node scripts/manage-rhino-theme-settings.js --validate-plan",
+    "validate:epic-b-architecture": "npm run validate:design-tokens && npm run validate:css-architecture && npm run validate:rhino-style-contract && npm run validate:rhino-sections && npm run validate:rhino-section-patterns && npm run validate:rhino-theme-settings-plan",
+    "validate:epic-b-finalization": "node scripts/validate-epic-b-finalization.js"
   },
   "repository": {
     "type": "git",
@@ -59,6 +80,7 @@
     "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.61.1",
     "ajv": "^8.20.0",
-    "dotenv": "^17.4.2"
+    "dotenv": "^17.4.2",
+    "sharp": "^0.35.3"
   }
 }

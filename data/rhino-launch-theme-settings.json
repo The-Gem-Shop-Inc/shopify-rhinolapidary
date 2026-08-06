@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "profile": "rhino-preview-launch-brand",
+  "themeBaseline": "Shopify Trade 15.5.0",
+  "targetFile": "config/settings_data.json",
+  "changeGroups": [
+    {
+      "id": "identity-sizing",
+      "owner": "Brand and Shopify Admin",
+      "rationale": "Keep the horizontal Rhino logo legible without allowing it to dominate navigation.",
+      "rollback": "Restore the pre-change settings snapshot.",
+      "changes": {
+        "logo_width": 200
+      }
+    },
+    {
+      "id": "typography",
+      "owner": "Brand and Frontend Engineering",
+      "rationale": "Use DM Sans consistently and avoid the previous DM Sans and Jost split.",
+      "rollback": "Restore the previous type_header_font, type_body_font, heading_scale, and body_scale values.",
+      "changes": {
+        "type_header_font": "dm_sans_n5",
+        "type_body_font": "dm_sans_n4",
+        "heading_scale": 100,
+        "body_scale": 100
+      }
+    },
+    {
+      "id": "layout",
+      "owner": "Brand and Frontend Engineering",
+      "rationale": "Use the approved 1400 px canvas and restrained grid spacing. Section rhythm remains section-owned to avoid double spacing.",
+      "rollback": "Restore the previous page and grid settings.",
+      "changes": {
+        "page_width": 1400,
+        "spacing_sections": 0,
+        "spacing_grid_horizontal": 24,
+        "spacing_grid_vertical": 24
+      }
+    },
+    {
+      "id": "motion",
+      "owner": "Accessibility and Frontend Engineering",
+      "rationale": "Disable decorative reveal motion and retain only ordinary non-lifting hover behavior.",
+      "rollback": "Restore the previous animation settings.",
+      "changes": {
+        "animations_reveal_on_scroll": false,
+        "animations_hover_elements": "default"
+      }
+    },
+    {
+      "id": "buttons",
+      "owner": "Brand and Frontend Engineering",
+      "rationale": "Use clear boundaries, a four-pixel radius, and no ordinary button shadow.",
+      "rollback": "Restore previous button settings.",
+      "changes": {
+        "buttons_border_thickness": 1,
+        "buttons_border_opacity": 100,
+        "buttons_radius": 4,
+        "buttons_shadow_opacity": 0,
+        "buttons_shadow_horizontal_offset": 0,
+        "buttons_shadow_vertical_offset": 0,
+        "buttons_shadow_blur": 0
+      }
+    },
+    {
+      "id": "variant-pills",
+      "owner": "Brand, Product, and Accessibility",
+      "rationale": "Make product choices technical controls rather than highly rounded pills.",
+      "rollback": "Restore previous variant-pill settings.",
+      "changes": {
+        "variant_pills_border_thickness": 1,
+        "variant_pills_border_opacity": 100,
+        "variant_pills_radius": 4,
+        "variant_pills_shadow_opacity": 0,
+        "variant_pills_shadow_horizontal_offset": 0,
+        "variant_pills_shadow_vertical_offset": 0,
+        "variant_pills_shadow_blur": 0
+      }
+    },
+    {
+      "id": "inputs",
+      "owner": "Brand and Accessibility",
+      "rationale": "Provide strong input boundaries with restrained corners and no decorative elevation.",
+      "rollback": "Restore previous input settings.",
+      "changes": {
+        "inputs_border_thickness": 1,
+        "inputs_border_opacity": 100,
+        "inputs_radius": 4,
+        "inputs_shadow_opacity": 0,
+        "inputs_shadow_horizontal_offset": 0,
+        "inputs_shadow_vertical_offset": 0,
+        "inputs_shadow_blur": 0
+      }
+    },
+    {
+      "id": "product-cards",
+      "owner": "Brand and Merchandising",
+      "rationale": "Use flat standard product cards and avoid nested floating card treatments.",
+      "rollback": "Restore previous product-card settings.",
+      "changes": {
+        "card_style": "standard",
+        "card_image_padding": 0,
+        "card_text_alignment": "left",
+        "card_color_scheme": "scheme-1",
+        "card_border_thickness": 0,
+        "card_border_opacity": 0,
+        "card_corner_radius": 6,
+        "card_shadow_opacity": 0,
+        "card_shadow_horizontal_offset": 0,
+        "card_shadow_vertical_offset": 0,
+        "card_shadow_blur": 0
+      }
+    },
+    {
+      "id": "collection-cards",
+      "owner": "Brand and Merchandising",
+      "rationale": "Keep collection cards flat, direct, and consistent with product discovery.",
+      "rollback": "Restore previous collection-card settings.",
+      "changes": {
+        "collection_card_style": "standard",
+        "collection_card_image_padding": 0,
+        "collection_card_text_alignment": "left",
+        "collection_card_color_scheme": "scheme-1",
+        "collection_card_border_thickness": 0,
+        "collection_card_border_opacity": 0,
+        "collection_card_corner_radius": 6,
+        "collection_card_shadow_opacity": 0,
+        "collection_card_shadow_horizontal_offset": 0,
+        "collection_card_shadow_vertical_offset": 0,
+        "collection_card_shadow_blur": 0
+      }
+    },
+    {
+      "id": "blog-cards",
+      "owner": "Brand and Content",
+      "rationale": "Keep educational content visually aligned with the technical storefront.",
+      "rollback": "Restore previous blog-card settings.",
+      "changes": {
+        "blog_card_style": "standard",
+        "blog_card_image_padding": 0,
+        "blog_card_text_alignment": "left",
+        "blog_card_color_scheme": "scheme-1",
+        "blog_card_border_thickness": 0,
+        "blog_card_border_opacity": 0,
+        "blog_card_corner_radius": 6,
+        "blog_card_shadow_opacity": 0,
+        "blog_card_shadow_horizontal_offset": 0,
+        "blog_card_shadow_vertical_offset": 0,
+        "blog_card_shadow_blur": 0
+      }
+    },
+    {
+      "id": "content-and-media",
+      "owner": "Brand, Media, and Frontend Engineering",
+      "rationale": "Use restrained radii and reserve visible boundaries primarily for media.",
+      "rollback": "Restore previous content-container and media settings.",
+      "changes": {
+        "text_boxes_border_thickness": 0,
+        "text_boxes_border_opacity": 0,
+        "text_boxes_radius": 4,
+        "text_boxes_shadow_opacity": 0,
+        "text_boxes_shadow_horizontal_offset": 0,
+        "text_boxes_shadow_vertical_offset": 0,
+        "text_boxes_shadow_blur": 0,
+        "media_border_thickness": 1,
+        "media_border_opacity": 20,
+        "media_radius": 6,
+        "media_shadow_opacity": 0,
+        "media_shadow_horizontal_offset": 0,
+        "media_shadow_vertical_offset": 0,
+        "media_shadow_blur": 0
+      }
+    },
+    {
+      "id": "overlays",
+      "owner": "Brand, Accessibility, and Frontend Engineering",
+      "rationale": "Reserve elevation for overlapping UI such as popups and drawers.",
+      "rollback": "Restore previous popup and drawer settings.",
+      "changes": {
+        "popup_border_thickness": 1,
+        "popup_border_opacity": 20,
+        "popup_corner_radius": 6,
+        "popup_shadow_opacity": 15,
+        "popup_shadow_horizontal_offset": 0,
+        "popup_shadow_vertical_offset": 8,
+        "popup_shadow_blur": 30,
+        "drawer_border_thickness": 1,
+        "drawer_border_opacity": 20,
+        "drawer_shadow_opacity": 15,
+        "drawer_shadow_horizontal_offset": -8,
+        "drawer_shadow_vertical_offset": 0,
+        "drawer_shadow_blur": 30
+      }
+    },
+    {
+      "id": "badges",
+      "owner": "Brand, Merchandising, and Accessibility",
+      "rationale": "Put important product states near the beginning of the card and remove the stock pill treatment.",
+      "rollback": "Restore previous badge settings.",
+      "changes": {
+        "badge_position": "top left",
+        "badge_corner_radius": 4,
+        "sale_badge_color_scheme": "scheme-5",
+        "sold_out_badge_color_scheme": "scheme-2"
+      }
+    },
+    {
+      "id": "cart-surface",
+      "owner": "Brand and Cart Owner",
+      "rationale": "Use the primary readable light surface without changing the approved cart interaction strategy.",
+      "rollback": "Restore the previous cart color scheme.",
+      "changes": {
+        "cart_color_scheme": "scheme-1"
+      }
+    }
+  ],
+  "colorSchemeGroup": {
+    "owner": "Brand and Accessibility",
+    "rationale": "Map the approved Rhino palette to five reusable Shopify color schemes.",
+    "rollback": "Restore the complete previous color_schemes object.",
+    "schemes": {
+      "scheme-1": {
+        "background": "#FFFFFF",
+        "background_gradient": "",
+        "text": "#111111",
+        "button": "#B51820",
+        "button_label": "#FFFFFF",
+        "secondary_button_label": "#A3151C",
+        "shadow": "#111111"
+      },
+      "scheme-2": {
+        "background": "#F3F4F5",
+        "background_gradient": "",
+        "text": "#111111",
+        "button": "#B51820",
+        "button_label": "#FFFFFF",
+        "secondary_button_label": "#A3151C",
+        "shadow": "#111111"
+      },
+      "scheme-3": {
+        "background": "#FCFBF8",
+        "background_gradient": "",
+        "text": "#111111",
+        "button": "#B51820",
+        "button_label": "#FFFFFF",
+        "secondary_button_label": "#A3151C",
+        "shadow": "#111111"
+      },
+      "scheme-4": {
+        "background": "#111111",
+        "background_gradient": "",
+        "text": "#FFFFFF",
+        "button": "#FFFFFF",
+        "button_label": "#111111",
+        "secondary_button_label": "#FFFFFF",
+        "shadow": "#000000"
+      },
+      "scheme-5": {
+        "background": "#791716",
+        "background_gradient": "",
+        "text": "#FFFFFF",
+        "button": "#FFFFFF",
+        "button_label": "#791716",
+        "secondary_button_label": "#FFFFFF",
+        "shadow": "#000000"
+      }
+    }
+  },
+  "manualSettings": [
+    {
+      "id": "logo",
+      "owner": "Brand and Shopify Admin",
+      "source": "Approved primary light horizontal Rhino logo from the media manifest",
+      "reason": "Shopify image-picker values cannot be safely generated as portable repository IDs."
+    },
+    {
+      "id": "favicon",
+      "owner": "Brand and Shopify Admin",
+      "source": "assets/rhino-favicon-upload.png",
+      "reason": "Upload to the preview theme through the native favicon setting."
+    }
+  ],
+  "deferredSettings": [
+    {
+      "id": "brand_headline",
+      "reason": "Wait for final entity and identity approval."
+    },
+    {
+      "id": "brand_description",
+      "reason": "Wait for final entity and identity approval."
+    },
+    {
+      "id": "brand_image",
+      "reason": "No approved use is required for the first implementation slice."
+    },
+    {
+      "id": "social_facebook_link",
+      "reason": "Authoritative account ownership must be confirmed."
+    },
+    {
+      "id": "social_instagram_link",
+      "reason": "Authoritative account ownership must be confirmed."
+    },
+    {
+      "id": "social_youtube_link",
+      "reason": "Authoritative channel ownership must be confirmed."
+    },
+    {
+      "id": "social_tiktok_link",
+      "reason": "Authoritative account ownership must be confirmed."
+    },
+    {
+      "id": "social_twitter_link",
+      "reason": "Authoritative account ownership must be confirmed."
+    },
+    {
+      "id": "social_snapchat_link",
+      "reason": "Authoritative account ownership must be confirmed."
+    },
+    {
+      "id": "social_pinterest_link",
+      "reason": "Authoritative account ownership must be confirmed."
+    },
+    {
+      "id": "social_tumblr_link",
+      "reason": "Authoritative account ownership must be confirmed."
+    },
+    {
+      "id": "social_vimeo_link",
+      "reason": "Authoritative channel ownership must be confirmed."
+    }
+  ]
+}
