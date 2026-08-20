@@ -18,7 +18,7 @@ Rhino Lapidary uses separate local, preview, and production stages so theme chan
 * Preview pushes must pass repository validation first.
 * Production publish must pass the production readiness gate.
 * Theme IDs must be documented outside secrets when safe, or in `.env` when local-only.
-* `PREVIEW_URL` is required for preview-dependent Playwright tests.
+* `PREVIEW_URL` or `PREVIEW_BASE_URL` is required for preview-dependent Playwright tests.
 * Password-protected preview tests should run with one worker.
 * Production publish requires backup theme ID and rollback owner.
 

@@ -397,6 +397,55 @@
       "reviewer": "Legal or Claims Reviewer",
       "reviewTrigger": "Structured compatibility and inventory/service policy supplied",
       "notes": "Compatibility and parts availability must be explicit and structured."
+    },
+    {
+      "id": "CLAIM-016",
+      "label": "Footer-global commercial and service promises",
+      "category": "footer_global_claims",
+      "status": "blocked",
+      "patterns": [
+        "\\bfinancing (?:available|offered)\\b",
+        "\\bauthorized dealer\\b",
+        "\\bdealer (?:program|network|pricing)\\b",
+        "\\bcertified (?:machine|machines|part|parts|component|components)\\b",
+        "\\bfactory direct\\b",
+        "\\bmanufacturer direct\\b",
+        "\\blifetime support\\b",
+        "\\b24\\/7 support\\b",
+        "\\bsame[- ]day support\\b",
+        "\\bworldwide support\\b",
+        "\\binternational warranty\\b",
+        "\\bavailable in all countries\\b",
+        "\\bships? internationally\\b",
+        "\\bfree shipping\\b"
+      ],
+      "approvedWording": [],
+      "prohibitedWording": [
+        "Financing available",
+        "Authorized dealer",
+        "Dealer program",
+        "Certified machines",
+        "Factory direct",
+        "Manufacturer direct",
+        "Lifetime support",
+        "24/7 support",
+        "Same-day support",
+        "Worldwide support",
+        "International warranty",
+        "Available in all countries",
+        "Ships internationally",
+        "Free shipping"
+      ],
+      "allowedSurfaces": [],
+      "sourcePaths": [
+        "docs/brand/rhino-reassurance-microcopy.md",
+        "docs/brand/rhino-legal-claims-rules.md",
+        "docs/architecture/epic-c-global-chrome-source-hierarchy.md"
+      ],
+      "owner": "Business, Legal, Operations, Support, and Shopify Admin Owners",
+      "reviewer": "Legal or Claims Reviewer",
+      "reviewTrigger": "Footer or global navigation copy proposes commercial, service, dealer, financing, certification, manufacturer, international, or shipping promises",
+      "notes": "Footer copy repeats sitewide. Neutral navigation labels can be planned separately, but factual promises require source approval before publication."
     }
   ]
 }

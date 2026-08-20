@@ -1,0 +1,239 @@
+{
+  "$schema": "../schemas/epic-c-navigation-measurement-plan.schema.json",
+  "schemaVersion": 1,
+  "status": "design_complete_no_tracking_code",
+  "source": "Epic C C-PBI-028 post-launch navigation measurement design. No pixels, apps, custom events, or consent behavior changes are authorized by this register.",
+  "customTrackingImplementationAllowed": false,
+  "sections": [
+    {
+      "id": "native-reporting",
+      "title": "Native Shopify Reporting",
+      "trackingClass": "native_shopify_reporting",
+      "measures": [
+        {
+          "id": "header-search-usage",
+          "metricName": "Online store search sessions and top searches",
+          "question": "Are customers using header search to find machines, parts, consumables, and support?",
+          "source": "Shopify Analytics search reports and online store behavior reports",
+          "nativeVsCustom": "native_shopify",
+          "owner": "Product Owner and Analytics Owner",
+          "privacyConsentImplications": "Uses Shopify-native aggregate reporting; no new tracking code or consent change.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Collect four full weeks after launch, segment by device, and set the threshold at the decision review.",
+            "baselineCollectionPeriod": "First 28 days after Epic C production release",
+            "decisionDate": "First monthly analytics review after the 28-day baseline",
+            "owner": "Analytics Owner"
+          },
+          "reviewCadence": "Monthly for the first three months, then quarterly.",
+          "degradationAction": "Review search prominence, menu labels, and zero-result terms before adding custom events.",
+          "implementationStatus": "available_without_new_code"
+        },
+        {
+          "id": "search-zero-result-rate",
+          "metricName": "Searches with no results",
+          "question": "Which customer terms fail to return useful results?",
+          "source": "Shopify Analytics search reports, Search and Discovery app reports where available",
+          "nativeVsCustom": "native_shopify",
+          "owner": "Merchandising Owner and Product Owner",
+          "privacyConsentImplications": "Uses aggregate Shopify reporting; no new customer-level event collection.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Collect the first 28 days of query data and define action thresholds by query volume and commercial relevance.",
+            "baselineCollectionPeriod": "First 28 days after Epic C production release",
+            "decisionDate": "First monthly analytics review after the 28-day baseline",
+            "owner": "Merchandising Owner"
+          },
+          "reviewCadence": "Monthly.",
+          "degradationAction": "Add synonyms, product tags, collection assignments, or content after owner approval.",
+          "implementationStatus": "available_without_new_code"
+        },
+        {
+          "id": "machine-navigation-outcomes",
+          "metricName": "Machines collection sessions and product click-through",
+          "question": "Do customers reaching the Machines route continue to machine product pages?",
+          "source": "Shopify Analytics collection and product reports",
+          "nativeVsCustom": "native_shopify",
+          "owner": "Product Owner and Merchandising Owner",
+          "privacyConsentImplications": "Uses Shopify aggregate reporting; no new event code.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Collect the first 28 days after launch and compare mobile and desktop behavior.",
+            "baselineCollectionPeriod": "First 28 days after Epic C production release",
+            "decisionDate": "First monthly analytics review after the 28-day baseline",
+            "owner": "Product Owner"
+          },
+          "reviewCadence": "Monthly for three months.",
+          "degradationAction": "Review primary navigation label, collection content, product-card clarity, and search merchandising.",
+          "implementationStatus": "available_without_new_code"
+        },
+        {
+          "id": "parts-consumables-navigation-outcomes",
+          "metricName": "Parts and consumables route sessions and product click-through",
+          "question": "Do customers find parts and consumables once approved routes exist?",
+          "source": "Shopify Analytics collection and product reports after approved route creation",
+          "nativeVsCustom": "native_shopify",
+          "owner": "Product Owner, Merchandising Owner, and Shopify Admin Owner",
+          "privacyConsentImplications": "Uses aggregate Shopify reports only.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Start baseline only after replacement-parts and consumables destinations are approved and live.",
+            "baselineCollectionPeriod": "First 28 days after approved parts/consumables routes launch",
+            "decisionDate": "First monthly analytics review after that route-specific baseline",
+            "owner": "Product Owner"
+          },
+          "reviewCadence": "Monthly after route launch.",
+          "degradationAction": "Do not add menu links to missing routes; resolve merchandising and route blockers first.",
+          "implementationStatus": "available_without_new_code"
+        },
+        {
+          "id": "policy-visits",
+          "metricName": "Policy page sessions",
+          "question": "Are customers reaching policy pages needed for purchase confidence?",
+          "source": "Shopify Analytics page reports for published policy URLs",
+          "nativeVsCustom": "native_shopify",
+          "owner": "Legal Owner, Content Owner, and Product Owner",
+          "privacyConsentImplications": "Uses aggregate page reporting; no new tracking code.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Collect policy page visits for four weeks and review alongside support/contact questions.",
+            "baselineCollectionPeriod": "First 28 days after Epic C production release",
+            "decisionDate": "First monthly analytics review after the 28-day baseline",
+            "owner": "Legal Owner"
+          },
+          "reviewCadence": "Quarterly, with immediate review when policies change.",
+          "degradationAction": "Review footer policy discoverability and policy content readiness before changing global chrome.",
+          "implementationStatus": "available_without_new_code"
+        },
+        {
+          "id": "support-contact-conversion",
+          "metricName": "Contact page sessions and contact form submissions",
+          "question": "Do support/contact journeys produce successful contact actions?",
+          "source": "Shopify page reports and native contact form notification or admin evidence where available",
+          "nativeVsCustom": "native_shopify",
+          "owner": "Support Owner and Product Owner",
+          "privacyConsentImplications": "Uses existing form behavior and aggregate page reporting; no new event code.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Collect four weeks of contact-page visits and form-submission counts from existing systems.",
+            "baselineCollectionPeriod": "First 28 days after Epic C production release",
+            "decisionDate": "First monthly support review after the 28-day baseline",
+            "owner": "Support Owner"
+          },
+          "reviewCadence": "Monthly.",
+          "degradationAction": "Review contact page clarity, footer support labels, and unresolved support route ownership.",
+          "implementationStatus": "available_without_new_code"
+        },
+        {
+          "id": "mobile-navigation-outcomes",
+          "metricName": "Mobile sessions by landing page, collection, product, search, cart, and contact route",
+          "question": "Do mobile visitors reach the same useful outcomes as desktop visitors?",
+          "source": "Shopify Analytics device-segmented online store reports",
+          "nativeVsCustom": "native_shopify",
+          "owner": "Product Owner and QA/Release Approver",
+          "privacyConsentImplications": "Uses Shopify aggregate device reporting; no new event code.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Collect mobile and desktop route outcomes for 28 days, then define acceptable deltas by route.",
+            "baselineCollectionPeriod": "First 28 days after Epic C production release",
+            "decisionDate": "First monthly analytics review after the 28-day baseline",
+            "owner": "Product Owner"
+          },
+          "reviewCadence": "Monthly for three months, then quarterly.",
+          "degradationAction": "Run responsive QA, inspect mobile drawer behavior, and review menu labels before adding tracking.",
+          "implementationStatus": "available_without_new_code"
+        }
+      ]
+    },
+    {
+      "id": "existing-approved-analytics",
+      "title": "Existing Approved Analytics",
+      "trackingClass": "existing_approved_analytics",
+      "measures": [
+        {
+          "id": "approved-analytics-placeholder",
+          "metricName": "No existing approved custom navigation analytics",
+          "question": "Is there an already approved analytics owner for custom navigation events?",
+          "source": "docs/analytics/analytics-migration-verification-plan.md and docs/privacy/third-party-script-and-pixel-register.md",
+          "nativeVsCustom": "existing_approved_analytics",
+          "owner": "Analytics Owner",
+          "privacyConsentImplications": "No approved custom navigation tracking owner is documented, so no existing custom event may be used.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Record an approved analytics owner and event source before moving any measure out of proposed status.",
+            "baselineCollectionPeriod": "Not started",
+            "decisionDate": "Analytics owner approval date",
+            "owner": "Analytics Owner"
+          },
+          "reviewCadence": "Before production analytics changes.",
+          "degradationAction": "Use native Shopify reporting until analytics ownership is approved.",
+          "implementationStatus": "existing_governance_only"
+        }
+      ]
+    },
+    {
+      "id": "proposed-custom-tracking",
+      "title": "Proposed Custom Tracking Requiring Approval",
+      "trackingClass": "proposed_custom_tracking",
+      "measures": [
+        {
+          "id": "primary-menu-interaction",
+          "metricName": "rhino:navigation:primary_menu_click",
+          "question": "Which primary menu labels drive useful navigation after final IA is approved?",
+          "source": "Proposed customer event or approved analytics platform only after Analytics Owner and privacy approval",
+          "nativeVsCustom": "custom_event_requires_approval",
+          "owner": "Analytics Owner, Product Owner, and Privacy/Legal Owner",
+          "privacyConsentImplications": "Would collect interaction events and must follow Shopify customer privacy and consent settings before implementation.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Do not implement until native reporting cannot answer the question and event ownership is approved.",
+            "baselineCollectionPeriod": "First 28 days after approved event launch",
+            "decisionDate": "Analytics approval record date plus first post-baseline review",
+            "owner": "Analytics Owner"
+          },
+          "reviewCadence": "Monthly after approved implementation.",
+          "degradationAction": "Review IA labels and route quality; do not add event code as a substitute for missing routes.",
+          "implementationStatus": "proposed_requires_analytics_owner_approval"
+        },
+        {
+          "id": "footer-support-clicks",
+          "metricName": "rhino:navigation:footer_support_click",
+          "question": "Do footer support links help customers reach approved support destinations?",
+          "source": "Proposed customer event only after support route and analytics approval",
+          "nativeVsCustom": "custom_event_requires_approval",
+          "owner": "Support Owner, Product Owner, Analytics Owner, and Privacy/Legal Owner",
+          "privacyConsentImplications": "Would collect footer interaction data; requires consent/privacy review before implementation.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Baseline only after support/footer destinations are approved and event governance is complete.",
+            "baselineCollectionPeriod": "First 28 days after approved event launch",
+            "decisionDate": "First monthly support analytics review after baseline",
+            "owner": "Support Owner"
+          },
+          "reviewCadence": "Monthly after approved implementation.",
+          "degradationAction": "Review support labeling and route readiness with Support Owner before changing tracking.",
+          "implementationStatus": "proposed_requires_analytics_owner_approval"
+        },
+        {
+          "id": "mobile-drawer-usage",
+          "metricName": "rhino:navigation:mobile_drawer_open",
+          "question": "Are mobile visitors opening and using the drawer, and does it lead to useful outcomes?",
+          "source": "Proposed customer event only after Analytics Owner and privacy approval",
+          "nativeVsCustom": "custom_event_requires_approval",
+          "owner": "Product Owner, Analytics Owner, and Privacy/Legal Owner",
+          "privacyConsentImplications": "Would collect navigation interaction events and must respect Shopify customer privacy settings.",
+          "thresholdOrBaseline": {
+            "type": "baseline_required",
+            "method": "Use native mobile route outcomes first; implement drawer-open tracking only if native reports cannot answer the product question.",
+            "baselineCollectionPeriod": "First 28 days after approved event launch",
+            "decisionDate": "Analytics approval record date plus first post-baseline review",
+            "owner": "Analytics Owner"
+          },
+          "reviewCadence": "Monthly after approved implementation.",
+          "degradationAction": "Run mobile responsive QA and review drawer IA before adding or changing event code.",
+          "implementationStatus": "proposed_requires_analytics_owner_approval"
+        }
+      ]
+    }
+  ]
+}

@@ -16,11 +16,27 @@
       "requiredForLaunch": true
     },
     {
+      "id": "catalog",
+      "label": "Catalog",
+      "path": "/collections",
+      "group": "header",
+      "requiredForLaunch": true,
+      "notes": "Verified current preview-primary-navigation-menu parent route in Shopify Admin; Trade renders this parent as a disclosure when nested children are present."
+    },
+    {
       "id": "search",
       "label": "Search",
       "path": "/search?q=rhino",
       "group": "utility",
       "requiredForLaunch": true
+    },
+    {
+      "id": "search-page",
+      "label": "Search page",
+      "path": "/search",
+      "group": "utility",
+      "requiredForLaunch": true,
+      "notes": "Verified current preview footer menu link."
     },
     {
       "id": "cart",
@@ -34,7 +50,48 @@
       "label": "Contact",
       "path": "/pages/contact",
       "group": "footer",
-      "requiredForLaunch": false
+      "requiredForLaunch": true,
+      "notes": "Verified current preview main-menu link."
+    },
+    {
+      "id": "manual-em-1",
+      "label": "EM-1 Manual",
+      "path": "/pages/em-1-manual",
+      "group": "support",
+      "requiredForLaunch": true,
+      "notes": "Verified current published manual route linked from preview-primary-navigation-menu as Manuals."
+    },
+    {
+      "id": "privacy-policy",
+      "label": "Privacy policy",
+      "path": "/policies/privacy-policy",
+      "group": "policy",
+      "requiredForLaunch": true,
+      "notes": "Verified current Shopify policy route from Admin shopPolicies."
+    },
+    {
+      "id": "refund-policy",
+      "label": "Refund policy",
+      "path": "/policies/refund-policy",
+      "group": "policy",
+      "requiredForLaunch": true,
+      "notes": "Verified current Shopify policy route from Admin shopPolicies."
+    },
+    {
+      "id": "shipping-policy",
+      "label": "Shipping policy",
+      "path": "/policies/shipping-policy",
+      "group": "policy",
+      "requiredForLaunch": true,
+      "notes": "Verified current Shopify policy route from Admin shopPolicies. This verifies policy discoverability only and does not approve extra freight or international availability claims."
+    },
+    {
+      "id": "legal-notice",
+      "label": "Legal notice",
+      "path": "/policies/legal-notice",
+      "group": "policy",
+      "requiredForLaunch": true,
+      "notes": "Verified current Shopify policy route from Admin shopPolicies."
     }
   ]
 }

@@ -12,6 +12,8 @@ const SUPPORTED_PREVIEW_QUERY_PARAMS = new Set([
     '_fd',
     'pb',
 ]);
+const TRANSIENT_NAVIGATION_STATUSES = new Set([500, 502, 503, 504]);
+const MAX_TRANSIENT_NAVIGATION_ATTEMPTS = 3;
 
 const authStats = {
     cachedStateApplied: 0,
@@ -253,6 +255,39 @@ async function assertResponseUsable(response, page, label) {
     }
 }
 
+function isTransientNavigationResponse(response) {
+    const status = response?.status?.() ?? 0;
+
+    return TRANSIENT_NAVIGATION_STATUSES.has(status);
+}
+
+async function gotoStorefrontWithRetry(page, routePath, label) {
+    let response = null;
+
+    for (let attempt = 1; attempt <= MAX_TRANSIENT_NAVIGATION_ATTEMPTS; attempt += 1) {
+        response = await page.goto(
+            storefrontUrl(routePath),
+            {
+                waitUntil: 'domcontentloaded',
+                timeout: 60_000,
+            },
+        );
+
+        if (
+            !isTransientNavigationResponse(response)
+            || attempt === MAX_TRANSIENT_NAVIGATION_ATTEMPTS
+        ) {
+            return response;
+        }
+
+        await page.waitForTimeout(500 * attempt);
+    }
+
+    throw new StorefrontAuthError(
+        `${label} did not complete storefront navigation.`,
+    );
+}
+
 async function waitForStorefrontDocument(page, label) {
     await page.locator('body').waitFor({
         state: 'attached',
@@ -321,13 +356,7 @@ async function submitPasswordWithRequest(page) {
 async function unlockStorefront(page) {
     await applyCachedStorefrontState(page.context());
 
-    let response = await page.goto(
-        storefrontUrl('/'),
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60_000,
-        },
-    );
+    let response = await gotoStorefrontWithRetry(page, '/', 'Storefront unlock');
 
     await assertResponseUsable(response, page, 'Storefront unlock');
     await waitForStorefrontDocument(page, 'Storefront unlock');
@@ -342,12 +371,10 @@ async function unlockStorefront(page) {
 
     await submitPasswordWithRequest(page);
 
-    response = await page.goto(
-        storefrontUrl('/'),
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60_000,
-        },
+    response = await gotoStorefrontWithRetry(
+        page,
+        '/',
+        'Storefront unlock after password',
     );
 
     await assertResponseUsable(response, page, 'Storefront unlock after password');
@@ -398,13 +425,7 @@ async function assertStorefrontPage(page, label = 'storefront route') {
 async function gotoUnlocked(page, routePath, label = routePath) {
     await applyCachedStorefrontState(page.context());
 
-    let response = await page.goto(
-        storefrontUrl(routePath),
-        {
-            waitUntil: 'domcontentloaded',
-            timeout: 60_000,
-        },
-    );
+    let response = await gotoStorefrontWithRetry(page, routePath, label);
 
     await assertResponseUsable(response, page, label);
     await waitForStorefrontDocument(page, label);
@@ -412,13 +433,7 @@ async function gotoUnlocked(page, routePath, label = routePath) {
     if (await isPasswordPage(page)) {
         await unlockStorefront(page);
 
-        response = await page.goto(
-            storefrontUrl(routePath),
-            {
-                waitUntil: 'domcontentloaded',
-                timeout: 60_000,
-            },
-        );
+        response = await gotoStorefrontWithRetry(page, routePath, label);
 
         await assertResponseUsable(response, page, label);
         await waitForStorefrontDocument(page, label);

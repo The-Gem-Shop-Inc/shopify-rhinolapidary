@@ -41,6 +41,26 @@ const targets = [
         dataPath: 'data/navigation-spec.json',
     },
     {
+        name: 'global navigation IA',
+        schemaPath: 'schemas/global-navigation-ia.schema.json',
+        dataPath: 'data/global-navigation-ia.json',
+    },
+    {
+        name: 'footer support resources',
+        schemaPath: 'schemas/footer-support-resources.schema.json',
+        dataPath: 'data/footer-support-resources.json',
+    },
+    {
+        name: 'localization market decision',
+        schemaPath: 'schemas/localization-market-decision.schema.json',
+        dataPath: 'data/localization-market-decision.json',
+    },
+    {
+        name: 'Epic C navigation measurement plan',
+        schemaPath: 'schemas/epic-c-navigation-measurement-plan.schema.json',
+        dataPath: 'data/epic-c-navigation-measurement-plan.json',
+    },
+    {
         name: 'design token inventory',
         schemaPath: 'schemas/design-token-inventory.schema.json',
         dataPath: 'data/design-token-inventory.json',

@@ -54,6 +54,30 @@ const LIQUID_EXTENSIONS = new Set([
     '.liquid',
 ]);
 
+const GLOBAL_CHROME_SOURCE_FILES = [
+    'sections/header.liquid',
+    'sections/footer.liquid',
+    'snippets/header-drawer.liquid',
+    'snippets/header-dropdown-menu.liquid',
+    'snippets/header-mega-menu.liquid',
+    'snippets/header-search.liquid',
+    'snippets/country-localization.liquid',
+    'snippets/language-localization.liquid',
+    'snippets/social-icons.liquid',
+    'snippets/rhino-breadcrumbs.liquid',
+];
+
+const GLOBAL_CHROME_ASSET_PATTERN =
+    /['"]([^'"]+\.(?:css|js|svg|png|jpe?g|webp|gif|avif))['"]\s*\|\s*(?:asset_url|stylesheet_tag|inline_asset_content)/gi;
+
+const GLOBAL_CHROME_RUNTIME_CORE_ASSETS = [
+    'rhino-custom.css',
+    'global.js',
+    'details-disclosure.js',
+    'details-modal.js',
+    'search-form.js',
+];
+
 const EXCLUDED_DIRS = new Set([
     '.git',
     'node_modules',
@@ -125,6 +149,78 @@ function validateBudgetShape(budget) {
         [
             'runtime.desktopMaxImageBytes',
             budget?.runtime?.desktopMaxImageBytes,
+        ],
+        [
+            'globalChrome.static.rhinoCssGzipBytes',
+            budget?.globalChrome?.static?.rhinoCssGzipBytes,
+        ],
+        [
+            'globalChrome.static.rhinoJsGzipBytes',
+            budget?.globalChrome?.static?.rhinoJsGzipBytes,
+        ],
+        [
+            'globalChrome.static.headerFooterCssGzipBytes',
+            budget?.globalChrome?.static?.headerFooterCssGzipBytes,
+        ],
+        [
+            'globalChrome.static.headerFooterJsGzipBytes',
+            budget?.globalChrome?.static?.headerFooterJsGzipBytes,
+        ],
+        [
+            'globalChrome.static.iconSvgBytes',
+            budget?.globalChrome?.static?.iconSvgBytes,
+        ],
+        [
+            'globalChrome.static.iconAssetCount',
+            budget?.globalChrome?.static?.iconAssetCount,
+        ],
+        [
+            'globalChrome.static.mediaAssetBytes',
+            budget?.globalChrome?.static?.mediaAssetBytes,
+        ],
+        [
+            'globalChrome.static.localAssetCount',
+            budget?.globalChrome?.static?.localAssetCount,
+        ],
+        [
+            'globalChrome.static.externalResourceHostCount',
+            budget?.globalChrome?.static?.externalResourceHostCount,
+        ],
+        [
+            'globalChrome.static.synchronousThirdPartyScriptCount',
+            budget?.globalChrome?.static?.synchronousThirdPartyScriptCount,
+        ],
+        [
+            'globalChrome.static.immediateVideoEmbedCount',
+            budget?.globalChrome?.static?.immediateVideoEmbedCount,
+        ],
+        [
+            'globalChrome.static.autoplayMediaCount',
+            budget?.globalChrome?.static?.autoplayMediaCount,
+        ],
+        [
+            'globalChrome.runtime.mobileMaxResourceCount',
+            budget?.globalChrome?.runtime?.mobileMaxResourceCount,
+        ],
+        [
+            'globalChrome.runtime.desktopMaxResourceCount',
+            budget?.globalChrome?.runtime?.desktopMaxResourceCount,
+        ],
+        [
+            'globalChrome.runtime.maxCssRequestCount',
+            budget?.globalChrome?.runtime?.maxCssRequestCount,
+        ],
+        [
+            'globalChrome.runtime.maxJsRequestCount',
+            budget?.globalChrome?.runtime?.maxJsRequestCount,
+        ],
+        [
+            'globalChrome.runtime.thirdPartyScriptHostCount',
+            budget?.globalChrome?.runtime?.thirdPartyScriptHostCount,
+        ],
+        [
+            'globalChrome.runtime.totalTransferBytes',
+            budget?.globalChrome?.runtime?.totalTransferBytes,
         ],
     ];
 
@@ -278,6 +374,242 @@ function stripInertTemplateMarkup(source) {
         /<template\b[^>]*>[\s\S]*?<\/template>/gi,
         '',
     );
+}
+
+function budgetMetric(id, value, limit) {
+    return {
+        id,
+        value,
+        limit,
+        passed: value <= limit,
+    };
+}
+
+function metricViolation(metric, label) {
+    if (metric.passed) {
+        return null;
+    }
+
+    return `${label} is ${metric.value}; budget is ${metric.limit}.`;
+}
+
+let globalChromeRuntimeAssetNameCache = null;
+
+function globalChromeRuntimeAssetNames() {
+    if (globalChromeRuntimeAssetNameCache) {
+        return globalChromeRuntimeAssetNameCache;
+    }
+
+    globalChromeRuntimeAssetNameCache = new Set([
+        ...GLOBAL_CHROME_RUNTIME_CORE_ASSETS,
+        ...collectGlobalChromeAssetReferences()
+            .assets
+            .map((asset) => asset.name),
+    ]);
+
+    return globalChromeRuntimeAssetNameCache;
+}
+
+function assetBasenameFromUrl(rawUrl) {
+    try {
+        const parsed = new URL(rawUrl);
+        const pathname = decodeURIComponent(parsed.pathname);
+        const name = pathname.split('/').filter(Boolean).at(-1) || '';
+
+        return name.replace(/\?.*$/, '');
+    } catch {
+        return '';
+    }
+}
+
+function isGlobalChromeRuntimeResource(resource) {
+    return globalChromeRuntimeAssetNames().has(assetBasenameFromUrl(resource.url));
+}
+
+function collectGlobalChromeAssetReferences() {
+    const sourceFiles = GLOBAL_CHROME_SOURCE_FILES
+        .map((relativePath) => path.join(ROOT, relativePath))
+        .filter(fs.existsSync);
+    const referencedAssets = new Set();
+    const externalHosts = new Set();
+
+    for (const filePath of sourceFiles) {
+        const text = fs.readFileSync(filePath, 'utf8');
+
+        for (const match of text.matchAll(GLOBAL_CHROME_ASSET_PATTERN)) {
+            referencedAssets.add(match[1]);
+        }
+
+        for (
+            const match of text.matchAll(
+                /<(?:script|link|iframe|img|source)\b[^>]*(?:src|href)\s*=\s*["'](https?:\/\/[^"']+)["'][^>]*>/gi
+            )
+        ) {
+            const hostname = safeHostname(match[1]);
+
+            if (hostname) {
+                externalHosts.add(hostname);
+            }
+        }
+    }
+
+    const assets = [...referencedAssets].sort().map((assetName) => {
+        const filePath = path.join(ROOT, 'assets', assetName);
+        const exists = fs.existsSync(filePath);
+        const bytes = exists ? fs.statSync(filePath).size : 0;
+        const extension = path.extname(assetName).toLowerCase();
+
+        return {
+            name: assetName,
+            path: `assets/${assetName}`,
+            exists,
+            bytes,
+            extension,
+        };
+    });
+
+    return {
+        sourceFiles: sourceFiles.map((filePath) =>
+            path.relative(ROOT, filePath).replaceAll('\\', '/')
+        ),
+        assets,
+        externalHosts: [...externalHosts].sort(),
+    };
+}
+
+function runGlobalChromeStaticValidation(
+    budget,
+    existingDetails,
+    staticSourceDetails,
+) {
+    const threshold = budget.globalChrome.static;
+    const assetReferences = collectGlobalChromeAssetReferences();
+    const cssFiles = assetReferences.assets
+        .filter((asset) => asset.exists && asset.extension === '.css')
+        .map((asset) => path.join(ROOT, asset.path));
+    const jsFiles = assetReferences.assets
+        .filter((asset) => asset.exists && asset.extension === '.js')
+        .map((asset) => path.join(ROOT, asset.path));
+    const iconAssets = assetReferences.assets
+        .filter((asset) => asset.extension === '.svg');
+    const mediaAssets = assetReferences.assets
+        .filter((asset) => [
+            '.png',
+            '.jpg',
+            '.jpeg',
+            '.webp',
+            '.gif',
+            '.avif',
+        ].includes(asset.extension));
+    const missingAssets = assetReferences.assets
+        .filter((asset) => !asset.exists);
+    const iconSvgBytes = iconAssets.reduce(
+        (sum, asset) => sum + asset.bytes,
+        0,
+    );
+    const mediaAssetBytes = mediaAssets.reduce(
+        (sum, asset) => sum + asset.bytes,
+        0,
+    );
+
+    const details = {
+        sourceFiles: assetReferences.sourceFiles,
+        localAssets: assetReferences.assets,
+        missingAssets: missingAssets.map((asset) => asset.path),
+        externalHosts: assetReferences.externalHosts,
+        rhinoCssGzipBytes: existingDetails.rhinoCssGzipBytes,
+        rhinoJsGzipBytes: existingDetails.rhinoJsGzipBytes,
+        headerFooterCssGzipBytes: gzipSize(cssFiles),
+        headerFooterJsGzipBytes: gzipSize(jsFiles),
+        iconAssetCount: iconAssets.length,
+        iconSvgBytes,
+        mediaAssetCount: mediaAssets.length,
+        mediaAssetBytes,
+        synchronousThirdPartyScripts:
+            staticSourceDetails.synchronousThirdPartyScripts,
+        immediateVideoEmbeds:
+            staticSourceDetails.immediateVideoEmbeds,
+        autoplayMedia:
+            staticSourceDetails.autoplayMedia,
+    };
+
+    const metrics = [
+        budgetMetric(
+            'rhinoCssGzipBytes',
+            details.rhinoCssGzipBytes,
+            threshold.rhinoCssGzipBytes,
+        ),
+        budgetMetric(
+            'rhinoJsGzipBytes',
+            details.rhinoJsGzipBytes,
+            threshold.rhinoJsGzipBytes,
+        ),
+        budgetMetric(
+            'headerFooterCssGzipBytes',
+            details.headerFooterCssGzipBytes,
+            threshold.headerFooterCssGzipBytes,
+        ),
+        budgetMetric(
+            'headerFooterJsGzipBytes',
+            details.headerFooterJsGzipBytes,
+            threshold.headerFooterJsGzipBytes,
+        ),
+        budgetMetric(
+            'iconSvgBytes',
+            details.iconSvgBytes,
+            threshold.iconSvgBytes,
+        ),
+        budgetMetric(
+            'iconAssetCount',
+            details.iconAssetCount,
+            threshold.iconAssetCount,
+        ),
+        budgetMetric(
+            'mediaAssetBytes',
+            details.mediaAssetBytes,
+            threshold.mediaAssetBytes,
+        ),
+        budgetMetric(
+            'localAssetCount',
+            details.localAssets.length,
+            threshold.localAssetCount,
+        ),
+        budgetMetric(
+            'externalResourceHostCount',
+            details.externalHosts.length,
+            threshold.externalResourceHostCount,
+        ),
+        budgetMetric(
+            'synchronousThirdPartyScriptCount',
+            details.synchronousThirdPartyScripts.length,
+            threshold.synchronousThirdPartyScriptCount,
+        ),
+        budgetMetric(
+            'immediateVideoEmbedCount',
+            details.immediateVideoEmbeds.length,
+            threshold.immediateVideoEmbedCount,
+        ),
+        budgetMetric(
+            'autoplayMediaCount',
+            details.autoplayMedia.length,
+            threshold.autoplayMediaCount,
+        ),
+    ];
+
+    const violations = [
+        ...missingAssets.map((asset) =>
+            `Global chrome asset reference is missing: ${asset.path}`
+        ),
+        ...metrics
+            .map((metric) => metricViolation(metric, metric.id))
+            .filter(Boolean),
+    ];
+
+    return {
+        details,
+        metrics,
+        violations,
+    };
 }
 
 function runStaticValidation(budget) {
@@ -549,6 +881,17 @@ function runStaticValidation(budget) {
     details.autoplayMedia =
         autoplayMedia;
 
+    details.globalChrome =
+        runGlobalChromeStaticValidation(
+            budget,
+            details,
+            {
+                synchronousThirdPartyScripts,
+                immediateVideoEmbeds,
+                autoplayMedia,
+            },
+        );
+
     if (
         details.externalFontHosts.length >
         budget.static.externalFontHostCount
@@ -590,6 +933,12 @@ function runStaticValidation(budget) {
             `autoplay media element(s).`
         );
     }
+
+    violations.push(
+        ...details.globalChrome.violations.map((message) =>
+            `global chrome: ${message}`
+        ),
+    );
 
     return {
         violations,
@@ -910,6 +1259,17 @@ function summarizeResources(
         (resource) =>
             resource.type === 'Script'
     );
+    const globalChromeResources = successful.filter(
+        isGlobalChromeRuntimeResource
+    );
+    const globalChromeScripts = globalChromeResources.filter(
+        (resource) =>
+            resource.type === 'Script'
+    );
+    const globalChromeStylesheets = globalChromeResources.filter(
+        (resource) =>
+            resource.type === 'Stylesheet'
+    );
 
     const networkImages = images.filter(
         (resource) =>
@@ -955,6 +1315,9 @@ function summarizeResources(
         }));
 
     return {
+        resourceCount:
+            successful.length,
+
         totalTransferBytes:
             successful.reduce(
                 (sum, resource) =>
@@ -1004,12 +1367,69 @@ function summarizeResources(
                     0
                 ),
 
+        cssRequestCount:
+            successful.filter(
+                (resource) =>
+                    resource.type ===
+                    'Stylesheet'
+            ).length,
+
         jsBytes:
             scripts.reduce(
                 (sum, resource) =>
                     sum + resource.bytes,
                 0
             ),
+
+        jsRequestCount:
+            scripts.length,
+
+        globalChromeResourceCount:
+            globalChromeResources.length,
+
+        globalChromeResourceCountsByType:
+            globalChromeResources.reduce(
+                (counts, resource) => {
+                    counts[resource.type] =
+                        (counts[resource.type] || 0) + 1;
+                    return counts;
+                },
+                {}
+            ),
+
+        globalChromeCssBytes:
+            globalChromeStylesheets.reduce(
+                (sum, resource) =>
+                    sum + resource.bytes,
+                0
+            ),
+
+        globalChromeCssRequestCount:
+            globalChromeStylesheets.length,
+
+        globalChromeJsBytes:
+            globalChromeScripts.reduce(
+                (sum, resource) =>
+                    sum + resource.bytes,
+                0
+            ),
+
+        globalChromeJsRequestCount:
+            globalChromeScripts.length,
+
+        globalChromeTransferBytes:
+            globalChromeResources.reduce(
+                (sum, resource) =>
+                    sum + resource.bytes,
+                0
+            ),
+
+        globalChromeResources:
+            globalChromeResources.map((resource) => ({
+                url: resource.url,
+                type: resource.type,
+                bytes: resource.bytes,
+            })),
 
         thirdPartyScriptHosts,
         largestImages,
@@ -1378,6 +1798,13 @@ async function measureRoute(
                 )
             ),
 
+            resourceCount: median(
+                samples.map(
+                    (sample) =>
+                        sample.resourceCount
+                )
+            ),
+
             totalTransferBytes: median(
                 samples.map(
                     (sample) =>
@@ -1392,10 +1819,66 @@ async function measureRoute(
                 )
             ),
 
+            cssRequestCount: median(
+                samples.map(
+                    (sample) =>
+                        sample.cssRequestCount
+                )
+            ),
+
             jsBytes: median(
                 samples.map(
                     (sample) =>
                         sample.jsBytes
+                )
+            ),
+
+            jsRequestCount: median(
+                samples.map(
+                    (sample) =>
+                        sample.jsRequestCount
+                )
+            ),
+
+            globalChromeResourceCount: median(
+                samples.map(
+                    (sample) =>
+                        sample.globalChromeResourceCount
+                )
+            ),
+
+            globalChromeCssBytes: median(
+                samples.map(
+                    (sample) =>
+                        sample.globalChromeCssBytes
+                )
+            ),
+
+            globalChromeCssRequestCount: median(
+                samples.map(
+                    (sample) =>
+                        sample.globalChromeCssRequestCount
+                )
+            ),
+
+            globalChromeJsBytes: median(
+                samples.map(
+                    (sample) =>
+                        sample.globalChromeJsBytes
+                )
+            ),
+
+            globalChromeJsRequestCount: median(
+                samples.map(
+                    (sample) =>
+                        sample.globalChromeJsRequestCount
+                )
+            ),
+
+            globalChromeTransferBytes: median(
+                samples.map(
+                    (sample) =>
+                        sample.globalChromeTransferBytes
                 )
             ),
         },
@@ -1436,6 +1919,9 @@ async function measureRoute(
         },
 
         samples,
+        globalChrome: {
+            metrics: [],
+        },
         warnings: [],
         violations: [],
     };
@@ -1584,6 +2070,49 @@ async function measureRoute(
         );
     }
 
+    const globalRuntime = budget.globalChrome.runtime;
+    const resourceCountBudget =
+        options.desktop
+            ? globalRuntime.desktopMaxResourceCount
+            : globalRuntime.mobileMaxResourceCount;
+
+    summary.globalChrome.metrics = [
+        budgetMetric(
+            'resourceCount',
+            summary.medians.globalChromeResourceCount,
+            resourceCountBudget,
+        ),
+        budgetMetric(
+            'cssRequestCount',
+            summary.medians.globalChromeCssRequestCount,
+            globalRuntime.maxCssRequestCount,
+        ),
+        budgetMetric(
+            'jsRequestCount',
+            summary.medians.globalChromeJsRequestCount,
+            globalRuntime.maxJsRequestCount,
+        ),
+        budgetMetric(
+            'thirdPartyScriptHostCount',
+            summary.worst.thirdPartyScriptHosts.length,
+            globalRuntime.thirdPartyScriptHostCount,
+        ),
+        budgetMetric(
+            'totalTransferBytes',
+            summary.medians.globalChromeTransferBytes,
+            globalRuntime.totalTransferBytes,
+        ),
+    ];
+
+    summary.violations.push(
+        ...summary.globalChrome.metrics
+            .map((metric) => metricViolation(
+                metric,
+                `Global chrome runtime ${metric.id}`,
+            ))
+            .filter(Boolean),
+    );
+
     return summary;
 }
 
@@ -1712,6 +2241,15 @@ async function runRuntimeValidation(
                     resourceCountsByType:
                         error.resources
                             ?.resourceCountsByType || {},
+                    resourceCount:
+                        error.resources
+                            ?.resourceCount || 0,
+                    cssRequestCount:
+                        error.resources
+                            ?.cssRequestCount || 0,
+                    jsRequestCount:
+                        error.resources
+                            ?.jsRequestCount || 0,
                     imageRequestCount:
                         error.resources
                             ?.imageRequestCount || 0,
@@ -1800,6 +2338,32 @@ function printStaticResult(result) {
         `${result.details
             .autoplayMedia.length}`
     );
+
+    console.log(
+        '- Global chrome local assets: ' +
+        `${result.details.globalChrome.details.localAssets.length}`
+    );
+
+    console.log(
+        '- Global chrome CSS gzip: ' +
+        `${formatBytes(
+            result.details.globalChrome.details
+                .headerFooterCssGzipBytes
+        )}`
+    );
+
+    console.log(
+        '- Global chrome JS gzip: ' +
+        `${formatBytes(
+            result.details.globalChrome.details
+                .headerFooterJsGzipBytes
+        )}`
+    );
+
+    console.log(
+        '- Global chrome icon assets: ' +
+        `${result.details.globalChrome.details.iconAssetCount}`
+    );
 }
 
 function printRuntimeResult(reports) {
@@ -1843,6 +2407,12 @@ function printRuntimeResult(reports) {
             )}; ` +
             `image requests ` +
             `${report.medians.imageRequestCount}; ` +
+            `resources ` +
+            `${report.medians.resourceCount}; ` +
+            `global chrome resources ` +
+            `${report.medians.globalChromeResourceCount}; ` +
+            `global chrome JS ` +
+            `${report.medians.globalChromeJsRequestCount}; ` +
             `final ${report.finalUrl || 'unknown'}`
         );
 

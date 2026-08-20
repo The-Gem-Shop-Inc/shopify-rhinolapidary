@@ -1595,3 +1595,97 @@ textarea.rhino-field__control {
         forced-color-adjust: auto;
     }
 }
+
+/* --------------------------------------------------------------------------
+ * Header and drawer focused repairs
+ * Source PBIs: C-PBI-009
+ * -------------------------------------------------------------------------- */
+
+.menu-drawer__account {
+    min-height: var(--rhino-control-min-height);
+}
+
+#ProductCount,
+#ProductCountDesktop {
+    color: var(--rhino-color-text);
+}
+
+/* --------------------------------------------------------------------------
+ * Policy rich text contrast
+ * Source PBIs: C-PBI-018, C-PBI-022
+ * -------------------------------------------------------------------------- */
+
+.shopify-policy__body {
+    color: var(--rhino-color-text);
+}
+
+.shopify-policy__body :where(span, strong, em, u) {
+    color: inherit;
+}
+
+.shopify-policy__body a {
+    color: var(--rhino-color-link);
+}
+
+.shopify-policy__body a :where(span, strong, em, u) {
+    color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+ * Breadcrumbs
+ * Source PBIs: C-PBI-013
+ * -------------------------------------------------------------------------- */
+
+.rhino-breadcrumb {
+    margin: 1.2rem auto 0;
+    color: var(--rhino-color-text);
+    font-size: 1.3rem;
+    line-height: 1.45;
+}
+
+.rhino-breadcrumb__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.6rem;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.rhino-breadcrumb__item {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.rhino-breadcrumb__link {
+    color: var(--rhino-color-link);
+    scroll-margin-top: calc(var(--header-height, 0px) + 1.6rem);
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+}
+
+.rhino-breadcrumb__link:focus-visible {
+    outline: var(--rhino-focus-ring);
+    outline-offset: var(--rhino-focus-offset);
+}
+
+.rhino-breadcrumb__separator {
+    flex: 0 0 auto;
+    margin-left: 0.6rem;
+    color: var(--rhino-color-text-muted);
+}
+
+.rhino-breadcrumb__item--current {
+    color: var(--rhino-color-text);
+}
+
+@media screen and (min-width: 750px) {
+    .rhino-breadcrumb {
+        margin-top: 1.6rem;
+        font-size: 1.4rem;
+    }
+}

@@ -109,7 +109,7 @@ Before opening or updating a pull request:
 ```sh
 python scripts/validate-theme-repository.py
 shopify theme check --fail-level warning
-npm run test:a11y
+npm run test:ally
 ```
 
 Update the customization inventory after changing theme files:
@@ -175,6 +175,22 @@ See:
 * `docs/release/release-checklist.md`
 
 Do not use direct live-theme pushes as the normal release workflow.
+
+## Epic C Global Chrome QA
+
+Global header, navigation, breadcrumb, footer, localization, policy, account,
+cart, and search changes affect every storefront page. For Epic C or later
+global chrome changes, run:
+
+```sh
+npm run qa:epic-c:static
+npm run qa:epic-c:preview
+npm run validate:epic-c-finalization
+```
+
+Use `npm run qa:epic-c:all` only when both static and preview access are
+available. The preview QA must target the unpublished preview theme
+`158631198917`, not production theme `158579622085`.
 
 ## Shopify upload policy
 
@@ -250,17 +266,22 @@ Changes to these areas require focused testing:
 
 ### Architecture
 
-* Trade baseline
-* Upstream update strategy
-* Theme customization inventory
-* Theme Check decisions
-* Rhino brand CSS implementation plan
-* Rhino custom section/block strategy
+* [Trade baseline](docs/architecture/trade-upstream-baseline.md)
+* [Upstream update strategy](docs/architecture/upstream-update-strategy.md)
+* [Theme customization inventory](docs/architecture/theme-customization-inventory.md)
+* Theme Check decisions are documented when suppressions are introduced.
+* [Rhino brand CSS implementation plan](docs/architecture/rhino-brand-css-implementation-plan.md)
+* [Rhino custom section/block strategy](docs/architecture/rhino-custom-section-block-strategy.md)
+* [Epic C global chrome source hierarchy](docs/architecture/epic-c-global-chrome-source-hierarchy.md)
+* [Epic C global chrome current-state audit](docs/architecture/epic-c-global-chrome-current-state-audit.md)
+* [Epic C breadcrumb architecture](docs/architecture/epic-c-breadcrumb-architecture.md)
+* [Epic C footer and support IA](docs/architecture/epic-c-footer-support-ia.md)
 
 ### Development
 
-* Settings-data policy
-* Shopify environment configuration
+* [Settings-data policy](docs/development/settings-data-policy.md)
+* [Shopify environment configuration](docs/release/theme-environment-workflow.md)
+* [Shopify navigation change workflow](docs/development/shopify-navigation-change-workflow.md)
 
 ### Brand
 
@@ -270,14 +291,18 @@ Changes to these areas require focused testing:
 
 ### Quality assurance
 
-* Browser and device support
-* Accessibility baseline
-* Performance budget
-* Epic B brand QA plan
+* [Browser and device support](docs/qa/storefront-quality-baseline.md)
+* [Accessibility baseline](docs/qa/epic-b-accessibility-review-checklist.md)
+* [Performance budget](docs/qa/rhino-brand-media-performance-budget.md)
+* [Epic B brand QA plan](docs/qa/epic-b-brand-qa-plan.md)
+* [Epic C global chrome QA plan](data/epic-c-global-chrome-qa-plan.json)
+* [Epic C responsive global chrome evidence plan](docs/qa/epic-c-responsive-global-chrome-evidence-plan.md)
+* [Epic C post-launch navigation measurement plan](docs/analytics/epic-c-post-launch-navigation-measurement-plan.md)
 
 ### Release
 
-* Production release checklist
+* [Production release checklist](docs/release/release-checklist.md)
+* [Release notes template](docs/release/release-notes-template.md)
 
 ## Secrets
 

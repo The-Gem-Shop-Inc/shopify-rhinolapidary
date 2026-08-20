@@ -1,0 +1,481 @@
+{
+  "schemaVersion": 1,
+  "status": "batch_5_active",
+  "evidenceRoot": "docs/qa/evidence/epic-c",
+  "resultRoot": "test-results/epic-c/batch-5",
+  "previewThemeId": "158631198917",
+  "productionThemeId": "158579622085",
+  "productionMutationAllowed": false,
+  "evidenceNaming": {
+    "screenshotFile": "YYYY-MM-DD-epic-c-{route}-{viewport}-{state}.png",
+    "automatedReportFile": "epic-c-qa-{mode}-{timestamp}.json",
+    "rules": [
+      "Use lowercase route, viewport, and state names with hyphen separators.",
+      "Store screenshots and manual-review artifacts under evidenceRoot.",
+      "Store runner and validator output under resultRoot.",
+      "Do not store storefront passwords, Shopify tokens, cookies, or Admin credentials."
+    ]
+  },
+  "pages": [
+    {
+      "id": "homepage",
+      "category": "homepage",
+      "path": "/",
+      "fixtureKey": "homepage",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true
+    },
+    {
+      "id": "collection",
+      "category": "collection",
+      "fixtureKey": "collection",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true
+    },
+    {
+      "id": "search",
+      "category": "search",
+      "fixtureKey": "search",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true
+    },
+    {
+      "id": "product",
+      "category": "product",
+      "fixtureKey": "simpleProduct",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true
+    },
+    {
+      "id": "cart",
+      "category": "cart",
+      "fixtureKey": "cart",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true
+    },
+    {
+      "id": "contact",
+      "category": "contact",
+      "fixtureKey": "contact",
+      "source": "tests/fixtures/storefront-fixtures.json",
+      "required": true
+    },
+    {
+      "id": "policy",
+      "category": "policy",
+      "path": "/policies/privacy-policy",
+      "source": "data/navigation-spec.json",
+      "required": true
+    }
+  ],
+  "viewports": [
+    {
+      "id": "mobile-360",
+      "width": 360,
+      "height": 800,
+      "required": true
+    },
+    {
+      "id": "mobile-390",
+      "width": 390,
+      "height": 844,
+      "required": true
+    },
+    {
+      "id": "tablet-768",
+      "width": 768,
+      "height": 1024,
+      "required": true
+    },
+    {
+      "id": "desktop-1440",
+      "width": 1440,
+      "height": 900,
+      "required": true
+    },
+    {
+      "id": "desktop-1920",
+      "width": 1920,
+      "height": 1080,
+      "required": true
+    }
+  ],
+  "automatedSuites": [
+    {
+      "id": "theme-repository",
+      "capability": "repository",
+      "mode": "static",
+      "npmScript": "validate:theme-repository",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "theme-check",
+      "capability": "theme-architecture",
+      "mode": "static",
+      "npmScript": "theme:check",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "theme-architecture",
+      "capability": "theme-architecture",
+      "mode": "static",
+      "npmScript": "validate:theme-architecture",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "navigation-spec",
+      "capability": "navigation-route-specification",
+      "mode": "static",
+      "npmScript": "validate:navigation",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "global-navigation-ia",
+      "capability": "global-navigation-ia",
+      "mode": "static",
+      "npmScript": "validate:global-navigation-ia",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "global-navigation-ia-regression",
+      "capability": "global-navigation-ia",
+      "mode": "static",
+      "npmScript": "test:global-navigation-ia-validator",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "json-registers",
+      "capability": "schemas-registers",
+      "mode": "static",
+      "npmScript": "validate:registers",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "placeholder-content",
+      "capability": "content-governance",
+      "mode": "static",
+      "npmScript": "check:placeholders",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "hardcoded-strings",
+      "capability": "content-governance",
+      "mode": "static",
+      "npmScript": "validate:hardcoded-strings",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "brand-claims",
+      "capability": "legal-brand-claims",
+      "mode": "static",
+      "npmScript": "validate:brand-claims",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "brand-claims-regression",
+      "capability": "legal-brand-claims",
+      "mode": "static",
+      "npmScript": "test:brand-claims-validator",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "theme-settings",
+      "capability": "theme-settings",
+      "mode": "static",
+      "npmScript": "check:rhino-theme-settings",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "footer-support",
+      "capability": "footer-support-governance",
+      "mode": "static",
+      "npmScript": "validate:footer-support",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "footer-support-regression",
+      "capability": "footer-support-governance",
+      "mode": "static",
+      "npmScript": "test:footer-support-validator",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "localization-market-safety",
+      "capability": "localization-governance",
+      "mode": "static",
+      "npmScript": "validate:localization-market-safety",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "localization-market-regression",
+      "capability": "localization-governance",
+      "mode": "static",
+      "npmScript": "test:localization-market-safety-validator",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "global-chrome-performance-static",
+      "capability": "performance",
+      "mode": "static",
+      "npmScript": "validate:global-chrome-performance",
+      "required": true,
+      "evidencePath": "test-results/epic-c/batch-5/brand-performance-static.json"
+    },
+    {
+      "id": "navigation-measurement-plan",
+      "capability": "analytics-governance",
+      "mode": "static",
+      "npmScript": "validate:epic-c-measurement-plan",
+      "required": true,
+      "evidencePath": "console"
+    },
+    {
+      "id": "epic-c-artifacts",
+      "capability": "finalization-artifacts",
+      "mode": "static",
+      "npmScript": "validate:epic-c-artifacts",
+      "required": true,
+      "evidencePath": "test-results/epic-c/batch-5/epic-c-finalization.json"
+    },
+    {
+      "id": "navigation-route-tests",
+      "capability": "navigation-routes",
+      "mode": "preview",
+      "npmScript": "test:navigation",
+      "required": true,
+      "evidencePath": "playwright-report"
+    },
+    {
+      "id": "global-chrome-links",
+      "capability": "global-chrome-links",
+      "mode": "preview",
+      "npmScript": "test:global-chrome-links",
+      "required": true,
+      "evidencePath": "test-results/epic-c/global-chrome-links-*.json"
+    },
+    {
+      "id": "breadcrumbs",
+      "capability": "breadcrumbs",
+      "mode": "preview",
+      "npmScript": "test:breadcrumbs",
+      "required": true,
+      "evidencePath": "test-results/epic-c/batch-3/breadcrumbs.json"
+    },
+    {
+      "id": "global-utilities",
+      "capability": "utility-controls",
+      "mode": "preview",
+      "npmScript": "test:global-utilities",
+      "required": true,
+      "evidencePath": "test-results/epic-c/batch-3/global-utilities.json"
+    },
+    {
+      "id": "global-chrome-accessibility",
+      "capability": "accessibility",
+      "mode": "preview",
+      "npmScript": "test:global-chrome-accessibility",
+      "required": true,
+      "evidencePath": "test-results/epic-c/batch-5/global-chrome-accessibility-*.json",
+      "environmentBlockedExitCode": 2
+    },
+    {
+      "id": "mobile-drawer",
+      "capability": "mobile-drawer",
+      "mode": "preview",
+      "npmScript": "test:mobile-drawer",
+      "required": true,
+      "evidencePath": "test-results/epic-c/batch-2/mobile-drawer-behavior.json"
+    },
+    {
+      "id": "desktop-header",
+      "capability": "desktop-header",
+      "mode": "preview",
+      "npmScript": "test:header-desktop",
+      "required": true,
+      "evidencePath": "test-results/epic-c/batch-2/desktop-header-behavior.json"
+    },
+    {
+      "id": "footer-policy-sitemap",
+      "capability": "policy-sitemap",
+      "mode": "preview",
+      "npmScript": "test:footer-policy-sitemap",
+      "required": true,
+      "evidencePath": "test-results/epic-c/batch-4/footer-policy-sitemap-*.json"
+    },
+    {
+      "id": "storefront-smoke",
+      "capability": "smoke",
+      "mode": "preview",
+      "npmScript": "test:smoke",
+      "required": true,
+      "evidencePath": "playwright-report"
+    },
+    {
+      "id": "storefront-accessibility-regression",
+      "capability": "accessibility",
+      "mode": "preview",
+      "npmScript": "test:ally",
+      "required": true,
+      "evidencePath": "playwright-report"
+    },
+    {
+      "id": "brand-performance-release",
+      "capability": "performance",
+      "mode": "preview",
+      "npmScript": "test:brand-performance:release",
+      "required": true,
+      "evidencePath": "test-results/brand-performance/brand-performance-mobile.json",
+      "environmentBlockedExitCode": 2
+    },
+    {
+      "id": "social-metadata",
+      "capability": "social-metadata",
+      "mode": "preview",
+      "npmScript": "test:social-metadata",
+      "required": true,
+      "evidencePath": "test-results/social-metadata"
+    },
+    {
+      "id": "responsive-global-chrome",
+      "capability": "responsive-evidence",
+      "mode": "preview",
+      "npmScript": "qa:epic-c:responsive",
+      "required": true,
+      "evidencePath": "test-results/epic-c/batch-5/responsive-global-chrome-qa.json",
+      "environmentBlockedExitCode": 2
+    }
+  ],
+  "requiredArtifacts": [
+    { "pbi": "C-PBI-001", "path": "docs/architecture/epic-c-global-chrome-source-hierarchy.md", "type": "architecture", "required": true },
+    { "pbi": "C-PBI-002", "path": "docs/architecture/epic-c-global-chrome-current-state-audit.md", "type": "architecture", "required": true },
+    { "pbi": "C-PBI-006", "path": "docs/development/shopify-navigation-change-workflow.md", "type": "workflow", "required": true },
+    { "pbi": "C-PBI-003", "path": "data/global-navigation-ia.json", "type": "register", "required": true },
+    { "pbi": "C-PBI-003", "path": "schemas/global-navigation-ia.schema.json", "type": "schema", "required": true },
+    { "pbi": "C-PBI-003", "path": "scripts/validate-global-navigation-ia.js", "type": "validator", "required": true },
+    { "pbi": "C-PBI-005", "path": "tests/global-chrome-links.spec.js", "type": "test", "required": true },
+    { "pbi": "C-PBI-012", "path": "docs/architecture/epic-c-breadcrumb-architecture.md", "type": "architecture", "required": true },
+    { "pbi": "C-PBI-014", "path": "tests/breadcrumbs.spec.js", "type": "test", "required": true },
+    { "pbi": "C-PBI-015", "path": "docs/architecture/epic-c-footer-support-ia.md", "type": "architecture", "required": true },
+    { "pbi": "C-PBI-019", "path": "data/footer-support-resources.json", "type": "register", "required": true },
+    { "pbi": "C-PBI-019", "path": "schemas/footer-support-resources.schema.json", "type": "schema", "required": true },
+    { "pbi": "C-PBI-019", "path": "scripts/validate-footer-support-resources.js", "type": "validator", "required": true },
+    { "pbi": "C-PBI-020", "path": "data/localization-market-decision.json", "type": "register", "required": true },
+    { "pbi": "C-PBI-020", "path": "schemas/localization-market-decision.schema.json", "type": "schema", "required": true },
+    { "pbi": "C-PBI-020", "path": "scripts/validate-localization-market-safety.js", "type": "validator", "required": true },
+    { "pbi": "C-PBI-017", "path": "scripts/validate-brand-claims.js", "type": "validator", "required": true },
+    { "pbi": "C-PBI-022", "path": "tests/global-chrome-accessibility.spec.js", "type": "test", "required": true },
+    { "pbi": "C-PBI-023", "path": "data/brand-performance-budget.json", "type": "budget", "required": true },
+    { "pbi": "C-PBI-023", "path": "scripts/validate-brand-performance-budget.js", "type": "validator", "required": true },
+    { "pbi": "C-PBI-024", "path": "docs/qa/epic-c-responsive-global-chrome-evidence-plan.md", "type": "qa-plan", "required": true },
+    { "pbi": "C-PBI-024", "path": "scripts/run-epic-c-responsive-qa.js", "type": "runner", "required": true },
+    { "pbi": "C-PBI-025", "path": "data/epic-c-global-chrome-qa-plan.json", "type": "qa-plan", "required": true },
+    { "pbi": "C-PBI-025", "path": "scripts/run-epic-c-global-chrome-qa.js", "type": "runner", "required": true },
+    { "pbi": "C-PBI-025", "path": "scripts/validate-epic-c-finalization.js", "type": "validator", "required": true },
+    { "pbi": "C-PBI-026", "path": "docs/release/release-checklist.md", "type": "release-doc", "required": true },
+    { "pbi": "C-PBI-026", "path": "README.md", "type": "documentation-index", "required": true },
+    { "pbi": "C-PBI-028", "path": "docs/analytics/epic-c-post-launch-navigation-measurement-plan.md", "type": "analytics-plan", "required": true },
+    { "pbi": "C-PBI-028", "path": "data/epic-c-navigation-measurement-plan.json", "type": "register", "required": true },
+    { "pbi": "C-PBI-028", "path": "scripts/validate-epic-c-navigation-measurement-plan.js", "type": "validator", "required": true }
+  ],
+  "implementationRecords": [
+    "docs/project/implementation-records/c-pbi-001-epic-c-source-hierarchy.md",
+    "docs/project/implementation-records/c-pbi-002-global-chrome-current-state-audit.md",
+    "docs/project/implementation-records/c-pbi-003-global-navigation-ia-register.md",
+    "docs/project/implementation-records/c-pbi-004-launch-navigation-route-contract.md",
+    "docs/project/implementation-records/c-pbi-005-global-chrome-link-validation.md",
+    "docs/project/implementation-records/c-pbi-006-shopify-navigation-change-workflow.md",
+    "docs/project/implementation-records/c-pbi-007-preview-header-baseline-configuration.md",
+    "docs/project/implementation-records/c-pbi-008-desktop-header-hierarchy-and-search.md",
+    "docs/project/implementation-records/c-pbi-009-mobile-drawer-navigation-behavior.md",
+    "docs/project/implementation-records/c-pbi-010-desktop-mega-menu-content-model.md",
+    "docs/project/implementation-records/c-pbi-011-preview-mega-menu-admin-safety-gate.md",
+    "docs/project/implementation-records/c-pbi-012-breadcrumb-architecture.md",
+    "docs/project/implementation-records/c-pbi-013-accessible-breadcrumbs.md",
+    "docs/project/implementation-records/c-pbi-014-breadcrumb-structured-data-validation.md",
+    "docs/project/implementation-records/c-pbi-015-footer-information-architecture.md",
+    "docs/project/implementation-records/c-pbi-016-preview-footer-configuration.md",
+    "docs/project/implementation-records/c-pbi-017-footer-claim-governance.md",
+    "docs/project/implementation-records/c-pbi-018-policy-legal-sitemap-discoverability.md",
+    "docs/project/implementation-records/c-pbi-019-support-manual-download-inventory.md",
+    "docs/project/implementation-records/c-pbi-020-localization-market-safety.md",
+    "docs/project/implementation-records/c-pbi-021-global-utility-affordance-labels.md",
+    "docs/project/implementation-records/c-pbi-022-global-chrome-accessibility.md",
+    "docs/project/implementation-records/c-pbi-023-global-chrome-performance-budget.md",
+    "docs/project/implementation-records/c-pbi-024-responsive-global-chrome-evidence.md",
+    "docs/project/implementation-records/c-pbi-025-epic-c-finalization-qa-runner.md",
+    "docs/project/implementation-records/c-pbi-026-release-documentation-integration.md",
+    "docs/project/implementation-records/c-pbi-027-preview-signoff-and-production-go-no-go.md",
+    "docs/project/implementation-records/c-pbi-028-post-launch-navigation-measurement-plan.md"
+  ],
+  "documentationReferences": [
+    {
+      "path": "docs/release/release-checklist.md",
+      "requiredStrings": [
+        "npm run validate:epic-c-finalization",
+        "npm run qa:epic-c:static",
+        "npm run qa:epic-c:preview",
+        "Navigation/menu changes require release notes"
+      ]
+    },
+    {
+      "path": "docs/release/release-notes-template.md",
+      "requiredStrings": [
+        "Global chrome and navigation changes",
+        "Menu handles changed",
+        "Epic C validation"
+      ]
+    },
+    {
+      "path": "README.md",
+      "requiredStrings": [
+        "Epic C global chrome QA plan",
+        "Epic C responsive global chrome evidence plan",
+        "Epic C post-launch navigation measurement plan"
+      ]
+    },
+    {
+      "path": "docs/development/shopify-navigation-change-workflow.md",
+      "requiredStrings": [
+        "release notes",
+        "data/global-navigation-ia.json",
+        "data/navigation-spec.json"
+      ]
+    }
+  ],
+  "knownBlockers": [
+    {
+      "pbi": "C-PBI-027",
+      "status": "ready_for_human_signoff",
+      "reason": "All technical and machine-verifiable Epic C gates are ready to run or have evidence; production go/no-go requires human approvals and cannot be supplied by the coding agent.",
+      "owner": "Product Owner, QA/Release Approver, Engineering Owner, Shopify Admin Owner, Brand Owner, Content Owner, Legal/Claims Reviewer, Support Owner",
+      "blocksEpicClosure": true,
+      "humanSignoffOnly": true
+    }
+  ],
+  "humanApprovals": [
+    "Product Owner",
+    "Engineering Owner",
+    "QA / Release Approver",
+    "Shopify Admin Owner",
+    "Brand Owner",
+    "Content Owner",
+    "Legal or Claims Reviewer",
+    "Support / Business Owner"
+  ]
+}

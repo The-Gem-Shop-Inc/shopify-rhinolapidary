@@ -24,8 +24,18 @@ The production readiness gate includes:
 * Cleanup architecture validation
 * Cart configuration validation
 * Placeholder content check
+* Production push file audit
 
-When `PREVIEW_URL` is configured, it also runs:
+For global chrome, navigation, breadcrumb, footer, policy, localization, support,
+or measurement changes, also run:
+
+```powershell
+npm run qa:epic-c:static
+npm run qa:epic-c:preview
+npm run validate:epic-c-finalization
+```
+
+When `PREVIEW_URL` or `PREVIEW_BASE_URL` is configured, it also runs:
 
 * Storefront fixture validation
 * Desktop smoke tests
@@ -36,6 +46,10 @@ When `PREVIEW_URL` is configured, it also runs:
 ## Release rule
 
 A production publish is blocked if this command fails.
+
+Epic C production readiness is blocked when required static or preview QA fails,
+when preview evidence is environment-blocked, when unresolved required PBIs
+remain, or when required human approvals are blank.
 
 Warnings may be accepted only when they are documented in the appropriate ledger, release note, or follow-up PBI.
 

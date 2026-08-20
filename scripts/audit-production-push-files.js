@@ -17,14 +17,14 @@ const forbiddenTrackedPatterns = [
     /^data\/product-export\/.*\.csv$/,
 ];
 
-const allowedGeneratedFiles = new Set([
+const allowedTrackedFiles = new Set([
+    '.env.example',
     'data/product-export/.gitkeep',
 ]);
 
 function git(args) {
     const result = spawnSync('git', args, {
         encoding: 'utf8',
-        shell: process.platform === 'win32',
     });
 
     if (result.status !== 0) {
@@ -37,11 +37,15 @@ function git(args) {
         .filter(Boolean);
 }
 
+function statusFilePath(line) {
+    return line.slice(3).trim().replace(/^"(.+)"$/, '$1');
+}
+
 const trackedFiles = git(['ls-files']);
 const errors = [];
 
 for (const file of trackedFiles) {
-    if (allowedGeneratedFiles.has(file)) {
+    if (allowedTrackedFiles.has(file)) {
         continue;
     }
 
@@ -55,17 +59,26 @@ for (const file of trackedFiles) {
 
 const status = git(['status', '--short']);
 
-const concerningUntracked = status.filter((line) =>
-    line.startsWith('??') &&
-    (
-        line.includes('.env') ||
-        line.includes('test-results') ||
-        line.includes('playwright-report') ||
-        line.includes('coverage') ||
-        line.includes('.shopify') ||
-        line.includes('.idea')
-    )
-);
+const concerningUntracked = status.filter((line) => {
+    if (!line.startsWith('??')) {
+        return false;
+    }
+
+    const file = statusFilePath(line);
+
+    if (allowedTrackedFiles.has(file)) {
+        return false;
+    }
+
+    return (
+        file.includes('.env') ||
+        file.includes('test-results') ||
+        file.includes('playwright-report') ||
+        file.includes('coverage') ||
+        file.includes('.shopify') ||
+        file.includes('.idea')
+    );
+});
 
 if (concerningUntracked.length > 0) {
     errors.push('Concerning untracked local files exist:');

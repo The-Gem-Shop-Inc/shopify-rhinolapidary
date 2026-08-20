@@ -49,6 +49,7 @@ git log -1 --oneline
 ```sh
 python scripts/validate-theme-repository.py
 shopify theme check --fail-level warning
+npm run qa:epic-c:static
 ```
 
 * [ ] Repository validation passes.
@@ -56,6 +57,13 @@ shopify theme check --fail-level warning
 * [ ] JSON files are valid.
 * [ ] Theme Check suppressions are documented.
 * [ ] No new unexplained warnings exist.
+* [ ] Epic C static global chrome QA passes when header, navigation, breadcrumbs, footer, localization, policy, support, or measurement artifacts changed.
+
+Epic C finalization command:
+
+```sh
+npm run validate:epic-c-finalization
+```
 
 ## 4. Settings safety
 
@@ -95,6 +103,12 @@ shopify theme open --environment preview
 
 Follow `docs/qa/storefront-quality-baseline.md`.
 
+For global chrome changes, also run:
+
+```sh
+npm run qa:epic-c:preview
+```
+
 * [ ] Desktop Chrome
 * [ ] Desktop Edge
 * [ ] Desktop Safari, when available
@@ -106,6 +120,7 @@ Follow `docs/qa/storefront-quality-baseline.md`.
 * [ ] 1440-pixel layout
 * [ ] No unintended horizontal scrolling
 * [ ] Sticky elements do not obscure controls
+* [ ] Required Epic C responsive evidence has no width overlap, clipping, overflow, or sticky-focus obstruction failures.
 
 ## 7. Purchase-path testing
 
@@ -132,11 +147,13 @@ Follow `docs/qa/storefront-quality-baseline.md`.
 * [ ] Mobile filter drawer works.
 * [ ] Sorting works.
 * [ ] Product cards link to the correct products.
+* [ ] Header search, primary navigation, mobile drawer, breadcrumbs, and footer links match the Epic C route and IA contracts.
 
 ## 9. Accessibility
 
 ```sh
-npm run test:a11y
+npm run test:ally
+npm run test:global-chrome-accessibility
 ```
 
 * [ ] Automated accessibility tests pass.
@@ -153,6 +170,12 @@ npm run test:a11y
 
 Follow the budgets in `docs/qa/storefront-quality-baseline.md`.
 
+For global chrome changes, run:
+
+```sh
+npm run validate:global-chrome-performance
+```
+
 * [ ] Homepage measured.
 * [ ] Collection measured.
 * [ ] Search measured.
@@ -166,6 +189,7 @@ Follow the budgets in `docs/qa/storefront-quality-baseline.md`.
 * [ ] New scripts and app embeds were reviewed.
 * [ ] Hero and product images are appropriately sized.
 * [ ] Noncritical media is lazy loaded.
+* [ ] Header/footer assets, global chrome icons, Rhino CSS/JS, runtime resource count, third-party resources, and blocking media remain within the machine-readable global chrome budget.
 
 ## 11. Content and merchandising
 
@@ -178,6 +202,7 @@ Follow the budgets in `docs/qa/storefront-quality-baseline.md`.
 * [ ] Freight, lead-time, warranty, and support statements are accurate where displayed.
 * [ ] Product media is appropriate for the product.
 * [ ] Mobile image crops have been reviewed.
+* [ ] Navigation/menu changes require release notes that list menu handles, label changes, route changes, admin evidence, validation, rollback, and unresolved destinations.
 
 ## 12. Shopify admin dependencies
 
@@ -202,6 +227,10 @@ For each changed area:
 * [ ] Preview verification is complete.
 * [ ] Rollback procedure is known.
 * [ ] Release notes identify the dependency.
+
+Global chrome changes affect every storefront page. Treat header, mobile drawer,
+mega menu, breadcrumbs, footer, policy, localization, support, search, cart,
+account, and navigation Admin changes as broad storefront-impact changes.
 
 ## 13. Publish
 
