@@ -1607,7 +1607,7 @@ textarea.rhino-field__control {
 
 #ProductCount,
 #ProductCountDesktop {
-    color: rgb(var(--color-foreground));
+    color: var(--rhino-color-text);
 }
 
 /* --------------------------------------------------------------------------
@@ -1615,13 +1615,20 @@ textarea.rhino-field__control {
  * Source PBIs: C-PBI-018, C-PBI-022
  * -------------------------------------------------------------------------- */
 
-.shopify-policy__body :where(span, strong, em, u)[style*="color"] {
-    color: rgb(var(--color-foreground)) !important;
+.shopify-policy__body {
+    color: var(--rhino-color-text);
 }
 
-.shopify-policy__body a,
-.shopify-policy__body a :where(span, strong, em, u)[style*="color"] {
-    color: var(--rhino-color-link) !important;
+.shopify-policy__body :where(span, strong, em, u) {
+    color: inherit;
+}
+
+.shopify-policy__body a {
+    color: var(--rhino-color-link);
+}
+
+.shopify-policy__body a :where(span, strong, em, u) {
+    color: inherit;
 }
 
 /* --------------------------------------------------------------------------
@@ -1631,7 +1638,7 @@ textarea.rhino-field__control {
 
 .rhino-breadcrumb {
     margin: 1.2rem auto 0;
-    color: rgb(var(--color-foreground));
+    color: var(--rhino-color-text);
     font-size: 1.3rem;
     line-height: 1.45;
 }
@@ -1655,25 +1662,25 @@ textarea.rhino-field__control {
 }
 
 .rhino-breadcrumb__link {
-    color: rgb(var(--color-link));
+    color: var(--rhino-color-link);
     scroll-margin-top: calc(var(--header-height, 0px) + 1.6rem);
     text-decoration: underline;
     text-underline-offset: 0.2rem;
 }
 
 .rhino-breadcrumb__link:focus-visible {
-    outline: 0.2rem solid rgb(var(--color-foreground));
-    outline-offset: 0.2rem;
+    outline: var(--rhino-focus-ring);
+    outline-offset: var(--rhino-focus-offset);
 }
 
 .rhino-breadcrumb__separator {
     flex: 0 0 auto;
     margin-left: 0.6rem;
-    color: rgba(var(--color-foreground), 0.75);
+    color: var(--rhino-color-text-muted);
 }
 
 .rhino-breadcrumb__item--current {
-    color: rgb(var(--color-foreground));
+    color: var(--rhino-color-text);
 }
 
 @media screen and (min-width: 750px) {
