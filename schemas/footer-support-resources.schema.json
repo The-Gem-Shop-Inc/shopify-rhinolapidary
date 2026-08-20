@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "source",
+    "resources"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "needs_review",
+        "approved_plan"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/resource"
+      }
+    }
+  },
+  "$defs": {
+    "approvalStatus": {
+      "enum": [
+        "approved",
+        "approved_current",
+        "needs_review",
+        "needs_content",
+        "needs_legal",
+        "needs_technical_review",
+        "blocked",
+        "not_applicable"
+      ]
+    },
+    "resource": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "category",
+        "source",
+        "sourceType",
+        "owner",
+        "rightsStatus",
+        "technicalApproval",
+        "legalApproval",
+        "contentApproval",
+        "intendedDestination",
+        "globalNavigationStatus",
+        "safeForGlobalNavigation",
+        "blockers",
+        "affectedModels",
+        "claimIds",
+        "navigationItemIds",
+        "notes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "enum": [
+            "manual",
+            "setup",
+            "technical_download",
+            "specification",
+            "contact",
+            "support",
+            "warranty",
+            "repair",
+            "shipping_freight",
+            "parts_help"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceType": {
+          "enum": [
+            "verified_storefront_route",
+            "route_candidate",
+            "repository_document",
+            "migration_register",
+            "policy_source",
+            "admin_dependency",
+            "product_data"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rightsStatus": {
+          "enum": [
+            "not_applicable",
+            "owned_or_controlled_needs_confirmation",
+            "reuse_permission_required",
+            "internal_evidence_only",
+            "unknown"
+          ]
+        },
+        "technicalApproval": {
+          "$ref": "#/$defs/approvalStatus"
+        },
+        "legalApproval": {
+          "$ref": "#/$defs/approvalStatus"
+        },
+        "contentApproval": {
+          "$ref": "#/$defs/approvalStatus"
+        },
+        "intendedDestination": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "globalNavigationStatus": {
+          "enum": [
+            "approved",
+            "approved_current_limited",
+            "blocked",
+            "dependency",
+            "deferred",
+            "not_approved_current"
+          ]
+        },
+        "safeForGlobalNavigation": {
+          "type": "boolean"
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "affectedModels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "claimIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CLAIM-[0-9]{3}$"
+          }
+        },
+        "navigationItemIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          }
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

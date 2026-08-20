@@ -174,6 +174,52 @@ async function startAuthServer(password = 'test-password') {
     };
 }
 
+async function startTransientNavigationServer() {
+    let transientRouteHits = 0;
+
+    const server = http.createServer((request, response) => {
+        const host = request.headers.host;
+        const origin = `http://${host}`;
+        const requestUrl = new URL(request.url, origin);
+
+        if (requestUrl.pathname === '/transient-503') {
+            transientRouteHits += 1;
+
+            if (transientRouteHits === 1) {
+                sendHtml(
+                    response,
+                    '<!doctype html><html lang="en"><body><h1>Temporary outage</h1></body></html>',
+                    503,
+                );
+                return;
+            }
+
+            sendHtml(
+                response,
+                '<!doctype html><html lang="en"><head><title>Recovered route</title></head><body><h1>Recovered storefront</h1></body></html>',
+            );
+            return;
+        }
+
+        sendHtml(
+            response,
+            '<!doctype html><html lang="en"><head><title>Home</title></head><body><h1>Home</h1></body></html>',
+        );
+    });
+
+    await new Promise((resolve) => {
+        server.listen(0, '127.0.0.1', resolve);
+    });
+
+    const address = server.address();
+
+    return {
+        origin: `http://127.0.0.1:${address.port}`,
+        getTransientRouteHits: () => transientRouteHits,
+        close: () => new Promise((resolve) => server.close(resolve)),
+    };
+}
+
 test.beforeEach(() => {
     resetStorefrontAuthStats();
     clearAuthState();
@@ -302,6 +348,23 @@ test('stale cached state falls back to password submission', async ({ page }) =>
 
         expect(server.getSubmissionCount()).toBe(1);
         expect(await isPasswordPage(page)).toBe(false);
+    } finally {
+        await server.close();
+    }
+});
+
+test('storefront navigation retries a transient 503 response', async ({ page }) => {
+    const server = await startTransientNavigationServer();
+
+    try {
+        delete process.env.PREVIEW_BASE_URL;
+        delete process.env.PREVIEW_THEME_ID;
+        process.env.PREVIEW_URL = server.origin;
+
+        await gotoUnlocked(page, '/transient-503', 'transient storefront route');
+
+        expect(server.getTransientRouteHits()).toBe(2);
+        await expect(page.locator('h1')).toHaveText('Recovered storefront');
     } finally {
         await server.close();
     }

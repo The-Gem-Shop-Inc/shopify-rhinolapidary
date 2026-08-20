@@ -19,6 +19,7 @@ if (
 
 module.exports = defineConfig({
     testDir: './tests',
+    outputDir: 'test-results/playwright-artifacts',
     timeout: 60_000,
     expect: {
         timeout: 10_000,

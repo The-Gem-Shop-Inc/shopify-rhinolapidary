@@ -19,6 +19,12 @@ const CUSTOMER_FACING_DIRECTORIES = [
     'config',
 ];
 
+const GOVERNED_CLAIM_SOURCE_FILES = [
+    'data/global-navigation-ia.json',
+    'data/footer-support-resources.json',
+    'data/localization-market-decision.json',
+];
+
 const CUSTOMER_FACING_EXTENSIONS = new Set([
     '.css',
     '.html',
@@ -44,12 +50,12 @@ function walk(directory) {
 
     for (
         const entry of fs.readdirSync(
-        directory,
-        {
-            withFileTypes: true,
-        },
-    )
-        ) {
+            directory,
+            {
+                withFileTypes: true,
+            },
+        )
+    ) {
         const absolutePath = path.join(
             directory,
             entry.name,
@@ -95,11 +101,13 @@ function lineNumber(source, index) {
     return source.slice(0, index).split('\n').length;
 }
 
-function main() {
-    const register = JSON.parse(
-        fs.readFileSync(REGISTER_PATH, 'utf8'),
+function readRegister(registerPath = REGISTER_PATH) {
+    return JSON.parse(
+        fs.readFileSync(registerPath, 'utf8'),
     );
+}
 
+function validateRegisterShape(register) {
     const violations = [];
     const ids = new Set();
 
@@ -171,7 +179,61 @@ function main() {
         }
     }
 
-    const files = CUSTOMER_FACING_DIRECTORIES
+    return violations;
+}
+
+function validateSourceText(relativePath, sourceText, register) {
+    const violations = [];
+    const source = stripComments(sourceText);
+
+    for (const claim of register.claims || []) {
+        const shouldBlock = [
+            'blocked',
+            'needs_review',
+            'retired',
+        ].includes(claim.status);
+
+        for (const patternText of claim.patterns || []) {
+            const pattern = compilePattern(
+                patternText,
+                claim.id,
+            );
+
+            for (const match of source.matchAll(pattern)) {
+                if (!shouldBlock) {
+                    continue;
+                }
+
+                violations.push(
+                    `${relativePath}:${lineNumber(source, match.index)} `
+                    + `contains ${claim.status} claim ${claim.id}: "${match[0]}"`,
+                );
+            }
+        }
+
+        for (const prohibited of claim.prohibitedWording || []) {
+            if (!prohibited) {
+                continue;
+            }
+
+            const index = source
+                .toLowerCase()
+                .indexOf(prohibited.toLowerCase());
+
+            if (index >= 0) {
+                violations.push(
+                    `${relativePath}:${lineNumber(source, index)} `
+                    + `contains prohibited wording for ${claim.id}: "${prohibited}"`,
+                );
+            }
+        }
+    }
+
+    return violations;
+}
+
+function collectScannedFiles() {
+    const directoryFiles = CUSTOMER_FACING_DIRECTORIES
         .flatMap((directory) => (
             walk(path.join(ROOT, directory))
         ))
@@ -181,66 +243,50 @@ function main() {
             )
         ));
 
+    const governedFiles = GOVERNED_CLAIM_SOURCE_FILES
+        .map((filePath) => path.join(ROOT, filePath))
+        .filter((filePath) => fs.existsSync(filePath));
+
+    return [
+        ...directoryFiles,
+        ...governedFiles,
+    ];
+}
+
+function validateBrandClaims(options = {}) {
+    const register = options.register || readRegister(options.registerPath);
+    const violations = validateRegisterShape(register);
+    const files = options.files || collectScannedFiles();
+
     for (const filePath of files) {
         const relativePath = path
             .relative(ROOT, filePath)
             .replaceAll('\\', '/');
 
-        const originalSource = fs.readFileSync(
+        const source = fs.readFileSync(
             filePath,
             'utf8',
         );
 
-        const source = stripComments(originalSource);
-
-        for (const claim of register.claims || []) {
-            const shouldBlock = [
-                'blocked',
-                'needs_review',
-                'retired',
-            ].includes(claim.status);
-
-            for (const patternText of claim.patterns || []) {
-                const pattern = compilePattern(
-                    patternText,
-                    claim.id,
-                );
-
-                for (const match of source.matchAll(pattern)) {
-                    if (!shouldBlock) {
-                        continue;
-                    }
-
-                    violations.push(
-                        `${relativePath}:${lineNumber(source, match.index)} `
-                        + `contains ${claim.status} claim ${claim.id}: "${match[0]}"`,
-                    );
-                }
-            }
-
-            for (const prohibited of claim.prohibitedWording || []) {
-                if (!prohibited) {
-                    continue;
-                }
-
-                const index = source
-                    .toLowerCase()
-                    .indexOf(prohibited.toLowerCase());
-
-                if (index >= 0) {
-                    violations.push(
-                        `${relativePath}:${lineNumber(source, index)} `
-                        + `contains prohibited wording for ${claim.id}: "${prohibited}"`,
-                    );
-                }
-            }
-        }
+        violations.push(
+            ...validateSourceText(relativePath, source, register),
+        );
     }
 
-    if (violations.length > 0) {
+    return {
+        violations,
+        claimCount: (register.claims || []).length,
+        fileCount: files.length,
+    };
+}
+
+function main() {
+    const result = validateBrandClaims();
+
+    if (result.violations.length > 0) {
         console.error(
             `Brand claims validation failed:\n- ${
-                violations.join('\n- ')
+                result.violations.join('\n- ')
             }`,
         );
         process.exitCode = 1;
@@ -248,9 +294,21 @@ function main() {
     }
 
     console.log(
-        `Brand claims valid: ${register.claims.length} claims; `
-        + `${files.length} customer-facing files scanned.`,
+        `Brand claims valid: ${result.claimCount} claims; `
+        + `${result.fileCount} customer-facing and governed files scanned.`,
     );
 }
 
-main();
+if (require.main === module) {
+    main();
+}
+
+module.exports = {
+    GOVERNED_CLAIM_SOURCE_FILES,
+    collectScannedFiles,
+    readRegister,
+    stripComments,
+    validateBrandClaims,
+    validateRegisterShape,
+    validateSourceText,
+};

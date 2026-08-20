@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { spawnSync } = require('child_process');
 
 const checks = [
@@ -40,6 +42,11 @@ const checks = [
         name: 'Placeholder content',
         command: 'npm',
         args: ['run', 'check:placeholders'],
+    },
+    {
+        name: 'Production push file audit',
+        command: 'npm',
+        args: ['run', 'audit:production-files'],
     }
 ];
 
@@ -69,20 +76,32 @@ const optionalPreviewChecks = [
         command: 'npm',
         args: ['run', 'test:navigation', '--', '--project=desktop-chromium'],
     },
-    {
-        name: 'Production push file audit',
-        command: 'npm',
-        args: ['run', 'audit:production-files'],
-    },
 ];
+
+const windowsCommandMap = {
+    npm: 'npm.cmd',
+    npx: 'npx.cmd',
+    shopify: 'shopify.cmd',
+};
+
+function commandInvocation(command, args) {
+    if (process.platform !== 'win32' || !windowsCommandMap[command]) {
+        return { command, args };
+    }
+
+    return {
+        command: 'cmd.exe',
+        args: ['/d', '/s', '/c', windowsCommandMap[command], ...args],
+    };
+}
 
 function runCheck(check) {
     console.log(`\n=== ${check.name} ===`);
     console.log(`${check.command} ${check.args.join(' ')}`);
 
-    const result = spawnSync(check.command, check.args, {
+    const invocation = commandInvocation(check.command, check.args);
+    const result = spawnSync(invocation.command, invocation.args, {
         stdio: 'inherit',
-        shell: process.platform === 'win32',
     });
 
     if (result.status !== 0) {
@@ -95,6 +114,11 @@ function runCheck(check) {
 }
 
 let failed = false;
+const previewUrlEnvName = process.env.PREVIEW_URL
+    ? 'PREVIEW_URL'
+    : process.env.PREVIEW_BASE_URL
+        ? 'PREVIEW_BASE_URL'
+        : null;
 
 for (const check of checks) {
     if (!runCheck(check)) {
@@ -102,14 +126,16 @@ for (const check of checks) {
     }
 }
 
-if (process.env.PREVIEW_URL) {
+if (previewUrlEnvName) {
+    console.log(`\nRunning preview-dependent checks using ${previewUrlEnvName}.`);
+
     for (const check of optionalPreviewChecks) {
         if (!runCheck(check)) {
             failed = true;
         }
     }
 } else {
-    console.warn('\nSkipping preview-dependent checks because PREVIEW_URL is not set.');
+    console.warn('\nSkipping preview-dependent checks because PREVIEW_URL or PREVIEW_BASE_URL is not set.');
 }
 
 if (failed) {

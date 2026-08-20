@@ -37,6 +37,22 @@ List admin configuration changes separately from theme code.
 * Analytics/pixels/customer events:
 * Other:
 
+## Global chrome and navigation changes
+
+Required for header, mobile drawer, mega menu, breadcrumb, footer, policy,
+support, localization, account, cart, search, or Shopify Navigation changes.
+
+* Menu handles changed:
+* Customer-facing label changes:
+* Route additions/removals:
+* Shopify Admin evidence path:
+* Epic C validation:
+* Responsive evidence path:
+* Accessibility evidence path:
+* Performance evidence path:
+* Production rollback steps:
+* Known unresolved destinations or blockers:
+
 ## Theme code changes
 
 * Templates:

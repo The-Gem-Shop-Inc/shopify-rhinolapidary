@@ -1,0 +1,100 @@
+{
+  "$schema": "../schemas/localization-market-decision.schema.json",
+  "schemaVersion": 1,
+  "status": "approved_plan",
+  "evidenceDate": "2026-08-18",
+  "source": "Read-only Shopify Admin GraphQL EpicCAdminState query plus preview sections/header-group.json and sections/footer-group.json.",
+  "themeIds": {
+    "preview": "158631198917",
+    "production": "158579622085"
+  },
+  "themeSelectorSettings": {
+    "header": {
+      "enableCountrySelector": false,
+      "enableLanguageSelector": false,
+      "source": "sections/header-group.json"
+    },
+    "footer": {
+      "enableCountrySelector": false,
+      "enableLanguageSelector": false,
+      "source": "sections/footer-group.json"
+    }
+  },
+  "adminEvidence": {
+    "currencyCode": "USD",
+    "enabledPresentmentCurrencies": [
+      "USD"
+    ],
+    "shipsToCountries": [
+      "AE",
+      "AT",
+      "AU",
+      "BE",
+      "CA",
+      "CH",
+      "CZ",
+      "DE",
+      "DK",
+      "ES",
+      "FI",
+      "FR",
+      "GB",
+      "HK",
+      "IE",
+      "IL",
+      "IT",
+      "JP",
+      "KR",
+      "MY",
+      "NL",
+      "NO",
+      "NZ",
+      "PL",
+      "PT",
+      "SE",
+      "SG",
+      "US"
+    ],
+    "publishedLanguages": [
+      "en"
+    ],
+    "webPresences": [
+      {
+        "defaultLocale": {
+          "locale": "en",
+          "name": "English",
+          "primary": true,
+          "published": true
+        },
+        "alternateLocales": [],
+        "rootUrlHosts": [
+          "sz5dnk-nf.myshopify.com"
+        ],
+        "markets": []
+      },
+      {
+        "defaultLocale": {
+          "locale": "en",
+          "name": "English",
+          "primary": true,
+          "published": true
+        },
+        "alternateLocales": [],
+        "rootUrlHosts": [
+          "rhino-lapidary.myshopify.com"
+        ],
+        "markets": []
+      }
+    ],
+    "customerAccounts": "OPTIONAL"
+  },
+  "decision": {
+    "countrySelectorLaunchState": "disabled",
+    "languageSelectorLaunchState": "disabled",
+    "visibleInternationalWordingApproved": false,
+    "approvedInternationalWording": [],
+    "marketSafeLabelRule": "Do not display country, region, language, or international availability copy in global chrome for the United States launch. Do not add footer/header copy that claims international shipping, voltage compatibility, warranty scope, customs responsibility, freight availability, or support coverage.",
+    "notes": "Launch decision is United States market with country and language selectors intentionally disabled in the preview header and footer. Admin evidence still shows USD presentment only and English only. Shipping-zone countries are operational configuration, not approval for customer-facing international availability language."
+  },
+  "dependencies": []
+}

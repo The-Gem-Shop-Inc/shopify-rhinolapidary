@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "status",
+    "source",
+    "customTrackingImplementationAllowed",
+    "sections"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "status": { "type": "string", "minLength": 3 },
+    "source": { "type": "string", "minLength": 5 },
+    "customTrackingImplementationAllowed": { "const": false },
+    "sections": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "trackingClass", "measures"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "title": { "type": "string", "minLength": 3 },
+          "trackingClass": {
+            "enum": [
+              "native_shopify_reporting",
+              "existing_approved_analytics",
+              "proposed_custom_tracking"
+            ]
+          },
+          "measures": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "metricName",
+                "question",
+                "source",
+                "nativeVsCustom",
+                "owner",
+                "privacyConsentImplications",
+                "thresholdOrBaseline",
+                "reviewCadence",
+                "degradationAction",
+                "implementationStatus"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "metricName": { "type": "string", "minLength": 3 },
+                "question": { "type": "string", "minLength": 8 },
+                "source": { "type": "string", "minLength": 3 },
+                "nativeVsCustom": {
+                  "enum": [
+                    "native_shopify",
+                    "existing_approved_analytics",
+                    "custom_event_requires_approval"
+                  ]
+                },
+                "owner": { "type": "string", "minLength": 3 },
+                "privacyConsentImplications": { "type": "string", "minLength": 8 },
+                "thresholdOrBaseline": {
+                  "type": "object",
+                  "required": ["type", "method"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "baseline_required",
+                        "existing_threshold"
+                      ]
+                    },
+                    "method": { "type": "string", "minLength": 8 },
+                    "baselineCollectionPeriod": { "type": "string" },
+                    "decisionDate": { "type": "string" },
+                    "owner": { "type": "string" },
+                    "threshold": { "type": ["string", "number"] }
+                  }
+                },
+                "reviewCadence": { "type": "string", "minLength": 3 },
+                "degradationAction": { "type": "string", "minLength": 8 },
+                "implementationStatus": {
+                  "enum": [
+                    "available_without_new_code",
+                    "existing_governance_only",
+                    "proposed_requires_analytics_owner_approval"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

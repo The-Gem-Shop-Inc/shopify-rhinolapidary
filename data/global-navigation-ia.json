@@ -1,0 +1,1831 @@
+{
+  "$schema": "../schemas/global-navigation-ia.schema.json",
+  "schemaVersion": 1,
+  "status": "approved_plan",
+  "source": "Epic C global navigation IA reconciled to read-only Shopify Admin EpicCAdminState evidence and rendered preview QA on 2026-08-18.",
+  "menus": [
+    {
+      "id": "primary",
+      "label": "Primary header navigation",
+      "owner": "Product Owner and Shopify Admin",
+      "sourceType": "shopify_navigation",
+      "adminHandle": "preview-primary-navigation-menu",
+      "items": [
+        {
+          "id": "primary-home",
+          "label": "Home",
+          "status": "verified_current",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": "/",
+          "source": "Read-only Shopify Admin menu preview-primary-navigation-menu and rendered preview header/drawer.",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "home",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "header",
+            "drawer"
+          ],
+          "notes": "Current preview header and drawer link."
+        },
+        {
+          "id": "primary-catalog",
+          "label": "Catalog",
+          "status": "verified_current",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "Read-only Shopify Admin menu preview-primary-navigation-menu.",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer"
+          ],
+          "notes": "Admin menu parent uses COLLECTIONS /collections, but Trade renders nested parents as disclosure controls; child links carry the route contract.",
+          "items": [
+            {
+              "id": "primary-catalog-saws",
+              "label": "Saws",
+              "status": "verified_current",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/collections/machines",
+              "source": "Read-only Shopify Admin menu preview-primary-navigation-menu.",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "machines",
+              "expectedInRenderedChrome": true,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Current nested preview child route."
+            },
+            {
+              "id": "primary-catalog-laps",
+              "label": "Laps",
+              "status": "verified_current",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/collections/machines",
+              "source": "Read-only Shopify Admin menu preview-primary-navigation-menu.",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "machines",
+              "expectedInRenderedChrome": true,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Current nested preview child route."
+            },
+            {
+              "id": "primary-catalog-shaping",
+              "label": "Shaping",
+              "status": "verified_current",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/collections/machines",
+              "source": "Read-only Shopify Admin menu preview-primary-navigation-menu.",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "machines",
+              "expectedInRenderedChrome": true,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Current nested preview child route."
+            }
+          ]
+        },
+        {
+          "id": "primary-manuals",
+          "label": "Manuals",
+          "status": "verified_current",
+          "owner": "Product Owner, Content, Support, and Shopify Admin",
+          "targetPath": "/pages/em-1-manual",
+          "source": "Read-only Shopify Admin menu preview-primary-navigation-menu and Pages evidence for published EM-1 Manual.",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "manual-em-1",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "header",
+            "drawer"
+          ],
+          "footerGroup": "support",
+          "supportResourceIds": [
+            "manual-em-1"
+          ],
+          "notes": "Current preview header and drawer link to the published EM-1 Manual page. Hidden manuals are inventoried separately and are not globally discoverable."
+        },
+        {
+          "id": "primary-contact",
+          "label": "Contact",
+          "status": "verified_current",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": "/pages/contact",
+          "source": "Read-only Shopify Admin menu preview-primary-navigation-menu and verified contact route.",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "contact",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "header",
+            "drawer"
+          ],
+          "notes": "Current global contact route is valid; no support-hours, repair, or warranty claims are implied."
+        }
+      ],
+      "notes": "Records the current preview-isolated Admin menu handle assigned to unpublished theme 158631198917. Production theme 158579622085 remains on main-menu."
+    },
+    {
+      "id": "desktop-mega-menu-model",
+      "label": "Desktop mega-menu content model",
+      "owner": "Product Owner and Shopify Admin",
+      "sourceType": "shopify_navigation",
+      "adminHandle": "preview-primary-navigation-menu",
+      "items": [
+        {
+          "id": "mega-shop-by-machine",
+          "label": "Shop by machine",
+          "status": "planned",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "C-PBI-010 candidate mega-menu group",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer",
+            "mega-menu"
+          ],
+          "notes": "Desktop and mobile parent group only. It must not be configured as a clickable parent unless Product Owner approves a verified destination.",
+          "items": [
+            {
+              "id": "mega-machine-all-machines",
+              "label": "Machines",
+              "status": "approved_for_launch",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/collections/machines",
+              "source": "Verified route contract and C-PBI-010 shop-by-machine model",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "machines",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "The collection route is verified and approved for launch, but it is not published in the header until a preview-isolated menu exists."
+            },
+            {
+              "id": "mega-machine-em-1",
+              "label": "EM-1",
+              "status": "planned",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "Rhino machine family identifiers and C-PBI-010 shop-by-machine model",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-machine-family-route-strategy"
+              ],
+              "blockerId": "dep-machine-family-route-strategy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Official family/model label only. Do not use The Everything Machine as the primary navigation label."
+            },
+            {
+              "id": "mega-machine-beadmaster",
+              "label": "BeadMaster",
+              "status": "planned",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "Rhino machine family identifiers and C-PBI-010 shop-by-machine model",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-machine-family-route-strategy"
+              ],
+              "blockerId": "dep-machine-family-route-strategy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "No verified and approved destination is available for this family entry."
+            },
+            {
+              "id": "mega-machine-shapemaster",
+              "label": "ShapeMaster",
+              "status": "planned",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "Rhino machine family identifiers and C-PBI-010 shop-by-machine model",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-machine-family-route-strategy"
+              ],
+              "blockerId": "dep-machine-family-route-strategy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "No verified and approved destination is available for this family entry."
+            },
+            {
+              "id": "mega-machine-trimmaster",
+              "label": "TrimMaster",
+              "status": "planned",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/products/trimmaster",
+              "source": "Batch 1 preview route probe and Rhino machine family identifiers",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-machine-family-route-strategy"
+              ],
+              "blockerId": "dep-machine-family-route-strategy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "The product route was preview verified, but direct product placement in global navigation still requires Product Owner approval."
+            },
+            {
+              "id": "mega-machine-lapmaster",
+              "label": "LapMaster",
+              "status": "planned",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "Rhino machine family identifiers and C-PBI-010 shop-by-machine model",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-machine-family-route-strategy"
+              ],
+              "blockerId": "dep-machine-family-route-strategy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "No verified and approved destination is available for this family entry."
+            },
+            {
+              "id": "mega-machine-sawmaster",
+              "label": "SawMaster",
+              "status": "planned",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "Rhino machine family identifiers and C-PBI-010 shop-by-machine model",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-machine-family-route-strategy"
+              ],
+              "blockerId": "dep-machine-family-route-strategy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "No verified and approved destination is available for this family entry."
+            },
+            {
+              "id": "mega-machine-jademaster",
+              "label": "JadeMaster",
+              "status": "planned",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "Rhino machine family identifiers and C-PBI-010 shop-by-machine model",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-machine-family-route-strategy"
+              ],
+              "blockerId": "dep-machine-family-route-strategy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Family name is approved, but machine type, specifications, and destination remain under technical review."
+            }
+          ]
+        },
+        {
+          "id": "mega-shop-by-product-role",
+          "label": "Shop by product role",
+          "status": "planned",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "C-PBI-010 candidate mega-menu group",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer",
+            "mega-menu"
+          ],
+          "notes": "Desktop and mobile parent group only. Product-role children must route only to verified and approved destinations.",
+          "items": [
+            {
+              "id": "mega-role-machines",
+              "label": "Machines",
+              "status": "approved_for_launch",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/collections/machines",
+              "source": "ADR-0003 launch route group and verified route contract",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "machines",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Verified active route candidate for role-based navigation once a preview-isolated menu exists."
+            },
+            {
+              "id": "mega-role-accessories",
+              "label": "Accessories",
+              "status": "blocked",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "ADR-0003 launch route group and Batch 1 route probe",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-accessories-route"
+              ],
+              "blockerId": "dep-accessories-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Candidate route /collections/accessories returned 404 in preview."
+            },
+            {
+              "id": "mega-role-consumables",
+              "label": "Consumables",
+              "status": "blocked",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "ADR-0003 launch route group and Batch 1 route probe",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-consumables-route"
+              ],
+              "blockerId": "dep-consumables-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Candidate route /collections/consumables returned 404 in preview."
+            },
+            {
+              "id": "mega-role-replacement-parts",
+              "label": "Replacement parts",
+              "status": "blocked",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "ADR-0003 launch route group and Batch 1 route probe",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-replacement-parts-route"
+              ],
+              "blockerId": "dep-replacement-parts-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Candidate routes /collections/replacement-parts and /collections/parts returned 404 in preview."
+            }
+          ]
+        },
+        {
+          "id": "mega-parts-and-consumables",
+          "label": "Parts and consumables",
+          "status": "planned",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "C-PBI-010 candidate mega-menu group",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer",
+            "mega-menu"
+          ],
+          "notes": "Desktop and mobile parent group only. No placeholder links should be configured for missing parts or consumables destinations.",
+          "items": [
+            {
+              "id": "mega-parts-replacement-parts",
+              "label": "Replacement parts",
+              "status": "blocked",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "Epic C parts-navigation requirement and Batch 1 route probe",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-replacement-parts-route"
+              ],
+              "blockerId": "dep-replacement-parts-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "No replacement-parts collection route is verified."
+            },
+            {
+              "id": "mega-parts-consumables",
+              "label": "Consumables",
+              "status": "blocked",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "Epic C consumables-navigation requirement and Batch 1 route probe",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-consumables-route"
+              ],
+              "blockerId": "dep-consumables-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "No consumables collection route is verified."
+            },
+            {
+              "id": "mega-parts-by-machine",
+              "label": "Parts by machine",
+              "status": "planned",
+              "owner": "Product Owner, Product Data, and Shopify Admin",
+              "targetPath": null,
+              "source": "Epic C parts-by-machine requirement and product compatibility ownership rules",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-parts-by-machine-route"
+              ],
+              "blockerId": "dep-parts-by-machine-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Requires approved compatibility data and a verified destination before it can appear in navigation."
+            }
+          ]
+        },
+        {
+          "id": "mega-support",
+          "label": "Support",
+          "status": "planned",
+          "owner": "Unresolved support, content, and Shopify Admin owners",
+          "targetPath": null,
+          "source": "C-PBI-010 candidate mega-menu group",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [
+            "dep-support-route"
+          ],
+          "blockerId": "dep-support-route",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer",
+            "mega-menu"
+          ],
+          "notes": "Desktop and mobile parent group only until a support landing route and owner are approved.",
+          "items": [
+            {
+              "id": "mega-support-contact",
+              "label": "Contact",
+              "status": "approved_for_launch",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/pages/contact",
+              "source": "Current preview main-menu and verified contact route",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "contact",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Verified contact route can be published under Support after preview menu isolation is approved."
+            },
+            {
+              "id": "mega-support-center",
+              "label": "Support center",
+              "status": "blocked",
+              "owner": "Unresolved support, content, and Shopify Admin owners",
+              "targetPath": null,
+              "source": "Epic C support-navigation requirement and Batch 1 route probe",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-support-route"
+              ],
+              "blockerId": "dep-support-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Candidate route /pages/support returned 404 in preview."
+            },
+            {
+              "id": "mega-support-manuals",
+              "label": "Manuals and downloads",
+              "status": "approved_for_launch",
+              "owner": "Unresolved content, technical, support, and Shopify Admin owners",
+              "targetPath": "/pages/em-1-manual",
+              "source": "Epic C manuals and downloads requirement and Batch 1 route probe",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Published EM-1 Manual route is globally eligible. Hidden manuals remain inventoried but are not exposed in global chrome.",
+              "supportResourceIds": [
+                "manual-em-1"
+              ]
+            },
+            {
+              "id": "mega-support-warranty",
+              "label": "Warranty",
+              "status": "blocked",
+              "owner": "Unresolved business, legal, support, and Shopify Admin owners",
+              "targetPath": null,
+              "source": "Epic C warranty-link requirement and legal claims register",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-warranty-route"
+              ],
+              "blockerId": "dep-warranty-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "No warranty route or claim-safe copy is approved for global navigation."
+            },
+            {
+              "id": "mega-support-shipping",
+      "label": "Shipping policy",
+              "status": "blocked",
+              "owner": "Unresolved operations, legal, content, and Shopify Admin owners",
+              "targetPath": null,
+              "source": "Epic C shipping-link requirement and legal claims register",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-shipping-route"
+              ],
+              "blockerId": "dep-shipping-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "No shipping route or freight-safe policy copy is approved for global navigation."
+            }
+          ]
+        }
+      ],
+      "notes": "C-PBI-010 governed content model retained for future richer IA. The current approved Admin implementation is the simplified preview-primary-navigation-menu recorded in the primary menu contract."
+    },
+    {
+      "id": "utility",
+      "label": "Header utility navigation and controls",
+      "owner": "Frontend Engineering and Shopify Admin",
+      "sourceType": "repository_route",
+      "adminHandle": null,
+      "items": [
+        {
+          "id": "utility-logo-home",
+          "label": "Rhino Lapidary",
+          "status": "verified_current",
+          "owner": "Brand Owner and Frontend Engineering",
+          "targetPath": "/",
+          "source": "sections/header.liquid logo link",
+          "sourceType": "theme_route",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "home",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "header"
+          ],
+          "notes": "Logo link returns customers to the storefront homepage."
+        },
+        {
+          "id": "utility-search",
+          "label": "Search",
+          "status": "verified_current",
+          "owner": "Frontend Engineering and Shopify Admin",
+          "targetPath": "/search",
+          "source": "snippets/header-search.liquid and current footer menu",
+          "sourceType": "repository_route",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "search-page",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "utility",
+            "footer"
+          ],
+          "footerGroup": "utility",
+          "notes": "Header search renders as a control, while footer Search is a link."
+        },
+        {
+          "id": "utility-account-login",
+          "label": "Log in",
+          "status": "verified_current",
+          "owner": "Shopify Admin and Frontend Engineering",
+          "targetPath": "/customer_authentication/redirect",
+          "source": "sections/header.liquid customer account link",
+          "sourceType": "shopify_account",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "account-login",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "header",
+            "drawer"
+          ],
+          "externalAllowed": true,
+          "notes": "Customer accounts are enabled for launch. The current Trade affordance redirects to Shopify customer authentication and is covered in desktop/mobile utility QA."
+        },
+        {
+          "id": "utility-cart",
+          "label": "Cart",
+          "status": "verified_current",
+          "owner": "Frontend Engineering",
+          "targetPath": "/cart",
+          "source": "sections/header.liquid cart icon",
+          "sourceType": "theme_route",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "cart",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "header"
+          ],
+          "notes": "Cart route is launch-required and already covered by smoke and cart tests."
+        },
+        {
+          "id": "utility-localization",
+          "label": "Country and language selectors",
+          "status": "verified_current",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "sections/header.liquid and sections/footer.liquid localization forms",
+          "sourceType": "shopify_localization",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer",
+            "footer"
+          ],
+          "footerGroup": "utility",
+          "claimIds": [
+            "CLAIM-009"
+          ],
+          "notes": "United States launch decision disables country and language selectors in preview header, drawer, and footer. Tests verify absence without adding international copy."
+        }
+      ],
+      "notes": "Utility controls are partly theme-owned and partly Shopify-admin dependent."
+    },
+    {
+      "id": "footer",
+      "label": "Footer navigation",
+      "owner": "Product Owner, Support, Legal, and Shopify Admin",
+      "sourceType": "shopify_navigation",
+      "adminHandle": "preview-footer-menu",
+      "items": [
+        {
+          "id": "footer-search",
+          "label": "Search",
+          "status": "verified_current",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": "/search",
+          "source": "Current preview footer menu",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "search-page",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "utility",
+          "notes": "Current footer menu exposes Search only."
+        },
+        {
+          "id": "footer-home",
+          "label": "Rhino Lapidary",
+          "status": "verified_current",
+          "owner": "Brand Owner and Frontend Engineering",
+          "targetPath": "/",
+          "source": "sections/footer.liquid copyright link",
+          "sourceType": "theme_route",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "home",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "company",
+          "claimIds": [
+            "CLAIM-001"
+          ],
+          "notes": "Current footer copyright links the shop name to the homepage."
+        },
+        {
+          "id": "footer-powered-by-shopify",
+          "label": "Powered by Shopify",
+          "status": "verified_current",
+          "owner": "Shopify platform",
+          "targetPath": "https://www.shopify.com",
+          "source": "sections/footer.liquid powered_by_link",
+          "sourceType": "external_shopify_platform",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "footer"
+          ],
+          "externalAllowed": true,
+          "footerGroup": "platform",
+          "notes": "Inherited platform link. This is not a Rhino social, support, or business claim."
+        },
+        {
+          "id": "footer-privacy-policy",
+          "label": "Privacy policy",
+          "status": "verified_current",
+          "owner": "Legal and Shopify Admin",
+          "targetPath": "/policies/privacy-policy",
+          "source": "Shopify Admin shopPolicies PRIVACY_POLICY and sections/footer.liquid dynamic policy rendering.",
+          "sourceType": "shopify_policy",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "privacy-policy",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "policy",
+            "footer"
+          ],
+          "footerGroup": "policies",
+          "policyObjectType": "PRIVACY_POLICY",
+          "notes": "Verified from read-only Shopify Admin shopPolicies and rendered footer policy route probe on 2026-08-18."
+        },
+        {
+          "id": "footer-refund-policy",
+          "label": "Refund policy",
+          "status": "verified_current",
+          "owner": "Legal and Shopify Admin",
+          "targetPath": "/policies/refund-policy",
+          "source": "Shopify Admin shopPolicies REFUND_POLICY and sections/footer.liquid dynamic policy rendering.",
+          "sourceType": "shopify_policy",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "refund-policy",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "policy",
+            "footer"
+          ],
+          "footerGroup": "policies",
+          "policyObjectType": "REFUND_POLICY",
+          "notes": "Verified from read-only Shopify Admin shopPolicies and rendered footer policy route probe on 2026-08-18.",
+          "claimIds": [
+            "CLAIM-013"
+          ]
+        },
+        {
+          "id": "footer-shipping-policy",
+          "label": "Shipping policy",
+          "status": "verified_current",
+          "owner": "Legal and Shopify Admin",
+          "targetPath": "/policies/shipping-policy",
+          "source": "Shopify Admin shopPolicies SHIPPING_POLICY and sections/footer.liquid dynamic policy rendering.",
+          "sourceType": "shopify_policy",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "shipping-policy",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "policy",
+            "footer"
+          ],
+          "footerGroup": "policies",
+          "policyObjectType": "SHIPPING_POLICY",
+          "notes": "Verified from read-only Shopify Admin shopPolicies and rendered footer policy route probe on 2026-08-18.",
+          "claimIds": [
+            "CLAIM-012"
+          ]
+        },
+        {
+          "id": "footer-legal-notice",
+          "label": "Legal notice",
+          "status": "verified_current",
+          "owner": "Legal and Shopify Admin",
+          "targetPath": "/policies/legal-notice",
+          "source": "Shopify Admin shopPolicies LEGAL_NOTICE and sections/footer.liquid dynamic policy rendering.",
+          "sourceType": "shopify_policy",
+          "requiredForLaunch": true,
+          "dependencies": [],
+          "routeContractId": "legal-notice",
+          "expectedInRenderedChrome": true,
+          "expectedLocations": [
+            "policy",
+            "footer"
+          ],
+          "footerGroup": "policies",
+          "policyObjectType": "LEGAL_NOTICE",
+          "notes": "Verified from read-only Shopify Admin shopPolicies and rendered footer policy route probe on 2026-08-18."
+        },
+        {
+          "id": "footer-support",
+          "label": "Support",
+          "status": "deferred",
+          "owner": "Unresolved support, content, and Shopify Admin owners",
+          "targetPath": null,
+          "source": "Epic C backlog support-navigation requirement",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [
+            "dep-support-route"
+          ],
+          "blockerId": "dep-support-route",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "support",
+          "claimIds": [
+            "CLAIM-014"
+          ],
+          "supportResourceIds": [
+            "support-landing-page"
+          ],
+          "notes": "No verified support page route exists in the preview."
+        },
+        {
+          "id": "footer-warranty",
+          "label": "Warranty",
+          "status": "deferred",
+          "owner": "Unresolved business, legal, support, and Shopify Admin owners",
+          "targetPath": null,
+          "source": "Epic C backlog warranty-link requirement and data/legal-claims-register.json",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [
+            "dep-warranty-route"
+          ],
+          "blockerId": "dep-warranty-route",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "support",
+          "claimIds": [
+            "CLAIM-007",
+            "CLAIM-008",
+            "CLAIM-014"
+          ],
+          "supportResourceIds": [
+            "warranty-policy-destination"
+          ],
+          "notes": "No warranty route or claim-safe policy copy is approved for global footer use."
+        },
+        {
+          "id": "footer-shipping",
+          "label": "Shipping",
+          "status": "deferred",
+          "owner": "Unresolved operations, legal, content, and Shopify Admin owners",
+          "targetPath": null,
+          "source": "Epic C backlog shipping-link requirement and data/legal-claims-register.json",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [
+            "dep-shipping-route"
+          ],
+          "blockerId": "dep-shipping-route",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "support",
+          "claimIds": [
+            "CLAIM-012"
+          ],
+          "supportResourceIds": [
+            "shipping-freight-help-route"
+          ],
+          "notes": "No shipping route or freight-safe policy copy is approved for global footer use."
+        }
+      ],
+      "notes": "The preview footer link-list uses preview-footer-menu. Dynamic Shopify policy rendering exposes the currently published policies; production remains on footer."
+    },
+    {
+      "id": "footer-governed-model",
+      "label": "Governed footer information architecture",
+      "owner": "Product Owner, Support, Legal, Content, and Shopify Admin",
+      "sourceType": "repository_route",
+      "adminHandle": null,
+      "items": [
+        {
+          "id": "footer-model-shop",
+          "label": "Shop",
+          "status": "planned",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "C-PBI-015 footer IA model",
+          "sourceType": "repository_route",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "shop",
+          "notes": "Footer group heading only. Do not make this parent clickable unless a verified route is approved.",
+          "items": [
+            {
+              "id": "footer-model-machines",
+              "label": "Machines",
+              "status": "verified_current",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/collections/machines",
+              "source": "data/navigation-spec.json route machines",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "machines",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "shop",
+              "notes": "Verified route, but not rendered in the footer until preview menu isolation is resolved."
+            },
+            {
+              "id": "footer-model-consumables",
+              "label": "Consumables",
+              "status": "blocked",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "ADR-0003 required launch route group",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-consumables-route"
+              ],
+              "blockerId": "dep-consumables-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "shop",
+              "notes": "No verified route exists."
+            },
+            {
+              "id": "footer-model-accessories",
+              "label": "Accessories",
+              "status": "blocked",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "ADR-0003 required launch route group",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-accessories-route"
+              ],
+              "blockerId": "dep-accessories-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "shop",
+              "notes": "No verified route exists."
+            },
+            {
+              "id": "footer-model-replacement-parts",
+              "label": "Replacement parts",
+              "status": "blocked",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "ADR-0003 required launch route group",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-replacement-parts-route"
+              ],
+              "blockerId": "dep-replacement-parts-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "shop",
+              "notes": "No verified route exists."
+            }
+          ]
+        },
+        {
+          "id": "footer-model-support",
+          "label": "Support",
+          "status": "planned",
+          "owner": "Unresolved support, content, legal, and Shopify Admin owners",
+          "targetPath": null,
+          "source": "C-PBI-015 and data/footer-support-resources.json",
+          "sourceType": "repository_route",
+          "requiredForLaunch": false,
+          "dependencies": [
+            "dep-support-route"
+          ],
+          "blockerId": "dep-support-route",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "support",
+          "claimIds": [
+            "CLAIM-014"
+          ],
+          "notes": "Footer group heading only. Support ownership remains unresolved; do not make this parent clickable.",
+          "items": [
+            {
+              "id": "footer-model-contact",
+              "label": "Contact",
+              "status": "verified_current",
+              "owner": "Content, Support, and Shopify Admin",
+              "targetPath": "/pages/contact",
+              "source": "data/navigation-spec.json route contact and data/footer-support-resources.json support-contact-current-page",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "contact",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "support",
+              "claimIds": [
+                "CLAIM-014"
+              ],
+              "supportResourceIds": [
+                "support-contact-current-page"
+              ],
+              "notes": "Approved only as a neutral Contact route. It does not approve support hours, repair scope, or warranty administration copy."
+            },
+            {
+              "id": "footer-model-support-center",
+              "label": "Support center",
+              "status": "blocked",
+              "owner": "Unresolved support, content, and Shopify Admin owners",
+              "targetPath": null,
+              "source": "data/footer-support-resources.json support-landing-page",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [
+                "dep-support-route"
+              ],
+              "blockerId": "dep-support-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "support",
+              "claimIds": [
+                "CLAIM-014"
+              ],
+              "supportResourceIds": [
+                "support-landing-page"
+              ],
+              "notes": "No verified support page route exists."
+            },
+            {
+              "id": "footer-model-manuals",
+              "label": "Manuals and downloads",
+              "status": "approved_for_launch",
+              "owner": "Unresolved content, technical, support, and Shopify Admin owners",
+              "targetPath": "/pages/em-1-manual",
+              "source": "data/footer-support-resources.json manuals-inventory-gap",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "support",
+              "supportResourceIds": [
+                "manual-em-1"
+              ],
+              "notes": "Published EM-1 Manual route is globally eligible. Hidden manuals remain inventoried but are not exposed in global chrome."
+            },
+            {
+              "id": "footer-model-warranty",
+              "label": "Warranty",
+              "status": "blocked",
+              "owner": "Unresolved business, legal, support, and Shopify Admin owners",
+              "targetPath": null,
+              "source": "data/footer-support-resources.json warranty-policy-destination",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-warranty-route"
+              ],
+              "blockerId": "dep-warranty-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "support",
+              "claimIds": [
+                "CLAIM-007",
+                "CLAIM-008",
+                "CLAIM-014"
+              ],
+              "supportResourceIds": [
+                "warranty-policy-destination"
+              ],
+              "notes": "No warranty route or claim-safe copy is approved for global footer use."
+            },
+            {
+              "id": "footer-model-repairs",
+              "label": "Repairs and service",
+              "status": "blocked",
+              "owner": "Unresolved business, support, legal, operations, and Shopify Admin owners",
+              "targetPath": null,
+              "source": "data/footer-support-resources.json repair-service-destination",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-support-route"
+              ],
+              "blockerId": "dep-support-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "support",
+              "claimIds": [
+                "CLAIM-014"
+              ],
+              "supportResourceIds": [
+                "repair-service-destination"
+              ],
+              "notes": "Repair intake and responsibility are not approved."
+            },
+            {
+              "id": "footer-model-shipping",
+              "label": "Shipping",
+              "status": "blocked",
+              "owner": "Unresolved operations, legal, content, support, and Shopify Admin owners",
+              "targetPath": null,
+              "source": "data/footer-support-resources.json shipping-freight-help-route",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-shipping-route"
+              ],
+              "blockerId": "dep-shipping-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "support",
+              "claimIds": [
+                "CLAIM-012"
+              ],
+              "supportResourceIds": [
+                "shipping-freight-help-route"
+              ],
+              "notes": "No shipping route or freight-safe copy is approved for global footer use."
+            },
+            {
+              "id": "footer-model-parts-help",
+              "label": "Parts help",
+              "status": "blocked",
+              "owner": "Product Data, Support, Content, and Shopify Admin",
+              "targetPath": null,
+              "source": "data/footer-support-resources.json parts-help-route",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-parts-by-machine-route"
+              ],
+              "blockerId": "dep-parts-by-machine-route",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "support",
+              "claimIds": [
+                "CLAIM-015"
+              ],
+              "supportResourceIds": [
+                "parts-help-route"
+              ],
+              "notes": "Requires approved compatibility data and verified destination."
+            }
+          ]
+        },
+        {
+          "id": "footer-model-company",
+          "label": "Company",
+          "status": "planned",
+          "owner": "Brand, Content, Legal, and Shopify Admin",
+          "targetPath": null,
+          "source": "C-PBI-015 footer IA model",
+          "sourceType": "repository_route",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "company",
+          "notes": "Footer group heading only. Do not add entity-role, supplier, manufacturer, or social claims without approval.",
+          "items": [
+            {
+              "id": "footer-model-home",
+              "label": "Rhino Lapidary",
+              "status": "approved_for_launch",
+              "owner": "Brand Owner and Shopify Admin",
+              "targetPath": "/",
+              "source": "data/navigation-spec.json route home and legal claims register CLAIM-001",
+              "sourceType": "theme_route",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "home",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "company",
+              "claimIds": [
+                "CLAIM-001"
+              ],
+              "notes": "Plain operating-name use only."
+            },
+            {
+              "id": "footer-model-social-links",
+              "label": "Social links",
+              "status": "unresolved",
+              "owner": "Unresolved Brand, Content, and Shopify Admin owners",
+              "targetPath": null,
+              "source": "data/global-navigation-ia.json dep-social-account-ownership",
+              "sourceType": "external_social",
+              "requiredForLaunch": false,
+              "dependencies": [
+                "dep-social-account-ownership"
+              ],
+              "blockerId": "dep-social-account-ownership",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "externalAllowed": true,
+              "footerGroup": "company",
+              "notes": "No official social account URLs are approved for global footer use."
+            }
+          ]
+        },
+        {
+          "id": "footer-model-policies",
+          "label": "Policies",
+          "status": "planned",
+          "owner": "Legal and Shopify Admin",
+          "targetPath": null,
+          "source": "C-PBI-015 and C-PBI-018 policy discoverability model",
+          "sourceType": "repository_route",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "policies",
+          "notes": "Footer group heading model only. Dynamic Shopify policy objects are the source for rendered policy links.",
+          "items": [
+            {
+              "id": "footer-model-privacy-policy",
+              "label": "Privacy policy",
+              "status": "verified_current",
+              "owner": "Legal and Shopify Admin",
+              "targetPath": "/policies/privacy-policy",
+              "source": "Shopify Admin shopPolicies PRIVACY_POLICY and data/navigation-spec.json route privacy-policy",
+              "sourceType": "shopify_policy",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "privacy-policy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "policies",
+              "policyObjectType": "PRIVACY_POLICY",
+              "notes": "Verified current Shopify policy route; dynamic rendering is owned by sections/footer.liquid."
+            },
+            {
+              "id": "footer-model-refund-policy",
+              "label": "Refund policy",
+              "status": "verified_current",
+              "owner": "Legal and Shopify Admin",
+              "targetPath": "/policies/refund-policy",
+              "source": "Shopify Admin shopPolicies REFUND_POLICY and data/navigation-spec.json route refund-policy",
+              "sourceType": "shopify_policy",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "refund-policy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "policies",
+              "policyObjectType": "REFUND_POLICY",
+              "notes": "Verified current Shopify policy route; dynamic rendering is owned by sections/footer.liquid.",
+              "claimIds": [
+                "CLAIM-013"
+              ]
+            },
+            {
+              "id": "footer-model-shipping-policy",
+              "label": "Shipping policy",
+              "status": "verified_current",
+              "owner": "Legal, Operations, and Shopify Admin",
+              "targetPath": "/policies/shipping-policy",
+              "source": "Shopify Admin shopPolicies SHIPPING_POLICY and data/navigation-spec.json route shipping-policy",
+              "sourceType": "shopify_policy",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "shipping-policy",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "policies",
+              "policyObjectType": "SHIPPING_POLICY",
+              "notes": "Verified Shopify shipping policy route. This does not approve separate freight timing, destination, or international availability claims.",
+              "claimIds": [
+                "CLAIM-012"
+              ]
+            },
+            {
+              "id": "footer-model-legal-notice",
+              "label": "Legal notice",
+              "status": "verified_current",
+              "owner": "Legal and Shopify Admin",
+              "targetPath": "/policies/legal-notice",
+              "source": "Shopify Admin shopPolicies LEGAL_NOTICE and data/navigation-spec.json route legal-notice",
+              "sourceType": "shopify_policy",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "legal-notice",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "policies",
+              "policyObjectType": "LEGAL_NOTICE",
+              "notes": "Verified current Shopify policy route; dynamic rendering is owned by sections/footer.liquid."
+            },
+            {
+              "id": "footer-model-terms-policy",
+              "label": "Terms of service",
+              "status": "deferred",
+              "owner": "Legal and Shopify Admin",
+              "targetPath": null,
+              "source": "Shopify Admin shopPolicies query on 2026-08-18",
+              "sourceType": "shopify_policy",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "policies",
+              "policyObjectType": "TERMS_OF_SERVICE",
+              "notes": "No Terms of service policy is currently published; it is not a launch-closing Epic C requirement."
+            },
+            {
+              "id": "footer-model-contact-information-policy",
+              "label": "Contact information",
+              "status": "deferred",
+              "owner": "Legal and Shopify Admin",
+              "targetPath": null,
+              "source": "Shopify Admin shopPolicies query on 2026-08-18",
+              "sourceType": "shopify_policy",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "policies",
+              "policyObjectType": "CONTACT_INFORMATION",
+              "notes": "No Contact information policy is currently published; neutral /pages/contact remains the verified contact route.",
+              "claimIds": [
+                "CLAIM-014"
+              ]
+            },
+            {
+              "id": "footer-model-accessibility-policy",
+              "label": "Accessibility",
+              "status": "deferred",
+              "owner": "Legal and Shopify Admin",
+              "targetPath": null,
+              "source": "Batch 1 route probe candidate /pages/accessibility-statement and 2026-08-18 Admin policy query",
+              "sourceType": "shopify_policy",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "policies",
+              "policyObjectType": "ACCESSIBILITY",
+              "notes": "No accessibility statement route or policy object is currently published."
+            }
+          ]
+        },
+        {
+          "id": "footer-model-utility",
+          "label": "Utility",
+          "status": "planned",
+          "owner": "Frontend Engineering, Product Owner, and Shopify Admin",
+          "targetPath": null,
+          "source": "C-PBI-015 footer IA model",
+          "sourceType": "repository_route",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "utility",
+          "notes": "Footer utility group is optional and must not duplicate inaccessible controls.",
+          "items": [
+            {
+              "id": "footer-model-search",
+              "label": "Search",
+              "status": "verified_current",
+              "owner": "Frontend Engineering and Shopify Admin",
+              "targetPath": "/search",
+              "source": "data/navigation-spec.json route search-page",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "search-page",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "utility",
+              "notes": "Current footer menu already renders Search preview-isolated footer menu."
+            },
+            {
+              "id": "footer-model-account-login",
+              "label": "Log in",
+              "status": "approved_for_launch",
+              "owner": "Shopify Admin and Product Owner",
+              "targetPath": "/customer_authentication/redirect",
+              "source": "Shopify Admin customerAccounts OPTIONAL and existing utility-account-login",
+              "sourceType": "shopify_account",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "routeContractId": "account-login",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "externalAllowed": true,
+              "footerGroup": "utility",
+              "notes": "Header and drawer account/login affordance is enabled for launch. A footer account link remains optional and is not currently rendered."
+            },
+            {
+              "id": "footer-model-localization",
+              "label": "Country and language selectors",
+              "status": "verified_current",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": null,
+              "source": "data/localization-market-decision.json and sections/footer.liquid localization forms",
+              "sourceType": "shopify_localization",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "footer"
+              ],
+              "footerGroup": "utility",
+              "claimIds": [
+                "CLAIM-009"
+              ],
+              "notes": "United States launch decision disables country and language selectors in global chrome; absence is verified in rendered QA."
+            }
+          ]
+        }
+      ],
+      "notes": "Governed footer model for C-PBI-015 and C-PBI-016. Preview footer menu isolation is resolved; currently rendered policy links are dynamic Shopify policy objects and the preview footer link list uses preview-footer-menu."
+    },
+    {
+      "id": "unresolved-global-destinations",
+      "label": "Unresolved global navigation destinations",
+      "owner": "Product Owner with named business owners still unresolved",
+      "sourceType": "repository_route",
+      "adminHandle": null,
+      "items": [
+        {
+          "id": "destination-consumables",
+          "label": "Consumables",
+          "status": "blocked",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "ADR-0003 required launch route group",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": true,
+          "dependencies": [
+            "dep-consumables-route"
+          ],
+          "blockerId": "dep-consumables-route",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer",
+            "footer"
+          ],
+          "footerGroup": "shop",
+          "notes": "Candidate route /collections/consumables returned 404 in the Batch 1 preview probe."
+        },
+        {
+          "id": "destination-accessories",
+          "label": "Accessories",
+          "status": "blocked",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "ADR-0003 required launch route group",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": true,
+          "dependencies": [
+            "dep-accessories-route"
+          ],
+          "blockerId": "dep-accessories-route",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer",
+            "footer"
+          ],
+          "footerGroup": "shop",
+          "notes": "Candidate route /collections/accessories returned 404 in the Batch 1 preview probe."
+        },
+        {
+          "id": "destination-replacement-parts",
+          "label": "Replacement parts",
+          "status": "blocked",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "ADR-0003 required launch route group",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": true,
+          "dependencies": [
+            "dep-replacement-parts-route"
+          ],
+          "blockerId": "dep-replacement-parts-route",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer",
+            "footer"
+          ],
+          "footerGroup": "shop",
+          "notes": "Candidate routes /collections/replacement-parts and /collections/parts returned 404 in the Batch 1 preview probe."
+        },
+        {
+          "id": "destination-manuals",
+          "label": "Additional manual destinations",
+          "status": "deferred",
+          "owner": "Unresolved content, technical, support, and Shopify Admin owners",
+          "targetPath": null,
+          "source": "Epic C backlog manuals and downloads requirement",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "footer"
+          ],
+          "footerGroup": "support",
+          "supportResourceIds": [
+            "manual-em-1"
+          ],
+          "notes": "Published EM-1, TrimMaster, and ShapeMaster manual pages are inventoried; hidden manuals remain not globally discoverable. A separate all-manuals landing route is not approved for launch."
+        },
+        {
+          "id": "destination-social-links",
+          "label": "Social links",
+          "status": "unresolved",
+          "owner": "Unresolved Brand, Content, and Shopify Admin owners",
+          "targetPath": null,
+          "source": "Epic C backlog social channel requirement",
+          "sourceType": "external_social",
+          "requiredForLaunch": false,
+          "dependencies": [
+            "dep-social-account-ownership"
+          ],
+          "blockerId": "dep-social-account-ownership",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "drawer",
+            "footer"
+          ],
+          "externalAllowed": true,
+          "footerGroup": "company",
+          "notes": "No official social account URLs are approved in the register."
+        }
+      ],
+      "notes": "These items preserve required route categories and future destinations without inventing handles or URLs."
+    }
+  ],
+  "unresolvedDependencies": [
+    {
+      "id": "dep-consumables-route",
+      "label": "Consumables collection route",
+      "status": "needs_admin",
+      "owner": "Product Owner and Shopify Admin",
+      "description": "No verified consumables collection route exists on the authenticated preview.",
+      "source": "Batch 1 preview route probe",
+      "blockedItems": [
+        "destination-consumables",
+        "footer-model-consumables",
+        "mega-role-consumables",
+        "mega-parts-consumables"
+      ]
+    },
+    {
+      "id": "dep-accessories-route",
+      "label": "Accessories collection route",
+      "status": "needs_admin",
+      "owner": "Product Owner and Shopify Admin",
+      "description": "No verified accessories collection route exists on the authenticated preview.",
+      "source": "Batch 1 preview route probe",
+      "blockedItems": [
+        "destination-accessories",
+        "footer-model-accessories",
+        "mega-role-accessories"
+      ]
+    },
+    {
+      "id": "dep-replacement-parts-route",
+      "label": "Replacement parts collection route",
+      "status": "needs_admin",
+      "owner": "Product Owner and Shopify Admin",
+      "description": "No verified replacement-parts or parts collection route exists on the authenticated preview.",
+      "source": "Batch 1 preview route probe",
+      "blockedItems": [
+        "destination-replacement-parts",
+        "footer-model-replacement-parts",
+        "mega-role-replacement-parts",
+        "mega-parts-replacement-parts"
+      ]
+    },
+    {
+      "id": "dep-support-route",
+      "label": "Support page route and owner",
+      "status": "needs_content",
+      "owner": "Unresolved support, content, and Shopify Admin owners",
+      "description": "No verified support page route exists, and support responsibility remains unresolved.",
+      "source": "docs/rhino-lapidary-pbi-tracker-epic-c.md and data/legal-claims-register.json CLAIM-014",
+      "blockedItems": [
+        "footer-support",
+        "footer-model-support",
+        "footer-model-support-center",
+        "footer-model-repairs",
+        "mega-support",
+        "mega-support-center"
+      ]
+    },
+    {
+      "id": "dep-warranty-route",
+      "label": "Warranty route and claim-safe copy",
+      "status": "needs_legal",
+      "owner": "Unresolved business, legal, support, and Shopify Admin owners",
+      "description": "No verified warranty route exists, and warranty duration or responsibility claims remain blocked without approval.",
+      "source": "data/legal-claims-register.json CLAIM-007, CLAIM-008, and CLAIM-014",
+      "blockedItems": [
+        "footer-warranty",
+        "footer-model-warranty",
+        "mega-support-warranty"
+      ]
+    },
+    {
+      "id": "dep-shipping-route",
+      "label": "Shipping or freight route and claim-safe copy",
+      "status": "needs_legal",
+      "owner": "Unresolved operations, legal, content, and Shopify Admin owners",
+      "description": "No verified shipping route exists, and freight or delivery promises remain blocked without current operations approval.",
+      "source": "data/legal-claims-register.json CLAIM-012",
+      "blockedItems": [
+        "footer-shipping",
+        "footer-model-shipping",
+        "mega-support-shipping"
+      ]
+    },
+    {
+      "id": "future-policy-admin-dependency",
+      "label": "Accessibility policy or statement route",
+      "status": "needs_legal",
+      "owner": "Legal, Accessibility, Content, and Shopify Admin",
+      "description": "No approved accessibility policy object or accessibility-statement page route exists for footer rendering.",
+      "source": "Batch 1 route probe candidate /pages/accessibility-statement and C-PBI-018",
+      "blockedItems": [
+        "footer-model-accessibility-policy"
+      ]
+    },
+    {
+      "id": "dep-social-account-ownership",
+      "label": "Official social account URLs",
+      "status": "needs_business_review",
+      "owner": "Unresolved Brand, Content, and Shopify Admin owners",
+      "description": "No official social account URLs are approved for global navigation.",
+      "source": "docs/rhino-lapidary-pbi-tracker-epic-c.md C-PBI-015 and C-PBI-016",
+      "blockedItems": [
+        "destination-social-links",
+        "footer-model-social-links"
+      ]
+    },
+    {
+      "id": "dep-machine-family-route-strategy",
+      "label": "Machine-family menu destination strategy",
+      "status": "needs_business_review",
+      "owner": "Product Owner, Product Data, and Shopify Admin",
+      "description": "Machine-family menu entries need approved destination strategy and verified routes before publication. Family labels must stay at EM-1, BeadMaster, ShapeMaster, TrimMaster, LapMaster, SawMaster, and JadeMaster without using positioning phrases as primary labels.",
+      "source": "docs/brand/rhino-machine-family-identifiers.md and docs/brand/rhino-product-naming-and-terminology.md",
+      "blockedItems": [
+        "mega-machine-em-1",
+        "mega-machine-beadmaster",
+        "mega-machine-shapemaster",
+        "mega-machine-trimmaster",
+        "mega-machine-lapmaster",
+        "mega-machine-sawmaster",
+        "mega-machine-jademaster"
+      ]
+    },
+    {
+      "id": "dep-parts-by-machine-route",
+      "label": "Parts-by-machine route and compatibility data",
+      "status": "needs_content",
+      "owner": "Product Owner, Product Data, and Shopify Admin",
+      "description": "Parts-by-machine navigation requires approved compatibility data and a verified destination. Do not infer compatibility from product names, dimensions, or source-document proximity.",
+      "source": "Epic C backlog parts-by-machine requirement and docs/brand/rhino-product-naming-and-terminology.md compatibility rules",
+      "blockedItems": [
+        "footer-model-parts-help",
+        "mega-parts-by-machine"
+      ]
+    }
+  ]
+}

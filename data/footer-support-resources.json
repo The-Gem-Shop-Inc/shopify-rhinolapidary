@@ -1,0 +1,517 @@
+{
+  "$schema": "../schemas/footer-support-resources.schema.json",
+  "schemaVersion": 1,
+  "status": "approved_plan",
+  "source": "Epic C C-PBI-019 support, manuals, downloads, and footer dependency inventory reconciled to read-only Shopify Admin page publication evidence on 2026-08-18.",
+  "resources": [
+    {
+      "id": "support-contact-current-page",
+      "label": "Contact",
+      "category": "contact",
+      "source": "data/navigation-spec.json route contact and Batch 1 preview route probe",
+      "sourceType": "verified_storefront_route",
+      "owner": "Content, Support, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "not_applicable",
+      "legalApproval": "not_applicable",
+      "contentApproval": "approved_current",
+      "intendedDestination": "/pages/contact",
+      "globalNavigationStatus": "approved_current_limited",
+      "safeForGlobalNavigation": true,
+      "blockers": [],
+      "affectedModels": [],
+      "claimIds": [
+        "CLAIM-014"
+      ],
+      "navigationItemIds": [
+        "primary-contact",
+        "mega-support-contact",
+        "footer-model-contact"
+      ],
+      "notes": "Safe only as a neutral Contact route. This does not approve support hours, repair scope, warranty administration, or named contact-channel copy."
+    },
+    {
+      "id": "support-landing-page",
+      "label": "Support landing page",
+      "category": "support",
+      "source": "Batch 1 route probe candidate /pages/support and data/global-navigation-ia.json dep-support-route",
+      "sourceType": "route_candidate",
+      "owner": "Unresolved support, content, and Shopify Admin owners",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "not_applicable",
+      "legalApproval": "needs_review",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/support",
+      "globalNavigationStatus": "deferred",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "dep-support-route",
+        "Support owner, route content, contact channels, repair scope, and warranty-administration role are unresolved."
+      ],
+      "affectedModels": [],
+      "claimIds": [
+        "CLAIM-014"
+      ],
+      "navigationItemIds": [
+        "footer-support",
+        "mega-support-center",
+        "footer-model-support-center"
+      ],
+      "notes": "The route remains unavailable; current launch support/manual coverage uses the neutral contact page and published manual pages instead of a generic support landing page."
+    },
+    {
+      "id": "setup-documentation-gap",
+      "label": "Setup documentation",
+      "category": "setup",
+      "source": "docs/Rhino Lapidary Storefront Backlog and Epics.md Epic F and Epic X",
+      "sourceType": "admin_dependency",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "unknown",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "needs_content",
+      "intendedDestination": null,
+      "globalNavigationStatus": "dependency",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "No approved setup destination, file inventory, or publication process exists."
+      ],
+      "affectedModels": [],
+      "claimIds": [
+        "CLAIM-014"
+      ],
+      "navigationItemIds": [],
+      "notes": "Setup content is a future support/post-purchase dependency and is not approved for global footer navigation."
+    },
+    {
+      "id": "technical-specification-register",
+      "label": "Machine specification resolution register",
+      "category": "specification",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "sourceType": "repository_document",
+      "owner": "Product Data and Technical Owners",
+      "rightsStatus": "internal_evidence_only",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "blocked",
+      "intendedDestination": null,
+      "globalNavigationStatus": "blocked",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Unresolved machine specification conflicts remain open.",
+        "The register is an internal decision artifact, not a customer-facing download."
+      ],
+      "affectedModels": [
+        "EM-1",
+        "BeadMaster",
+        "ShapeMaster",
+        "TrimMaster",
+        "LapMaster",
+        "SawMaster",
+        "JadeMaster",
+        "TumbleMaster"
+      ],
+      "claimIds": [
+        "CLAIM-003",
+        "CLAIM-004",
+        "CLAIM-010",
+        "CLAIM-011"
+      ],
+      "navigationItemIds": [],
+      "notes": "Do not publish as an authoritative manual, specification download, or global support destination."
+    },
+    {
+      "id": "technical-download-evidence-set",
+      "label": "Technical document evidence set",
+      "category": "technical_download",
+      "source": "data/brand-content-migration-register.json MIG-030, MIG-042, MIG-050, MIG-055, MIG-060, and MIG-065",
+      "sourceType": "migration_register",
+      "owner": "Product Data, Technical, Content, Media, and Shopify Admin",
+      "rightsStatus": "owned_or_controlled_needs_confirmation",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "blocked",
+      "intendedDestination": null,
+      "globalNavigationStatus": "blocked",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Technical documents are source evidence only.",
+        "Unresolved specification conflicts and media/publication review block global exposure."
+      ],
+      "affectedModels": [
+        "BeadMaster",
+        "ShapeMaster",
+        "TrimMaster",
+        "LapMaster",
+        "SawMaster"
+      ],
+      "claimIds": [
+        "CLAIM-003",
+        "CLAIM-004",
+        "CLAIM-010"
+      ],
+      "navigationItemIds": [],
+      "notes": "Repository evidence can inform product data after review; it is not approved as a public download library."
+    },
+    {
+      "id": "warranty-policy-destination",
+      "label": "Warranty destination",
+      "category": "warranty",
+      "source": "data/brand-content-migration-register.json MIG-018 and MIG-019",
+      "sourceType": "policy_source",
+      "owner": "Business, Legal, Support, Operations, Product Data, and Shopify Admin",
+      "rightsStatus": "owned_or_controlled_needs_confirmation",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_legal",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/warranty",
+      "globalNavigationStatus": "blocked",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "dep-warranty-route",
+        "Warranty duration, exclusions, provider, administrator, and product classes are unresolved."
+      ],
+      "affectedModels": [],
+      "claimIds": [
+        "CLAIM-007",
+        "CLAIM-008",
+        "CLAIM-014"
+      ],
+      "navigationItemIds": [
+        "footer-warranty",
+        "mega-support-warranty",
+        "footer-model-warranty"
+      ],
+      "notes": "No warranty link or summary is approved for global footer navigation."
+    },
+    {
+      "id": "repair-service-destination",
+      "label": "Repairs and service destination",
+      "category": "repair",
+      "source": "docs/brand/rhino-identity-architecture.md and data/legal-claims-register.json CLAIM-014",
+      "sourceType": "admin_dependency",
+      "owner": "Business, Support, Legal, Operations, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_legal",
+      "contentApproval": "needs_content",
+      "intendedDestination": null,
+      "globalNavigationStatus": "blocked",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Repair intake, responsibility, eligibility, geography, and turnaround ownership are unresolved."
+      ],
+      "affectedModels": [],
+      "claimIds": [
+        "CLAIM-014"
+      ],
+      "navigationItemIds": [
+        "footer-model-repairs"
+      ],
+      "notes": "Do not expose repair/service navigation until the support identity and process are approved."
+    },
+    {
+      "id": "shipping-freight-help-route",
+      "label": "Shipping and freight help",
+      "category": "shipping_freight",
+      "source": "data/brand-content-migration-register.json MIG-015 and data/legal-claims-register.json CLAIM-012",
+      "sourceType": "policy_source",
+      "owner": "Operations, Legal, Content, Product Data, Support, and Shopify Admin",
+      "rightsStatus": "owned_or_controlled_needs_confirmation",
+      "technicalApproval": "needs_review",
+      "legalApproval": "needs_legal",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/shipping",
+      "globalNavigationStatus": "blocked",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "dep-shipping-route",
+        "Current freight, delivery timing, destination, pickup, and product eligibility rules are unresolved."
+      ],
+      "affectedModels": [],
+      "claimIds": [
+        "CLAIM-012"
+      ],
+      "navigationItemIds": [
+        "footer-shipping",
+        "mega-support-shipping",
+        "footer-model-shipping"
+      ],
+      "notes": "The neutral label is recorded, but no route or customer-facing shipping/freight claim is approved."
+    },
+    {
+      "id": "parts-help-route",
+      "label": "Parts help",
+      "category": "parts_help",
+      "source": "data/global-navigation-ia.json dep-parts-by-machine-route and docs/brand/rhino-product-naming-and-terminology.md compatibility rules",
+      "sourceType": "admin_dependency",
+      "owner": "Product Data, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "not_applicable",
+      "contentApproval": "needs_content",
+      "intendedDestination": null,
+      "globalNavigationStatus": "dependency",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "dep-parts-by-machine-route",
+        "Structured compatibility data and a verified destination are required before global linking."
+      ],
+      "affectedModels": [
+        "EM-1",
+        "BeadMaster",
+        "ShapeMaster",
+        "TrimMaster",
+        "LapMaster",
+        "SawMaster",
+        "JadeMaster"
+      ],
+      "claimIds": [
+        "CLAIM-015"
+      ],
+      "navigationItemIds": [
+        "footer-model-parts-help",
+        "mega-parts-by-machine"
+      ],
+      "notes": "Do not ask customers to infer compatibility from titles or source-document proximity."
+    },
+    {
+      "id": "manual-em-1",
+      "label": "EM-1 Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Published page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "approved",
+      "legalApproval": "approved_current",
+      "contentApproval": "approved_current",
+      "intendedDestination": "/pages/em-1-manual",
+      "globalNavigationStatus": "approved_current_limited",
+      "safeForGlobalNavigation": true,
+      "blockers": [],
+      "affectedModels": [
+        "EM-1"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [
+        "primary-manuals",
+        "mega-support-manuals",
+        "footer-model-manuals"
+      ],
+      "notes": "Published native Shopify page is eligible as a customer-facing manual destination. This records route availability only and does not add unsupported warranty, freight, or specification claims."
+    },
+    {
+      "id": "manual-trimmaster",
+      "label": "TrimMaster Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Published page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "approved",
+      "legalApproval": "approved_current",
+      "contentApproval": "approved_current",
+      "intendedDestination": "/pages/trimmaster-manual",
+      "globalNavigationStatus": "approved",
+      "safeForGlobalNavigation": true,
+      "blockers": [],
+      "affectedModels": [
+        "TrimMaster"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [],
+      "notes": "Published native Shopify page is eligible as a customer-facing manual destination. This records route availability only and does not add unsupported warranty, freight, or specification claims."
+    },
+    {
+      "id": "manual-shapemaster",
+      "label": "ShapeMaster Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Published page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "approved",
+      "legalApproval": "approved_current",
+      "contentApproval": "approved_current",
+      "intendedDestination": "/pages/shapemaster-manual",
+      "globalNavigationStatus": "approved",
+      "safeForGlobalNavigation": true,
+      "blockers": [],
+      "affectedModels": [
+        "ShapeMaster"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [],
+      "notes": "Published native Shopify page is eligible as a customer-facing manual destination. This records route availability only and does not add unsupported warranty, freight, or specification claims."
+    },
+    {
+      "id": "manual-12-in-lapmaster",
+      "label": "12 in. LapMaster Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Hidden page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/12-in-lapmaster-manual",
+      "globalNavigationStatus": "deferred",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Page is hidden in Shopify Admin and must not be exposed in global navigation."
+      ],
+      "affectedModels": [
+        "LapMaster"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [],
+      "notes": "Hidden native Shopify page is inventoried for governance but is not globally discoverable."
+    },
+    {
+      "id": "manual-18-in-lapmaster",
+      "label": "18 in. LapMaster Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Hidden page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/18-in-lapmaster-manual",
+      "globalNavigationStatus": "deferred",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Page is hidden in Shopify Admin and must not be exposed in global navigation."
+      ],
+      "affectedModels": [
+        "LapMaster"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [],
+      "notes": "Hidden native Shopify page is inventoried for governance but is not globally discoverable."
+    },
+    {
+      "id": "manual-18-in-sawmaster",
+      "label": "18 in. SawMaster Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Hidden page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/18-in-sawmaster-manual",
+      "globalNavigationStatus": "deferred",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Page is hidden in Shopify Admin and must not be exposed in global navigation."
+      ],
+      "affectedModels": [
+        "SawMaster"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [],
+      "notes": "Hidden native Shopify page is inventoried for governance but is not globally discoverable."
+    },
+    {
+      "id": "manual-24-in-sawmaster",
+      "label": "24 in. SawMaster Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Hidden page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/24-in-sawmaster-manual",
+      "globalNavigationStatus": "deferred",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Page is hidden in Shopify Admin and must not be exposed in global navigation."
+      ],
+      "affectedModels": [
+        "SawMaster"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [],
+      "notes": "Hidden native Shopify page is inventoried for governance but is not globally discoverable."
+    },
+    {
+      "id": "manual-36-in-sawmaster",
+      "label": "36 in. SawMaster Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Hidden page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/36-in-sawmaster-manual",
+      "globalNavigationStatus": "deferred",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Page is hidden in Shopify Admin and must not be exposed in global navigation."
+      ],
+      "affectedModels": [
+        "SawMaster"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [],
+      "notes": "Hidden native Shopify page is inventoried for governance but is not globally discoverable."
+    },
+    {
+      "id": "manual-jademaster",
+      "label": "JadeMaster Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Hidden page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/jademaster-manual",
+      "globalNavigationStatus": "deferred",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Page is hidden in Shopify Admin and must not be exposed in global navigation."
+      ],
+      "affectedModels": [
+        "JadeMaster"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [],
+      "notes": "Hidden native Shopify page is inventoried for governance but is not globally discoverable."
+    },
+    {
+      "id": "manual-beadmaster",
+      "label": "BeadMaster Manual",
+      "category": "manual",
+      "source": "Shopify Admin Pages query on 2026-08-18 (Hidden page).",
+      "sourceType": "verified_storefront_route",
+      "owner": "Product Data, Technical, Support, Content, and Shopify Admin",
+      "rightsStatus": "not_applicable",
+      "technicalApproval": "needs_technical_review",
+      "legalApproval": "needs_review",
+      "contentApproval": "needs_content",
+      "intendedDestination": "/pages/beadmaster-manual",
+      "globalNavigationStatus": "deferred",
+      "safeForGlobalNavigation": false,
+      "blockers": [
+        "Page is hidden in Shopify Admin and must not be exposed in global navigation."
+      ],
+      "affectedModels": [
+        "BeadMaster"
+      ],
+      "claimIds": [],
+      "navigationItemIds": [],
+      "notes": "Hidden native Shopify page is inventoried for governance but is not globally discoverable."
+    }
+  ]
+}
