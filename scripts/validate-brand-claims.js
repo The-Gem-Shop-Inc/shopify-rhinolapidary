@@ -23,6 +23,7 @@ const GOVERNED_CLAIM_SOURCE_FILES = [
     'data/global-navigation-ia.json',
     'data/footer-support-resources.json',
     'data/localization-market-decision.json',
+    'data/homepage-content-claims-map.json',
 ];
 
 const CUSTOMER_FACING_EXTENSIONS = new Set([

@@ -13,7 +13,26 @@
       "label": "Machines",
       "path": "/collections/machines",
       "group": "header",
-      "requiredForLaunch": true
+      "requiredForLaunch": true,
+      "approvalStatus": "approved",
+      "destinationPurpose": "Current homepage primary CTA to the machine collection.",
+      "sourceOwner": "Frontend Engineering and Shopify Admin Owner",
+      "expectedRouteIdentity": "collection:machines",
+      "fixtureKey": "collection",
+      "homepageReferences": [
+        {
+          "moduleId": "rhino-intro-current",
+          "linkRole": "primary_cta",
+          "source": "templates/index.json#sections.rhino_intro.blocks.button.settings.button_link",
+          "currentRendered": true
+        },
+        {
+          "moduleId": "homepage-customer-path-chooser",
+          "linkRole": "customer_path",
+          "source": "templates/index.json#sections.homepage_customer_paths.blocks.machines.settings.link",
+          "currentRendered": true
+        }
+      ]
     },
     {
       "id": "catalog",
@@ -21,7 +40,19 @@
       "path": "/collections",
       "group": "header",
       "requiredForLaunch": true,
-      "notes": "Verified current preview-primary-navigation-menu parent route in Shopify Admin; Trade renders this parent as a disclosure when nested children are present."
+      "approvalStatus": "approved",
+      "destinationPurpose": "Approved catalog index route and homepage customer-path destination.",
+      "sourceOwner": "Shopify Admin Owner and Frontend Engineering",
+      "expectedRouteIdentity": "collections-index",
+      "notes": "Verified current preview-primary-navigation-menu parent route in Shopify Admin; Trade renders this parent as a disclosure when nested children are present.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-customer-path-chooser",
+          "linkRole": "customer_path",
+          "source": "templates/index.json#sections.homepage_customer_paths.blocks.catalog.settings.link",
+          "currentRendered": true
+        }
+      ]
     },
     {
       "id": "search",
@@ -51,7 +82,38 @@
       "path": "/pages/contact",
       "group": "footer",
       "requiredForLaunch": true,
-      "notes": "Verified current preview main-menu link."
+      "approvalStatus": "approved",
+      "destinationPurpose": "Current homepage secondary CTA and generic contact destination.",
+      "sourceOwner": "Frontend Engineering and Shopify Admin Owner",
+      "expectedRouteIdentity": "page:contact",
+      "fixtureKey": "contact",
+      "homepageReferences": [
+        {
+          "moduleId": "rhino-intro-current",
+          "linkRole": "secondary_cta",
+          "source": "templates/index.json#sections.rhino_intro.blocks.button.settings.button_link_2",
+          "currentRendered": true
+        },
+        {
+          "moduleId": "homepage-support-reassurance",
+          "linkRole": "neutral_contact_fallback",
+          "source": "data/homepage-section-outcomes.json#homepage-support-reassurance",
+          "currentRendered": false
+        },
+        {
+          "moduleId": "homepage-inquiry-path",
+          "linkRole": "neutral_contact_fallback",
+          "source": "data/homepage-section-outcomes.json#homepage-inquiry-path",
+          "currentRendered": false
+        },
+        {
+          "moduleId": "homepage-customer-path-chooser",
+          "linkRole": "customer_path",
+          "source": "templates/index.json#sections.homepage_customer_paths.blocks.contact.settings.link",
+          "currentRendered": true
+        }
+      ],
+      "notes": "Verified current preview main-menu link. Route approval does not approve support, repair, warranty, or response-time claims."
     },
     {
       "id": "manual-em-1",
@@ -60,6 +122,190 @@
       "group": "support",
       "requiredForLaunch": true,
       "notes": "Verified current published manual route linked from preview-primary-navigation-menu as Manuals."
+    },
+    {
+      "id": "homepage-manuals",
+      "label": "Manuals",
+      "path": "/pages/manuals",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "observed",
+      "destinationPurpose": "Observed Admin manuals index page candidate for future homepage education/manuals routing.",
+      "sourceOwner": "Shopify Admin Owner and Product Data Owner",
+      "expectedRouteIdentity": "page:manuals",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-education-manuals",
+          "linkRole": "manuals_candidate",
+          "source": "Shopify Admin pages inventory",
+          "currentRendered": false
+        }
+      ],
+      "notes": "Published page observed in Admin on 2026-08-20, but not approved as a homepage module destination in Batch 1."
+    },
+    {
+      "id": "homepage-parts",
+      "label": "Parts",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future aggregate parts destination.",
+      "sourceOwner": "Product Data Owner and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No approved aggregate parts route exists. Admin has empty family parts collections, but no governed homepage parts destination.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-customer-path-chooser",
+          "linkRole": "planned_path",
+          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "currentRendered": false
+        },
+        {
+          "moduleId": "homepage-parts-accessories-consumables",
+          "linkRole": "planned_path",
+          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "currentRendered": false
+        }
+      ]
+    },
+    {
+      "id": "homepage-featured-machine-product",
+      "label": "Featured machine product",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future featured-machine product route selected for homepage use.",
+      "sourceOwner": "Product Owner, Product Data Owner, and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No featured machine, product handle, product facts, media, or approval decision exists for homepage use.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-featured-machine",
+          "linkRole": "planned_product_link",
+          "source": "data/homepage-section-outcomes.json#homepage-featured-machine",
+          "currentRendered": false
+        }
+      ]
+    },
+    {
+      "id": "homepage-accessories",
+      "label": "Accessories",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future aggregate accessories destination.",
+      "sourceOwner": "Product Data Owner and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No approved accessories collection, page, or route is represented for homepage use.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-parts-accessories-consumables",
+          "linkRole": "planned_path",
+          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "currentRendered": false
+        }
+      ]
+    },
+    {
+      "id": "homepage-consumables",
+      "label": "Consumables",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future aggregate consumables destination.",
+      "sourceOwner": "Product Data Owner and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No approved consumables collection, page, or route is represented for homepage use.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-customer-path-chooser",
+          "linkRole": "planned_path",
+          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "currentRendered": false
+        },
+        {
+          "moduleId": "homepage-parts-accessories-consumables",
+          "linkRole": "planned_path",
+          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "currentRendered": false
+        }
+      ]
+    },
+    {
+      "id": "homepage-education",
+      "label": "Education",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future education or buying-guide destination.",
+      "sourceOwner": "Content Owner and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No approved education or buying-guide page, article, route, or content owner decision exists.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-education-manuals",
+          "linkRole": "planned_path",
+          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "currentRendered": false
+        }
+      ]
+    },
+    {
+      "id": "homepage-quote-inquiry",
+      "label": "Quote or inquiry",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future quote, lead, or inquiry path.",
+      "sourceOwner": "Business Owner, Support Owner, and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No approved form, quote process, support owner, or follow-up workflow exists.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-inquiry-path",
+          "linkRole": "planned_path",
+          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "currentRendered": false
+        }
+      ]
+    },
+    {
+      "id": "homepage-financing",
+      "label": "Financing",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future financing destination if the business approves financing visibility.",
+      "sourceOwner": "Business Owner, Legal or Claims Reviewer, and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No approved financing provider, terms, availability, route, or legal approval exists.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-inquiry-path",
+          "linkRole": "planned_path",
+          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "currentRendered": false
+        }
+      ]
+    },
+    {
+      "id": "homepage-dealer-institutional",
+      "label": "Dealer or institutional inquiries",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future dealer, school, club, workshop, or institutional destination.",
+      "sourceOwner": "Business Owner, Support Owner, and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No approved dealer, school, club, workshop, institutional, pricing, or follow-up route exists.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-inquiry-path",
+          "linkRole": "planned_path",
+          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "currentRendered": false
+        }
+      ]
     },
     {
       "id": "privacy-policy",
@@ -83,6 +329,18 @@
       "path": "/policies/shipping-policy",
       "group": "policy",
       "requiredForLaunch": true,
+      "approvalStatus": "approved",
+      "destinationPurpose": "Existing policy route that could later support approved shipping or freight navigation.",
+      "sourceOwner": "Legal Owner, Operations Owner, and Shopify Admin Owner",
+      "expectedRouteIdentity": "policy:shipping",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-support-reassurance",
+          "linkRole": "future_policy_path",
+          "source": "data/homepage-section-outcomes.json#homepage-support-reassurance",
+          "currentRendered": false
+        }
+      ],
       "notes": "Verified current Shopify policy route from Admin shopPolicies. This verifies policy discoverability only and does not approve extra freight or international availability claims."
     },
     {

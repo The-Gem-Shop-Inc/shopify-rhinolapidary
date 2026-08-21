@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schemaVersion", "modules"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "role",
+          "status",
+          "priority",
+          "customerAudience",
+          "customerJourney",
+          "customerOutcome",
+          "contentOwner",
+          "sourceReferences",
+          "claimApprovalState",
+          "routeTargetReferences",
+          "linksRequired",
+          "emptyStateBehavior",
+          "mobileBehavior",
+          "accessibilityExpectation",
+          "performanceConsideration",
+          "successMeasure",
+          "dependencies",
+          "implementationState"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "role": {
+            "enum": [
+              "current_intro",
+              "first_screen_gateway",
+              "customer_path_chooser",
+              "machine_family_overview",
+              "featured_machine",
+              "parts_accessories_consumables",
+              "proof",
+              "support_reassurance",
+              "education",
+              "video_demo",
+              "social_proof",
+              "inquiry"
+            ]
+          },
+          "status": {
+            "enum": [
+              "approved",
+              "observed",
+              "draft",
+              "blocked",
+              "optional"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "p0",
+              "p1",
+              "p2",
+              "post_launch"
+            ]
+          },
+          "customerAudience": { "type": "string", "minLength": 2 },
+          "customerJourney": { "type": "string", "minLength": 2 },
+          "customerOutcome": { "type": "string" },
+          "contentOwner": { "type": "string" },
+          "sourceReferences": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "runtimeSelector": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "role",
+                "label",
+                "accessibleLabel",
+                "routeId",
+                "actionGroup",
+                "destinationType",
+                "classification",
+                "visualPriority",
+                "approvalStatus",
+                "renderState",
+                "sourceOrder"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "role": {
+                  "enum": [
+                    "primary_commerce",
+                    "secondary",
+                    "tertiary",
+                    "support",
+                    "destructive",
+                    "icon",
+                    "external_link"
+                  ]
+                },
+                "label": { "type": "string" },
+                "accessibleLabel": { "type": "string" },
+                "routeId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "actionGroup": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "destinationType": {
+                  "enum": ["internal", "external"]
+                },
+                "classification": {
+                  "enum": [
+                    "commerce",
+                    "support",
+                    "content",
+                    "policy",
+                    "inquiry",
+                    "media",
+                    "utility"
+                  ]
+                },
+                "visualPriority": {
+                  "enum": ["primary", "secondary", "tertiary"]
+                },
+                "approvalStatus": {
+                  "enum": ["approved", "observed", "draft", "blocked"]
+                },
+                "renderState": {
+                  "enum": [
+                    "current_rendered",
+                    "implemented",
+                    "future_required",
+                    "future_optional",
+                    "blocked",
+                    "not_applicable"
+                  ]
+                },
+                "sourceOrder": { "type": "integer", "minimum": 1 },
+                "labelContext": { "type": "string" },
+                "statusReason": { "type": "string" },
+                "notes": { "type": "string" }
+              }
+            },
+            "default": []
+          },
+          "heroContentContract": {
+            "type": "object",
+            "required": [
+              "stableModuleId",
+              "h1Ownership",
+              "headlineSource",
+              "supportingCopySource",
+              "copyApprovalState",
+              "safeNeutralDraftContentItemIds",
+              "requiredApprovers",
+              "mediaRequirement",
+              "mediaSourceState",
+              "imageFallbackBehavior",
+              "noMediaFallback",
+              "mobileSequencingExpectation",
+              "firstScreenHeightExpectation",
+              "accessibilityExpectation",
+              "performanceConstraints",
+              "successMeasure",
+              "unsupportedClaimProhibitions",
+              "blockerReasons"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "stableModuleId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+              "h1Ownership": {
+                "enum": [
+                  "future_hero_owns_page_h1",
+                  "current_intro_observed",
+                  "blocked"
+                ]
+              },
+              "headlineSource": { "type": "string", "minLength": 2 },
+              "supportingCopySource": { "type": "string", "minLength": 2 },
+              "copyApprovalState": {
+                "enum": ["approved", "observed", "draft", "blocked"]
+              },
+              "safeNeutralDraftContentItemIds": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
+              },
+              "requiredApprovers": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 2 }
+              },
+              "mediaRequirement": { "type": "string", "minLength": 2 },
+              "mediaSourceState": {
+                "enum": [
+                  "approved",
+                  "fallback_only",
+                  "needs_review",
+                  "blocked",
+                  "not_required"
+                ]
+              },
+              "imageFallbackBehavior": { "type": "string", "minLength": 2 },
+              "noMediaFallback": { "type": "string", "minLength": 2 },
+              "mobileSequencingExpectation": { "type": "string", "minLength": 2 },
+              "firstScreenHeightExpectation": { "type": "string", "minLength": 2 },
+              "accessibilityExpectation": { "type": "string", "minLength": 2 },
+              "performanceConstraints": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 2 }
+              },
+              "successMeasure": { "type": "string", "minLength": 2 },
+              "unsupportedClaimProhibitions": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "enum": [
+                    "manufacturer_claim",
+                    "supplier_claim",
+                    "patent_claim",
+                    "exclusivity_claim",
+                    "universal_warranty_claim",
+                    "freight_guarantee",
+                    "delivery_promise",
+                    "financing_claim",
+                    "performance_superiority_claim"
+                  ]
+                }
+              },
+              "blockerReasons": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 2 }
+              }
+            }
+          },
+          "claimApprovalState": {
+            "enum": [
+              "approved",
+              "observed_no_claim",
+              "needs_review",
+              "blocked",
+              "not_applicable"
+            ]
+          },
+          "claimReferences": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["claimId", "required", "approvalState"],
+              "additionalProperties": false,
+              "properties": {
+                "claimId": { "type": "string", "pattern": "^CLAIM-[0-9]{3}$" },
+                "required": { "type": "boolean" },
+                "approvalState": {
+                  "enum": [
+                    "approved",
+                    "approved_plain_use",
+                    "needs_review",
+                    "blocked",
+                    "not_applicable"
+                  ]
+                },
+                "notes": { "type": "string" }
+              }
+            },
+            "default": []
+          },
+          "routeTargetReferences": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["routeId", "required", "status"],
+              "additionalProperties": false,
+              "properties": {
+                "routeId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "required": { "type": "boolean" },
+                "status": {
+                  "enum": [
+                    "approved",
+                    "observed",
+                    "draft",
+                    "blocked"
+                  ]
+                },
+                "notes": { "type": "string" }
+              }
+            }
+          },
+          "linksRequired": { "type": "boolean" },
+          "emptyStateBehavior": { "type": "string", "minLength": 2 },
+          "mobileBehavior": { "type": "string", "minLength": 2 },
+          "accessibilityExpectation": { "type": "string", "minLength": 2 },
+          "performanceConsideration": { "type": "string", "minLength": 2 },
+          "successMeasure": { "type": "string", "minLength": 2 },
+          "dependencies": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "blockerReason": { "type": "string" },
+          "implementationState": {
+            "enum": [
+              "current",
+              "not_started",
+              "planned",
+              "implemented",
+              "blocked",
+              "deferred"
+            ]
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

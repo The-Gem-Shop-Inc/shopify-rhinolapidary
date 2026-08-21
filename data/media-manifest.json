@@ -388,5 +388,459 @@
       "altTextRequired": false,
       "notes": "Only add this file if a real Rhino-owned placeholder is created."
     }
-  ]
+  ],
+  "shopifyFilesAudit": {
+    "snapshotDate": "2026-08-20",
+    "store": "Rhino Lapidary",
+    "sourceAuditPath": "docs/media/rhino-shopify-files-content-audit-2026-08-20.md",
+    "scope": "Every item returned by the live Shopify Admin files connection, fully paginated.",
+    "status": "governance_blocked",
+    "totals": {
+      "totalFiles": 867,
+      "images": 793,
+      "shopifyHostedVideos": 37,
+      "documentsAndGenericFiles": 37,
+      "readyNoFileErrors": 867,
+      "missingAltText": 867,
+      "productMediaAssociated": 95,
+      "notProductMediaAssociated": 772
+    },
+    "storage": {
+      "imagesOriginalBytes": 1140168771,
+      "shopifyHostedVideosOriginalBytes": 8434384766,
+      "documentsAndGenericFilesOriginalBytes": 97749491,
+      "totalOriginalBytes": 9672303028,
+      "shopifyHostedVideosDurationMs": 3228640
+    },
+    "sourceOfTruthDecisions": [
+      {
+        "assetClass": "product images",
+        "canonicalLocation": "Shopify product media",
+        "repositoryPolicy": "Do not commit large product images to theme assets; keep only governed summary records and code references in the repository."
+      },
+      {
+        "assetClass": "manuals, diagrams, and customer downloads",
+        "canonicalLocation": "Shopify Files or approved external storage",
+        "repositoryPolicy": "Use governed PDFs or approved external files for customer-facing downloads; keep editable source files out of public Files unless a storefront dependency is proven."
+      },
+      {
+        "assetClass": "repository UI media",
+        "canonicalLocation": "Repository assets listed in data/media-manifest.json",
+        "repositoryPolicy": "Only theme UI assets belong in assets/; every repository-owned UI asset must be listed in the media manifest."
+      },
+      {
+        "assetClass": "videos",
+        "canonicalLocation": "Shopify hosted video only after media, accessibility, privacy, and performance review",
+        "repositoryPolicy": "Preserve master files outside Shopify; publish only web delivery variants with poster, captions or transcript evidence, and deferred loading."
+      }
+    ],
+    "gates": [
+      {
+        "id": "alt-text-before-reuse",
+        "appliesTo": "Published product, homepage, and instructional visual media",
+        "requirement": "Add descriptive alt text before reuse; the audit found blank alt text on every File object.",
+        "blocking": true
+      },
+      {
+        "id": "reference-crawler-before-deletion",
+        "appliesTo": "Detached Shopify Files and duplicate candidates",
+        "requirement": "Crawl theme JSON, page and article HTML, metafields, metaobjects, product descriptions, app-owned content, and unpublished theme settings before deletion.",
+        "blocking": true
+      },
+      {
+        "id": "canonicalize-duplicates",
+        "appliesTo": "Exact document duplicates, probable video duplicates, and identical image rendition groups",
+        "requirement": "Hash originals where needed, choose a canonical asset, rewrite all references, and only then remove duplicates.",
+        "blocking": true
+      },
+      {
+        "id": "video-publication-review",
+        "appliesTo": "All Shopify-hosted videos",
+        "requirement": "Do not eager-load videos; use posters, deferred loading, short previews, captions or transcripts, and selective publication.",
+        "blocking": true
+      },
+      {
+        "id": "internal-file-public-exposure-review",
+        "appliesTo": "Internal notes, dealer lists, production source files, and obsolete pamphlet drafts",
+        "requirement": "Move internal or source files out of public Shopify Files when no storefront dependency exists.",
+        "blocking": true
+      }
+    ],
+    "duplicateFindings": [
+      {
+        "id": "doc-exact-duplicates",
+        "kind": "document_exact_sha256",
+        "count": 4,
+        "evidence": [
+          "LAPMASTER_12.pdf / LAPMASTER_12_LAPPING_MACHINE_12_PART_LIST.pdf",
+          "LAPMASTER_18_EXPLODED_PICTURES.pdf / LAPMASTER_18.pdf",
+          "BEADMASTER_EXPLODED_PICTURE..pdf / BEADMASTER.pdf",
+          "TRIMMASTER.pdf / TRIMMASTER_EXPLODED_PICTURES.pdf"
+        ],
+        "requiredAction": "Select canonical documents, rewrite every reference, and remove duplicates only after reference coverage is proven."
+      },
+      {
+        "id": "video-probable-duplicates",
+        "kind": "video_preview_size_duration_dimensions_match",
+        "count": 2,
+        "evidence": [
+          "Video rows 3 and 4 share preview, source byte size, duration, and dimensions.",
+          "Video rows 17 and 18 share preview, source byte size, duration, and dimensions."
+        ],
+        "requiredAction": "Hash original streams before deletion; matching preview metadata alone is not enough for removal."
+      },
+      {
+        "id": "video-preview-duplicates",
+        "kind": "video_preview_match",
+        "count": 3,
+        "evidence": [
+          "VID-PREVIEW-01 covers video rows 3 and 4.",
+          "VID-PREVIEW-02 covers video rows 16, 17, 18, 22, and 23.",
+          "VID-PREVIEW-03 covers video rows 35, 36, and 37."
+        ],
+        "requiredAction": "Use preview matches as review queues, not deletion proof, unless original stream hashes also match."
+      },
+      {
+        "id": "image-rendition-duplicates",
+        "kind": "image_normalized_220px_rendition_match",
+        "count": 10,
+        "evidence": [
+          "IMG-VIS-01 through IMG-VIS-10 are marked in the audit image table.",
+          "Some image matches may be intentional mirrored or related SKU reuse."
+        ],
+        "requiredAction": "Inspect product context before changing image assignments; rendition similarity is not deletion proof."
+      }
+    ],
+    "reviewQueues": [
+      {
+        "id": "blank-alt-text",
+        "kind": "accessibility",
+        "count": 867,
+        "notes": "The audit reports missing alt text for every returned File object.",
+        "requiredAction": "Prioritize published product, homepage, and instructional media alt text before reuse."
+      },
+      {
+        "id": "oversized-videos",
+        "kind": "performance",
+        "count": 7,
+        "sourceRows": [7, 8, 13, 14, 35, 36, 37],
+        "notes": "Rows marked Very large source; several videos exceed 500 MB and should not be eagerly embedded.",
+        "requiredAction": "Transcode customer-facing variants, preserve masters outside Shopify, and use posters plus click-to-load behavior."
+      },
+      {
+        "id": "long-videos",
+        "kind": "performance",
+        "count": 8,
+        "sourceRows": [6, 7, 8, 13, 14, 35, 36, 37],
+        "notes": "Rows marked Long video: defer and use poster.",
+        "requiredAction": "Avoid autoplay and immediate player loads; select only intentional customer-facing videos."
+      },
+      {
+        "id": "detached-files",
+        "kind": "reference-safety",
+        "count": 772,
+        "notes": "Files not directly associated with current product.media can still be referenced by theme settings, rich text, metafields, apps, or unpublished themes.",
+        "requiredAction": "Build and run a cross-surface reference crawler before deleting or replacing detached Files."
+      },
+      {
+        "id": "internal-generic-files",
+        "kind": "public-exposure",
+        "count": 4,
+        "sourceRows": [9, 10, 14, 37],
+        "files": [
+          "Rhino_Lapidary_PreOrder_Notes.docx",
+          "Rhino_Lapidary_Meeting_Notes_4-22.docx",
+          "Lortone_Dealers.docx",
+          "Grinding_Polishing_Setup_Video_Audio.vpj"
+        ],
+        "requiredAction": "Review public exposure and retention; remove from public Shopify Files if no storefront dependency exists."
+      },
+      {
+        "id": "customer-facing-source-files",
+        "kind": "download-governance",
+        "count": 8,
+        "sourceRows": [9, 10, 11, 12, 14, 33, 34, 37],
+        "notes": "Rows marked Prefer a governed PDF for customer-facing delivery.",
+        "requiredAction": "Publish governed PDF versions for customer downloads and keep editable source files private."
+      },
+      {
+        "id": "legacy-bmp",
+        "kind": "format-modernization",
+        "count": 1,
+        "sourceRows": [32],
+        "files": ["425f78f9ed.BMP"],
+        "requiredAction": "Convert to WebP or JPEG before storefront use and write alt text based on the approved context."
+      }
+    ],
+    "referenceScan": {
+      "themeSourceHasDirectShopifyFileReferences": false,
+      "notes": "The supplied theme source snapshot had no direct shopify://shop_images or Rhino Files CDN references; this does not cover Admin-authored page content, metafields, app content, or unpublished theme settings."
+    },
+    "followUpSequence": [
+      "Add descriptive alt text to published product and homepage media first.",
+      "Build a reference crawler across theme JSON, page and article HTML, metafields, metaobjects, product descriptions, and app-owned content before deleting detached Files.",
+      "Hash suspected duplicate originals, select a canonical asset, rewrite every reference, and only then remove duplicates.",
+      "Transcode oversized customer-facing videos, preserve a master outside Shopify, and publish only web delivery variants.",
+      "Move internal meeting notes, dealer lists, production source files, and obsolete pamphlet drafts out of public Shopify Files if no storefront dependency exists."
+    ]
+  },
+  "homepageInventory": {
+    "auditDate": "2026-08-20",
+    "candidates": [
+      {
+        "id": "repo-rhino-og-default",
+        "sourceLocation": "assets/rhino-og-default.jpg",
+        "mediaManifestPath": "assets/rhino-og-default.jpg",
+        "ownership": "rhino-owned",
+        "usageRightsStatus": "approved",
+        "dimensions": {
+          "known": true,
+          "width": 1200,
+          "height": 630,
+          "notes": "Dimensions recorded in existing media manifest notes."
+        },
+        "format": "jpeg",
+        "intendedModuleIds": ["homepage-first-screen-gateway"],
+        "role": "brand_fallback",
+        "altTextOwner": "Brand Owner and Frontend Engineering",
+        "altTextGuidance": "Existing metadata alt text is Rhino Lapidary logo on dark background.",
+        "cropSafety": "needs_review",
+        "mobileCropConcern": "Social image crop does not show inspectable product or workshop context.",
+        "performanceConcern": "Usable as metadata fallback; not approved as first-screen content media.",
+        "launchReadiness": "fallback_only",
+        "blocker": "Does not satisfy Epic D first-screen product/workshop media requirement.",
+        "notes": "Governed repository media; suitable as metadata fallback, not as homepage hero media."
+      },
+      {
+        "id": "repo-rhino-logo-horizontal-dark",
+        "sourceLocation": "assets/rhino-logo-horizontal-dark.svg",
+        "mediaManifestPath": "assets/rhino-logo-horizontal-dark.svg",
+        "ownership": "rhino-owned",
+        "usageRightsStatus": "approved",
+        "dimensions": {
+          "known": true,
+          "width": 3096,
+          "height": 1062,
+          "notes": "SVG viewBox dimensions recorded in existing media manifest notes."
+        },
+        "format": "svg",
+        "intendedModuleIds": ["rhino-intro-current"],
+        "role": "brand_fallback",
+        "altTextOwner": "Brand Owner and Frontend Engineering",
+        "altTextGuidance": "Visible use requires adjacent accessible text; do not rely on SVG text as copy.",
+        "cropSafety": "not_applicable",
+        "mobileCropConcern": "Not a product media candidate.",
+        "performanceConcern": "Theme SVG; should remain lightweight if used as UI, not as decorative hero art.",
+        "launchReadiness": "fallback_only",
+        "blocker": "Not product or workshop media.",
+        "notes": "Existing header/social brand asset only."
+      },
+      {
+        "id": "admin-machine-featured-media",
+        "sourceLocation": "Shopify Admin product media for collection handle machines",
+        "ownership": "shopify-admin",
+        "usageRightsStatus": "owned_or_controlled_needs_confirmation",
+        "dimensions": {
+          "known": true,
+          "width": 1440,
+          "height": 1440,
+          "notes": "Most observed machine featured images are 1440 x 1440; EM-1 observed at 2489 x 2189. SawMaster 36 and TumbleMaster have no featured media."
+        },
+        "format": "jpeg",
+        "intendedModuleIds": [
+          "homepage-first-screen-gateway",
+          "homepage-machine-family-overview",
+          "homepage-featured-machine"
+        ],
+        "role": "informative",
+        "altTextOwner": "Media Owner and Product Data Owner",
+        "altTextGuidance": "Admin audit observed empty alt text on machine featured media; alt must identify product/model and view before homepage use.",
+        "cropSafety": "needs_review",
+        "mobileCropConcern": "Square product media may not provide safe narrow hero crops; missing featured media for SawMaster 36 and TumbleMaster.",
+        "performanceConcern": "Large product media must be transformed by Shopify responsive image delivery before first-screen use.",
+        "launchReadiness": "blocked",
+        "blocker": "Rights, alt text, crop safety, product selection, and missing media are unresolved.",
+        "notes": "Observed read-only through Admin GraphQL on 2026-08-20."
+      },
+      {
+        "id": "admin-em-1-homepage-hero-selected",
+        "sourceLocation": "Shopify Files MediaImage gid://shopify/MediaImage/33770123362501; approved CDN source https://cdn.shopify.com/s/files/1/0792/7994/7973/files/EM-1_Machine_bf604477-d32b-4294-a63d-6fbe1c1a1e9a.png?v=1786133214; theme reference shopify://shop_images/EM-1_Machine_bf604477-d32b-4294-a63d-6fbe1c1a1e9a.png when implemented through a native image_picker setting.",
+        "ownership": "shopify-admin",
+        "usageRightsStatus": "approved",
+        "dimensions": {
+          "known": true,
+          "width": 2489,
+          "height": 2189,
+          "notes": "Live CDN verification returned HTTP 200 image/png, 2489 x 2189, sRGB with alpha, 4,828,638 B content length/download. Existing Files audit row 596 records 4.61 MiB (4,835,611 B) original size."
+        },
+        "format": "png",
+        "intendedModuleIds": ["homepage-first-screen-gateway"],
+        "role": "informative",
+        "altTextOwner": "Media Owner, Product Owner, and Accessibility Owner",
+        "altTextGuidance": "Treat as informative when used as homepage hero media. Use factual alt text such as 'Rhino EM-1 machine with grinding and polishing attachments.' Do not include embedded decal language, patent wording, superiority language, or unsupported marketing claims in alt text.",
+        "cropSafety": "approved",
+        "mobileCropConcern": "Transparent cutout has non-transparent bounds x77-2406 and y99-1994 within a 2489 x 2189 canvas. Approved for contained or adapt-height native rendering; fixed-height cover crops must be rechecked before use.",
+        "performanceConcern": "Original PNG is 4,828,638 B, so first-screen use must rely on Shopify responsive image derivatives. Verified CDN derivatives: 375w 142,040 B; 550w 284,111 B; 750w 719,588 B; 1100w 1,057,489 B. Runtime implementation must keep delivered first-screen media within the homepage budget.",
+        "launchReadiness": "ready",
+        "blocker": "",
+        "notes": "Product Owner selected this existing Shopify Files asset for D-PBI-008 hero media on 2026-08-21. Existing Files audit row 596 records blank file alt, no direct product.media association, and 'Check theme/page/metafield/app references before deletion.' No placeholder or fallback asset is approved as a substitute."
+      },
+      {
+        "id": "admin-product-files-first-page",
+        "sourceLocation": "Shopify Files first 30 MediaImage records",
+        "ownership": "shopify-admin",
+        "usageRightsStatus": "owned_or_controlled_needs_confirmation",
+        "dimensions": {
+          "known": true,
+          "width": 1800,
+          "height": 1800,
+          "notes": "Most observed files are 1800 x 1800 with some 1440 x 1440 and one 2489 x 2189 image."
+        },
+        "format": "jpeg",
+        "intendedModuleIds": [
+          "homepage-machine-family-overview",
+          "homepage-parts-accessories-consumables"
+        ],
+        "role": "informative",
+        "altTextOwner": "Media Owner and Product Data Owner",
+        "altTextGuidance": "Admin file alt values were empty in the first page of observed media.",
+        "cropSafety": "unknown",
+        "mobileCropConcern": "File-level contents were not individually inspected for module crops in Batch 1.",
+        "performanceConcern": "Large source images require responsive transforms and below-fold lazy loading.",
+        "launchReadiness": "blocked",
+        "blocker": "Rights, alt text, exact product mapping, and crop safety are unresolved.",
+        "notes": "Candidate pool only; no file was uploaded, edited, cropped, or selected."
+      },
+      {
+        "id": "missing-first-screen-product-media",
+        "sourceLocation": "Superseded Batch 1 gap: Product Owner selected Shopify Files asset admin-em-1-homepage-hero-selected for first-screen hero media.",
+        "ownership": "not_available",
+        "usageRightsStatus": "not_applicable",
+        "dimensions": {
+          "known": false,
+          "notes": "Historical Batch 1 gap retained for audit continuity; the selected EM-1 media candidate now carries the governed dimensions."
+        },
+        "format": "not_applicable",
+        "intendedModuleIds": ["homepage-first-screen-gateway"],
+        "role": "missing",
+        "altTextOwner": "Media Owner",
+        "altTextGuidance": "Use admin-em-1-homepage-hero-selected for the approved hero media alt guidance.",
+        "cropSafety": "not_applicable",
+        "mobileCropConcern": "Superseded by selected EM-1 candidate crop review.",
+        "performanceConcern": "Superseded by selected EM-1 candidate derivative-size review.",
+        "launchReadiness": "not_required",
+        "blocker": "",
+        "notes": "D-PBI-005 recorded this as a Batch 1/2 blocker. D-PBI-008 Batch 3 supersedes the media-selection gap but not the separate hero-copy blocker."
+      },
+      {
+        "id": "missing-workshop-process-media",
+        "sourceLocation": "No approved workshop or process imagery source",
+        "ownership": "not_available",
+        "usageRightsStatus": "unknown",
+        "dimensions": {
+          "known": false,
+          "notes": "No governed workshop/process image candidate exists."
+        },
+        "format": "not_applicable",
+        "intendedModuleIds": ["homepage-why-rhino-proof", "homepage-education-manuals"],
+        "role": "missing",
+        "altTextOwner": "Media Owner and Content Owner",
+        "altTextGuidance": "Alt guidance depends on the future approved task, machine, or process shown.",
+        "cropSafety": "blocked",
+        "mobileCropConcern": "No candidate exists to inspect crop safety.",
+        "performanceConcern": "Future images must lazy-load unless above the fold.",
+        "launchReadiness": "blocked",
+        "blocker": "No rights-cleared workshop/process media exists for proof or education modules.",
+        "notes": "Proof and education modules can launch without media only if content remains text-first and approved."
+      },
+      {
+        "id": "missing-video-poster",
+        "sourceLocation": "No approved homepage video, thumbnail, or poster source",
+        "ownership": "not_available",
+        "usageRightsStatus": "unknown",
+        "dimensions": {
+          "known": false,
+          "notes": "No canonical video/poster inventory exists."
+        },
+        "format": "not_applicable",
+        "intendedModuleIds": ["homepage-video-demo"],
+        "role": "missing",
+        "altTextOwner": "Content Owner, Media Owner, and Accessibility Owner",
+        "altTextGuidance": "Video poster and play control require a task-specific accessible name and transcript/caption evidence.",
+        "cropSafety": "blocked",
+        "mobileCropConcern": "No 16:9 poster exists to verify mobile behavior.",
+        "performanceConcern": "No video module is approved; future video must be click-to-load with no autoplay.",
+        "launchReadiness": "blocked",
+        "blocker": "Canonical video URL, owner, rights, captions, transcript, poster, privacy, and performance evidence are missing.",
+        "notes": "No video URL should be rendered in Batch 1."
+      }
+    ],
+    "moduleMediaRequirements": [
+      {
+        "moduleId": "rhino-intro-current",
+        "launchNeed": "can_launch_without_media",
+        "notes": "Current homepage has no content media and remains valid current state."
+      },
+      {
+        "moduleId": "homepage-first-screen-gateway",
+        "launchNeed": "requires_media_before_launch",
+        "governedFallbackCandidateId": "admin-em-1-homepage-hero-selected",
+        "notes": "Product Owner selected admin-em-1-homepage-hero-selected for homepage hero media. Hero implementation still requires approved copy and runtime performance validation before visible use."
+      },
+      {
+        "moduleId": "homepage-customer-path-chooser",
+        "launchNeed": "can_launch_without_media",
+        "notes": "Task/path chooser can use text and approved lightweight icons."
+      },
+      {
+        "moduleId": "homepage-machine-family-overview",
+        "launchNeed": "can_use_governed_fallback",
+        "governedFallbackCandidateId": "admin-machine-featured-media",
+        "blocker": "Admin media candidates require rights, alt text, crop, and family mapping review before use.",
+        "notes": "Could launch text-first if route and copy approvals exist."
+      },
+      {
+        "moduleId": "homepage-featured-machine",
+        "launchNeed": "requires_media_before_launch",
+        "blocker": "Featured machine selection and media are not approved.",
+        "notes": "A featured product module should not launch without inspectable product media."
+      },
+      {
+        "moduleId": "homepage-parts-accessories-consumables",
+        "launchNeed": "can_launch_without_media",
+        "notes": "Route labels can launch without media if routes and compatibility-safe copy are approved."
+      },
+      {
+        "moduleId": "homepage-why-rhino-proof",
+        "launchNeed": "can_launch_without_media",
+        "notes": "Proof can be text-first after claim approvals; workshop media remains a quality improvement, not Batch 2 prerequisite."
+      },
+      {
+        "moduleId": "homepage-support-reassurance",
+        "launchNeed": "can_launch_without_media",
+        "notes": "Support and policy routing should not depend on decorative media."
+      },
+      {
+        "moduleId": "homepage-education-manuals",
+        "launchNeed": "can_launch_without_media",
+        "notes": "Manual or guide links can launch as text once content and route approvals exist."
+      },
+      {
+        "moduleId": "homepage-video-demo",
+        "launchNeed": "requires_media_before_launch",
+        "blocker": "Approved video poster, captions, transcript, URL, and privacy/performance evidence are missing.",
+        "notes": "Do not render video without governed poster and click-to-load behavior."
+      },
+      {
+        "moduleId": "homepage-social-proof",
+        "launchNeed": "can_launch_without_media",
+        "notes": "Social proof requires source and rights first; media is optional unless project imagery is selected."
+      },
+      {
+        "moduleId": "homepage-inquiry-path",
+        "launchNeed": "can_launch_without_media",
+        "notes": "Inquiry links or forms should not require imagery."
+      }
+    ]
+  }
 }

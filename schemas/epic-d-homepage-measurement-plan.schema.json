@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "status",
+    "source",
+    "analyticsMigrationPlanReference",
+    "customTrackingImplementationAllowed",
+    "measures"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "status": { "type": "string", "minLength": 3 },
+    "source": { "type": "string", "minLength": 5 },
+    "analyticsMigrationPlanReference": { "type": "string", "minLength": 5 },
+    "customTrackingImplementationAllowed": { "const": false },
+    "measures": {
+      "type": "array",
+      "minItems": 9,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "metricQuestion",
+          "homepageModuleId",
+          "source",
+          "nativeShopifyAvailability",
+          "customEventRequired",
+          "proposedEventName",
+          "eventOwner",
+          "businessProductOwner",
+          "privacyConsentImplications",
+          "baselinePeriod",
+          "reviewCadence",
+          "eventualSuccessThresholdStatus",
+          "implementationStatus",
+          "duplicateEcommerceTrackingRisk"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "metricQuestion": { "type": "string", "minLength": 8 },
+          "homepageModuleId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "source": { "type": "string", "minLength": 3 },
+          "nativeShopifyAvailability": {
+            "enum": [
+              "sufficient",
+              "partial",
+              "not_available",
+              "not_applicable"
+            ]
+          },
+          "customEventRequired": { "type": "boolean" },
+          "proposedEventName": {
+            "type": ["string", "null"],
+            "pattern": "^rhino:homepage:[a-z0-9_:-]+$"
+          },
+          "eventOwner": { "type": "string", "minLength": 3 },
+          "businessProductOwner": { "type": "string", "minLength": 3 },
+          "privacyConsentImplications": { "type": "string", "minLength": 8 },
+          "baselinePeriod": { "type": "string", "minLength": 3 },
+          "reviewCadence": { "type": "string", "minLength": 3 },
+          "eventualSuccessThresholdStatus": {
+            "enum": [
+              "baseline_required",
+              "proposed_after_baseline",
+              "not_applicable"
+            ]
+          },
+          "implementationStatus": {
+            "enum": [
+              "native_available_no_code",
+              "proposal_only_no_code",
+              "blocked_by_module_or_route",
+              "not_started"
+            ]
+          },
+          "duplicateEcommerceTrackingRisk": {
+            "enum": ["none", "low", "medium", "high"]
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

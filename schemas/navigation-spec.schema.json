@@ -10,16 +10,65 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["id", "label", "path", "group", "requiredForLaunch"],
+        "required": ["id", "label", "group", "requiredForLaunch"],
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "label": { "type": "string", "minLength": 1 },
           "path": { "type": "string", "pattern": "^/" },
-          "group": { "enum": ["header", "footer", "utility", "support", "policy"] },
+          "group": { "enum": ["header", "footer", "utility", "support", "policy", "homepage"] },
           "requiredForLaunch": { "type": "boolean" },
+          "approvalStatus": { "enum": ["approved", "observed", "draft", "blocked"] },
+          "destinationPurpose": { "type": "string" },
+          "sourceOwner": { "type": "string" },
+          "expectedRouteIdentity": { "type": "string" },
+          "fixtureKey": { "type": "string" },
+          "blocker": { "type": "string" },
+          "homepageReferences": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["moduleId", "linkRole", "source", "currentRendered"],
+              "additionalProperties": false,
+              "properties": {
+                "moduleId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "linkRole": { "type": "string", "minLength": 1 },
+                "source": { "type": "string", "minLength": 1 },
+                "currentRendered": { "type": "boolean" }
+              }
+            }
+          },
           "notes": { "type": "string" }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": { "requiredForLaunch": { "const": true } },
+              "required": ["requiredForLaunch"]
+            },
+            "then": { "required": ["path"] }
+          },
+          {
+            "if": {
+              "properties": { "approvalStatus": { "const": "blocked" } },
+              "required": ["approvalStatus"]
+            },
+            "then": { "required": ["blocker"] }
+          },
+          {
+            "if": {
+              "required": ["homepageReferences"]
+            },
+            "then": {
+              "required": [
+                "approvalStatus",
+                "destinationPurpose",
+                "sourceOwner",
+                "expectedRouteIdentity"
+              ]
+            }
+          }
+        ]
       }
     }
   }

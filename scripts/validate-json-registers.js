@@ -41,6 +41,16 @@ const targets = [
         dataPath: 'data/navigation-spec.json',
     },
     {
+        name: 'homepage section outcomes',
+        schemaPath: 'schemas/homepage-section-outcomes.schema.json',
+        dataPath: 'data/homepage-section-outcomes.json',
+    },
+    {
+        name: 'homepage content claims map',
+        schemaPath: 'schemas/homepage-content-claims-map.schema.json',
+        dataPath: 'data/homepage-content-claims-map.json',
+    },
+    {
         name: 'global navigation IA',
         schemaPath: 'schemas/global-navigation-ia.schema.json',
         dataPath: 'data/global-navigation-ia.json',
@@ -59,6 +69,11 @@ const targets = [
         name: 'Epic C navigation measurement plan',
         schemaPath: 'schemas/epic-c-navigation-measurement-plan.schema.json',
         dataPath: 'data/epic-c-navigation-measurement-plan.json',
+    },
+    {
+        name: 'Epic D homepage measurement plan',
+        schemaPath: 'schemas/epic-d-homepage-measurement-plan.schema.json',
+        dataPath: 'data/epic-d-homepage-measurement-plan.json',
     },
     {
         name: 'design token inventory',

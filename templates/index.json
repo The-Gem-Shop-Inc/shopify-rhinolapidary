@@ -41,9 +41,63 @@
         "padding_top": 64,
         "padding_bottom": 64
       }
+    },
+    "homepage_customer_paths": {
+      "type": "multicolumn",
+      "blocks": {
+        "machines": {
+          "type": "column",
+          "settings": {
+            "title": "Machines",
+            "text": "",
+            "link_label": "Shop machines",
+            "link": "shopify://collections/machines"
+          }
+        },
+        "catalog": {
+          "type": "column",
+          "settings": {
+            "title": "Catalog",
+            "text": "",
+            "link_label": "Browse catalog",
+            "link": "/collections"
+          }
+        },
+        "contact": {
+          "type": "column",
+          "settings": {
+            "title": "Contact",
+            "text": "",
+            "link_label": "Contact us",
+            "link": "shopify://pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "machines",
+        "catalog",
+        "contact"
+      ],
+      "settings": {
+        "title": "Choose where to start",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
-    "rhino_intro"
+    "rhino_intro",
+    "homepage_customer_paths"
   ]
 }
