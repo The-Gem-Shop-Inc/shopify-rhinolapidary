@@ -1,6 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhino-lapidary.example/schemas/epic-d-homepage-measurement-plan.schema.json",
+  "title": "Epic D homepage measurement plan",
   "type": "object",
+  "additionalProperties": false,
   "required": [
     "$schema",
     "schemaVersion",
@@ -8,82 +11,89 @@
     "source",
     "analyticsMigrationPlanReference",
     "customTrackingImplementationAllowed",
+    "futureCustomEventApprovalRequirements",
     "measures"
   ],
-  "additionalProperties": false,
   "properties": {
     "$schema": { "type": "string" },
-    "schemaVersion": { "const": 1 },
-    "status": { "type": "string", "minLength": 3 },
-    "source": { "type": "string", "minLength": 5 },
-    "analyticsMigrationPlanReference": { "type": "string", "minLength": 5 },
+    "schemaVersion": { "const": 2 },
+    "status": { "const": "complete_no_tracking_code" },
+    "source": { "type": "string", "minLength": 1 },
+    "analyticsMigrationPlanReference": { "type": "string", "minLength": 1 },
     "customTrackingImplementationAllowed": { "const": false },
+    "futureCustomEventApprovalRequirements": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
     "measures": {
       "type": "array",
       "minItems": 9,
-      "items": {
-        "type": "object",
-        "required": [
-          "id",
-          "metricQuestion",
-          "homepageModuleId",
-          "source",
-          "nativeShopifyAvailability",
-          "customEventRequired",
-          "proposedEventName",
-          "eventOwner",
-          "businessProductOwner",
-          "privacyConsentImplications",
-          "baselinePeriod",
-          "reviewCadence",
-          "eventualSuccessThresholdStatus",
-          "implementationStatus",
-          "duplicateEcommerceTrackingRisk"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-          "metricQuestion": { "type": "string", "minLength": 8 },
-          "homepageModuleId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-          "source": { "type": "string", "minLength": 3 },
-          "nativeShopifyAvailability": {
-            "enum": [
-              "sufficient",
-              "partial",
-              "not_available",
-              "not_applicable"
-            ]
-          },
-          "customEventRequired": { "type": "boolean" },
-          "proposedEventName": {
-            "type": ["string", "null"],
-            "pattern": "^rhino:homepage:[a-z0-9_:-]+$"
-          },
-          "eventOwner": { "type": "string", "minLength": 3 },
-          "businessProductOwner": { "type": "string", "minLength": 3 },
-          "privacyConsentImplications": { "type": "string", "minLength": 8 },
-          "baselinePeriod": { "type": "string", "minLength": 3 },
-          "reviewCadence": { "type": "string", "minLength": 3 },
-          "eventualSuccessThresholdStatus": {
-            "enum": [
-              "baseline_required",
-              "proposed_after_baseline",
-              "not_applicable"
-            ]
-          },
-          "implementationStatus": {
-            "enum": [
-              "native_available_no_code",
-              "proposal_only_no_code",
-              "blocked_by_module_or_route",
-              "not_started"
-            ]
-          },
-          "duplicateEcommerceTrackingRisk": {
-            "enum": ["none", "low", "medium", "high"]
-          },
-          "notes": { "type": "string" }
-        }
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/measure" }
+    }
+  },
+  "$defs": {
+    "measure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "measurementClass",
+        "metricQuestion",
+        "metric",
+        "homepageModuleId",
+        "source",
+        "nativeShopifyAvailability",
+        "customEventRequired",
+        "proposedEventName",
+        "eventOwner",
+        "businessProductOwner",
+        "privacyConsentImplications",
+        "baselineAvailability",
+        "baselinePeriod",
+        "reviewCadence",
+        "eventualSuccessThresholdStatus",
+        "targetSuccessInterpretation",
+        "implementationStatus",
+        "duplicateEcommerceTrackingRisk",
+        "decisionInformed"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "measurementClass": {
+          "enum": ["native_available_now", "native_with_future_custom_candidate"]
+        },
+        "metricQuestion": { "type": "string", "minLength": 1 },
+        "metric": { "type": "string", "minLength": 1 },
+        "homepageModuleId": { "type": "string", "minLength": 1 },
+        "source": { "type": "string", "minLength": 1 },
+        "nativeShopifyAvailability": {
+          "enum": ["sufficient", "partial", "not_available", "not_applicable"]
+        },
+        "customEventRequired": { "const": false },
+        "proposedEventName": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string", "pattern": "^rhino:homepage:[a-z0-9_]+$" }
+          ]
+        },
+        "eventOwner": { "type": "string", "minLength": 1 },
+        "businessProductOwner": { "type": "string", "minLength": 1 },
+        "privacyConsentImplications": { "type": "string", "minLength": 1 },
+        "baselineAvailability": { "enum": ["available", "not_yet_available", "not_applicable"] },
+        "baselinePeriod": { "type": "string", "minLength": 1 },
+        "reviewCadence": { "type": "string", "minLength": 1 },
+        "eventualSuccessThresholdStatus": {
+          "enum": ["baseline_required", "approved", "not_applicable"]
+        },
+        "targetSuccessInterpretation": { "type": "string", "minLength": 1 },
+        "implementationStatus": {
+          "enum": ["native_available_no_code", "proposal_only_no_code"]
+        },
+        "duplicateEcommerceTrackingRisk": { "enum": ["none", "low", "medium", "high"] },
+        "decisionInformed": { "type": "string", "minLength": 1 }
       }
     }
   }

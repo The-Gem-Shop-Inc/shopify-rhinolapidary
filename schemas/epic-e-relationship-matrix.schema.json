@@ -1,0 +1,400 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Batch 3B persisted artifact shape. Cross-contract identity, provenance and approval invariants are enforced by scripts/lib/epic-e-batch-3b-validation.js.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "inputs",
+    "mutationAuthorized",
+    "coverage",
+    "edges",
+    "familyCoverage",
+    "unresolvedDocumentGroups",
+    "statistics"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "handle",
+          "productClass",
+          "edgeIds",
+          "state",
+          "blocker"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "handle": {
+            "type": "string"
+          },
+          "productClass": {
+            "type": "string"
+          },
+          "edgeIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "state": {
+            "type": "string"
+          },
+          "blocker": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "edgeId",
+          "dependentProductGid",
+          "targetMachineProductGid",
+          "targetModel",
+          "scope",
+          "variantGid",
+          "state",
+          "evidence",
+          "confidence",
+          "decisionOwner",
+          "approvalDecisionId",
+          "conflictIds",
+          "blocker",
+          "reviewReadiness",
+          "targetAvailability",
+          "supersededByEdgeId"
+        ],
+        "properties": {
+          "edgeId": {
+            "type": "string"
+          },
+          "dependentProductGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "targetMachineProductGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "targetModel": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "variantGid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "sourceId",
+                "location",
+                "revision",
+                "excerpt",
+                "legacyIdentifier",
+                "identityDecisionId"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "sourceId": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "revision": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "excerpt": {
+                  "type": "string"
+                },
+                "legacyIdentifier": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "identityDecisionId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "polarity": {
+                  "enum": [
+                    "positive",
+                    "negative"
+                  ]
+                }
+              }
+            }
+          },
+          "confidence": {
+            "type": "string"
+          },
+          "decisionOwner": {
+            "type": "string"
+          },
+          "approvalDecisionId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "conflictIds": {
+            "type": "array",
+            "items": {}
+          },
+          "blocker": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reviewReadiness": {
+            "enum": [
+              "approval_ready_exact_legacy_identity",
+              "identity_decision_required",
+              "technical_confirmation_of_description_required"
+            ]
+          },
+          "targetAvailability": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "published",
+              "customerEligible"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "ACTIVE",
+                  "DRAFT",
+                  "ARCHIVED",
+                  "MISSING"
+                ]
+              },
+              "published": {
+                "type": "boolean"
+              },
+              "customerEligible": {
+                "type": "boolean"
+              }
+            }
+          },
+          "supersededByEdgeId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "familyCoverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "model",
+          "family",
+          "candidateEdges",
+          "approvedEdges"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "model": {
+            "type": "string"
+          },
+          "family": {
+            "type": "string"
+          },
+          "candidateEdges": {
+            "type": "integer"
+          },
+          "approvedEdges": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "unresolvedDocumentGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "relationshipId",
+          "dependentCandidate",
+          "targetMachineModel",
+          "relationshipType",
+          "sourceIds",
+          "sourceLocation",
+          "confidence",
+          "decisionState",
+          "humanApprovalRequired",
+          "disposition"
+        ],
+        "properties": {
+          "relationshipId": {
+            "type": "string"
+          },
+          "dependentCandidate": {
+            "type": "string"
+          },
+          "targetMachineModel": {
+            "type": "string"
+          },
+          "relationshipType": {
+            "type": "string"
+          },
+          "sourceIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sourceLocation": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "string"
+          },
+          "decisionState": {
+            "type": "string"
+          },
+          "humanApprovalRequired": {
+            "type": "boolean"
+          },
+          "disposition": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dependentProducts",
+        "productsWithCandidates",
+        "productsWithoutCandidates",
+        "edges",
+        "byState"
+      ],
+      "properties": {
+        "dependentProducts": {
+          "type": "integer"
+        },
+        "productsWithCandidates": {
+          "type": "integer"
+        },
+        "productsWithoutCandidates": {
+          "type": "integer"
+        },
+        "edges": {
+          "type": "integer"
+        },
+        "byState": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "approved",
+            "proposed",
+            "conflicting",
+            "blocked",
+            "not_compatible",
+            "deprecated",
+            "superseded"
+          ],
+          "properties": {
+            "approved": {
+              "type": "integer"
+            },
+            "proposed": {
+              "type": "integer"
+            },
+            "conflicting": {
+              "type": "integer"
+            },
+            "blocked": {
+              "type": "integer"
+            },
+            "not_compatible": {
+              "type": "integer"
+            },
+            "deprecated": {
+              "type": "integer"
+            },
+            "superseded": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "inputs",
+    "adminMutationAuthorized",
+    "valuePopulationAuthorized",
+    "coverage",
+    "sourceProcessIdentified",
+    "sourceIds",
+    "customProjectionCreated",
+    "statistics"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adminMutationAuthorized": {
+      "const": false
+    },
+    "valuePopulationAuthorized": {
+      "const": false
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "variantGid",
+          "productGid",
+          "productStatus",
+          "inventoryPolicy",
+          "inventoryTracked",
+          "inventoryQuantity",
+          "availableForSale",
+          "nativeAvailability",
+          "availabilityCapturedAt",
+          "timing",
+          "preorderBackorderApproved"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "variantGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/ProductVariant/[0-9]+$"
+          },
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "productStatus": {
+            "type": "string"
+          },
+          "inventoryPolicy": {
+            "type": "string"
+          },
+          "inventoryTracked": {
+            "type": "boolean"
+          },
+          "inventoryQuantity": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ]
+          },
+          "availableForSale": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ]
+          },
+          "nativeAvailability": {
+            "type": "string"
+          },
+          "availabilityCapturedAt": {
+            "type": "string"
+          },
+          "timing": {
+            "type": "object",
+            "required": [
+              "state",
+              "timing",
+              "reason"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "type": "string"
+              },
+              "timing": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          },
+          "preorderBackorderApproved": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "sourceProcessIdentified": {
+      "type": "boolean"
+    },
+    "sourceIds": {
+      "type": "array",
+      "items": {}
+    },
+    "customProjectionCreated": {
+      "const": false
+    },
+    "statistics": {
+      "type": "object",
+      "required": [
+        "variants",
+        "tracked",
+        "untracked",
+        "deny",
+        "unknownNativeAvailability",
+        "unknownTiming"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "variants": {
+          "type": "integer"
+        },
+        "tracked": {
+          "type": "integer"
+        },
+        "untracked": {
+          "type": "integer"
+        },
+        "deny": {
+          "type": "integer"
+        },
+        "unknownNativeAvailability": {
+          "type": "integer"
+        },
+        "unknownTiming": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "epic-e-availability-evidence repository evidence contract"
+}

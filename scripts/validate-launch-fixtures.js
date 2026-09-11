@@ -8,7 +8,7 @@ const ownership = JSON.parse(
 );
 
 const storefrontFixtures = JSON.parse(
-    fs.readFileSync(path.join(ROOT, 'tests/fixtures/storefront-fixture.json'), 'utf8')
+    fs.readFileSync(path.join(ROOT, 'tests/fixtures/storefront-fixtures.json'), 'utf8')
 );
 
 const errors = [];

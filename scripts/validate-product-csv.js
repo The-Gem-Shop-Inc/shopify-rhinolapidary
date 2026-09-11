@@ -82,16 +82,6 @@ function tags(value) {
         .filter(Boolean);
 }
 
-function productClassFor(row) {
-    const tagSet = new Set(tags(row.Tags));
-    for (const productClass of Object.keys(rules.requiredTagsByProductClass)) {
-        if (tagSet.has(productClass)) {
-            return productClass;
-        }
-    }
-    return null;
-}
-
 const rows = parseCsv(fs.readFileSync(absoluteCsvPath, 'utf8'));
 const headers = rows[0] || [];
 const missingHeaders = rules.requiredColumns.filter((header) => !headers.includes(header));
@@ -127,8 +117,6 @@ for (const [handle, record] of productFirstRows.entries()) {
     const imageSrc = normalize(record['Image Src']);
     const imageAlt = normalize(record['Image Alt Text']);
     const body = normalize(record['Body (HTML)']);
-    const productTags = tags(record.Tags);
-    const productClass = productClassFor(record);
 
     if (!title) errors.push(`${handle}: missing Title`);
     if (rules.forbiddenTitleFragments.some((fragment) => title.includes(fragment))) {
@@ -159,14 +147,14 @@ for (const [handle, record] of productFirstRows.entries()) {
         errors.push(`${handle}: Image Src present but Image Alt Text is missing`);
     }
 
-    if (productClass) {
-        const requiredTags = rules.requiredTagsByProductClass[productClass] || [];
-        for (const requiredTag of requiredTags) {
-            if (!productTags.includes(requiredTag)) {
-                errors.push(`${handle}: ${productClass} product missing required tag "${requiredTag}"`);
-            }
-        }
-    }
+}
+
+if (Object.prototype.hasOwnProperty.call(rules, 'requiredTagsByProductClass')) {
+    errors.push('product-data-rules.json: requiredTagsByProductClass is deprecated; use governed rhino.product_class mappings');
+}
+
+if (rules.legacyTagAuthority?.decisionState !== 'deprecated' || rules.legacyTagAuthority?.replacement !== 'rhino.product_class') {
+    errors.push('product-data-rules.json: legacy tag authority disposition is missing or invalid');
 }
 
 for (const requiredHandle of rules.keyProductHandles) {

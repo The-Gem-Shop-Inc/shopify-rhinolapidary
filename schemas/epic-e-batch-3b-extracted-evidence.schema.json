@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sourceIndexSha256", "csvSha256", "workbookRows", "productDescriptions", "authority"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "sourceIndexSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "csvSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "authority": {"type": "string", "minLength": 20},
+    "workbookRows": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["sourceId", "sheet", "row", "cells"],
+        "properties": {
+          "sourceId": {"type": "string", "minLength": 1},
+          "sheet": {"type": "string", "minLength": 1},
+          "row": {"type": "integer", "minimum": 1},
+          "cells": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object", "additionalProperties": false,
+              "required": ["cell", "value"],
+              "properties": {"cell": {"type": "string", "pattern": "^[A-Z]+[0-9]+$"}, "value": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+    "productDescriptions": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["handle", "bodyHtml"],
+        "properties": {"handle": {"type": "string", "minLength": 1}, "bodyHtml": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}

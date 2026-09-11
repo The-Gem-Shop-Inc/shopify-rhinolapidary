@@ -1014,6 +1014,8 @@ Current owners get a responsible path to parts without being misdirected by inco
 **Suggested milestone:** Post-Launch  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: product-data`, `area: merchandising`, `priority: p2`
 
+**Batch status (2026-08-27):** Appropriately blocked — preview-safe collection/page/search inspection found no approved, published aggregate consumables destination. The generic one-product `Home page` collection is not consumables governance. No module or unsupported reorder/product-role claim was added; structured relationships are handed to Epic E/G.
+
 ### Problem or opportunity
 
 Returning buyers may want to reorder known consumables quickly, but the homepage must not expose unverified product-role labels, incorrect collection membership, or unsupported subscription behavior.
@@ -1045,8 +1047,8 @@ Add a consumables reorder entry point that routes customers to an approved consu
 ### Acceptance criteria
 
 - [ ] Consumables route is approved and validates.
-- [ ] Product-role claims come from approved data or are omitted.
-- [ ] Section omits subscription or reminder claims unless a separate system exists.
+- [x] Product-role claims come from approved data or are omitted.
+- [x] Section omits subscription or reminder claims unless a separate system exists.
 - [ ] Mobile layout supports returning-buyer scanning.
 
 ### Implementation handoff
@@ -1070,6 +1072,8 @@ Returning customers can reach consumables faster without creating false product 
 **Confidence:** Medium  
 **Suggested milestone:** Post-Launch  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: comparison`, `area: product-data`, `priority: p2`
+
+**Batch status (2026-08-27):** Complete with deferred dependency — no truthful comparison or machine-selection destination exists, so the teaser is intentionally omitted until Epic I or approved buying guidance supplies one. The planned comparison pattern is automation-gated from rendering.
 
 ### Problem or opportunity
 
@@ -1099,10 +1103,10 @@ Add a lightweight teaser or editorial route to future comparison guidance withou
 
 ### Acceptance criteria
 
-- [ ] Teaser does not render as an interactive comparison table.
-- [ ] Destination route is approved or section remains omitted.
-- [ ] Copy clarifies the next step without unsupported recommendations.
-- [ ] Full comparison requirements are handed off to Epic I.
+- [x] Teaser does not render as an interactive comparison table.
+- [x] Destination route is approved or section remains omitted.
+- [x] Copy clarifies the next step without unsupported recommendations.
+- [x] Full comparison requirements are handed off to Epic I.
 
 ### Implementation handoff
 
@@ -1125,6 +1129,8 @@ Customers see a path toward machine selection guidance without depending on unfi
 **Confidence:** Medium  
 **Suggested milestone:** Launch Readiness  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: merchandising`, `area: shopify-admin`, `priority: p2`
+
+**Batch status (2026-08-27):** Complete — audited Machines and EM-1 as launch-safe candidates and made an explicit no-add decision. The current primary Machines route, machine-family module, and lightweight EM-1 flagship already provide the useful merchandising outcome; another native featured section would duplicate destinations and assets.
 
 ### Problem or opportunity
 
@@ -1156,7 +1162,7 @@ Add featured collection or product modules only when the selected collection/pro
 
 ### Acceptance criteria
 
-- [ ] Featured collection/product selections are documented.
+- [x] Featured collection/product selections are documented.
 - [ ] Section handles empty or sold-out states without broken layout.
 - [ ] Product cards do not exceed badge limits.
 - [ ] Links and add-to-cart pathways remain valid where rendered.
@@ -1182,6 +1188,8 @@ Homepage merchandising sends customers to launch-ready products without exposing
 **Confidence:** Medium  
 **Suggested milestone:** Launch Readiness  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: branding`, `area: legal`, `needs-content`, `priority: p1`
+
+**Batch status (2026-08-27):** Complete — exactly three Product Owner-approved statements from the governed Vejdi Ziyansiz source record render in a text-only Why Rhino module. Additional engineering facts remain a future enhancement, while broad manufacturer, supplier, superiority, quality, reliability, and durability claims remain blocked.
 
 ### Problem or opportunity
 
@@ -1213,10 +1221,10 @@ Create a proof module using approved, specific, low-risk statements that support
 
 ### Acceptance criteria
 
-- [ ] Every proof point has an approved source or is marked blocked.
-- [ ] No universal warranty, parts availability, support, or performance claim appears.
-- [ ] Module is accessible and does not rely on icons alone.
-- [ ] Claims validator passes.
+- [x] Every proof point has an approved source or is marked blocked.
+- [x] No universal warranty, parts availability, support, or performance claim appears.
+- [x] Module is accessible and does not rely on icons alone.
+- [x] Claims validator passes.
 
 ### Implementation handoff
 
@@ -1354,6 +1362,8 @@ Homepage visitors can find logistics information without being promised terms th
 **Suggested milestone:** Post-Launch  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: content`, `area: education`, `needs-content`, `priority: p2`
 
+**Batch status (2026-08-26):** Complete with deferred dependency — the persistent preview Manuals route was verified and the text-only Manuals homepage entry was implemented. Broader education and buying-guide content remains deferred because no approved destination or content exists.
+
 ### Problem or opportunity
 
 Customers researching lapidary techniques may not be ready to buy. The homepage should surface useful education or buying guides when approved content exists.
@@ -1384,10 +1394,10 @@ Add homepage entry points to approved educational pages, articles, videos, or bu
 
 ### Acceptance criteria
 
-- [ ] Each education card links to an approved page/article/video destination.
-- [ ] Section omits placeholder educational topics.
-- [ ] Copy avoids technical advice unsupported by reviewed source content.
-- [ ] Blog/article route coverage is added when required.
+- [x] The single Manuals card links to the approved `/pages/manuals` destination.
+- [x] Section omits placeholder educational topics.
+- [x] Copy is limited to neutral Manuals navigation and contains no technical advice.
+- [x] Blog/article route coverage is not required because no blog/article action is rendered.
 
 ### Implementation handoff
 
@@ -1410,6 +1420,8 @@ Research-oriented visitors have a credible next step that does not dilute purcha
 **Confidence:** Medium  
 **Suggested milestone:** Post-Launch  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: media`, `area: performance`, `area: privacy`, `priority: p2`
+
+**Batch status (2026-08-27):** Complete — the Product Owner-approved silent EM-1 promotional video and 1280 × 720 Shopify-hosted poster render through a click-to-load Rhino section. Initial state has no player/provider request or autoplay; activation uses a titled privacy-enhanced YouTube iframe. Captions/transcript are correctly N/A because the source has no spoken or verbal content.
 
 ### Problem or opportunity
 
@@ -1442,10 +1454,10 @@ Add a video or demonstration module only when an approved video source, thumbnai
 
 ### Acceptance criteria
 
-- [ ] No iframe or third-party player loads before deliberate activation.
-- [ ] Video has caption/transcript or equivalent written guidance plan.
-- [ ] Thumbnail is approved and performance-budgeted.
-- [ ] Privacy and consent implications are documented.
+- [x] No iframe or third-party player loads before deliberate activation.
+- [x] Video has caption/transcript or equivalent written guidance plan.
+- [x] Thumbnail is approved and performance-budgeted.
+- [x] Privacy and consent implications are documented.
 
 ### Implementation handoff
 
@@ -1468,6 +1480,8 @@ Homepage video supports customer understanding without slowing first load or cre
 **Confidence:** Medium  
 **Suggested milestone:** Post-Launch  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: app`, `area: legal`, `needs-decision`, `priority: p2`
+
+**Batch status (2026-08-26):** Complete — decision: deferred/blocked. No approved testimonial, review, rating, count, or widget source was found in the governed evidence, so no social proof will render and no app was installed.
 
 ### Problem or opportunity
 
@@ -1499,10 +1513,10 @@ Decide whether homepage testimonials or reviews are ready for launch, and docume
 
 ### Acceptance criteria
 
-- [ ] Decision record states launch, deferred, or blocked status.
-- [ ] Every testimonial/review source has permission and owner.
-- [ ] App use is justified against native and no-app alternatives.
-- [ ] No review count or rating appears without verified source.
+- [x] Decision record states deferred/blocked status.
+- [x] Source inventory found no approved item; future use requires permission and an owner before approval.
+- [x] Decision prefers native/no-app presentation and requires a separate app-strategy PBI for any future dependency.
+- [x] No review count or rating is rendered.
 
 ### Implementation handoff
 
@@ -1525,6 +1539,8 @@ Homepage social proof is either safely source-backed or deliberately deferred.
 **Confidence:** Medium  
 **Suggested milestone:** Post-Launch  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: forms`, `area: content`, `needs-admin`, `priority: p2`
+
+**Batch status (2026-08-27):** Appropriately blocked / explicitly deferred post-launch — Product Owner deferred newsletter and dealer, school, club, workshop, or institutional lead capture. This is not an Epic D launch blocker; future owned form/process work is handed to Epic P. The generic Contact route was not promoted and no form app was installed.
 
 ### Problem or opportunity
 
@@ -1559,7 +1575,7 @@ Add one owned homepage inquiry or signup entry point only after form destination
 - [ ] Form or destination owner is documented.
 - [ ] Consent and routing are approved.
 - [ ] Error and success states are accessible.
-- [ ] Homepage module is omitted when no owned follow-up process exists.
+- [x] Homepage module is omitted while no owned follow-up process exists.
 
 ### Implementation handoff
 
@@ -1582,6 +1598,8 @@ Homepage lead capture produces actionable inquiries without collecting data the 
 **Confidence:** High  
 **Suggested milestone:** Launch Readiness  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: accessibility`, `area: qa`, `priority: p0`
+
+**Batch status (2026-08-27):** Complete — automated accessibility assertions now cover every implemented homepage module and current preview evidence passes. Manual keyboard, screen-reader, and visual accessibility signoff remains a separate Product Owner input for D-PBI-032.
 
 ### Problem or opportunity
 
@@ -1611,10 +1629,10 @@ Expand automated and manual homepage accessibility checks for hero, path chooser
 
 ### Acceptance criteria
 
-- [ ] Homepage has exactly one visible logical H1.
-- [ ] Every interactive homepage element has an accessible name.
-- [ ] Keyboard traversal reaches all homepage modules and controls in logical order.
-- [ ] No serious or critical axe violations are introduced.
+- [x] Homepage has exactly one visible logical H1.
+- [x] Every interactive homepage element has an accessible name.
+- [x] Keyboard traversal reaches all homepage modules and controls in logical order.
+- [x] No serious or critical axe violations are introduced.
 - [ ] Manual accessibility evidence is recorded.
 
 ### Implementation handoff
@@ -1638,6 +1656,8 @@ The transformed homepage remains usable for keyboard, screen-reader, low-vision,
 **Confidence:** High  
 **Suggested milestone:** Launch Readiness  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: performance`, `area: media`, `area: qa`, `priority: p0`
+
+**Batch status (2026-08-27):** Complete — the implemented homepage passes static and governed three-run median runtime validation with the 130-request ceiling unchanged. Manual real-device release review remains a separate Product Owner input for D-PBI-032.
 
 ### Problem or opportunity
 
@@ -1668,11 +1688,11 @@ Add homepage-specific budget checks for first-screen media, total initial transf
 
 ### Acceptance criteria
 
-- [ ] Homepage budget thresholds are machine-readable.
-- [ ] Runtime report captures LCP, CLS, TBT, transfer size, request count, image bytes, video embeds, autoplay, and third-party hosts.
-- [ ] Hero media dimensions reserve layout space.
-- [ ] Noncritical media lazy loads.
-- [ ] Performance report is part of finalization.
+- [x] Homepage budget thresholds are machine-readable.
+- [x] Runtime report captures LCP, CLS, TBT, transfer size, request count, image bytes, video embeds, autoplay, and third-party hosts.
+- [x] Hero media dimensions reserve layout space.
+- [x] Noncritical media lazy loads.
+- [x] Performance report is part of finalization.
 
 ### Implementation handoff
 
@@ -1695,6 +1715,8 @@ Homepage visual richness does not silently degrade launch performance.
 **Confidence:** High  
 **Suggested milestone:** Launch Readiness  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: mobile`, `area: qa`, `priority: p1`
+
+**Batch status (2026-08-27):** Complete — the implemented homepage passes the automated matrix at all eight governed widths. Manual visual hierarchy, crop, balance, and real-device approval remain separate Product Owner inputs for D-PBI-032.
 
 ### Problem or opportunity
 
@@ -1724,10 +1746,10 @@ Create an Epic D responsive homepage QA evidence plan with required viewports, s
 
 ### Acceptance criteria
 
-- [ ] Evidence plan lists required viewport and state matrix.
-- [ ] Naming rules are consistent with prior evidence folders.
-- [ ] Plan blocks approval for overlap, clipping, horizontal scroll, or unreadable media crops.
-- [ ] Manual and automated evidence responsibilities are clear.
+- [x] Evidence plan lists required viewport and state matrix.
+- [x] Naming rules are consistent with prior evidence folders.
+- [x] Plan blocks approval for overlap, clipping, horizontal scroll, or unreadable media crops.
+- [x] Manual and automated evidence responsibilities are clear.
 
 ### Implementation handoff
 
@@ -1750,6 +1772,8 @@ Homepage visual approval is repeatable across the actual supported device range.
 **Confidence:** Medium  
 **Suggested milestone:** Post-Launch  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: analytics`, `priority: p2`
+
+**Batch status (2026-08-27):** Complete — native Shopify measures and future proposal-only module events are separated in a validated ten-measure contract, including the newly implemented EM-1 video. No pixel, custom event, app, or consent change was implemented; targets remain baseline-first pending Product/Analytics review.
 
 ### Problem or opportunity
 
@@ -1779,10 +1803,10 @@ Define homepage success measures using native Shopify reporting first and list a
 
 ### Acceptance criteria
 
-- [ ] Measurement plan lists measure, question, source, owner, privacy note, and baseline period.
-- [ ] Native Shopify reporting is used where sufficient.
-- [ ] Custom events are proposed but not implemented.
-- [ ] No duplicate ecommerce tracking is introduced.
+- [x] Measurement plan lists measure, question, source, owner, privacy note, and baseline period.
+- [x] Native Shopify reporting is used where sufficient.
+- [x] Custom events are proposed but not implemented.
+- [x] No duplicate ecommerce tracking is introduced.
 
 ### Implementation handoff
 
@@ -1805,6 +1829,8 @@ The team can learn whether homepage modules help customers choose useful next st
 **Confidence:** High  
 **Suggested milestone:** Launch Readiness  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: qa`, `area: release`, `type: improvement`, `priority: p0`
+
+**Batch status (2026-08-27):** Complete — aggregate static, preview, and all-mode runners plus an artifacts-only and technical finalization validator are implemented. The gate requires current D019/D023 state, allows explicitly governed optional deferrals, and always reports that D-PBI-032 human GO remains required and production is not approved.
 
 ### Problem or opportunity
 
@@ -1836,10 +1862,10 @@ Create an Epic D QA plan, QA runner, and finalization validator that compose exi
 
 ### Acceptance criteria
 
-- [ ] Static runner validates homepage model, routes, section patterns, hardcoded strings, media, claims, placeholders, and required docs.
-- [ ] Preview runner validates homepage route identity, smoke, accessibility, responsive states, and performance where credentials exist.
-- [ ] Runner report records selected, passed, failed, and failedRequired totals.
-- [ ] Missing required artifacts block finalization.
+- [x] Static runner validates homepage model, routes, section patterns, hardcoded strings, media, claims, placeholders, and required docs.
+- [x] Preview runner validates homepage route identity, smoke, accessibility, responsive states, and performance where credentials exist.
+- [x] Runner report records selected, passed, failed, failedRequired, skipped, and duration totals.
+- [x] Missing required artifacts block finalization.
 
 ### Implementation handoff
 
@@ -1862,6 +1888,8 @@ Epic D can close only when repository, Admin, content, accessibility, performanc
 **Confidence:** High  
 **Suggested milestone:** Launch Readiness  
 **Suggested GitHub labels:** `epic: d`, `area: homepage`, `area: release`, `area: documentation`, `priority: p1`
+
+**Batch status (2026-08-27):** Complete — release checklist, signoff checklist, finalization report, and README now identify Epic D commands, preview/production IDs, route/media/claims/video/NFR evidence, `--nodelete` rollback, and the required human D-PBI-032 GO.
 
 ### Problem or opportunity
 
@@ -1892,10 +1920,10 @@ Update release and documentation references so homepage transformation is review
 
 ### Acceptance criteria
 
-- [ ] Release checklist includes Epic D static and preview commands.
-- [ ] Signoff checklist requires homepage screenshots and rollback evidence.
-- [ ] Release notes template prompts for homepage section, media, route, and Admin changes.
-- [ ] Documentation references are included in D-PBI-030 finalization.
+- [x] Release checklist includes Epic D static and preview commands.
+- [x] Signoff checklist requires homepage screenshots and rollback evidence.
+- [x] Release notes/finalization report prompts for homepage section, media, route, and Admin changes.
+- [x] Documentation references are included in D-PBI-030 finalization.
 
 ### Implementation handoff
 

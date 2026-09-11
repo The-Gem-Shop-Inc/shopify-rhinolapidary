@@ -1,0 +1,358 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "mutationAuthorized",
+    "inputs",
+    "nodes",
+    "edges",
+    "coverage",
+    "liveTargets",
+    "nativeReferences"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "entityType",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entityType": {
+            "enum": [
+              "Product",
+              "ProductVariant",
+              "machine_family",
+              "Resource",
+              "File",
+              "Policy",
+              "WarrantyClass",
+              "OperationalRule"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "productClass": {
+            "enum": [
+              "machine",
+              "replacement_part",
+              "consumable",
+              "accessory"
+            ]
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "lifecycle": {
+            "type": "string"
+          },
+          "publicationApproved": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "source",
+              "target",
+              "state",
+              "sourceRowId",
+              "canonical",
+              "humanApprovalVerified",
+              "inferredReverse",
+              "evidenceBasis"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "sourceRowId": {
+                "type": "string"
+              },
+              "canonical": {
+                "type": "boolean"
+              },
+              "humanApprovalVerified": {
+                "type": "boolean"
+              },
+              "inferredReverse": {
+                "type": "boolean"
+              },
+              "evidenceBasis": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "source",
+              "target",
+              "state",
+              "sourceRowId",
+              "canonical",
+              "humanApprovalVerified",
+              "inferredReverse",
+              "evidenceBasis",
+              "unresolvedFamilyEvidence"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "sourceRowId": {
+                "type": "string"
+              },
+              "canonical": {
+                "type": "boolean"
+              },
+              "humanApprovalVerified": {
+                "type": "boolean"
+              },
+              "inferredReverse": {
+                "type": "boolean"
+              },
+              "evidenceBasis": {
+                "type": "string"
+              },
+              "unresolvedFamilyEvidence": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "source",
+              "target",
+              "state",
+              "sourceRowId",
+              "canonical",
+              "humanApprovalVerified",
+              "inferredReverse",
+              "evidenceBasis",
+              "unresolvedFamilyEvidence"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "target": {},
+              "state": {
+                "type": "string"
+              },
+              "sourceRowId": {
+                "type": "string"
+              },
+              "canonical": {
+                "type": "boolean"
+              },
+              "humanApprovalVerified": {
+                "type": "boolean"
+              },
+              "inferredReverse": {
+                "type": "boolean"
+              },
+              "evidenceBasis": {
+                "type": "string"
+              },
+              "unresolvedFamilyEvidence": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "source",
+              "target",
+              "state",
+              "sourceRowId",
+              "canonical",
+              "humanApprovalVerified",
+              "inferredReverse",
+              "evidenceBasis"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "target": {},
+              "state": {
+                "type": "string"
+              },
+              "sourceRowId": {
+                "type": "string"
+              },
+              "canonical": {
+                "type": "boolean"
+              },
+              "humanApprovalVerified": {
+                "type": "boolean"
+              },
+              "inferredReverse": {
+                "type": "boolean"
+              },
+              "evidenceBasis": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "products",
+        "variants",
+        "resources",
+        "unresolvedTargetEdges"
+      ],
+      "properties": {
+        "products": {
+          "type": "integer"
+        },
+        "variants": {
+          "type": "integer"
+        },
+        "resources": {
+          "type": "integer"
+        },
+        "unresolvedTargetEdges": {
+          "type": "integer"
+        }
+      }
+    },
+    "liveTargets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sourceRowId",
+          "targetGid",
+          "state",
+          "capturedAt"
+        ],
+        "properties": {
+          "sourceRowId": {
+            "type": "string"
+          },
+          "targetGid": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "capturedAt": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nativeReferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ownerGid",
+          "key",
+          "state"
+        ],
+        "properties": {
+          "ownerGid": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "targetGid": {},
+          "state": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

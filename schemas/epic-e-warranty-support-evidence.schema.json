@@ -1,0 +1,397 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "inputs",
+    "adminMutationAuthorized",
+    "valuePopulationAuthorized",
+    "classCandidates",
+    "groupingCandidates",
+    "coverage",
+    "approvedPolicyVersions",
+    "approvedClassDefinitions",
+    "approvedMappings",
+    "statistics",
+    "supportResourceContract"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adminMutationAuthorized": {
+      "const": false
+    },
+    "valuePopulationAuthorized": {
+      "const": false
+    },
+    "classCandidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "candidateId",
+          "label",
+          "observedDuration",
+          "location",
+          "scope",
+          "sourceId",
+          "decisionState",
+          "policyApproved"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "candidateId": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "observedDuration": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "sourceId": {
+            "type": "string"
+          },
+          "decisionState": {
+            "type": "string"
+          },
+          "policyApproved": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "groupingCandidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "brand",
+          "productClass",
+          "productGids",
+          "termsAssigned",
+          "decisionState"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "brand": {
+            "type": "string"
+          },
+          "productClass": {
+            "type": "string"
+          },
+          "productGids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "termsAssigned": {
+            "type": "boolean"
+          },
+          "decisionState": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "required": [
+              "productGid",
+              "handle",
+              "productClass",
+              "marketedBrandCandidate",
+              "currentVendor",
+              "manufacturer",
+              "warrantyIssuer",
+              "warrantyAdministrator",
+              "repairProvider",
+              "policyClassId",
+              "exceptionState",
+              "candidateResourceIds",
+              "supportAuthorityId",
+              "warrantyDestinationId",
+              "repairDestinationId",
+              "state"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "productGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "handle": {
+                "type": "string"
+              },
+              "productClass": {
+                "type": "string"
+              },
+              "marketedBrandCandidate": {
+                "type": "string"
+              },
+              "currentVendor": {
+                "type": "string"
+              },
+              "manufacturer": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "warrantyIssuer": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "warrantyAdministrator": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "repairProvider": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "policyClassId": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "exceptionState": {
+                "type": "string"
+              },
+              "candidateResourceIds": {
+                "type": "array",
+                "items": {}
+              },
+              "supportAuthorityId": {
+                "type": "string"
+              },
+              "warrantyDestinationId": {
+                "type": "string"
+              },
+              "repairDestinationId": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "productGid",
+              "handle",
+              "productClass",
+              "marketedBrandCandidate",
+              "currentVendor",
+              "manufacturer",
+              "warrantyIssuer",
+              "warrantyAdministrator",
+              "repairProvider",
+              "policyClassId",
+              "exceptionState",
+              "candidateResourceIds",
+              "supportAuthorityId",
+              "warrantyDestinationId",
+              "repairDestinationId",
+              "state"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "productGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "handle": {
+                "type": "string"
+              },
+              "productClass": {
+                "type": "string"
+              },
+              "marketedBrandCandidate": {
+                "type": "string"
+              },
+              "currentVendor": {
+                "type": "string"
+              },
+              "manufacturer": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "warrantyIssuer": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "warrantyAdministrator": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "repairProvider": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "policyClassId": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              },
+              "exceptionState": {
+                "type": "string"
+              },
+              "candidateResourceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "supportAuthorityId": {
+                "type": "string"
+              },
+              "warrantyDestinationId": {
+                "type": "string"
+              },
+              "repairDestinationId": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "approvedPolicyVersions": {
+      "type": "array",
+      "items": {}
+    },
+    "approvedClassDefinitions": {
+      "type": "array",
+      "items": {}
+    },
+    "approvedMappings": {
+      "type": "array",
+      "items": {}
+    },
+    "statistics": {
+      "type": "object",
+      "required": [
+        "products",
+        "thirdPartyBrandCandidates",
+        "approvedMappings",
+        "blockedMappings"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "products": {
+          "type": "integer"
+        },
+        "thirdPartyBrandCandidates": {
+          "type": "integer"
+        },
+        "approvedMappings": {
+          "type": "integer"
+        },
+        "blockedMappings": {
+          "type": "integer"
+        }
+      }
+    },
+    "supportResourceContract": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "epic-e-warranty-support-evidence repository evidence contract"
+}

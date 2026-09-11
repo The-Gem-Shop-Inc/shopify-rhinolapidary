@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "source",
+    "reviewerAvailability",
+    "nextReviewDate",
+    "waivesApprovals",
+    "mutationAuthorized",
+    "policy"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "reviewerAvailability": {
+      "type": "string"
+    },
+    "nextReviewDate": {},
+    "waivesApprovals": {
+      "const": false
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "policy": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

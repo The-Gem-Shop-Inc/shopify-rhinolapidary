@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-09-09T22:12:21.000Z",
+  "mutationAuthorized": false,
+  "inputs": [
+    {
+      "path": "data/epic-e-aggregate-gate-contract.json",
+      "sha256": "8c3070908e7f53142221398b63e8eeb8d5a7e2545e483ea98244c7733bbd705a"
+    },
+    {
+      "path": "data/metafield-metaobject-definitions.json",
+      "sha256": "83374ee5cb880ebbad41cebef8df67a6b132d630ccf6964ba53fb5743a5eb215"
+    },
+    {
+      "path": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "sha256": "d2daa618337640c42878f3ed0aa398b2c0cda198229731ca21e248e3f22c6985"
+    },
+    {
+      "path": "data/epic-e-product-owner-decisions.json",
+      "sha256": "74f9afb00c7327029ef73ad9ca84e17bab93b3598382715e5e0864927107fd5a"
+    },
+    {
+      "path": "data/epic-e-vendor-semantic-audit.json",
+      "sha256": "a901d289db336a62c5bcd83f9543c63ad25aa01a45221fc00eb6354263af2fca"
+    },
+    {
+      "path": "data/epic-e-source-governance.json",
+      "sha256": "5ac003ddc7a08f2d4cb24f0216cecd934eb71a133a7f3efb16355f04d6de201c"
+    }
+  ],
+  "planId": "E-MUT-023",
+  "domain": "vendor",
+  "scope": "one independently reviewed migration domain",
+  "rows": [],
+  "candidates": [
+    {
+      "targetGid": "gid://shopify/Product/8905780527301",
+      "desired": "DIALUX",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905780560069",
+      "desired": "DIALUX",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905781313733",
+      "desired": "KAAN ZIMPARA",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905778430149",
+      "desired": "Johnson Brothers Lapidary",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905778331845",
+      "desired": "Johnson Brothers Lapidary",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905778561221",
+      "desired": "Johnson Brothers Lapidary",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905778659525",
+      "desired": "Johnson Brothers Lapidary",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905778987205",
+      "desired": "Nova Wheel",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905779118277",
+      "desired": "Nova Wheel",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905778921669",
+      "desired": "Nova Wheel",
+      "state": "proposed"
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905779052741",
+      "desired": "Nova Wheel",
+      "state": "proposed"
+    }
+  ],
+  "preconditions": [
+    {
+      "id": "fresh_complete_read_only_reconciliation",
+      "satisfied": false
+    },
+    {
+      "id": "exact_targets_and_compare_before_write_revalidated",
+      "satisfied": false
+    },
+    {
+      "id": "Product_Owner_GO_for_this_domain_and_input_hash",
+      "satisfied": false
+    },
+    {
+      "id": "Shopify_Admin_Owner_GO_for_this_domain_and_input_hash",
+      "satisfied": false
+    },
+    {
+      "id": "approved_input_rows_exist",
+      "satisfied": false
+    }
+  ],
+  "rollback": [],
+  "executable": false,
+  "dryRun": {
+    "status": "passed",
+    "meaning": "Deterministic repository plan preparation only; zero network writes.",
+    "orderedRowIds": [],
+    "approvedRows": 0
+  },
+  "afterVerification": [],
+  "independence": {
+    "otherDomainsRequiredForGO": false,
+    "definitionPrerequisite": null,
+    "unrelatedHumanDecisionsDoNotBlockPreparation": true
+  }
+}

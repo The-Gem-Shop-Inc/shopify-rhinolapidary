@@ -14,16 +14,81 @@
     "Image Alt Text",
     "Status"
   ],
-  "allowedStatuses": ["active", "draft", "archived"],
-  "launchRequiredStatuses": ["active"],
+  "allowedStatuses": [
+    "active",
+    "draft",
+    "archived"
+  ],
+  "launchRequiredStatuses": [
+    "active"
+  ],
   "keyProductHandles": [
     "left-moss-pad"
   ],
-  "requiredTagsByProductClass": {
-    "machine": ["rhino", "machine"],
-    "consumable": ["rhino", "consumable"],
-    "accessory": ["rhino", "accessory"],
-    "replacement-part": ["rhino", "replacement-part"]
+  "legacyTagAuthority": {
+    "decisionState": "deprecated",
+    "deprecatedRule": "requiredTagsByProductClass",
+    "replacement": "rhino.product_class",
+    "effectiveDate": "2026-09-03",
+    "reason": "Tags are noncanonical merchandising or administrative hints and cannot control product class or downstream behavior.",
+    "historicalValues": {
+      "machine": [
+        "rhino",
+        "machine"
+      ],
+      "consumable": [
+        "rhino",
+        "consumable"
+      ],
+      "accessory": [
+        "rhino",
+        "accessory"
+      ],
+      "replacement_part": [
+        "rhino",
+        "replacement-part"
+      ]
+    }
+  },
+  "skuGovernance": {
+    "authorityState": "approved",
+    "registry": "data/rhino-commerce-sku-registry.json",
+    "scope": "shopify_variant_sellable_commerce_unit",
+    "format": "RH-######",
+    "allowedAllocation": "next_unused_identifier_from_governed_registry_only",
+    "prohibitedDerivations": [
+      "product_title",
+      "handle",
+      "product_class",
+      "vendor",
+      "machine_family",
+      "voltage",
+      "grit",
+      "size",
+      "compatibility",
+      "dimensions",
+      "shopify_numeric_id",
+      "technical_spec",
+      "sort_position",
+      "arbitrary_agent_sequence"
+    ],
+    "caseInsensitiveUniqueAcrossActiveAndRetired": true,
+    "retiredSkusNeverReused": true,
+    "legacyIdentifiersPreserved": true
+  },
+  "customDataGovernance": {
+    "registry": "data/metafield-metaobject-definitions.json",
+    "canonicalProductClass": "rhino.product_class",
+    "standardShopifyFieldsBeforeCustomData": true,
+    "nativeSkuRemainsVariantField": true,
+    "nativeBarcodeRemainsVariantField": true,
+    "nativeVendorRemainsProductField": true,
+    "nativeCategoryRemainsProductField": true,
+    "adminMutationAuthorized": false,
+    "definitionPlanGate": "E-PBI-019",
+    "definitionCreationPbi": "E-PBI-020",
+    "batch3bContract": "data/epic-e-batch-3b-contracts.json",
+    "batch3bValueApprovalSeparate": true
   },
   "forbiddenTitleFragments": [
     "TODO",

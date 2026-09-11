@@ -1,0 +1,1615 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-10 21:12:58 UTC",
+  "readOnly": true,
+  "scope": "Current scoped delivery configuration and pickup observations; no commercial approval, checkout guarantee, complete Markets audit or Epic E execution authority",
+  "queries": {
+    "delivery": "query EpicEDeliveryConfiguration($first: Int!, $after: String) { deliveryProfiles(first: $first, after: $after) { nodes { id name default productVariantsCount { count } profileLocationGroups { locationGroup { id locations(first: 100) { nodes { id } pageInfo { hasNextPage endCursor } } } locationGroupZones(first: 10) { nodes { zone { id name countries { code { countryCode restOfWorld } provinces { code } } } methodDefinitions(first: 10) { nodes { id name active rateProvider { __typename ... on DeliveryRateDefinition { id price { amount currencyCode } } } methodConditions { field operator conditionCriteria { __typename ... on MoneyV2 { amount currencyCode } ... on Weight { value unit } } } } pageInfo { hasNextPage endCursor } } } pageInfo { hasNextPage endCursor } } } } pageInfo { hasNextPage endCursor } } }",
+    "pickup": "query EpicEPickupConfiguration($first: Int!, $after: String) { locations(first: $first, after: $after, sortKey: ID, includeInactive: true) { nodes { id name isActive fulfillsOnlineOrders localPickupSettingsV2 { pickupTime instructions } } pageInfo { hasNextPage endCursor } } }"
+  },
+  "delivery": {
+    "data": {
+      "deliveryProfiles": {
+        "nodes": [
+          {
+            "id": "gid://shopify/DeliveryProfile/107424874693",
+            "name": "General profile",
+            "default": true,
+            "productVariantsCount": {
+              "count": 125
+            },
+            "profileLocationGroups": [
+              {
+                "locationGroup": {
+                  "id": "gid://shopify/DeliveryLocationGroup/108609044677",
+                  "locations": {
+                    "nodes": [
+                      {
+                        "id": "gid://shopify/Location/88823267525"
+                      }
+                    ],
+                    "pageInfo": {
+                      "hasNextPage": false,
+                      "endCursor": "eyJsYXN0X2lkIjo4ODgyMzI2NzUyNSwibGFzdF92YWx1ZSI6IjE0MTEgNnRoIEF2ZSJ9"
+                    }
+                  }
+                },
+                "locationGroupZones": {
+                  "nodes": [
+                    {
+                      "zone": {
+                        "id": "gid://shopify/DeliveryZone/463681814725",
+                        "name": "Domestic",
+                        "countries": [
+                          {
+                            "code": {
+                              "countryCode": "US",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "AL"
+                              },
+                              {
+                                "code": "AK"
+                              },
+                              {
+                                "code": "AS"
+                              },
+                              {
+                                "code": "AZ"
+                              },
+                              {
+                                "code": "AR"
+                              },
+                              {
+                                "code": "CA"
+                              },
+                              {
+                                "code": "CO"
+                              },
+                              {
+                                "code": "CT"
+                              },
+                              {
+                                "code": "DE"
+                              },
+                              {
+                                "code": "FM"
+                              },
+                              {
+                                "code": "FL"
+                              },
+                              {
+                                "code": "GA"
+                              },
+                              {
+                                "code": "GU"
+                              },
+                              {
+                                "code": "HI"
+                              },
+                              {
+                                "code": "ID"
+                              },
+                              {
+                                "code": "IL"
+                              },
+                              {
+                                "code": "IN"
+                              },
+                              {
+                                "code": "IA"
+                              },
+                              {
+                                "code": "KS"
+                              },
+                              {
+                                "code": "KY"
+                              },
+                              {
+                                "code": "LA"
+                              },
+                              {
+                                "code": "ME"
+                              },
+                              {
+                                "code": "MH"
+                              },
+                              {
+                                "code": "MD"
+                              },
+                              {
+                                "code": "MA"
+                              },
+                              {
+                                "code": "MI"
+                              },
+                              {
+                                "code": "MN"
+                              },
+                              {
+                                "code": "MS"
+                              },
+                              {
+                                "code": "MO"
+                              },
+                              {
+                                "code": "MT"
+                              },
+                              {
+                                "code": "NE"
+                              },
+                              {
+                                "code": "NV"
+                              },
+                              {
+                                "code": "NH"
+                              },
+                              {
+                                "code": "NJ"
+                              },
+                              {
+                                "code": "NM"
+                              },
+                              {
+                                "code": "NY"
+                              },
+                              {
+                                "code": "NC"
+                              },
+                              {
+                                "code": "ND"
+                              },
+                              {
+                                "code": "MP"
+                              },
+                              {
+                                "code": "OH"
+                              },
+                              {
+                                "code": "OK"
+                              },
+                              {
+                                "code": "OR"
+                              },
+                              {
+                                "code": "PW"
+                              },
+                              {
+                                "code": "PA"
+                              },
+                              {
+                                "code": "PR"
+                              },
+                              {
+                                "code": "RI"
+                              },
+                              {
+                                "code": "SC"
+                              },
+                              {
+                                "code": "SD"
+                              },
+                              {
+                                "code": "TN"
+                              },
+                              {
+                                "code": "TX"
+                              },
+                              {
+                                "code": "UT"
+                              },
+                              {
+                                "code": "VT"
+                              },
+                              {
+                                "code": "VA"
+                              },
+                              {
+                                "code": "WA"
+                              },
+                              {
+                                "code": "DC"
+                              },
+                              {
+                                "code": "WV"
+                              },
+                              {
+                                "code": "WI"
+                              },
+                              {
+                                "code": "WY"
+                              },
+                              {
+                                "code": "VI"
+                              },
+                              {
+                                "code": "AA"
+                              },
+                              {
+                                "code": "AE"
+                              },
+                              {
+                                "code": "AP"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "methodDefinitions": {
+                        "nodes": [
+                          {
+                            "id": "gid://shopify/DeliveryMethodDefinition/878110802117",
+                            "name": "Standard",
+                            "active": true,
+                            "rateProvider": {
+                              "__typename": "DeliveryRateDefinition",
+                              "id": "gid://shopify/DeliveryRateDefinition/809945923781",
+                              "price": {
+                                "amount": "8.0",
+                                "currencyCode": "USD"
+                              }
+                            },
+                            "methodConditions": []
+                          },
+                          {
+                            "id": "gid://shopify/DeliveryMethodDefinition/878110802117?source=RateRangeCondition&source_id=229943804101",
+                            "name": "Standard",
+                            "active": true,
+                            "rateProvider": {
+                              "__typename": "DeliveryRateDefinition",
+                              "id": "gid://shopify/DeliveryRateDefinition/0?source=RateRangeCondition&source_id=229943804101",
+                              "price": {
+                                "amount": "0.0",
+                                "currencyCode": "USD"
+                              }
+                            },
+                            "methodConditions": [
+                              {
+                                "field": "TOTAL_PRICE",
+                                "operator": "GREATER_THAN_OR_EQUAL_TO",
+                                "conditionCriteria": {
+                                  "__typename": "MoneyV2",
+                                  "amount": "70.0",
+                                  "currencyCode": "USD"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "id": "gid://shopify/DeliveryMethodDefinition/878110834885",
+                            "name": "Express",
+                            "active": true,
+                            "rateProvider": {
+                              "__typename": "DeliveryRateDefinition",
+                              "id": "gid://shopify/DeliveryRateDefinition/809945956549",
+                              "price": {
+                                "amount": "15.0",
+                                "currencyCode": "USD"
+                              }
+                            },
+                            "methodConditions": []
+                          }
+                        ],
+                        "pageInfo": {
+                          "hasNextPage": false,
+                          "endCursor": "eyJsYXN0X2lkIjo4NzgxMTA4MzQ4ODUsImxhc3RfdmFsdWUiOnsibWV0aG9kX2RlZmluaXRpb25faWQiOjg3ODExMDgzNDg4NSwidmlydHVhbF9yZWNvcmRfc291cmNlX2tleSI6bnVsbCwicHJldl9kYl9tZXRob2RfZGVmaW5pdGlvbl9pZCI6ODc4MTEwODAyMTE3LCJuZXh0X2RiX21ldGhvZF9kZWZpbml0aW9uX2lkIjpudWxsfX0="
+                        }
+                      }
+                    },
+                    {
+                      "zone": {
+                        "id": "gid://shopify/DeliveryZone/463681847493",
+                        "name": "International",
+                        "countries": [
+                          {
+                            "code": {
+                              "countryCode": "AE",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "AZ"
+                              },
+                              {
+                                "code": "AJ"
+                              },
+                              {
+                                "code": "DU"
+                              },
+                              {
+                                "code": "FU"
+                              },
+                              {
+                                "code": "RK"
+                              },
+                              {
+                                "code": "SH"
+                              },
+                              {
+                                "code": "UQ"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "AT",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "AU",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "ACT"
+                              },
+                              {
+                                "code": "NSW"
+                              },
+                              {
+                                "code": "NT"
+                              },
+                              {
+                                "code": "QLD"
+                              },
+                              {
+                                "code": "SA"
+                              },
+                              {
+                                "code": "TAS"
+                              },
+                              {
+                                "code": "VIC"
+                              },
+                              {
+                                "code": "WA"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "BE",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "CA",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "AB"
+                              },
+                              {
+                                "code": "BC"
+                              },
+                              {
+                                "code": "MB"
+                              },
+                              {
+                                "code": "NB"
+                              },
+                              {
+                                "code": "NL"
+                              },
+                              {
+                                "code": "NT"
+                              },
+                              {
+                                "code": "NS"
+                              },
+                              {
+                                "code": "NU"
+                              },
+                              {
+                                "code": "ON"
+                              },
+                              {
+                                "code": "PE"
+                              },
+                              {
+                                "code": "QC"
+                              },
+                              {
+                                "code": "SK"
+                              },
+                              {
+                                "code": "YT"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "CH",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "CZ",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "DE",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "DK",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "ES",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "C"
+                              },
+                              {
+                                "code": "VI"
+                              },
+                              {
+                                "code": "AB"
+                              },
+                              {
+                                "code": "A"
+                              },
+                              {
+                                "code": "AL"
+                              },
+                              {
+                                "code": "O"
+                              },
+                              {
+                                "code": "AV"
+                              },
+                              {
+                                "code": "BA"
+                              },
+                              {
+                                "code": "PM"
+                              },
+                              {
+                                "code": "B"
+                              },
+                              {
+                                "code": "BU"
+                              },
+                              {
+                                "code": "CC"
+                              },
+                              {
+                                "code": "CA"
+                              },
+                              {
+                                "code": "S"
+                              },
+                              {
+                                "code": "CS"
+                              },
+                              {
+                                "code": "CE"
+                              },
+                              {
+                                "code": "CR"
+                              },
+                              {
+                                "code": "CO"
+                              },
+                              {
+                                "code": "CU"
+                              },
+                              {
+                                "code": "GI"
+                              },
+                              {
+                                "code": "GR"
+                              },
+                              {
+                                "code": "GU"
+                              },
+                              {
+                                "code": "SS"
+                              },
+                              {
+                                "code": "H"
+                              },
+                              {
+                                "code": "HU"
+                              },
+                              {
+                                "code": "J"
+                              },
+                              {
+                                "code": "LO"
+                              },
+                              {
+                                "code": "GC"
+                              },
+                              {
+                                "code": "LE"
+                              },
+                              {
+                                "code": "L"
+                              },
+                              {
+                                "code": "LU"
+                              },
+                              {
+                                "code": "M"
+                              },
+                              {
+                                "code": "MA"
+                              },
+                              {
+                                "code": "ML"
+                              },
+                              {
+                                "code": "MU"
+                              },
+                              {
+                                "code": "NA"
+                              },
+                              {
+                                "code": "OR"
+                              },
+                              {
+                                "code": "P"
+                              },
+                              {
+                                "code": "PO"
+                              },
+                              {
+                                "code": "SA"
+                              },
+                              {
+                                "code": "TF"
+                              },
+                              {
+                                "code": "SG"
+                              },
+                              {
+                                "code": "SE"
+                              },
+                              {
+                                "code": "SO"
+                              },
+                              {
+                                "code": "T"
+                              },
+                              {
+                                "code": "TE"
+                              },
+                              {
+                                "code": "TO"
+                              },
+                              {
+                                "code": "V"
+                              },
+                              {
+                                "code": "VA"
+                              },
+                              {
+                                "code": "BI"
+                              },
+                              {
+                                "code": "ZA"
+                              },
+                              {
+                                "code": "Z"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "FI",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "FR",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "GB",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "BFP"
+                              },
+                              {
+                                "code": "ENG"
+                              },
+                              {
+                                "code": "NIR"
+                              },
+                              {
+                                "code": "SCT"
+                              },
+                              {
+                                "code": "WLS"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "HK",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "HK"
+                              },
+                              {
+                                "code": "KL"
+                              },
+                              {
+                                "code": "NT"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "IE",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "CW"
+                              },
+                              {
+                                "code": "CN"
+                              },
+                              {
+                                "code": "CE"
+                              },
+                              {
+                                "code": "CO"
+                              },
+                              {
+                                "code": "DL"
+                              },
+                              {
+                                "code": "D"
+                              },
+                              {
+                                "code": "G"
+                              },
+                              {
+                                "code": "KY"
+                              },
+                              {
+                                "code": "KE"
+                              },
+                              {
+                                "code": "KK"
+                              },
+                              {
+                                "code": "LS"
+                              },
+                              {
+                                "code": "LM"
+                              },
+                              {
+                                "code": "LK"
+                              },
+                              {
+                                "code": "LD"
+                              },
+                              {
+                                "code": "LH"
+                              },
+                              {
+                                "code": "MO"
+                              },
+                              {
+                                "code": "MH"
+                              },
+                              {
+                                "code": "MN"
+                              },
+                              {
+                                "code": "OY"
+                              },
+                              {
+                                "code": "RN"
+                              },
+                              {
+                                "code": "SO"
+                              },
+                              {
+                                "code": "TA"
+                              },
+                              {
+                                "code": "WD"
+                              },
+                              {
+                                "code": "WH"
+                              },
+                              {
+                                "code": "WX"
+                              },
+                              {
+                                "code": "WW"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "IL",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "IT",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "AG"
+                              },
+                              {
+                                "code": "AL"
+                              },
+                              {
+                                "code": "AN"
+                              },
+                              {
+                                "code": "AO"
+                              },
+                              {
+                                "code": "AR"
+                              },
+                              {
+                                "code": "AP"
+                              },
+                              {
+                                "code": "AT"
+                              },
+                              {
+                                "code": "AV"
+                              },
+                              {
+                                "code": "BA"
+                              },
+                              {
+                                "code": "BT"
+                              },
+                              {
+                                "code": "BL"
+                              },
+                              {
+                                "code": "BN"
+                              },
+                              {
+                                "code": "BG"
+                              },
+                              {
+                                "code": "BI"
+                              },
+                              {
+                                "code": "BO"
+                              },
+                              {
+                                "code": "BZ"
+                              },
+                              {
+                                "code": "BS"
+                              },
+                              {
+                                "code": "BR"
+                              },
+                              {
+                                "code": "CA"
+                              },
+                              {
+                                "code": "CL"
+                              },
+                              {
+                                "code": "CB"
+                              },
+                              {
+                                "code": "CE"
+                              },
+                              {
+                                "code": "CT"
+                              },
+                              {
+                                "code": "CZ"
+                              },
+                              {
+                                "code": "CH"
+                              },
+                              {
+                                "code": "CO"
+                              },
+                              {
+                                "code": "CS"
+                              },
+                              {
+                                "code": "CR"
+                              },
+                              {
+                                "code": "KR"
+                              },
+                              {
+                                "code": "CN"
+                              },
+                              {
+                                "code": "EN"
+                              },
+                              {
+                                "code": "FM"
+                              },
+                              {
+                                "code": "FE"
+                              },
+                              {
+                                "code": "FI"
+                              },
+                              {
+                                "code": "FG"
+                              },
+                              {
+                                "code": "FC"
+                              },
+                              {
+                                "code": "FR"
+                              },
+                              {
+                                "code": "OT"
+                              },
+                              {
+                                "code": "GE"
+                              },
+                              {
+                                "code": "GO"
+                              },
+                              {
+                                "code": "GR"
+                              },
+                              {
+                                "code": "IM"
+                              },
+                              {
+                                "code": "IS"
+                              },
+                              {
+                                "code": "AQ"
+                              },
+                              {
+                                "code": "SP"
+                              },
+                              {
+                                "code": "LT"
+                              },
+                              {
+                                "code": "LE"
+                              },
+                              {
+                                "code": "LC"
+                              },
+                              {
+                                "code": "LI"
+                              },
+                              {
+                                "code": "LO"
+                              },
+                              {
+                                "code": "LU"
+                              },
+                              {
+                                "code": "MC"
+                              },
+                              {
+                                "code": "MN"
+                              },
+                              {
+                                "code": "MS"
+                              },
+                              {
+                                "code": "MT"
+                              },
+                              {
+                                "code": "VS"
+                              },
+                              {
+                                "code": "ME"
+                              },
+                              {
+                                "code": "MI"
+                              },
+                              {
+                                "code": "MO"
+                              },
+                              {
+                                "code": "MB"
+                              },
+                              {
+                                "code": "NA"
+                              },
+                              {
+                                "code": "NO"
+                              },
+                              {
+                                "code": "NU"
+                              },
+                              {
+                                "code": "OG"
+                              },
+                              {
+                                "code": "OR"
+                              },
+                              {
+                                "code": "PD"
+                              },
+                              {
+                                "code": "PA"
+                              },
+                              {
+                                "code": "PR"
+                              },
+                              {
+                                "code": "PV"
+                              },
+                              {
+                                "code": "PG"
+                              },
+                              {
+                                "code": "PU"
+                              },
+                              {
+                                "code": "PE"
+                              },
+                              {
+                                "code": "PC"
+                              },
+                              {
+                                "code": "PI"
+                              },
+                              {
+                                "code": "PT"
+                              },
+                              {
+                                "code": "PN"
+                              },
+                              {
+                                "code": "PZ"
+                              },
+                              {
+                                "code": "PO"
+                              },
+                              {
+                                "code": "RG"
+                              },
+                              {
+                                "code": "RA"
+                              },
+                              {
+                                "code": "RC"
+                              },
+                              {
+                                "code": "RE"
+                              },
+                              {
+                                "code": "RI"
+                              },
+                              {
+                                "code": "RN"
+                              },
+                              {
+                                "code": "RM"
+                              },
+                              {
+                                "code": "RO"
+                              },
+                              {
+                                "code": "SA"
+                              },
+                              {
+                                "code": "SS"
+                              },
+                              {
+                                "code": "SV"
+                              },
+                              {
+                                "code": "SI"
+                              },
+                              {
+                                "code": "SR"
+                              },
+                              {
+                                "code": "SO"
+                              },
+                              {
+                                "code": "CI"
+                              },
+                              {
+                                "code": "TA"
+                              },
+                              {
+                                "code": "TE"
+                              },
+                              {
+                                "code": "TR"
+                              },
+                              {
+                                "code": "TO"
+                              },
+                              {
+                                "code": "TP"
+                              },
+                              {
+                                "code": "TN"
+                              },
+                              {
+                                "code": "TV"
+                              },
+                              {
+                                "code": "TS"
+                              },
+                              {
+                                "code": "UD"
+                              },
+                              {
+                                "code": "VA"
+                              },
+                              {
+                                "code": "VE"
+                              },
+                              {
+                                "code": "VB"
+                              },
+                              {
+                                "code": "VC"
+                              },
+                              {
+                                "code": "VR"
+                              },
+                              {
+                                "code": "VV"
+                              },
+                              {
+                                "code": "VI"
+                              },
+                              {
+                                "code": "VT"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "JP",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "JP-01"
+                              },
+                              {
+                                "code": "JP-02"
+                              },
+                              {
+                                "code": "JP-03"
+                              },
+                              {
+                                "code": "JP-04"
+                              },
+                              {
+                                "code": "JP-05"
+                              },
+                              {
+                                "code": "JP-06"
+                              },
+                              {
+                                "code": "JP-07"
+                              },
+                              {
+                                "code": "JP-08"
+                              },
+                              {
+                                "code": "JP-09"
+                              },
+                              {
+                                "code": "JP-10"
+                              },
+                              {
+                                "code": "JP-11"
+                              },
+                              {
+                                "code": "JP-12"
+                              },
+                              {
+                                "code": "JP-13"
+                              },
+                              {
+                                "code": "JP-14"
+                              },
+                              {
+                                "code": "JP-15"
+                              },
+                              {
+                                "code": "JP-16"
+                              },
+                              {
+                                "code": "JP-17"
+                              },
+                              {
+                                "code": "JP-18"
+                              },
+                              {
+                                "code": "JP-19"
+                              },
+                              {
+                                "code": "JP-20"
+                              },
+                              {
+                                "code": "JP-21"
+                              },
+                              {
+                                "code": "JP-22"
+                              },
+                              {
+                                "code": "JP-23"
+                              },
+                              {
+                                "code": "JP-24"
+                              },
+                              {
+                                "code": "JP-25"
+                              },
+                              {
+                                "code": "JP-26"
+                              },
+                              {
+                                "code": "JP-27"
+                              },
+                              {
+                                "code": "JP-28"
+                              },
+                              {
+                                "code": "JP-29"
+                              },
+                              {
+                                "code": "JP-30"
+                              },
+                              {
+                                "code": "JP-31"
+                              },
+                              {
+                                "code": "JP-32"
+                              },
+                              {
+                                "code": "JP-33"
+                              },
+                              {
+                                "code": "JP-34"
+                              },
+                              {
+                                "code": "JP-35"
+                              },
+                              {
+                                "code": "JP-36"
+                              },
+                              {
+                                "code": "JP-37"
+                              },
+                              {
+                                "code": "JP-38"
+                              },
+                              {
+                                "code": "JP-39"
+                              },
+                              {
+                                "code": "JP-40"
+                              },
+                              {
+                                "code": "JP-41"
+                              },
+                              {
+                                "code": "JP-42"
+                              },
+                              {
+                                "code": "JP-43"
+                              },
+                              {
+                                "code": "JP-44"
+                              },
+                              {
+                                "code": "JP-45"
+                              },
+                              {
+                                "code": "JP-46"
+                              },
+                              {
+                                "code": "JP-47"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "KR",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "KR-26"
+                              },
+                              {
+                                "code": "KR-43"
+                              },
+                              {
+                                "code": "KR-44"
+                              },
+                              {
+                                "code": "KR-27"
+                              },
+                              {
+                                "code": "KR-30"
+                              },
+                              {
+                                "code": "KR-42"
+                              },
+                              {
+                                "code": "KR-29"
+                              },
+                              {
+                                "code": "KR-47"
+                              },
+                              {
+                                "code": "KR-41"
+                              },
+                              {
+                                "code": "KR-48"
+                              },
+                              {
+                                "code": "KR-28"
+                              },
+                              {
+                                "code": "KR-49"
+                              },
+                              {
+                                "code": "KR-45"
+                              },
+                              {
+                                "code": "KR-46"
+                              },
+                              {
+                                "code": "KR-50"
+                              },
+                              {
+                                "code": "KR-11"
+                              },
+                              {
+                                "code": "KR-31"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "MY",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "JHR"
+                              },
+                              {
+                                "code": "KDH"
+                              },
+                              {
+                                "code": "KTN"
+                              },
+                              {
+                                "code": "KUL"
+                              },
+                              {
+                                "code": "LBN"
+                              },
+                              {
+                                "code": "MLK"
+                              },
+                              {
+                                "code": "NSN"
+                              },
+                              {
+                                "code": "PHG"
+                              },
+                              {
+                                "code": "PNG"
+                              },
+                              {
+                                "code": "PRK"
+                              },
+                              {
+                                "code": "PLS"
+                              },
+                              {
+                                "code": "PJY"
+                              },
+                              {
+                                "code": "SBH"
+                              },
+                              {
+                                "code": "SWK"
+                              },
+                              {
+                                "code": "SGR"
+                              },
+                              {
+                                "code": "TRG"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "NL",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "NO",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "NZ",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "AUK"
+                              },
+                              {
+                                "code": "BOP"
+                              },
+                              {
+                                "code": "CAN"
+                              },
+                              {
+                                "code": "CIT"
+                              },
+                              {
+                                "code": "GIS"
+                              },
+                              {
+                                "code": "HKB"
+                              },
+                              {
+                                "code": "MWT"
+                              },
+                              {
+                                "code": "MBH"
+                              },
+                              {
+                                "code": "NSN"
+                              },
+                              {
+                                "code": "NTL"
+                              },
+                              {
+                                "code": "OTA"
+                              },
+                              {
+                                "code": "STL"
+                              },
+                              {
+                                "code": "TKI"
+                              },
+                              {
+                                "code": "TAS"
+                              },
+                              {
+                                "code": "WKO"
+                              },
+                              {
+                                "code": "WGN"
+                              },
+                              {
+                                "code": "WTC"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "PL",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "PT",
+                              "restOfWorld": false
+                            },
+                            "provinces": [
+                              {
+                                "code": "PT-20"
+                              },
+                              {
+                                "code": "PT-01"
+                              },
+                              {
+                                "code": "PT-02"
+                              },
+                              {
+                                "code": "PT-03"
+                              },
+                              {
+                                "code": "PT-04"
+                              },
+                              {
+                                "code": "PT-05"
+                              },
+                              {
+                                "code": "PT-06"
+                              },
+                              {
+                                "code": "PT-07"
+                              },
+                              {
+                                "code": "PT-08"
+                              },
+                              {
+                                "code": "PT-09"
+                              },
+                              {
+                                "code": "PT-10"
+                              },
+                              {
+                                "code": "PT-11"
+                              },
+                              {
+                                "code": "PT-30"
+                              },
+                              {
+                                "code": "PT-12"
+                              },
+                              {
+                                "code": "PT-13"
+                              },
+                              {
+                                "code": "PT-14"
+                              },
+                              {
+                                "code": "PT-15"
+                              },
+                              {
+                                "code": "PT-16"
+                              },
+                              {
+                                "code": "PT-17"
+                              },
+                              {
+                                "code": "PT-18"
+                              }
+                            ]
+                          },
+                          {
+                            "code": {
+                              "countryCode": "SE",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          },
+                          {
+                            "code": {
+                              "countryCode": "SG",
+                              "restOfWorld": false
+                            },
+                            "provinces": []
+                          }
+                        ]
+                      },
+                      "methodDefinitions": {
+                        "nodes": [
+                          {
+                            "id": "gid://shopify/DeliveryMethodDefinition/878110867653",
+                            "name": "usps",
+                            "active": true,
+                            "rateProvider": {
+                              "__typename": "DeliveryParticipant"
+                            },
+                            "methodConditions": []
+                          },
+                          {
+                            "id": "gid://shopify/DeliveryMethodDefinition/878110900421",
+                            "name": "dhl_express",
+                            "active": true,
+                            "rateProvider": {
+                              "__typename": "DeliveryParticipant"
+                            },
+                            "methodConditions": []
+                          }
+                        ],
+                        "pageInfo": {
+                          "hasNextPage": false,
+                          "endCursor": "eyJsYXN0X2lkIjo4NzgxMTA5MDA0MjEsImxhc3RfdmFsdWUiOnsibWV0aG9kX2RlZmluaXRpb25faWQiOjg3ODExMDkwMDQyMSwidmlydHVhbF9yZWNvcmRfc291cmNlX2tleSI6bnVsbCwicHJldl9kYl9tZXRob2RfZGVmaW5pdGlvbl9pZCI6ODc4MTEwODY3NjUzLCJuZXh0X2RiX21ldGhvZF9kZWZpbml0aW9uX2lkIjpudWxsfX0="
+                        }
+                      }
+                    }
+                  ],
+                  "pageInfo": {
+                    "hasNextPage": false,
+                    "endCursor": "eyJsYXN0X2lkIjo0NjM2ODE4NDc0OTMsImxhc3RfdmFsdWUiOiJJbnRlcm5hdGlvbmFsIn0="
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoxMDc0MjQ4NzQ2OTMsImxhc3RfdmFsdWUiOiIxMDc0MjQ4NzQ2OTMifQ=="
+        }
+      }
+    }
+  },
+  "pickup": {
+    "data": {
+      "locations": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Location/88823267525",
+            "name": "1411 6th Ave",
+            "isActive": true,
+            "fulfillsOnlineOrders": true,
+            "localPickupSettingsV2": null
+          },
+          {
+            "id": "gid://shopify/Location/90331971781",
+            "name": "Show Stock",
+            "isActive": true,
+            "fulfillsOnlineOrders": true,
+            "localPickupSettingsV2": null
+          },
+          {
+            "id": "gid://shopify/Location/90337345733",
+            "name": "Vejdi Booth",
+            "isActive": true,
+            "fulfillsOnlineOrders": true,
+            "localPickupSettingsV2": null
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo5MDMzNzM0NTczMywibGFzdF92YWx1ZSI6IjkwMzM3MzQ1NzMzIn0="
+        }
+      }
+    }
+  },
+  "schemaNotes": [
+    "Connector validation rejected historical coversAllItems selection; omitted in this discovery query only.",
+    "Connector validation rejected historical Shop shippingPolicy/refundPolicy/termsOfService selections; public policy routes inspected in browser instead.",
+    "Existing Epic E audit scripts and governance were not modified."
+  ]
+}

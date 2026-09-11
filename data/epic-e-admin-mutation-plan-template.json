@@ -1,0 +1,17 @@
+{
+  "$schema":"../schemas/epic-e-admin-mutation-plan.schema.json","schemaVersion":1,"planId":"E-MUT-000","targetPbi":"E-PBI-020","mutationDomain":"replace_with_one_bounded_domain","decisionState":"blocked","executionStatus":"template","storeLevelRiskAcknowledged":true,
+  "currentReadSnapshot":{"path":"REQUIRED: dated read-only Admin snapshot","sha256":null,"requiredBeforeExecution":true},
+  "deterministicInput":{"path":"REQUIRED: approved domain input artifact","sha256":null,"requiredBeforeExecution":true},
+  "fieldAllowlist":["REQUIRED: exact GraphQL input field path"],
+  "dryRun":{"command":"REQUIRED: exact dry-run command","artifact":{"path":"REQUIRED: dry-run result artifact","sha256":null,"requiredBeforeExecution":true},"status":"not_run"},
+  "approvals":[{"role":"Product Owner","granted":false,"recordedAt":null,"evidence":null},{"role":"Shopify Admin Owner","granted":false,"recordedAt":null,"evidence":null}],
+  "beforeState":{"path":"REQUIRED: bounded before-state artifact","sha256":null,"requiredBeforeExecution":true},
+  "rollback":{"classification":"partially_reversible","procedure":"REQUIRED: exact compensating or restoration procedure that preserves identifiers and references.","preservesIdsAndReferences":true,"artifact":{"path":"REQUIRED: rollback input or record","sha256":null,"requiredBeforeExecution":true}},
+  "partialFailureRecovery":"Stop on GraphQL errors or userErrors, persist successful IDs and cursors, and resume only unresolved deterministic rows.",
+  "idempotency":"Use stable owner/resource IDs plus compare-before-write semantics; rerunning an applied row must produce no additional change.",
+  "graphqlErrorHandling":{"transportErrors":"Retry bounded transient failures and persist the resume cursor.","graphqlErrors":"Treat top-level GraphQL errors as a failed batch and write no success claim.","userErrors":"Record every field/message pair and never treat HTTP 200 as mutation success."},
+  "throttlingAndResume":"Read throttleStatus, pause before exhaustion, persist deterministic row/cursor progress, and support bounded resume.",
+  "afterSnapshot":{"path":"REQUIRED: dated after-state snapshot","sha256":null,"requiredBeforeExecution":false},
+  "driftValidation":{"command":"REQUIRED: exact after/before/desired-state comparison command","expectedArtifact":{"path":"REQUIRED: drift report","sha256":null,"requiredBeforeExecution":false},"status":"not_run"},
+  "existingAdminChangeRecord":"REQUIRED: docs/project/admin-change-records/YYYY-MM-DD-domain.md","productionThemeMutationAuthorized":false
+}

@@ -1,0 +1,528 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Batch 3B persisted artifact shape. Cross-contract identity, provenance and approval invariants are enforced by scripts/lib/epic-e-batch-3b-validation.js.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "inputs",
+    "mutationAuthorized",
+    "$schema",
+    "phaseOrder",
+    "fields",
+    "deferred",
+    "legacyMigration",
+    "factPolicy",
+    "compatibility",
+    "measurements",
+    "components",
+    "resources"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "$schema": {
+      "type": "string"
+    },
+    "phaseOrder": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "type",
+          "unit",
+          "conflictIds",
+          "description",
+          "ownerType",
+          "sourcePbi",
+          "physicalState",
+          "allowedValues",
+          "definitionId",
+          "definitionDecisionState",
+          "valueApprovalRequired"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "unit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "conflictIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "ownerType": {
+            "type": "string"
+          },
+          "sourcePbi": {
+            "type": "string"
+          },
+          "physicalState": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "allowedValues": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "definitionId": {
+            "type": "string"
+          },
+          "definitionDecisionState": {
+            "type": "string"
+          },
+          "valueApprovalRequired": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "deferred": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "domain",
+          "owner",
+          "reason"
+        ],
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "legacyMigration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "voltage",
+        "frequency",
+        "motor_power",
+        "motor_speed",
+        "speed_range",
+        "blade_size",
+        "wheel_size",
+        "arbor",
+        "water_system",
+        "dimensions",
+        "net_weight",
+        "shipping_weight"
+      ],
+      "properties": {
+        "voltage": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "frequency": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "motor_power": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "motor_speed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "speed_range": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blade_size": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "wheel_size": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "arbor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "water_system": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "net_weight": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "shipping_weight": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "factPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority",
+        "unknown",
+        "conflicting",
+        "variantScope",
+        "range",
+        "unitConversion"
+      ],
+      "properties": {
+        "authority": {
+          "type": "string"
+        },
+        "unknown": {
+          "type": "string"
+        },
+        "conflicting": {
+          "type": "string"
+        },
+        "variantScope": {
+          "type": "string"
+        },
+        "range": {
+          "type": "string"
+        },
+        "unitConversion": {
+          "type": "string"
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "direction",
+        "type",
+        "scope",
+        "variantException",
+        "states",
+        "proofKinds",
+        "unknown",
+        "negative",
+        "successor",
+        "orphans",
+        "unpublished",
+        "duplicates",
+        "reverse",
+        "forbiddenProof"
+      ],
+      "properties": {
+        "direction": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "variantException": {
+          "type": "string"
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proofKinds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unknown": {
+          "type": "string"
+        },
+        "negative": {
+          "type": "string"
+        },
+        "successor": {
+          "type": "string"
+        },
+        "orphans": {
+          "type": "string"
+        },
+        "unpublished": {
+          "type": "string"
+        },
+        "duplicates": {
+          "type": "string"
+        },
+        "reverse": {
+          "type": "string"
+        },
+        "forbiddenProof": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "measurements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nativeShippingWeight",
+        "states",
+        "packageRecordShape",
+        "multiPackagePolicy"
+      ],
+      "properties": {
+        "nativeShippingWeight": {
+          "type": "string"
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state",
+              "storage",
+              "truth",
+              "owner"
+            ],
+            "properties": {
+              "state": {
+                "type": "string"
+              },
+              "storage": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "truth": {
+                "type": "string"
+              },
+              "owner": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "packageRecordShape": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "required",
+            "kind",
+            "dimensions",
+            "count",
+            "weight"
+          ],
+          "properties": {
+            "required": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "kind": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "dimensions": {
+              "type": "string"
+            },
+            "count": {
+              "type": "string"
+            },
+            "weight": {
+              "type": "string"
+            }
+          }
+        },
+        "multiPackagePolicy": {
+          "type": "string"
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "meanings",
+        "membership",
+        "noncatalog",
+        "approval",
+        "optionalConfiguration",
+        "compatibility"
+      ],
+      "properties": {
+        "meanings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "membership": {
+          "type": "string"
+        },
+        "noncatalog": {
+          "type": "string"
+        },
+        "approval": {
+          "type": "string"
+        },
+        "optionalConfiguration": {
+          "type": "string"
+        },
+        "compatibility": {
+          "type": "string"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metadataStorage",
+        "types",
+        "states",
+        "visibility",
+        "currentGate",
+        "supportOnly",
+        "supersession",
+        "duplicates",
+        "notInScope"
+      ],
+      "properties": {
+        "metadataStorage": {
+          "type": "string"
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "visibility": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "currentGate": {
+          "type": "string"
+        },
+        "supportOnly": {
+          "type": "string"
+        },
+        "supersession": {
+          "type": "string"
+        },
+        "duplicates": {
+          "type": "string"
+        },
+        "notInScope": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

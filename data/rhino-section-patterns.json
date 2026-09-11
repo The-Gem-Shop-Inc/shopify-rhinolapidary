@@ -120,7 +120,41 @@
       "merchantAddable": false,
       "requiresProductContext": false,
       "javascriptPolicy": "none_until_approved",
-      "notes": "Do not implement until the compared attributes and technical conflicts are resolved."
+      "notes": "D-PBI-017 intentionally omits the homepage teaser until Epic I or approved buying guidance provides a truthful destination. Do not implement until machine identity, supported operations, dimensions or footprint, electrical requirements, approved motor or speed data, verified machine weight, included components, applicable consumables or accessories, and other compared fields are structured, approved, and conflict-resolved."
+    },
+    {
+      "id": "homepage-hero",
+      "name": "Homepage hero",
+      "status": "approved",
+      "launchPriority": "critical",
+      "preferredImplementation": "rhino_section",
+      "contentSources": [
+        "homepage_content_claims_map",
+        "shopify_files",
+        "navigation_spec"
+      ],
+      "emptyBehavior": "omit_section",
+      "merchantAddable": true,
+      "requiresProductContext": false,
+      "javascriptPolicy": "none",
+      "notes": "Homepage-only first-screen relationship. Owns the semantic page h1 and pairs approved copy, governed Shopify Files media, and approved CTA routes without embedding text in imagery."
+    },
+    {
+      "id": "homepage-link-group",
+      "name": "Homepage link group",
+      "status": "approved",
+      "launchPriority": "critical",
+      "preferredImplementation": "rhino_section",
+      "contentSources": [
+        "navigation_spec",
+        "homepage_content_claims_map",
+        "approved_product_data"
+      ],
+      "emptyBehavior": "omit_missing_items",
+      "merchantAddable": true,
+      "requiresProductContext": false,
+      "javascriptPolicy": "none",
+      "notes": "Homepage-only lightweight link-group pattern. Approved because the equivalent Trade multicolumn and rich-text composition adds three stylesheet requests against the governed homepage request budget. Does not imply compatibility or technical capability."
     }
   ]
 }

@@ -1,0 +1,979 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-10 21:05:58 UTC",
+  "source": "Shopify connector; validated read-only query; exact governed machine GIDs",
+  "scope": "11 approved machine-class Products only; NOT a complete Epic E Admin snapshot",
+  "readOnly": true,
+  "mutationAuthorized": false,
+  "query": "query EpicFMachineDiscovery($ids: [ID!]!) {\n shop { name myshopifyDomain primaryDomain { url } }\n nodes(ids: $ids) { ... on Product {\n id title handle status publishedAt onlineStoreUrl templateSuffix vendor category { id fullName } descriptionHtml\n options { id name values }\n media(first: 100) { nodes { id mediaContentType alt status ... on MediaImage { image { url width height altText } } } pageInfo { hasNextPage endCursor } }\n metafields(first: 100) { nodes { id namespace key type jsonValue } pageInfo { hasNextPage endCursor } }\n variants(first: 50) { nodes { id title price compareAtPrice sku barcode selectedOptions { name value } availableForSale inventoryQuantity inventoryPolicy inventoryItem { id tracked requiresShipping measurement { weight { value unit } } } } pageInfo { hasNextPage endCursor } }\n } }\n}",
+  "variables": {
+    "ids": [
+      "gid://shopify/Product/8905779937477",
+      "gid://shopify/Product/8905780756677",
+      "gid://shopify/Product/8905781248197",
+      "gid://shopify/Product/8905781412037",
+      "gid://shopify/Product/8905781477573",
+      "gid://shopify/Product/8905784131781",
+      "gid://shopify/Product/8905784197317",
+      "gid://shopify/Product/8905784262853",
+      "gid://shopify/Product/8905784328389",
+      "gid://shopify/Product/8905785344197",
+      "gid://shopify/Product/8905785868485"
+    ]
+  },
+  "data": {
+    "shop": {
+      "name": "Rhino Lapidary",
+      "myshopifyDomain": "sz5dnk-nf.myshopify.com",
+      "primaryDomain": {
+        "url": "https://rhino-lapidary.myshopify.com"
+      }
+    },
+    "nodes": [
+      {
+        "id": "gid://shopify/Product/8905779937477",
+        "title": "BeadMaster 6\"",
+        "handle": "beadmaster",
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:54:05Z",
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>?It's very easy and quick to make calibrated exact beads in seconds with the new Beadmaster from Rhino Lapidary.</p> \n\n\n\n<p>SUPER FAST! This machine creates a perfect sphere from a preform in only 8 seconds!</p>\n\n\n\n<p>The machine use 6” diameter, 1/2\" thick wheels.</p>\n\n<p>Bead sizes are 4-6-8-10-12 mm</p>\n\n<p>Electricity: 110V 60Hz</p>\n\n<p>Motor: 0.55 kW monophase 3000rpm</p>\n\n<p>Special sensor for bead rolling wheel</p>\n\n<p>Cooling: circulating tap water</p>\n\n\n\n<p>Wheels: 6” diameter, 1” arbor hole diameter</p>\n\n<p>Dimensions: 20” x 24” x 16”</p>\n\n<p>Weight: 70 Lb.</p>\n\n<p>Packed safely in a wooden pallet box</p>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178812211397",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451099455685",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p78_i10_w1440.jpg?v=1783011248",
+                "width": 1440,
+                "height": 1440,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTA5OTQ1NTY4NSwibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484254032069",
+              "title": "Default Title",
+              "price": "2350.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 1,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688660938949",
+                "tracked": true,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 75,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NDAzMjA2OSwibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905780756677",
+        "title": "EM-1 Machine",
+        "handle": "em-1",
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:54:18Z",
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "<p>The Everything machine is FOUR machines in 1. The EM-1 can be used for grinding, sanding, and polishing stones. It has a 6\" trim saw for cutting. It features attachments for metalsmiths to create jewelry, and a flexible shaft suitable for both carving and fine metal work. The arbor and motor sits on a waterproofed veneer stand with an accessory drawer.</p>\n\n\n\n<p>Additional special features include:</p>\n\n<p>Moveable Sprayers</p>\n\n<p>Undermount Water Filtration System</p>\n\n<p>Adjustable Magnifying Lens &amp; Light</p>\n\n<p>Patented Variable Speed Motor (1 Horsepower Variable Speed with 100% Torque)</p>\n\n\n\n<p>Included with purchase:</p>\n\n<p>6\" Bonded Diamond Wheel 60 grit</p>\n\n<p>6\" Bonded Diamond Wheel 220 grit</p>\n\n<p>6\" Resin Bond Diamond Wheel 280 grit</p>\n\n<p>6\" Resin Bond Diamond Wheel 600 grit</p>\n\n<p>6\" Resin Bond Diamond Wheel 1200 grit</p>\n\n<p>6\" Resin Bond Diamond Wheel 3000 grit</p>\n\n<p>Flex Shaft w/ 18pc accessory set and 3pc attachment heads</p>\n\n<p>x2 Silversmithing spindles w/ x3 sanding and polishing wheels</p>\n\n<p>DIALUX Superfinishing paste</p>\n\n<p>DIALUX Polishing paste</p>\n\n<p>Flat Lap w/ 6\" magnetic felt pad and 6\" magnetic 80 grit disc</p>\n\n<p>Magnifying Glass Attachment</p>\n\n<p>Jointed Light Attachment</p>\n\n<p>x2 Detachable Wrist rests</p>\n\n<p>Water Pump w/ tank filtration system</p>\n\n<p>Splash guards</p>\n\n<p>Moss Filtration Pads</p>\n\n<p>x2 Brass Spray Nozzles</p>\n\n<p>Spoke Wrench</p>\n\n<p>Allen Wrench/Hex key</p>\n\n<p>Crescent Wrench</p>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178813063365",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451101683909",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p1_i9_w2489.jpg?v=1783011260",
+                "width": 2489,
+                "height": 2189,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwMTY4MzkwOSwibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484254949573",
+              "title": "Default Title",
+              "price": "4000.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 2,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688661856453",
+                "tracked": true,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 121,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NDk0OTU3MywibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905781248197",
+        "title": "JadeMaster, 14\"",
+        "handle": "jademaster",
+        "status": "ACTIVE",
+        "publishedAt": null,
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178813587653",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451104075973",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p86_i1_w1440.jpg?v=1783011269",
+                "width": 1440,
+                "height": 1440,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDA3NTk3MywibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484255473861",
+              "title": "Default Title",
+              "price": "2495.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 1,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688662380741",
+                "tracked": true,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 0,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTQ3Mzg2MSwibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905781412037",
+        "title": "LapMaster 12\"",
+        "handle": "lapmaster-12",
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:54:30Z",
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>This LAPMASTER is constructed from high quality steel, providing top-of-the-line stability to eliminate vibration, for smooth and excellent results.</p> \n\n\n\n<p>12” main lap compatible with magnetic grinding laps.</p>\n\n\n\n<p>Can add Variable Speed: if you would like the ability to change the speed for different stones, you may add the Variable Speed Motor, adjustable from 500rpm up to 1500 rpm.</p>\n\n\n\n<p>Motor: 0.75 kW monophase 1400 rpm</p>\n\n<p>Variable Speed Motor: 500rpm - 1500rpm</p>\n\n\n\n<p>Electricity: 110V 60Hz</p>\n\n<p>Cooling: water container</p>\n\n<p>Laps Diameter: 12” diameter</p>\n\n<p>Dimensions: 18” x 24” x 20”</p>\n\n<p>Weight: 90 Lbs.</p>\n\n<p>Packed safely in a wooden pallet box</p>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178813751493",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451104895173",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p81_i5_w1440.jpg?v=1783011273",
+                "width": 1440,
+                "height": 1440,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDg5NTE3MywibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484255637701",
+              "title": "Default Title",
+              "price": "1650.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 0,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688662544581",
+                "tracked": false,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 180,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTYzNzcwMSwibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905781477573",
+        "title": "LapMaster 18\"",
+        "handle": "lapmaster-18",
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:54:31Z",
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>?This LAPMASTER is constructed from high quality steel, providing top-of-the-line stability to eliminate vibration, for smooth and excellent results.</p> \n\n\n\n<p>18” main lap compatible with magnetic grinding laps.</p>\n\n\n\n<p>Can add Variable Speed: if you would like the ability to change the speed for different stones, you may add the Variable Speed Motor, adjustable from 500rpm to 1500 rpm.</p>\n\n\n\n<p>Motor: 0.75 kW monophase 1400 rpm</p>\n\n<p>Variable Speed Motor: 500rpm - 1500rpm</p>\n\n\n\n<p>Electricity: 110V 60Hz</p>\n\n<p>Cooling: water container</p>\n\n<p>Lap Diameter: 18” diameter</p>\n\n<p>Dimensions: 18” x 24” x 20”</p>\n\n<p>Weight: 90 Lb</p>\n\n<p>Packed safely in a wooden box</p>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178813817029",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451105255621",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p82_i2_w1440.jpg?v=1783011274",
+                "width": 1440,
+                "height": 1440,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNTI1NTYyMSwibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484255703237",
+              "title": "Default Title",
+              "price": "2850.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 0,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688662610117",
+                "tracked": false,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 180,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTcwMzIzNywibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905784131781",
+        "title": "SawMaster 18\"",
+        "handle": "sawmaster-18",
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:55:19Z",
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>Our SAWMASTER 18’’ Large Cutting machine from Rhino Lapidary</p> \n\n<p>is designed for cutting all kinds of materials such as gemstones, marble, ceramics, glass and granite in a fast, safe and standard way in the desired thickness. Thanks to the high technology and durable materials used in our machine, you can cut without any problems for years.</p> \n\n\n\n<p>A key feature in this machine are patented longitudinal, anti-vibration, sealed bearings which provide a wiggle-free vice. This makes your cut less prone to breaking and extensive saw-marks, even at a thickness of 1.5mm.</p>\n\n\n\n<p>Cutting speed is 8mm/min (1 inch in 3 minutes). In addition, with the Auto-Feed system, patented by Rhino Lapidary, when the saw gets tired or cannot cut for any reason, the vice advancement system automatically slows down and reduces the load of the saw. This extends the life of your saw. It prevents damages such as jamming and breaking caused by user errors. It also protects the motor by slowing down the cutting when necessary and prevents it from heating and burning.</p>\n\n\n\n<p>In addition, the machine has an automatic stop feature in place for when the cutting is finished or if the cover is opened while it is working. All parts are CE and TSEK certified.</p> \n\n\n\n<p>Fits up to 18\" Saw</p>\n\n<p>Blade not included</p>\n\n\n\n<p>Electricity: 110V 60HZ</p>\n\n<p>Cutting Height: 6 1/2\"</p>\n\n<p>Cutting Length: 9 7/8\"</p>\n\n<p>Cutting Speed: 7/8’’/min</p>\n\n<p>Motor: 1.8KW 1700rpm with crossfeed</p>\n\n\n\n<p>Machine Dimensions: 105cm width x 130cm length x 130cm height</p>\n\n<p>Machine Weight: 287lbs</p>\n\n\n\n<p>Blade not included</p>\n\n<p>All parts are CE and TSEK certified</p>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178816635077",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451117576389",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p83_i6_w1440.jpg?v=1783011322",
+                "width": 1440,
+                "height": 1440,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzU3NjM4OSwibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484258914501",
+              "title": "Default Title",
+              "price": "5250.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 2,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688665821381",
+                "tracked": true,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 490,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1ODkxNDUwMSwibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905784197317",
+        "title": "SawMaster 24\"",
+        "handle": "sawmaster-24",
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:55:20Z",
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>?Our SAWMASTER 24’’ Large Cutting machine from Rhino Lapidary</p> \n\n<p>is designed for cutting all kinds of materials such as gemstones, marble, ceramics, glass and granite in a fast, safe and standard way in the desired thickness. Thanks to the high technology and durable materials used in our machine, you can cut without any problems for years.</p> \n\n\n\n<p>A key feature in this machine are patented longitudinal, anti-vibration, sealed bearings which provide a wiggle-free vice. This makes your cut less prone to breaking and extensive saw-marks, even at a thickness of 1.5mm.</p>\n\n\n\n<p>Cutting speed is 8mm/min (1 inch in 3 minutes). In addition, with the Auto-Feed system patented by Rhino Lapidary, when the saw gets tired or cannot cut for any reason, the vice advancement system automatically slows down and reduces the load of the saw. This extends the life of your saw. It prevents damages such as jamming and breaking caused by user errors. It also protects the motor by slowing down the cutting when necessary and prevents it from heating and burning.</p>\n\n\n\n<p>In addition, the machine has an automatic stop feature for when the cutting is finished or if the cover is opened while it is working.</p>\n\n\n\n<p>Fits up to a 24’’ Saw</p>\n\n<p>Blade not included</p>\n\n\n\n<p>Electricity: 110V 60HZ</p>\n\n<p>Cutting Height: 7’’</p>\n\n<p>Cutting Length: 11’’</p>\n\n<p>Cutting Speed: 7/8’’/min</p>\n\n<p>Motor: 1.8KW 1700rpm with crossfeed</p>\n\n<p>Machine Dimensions: 105cm width x 140cm length x 140cm height</p>\n\n<p>Machine Weight: 340lbs</p>\n\n\n\n<p>Blade not included</p>\n\n<p>All parts are CE and TSEK certified</p>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178816700613",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451117871301",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+                "width": 1440,
+                "height": 1440,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484258980037",
+              "title": "Default Title",
+              "price": "6600.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 2,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688665886917",
+                "tracked": true,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 525,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1ODk4MDAzNywibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905784262853",
+        "title": "SawMaster, 36\"",
+        "handle": "sawmaster-36",
+        "status": "DRAFT",
+        "publishedAt": null,
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178816766149",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451117871301",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+                "width": 1440,
+                "height": 1440,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484259045573",
+              "title": "Default Title",
+              "price": "11950.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 0,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688665952453",
+                "tracked": false,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 0,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1OTA0NTU3MywibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905784328389",
+        "title": "ShapeMaster 6\"",
+        "handle": "shapemaster",
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:55:23Z",
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n<p>With the new SHAPEMASTER from Rhino Lapidary, it's very easy and quick to make calibrated, exact shapes, even with little to no experience. Shaping a heart, oval, round, barrel, marquise, and many more are all possible just by gently turning the control wheel. You can also make shapes in larger or smaller sizes without changing the master shape.</p>\n<p>29 trendy metal master shapes come included with the machine free.</p>\n<p>The machine uses 6” diameter 1/2\" wheels for 3D shapes and 1/4\" wheels for cabs.</p>\n<p>Electricity: 110V 60Hz</p>\n<p>Motor: 0.55 kW monophase 3000 rpm</p>\n<p>Cooling: circulating tap water</p>\n<p>Wheels: 6” diameter, 1” hole diameter</p>\n<p>1/2 R: 4, 6, 8, 10, 12 mm</p>\n<p>1/4 R: 4, 6, 8, 10, 12 mm</p>\n<p>Dimensions: 20” x 24” x 16”</p>\n<p>Weight: 100 Lb.</p>\n<p>Packed safely in a wooden pallet box</p>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178816831685",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451118428357",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p79_i14_w1440.jpg?v=1783011325",
+                "width": 1440,
+                "height": 1440,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExODQyODM1NywibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484259111109",
+              "title": "Default Title",
+              "price": "2750.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 3,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688666017989",
+                "tracked": true,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 120,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1OTExMTEwOSwibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905785344197",
+        "title": "TrimMaster",
+        "handle": "trimmaster",
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:55:43Z",
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>?Sawing slabs and stones for years in comfort is possible with the new TRIMMASTER trim saw!</p>\n\n\n\n<p>You will never have a rusted cutting platform of your machine again, thanks to the Plexiglass surface that easily lifts away. The plexiglass has 4 drainage holes to keep water/oil in the lower reservoir, and adjustable feet let you ensure the tilt is correct for the drainage, even if you are not on a perfectly level surface.</p>\n\n\n\n<p>The Trimmaster also comes with spacers for the plexiglass cover that allow you to raise it over the edge of the cutting platform for cutting larger material. There is also a removable, straight-edge guide included for consistent and accurate cutting.</p> \n\n\n\n<p>Electricity: 110V 60Hz</p>\n\n<p>Motor: Monophase, 0.37 kw, &gt;3000 rpm</p>\n\n<p>Cooling: self circulating water/oil</p>\n\n<p>Cutting Length: 5\"</p>\n\n<p>Cutting Height: 2\"</p>\n\n<p>Dimensions: W14” x L22” x H14”</p>\n\n<p>Weight: 50 Lb.</p>\n\n<p>Packed safely in a wooden pallet box</p>\n\n\n\n<p>Blade not included</p>\n\n<p>compatible with 6” or 8” diameter, 1” hole diameter</p>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178817913029",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/33451123409093",
+              "mediaContentType": "IMAGE",
+              "alt": "",
+              "status": "READY",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p80_i20_w1440.jpg?v=1783011345",
+                "width": 1440,
+                "height": 1440,
+                "altText": ""
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEyMzQwOTA5MywibGFzdF92YWx1ZSI6IjEifQ=="
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484260290757",
+              "title": "Default Title",
+              "price": "1150.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 1,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688667197637",
+                "tracked": true,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 90,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI2MDI5MDc1NywibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8905785868485",
+        "title": "TumbleMaster",
+        "handle": "tumblemaster",
+        "status": "DRAFT",
+        "publishedAt": null,
+        "onlineStoreUrl": null,
+        "templateSuffix": null,
+        "vendor": "Rhino Lapidary",
+        "category": {
+          "id": "gid://shopify/TaxonomyCategory/na",
+          "fullName": "Uncategorized"
+        },
+        "descriptionHtml": "",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/11178818470085",
+            "name": "Title",
+            "values": [
+              "Default Title"
+            ]
+          }
+        ],
+        "media": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "metafields": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46484260913349",
+              "title": "Default Title",
+              "price": "0.00",
+              "compareAtPrice": null,
+              "sku": null,
+              "barcode": null,
+              "selectedOptions": [
+                {
+                  "name": "Title",
+                  "value": "Default Title"
+                }
+              ],
+              "availableForSale": true,
+              "inventoryQuantity": 0,
+              "inventoryPolicy": "DENY",
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48688667820229",
+                "tracked": false,
+                "requiresShipping": true,
+                "measurement": {
+                  "weight": {
+                    "value": 0,
+                    "unit": "POUNDS"
+                  }
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI2MDkxMzM0OSwibGFzdF92YWx1ZSI6MX0="
+          }
+        }
+      }
+    ]
+  }
+}

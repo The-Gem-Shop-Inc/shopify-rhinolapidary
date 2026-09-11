@@ -1,0 +1,843 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-08T00:00:00.000Z",
+  "inputs": [
+    {
+      "path": "data/epic-e-technical-source-index.json",
+      "sha256": "6e31754a3fb902d1b5811de4571e0f7bb482ec188fa9ea439f6b96694257f2d9"
+    },
+    {
+      "path": "data/epic-e-batch-3b-extracted-evidence.json",
+      "sha256": "95ed3afdf4d0d0268dd2e90001698c14bc56c53356f0740a656770724207b061"
+    },
+    {
+      "path": "data/epic-e-product-identity.json",
+      "sha256": "7917c9348c885067098ded87a416058d32505627df97398c5e048ce18d30d6e2"
+    },
+    {
+      "path": "data/epic-e-product-classification.json",
+      "sha256": "84de9b93b7a068f8138ea76aa0d88cf5a6761cd1d0571424ed99641f114c0b62"
+    },
+    {
+      "path": "data/epic-e-variant-architecture.json",
+      "sha256": "b18f453e2bf11175abe46540111ae35656bf8f81f0ec224f8c74c485bb1ceaa9"
+    },
+    {
+      "path": "data/epic-e-conflict-reference-index.json",
+      "sha256": "879fad4aa93fe1e765d735d8f9a61fae1205ac2931f86e6d21dbb80f1ec6496b"
+    },
+    {
+      "path": "data/footer-support-resources.json",
+      "sha256": "34bfefce3179c6807df9aac4e81d907512bbe65252e6645606391d58bec5ae39"
+    },
+    {
+      "path": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "sha256": "d2daa618337640c42878f3ed0aa398b2c0cda198229731ca21e248e3f22c6985"
+    }
+  ],
+  "mutationAuthorized": false,
+  "$schema": "../schemas/epic-e-batch-3b-contracts.schema.json",
+  "phaseOrder": [
+    [
+      "E-PBI-010",
+      "E-PBI-012",
+      "E-PBI-018B"
+    ],
+    [
+      "E-PBI-011",
+      "E-PBI-013",
+      "E-PBI-014"
+    ]
+  ],
+  "fields": [
+    {
+      "key": "input_voltage",
+      "type": "voltage",
+      "unit": "volts",
+      "conflictIds": [
+        "C-002",
+        "C-004",
+        "C-008",
+        "C-014",
+        "C-016",
+        "C-020",
+        "C-024",
+        "C-029"
+      ],
+      "description": "Rated machine input voltage; conflicting regional observations are not configurations.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-010",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "input_frequencies",
+      "type": "list.frequency",
+      "unit": "hertz",
+      "conflictIds": [
+        "C-002",
+        "C-004",
+        "C-008",
+        "C-014"
+      ],
+      "description": "Explicitly rated discrete supply frequencies; do not expand a printed range into a list without Technical confirmation.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-011",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "motor_power",
+      "type": "power",
+      "unit": "horsepower",
+      "conflictIds": [
+        "C-002",
+        "C-023",
+        "C-028"
+      ],
+      "description": "Rated primary drive motor output; input consumption and auxiliary motor power are different facts. Preserve horsepower standard uncertainty before conversion.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-012",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "motor_speed",
+      "type": "rotational_speed",
+      "unit": "revolutions_per_minute",
+      "conflictIds": [
+        "C-003",
+        "C-007",
+        "C-013"
+      ],
+      "description": "Rated primary motor shaft speed; does not represent tool operating speed.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-013",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "wheel_speed_min",
+      "type": "rotational_speed",
+      "unit": "revolutions_per_minute",
+      "conflictIds": [
+        "C-002"
+      ],
+      "description": "Minimum supported wheel operating speed for the approved current machine configuration.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-014",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "wheel_speed_max",
+      "type": "rotational_speed",
+      "unit": "revolutions_per_minute",
+      "conflictIds": [
+        "C-002"
+      ],
+      "description": "Maximum supported wheel operating speed; cannot inherit flex-shaft speed.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-015",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "flex_shaft_speed_min",
+      "type": "rotational_speed",
+      "unit": "revolutions_per_minute",
+      "conflictIds": [
+        "C-002"
+      ],
+      "description": "Minimum flex-shaft operating speed; attachment-specific EM-1 control range.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-016",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "flex_shaft_speed_max",
+      "type": "rotational_speed",
+      "unit": "revolutions_per_minute",
+      "conflictIds": [
+        "C-002"
+      ],
+      "description": "Maximum flex-shaft operating speed; never a motor or wheel speed alias.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-017",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "blade_diameter_min",
+      "type": "dimension",
+      "unit": "inches",
+      "conflictIds": [
+        "C-025",
+        "C-030"
+      ],
+      "description": "Minimum supported blade diameter; range endpoints require an approved mounting specification.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-018",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "blade_diameter_max",
+      "type": "dimension",
+      "unit": "inches",
+      "conflictIds": [
+        "C-025",
+        "C-030"
+      ],
+      "description": "Maximum supported blade diameter; does not independently prove compatibility.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-019",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "wheel_diameter",
+      "type": "dimension",
+      "unit": "inches",
+      "conflictIds": [
+        "C-002"
+      ],
+      "description": "Nominal supported arbor wheel diameter; does not identify included wheel products.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-020",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "blade_arbor_diameter",
+      "type": "dimension",
+      "unit": "inches",
+      "conflictIds": [
+        "C-025",
+        "C-030"
+      ],
+      "description": "Blade mounting arbor diameter; excludes wheel mounting and threaded attachments.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-021",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "wheel_arbor_diameter",
+      "type": "dimension",
+      "unit": "inches",
+      "conflictIds": [
+        "C-002"
+      ],
+      "description": "Wheel mounting arbor diameter; other mount geometries require separate evidence.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-022",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "water_reservoir_capacity",
+      "type": "volume",
+      "unit": "us_gallons",
+      "conflictIds": [
+        "C-002",
+        "C-041"
+      ],
+      "description": "Water reservoir nominal capacity; Technical must confirm US versus Imperial gallon before approval.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-023",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "cutting_oil_fill_min",
+      "type": "volume",
+      "unit": "us_gallons",
+      "conflictIds": [
+        "C-026"
+      ],
+      "description": "Minimum operating cutting-oil fill; not nominal tank or water capacity.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-024",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "cutting_oil_fill_max",
+      "type": "volume",
+      "unit": "us_gallons",
+      "conflictIds": [
+        "C-026"
+      ],
+      "description": "Maximum operating cutting-oil fill; preserve gallon-system ambiguity.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": null,
+      "definitionId": "CD-MF-025",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "water_system_type",
+      "type": "single_line_text_field",
+      "unit": null,
+      "conflictIds": [
+        "C-002"
+      ],
+      "description": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-010",
+      "physicalState": "technical_configuration",
+      "allowedValues": [
+        "recirculating_filtered"
+      ],
+      "definitionId": "CD-MF-026",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "net_weight",
+      "type": "weight",
+      "unit": "pounds",
+      "physicalState": "net",
+      "description": "Durable net machine weight without shipping packaging, fluid fill and installed accessories explicitly declared.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-011",
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-027",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "assembled_length",
+      "type": "dimension",
+      "unit": "inches",
+      "physicalState": "assembled",
+      "description": "Assembled machine length; axis orientation and included assemblies must be approved from the drawing.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-011",
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-028",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "assembled_width",
+      "type": "dimension",
+      "unit": "inches",
+      "physicalState": "assembled",
+      "description": "Assembled machine width; axis orientation and included assemblies must be approved from the drawing.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-011",
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-029",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "assembled_height",
+      "type": "dimension",
+      "unit": "inches",
+      "physicalState": "assembled",
+      "description": "Assembled machine height; axis orientation and included assemblies must be approved from the drawing.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-011",
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-030",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "crate_length",
+      "type": "dimension",
+      "unit": "inches",
+      "physicalState": "crate_outer",
+      "description": "Outer standard shipping crate length; includes packing allowances and must have an Operations-approved packing revision.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-011",
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-031",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "crate_width",
+      "type": "dimension",
+      "unit": "inches",
+      "physicalState": "crate_outer",
+      "description": "Outer standard shipping crate width; includes packing allowances and must have an Operations-approved packing revision.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-011",
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-032",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "crate_height",
+      "type": "dimension",
+      "unit": "inches",
+      "physicalState": "crate_outer",
+      "description": "Outer standard shipping crate height; includes packing allowances and must have an Operations-approved packing revision.",
+      "ownerType": "PRODUCT",
+      "sourcePbi": "E-PBI-011",
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-033",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "compatible_machines",
+      "type": "list.product_reference",
+      "sourcePbi": "E-PBI-012",
+      "description": "Dependent Product to exact compatible machine Product references; only universally applicable approved Product edges.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-034",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "included_products",
+      "type": "list.product_reference",
+      "sourcePbi": "E-PBI-014",
+      "description": "Exact catalog Products included in the current commercial machine package; independent from fit and recommendations.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-035",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "included_quantities",
+      "type": "json",
+      "sourcePbi": "E-PBI-014",
+      "description": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-036",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "noncatalog_components",
+      "type": "json",
+      "sourcePbi": "E-PBI-014",
+      "description": "Product-local component lines with label, positive integer quantity and included/not_included/optional meaning for evidenced noncatalog contents.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-037",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "optional_products",
+      "type": "list.product_reference",
+      "sourcePbi": "E-PBI-014",
+      "description": "Separately selectable optional catalog components confirmed by Technical and Product Owner; not speculative machine Variants.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-039",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "recommended_products",
+      "type": "list.product_reference",
+      "sourcePbi": "E-PBI-014",
+      "description": "Product Owner merchandising recommendations; cannot establish compatibility or box contents.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-040",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "manual_files",
+      "type": "list.file_reference",
+      "sourcePbi": "E-PBI-018B",
+      "description": "Exact Shopify File references for approved manual resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-041",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "diagram_files",
+      "type": "list.file_reference",
+      "sourcePbi": "E-PBI-018B",
+      "description": "Exact Shopify File references for approved diagram resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-042",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "instruction_files",
+      "type": "list.file_reference",
+      "sourcePbi": "E-PBI-018B",
+      "description": "Exact Shopify File references for approved instruction resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-043",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "video_files",
+      "type": "list.file_reference",
+      "sourcePbi": "E-PBI-018B",
+      "description": "Exact Shopify File references for approved video resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-044",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    },
+    {
+      "key": "support_files",
+      "type": "list.file_reference",
+      "sourcePbi": "E-PBI-018B",
+      "description": "Exact Shopify File references for approved support resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "ownerType": "PRODUCT",
+      "unit": null,
+      "physicalState": null,
+      "conflictIds": [],
+      "allowedValues": null,
+      "definitionId": "CD-MF-045",
+      "definitionDecisionState": "approved",
+      "valueApprovalRequired": true
+    }
+  ],
+  "deferred": [
+    {
+      "domain": "electrical_phase",
+      "owner": "Technical / E-PBI-010",
+      "reason": "No phase observation found in the analyzed corpus; no field created."
+    },
+    {
+      "domain": "generic_machine_capacity",
+      "owner": "Technical / E-PBI-010",
+      "reason": "No common, source-supported capacity semantics; do not mix cutting envelope, bead size and tank volume."
+    },
+    {
+      "domain": "generic_speed_range",
+      "owner": "Technical / E-PBI-010",
+      "reason": "C-018 optional configuration is not proven commerce; current EM-1 tool speeds have distinct fields."
+    },
+    {
+      "domain": "operating_footprint",
+      "owner": "Technical / E-PBI-011",
+      "reason": "Assembled drawings do not prove operational clearances or an operating footprint."
+    },
+    {
+      "domain": "packaged_dimensions_package_count_multi_package",
+      "owner": "Operations / E-PBI-011",
+      "reason": "Crate dimensions are evidenced; no separate carton or multi-package count is proven. Repository state schema reserves these states without placeholder package records."
+    },
+    {
+      "domain": "shipping_weight",
+      "owner": "Operations / native Variant inventoryItem.measurement.weight",
+      "reason": "Native Shopify shipping weight is canonical; custom duplicate prohibited."
+    },
+    {
+      "domain": "grit",
+      "owner": "Product Owner / Technical: future Epic E abrasive attribute contract supporting Epic G filters",
+      "reason": "Real G filter consumer; current separate Products establish scope, but grit grading standard, mixed grit packs and unit vocabulary are unapproved. Legacy text remains proposed."
+    },
+    {
+      "domain": "applications_materials_skill_safety_assembly",
+      "owner": "Technical / later separately authorized evidence contract",
+      "reason": "No deterministic closed vocabulary justified in this batch; no speculative definitions."
+    }
+  ],
+  "legacyMigration": {
+    "voltage": [
+      "input_voltage"
+    ],
+    "frequency": [
+      "input_frequencies"
+    ],
+    "motor_power": [
+      "motor_power"
+    ],
+    "motor_speed": [
+      "motor_speed"
+    ],
+    "speed_range": [
+      "wheel_speed_min",
+      "wheel_speed_max",
+      "flex_shaft_speed_min",
+      "flex_shaft_speed_max"
+    ],
+    "blade_size": [
+      "blade_diameter_min",
+      "blade_diameter_max"
+    ],
+    "wheel_size": [
+      "wheel_diameter"
+    ],
+    "arbor": [
+      "blade_arbor_diameter",
+      "wheel_arbor_diameter"
+    ],
+    "water_system": [
+      "water_system_type",
+      "water_reservoir_capacity"
+    ],
+    "dimensions": [
+      "assembled_length",
+      "assembled_width",
+      "assembled_height"
+    ],
+    "net_weight": [
+      "net_weight"
+    ],
+    "shipping_weight": [
+      "native:inventoryItem.measurement.weight"
+    ]
+  },
+  "factPolicy": {
+    "authority": "E-PBI-001 source hierarchy; current engineering source plus Technical approval. Description HTML is lower-authority candidate evidence.",
+    "unknown": "absent; repository blocked record",
+    "conflicting": "preserve all original observations and conflict IDs; never serialize an approved value",
+    "variantScope": "requires exact current Variant GID and approved E-PBI-008 commerce distinction; no current machine Variant technical definitions",
+    "range": "endpoints must share source, configuration, physical state and unit; minimum <= maximum",
+    "unitConversion": "Retain source value/unit. Require confirmed US/Imperial gallons and horsepower standard before conversion; canonical formatting is never customer display text."
+  },
+  "compatibility": {
+    "direction": "dependent_product_to_machine_product",
+    "type": "list.product_reference",
+    "scope": "PRODUCT",
+    "variantException": "A Product assertion means all purchased variants fit. Saw Blade Size-specific evidence stays Variant-scoped in repository; no Product union and no Variant definition until exact fit is proven.",
+    "states": [
+      "approved",
+      "proposed",
+      "conflicting",
+      "blocked",
+      "not_compatible",
+      "deprecated",
+      "superseded"
+    ],
+    "proofKinds": [
+      "legacy_identifier_exact",
+      "explicit_description_statement",
+      "technical_document_exact"
+    ],
+    "unknown": "No evidence is blocked/unknown, never not_compatible.",
+    "negative": "not_compatible requires explicit negative evidence and owner approval; never serialize negative edges as positive references.",
+    "successor": "An exact approved successor mapping does not inherit fit. Reapprove each replacement edge with provenance.",
+    "orphans": "Missing target blocks publication and later population; preserve historical GID and source.",
+    "unpublished": "Retain support evidence but suppress customer links; do not redirect to an inferred successor.",
+    "duplicates": "Reject self references, duplicate scoped edges and machine-to-machine canonical fit.",
+    "reverse": "Derive only approved positive edges, sorted by target GID then dependent GID; no stored reciprocal copy.",
+    "forbiddenProof": [
+      "title",
+      "handle",
+      "tag",
+      "collection",
+      "family",
+      "recommendation",
+      "included_component"
+    ]
+  },
+  "measurements": {
+    "nativeShippingWeight": "PRODUCTVARIANT.inventoryItem.measurement.weight",
+    "states": [
+      {
+        "state": "net",
+        "storage": "rhino.net_weight",
+        "truth": "durable",
+        "owner": "Technical / Operations"
+      },
+      {
+        "state": "assembled",
+        "storage": "rhino.assembled_length/width/height",
+        "truth": "durable",
+        "owner": "Technical"
+      },
+      {
+        "state": "operating_footprint",
+        "storage": null,
+        "truth": "durable",
+        "owner": "Technical"
+      },
+      {
+        "state": "packaged",
+        "storage": null,
+        "truth": "fulfillment_specific",
+        "owner": "Operations"
+      },
+      {
+        "state": "crate_outer",
+        "storage": "rhino.crate_length/width/height",
+        "truth": "fulfillment_specific",
+        "owner": "Operations"
+      },
+      {
+        "state": "shipping",
+        "storage": "native Variant weight",
+        "truth": "fulfillment_specific",
+        "owner": "Operations"
+      },
+      {
+        "state": "package_count",
+        "storage": null,
+        "truth": "fulfillment_specific",
+        "owner": "Operations"
+      },
+      {
+        "state": "multi_package",
+        "storage": null,
+        "truth": "fulfillment_specific",
+        "owner": "Operations"
+      }
+    ],
+    "packageRecordShape": {
+      "required": [
+        "packageId",
+        "kind",
+        "length",
+        "width",
+        "height",
+        "sourceId",
+        "packingRevision",
+        "decisionState"
+      ],
+      "kind": [
+        "carton",
+        "crate",
+        "pallet"
+      ],
+      "dimensions": "typed positive dimension; outer package axes",
+      "count": "positive integer equal to records.length when count approved",
+      "weight": "no duplicate canonical package shipping weight; source observations only"
+    },
+    "multiPackagePolicy": "No records without explicit package identity/count evidence. A singular crate heading does not prove package count. Actual order packing may differ and must not overwrite durable product facts."
+  },
+  "components": {
+    "meanings": [
+      "included",
+      "not_included",
+      "optional",
+      "recommended"
+    ],
+    "membership": "Catalog membership uses native Product reference lists; included_quantities is an exact-GID keyed positive integer companion map, not a second membership authority.",
+    "noncatalog": "Product-local JSON lines {label, quantity, meaning}; justified by counted EM-1 tools and explicit battery exclusion. Not a reusable component entity; never create placeholder Products/metaobjects.",
+    "approval": "Technical and Product Owner approve included/excluded/optional truth; Product Owner approves recommendations separately.",
+    "optionalConfiguration": "Unproven options such as C-018 remain repository evidence; do not create variants.",
+    "compatibility": "Never derive inclusion or recommendations from fit, or fit from inclusion/recommendations."
+  },
+  "resources": {
+    "metadataStorage": "Governed repository resource catalog keyed by sourceId and existing File GID. Native Files own binary identity; no duplicate canonical URL or new metaobject is needed.",
+    "types": [
+      "manual",
+      "diagram",
+      "instruction",
+      "video",
+      "support"
+    ],
+    "states": [
+      "candidate",
+      "current",
+      "obsolete",
+      "superseded"
+    ],
+    "visibility": [
+      "customer",
+      "support_only",
+      "internal"
+    ],
+    "currentGate": "Exact applicable Product, owner decision, rights/publication approval, version/language review and current status required. No newest-filename/upload-date heuristic.",
+    "supportOnly": "support_files access is Admin only; other references admit only approved customer-visible current resources.",
+    "supersession": "Preserve predecessor sourceId/File GID; require explicit successor link and prohibit cycles.",
+    "duplicates": "Exact hash groups are binary evidence, not canonical-version approval; probable video groups remain unconfirmed.",
+    "notInScope": "Warranty, repair promises and service contracts remain E-PBI-016."
+  }
+}

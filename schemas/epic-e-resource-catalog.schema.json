@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Batch 3B persisted artifact shape. Cross-contract identity, provenance and approval invariants are enforced by scripts/lib/epic-e-batch-3b-validation.js.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "inputs",
+    "mutationAuthorized",
+    "resources",
+    "duplicateGroups",
+    "hashGroups",
+    "statistics",
+    "productReferences",
+    "pageReconciliation"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceId",
+          "fileGid",
+          "sourceId",
+          "resourceType",
+          "revision",
+          "language",
+          "status",
+          "supersededBy",
+          "canonical",
+          "candidateProductGids",
+          "associationBasis",
+          "candidateModelLabel",
+          "owner",
+          "rights",
+          "publicationApproved",
+          "visibility",
+          "approvalDecisionId",
+          "contentHash",
+          "duplicateGroup",
+          "sourceRole",
+          "blocker",
+          "videoReadiness"
+        ],
+        "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "fileGid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sourceId": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          },
+          "revision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "language": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string"
+          },
+          "supersededBy": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "canonical": {
+            "type": "boolean"
+          },
+          "candidateProductGids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "associationBasis": {
+            "type": "string"
+          },
+          "candidateModelLabel": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": "string"
+          },
+          "rights": {
+            "type": "string"
+          },
+          "publicationApproved": {
+            "type": "boolean"
+          },
+          "visibility": {
+            "type": "string"
+          },
+          "approvalDecisionId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "contentHash": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "duplicateGroup": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sourceRole": {
+            "type": "string"
+          },
+          "blocker": {
+            "type": "string"
+          },
+          "videoReadiness": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "posterFileGid",
+              "captions",
+              "transcript",
+              "performance"
+            ],
+            "properties": {
+              "posterFileGid": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "captions": {
+                "enum": [
+                  "unknown",
+                  "approved",
+                  "not_applicable"
+                ]
+              },
+              "transcript": {
+                "enum": [
+                  "unknown",
+                  "approved",
+                  "not_applicable"
+                ]
+              },
+              "performance": {
+                "enum": [
+                  "not_assessed",
+                  "approved",
+                  "not_applicable"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "duplicateGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "group",
+          "resourceIds",
+          "evidenceQuality",
+          "canonicalChosen"
+        ],
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "resourceIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidenceQuality": {
+            "type": "string"
+          },
+          "canonicalChosen": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "hashGroups": {
+      "type": "array",
+      "items": {}
+    },
+    "statistics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "indexed",
+        "existingFileIdentities",
+        "contentAssociatedCandidates",
+        "canonicalApproved",
+        "duplicateGroups",
+        "hashDuplicateGroups"
+      ],
+      "properties": {
+        "indexed": {
+          "type": "integer"
+        },
+        "existingFileIdentities": {
+          "type": "integer"
+        },
+        "contentAssociatedCandidates": {
+          "type": "integer"
+        },
+        "canonicalApproved": {
+          "type": "integer"
+        },
+        "duplicateGroups": {
+          "type": "integer"
+        },
+        "hashDuplicateGroups": {
+          "type": "integer"
+        }
+      }
+    },
+    "productReferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "resourceId",
+          "fileGid",
+          "field"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "fileGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/(GenericFile|Video|MediaImage)/[0-9]+$"
+          },
+          "field": {
+            "enum": [
+              "manual_files",
+              "diagram_files",
+              "instruction_files",
+              "video_files",
+              "support_files"
+            ]
+          }
+        }
+      }
+    },
+    "pageReconciliation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resourceRegisterId",
+          "existingRoute",
+          "existingTechnicalApproval",
+          "existingGlobalVisibility",
+          "blockers",
+          "fileIdentityApproved",
+          "disposition"
+        ],
+        "properties": {
+          "resourceRegisterId": {
+            "type": "string"
+          },
+          "existingRoute": {
+            "type": "string"
+          },
+          "existingTechnicalApproval": {
+            "type": "string"
+          },
+          "existingGlobalVisibility": {
+            "type": "boolean"
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fileIdentityApproved": {
+            "const": false
+          },
+          "disposition": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

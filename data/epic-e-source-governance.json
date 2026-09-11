@@ -1,0 +1,38 @@
+{
+  "$schema": "../schemas/epic-e-source-governance.schema.json",
+  "version": 1,
+  "approvedAt": "2026-09-04",
+  "decisionStates": [
+    "observed",
+    "proposed",
+    "approved",
+    "conflicting",
+    "blocked",
+    "deprecated",
+    "superseded"
+  ],
+  "rules": [
+    "Observed evidence never becomes approved through copying, unit conversion, majority vote, filename matching, title matching, tags, or collection membership.",
+    "Conflicting evidence is preserved by source and physical or commercial state until the named factual owner approves a resolution.",
+    "Shopify Admin is authoritative for current commerce configuration, but is not automatically authoritative for engineering, legal, warranty, freight, or compatibility facts.",
+    "Legacy and Shopify Files sources are evidence; filename or machine-family association alone does not make them current or authoritative.",
+    "A superseded record identifies its replacement; deprecated means retained for audit history and forbidden for new use.",
+    "An RH-###### commerce SKU is valid only when allocated through the human-owned Rhino commerce SKU registry; an agent may not create one from catalog attributes, technical facts, Shopify IDs, or relative sort order.",
+    "Approved desired-state custom-data definitions come only from the canonical registry, must not duplicate native Shopify fields, and require snapshot-relative reconciliation plus an E-PBI-019 mutation plan before any Admin action."
+  ],
+  "domains": [
+    {"domain":"commerce_state","canonicalAuthority":"live Shopify Admin read snapshot","fallback":"dated Admin export, then storefront observation","owner":"Shopify Admin Owner","requiredState":"observed","crossReferences":["docs/project/shopify-admin-change-evidence.md"]},
+    {"domain":"classification_and_merchandising","canonicalAuthority":"approved product-data register mapped to Shopify standard fields","fallback":"catalog evidence marked proposed","owner":"Product Data Owner and Product Owner","requiredState":"approved","crossReferences":["data/product-data-rules.json","docs/architecture/adr-0002-collection-filtering-architecture.md"]},
+    {"domain":"product_variant_and_machine_identity","canonicalAuthority":"approved identity register using existing model, part, SKU, Shopify GID, and legacy identifiers","fallback":"observed Shopify GID/handle and governed family key","owner":"Product Data Owner and Operations","requiredState":"approved","crossReferences":["docs/brand/rhino-machine-family-identifiers.md","docs/brand/rhino-product-naming-and-terminology.md"]},
+    {"domain":"sku_and_barcode","canonicalAuthority":"Rhino Lapidary governed commerce SKU registry for SKU issuance; demonstrated external consumer for any future barcode requirement","fallback":"live Admin observation of current blank values","owner":"Product Data Owner and Product Owner; Operations is a downstream consumer","requiredState":"approved","crossReferences":["data/product-data-rules.json","data/rhino-commerce-sku-registry.json","data/epic-e-product-owner-decisions.json"]},
+    {"domain":"technical_and_electrical_facts","canonicalAuthority":"current manufacturer or engineering evidence approved by Technical Owner","fallback":"versioned technical corpus candidate observation","owner":"Technical Owner","requiredState":"approved","crossReferences":["docs/product/rhino-machine-specification-resolution-register.md","data/epic-e-technical-source-index.json"]},
+    {"domain":"physical_and_package_measurements","canonicalAuthority":"current engineering drawing or packing record approved for the named physical state","fallback":"versioned technical corpus candidate observation","owner":"Technical Owner and Operations","requiredState":"approved","crossReferences":["docs/product/rhino-machine-specification-resolution-register.md","data/epic-e-technical-source-index.json"]},
+    {"domain":"compatibility_and_components","canonicalAuthority":"evidence-derived candidate relationship approved by Technical or Support Owner","fallback":"candidate relationship with source location and human-review requirement","owner":"Technical Owner and Support Owner","requiredState":"approved","crossReferences":["data/epic-e-technical-source-index.json"]},
+    {"domain":"freight_shipping_pickup_and_regions","canonicalAuthority":"Shopify operational configuration plus approved Operations policy","fallback":"dated packing evidence marked proposed or conflicting","owner":"Operations and Shopify Admin Owner","requiredState":"approved","crossReferences":["docs/project/shopify-admin-change-evidence.md"]},
+    {"domain":"warranty_service_and_legal_claims","canonicalAuthority":"approved policy or claim register","fallback":"source text blocked from customer use","owner":"Product Owner, Legal, and Support","requiredState":"approved","crossReferences":["data/legal-claims-register.json","docs/brand/rhino-legal-claims-rules.md"]},
+    {"domain":"lead_time_and_availability","canonicalAuthority":"current operational system with freshness timestamp","fallback":"no durable customer claim","owner":"Operations","requiredState":"approved","crossReferences":["docs/project/shopify-admin-change-evidence.md"]},
+    {"domain":"media_manuals_diagrams_video_and_support","canonicalAuthority":"Shopify Files or approved external storage for the binary plus repository governance for provenance and rights","fallback":"indexed candidate blocked from public use","owner":"Media Owner, Technical Owner, and Support Owner","requiredState":"approved","crossReferences":["data/media-manifest.json","docs/media/media-asset-source-of-truth.md","data/footer-support-resources.json"]},
+    {"domain":"custom_data_definition_architecture","canonicalAuthority":"approved definitions in data/metafield-metaobject-definitions.json reconciled to a hashed read-only Admin snapshot","fallback":"proposed, deprecated, or blocked registry entry; no definition plan","owner":"Product Owner / Product Data and Admin/Engineering","requiredState":"approved","crossReferences":["data/metafield-metaobject-definitions.json","data/epic-e-custom-data-definition-diff.json","schemas/metafield-metaobject-definitions.schema.json","docs/architecture/metafield-metaobject-architecture.md"]},
+    {"domain":"admin_mutation_evidence","canonicalAuthority":"validated Epic E mutation plan linked to existing Admin change record","fallback":"mutation blocked","owner":"Shopify Admin Owner and Product Owner","requiredState":"approved","crossReferences":["docs/project/shopify-admin-change-evidence.md","docs/project/admin-change-record-template.md","schemas/epic-e-admin-mutation-plan.schema.json"]}
+  ]
+}

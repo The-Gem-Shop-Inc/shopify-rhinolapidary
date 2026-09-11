@@ -1,0 +1,86 @@
+{
+  "$schema": "../../schemas/epic-e-admin-mutation-plan.schema.json",
+  "schemaVersion": 1,
+  "planId": "E-MUT-020",
+  "targetPbi": "E-PBI-020",
+  "mutationDomain": "definitions",
+  "decisionState": "blocked",
+  "executionStatus": "blocked",
+  "storeLevelRiskAcknowledged": true,
+  "currentReadSnapshot": {
+    "path": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+    "sha256": "d2daa618337640c42878f3ed0aa398b2c0cda198229731ca21e248e3f22c6985",
+    "requiredBeforeExecution": true
+  },
+  "deterministicInput": {
+    "path": "data/epic-e-migration-plans/E-MUT-020-definitions-input.json",
+    "sha256": "c211f7c6258eedea6eed7d0ce64bb9272c70160f91d11b08e770474f2cd43edb",
+    "requiredBeforeExecution": true
+  },
+  "fieldAllowlist": [
+    "metafieldDefinition",
+    "metaobjectDefinition"
+  ],
+  "dryRun": {
+    "command": "node scripts/validate-epic-e-batch-4a.js --plan=E-MUT-020",
+    "artifact": {
+      "path": "data/epic-e-migration-plans/E-MUT-020-definitions-input.json",
+      "sha256": "c211f7c6258eedea6eed7d0ce64bb9272c70160f91d11b08e770474f2cd43edb",
+      "requiredBeforeExecution": true
+    },
+    "status": "passed"
+  },
+  "approvals": [
+    {
+      "role": "Product Owner",
+      "granted": false,
+      "recordedAt": null,
+      "evidence": null
+    },
+    {
+      "role": "Shopify Admin Owner",
+      "granted": false,
+      "recordedAt": null,
+      "evidence": null
+    }
+  ],
+  "beforeState": {
+    "path": "data/epic-e-migration-plans/E-MUT-020-definitions-input.json",
+    "sha256": "c211f7c6258eedea6eed7d0ce64bb9272c70160f91d11b08e770474f2cd43edb",
+    "requiredBeforeExecution": true
+  },
+  "rollback": {
+    "classification": "compensating_mutation",
+    "procedure": "Use the exact per-row restore records in the bounded input artifact. Compare current values with the recorded after state; preserve IDs, abort on concurrent changes, and require separate GO for compensation.",
+    "preservesIdsAndReferences": true,
+    "artifact": {
+      "path": "data/epic-e-migration-plans/E-MUT-020-definitions-input.json",
+      "sha256": "c211f7c6258eedea6eed7d0ce64bb9272c70160f91d11b08e770474f2cd43edb",
+      "requiredBeforeExecution": true
+    }
+  },
+  "partialFailureRecovery": "Stop on GraphQL errors or userErrors, persist successful IDs and cursors, and resume only unresolved deterministic rows.",
+  "idempotency": "Use stable owner/resource IDs plus compare-before-write semantics; rerunning an applied row must produce no additional change.",
+  "graphqlErrorHandling": {
+    "transportErrors": "Retry bounded transient failures and persist the resume cursor.",
+    "graphqlErrors": "Treat top-level GraphQL errors as a failed batch and write no success claim.",
+    "userErrors": "Record every field/message pair and never treat HTTP 200 as mutation success."
+  },
+  "throttlingAndResume": "Read throttleStatus, pause before exhaustion, persist deterministic row/cursor progress, and support bounded resume.",
+  "afterSnapshot": {
+    "path": "docs/qa/evidence/epic-e/E-MUT-020-after-admin-snapshot.json",
+    "sha256": null,
+    "requiredBeforeExecution": false
+  },
+  "driftValidation": {
+    "command": "node scripts/run-epic-e-gates.js --mode=admin --plan=E-MUT-020 --before=docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json --snapshot=docs/qa/evidence/epic-e/E-MUT-020-after-admin-snapshot.json --output=docs/qa/evidence/epic-e/E-MUT-020-after-drift.json",
+    "expectedArtifact": {
+      "path": "docs/qa/evidence/epic-e/E-MUT-020-after-drift.json",
+      "sha256": null,
+      "requiredBeforeExecution": false
+    },
+    "status": "not_run"
+  },
+  "existingAdminChangeRecord": "docs/project/shopify-admin-change-evidence.md",
+  "productionThemeMutationAuthorized": false
+}

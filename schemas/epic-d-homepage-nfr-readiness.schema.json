@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhino-lapidary.example/schemas/epic-d-homepage-nfr-readiness.schema.json",
+  "title": "Epic D homepage non-functional readiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "reviewedAt", "scope", "productionSignoffGranted", "manualChecks", "requirements"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "reviewedAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "scope": { "type": "string", "minLength": 1 },
+    "productionSignoffGranted": { "const": false },
+    "manualChecks": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "area", "status", "reviewedBy", "notes"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "area": { "enum": ["accessibility", "responsive", "performance", "content", "video"] },
+          "status": { "enum": ["pass", "pending_clean_preview_retest", "pending_product_owner_review"] },
+          "reviewedBy": { "const": "Product Owner" },
+          "notes": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pbi", "area", "automatedTechnicalStatus", "coverage", "evidence", "manualReleaseStatus", "manualEvidenceOwner", "manualEvidenceRequiredFor", "productionSignoffGranted", "notes"],
+        "properties": {
+          "pbi": { "enum": ["D-PBI-026", "D-PBI-027", "D-PBI-028"] },
+          "area": { "enum": ["accessibility", "performance", "responsive"] },
+          "automatedTechnicalStatus": { "const": "complete" },
+          "coverage": { "const": "all_implemented_homepage_modules" },
+          "evidence": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "manualReleaseStatus": { "const": "pending_product_owner_review" },
+          "manualEvidenceOwner": { "const": "Product Owner" },
+          "manualEvidenceRequiredFor": { "const": "D-PBI-032" },
+          "productionSignoffGranted": { "const": false },
+          "notes": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@ Post-launch measurement plan with no tracking implementation.
 - `schemas/epic-d-homepage-measurement-plan.schema.json`
 - `scripts/validate-epic-d-homepage-measurement-plan.js`
 - `scripts/validate-json-registers.js`
+- `data/epic-d-homepage-nfr-readiness.json`
 - `package.json`
 - `docs/architecture/epic-d-homepage-source-hierarchy.md`
 
@@ -24,18 +25,21 @@ Post-launch measurement plan with no tracking implementation.
 - `data/epic-c-navigation-measurement-plan.json`
 - `data/homepage-section-outcomes.json`
 - `data/navigation-spec.json`
+- Shopify native Analytics and Reports documentation for landing-page, device, behavior, and online-store conversion reporting
 
 ## Automation Added / Reused
 
 - Added `npm run validate:homepage-measurement-plan`.
 - Added Epic D measurement plan to `npm run validate:registers`.
-- Validator confirms no custom tracking implementation is authorized and checks duplicate proposed event names and ecommerce-tracking risk.
+- Validator confirms no custom tracking implementation is authorized, every measure references an implemented homepage module, native/current and proposal-only measures remain distinct, all six future-event approvals are recorded, and proposed names cannot duplicate ecommerce tracking.
 
 ## Validation Output
 
 ```text
 npm run validate:homepage-measurement-plan: PASS; 10 measures, no tracking implementation authorized.
 npm run validate:registers: PASS; Epic D homepage measurement plan valid.
+npm run validate:theme-repository: PASS.
+git diff --check: PASS.
 ```
 
 ## Preview Runtime Evidence
@@ -44,7 +48,7 @@ Not applicable. No pixels, custom events, analytics apps, or storefront scripts 
 
 ## Manual Checks
 
-Analytics owner approval, privacy review, and baseline review were not performed in this batch.
+Analytics Owner assignment/approval, Product threshold approval, privacy review for any future event, and post-launch baseline review were not performed in this batch.
 
 ## Blockers
 
@@ -54,7 +58,7 @@ Final numerical success thresholds require post-launch baseline data. Custom eve
 
 | Criterion | Result |
 |---|---|
-| Measures list question, module, source, owner, privacy note, baseline, and cadence. | PASS |
+| Measures list question, metric, source, owner, native/custom need, privacy note, baseline, target interpretation, cadence, and decision. | PASS |
 | Native Shopify reporting preferred where sufficient. | PASS |
 | Custom events are proposal-only. | PASS |
 | No duplicate ecommerce tracking introduced. | PASS |

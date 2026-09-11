@@ -345,10 +345,75 @@ test('homepage has governed accessibility structure and no serious axe violation
         `Homepage source order moved backwards visually:\n${JSON.stringify(failures, null, 2)}`,
     ).toEqual([]);
 
-    await requireConditionalModuleAccessibility(page, context, 'homepage-first-screen-gateway', 'hero');
-    await requireConditionalModuleAccessibility(page, context, 'homepage-customer-path-chooser', 'customer path chooser');
-    await requireConditionalModuleAccessibility(page, context, 'homepage-video-demo', 'media/video');
-    await requireConditionalModuleAccessibility(page, context, 'homepage-inquiry-path', 'forms/inquiry');
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-first-screen-gateway',
+        'hero',
+    );
+
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-customer-path-chooser',
+        'customer path chooser',
+    );
+
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-machine-family-overview',
+        'machine family overview',
+    );
+
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-featured-machine',
+        'featured machine',
+    );
+
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-why-rhino-proof',
+        'Why Rhino proof',
+    );
+
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-parts-accessories-consumables',
+        'parts fallback',
+    );
+
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-support-reassurance',
+        'support reassurance',
+    );
+
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-education-manuals',
+        'education/manuals',
+    );
+
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-video-demo',
+        'media/video',
+    );
+
+    await requireConditionalModuleAccessibility(
+        page,
+        context,
+        'homepage-inquiry-path',
+        'forms/inquiry',
+    );
 
     await runAxe(page, context);
 });

@@ -1,0 +1,967 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-08T00:00:00.000Z",
+  "inputs": [
+    {
+      "path": "data/epic-e-technical-source-index.json",
+      "sha256": "6e31754a3fb902d1b5811de4571e0f7bb482ec188fa9ea439f6b96694257f2d9"
+    },
+    {
+      "path": "data/epic-e-batch-3b-extracted-evidence.json",
+      "sha256": "95ed3afdf4d0d0268dd2e90001698c14bc56c53356f0740a656770724207b061"
+    },
+    {
+      "path": "data/epic-e-product-identity.json",
+      "sha256": "7917c9348c885067098ded87a416058d32505627df97398c5e048ce18d30d6e2"
+    },
+    {
+      "path": "data/epic-e-product-classification.json",
+      "sha256": "84de9b93b7a068f8138ea76aa0d88cf5a6761cd1d0571424ed99641f114c0b62"
+    },
+    {
+      "path": "data/epic-e-variant-architecture.json",
+      "sha256": "b18f453e2bf11175abe46540111ae35656bf8f81f0ec224f8c74c485bb1ceaa9"
+    },
+    {
+      "path": "data/epic-e-conflict-reference-index.json",
+      "sha256": "879fad4aa93fe1e765d735d8f9a61fae1205ac2931f86e6d21dbb80f1ec6496b"
+    },
+    {
+      "path": "data/footer-support-resources.json",
+      "sha256": "34bfefce3179c6807df9aac4e81d907512bbe65252e6645606391d58bec5ae39"
+    },
+    {
+      "path": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "sha256": "d2daa618337640c42878f3ed0aa398b2c0cda198229731ca21e248e3f22c6985"
+    }
+  ],
+  "mutationAuthorized": false,
+  "facts": [
+    {
+      "factId": "FACT-001",
+      "domain": "machine_dimensions",
+      "candidateProductModel": "BeadMaster 6",
+      "physicalState": "assembled drawing",
+      "value": "692.5 × 463.19 × 550.66",
+      "unit": "mm",
+      "sourceIds": [
+        "repo-beadmaster-bead-machine-dimensions-pdf"
+      ],
+      "sourceLocation": "drawing page 1",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-005"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-002",
+      "domain": "machine_dimensions",
+      "candidateProductModel": "ShapeMaster 6",
+      "physicalState": "assembled drawing",
+      "value": "696.5 × 568 × 531.31",
+      "unit": "mm",
+      "sourceIds": [
+        "repo-shapemaster-shape-machine-dimensions-pdf"
+      ],
+      "sourceLocation": "drawing page 1",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-009"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905784328389",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-003",
+      "domain": "machine_dimensions",
+      "candidateProductModel": "TrimMaster",
+      "physicalState": "assembled drawing",
+      "value": "630.7 × 378.75 × 545.3",
+      "unit": "mm",
+      "sourceIds": [
+        "repo-trimmaster-trim-saw-machine-dimensions-pdf"
+      ],
+      "sourceLocation": "drawing page 1",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-015"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905785344197",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-004",
+      "domain": "machine_dimensions",
+      "candidateProductModel": "LapMaster 18",
+      "physicalState": "assembled drawing",
+      "value": "771.5 × 613.9 × 584.5",
+      "unit": "mm",
+      "sourceIds": [
+        "repo-lapmaster-18-exploded-pictures-pdf"
+      ],
+      "sourceLocation": "drawing page 1",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-021"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905781477573",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-005",
+      "domain": "machine_dimensions",
+      "candidateProductModel": "SawMaster 18",
+      "physicalState": "assembled drawing",
+      "value": "1320.52 × 928 × 1252.7",
+      "unit": "mm",
+      "sourceIds": [
+        "repo-sawmaster-18-saw-machine-18-dimensions-pdf"
+      ],
+      "sourceLocation": "drawing page 1",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-026"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905784131781",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-006",
+      "domain": "machine_dimensions",
+      "candidateProductModel": "SawMaster 24",
+      "physicalState": "assembled drawing",
+      "value": "1418.32 × 928 × 1348",
+      "unit": "mm",
+      "sourceIds": [
+        "repo-sawmaster-24-saw-machine-24-dimensions-pdf"
+      ],
+      "sourceLocation": "drawing page 1",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-031"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905784197317",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-007",
+      "domain": "voltage",
+      "candidateProductModel": "LapMaster 12",
+      "physicalState": "sellable configuration candidate",
+      "value": 110,
+      "unit": "V",
+      "sourceIds": [
+        "shopify-document-011-rhino-instructions-lapmaster-12-docx"
+      ],
+      "sourceLocation": "Motor and Electrical Requirements",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-016"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905781412037",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-008",
+      "domain": "motor_power",
+      "candidateProductModel": "LapMaster 12",
+      "physicalState": "sellable configuration candidate",
+      "value": 1,
+      "unit": "hp",
+      "sourceIds": [
+        "shopify-document-011-rhino-instructions-lapmaster-12-docx"
+      ],
+      "sourceLocation": "Motor and Electrical Requirements",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-018"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905781412037",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-009",
+      "domain": "machine_dimensions",
+      "candidateProductModel": "LapMaster 12",
+      "physicalState": "instruction-described machine",
+      "value": "19 × 25",
+      "unit": "in",
+      "sourceIds": [
+        "shopify-document-011-rhino-instructions-lapmaster-12-docx"
+      ],
+      "sourceLocation": "GENERAL",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-017"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905781412037",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-010",
+      "domain": "net_weight",
+      "candidateProductModel": "LapMaster 12",
+      "physicalState": "instruction-described machine",
+      "value": 90,
+      "unit": "lb",
+      "sourceIds": [
+        "shopify-document-011-rhino-instructions-lapmaster-12-docx"
+      ],
+      "sourceLocation": "GENERAL",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-017"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905781412037",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-011",
+      "domain": "voltage",
+      "candidateProductModel": "SawMaster 18",
+      "physicalState": "sellable configuration candidate",
+      "value": 110,
+      "unit": "V",
+      "sourceIds": [
+        "shopify-document-012-rhino-instructions-sawmaster-18-docx"
+      ],
+      "sourceLocation": "Electrical Requirements",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-024"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905784131781",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-012",
+      "domain": "motor_power",
+      "candidateProductModel": "SawMaster 18",
+      "physicalState": "primary motor candidate",
+      "value": 0.75,
+      "unit": "hp",
+      "sourceIds": [
+        "shopify-document-012-rhino-instructions-sawmaster-18-docx"
+      ],
+      "sourceLocation": "Electrical Requirements",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-023"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905784131781",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-013",
+      "domain": "arbor_mount",
+      "candidateProductModel": "SawMaster 18",
+      "physicalState": "blade mount",
+      "value": 1,
+      "unit": "in",
+      "sourceIds": [
+        "shopify-document-012-rhino-instructions-sawmaster-18-docx"
+      ],
+      "sourceLocation": "Arbor and Blade Mount",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-025"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905784131781",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-014",
+      "domain": "wheel_blade_size",
+      "candidateProductModel": "SawMaster 18",
+      "physicalState": "supported blade candidate",
+      "value": "12–18",
+      "unit": "in",
+      "sourceIds": [
+        "shopify-document-012-rhino-instructions-sawmaster-18-docx"
+      ],
+      "sourceLocation": "Arbor and Blade Mount",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-025"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905784131781",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-015",
+      "domain": "water_system",
+      "candidateProductModel": "SawMaster 18",
+      "physicalState": "cutting oil reservoir",
+      "value": "8–10",
+      "unit": "gal",
+      "sourceIds": [
+        "shopify-document-012-rhino-instructions-sawmaster-18-docx"
+      ],
+      "sourceLocation": "INITIAL SETUP",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-026"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905784131781",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-016",
+      "domain": "motor_speed",
+      "candidateProductModel": "EM-1",
+      "physicalState": "control ranges",
+      "value": "0–3000 wheels; 0–5000 flex shaft only",
+      "unit": "rpm",
+      "sourceIds": [
+        "shopify-document-035-em-1-instructions-pdf"
+      ],
+      "sourceLocation": "pages 2 and 5",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-002"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905780756677",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-017",
+      "domain": "water_system",
+      "candidateProductModel": "EM-1",
+      "physicalState": "reservoir capacity",
+      "value": 3.5,
+      "unit": "gal",
+      "sourceIds": [
+        "shopify-document-035-em-1-instructions-pdf"
+      ],
+      "sourceLocation": "page 2",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-041"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905780756677",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-018",
+      "domain": "included_components",
+      "candidateProductModel": "EM-1",
+      "physicalState": "as-packed candidate",
+      "value": "manual component list including six arbor wheels",
+      "unit": "counted list",
+      "sourceIds": [
+        "shopify-document-035-em-1-instructions-pdf"
+      ],
+      "sourceLocation": "page 1",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-040"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905780756677",
+      "valueApproved": false
+    },
+    {
+      "factId": "FACT-019",
+      "domain": "included_components",
+      "candidateProductModel": "EM-1",
+      "physicalState": "sales-list candidate",
+      "value": "document says six diamond wheels but enumerates five and differs on grit",
+      "unit": "counted list",
+      "sourceIds": [
+        "shopify-document-033-rhino-em-1-components-and-accessories-list-docx"
+      ],
+      "sourceLocation": "document body",
+      "evidenceDateOrRevision": null,
+      "decisionState": "conflicting",
+      "conflictIds": [
+        "C-040"
+      ],
+      "humanReviewRequired": true,
+      "productGid": "gid://shopify/Product/8905780756677",
+      "valueApproved": false
+    }
+  ],
+  "conflictCoverage": [
+    {
+      "conflictId": "C-001",
+      "entity": "EM-1",
+      "subject": "Canonical title and positioning phrase",
+      "normalizedFamilies": [
+        "em-1"
+      ],
+      "domain": "other",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-002",
+      "entity": "EM-1",
+      "subject": "Technical source strength",
+      "normalizedFamilies": [
+        "em-1"
+      ],
+      "domain": "commercial_readiness",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "input_voltage",
+        "input_frequencies",
+        "motor_power",
+        "wheel_speed_min",
+        "wheel_speed_max",
+        "flex_shaft_speed_min",
+        "flex_shaft_speed_max",
+        "wheel_diameter",
+        "wheel_arbor_diameter",
+        "water_reservoir_capacity",
+        "water_system_type"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-003",
+      "entity": "BeadMaster 6",
+      "subject": "Motor speed",
+      "normalizedFamilies": [
+        "beadmaster"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "motor_speed"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-004",
+      "entity": "BeadMaster 6",
+      "subject": "Voltage",
+      "normalizedFamilies": [
+        "beadmaster"
+      ],
+      "domain": "electrical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "input_voltage",
+        "input_frequencies"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-005",
+      "entity": "BeadMaster 6",
+      "subject": "Dimensions and weights by physical state",
+      "normalizedFamilies": [
+        "beadmaster"
+      ],
+      "domain": "physical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-006",
+      "entity": "BeadMaster 6",
+      "subject": "Family casing",
+      "normalizedFamilies": [
+        "beadmaster"
+      ],
+      "domain": "other",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-007",
+      "entity": "ShapeMaster 6",
+      "subject": "Motor speed",
+      "normalizedFamilies": [
+        "shapemaster"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "motor_speed"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-008",
+      "entity": "ShapeMaster 6",
+      "subject": "Voltage",
+      "normalizedFamilies": [
+        "shapemaster"
+      ],
+      "domain": "electrical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "input_voltage",
+        "input_frequencies"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-009",
+      "entity": "ShapeMaster 6",
+      "subject": "Dimensions and weights by physical state",
+      "normalizedFamilies": [
+        "shapemaster"
+      ],
+      "domain": "physical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-010",
+      "entity": "ShapeMaster 6",
+      "subject": "Machine type/source term",
+      "normalizedFamilies": [
+        "shapemaster"
+      ],
+      "domain": "commercial_readiness",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-011",
+      "entity": "TrimMaster 8",
+      "subject": "Title size and blade size",
+      "normalizedFamilies": [
+        "trimmaster"
+      ],
+      "domain": "capacity",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-012",
+      "entity": "TrimMaster 8",
+      "subject": "Motor power",
+      "normalizedFamilies": [
+        "trimmaster"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-013",
+      "entity": "TrimMaster 8",
+      "subject": "Motor speed",
+      "normalizedFamilies": [
+        "trimmaster"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "motor_speed"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-014",
+      "entity": "TrimMaster 8",
+      "subject": "Voltage",
+      "normalizedFamilies": [
+        "trimmaster"
+      ],
+      "domain": "electrical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "input_voltage",
+        "input_frequencies"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-015",
+      "entity": "TrimMaster 8",
+      "subject": "Dimensions and weights by physical state",
+      "normalizedFamilies": [
+        "trimmaster"
+      ],
+      "domain": "physical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-016",
+      "entity": "LapMaster 12",
+      "subject": "Voltage",
+      "normalizedFamilies": [
+        "lapmaster-12"
+      ],
+      "domain": "electrical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "input_voltage"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-017",
+      "entity": "LapMaster 12",
+      "subject": "Dimensions and weights by physical state",
+      "normalizedFamilies": [
+        "lapmaster-12"
+      ],
+      "domain": "physical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-018",
+      "entity": "LapMaster 12",
+      "subject": "Optional variable speed",
+      "normalizedFamilies": [
+        "lapmaster-12"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-019",
+      "entity": "LapMaster 18",
+      "subject": "Motor power",
+      "normalizedFamilies": [
+        "lapmaster-18"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-020",
+      "entity": "LapMaster 18",
+      "subject": "Voltage",
+      "normalizedFamilies": [
+        "lapmaster-18"
+      ],
+      "domain": "electrical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "input_voltage"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-021",
+      "entity": "LapMaster 18",
+      "subject": "Dimensions and weights by physical state",
+      "normalizedFamilies": [
+        "lapmaster-18"
+      ],
+      "domain": "physical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-022",
+      "entity": "LapMaster 18",
+      "subject": "Optional variable speed",
+      "normalizedFamilies": [
+        "lapmaster-18"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-023",
+      "entity": "SawMaster 18",
+      "subject": "Main motor power and speed",
+      "normalizedFamilies": [
+        "sawmaster-18"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "motor_power"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-024",
+      "entity": "SawMaster 18",
+      "subject": "Voltage",
+      "normalizedFamilies": [
+        "sawmaster-18"
+      ],
+      "domain": "electrical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "input_voltage"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-025",
+      "entity": "SawMaster 18",
+      "subject": "Blade size representation",
+      "normalizedFamilies": [
+        "sawmaster-18"
+      ],
+      "domain": "capacity",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "blade_diameter_min",
+        "blade_diameter_max",
+        "blade_arbor_diameter"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-026",
+      "entity": "SawMaster 18",
+      "subject": "Dimensions and weights by physical state",
+      "normalizedFamilies": [
+        "sawmaster-18"
+      ],
+      "domain": "physical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "cutting_oil_fill_min",
+        "cutting_oil_fill_max"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-027",
+      "entity": "SawMaster 18",
+      "subject": "Unsupported claim language",
+      "normalizedFamilies": [
+        "sawmaster-18"
+      ],
+      "domain": "other",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-028",
+      "entity": "SawMaster 24",
+      "subject": "Main motor power and speed",
+      "normalizedFamilies": [
+        "sawmaster-24"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "motor_power"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-029",
+      "entity": "SawMaster 24",
+      "subject": "Voltage",
+      "normalizedFamilies": [
+        "sawmaster-24"
+      ],
+      "domain": "electrical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "input_voltage"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-030",
+      "entity": "SawMaster 24",
+      "subject": "Blade size representation",
+      "normalizedFamilies": [
+        "sawmaster-24"
+      ],
+      "domain": "capacity",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "blade_diameter_min",
+        "blade_diameter_max",
+        "blade_arbor_diameter"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    },
+    {
+      "conflictId": "C-031",
+      "entity": "SawMaster 24",
+      "subject": "Dimensions and weights by physical state",
+      "normalizedFamilies": [
+        "sawmaster-24"
+      ],
+      "domain": "physical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-032",
+      "entity": "SawMaster 24",
+      "subject": "Unsupported claim language",
+      "normalizedFamilies": [
+        "sawmaster-24"
+      ],
+      "domain": "other",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-033",
+      "entity": "SawMaster 36",
+      "subject": "Missing machine-specific technical source",
+      "normalizedFamilies": [
+        "sawmaster-36"
+      ],
+      "domain": "commercial_readiness",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-034",
+      "entity": "SawMaster 36",
+      "subject": "Probable pallet dimension typo",
+      "normalizedFamilies": [
+        "sawmaster-36"
+      ],
+      "domain": "physical",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-035",
+      "entity": "SawMaster 36",
+      "subject": "Missing catalog specification body",
+      "normalizedFamilies": [
+        "sawmaster-36"
+      ],
+      "domain": "commercial_readiness",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-036",
+      "entity": "Jade/JadeMaster 14",
+      "subject": "Family name and casing",
+      "normalizedFamilies": [
+        "jademaster"
+      ],
+      "domain": "other",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-037",
+      "entity": "Jade/JadeMaster 14",
+      "subject": "Missing machine-specific technical source",
+      "normalizedFamilies": [
+        "jademaster"
+      ],
+      "domain": "commercial_readiness",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-038",
+      "entity": "TumbleMaster",
+      "subject": "Missing machine-specific source and availability",
+      "normalizedFamilies": [
+        "tumblemaster"
+      ],
+      "domain": "commercial_readiness",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-039",
+      "entity": "TumbleMaster",
+      "subject": "Zero price and no specifications",
+      "normalizedFamilies": [
+        "tumblemaster"
+      ],
+      "domain": "commercial_readiness",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-040",
+      "entity": "EM-1",
+      "subject": "Included diamond-wheel count and grit set",
+      "normalizedFamilies": [
+        "em-1"
+      ],
+      "domain": "included_components",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [],
+      "disposition": "preserved_for_owning_domain"
+    },
+    {
+      "conflictId": "C-041",
+      "entity": "EM-1",
+      "subject": "Water-reservoir capacity",
+      "normalizedFamilies": [
+        "em-1"
+      ],
+      "domain": "water_system",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "fieldKeys": [
+        "water_reservoir_capacity"
+      ],
+      "disposition": "field_architecture_defined_value_blocked"
+    }
+  ]
+}

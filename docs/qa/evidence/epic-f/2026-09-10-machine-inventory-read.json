@@ -1,0 +1,854 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-10 21:11:13 UTC",
+  "readOnly": true,
+  "scope": "Exact 11 machine Variant inventory/profile observations; no delivery rules, rate eligibility or pickup approval inferred",
+  "query": "query EpicFOnlineInventory($ids: [ID!]!) {\n nodes(ids: $ids) { ... on ProductVariant {\n id availableForSale inventoryQuantity sellableOnlineQuantity inventoryPolicy deliveryProfile { id name }\n inventoryItem { id tracked inventoryLevels(first: 50) { nodes { id location { id name isActive fulfillsOnlineOrders } quantities(names: [\"available\", \"on_hand\", \"committed\"]) { name quantity } } pageInfo { hasNextPage endCursor } } }\n } }\n}",
+  "variables": {
+    "ids": [
+      "gid://shopify/ProductVariant/46484254032069",
+      "gid://shopify/ProductVariant/46484254949573",
+      "gid://shopify/ProductVariant/46484255473861",
+      "gid://shopify/ProductVariant/46484255637701",
+      "gid://shopify/ProductVariant/46484255703237",
+      "gid://shopify/ProductVariant/46484258914501",
+      "gid://shopify/ProductVariant/46484258980037",
+      "gid://shopify/ProductVariant/46484259045573",
+      "gid://shopify/ProductVariant/46484259111109",
+      "gid://shopify/ProductVariant/46484260290757",
+      "gid://shopify/ProductVariant/46484260913349"
+    ]
+  },
+  "data": {
+    "nodes": [
+      {
+        "id": "gid://shopify/ProductVariant/46484254032069",
+        "availableForSale": true,
+        "inventoryQuantity": 1,
+        "sellableOnlineQuantity": 1,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688660938949",
+          "tracked": true,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688660938949",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126811144389?inventory_item_id=48688660938949",
+                "location": {
+                  "id": "gid://shopify/Location/90331971781",
+                  "name": "Show Stock",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126818746565?inventory_item_id=48688660938949",
+                "location": {
+                  "id": "gid://shopify/Location/90337345733",
+                  "name": "Vejdi Booth",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MjM0MjYwNTY0Mzk3MywibGFzdF92YWx1ZSI6NTIzNDI2MDU2NDM5NzN9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484254949573",
+        "availableForSale": true,
+        "inventoryQuantity": 2,
+        "sellableOnlineQuantity": 2,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688661856453",
+          "tracked": true,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688661856453",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126811144389?inventory_item_id=48688661856453",
+                "location": {
+                  "id": "gid://shopify/Location/90331971781",
+                  "name": "Show Stock",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126818746565?inventory_item_id=48688661856453",
+                "location": {
+                  "id": "gid://shopify/Location/90337345733",
+                  "name": "Vejdi Booth",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 2
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 2
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MjM0MjU5MjMwNzM5NywibGFzdF92YWx1ZSI6NTIzNDI1OTIzMDczOTd9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484255473861",
+        "availableForSale": true,
+        "inventoryQuantity": 1,
+        "sellableOnlineQuantity": 1,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688662380741",
+          "tracked": true,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688662380741",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126811144389?inventory_item_id=48688662380741",
+                "location": {
+                  "id": "gid://shopify/Location/90331971781",
+                  "name": "Show Stock",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126818746565?inventory_item_id=48688662380741",
+                "location": {
+                  "id": "gid://shopify/Location/90337345733",
+                  "name": "Vejdi Booth",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MjM0MjU5NDYzMzkyNSwibGFzdF92YWx1ZSI6NTIzNDI1OTQ2MzM5MjV9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484255637701",
+        "availableForSale": true,
+        "inventoryQuantity": 0,
+        "sellableOnlineQuantity": 0,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688662544581",
+          "tracked": false,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688662544581",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MTkzODc0ODAzOTM2NSwibGFzdF92YWx1ZSI6NTE5Mzg3NDgwMzkzNjV9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484255703237",
+        "availableForSale": true,
+        "inventoryQuantity": 0,
+        "sellableOnlineQuantity": 0,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688662610117",
+          "tracked": false,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688662610117",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MTkzODc0ODEwNDkwMSwibGFzdF92YWx1ZSI6NTE5Mzg3NDgxMDQ5MDF9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484258914501",
+        "availableForSale": true,
+        "inventoryQuantity": 2,
+        "sellableOnlineQuantity": 2,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688665821381",
+          "tracked": true,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688665821381",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126811144389?inventory_item_id=48688665821381",
+                "location": {
+                  "id": "gid://shopify/Location/90331971781",
+                  "name": "Show Stock",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126818746565?inventory_item_id=48688665821381",
+                "location": {
+                  "id": "gid://shopify/Location/90337345733",
+                  "name": "Vejdi Booth",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MjM0MjU3OTM5NjgwNSwibGFzdF92YWx1ZSI6NTIzNDI1NzkzOTY4MDV9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484258980037",
+        "availableForSale": true,
+        "inventoryQuantity": 2,
+        "sellableOnlineQuantity": 2,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688665886917",
+          "tracked": true,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688665886917",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126811144389?inventory_item_id=48688665886917",
+                "location": {
+                  "id": "gid://shopify/Location/90331971781",
+                  "name": "Show Stock",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126818746565?inventory_item_id=48688665886917",
+                "location": {
+                  "id": "gid://shopify/Location/90337345733",
+                  "name": "Vejdi Booth",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MjM0MjU2NTUwMzE3MywibGFzdF92YWx1ZSI6NTIzNDI1NjU1MDMxNzN9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484259045573",
+        "availableForSale": true,
+        "inventoryQuantity": 0,
+        "sellableOnlineQuantity": 0,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688665952453",
+          "tracked": false,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688665952453",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MTkzODc1MTQ4MDAwNSwibGFzdF92YWx1ZSI6NTE5Mzg3NTE0ODAwMDV9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484259111109",
+        "availableForSale": true,
+        "inventoryQuantity": 3,
+        "sellableOnlineQuantity": 3,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688666017989",
+          "tracked": true,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688666017989",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126811144389?inventory_item_id=48688666017989",
+                "location": {
+                  "id": "gid://shopify/Location/90331971781",
+                  "name": "Show Stock",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126818746565?inventory_item_id=48688666017989",
+                "location": {
+                  "id": "gid://shopify/Location/90337345733",
+                  "name": "Vejdi Booth",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 2
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 2
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MjM0MjU4OTU1NDg4NSwibGFzdF92YWx1ZSI6NTIzNDI1ODk1NTQ4ODV9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484260290757",
+        "availableForSale": true,
+        "inventoryQuantity": 1,
+        "sellableOnlineQuantity": 1,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688667197637",
+          "tracked": true,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688667197637",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126811144389?inventory_item_id=48688667197637",
+                "location": {
+                  "id": "gid://shopify/Location/90331971781",
+                  "name": "Show Stock",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              },
+              {
+                "id": "gid://shopify/InventoryLevel/126818746565?inventory_item_id=48688667197637",
+                "location": {
+                  "id": "gid://shopify/Location/90337345733",
+                  "name": "Vejdi Booth",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 1
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MjM0MjYwMzU0NjgyMSwibGFzdF92YWx1ZSI6NTIzNDI2MDM1NDY4MjF9"
+            }
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46484260913349",
+        "availableForSale": true,
+        "inventoryQuantity": 0,
+        "sellableOnlineQuantity": 0,
+        "inventoryPolicy": "DENY",
+        "deliveryProfile": {
+          "id": "gid://shopify/DeliveryProfile/107424874693",
+          "name": "General profile"
+        },
+        "inventoryItem": {
+          "id": "gid://shopify/InventoryItem/48688667820229",
+          "tracked": false,
+          "inventoryLevels": {
+            "nodes": [
+              {
+                "id": "gid://shopify/InventoryLevel/124548186309?inventory_item_id=48688667820229",
+                "location": {
+                  "id": "gid://shopify/Location/88823267525",
+                  "name": "1411 6th Ave",
+                  "isActive": true,
+                  "fulfillsOnlineOrders": true
+                },
+                "quantities": [
+                  {
+                    "name": "available",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "on_hand",
+                    "quantity": 0
+                  },
+                  {
+                    "name": "committed",
+                    "quantity": 0
+                  }
+                ]
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo1MTkzODc1MzM0Nzc4MSwibGFzdF92YWx1ZSI6NTE5Mzg3NTMzNDc3ODF9"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

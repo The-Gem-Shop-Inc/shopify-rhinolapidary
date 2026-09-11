@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "type":"object","additionalProperties":false,
+  "required":["schemaVersion","sourceKind","capturedAt","apiVersion","shopDomain","readOnly","redacted","datasets","errors","throttleSamples"],
+  "properties":{
+    "$schema":{"type":"string"},"schemaVersion":{"const":1},
+    "sourceKind":{"enum":["live_admin","fixture","external_handoff"]},
+    "capturedAt":{"type":"string","format":"date-time"},"apiVersion":{"type":"string","pattern":"^20[0-9]{2}-(01|04|07|10)$"},
+    "shopDomain":{"type":"string","minLength":1},"readOnly":{"const":true},"redacted":{"const":true},
+    "datasets":{"type":"object","minProperties":1,"additionalProperties":{"$ref":"#/$defs/dataset"}},
+    "errors":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["dataset","kind","message"],"properties":{"dataset":{"type":"string"},"kind":{"enum":["http","graphql","scope","transport","fixture","pagination"]},"message":{"type":"string"},"path":{"type":["array","null"],"items":{}}}}},
+    "throttleSamples":{"type":"array","items":{"type":"object"}}
+  },
+  "$defs":{"dataset":{"type":"object","additionalProperties":false,"required":["queryStatus","resultState","records","recordCount","pageCount","errorCount"],"properties":{"queryStatus":{"enum":["success","inaccessible_scope","query_failure","not_queried"]},"resultState":{"enum":["zero","zero_definitions","nonzero","inaccessible_scope","query_failure","not_queried"]},"records":{"type":"array"},"recordCount":{"type":"integer","minimum":0},"pageCount":{"type":"integer","minimum":0},"errorCount":{"type":"integer","minimum":0}}}}
+}

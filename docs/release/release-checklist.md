@@ -6,6 +6,38 @@
 
 A release is not approved until every applicable item is complete.
 
+## Epic D Homepage Technical Gate
+
+Target only unpublished preview theme `158631198917`. Production theme `158579622085` must remain unchanged until a separate human D-PBI-032 GO.
+
+```powershell
+npm run qa:epic-d:static
+npm run qa:epic-d:preview
+npm run qa:epic-d:all
+npm run validate:epic-d-finalization
+```
+
+Required Epic D evidence:
+
+* [ ] Homepage route QA passes.
+* [ ] Eight-width responsive evidence passes and screenshots are reviewed.
+* [ ] Homepage accessibility and global accessibility regression pass.
+* [ ] Homepage and brand release performance pass without raising the 130-request homepage ceiling.
+* [ ] EM-1 video proves click-to-load, zero initial YouTube requests, no autoplay, accessible activation, and stable layout.
+* [ ] Media and customer-facing claim validators pass.
+* [ ] Product Owner manual visual, zoom, hero crop, and content/CTA review is recorded.
+* [ ] Clean-preview keyboard/focus retest passes.
+* [ ] Product Owner manually checks video poster, play focus, activation, layout stability, and no unexpected autoplay.
+* [ ] D-PBI-032 records an explicit GO before any production publish.
+
+Epic D rollback:
+
+1. Revert the repository change that introduced the affected homepage section/settings.
+2. Push the reviewed rollback only to preview `158631198917` with `shopify theme push --store rhino-lapidary.myshopify.com --theme 158631198917 --strict --nodelete`.
+3. Rerun Epic D static and preview QA.
+4. Use the established Epic A/C theme backup and rollback references for any later production release.
+5. Never publish production before D-PBI-032 explicit GO.
+
 ---
 
 ## 1. Release identification

@@ -1,0 +1,392 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "inputs",
+    "adminMutationAuthorized",
+    "valuePopulationAuthorized",
+    "executionOrder",
+    "fulfillment",
+    "warranty",
+    "availability",
+    "registryDisposition",
+    "statuses"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adminMutationAuthorized": {
+      "const": false
+    },
+    "valuePopulationAuthorized": {
+      "const": false
+    },
+    "executionOrder": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fulfillment": {
+      "type": "object",
+      "required": [
+        "layers",
+        "definition",
+        "proposedVocabulary",
+        "vocabularyState",
+        "vocabularyEvidence",
+        "rejectedVocabulary",
+        "rejectedReason",
+        "nativeWeight",
+        "measurementContract",
+        "scope",
+        "drift",
+        "driftStates",
+        "pickup",
+        "regions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "layer",
+              "concepts",
+              "authority",
+              "storage"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "layer": {
+                "type": "string"
+              },
+              "concepts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "authority": {
+                "type": "string"
+              },
+              "storage": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "definition": {
+          "type": "object",
+          "required": [
+            "sourcePbi",
+            "key",
+            "ownerType",
+            "type",
+            "decisionState"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "sourcePbi": {
+              "type": "string"
+            },
+            "key": {
+              "type": "string"
+            },
+            "ownerType": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "decisionState": {
+              "type": "string"
+            }
+          }
+        },
+        "proposedVocabulary": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "vocabularyState": {
+          "type": "string"
+        },
+        "vocabularyEvidence": {
+          "type": "string"
+        },
+        "rejectedVocabulary": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rejectedReason": {
+          "type": "string"
+        },
+        "nativeWeight": {
+          "type": "string"
+        },
+        "measurementContract": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "drift": {
+          "type": "string"
+        },
+        "driftStates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pickup": {
+          "type": "string"
+        },
+        "regions": {
+          "type": "string"
+        }
+      }
+    },
+    "warranty": {
+      "type": "object",
+      "required": [
+        "storageDecision",
+        "roles",
+        "equalityRule",
+        "policyModel",
+        "classModel",
+        "mappingModel",
+        "groupingRule",
+        "thirdPartyBrands",
+        "resourceModel",
+        "publicationGate",
+        "historicalClaims",
+        "durationRule"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "storageDecision": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "equalityRule": {
+          "type": "string"
+        },
+        "policyModel": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "classModel": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mappingModel": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "groupingRule": {
+          "type": "string"
+        },
+        "thirdPartyBrands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "resourceModel": {
+          "type": "string"
+        },
+        "publicationGate": {
+          "type": "string"
+        },
+        "historicalClaims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "durationRule": {
+          "type": "string"
+        }
+      }
+    },
+    "availability": {
+      "type": "object",
+      "required": [
+        "nativeAuthority",
+        "timingAuthority",
+        "operationalOwner",
+        "implementationOwner",
+        "approvalOwner",
+        "customProjectionJustified",
+        "newMetafieldDefinition",
+        "nativeSemantics",
+        "timingScope",
+        "projectionRequirements",
+        "sourceRequirements",
+        "expiry",
+        "fallback",
+        "availabilityStates",
+        "staleAction",
+        "integrationDecision"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "nativeAuthority": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timingAuthority": {
+          "type": "string"
+        },
+        "operationalOwner": {
+          "type": "string"
+        },
+        "implementationOwner": {
+          "type": "string"
+        },
+        "approvalOwner": {
+          "type": "string"
+        },
+        "customProjectionJustified": {
+          "type": "boolean"
+        },
+        "newMetafieldDefinition": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "object",
+            "array",
+            "null"
+          ]
+        },
+        "nativeSemantics": {
+          "type": "string"
+        },
+        "timingScope": {
+          "type": "string"
+        },
+        "projectionRequirements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sourceRequirements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expiry": {
+          "type": "string"
+        },
+        "fallback": {
+          "type": "string"
+        },
+        "availabilityStates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "staleAction": {
+          "type": "string"
+        },
+        "integrationDecision": {
+          "type": "string"
+        }
+      }
+    },
+    "registryDisposition": {
+      "type": "object",
+      "required": [
+        "newApproved",
+        "newProposed",
+        "warrantyMetaobject",
+        "leadTimeProjection"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "newApproved": {
+          "type": "integer"
+        },
+        "newProposed": {
+          "type": "integer"
+        },
+        "warrantyMetaobject": {
+          "type": "string"
+        },
+        "leadTimeProjection": {
+          "type": "string"
+        }
+      }
+    },
+    "statuses": {
+      "type": "object",
+      "required": [
+        "E-PBI-015",
+        "E-PBI-016",
+        "E-PBI-017"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "E-PBI-015": {
+          "type": "string"
+        },
+        "E-PBI-016": {
+          "type": "string"
+        },
+        "E-PBI-017": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "epic-e-batch-3c-contracts repository evidence contract"
+}

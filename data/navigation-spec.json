@@ -24,12 +24,18 @@
           "moduleId": "rhino-intro-current",
           "linkRole": "primary_cta",
           "source": "templates/index.json#sections.rhino_intro.blocks.button.settings.button_link",
-          "currentRendered": true
+          "currentRendered": false
         },
         {
           "moduleId": "homepage-customer-path-chooser",
           "linkRole": "customer_path",
           "source": "templates/index.json#sections.homepage_customer_paths.blocks.machines.settings.link",
+          "currentRendered": true
+        },
+        {
+          "moduleId": "homepage-first-screen-gateway",
+          "linkRole": "primary_commerce",
+          "source": "templates/index.json#sections.homepage_hero.settings.primary_link",
           "currentRendered": true
         }
       ]
@@ -92,7 +98,7 @@
           "moduleId": "rhino-intro-current",
           "linkRole": "secondary_cta",
           "source": "templates/index.json#sections.rhino_intro.blocks.button.settings.button_link_2",
-          "currentRendered": true
+          "currentRendered": false
         },
         {
           "moduleId": "homepage-support-reassurance",
@@ -110,6 +116,24 @@
           "moduleId": "homepage-customer-path-chooser",
           "linkRole": "customer_path",
           "source": "templates/index.json#sections.homepage_customer_paths.blocks.contact.settings.link",
+          "currentRendered": true
+        },
+        {
+          "moduleId": "homepage-first-screen-gateway",
+          "linkRole": "secondary_contact",
+          "source": "templates/index.json#sections.homepage_hero.settings.secondary_link",
+          "currentRendered": true
+        },
+        {
+          "moduleId": "homepage-parts-accessories-consumables",
+          "linkRole": "parts_contact_fallback",
+          "source": "templates/index.json#sections.homepage_parts_fallback",
+          "currentRendered": true
+        },
+        {
+          "moduleId": "homepage-support-reassurance",
+          "linkRole": "neutral_contact",
+          "source": "templates/index.json#sections.homepage_support_reassurance.blocks.contact.settings.link",
           "currentRendered": true
         }
       ],
@@ -129,19 +153,19 @@
       "path": "/pages/manuals",
       "group": "homepage",
       "requiredForLaunch": false,
-      "approvalStatus": "observed",
-      "destinationPurpose": "Observed Admin manuals index page candidate for future homepage education/manuals routing.",
+      "approvalStatus": "approved",
+      "destinationPurpose": "Approved Manuals index destination for homepage customer navigation.",
       "sourceOwner": "Shopify Admin Owner and Product Data Owner",
       "expectedRouteIdentity": "page:manuals",
       "homepageReferences": [
         {
           "moduleId": "homepage-education-manuals",
-          "linkRole": "manuals_candidate",
-          "source": "Shopify Admin pages inventory",
-          "currentRendered": false
+          "linkRole": "manuals_entry",
+          "source": "templates/index.json#sections.homepage_education_manuals.blocks.manuals.settings.link",
+          "currentRendered": true
         }
       ],
-      "notes": "Published page observed in Admin on 2026-08-20, but not approved as a homepage module destination in Batch 1."
+      "notes": "Verified on persistent preview theme 158631198917 on 2026-08-26: HTTP 200, final route /pages/manuals, page identity Manuals/Machine Manuals, substantive machine-manual links, and no password, 404, or placeholder state. Approval is limited to neutral Manuals navigation."
     },
     {
       "id": "homepage-parts",
@@ -170,20 +194,26 @@
     },
     {
       "id": "homepage-featured-machine-product",
-      "label": "Featured machine product",
+      "label": "EM-1",
       "group": "homepage",
-      "requiredForLaunch": false,
-      "approvalStatus": "blocked",
-      "destinationPurpose": "Future featured-machine product route selected for homepage use.",
+      "requiredForLaunch": true,
+      "path": "/products/em-1",
+      "approvalStatus": "approved",
+      "destinationPurpose": "Approved EM-1 product destination for homepage flagship and family navigation.",
       "sourceOwner": "Product Owner, Product Data Owner, and Shopify Admin Owner",
-      "expectedRouteIdentity": "unresolved",
-      "blocker": "No featured machine, product handle, product facts, media, or approval decision exists for homepage use.",
+      "expectedRouteIdentity": "product:em-1",
       "homepageReferences": [
         {
+          "moduleId": "homepage-machine-family-overview",
+          "linkRole": "machine_family",
+          "source": "templates/index.json#sections.homepage_machine_families.blocks.em_1",
+          "currentRendered": true
+        },
+        {
           "moduleId": "homepage-featured-machine",
-          "linkRole": "planned_product_link",
-          "source": "data/homepage-section-outcomes.json#homepage-featured-machine",
-          "currentRendered": false
+          "linkRole": "featured_product",
+          "source": "templates/index.json#sections.homepage_featured_machine",
+          "currentRendered": true
         }
       ]
     },
@@ -215,18 +245,18 @@
       "destinationPurpose": "Future aggregate consumables destination.",
       "sourceOwner": "Product Data Owner and Shopify Admin Owner",
       "expectedRouteIdentity": "unresolved",
-      "blocker": "No approved consumables collection, page, or route is represented for homepage use.",
+      "blocker": "Preview storefront audit on 2026-08-26 found no Consumables collection/page and zero search results for consumable or consumables. The only product in the generically named Home page collection does not establish an aggregate consumables destination or approved product-role classification.",
       "homepageReferences": [
         {
           "moduleId": "homepage-customer-path-chooser",
           "linkRole": "planned_path",
-          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "source": "docs/project/implementation-records/d-pbi-016-consumables-entry-decision.md",
           "currentRendered": false
         },
         {
           "moduleId": "homepage-parts-accessories-consumables",
           "linkRole": "planned_path",
-          "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
+          "source": "docs/project/implementation-records/d-pbi-016-consumables-entry-decision.md",
           "currentRendered": false
         }
       ]
@@ -259,7 +289,7 @@
       "destinationPurpose": "Future quote, lead, or inquiry path.",
       "sourceOwner": "Business Owner, Support Owner, and Shopify Admin Owner",
       "expectedRouteIdentity": "unresolved",
-      "blocker": "No approved form, quote process, support owner, or follow-up workflow exists.",
+      "blocker": "No approved destination or form, business/form owner, fields, spam handling, routing, notifications, consent, retention, success/error behavior, accessibility, analytics owner, or follow-up workflow exists.",
       "homepageReferences": [
         {
           "moduleId": "homepage-inquiry-path",
@@ -285,6 +315,12 @@
           "linkRole": "planned_path",
           "source": "docs/rhino-lapidary-pbi-tracker-epic-d.md#D-PBI-006",
           "currentRendered": false
+        },
+        {
+          "moduleId": "homepage-support-reassurance",
+          "linkRole": "planned_payment_path",
+          "source": "data/homepage-content-claims-map.json#financing-language",
+          "currentRendered": false
         }
       ]
     },
@@ -297,7 +333,7 @@
       "destinationPurpose": "Future dealer, school, club, workshop, or institutional destination.",
       "sourceOwner": "Business Owner, Support Owner, and Shopify Admin Owner",
       "expectedRouteIdentity": "unresolved",
-      "blocker": "No approved dealer, school, club, workshop, institutional, pricing, or follow-up route exists.",
+      "blocker": "No approved specialized destination or owned process exists for these audiences. The generic Contact route is not a substitute for governed program ownership, intake, consent, routing, retention, analytics, and follow-up.",
       "homepageReferences": [
         {
           "moduleId": "homepage-inquiry-path",
@@ -330,7 +366,7 @@
       "group": "policy",
       "requiredForLaunch": true,
       "approvalStatus": "approved",
-      "destinationPurpose": "Existing policy route that could later support approved shipping or freight navigation.",
+      "destinationPurpose": "Existing approved Shopify policy destination used by the homepage route-only reassurance module.",
       "sourceOwner": "Legal Owner, Operations Owner, and Shopify Admin Owner",
       "expectedRouteIdentity": "policy:shipping",
       "homepageReferences": [
@@ -339,6 +375,12 @@
           "linkRole": "future_policy_path",
           "source": "data/homepage-section-outcomes.json#homepage-support-reassurance",
           "currentRendered": false
+        },
+        {
+          "moduleId": "homepage-support-reassurance",
+          "linkRole": "policy_path",
+          "source": "templates/index.json#sections.homepage_support_reassurance.blocks.shipping.settings.link",
+          "currentRendered": true
         }
       ],
       "notes": "Verified current Shopify policy route from Admin shopPolicies. This verifies policy discoverability only and does not approve extra freight or international availability claims."
@@ -350,6 +392,123 @@
       "group": "policy",
       "requiredForLaunch": true,
       "notes": "Verified current Shopify policy route from Admin shopPolicies."
+    },
+    {
+      "id": "homepage-family-beadmaster",
+      "label": "BeadMaster",
+      "group": "homepage",
+      "requiredForLaunch": true,
+      "path": "/products/beadmaster",
+      "approvalStatus": "approved",
+      "destinationPurpose": "Approved BeadMaster product destination for initial homepage family navigation.",
+      "sourceOwner": "Product Owner, Product Data Owner, and Shopify Admin Owner",
+      "expectedRouteIdentity": "product:beadmaster",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-machine-family-overview",
+          "linkRole": "machine_family",
+          "source": "templates/index.json#sections.homepage_machine_families.blocks.beadmaster",
+          "currentRendered": true
+        }
+      ]
+    },
+    {
+      "id": "homepage-family-shapemaster",
+      "label": "ShapeMaster",
+      "group": "homepage",
+      "requiredForLaunch": true,
+      "path": "/products/shapemaster",
+      "approvalStatus": "approved",
+      "destinationPurpose": "Approved ShapeMaster product destination for initial homepage family navigation.",
+      "sourceOwner": "Product Owner, Product Data Owner, and Shopify Admin Owner",
+      "expectedRouteIdentity": "product:shapemaster",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-machine-family-overview",
+          "linkRole": "machine_family",
+          "source": "templates/index.json#sections.homepage_machine_families.blocks.shapemaster",
+          "currentRendered": true
+        }
+      ]
+    },
+    {
+      "id": "homepage-family-trimmaster",
+      "label": "TrimMaster",
+      "group": "homepage",
+      "requiredForLaunch": true,
+      "path": "/products/trimmaster",
+      "approvalStatus": "approved",
+      "destinationPurpose": "Approved TrimMaster product destination for initial homepage family navigation.",
+      "sourceOwner": "Product Owner, Product Data Owner, and Shopify Admin Owner",
+      "expectedRouteIdentity": "product:trimmaster",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-machine-family-overview",
+          "linkRole": "machine_family",
+          "source": "templates/index.json#sections.homepage_machine_families.blocks.trimmaster",
+          "currentRendered": true
+        }
+      ]
+    },
+    {
+      "id": "homepage-freight-information",
+      "label": "Freight information",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future product-appropriate freight information destination.",
+      "sourceOwner": "Operations Owner, Product Data Owner, and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No approved general freight destination or current cross-product logistics statement exists.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-support-reassurance",
+          "linkRole": "planned_logistics_path",
+          "source": "data/homepage-content-claims-map.json#freight-language",
+          "currentRendered": false
+        }
+      ],
+      "notes": "D-PBI-021 readiness state. Do not render until destination and applicable operating information are approved."
+    },
+    {
+      "id": "homepage-pickup-information",
+      "label": "Pickup information",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future approved pickup-information destination.",
+      "sourceOwner": "Operations Owner and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "Product eligibility and preparation requirements have not been approved for homepage publication.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-support-reassurance",
+          "linkRole": "planned_logistics_path",
+          "source": "data/homepage-content-claims-map.json#pickup-language",
+          "currentRendered": false
+        }
+      ],
+      "notes": "D-PBI-021 readiness state. Shopify location existence alone is not sufficient evidence."
+    },
+    {
+      "id": "homepage-warranty-information",
+      "label": "Warranty information",
+      "group": "homepage",
+      "requiredForLaunch": false,
+      "approvalStatus": "blocked",
+      "destinationPurpose": "Future approved general warranty-information destination.",
+      "sourceOwner": "Legal Owner, Business Owner, Product Data Owner, and Shopify Admin Owner",
+      "expectedRouteIdentity": "unresolved",
+      "blocker": "No approved standalone homepage destination and product-safe general terms are available.",
+      "homepageReferences": [
+        {
+          "moduleId": "homepage-support-reassurance",
+          "linkRole": "planned_policy_path",
+          "source": "data/homepage-content-claims-map.json#warranty-language",
+          "currentRendered": false
+        }
+      ],
+      "notes": "D-PBI-021 readiness state. Product-specific terms remain separately governed."
     }
   ]
 }

@@ -1,0 +1,263 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "inputs",
+    "adminMutationAuthorized",
+    "valuePopulationAuthorized",
+    "decisions",
+    "batch3bOutstanding",
+    "closureOrder",
+    "readiness"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adminMutationAuthorized": {
+      "const": false
+    },
+    "valuePopulationAuthorized": {
+      "const": false
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "pbi",
+          "rank",
+          "owners",
+          "question",
+          "affectedIds",
+          "evidenceIds",
+          "decisionState",
+          "approvalDecisionId"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "pbi": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer"
+          },
+          "owners": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "question": {
+            "type": "string"
+          },
+          "affectedIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidenceIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "decisionState": {
+            "type": "string"
+          },
+          "approvalDecisionId": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "batch3bOutstanding": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "rank",
+              "owners",
+              "question",
+              "rows",
+              "impact",
+              "state",
+              "approval"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "rank": {
+                "type": "integer"
+              },
+              "owners": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "question": {
+                "type": "string"
+              },
+              "rows": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "impact": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "approval": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "rank",
+              "owners",
+              "question",
+              "rows",
+              "impact",
+              "unknownProductGids",
+              "state",
+              "approval"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "rank": {
+                "type": "integer"
+              },
+              "owners": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "question": {
+                "type": "string"
+              },
+              "rows": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "impact": {
+                "type": "string"
+              },
+              "unknownProductGids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "state": {
+                "type": "string"
+              },
+              "approval": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "closureOrder": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "readiness": {
+      "type": "object",
+      "required": [
+        "architecture009Through018B",
+        "consolidatedHumanClosure",
+        "pbi020",
+        "pbi021"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "architecture009Through018B": {
+          "type": "string"
+        },
+        "consolidatedHumanClosure": {
+          "type": "string"
+        },
+        "pbi020": {
+          "type": "string"
+        },
+        "pbi021": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "epic-e-batch-3c-decision-packet repository evidence contract"
+}

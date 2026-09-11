@@ -10,6 +10,10 @@ Do not begin implementing changes unless a very small diagnostic change is absol
 
 The primary deliverable is an extensive backlog of actionable Product Backlog Items, or PBIs, that can later be transferred into GitHub issues.
 
+## Approved MVP Sequencing Override — 2026-08-27
+
+Epic O is the minimum viable product boundary. Epic H, Epic I, Epic M, and Epic N are specifically deferred until after the Epic O launch. This is not an alphabetical deferral of all later epics. See [Rhino MVP Sequencing Decision](roadmap/rhino-mvp-sequencing.md) for the durable decision and Epic D handoffs.
+
 The backlog may include:
 
 * Theme repository changes

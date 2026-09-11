@@ -1,52 +1,26 @@
 {
   "sections": {
-    "rhino_intro": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Choose lapidary equipment for the work you need to do",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Find lapidary machines, replacement parts, consumables, and accessories by product role, machine family, and the work you need to do. Confirm product details before ordering.</p>"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "Shop machines",
-            "button_link": "shopify://collections/machines",
-            "button_style_secondary": false,
-            "button_label_2": "Contact us",
-            "button_link_2": "shopify://pages/contact",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
+    "homepage_hero": {
+      "type": "rhino-homepage-hero",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "image": "shopify://shop_images/EM-1_Machine_bf604477-d32b-4294-a63d-6fbe1c1a1e9a.png",
+        "image_alt": "Rhino Lapidary EM-1 machine",
+        "heading": "Find lapidary equipment for revealing the beauty of the mineral world",
+        "text": "<p>Browse lapidary machines, replacement parts, and accessories by lapidary family, machine type, and the work you need to do. Confirm product details before ordering.</p>",
+        "primary_label": "Shop machines",
+        "primary_link": "shopify://collections/machines",
+        "secondary_label": "Contact us",
+        "secondary_link": "shopify://pages/contact",
         "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 64,
-        "padding_bottom": 64
+        "padding_top": 48,
+        "padding_bottom": 48
       }
     },
     "homepage_customer_paths": {
-      "type": "multicolumn",
+      "type": "rhino-homepage-links",
       "blocks": {
         "machines": {
-          "type": "column",
+          "type": "link",
           "settings": {
             "title": "Machines",
             "text": "",
@@ -55,7 +29,7 @@
           }
         },
         "catalog": {
-          "type": "column",
+          "type": "link",
           "settings": {
             "title": "Catalog",
             "text": "",
@@ -64,7 +38,7 @@
           }
         },
         "contact": {
-          "type": "column",
+          "type": "link",
           "settings": {
             "title": "Contact",
             "text": "",
@@ -79,25 +53,252 @@
         "contact"
       ],
       "settings": {
-        "title": "Choose where to start",
-        "heading_size": "h2",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
+        "module_id": "homepage-customer-path-chooser",
+        "heading": "Choose where to start",
+        "supporting_text": "",
         "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "none",
         "color_scheme": "scheme-2",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
         "padding_top": 36,
+        "padding_bottom": 52
+      }
+    },
+    "homepage_machine_families": {
+      "type": "rhino-homepage-links",
+      "blocks": {
+        "em_1": {
+          "type": "link",
+          "settings": {
+            "title": "EM-1",
+            "text": "",
+            "link_label": "View EM-1",
+            "link": "shopify://products/em-1"
+          }
+        },
+        "beadmaster": {
+          "type": "link",
+          "settings": {
+            "title": "BeadMaster",
+            "text": "",
+            "link_label": "View BeadMaster",
+            "link": "shopify://products/beadmaster"
+          }
+        },
+        "shapemaster": {
+          "type": "link",
+          "settings": {
+            "title": "ShapeMaster",
+            "text": "",
+            "link_label": "View ShapeMaster",
+            "link": "shopify://products/shapemaster"
+          }
+        },
+        "trimmaster": {
+          "type": "link",
+          "settings": {
+            "title": "TrimMaster",
+            "text": "",
+            "link_label": "View TrimMaster",
+            "link": "shopify://products/trimmaster"
+          }
+        }
+      },
+      "block_order": [
+        "em_1",
+        "beadmaster",
+        "shapemaster",
+        "trimmaster"
+      ],
+      "settings": {
+        "module_id": "homepage-machine-family-overview",
+        "heading": "Explore Rhino machine families",
+        "supporting_text": "",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "homepage_featured_machine": {
+      "type": "rhino-homepage-links",
+      "blocks": {
+        "em_1": {
+          "type": "link",
+          "settings": {
+            "title": "EM-1",
+            "text": "",
+            "link_label": "View EM-1",
+            "link": "shopify://products/em-1"
+          }
+        }
+      },
+      "block_order": [
+        "em_1"
+      ],
+      "settings": {
+        "module_id": "homepage-featured-machine",
+        "heading": "Featured machine",
+        "supporting_text": "",
+        "columns_desktop": 1,
+        "color_scheme": "scheme-2",
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
+    "homepage_why_rhino_proof": {
+      "type": "rhino-homepage-links",
+      "blocks": {
+        "supervision": {
+          "type": "link",
+          "settings": {
+            "title": "",
+            "text": "<p>Rhino machines are developed under the supervision of Vejdi Ziyansiz, whose background spans geology, gemology, practical lapidary work, and machine design.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "process": {
+          "type": "link",
+          "settings": {
+            "title": "",
+            "text": "<p>Rhino's machine-development process brings together knowledge of stone behavior, hands-on cutting, grinding, and polishing experience, and machine-design experience.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "choices": {
+          "type": "link",
+          "settings": {
+            "title": "",
+            "text": "<p>Component and material choices are evaluated for the needs of the machine rather than simply selecting the lowest-cost option.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["supervision", "process", "choices"],
+      "settings": {
+        "module_id": "homepage-why-rhino-proof",
+        "heading": "Why Rhino",
+        "supporting_text": "",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "homepage_parts_fallback": {
+      "type": "rhino-homepage-links",
+      "blocks": {
+        "contact": {
+          "type": "link",
+          "settings": {
+            "title": "Replacement parts",
+            "text": "",
+            "link_label": "Contact us",
+            "link": "shopify://pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "contact"
+      ],
+      "settings": {
+        "module_id": "homepage-parts-accessories-consumables",
+        "heading": "Replacement parts",
+        "supporting_text": "",
+        "columns_desktop": 1,
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "homepage_support_reassurance": {
+      "type": "rhino-homepage-links",
+      "blocks": {
+        "contact": {
+          "type": "link",
+          "settings": {
+            "title": "Contact",
+            "text": "",
+            "link_label": "Contact us",
+            "link": "shopify://pages/contact"
+          }
+        },
+        "shipping": {
+          "type": "link",
+          "settings": {
+            "title": "Shipping",
+            "text": "",
+            "link_label": "Shipping policy",
+            "link": "/policies/shipping-policy"
+          }
+        }
+      },
+      "block_order": [
+        "contact",
+        "shipping"
+      ],
+      "settings": {
+        "module_id": "homepage-support-reassurance",
+        "heading": "Contact and policies",
+        "supporting_text": "",
+        "columns_desktop": 2,
+        "color_scheme": "scheme-2",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "homepage_education_manuals": {
+      "type": "rhino-homepage-links",
+      "blocks": {
+        "manuals": {
+          "type": "link",
+          "settings": {
+            "title": "Manuals",
+            "text": "",
+            "link_label": "View manuals",
+            "link": "shopify://pages/manuals"
+          }
+        }
+      },
+      "block_order": [
+        "manuals"
+      ],
+      "settings": {
+        "module_id": "homepage-education-manuals",
+        "heading": "Manuals",
+        "supporting_text": "",
+        "columns_desktop": 1,
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "homepage_video_demo": {
+      "type": "rhino-homepage-video",
+      "settings": {
+        "heading": "See the EM-1 in operation",
+        "supporting_text": "<p>Watch the Rhino Lapidary EM-1 machine in operation.</p>",
+        "video_url": "https://www.youtube.com/watch?v=QbPTGCM1zhs",
+        "cover_image": "shopify://shop_images/EM-1_Thumbnail.jpg",
+        "video_title": "Rhino Lapidary EM-1 Machine",
+        "play_label": "Play Rhino Lapidary EM-1 Machine video",
+        "privacy_notice": "Playing this video loads content from YouTube.",
+        "color_scheme": "scheme-2",
+        "padding_top": 40,
         "padding_bottom": 52
       }
     }
   },
   "order": [
-    "rhino_intro",
-    "homepage_customer_paths"
+    "homepage_hero",
+    "homepage_customer_paths",
+    "homepage_machine_families",
+    "homepage_featured_machine",
+    "homepage_why_rhino_proof",
+    "homepage_parts_fallback",
+    "homepage_support_reassurance",
+    "homepage_education_manuals",
+    "homepage_video_demo"
   ]
 }

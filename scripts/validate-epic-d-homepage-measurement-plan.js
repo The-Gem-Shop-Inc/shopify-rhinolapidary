@@ -40,7 +40,7 @@ function validateHomepageMeasurementPlan(plan, options = {}) {
         errors.push('Analytics migration plan duplicate ecommerce tracking rule could not be confirmed.');
     }
 
-    const moduleIds = new Set((outcomes.modules || []).map((module) => module.id));
+    const modulesById = new Map((outcomes.modules || []).map((module) => [module.id, module]));
     const measureIds = new Set();
     const proposedEvents = new Set();
 
@@ -51,8 +51,10 @@ function validateHomepageMeasurementPlan(plan, options = {}) {
 
         measureIds.add(measure.id);
 
-        if (!moduleIds.has(measure.homepageModuleId)) {
+        if (!modulesById.has(measure.homepageModuleId)) {
             errors.push(`${measure.id}: unknown homepage module ${measure.homepageModuleId}.`);
+        } else if (modulesById.get(measure.homepageModuleId).implementationState !== 'implemented') {
+            errors.push(`${measure.id}: measurement must reference an implemented homepage module.`);
         }
 
         if (/^TBD$/i.test(measure.eventOwner.trim()) || /^TBD$/i.test(measure.businessProductOwner.trim())) {
@@ -61,6 +63,14 @@ function validateHomepageMeasurementPlan(plan, options = {}) {
 
         if (measure.customEventRequired) {
             errors.push(`${measure.id}: customEventRequired must remain false until a later approved analytics implementation PBI.`);
+        }
+
+        if (measure.measurementClass === 'native_available_now') {
+            if (measure.proposedEventName !== null || measure.implementationStatus !== 'native_available_no_code') {
+                errors.push(`${measure.id}: native_available_now measures cannot propose an event.`);
+            }
+        } else if (!measure.proposedEventName || measure.implementationStatus !== 'proposal_only_no_code') {
+            errors.push(`${measure.id}: future custom candidates must name a proposal-only event.`);
         }
 
         if (measure.proposedEventName) {
@@ -90,6 +100,11 @@ function validateHomepageMeasurementPlan(plan, options = {}) {
             errors.push(`${measure.id}: baseline_required measure needs a concrete baseline period.`);
         }
 
+        if (!/baseline first/i.test(measure.targetSuccessInterpretation)
+            || !/threshold pending Product\/Analytics review/i.test(measure.targetSuccessInterpretation)) {
+            errors.push(`${measure.id}: target must remain baseline-first with Product/Analytics threshold approval pending.`);
+        }
+
         if (
             /purchase|checkout|add[- ]?to[- ]?cart|product view/i.test(measure.proposedEventName || '')
             || /purchase event|checkout event|add-to-cart event|product view event/i.test(measure.notes || '')
@@ -99,18 +114,33 @@ function validateHomepageMeasurementPlan(plan, options = {}) {
     }
 
     for (const requiredMeasure of [
-        'hero-cta-clicks',
-        'customer-path-clicks',
-        'machine-family-entry',
-        'parts-entry',
-        'consumables-entry',
-        'support-contact-entry',
-        'education-video-engagement',
-        'newsletter-inquiry-starts',
-        'homepage-to-product-continuation',
+        'homepage-machines-primary-cta',
+        'customer-path-engagement',
+        'machine-family-route-engagement',
+        'em1-flagship-engagement',
+        'contact-support-route-usage',
+        'shipping-policy-route-usage',
+        'manuals-route-usage',
+        'homepage-conversion-session-outcomes',
+        'device-segment-outcomes',
+        'em1-video-engagement',
     ]) {
         if (!measureIds.has(requiredMeasure)) {
             errors.push(`Missing required homepage measure ${requiredMeasure}.`);
+        }
+    }
+
+    const approvalRequirements = (plan.futureCustomEventApprovalRequirements || []).join(' ');
+    for (const [name, pattern] of [
+        ['Analytics Owner approval', /Analytics Owner approval/i],
+        ['privacy and consent review', /privacy.*consent review/i],
+        ['duplicate tracking check', /duplication check.*existing pixels/i],
+        ['event naming contract', /event naming contract/i],
+        ['QA plan', /QA plan/i],
+        ['data retention and ownership decision', /retention.*ownership decision/i],
+    ]) {
+        if (!pattern.test(approvalRequirements)) {
+            errors.push(`Missing future custom-event prerequisite: ${name}.`);
         }
     }
 

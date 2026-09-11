@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "source", "evidenceBaseline", "changeHistory", "decisions"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "authorityKind", "sourceDate", "owner", "ownerRole"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "authorityKind": { "const": "human_owned" },
+        "sourceDate": { "type": "string", "format": "date" },
+        "owner": { "type": "string", "minLength": 1 },
+        "ownerRole": { "const": "Product Owner" }
+      }
+    },
+    "evidenceBaseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["snapshotPath", "capturedAt", "sha256", "proposalDigest", "staleEvidencePolicy"],
+      "properties": {
+        "snapshotPath": { "type": "string", "minLength": 1 },
+        "capturedAt": { "type": "string", "format": "date-time" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "proposalDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "staleEvidencePolicy": { "const": "reject_unless_explicitly_superseded" }
+      }
+    },
+    "changeHistory": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "owner", "ownerRole", "change", "supersedes"],
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "owner": { "type": "string", "minLength": 1 },
+          "ownerRole": { "const": "Product Owner" },
+          "change": { "type": "string", "minLength": 1 },
+          "supersedes": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "decisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["productClass", "taxonomy", "identity", "sku", "barcode", "vendor", "commercialConfiguration"],
+      "properties": {
+        "productClass": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bulkApproval", "overrides"],
+          "properties": {
+            "bulkApproval": {
+              "allOf": [
+                { "$ref": "#/$defs/decision" },
+                {
+                  "type": "object",
+                  "required": ["target", "expectedCount", "expectedProposalDigest"],
+                  "properties": {
+                    "target": { "const": "all_unchanged_proposals" },
+                    "expectedCount": { "type": "integer", "minimum": 1 },
+                    "expectedProposalDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+                  }
+                }
+              ]
+            },
+            "overrides": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  { "$ref": "#/$defs/decision" },
+                  {
+                    "type": "object",
+                    "required": ["productGid", "handle", "productClass", "catalogScopeDisposition"],
+                    "properties": {
+                      "productGid": { "type": "string", "pattern": "^gid://shopify/Product/" },
+                      "handle": { "type": "string", "minLength": 1 },
+                      "productClass": { "type": ["string", "null"], "enum": ["machine", "replacement_part", "consumable", "accessory", null] },
+                      "catalogScopeDisposition": { "enum": ["in_scope", "blocked_pending_scope_decision"] }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "taxonomy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policy", "productDecisions"],
+          "properties": {
+            "policy": { "$ref": "#/$defs/decision" },
+            "productDecisions": { "type": "array", "items": { "$ref": "#/$defs/productDecision" } }
+          }
+        },
+        "identity": {
+          "allOf": [
+            { "$ref": "#/$defs/decision" },
+            {
+              "type": "object",
+              "required": ["additionalRhinoBusinessId"],
+              "properties": { "additionalRhinoBusinessId": { "const": "not_justified" } }
+            }
+          ]
+        },
+        "sku": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["authority", "candidateDecisions", "generationPolicy"],
+          "properties": {
+            "authority": {
+              "allOf": [
+                { "$ref": "#/$defs/decision" },
+                {
+                  "type": "object",
+                  "required": ["issuer", "operationsRole"],
+                  "properties": {
+                    "issuer": { "const": "Rhino Lapidary governed commerce SKU registry" },
+                    "operationsRole": { "const": "downstream_consumer" }
+                  }
+                }
+              ]
+            },
+            "generationPolicy": {
+              "allOf": [
+                { "$ref": "#/$defs/decision" },
+                {
+                  "type": "object",
+                  "required": ["scheme", "format", "scope", "allocationRule", "oneCurrentSkuPerActiveSellableVariant", "immutableAfterApproval", "caseInsensitiveUniquenessAcrossActiveAndRetired", "retiredSkusNeverReused", "prohibitedDerivations", "legacyIdentifiers", "shopifyGids", "variantRestructure"],
+                  "properties": {
+                    "scheme": { "const": "opaque_sequence" },
+                    "format": { "const": "RH-######" },
+                    "scope": { "const": "shopify_variant_sellable_commerce_unit" },
+                    "allocationRule": { "const": "next_unused_identifier_from_governed_registry_only" },
+                    "oneCurrentSkuPerActiveSellableVariant": { "const": true },
+                    "immutableAfterApproval": { "const": true },
+                    "caseInsensitiveUniquenessAcrossActiveAndRetired": { "const": true },
+                    "retiredSkusNeverReused": { "const": true },
+                    "prohibitedDerivations": { "type": "array", "minItems": 14, "uniqueItems": true, "items": { "type": "string" } },
+                    "legacyIdentifiers": { "const": "preserve_as_aliases_and_history" },
+                    "shopifyGids": { "const": "platform_identity_not_commerce_sku" },
+                    "variantRestructure": { "const": "requires_explicit_mapping_decision" }
+                  }
+                }
+              ]
+            },
+            "candidateDecisions": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  { "$ref": "#/$defs/decision" },
+                  {
+                    "type": "object",
+                    "required": ["productGid", "variantGid", "handle", "identifier", "source", "disposition"],
+                    "properties": {
+                      "productGid": { "type": "string", "pattern": "^gid://shopify/Product/" },
+                      "variantGid": { "type": "string", "pattern": "^gid://shopify/ProductVariant/" },
+                      "handle": { "type": "string", "minLength": 1 },
+                      "identifier": { "type": "string", "minLength": 1 },
+                      "source": { "type": "string", "minLength": 1 },
+                      "disposition": { "enum": ["approved_legacy_identifier_only", "approved_constituent_identifiers_new_set_sku", "rejected_misassociation", "blocked_multi_identifier_semantics"] }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "barcode": {
+          "allOf": [
+            { "$ref": "#/$defs/decision" },
+            { "type": "object", "required": ["required"], "properties": { "required": { "const": false } } }
+          ]
+        },
+        "vendor": {
+          "allOf": [
+            { "$ref": "#/$defs/decision" },
+            {
+              "type": "object",
+              "required": ["shopifyVendorMeaning", "manufacturerWhenDistinct", "unambiguousEvidenceDisposition"],
+              "properties": {
+                "shopifyVendorMeaning": { "const": "marketed_product_brand" },
+                "manufacturerWhenDistinct": { "const": "separate_only_when_a_concrete_consumer_justifies_it" },
+                "unambiguousEvidenceDisposition": { "const": "propose_marketed_brand_without_redundant_human_approval" }
+              }
+            }
+          ]
+        },
+        "commercialConfiguration": {
+          "type": "array",
+          "minItems": 22,
+          "maxItems": 22,
+          "items": {
+            "allOf": [
+              { "$ref": "#/$defs/decision" },
+              {
+                "type": "object",
+                "required": ["candidateId", "disposition", "authorizesMutation", "commerceEvidenceRefs"],
+                "properties": {
+                  "candidateId": { "type": "string", "pattern": "^CONFIG-[0-9]{3}$" },
+                  "disposition": { "enum": ["preserve_current_no_speculative_variant", "preserve_current_variant_architecture", "preserve_separate_products"] },
+                  "authorizesMutation": { "const": false },
+                  "commerceEvidenceRefs": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "required": ["decisionId", "decisionState", "owner", "ownerRole", "decisionDate", "rationale", "evidenceRefs", "supersedes"],
+      "properties": {
+        "decisionId": { "type": "string", "pattern": "^PO-E-[0-9]{3}$" },
+        "decisionState": { "enum": ["approved", "blocked"] },
+        "owner": { "type": "string", "minLength": 1 },
+        "ownerRole": { "const": "Product Owner" },
+        "decisionDate": { "type": "string", "format": "date" },
+        "rationale": { "type": "string", "minLength": 1 },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "supersedes": { "type": ["string", "null"] }
+      }
+    },
+    "productDecision": {
+      "allOf": [
+        { "$ref": "#/$defs/decision" },
+        {
+          "type": "object",
+          "required": ["productGid", "handle", "businessMeaning", "taxonomyCategoryId", "disposition"],
+          "properties": {
+            "productGid": { "type": "string", "pattern": "^gid://shopify/Product/" },
+            "handle": { "type": "string", "minLength": 1 },
+            "businessMeaning": { "type": "string", "minLength": 1 },
+            "taxonomyCategoryId": { "type": ["string", "null"] },
+            "disposition": { "enum": ["approve_candidate", "blocked", "uncategorized"] }
+          }
+        }
+      ]
+    }
+  }
+}

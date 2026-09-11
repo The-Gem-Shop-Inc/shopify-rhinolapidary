@@ -1,0 +1,803 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "mutationAuthorized",
+    "inputs",
+    "reviewScheduling",
+    "decisions",
+    "counts",
+    "sourceValueStates",
+    "note"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reviewScheduling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "asOf",
+        "source",
+        "reviewerAvailability",
+        "nextReviewDate",
+        "waivesApprovals",
+        "mutationAuthorized",
+        "policy"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "type": "integer"
+        },
+        "asOf": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "reviewerAvailability": {
+          "type": "string"
+        },
+        "nextReviewDate": {},
+        "waivesApprovals": {
+          "const": false
+        },
+        "mutationAuthorized": {
+          "const": false
+        },
+        "policy": {
+          "type": "string"
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "decisionId",
+              "sourceDecisionIds",
+              "question",
+              "ownerRoles",
+              "currentState",
+              "sourceState",
+              "schedulingState",
+              "waived",
+              "affectedProducts",
+              "affectedEvidenceIds",
+              "evidenceArtifact",
+              "domains",
+              "downstreamConsumers",
+              "allowedInterimBehavior",
+              "approvalRequired",
+              "unblocksPlans",
+              "rank",
+              "affectedModels"
+            ],
+            "properties": {
+              "decisionId": {
+                "type": "string"
+              },
+              "sourceDecisionIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "question": {
+                "type": "string"
+              },
+              "ownerRoles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "currentState": {
+                "type": "string"
+              },
+              "sourceState": {
+                "type": "string"
+              },
+              "schedulingState": {
+                "type": "string"
+              },
+              "waived": {
+                "const": false
+              },
+              "affectedProducts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "productGid",
+                    "title"
+                  ],
+                  "properties": {
+                    "productGid": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "affectedEvidenceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "evidenceArtifact": {
+                "type": "string"
+              },
+              "domains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "downstreamConsumers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "allowedInterimBehavior": {
+                "type": "string"
+              },
+              "approvalRequired": {
+                "type": "string"
+              },
+              "unblocksPlans": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "rank": {
+                "type": "integer"
+              },
+              "affectedModels": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "decisionId",
+              "sourceDecisionIds",
+              "question",
+              "ownerRoles",
+              "currentState",
+              "sourceState",
+              "schedulingState",
+              "waived",
+              "affectedProducts",
+              "affectedEvidenceIds",
+              "evidenceArtifact",
+              "domains",
+              "downstreamConsumers",
+              "allowedInterimBehavior",
+              "approvalRequired",
+              "unblocksPlans",
+              "rank",
+              "affectedModels"
+            ],
+            "properties": {
+              "decisionId": {
+                "type": "string"
+              },
+              "sourceDecisionIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "question": {
+                "type": "string"
+              },
+              "ownerRoles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "currentState": {
+                "type": "string"
+              },
+              "sourceState": {
+                "type": "string"
+              },
+              "schedulingState": {
+                "type": "string"
+              },
+              "waived": {
+                "const": false
+              },
+              "affectedProducts": {
+                "type": "array",
+                "items": {}
+              },
+              "affectedEvidenceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "evidenceArtifact": {
+                "type": "string"
+              },
+              "domains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "downstreamConsumers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "allowedInterimBehavior": {
+                "type": "string"
+              },
+              "approvalRequired": {
+                "type": "string"
+              },
+              "unblocksPlans": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "rank": {
+                "type": "integer"
+              },
+              "affectedModels": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "decisionId",
+              "sourceDecisionIds",
+              "question",
+              "ownerRoles",
+              "currentState",
+              "sourceState",
+              "schedulingState",
+              "waived",
+              "affectedProducts",
+              "affectedEvidenceIds",
+              "evidenceArtifact",
+              "domains",
+              "downstreamConsumers",
+              "allowedInterimBehavior",
+              "approvalRequired",
+              "unblocksPlans",
+              "rank",
+              "affectedModels"
+            ],
+            "properties": {
+              "decisionId": {
+                "type": "string"
+              },
+              "sourceDecisionIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "question": {
+                "type": "string"
+              },
+              "ownerRoles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "currentState": {
+                "type": "string"
+              },
+              "sourceState": {
+                "type": "string"
+              },
+              "schedulingState": {
+                "type": "string"
+              },
+              "waived": {
+                "const": false
+              },
+              "affectedProducts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "productGid",
+                    "title"
+                  ],
+                  "properties": {
+                    "productGid": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "affectedEvidenceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "evidenceArtifact": {
+                "type": "string"
+              },
+              "domains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "downstreamConsumers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "allowedInterimBehavior": {
+                "type": "string"
+              },
+              "approvalRequired": {
+                "type": "string"
+              },
+              "unblocksPlans": {
+                "type": "array",
+                "items": {}
+              },
+              "rank": {
+                "type": "integer"
+              },
+              "affectedModels": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decisionGroups",
+        "byOwner",
+        "byDomain"
+      ],
+      "properties": {
+        "decisionGroups": {
+          "type": "integer"
+        },
+        "byOwner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "Admin/Engineering",
+            "Legal/Business",
+            "Media",
+            "Operations",
+            "Product Owner",
+            "Support",
+            "Technical"
+          ],
+          "properties": {
+            "Admin/Engineering": {
+              "type": "integer"
+            },
+            "Legal/Business": {
+              "type": "integer"
+            },
+            "Media": {
+              "type": "integer"
+            },
+            "Operations": {
+              "type": "integer"
+            },
+            "Product Owner": {
+              "type": "integer"
+            },
+            "Support": {
+              "type": "integer"
+            },
+            "Technical": {
+              "type": "integer"
+            }
+          }
+        },
+        "byDomain": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "definitions",
+            "product_class",
+            "category",
+            "vendor",
+            "commerce_sku",
+            "machine_family",
+            "electrical",
+            "motor_speed",
+            "tool_mount",
+            "water_fluid",
+            "durable_measurements",
+            "crate_measurements",
+            "shipping_weight",
+            "fulfillment_class",
+            "compatibility",
+            "included_components",
+            "optional_components",
+            "recommendations",
+            "customer_manuals",
+            "diagrams_instructions_videos",
+            "warranty_support",
+            "pickup_region",
+            "availability_authority",
+            "abrasive_grit"
+          ],
+          "properties": {
+            "availability_authority": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "abrasive_grit": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "definitions": {
+              "type": "integer"
+            },
+            "product_class": {
+              "type": "integer"
+            },
+            "category": {
+              "type": "integer"
+            },
+            "vendor": {
+              "type": "integer"
+            },
+            "commerce_sku": {
+              "type": "integer"
+            },
+            "machine_family": {
+              "type": "integer"
+            },
+            "electrical": {
+              "type": "integer"
+            },
+            "motor_speed": {
+              "type": "integer"
+            },
+            "tool_mount": {
+              "type": "integer"
+            },
+            "water_fluid": {
+              "type": "integer"
+            },
+            "durable_measurements": {
+              "type": "integer"
+            },
+            "crate_measurements": {
+              "type": "integer"
+            },
+            "shipping_weight": {
+              "type": "integer"
+            },
+            "fulfillment_class": {
+              "type": "integer"
+            },
+            "compatibility": {
+              "type": "integer"
+            },
+            "included_components": {
+              "type": "integer"
+            },
+            "optional_components": {
+              "type": "integer"
+            },
+            "recommendations": {
+              "type": "integer"
+            },
+            "customer_manuals": {
+              "type": "integer"
+            },
+            "diagrams_instructions_videos": {
+              "type": "integer"
+            },
+            "warranty_support": {
+              "type": "integer"
+            },
+            "pickup_region": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "sourceValueStates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sku",
+        "compatibility",
+        "measurements",
+        "components",
+        "warranty",
+        "availability"
+      ],
+      "properties": {
+        "sku": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "totalVariants",
+            "proposed",
+            "approved",
+            "blocked",
+            "deferredNonSellable"
+          ],
+          "properties": {
+            "totalVariants": {
+              "type": "integer"
+            },
+            "proposed": {
+              "type": "integer"
+            },
+            "approved": {
+              "type": "integer"
+            },
+            "blocked": {
+              "type": "integer"
+            },
+            "deferredNonSellable": {
+              "type": "integer"
+            }
+          }
+        },
+        "compatibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dependentProducts",
+            "productsWithCandidates",
+            "productsWithoutCandidates",
+            "edges",
+            "byState"
+          ],
+          "properties": {
+            "dependentProducts": {
+              "type": "integer"
+            },
+            "productsWithCandidates": {
+              "type": "integer"
+            },
+            "productsWithoutCandidates": {
+              "type": "integer"
+            },
+            "edges": {
+              "type": "integer"
+            },
+            "byState": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "approved",
+                "proposed",
+                "conflicting",
+                "blocked",
+                "not_compatible",
+                "deprecated",
+                "superseded"
+              ],
+              "properties": {
+                "approved": {
+                  "type": "integer"
+                },
+                "proposed": {
+                  "type": "integer"
+                },
+                "conflicting": {
+                  "type": "integer"
+                },
+                "blocked": {
+                  "type": "integer"
+                },
+                "not_compatible": {
+                  "type": "integer"
+                },
+                "deprecated": {
+                  "type": "integer"
+                },
+                "superseded": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "measurements": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "products",
+            "variants",
+            "positiveNativeWeights",
+            "missingNativeWeights",
+            "productsWithPackingObservations",
+            "approvedCustomMeasurements",
+            "packageRecords"
+          ],
+          "properties": {
+            "products": {
+              "type": "integer"
+            },
+            "variants": {
+              "type": "integer"
+            },
+            "positiveNativeWeights": {
+              "type": "integer"
+            },
+            "missingNativeWeights": {
+              "type": "integer"
+            },
+            "productsWithPackingObservations": {
+              "type": "integer"
+            },
+            "approvedCustomMeasurements": {
+              "type": "integer"
+            },
+            "packageRecords": {
+              "type": "integer"
+            }
+          }
+        },
+        "components": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "candidateLines",
+            "approved",
+            "conflicting",
+            "recommendations"
+          ],
+          "properties": {
+            "candidateLines": {
+              "type": "integer"
+            },
+            "approved": {
+              "type": "integer"
+            },
+            "conflicting": {
+              "type": "integer"
+            },
+            "recommendations": {
+              "type": "integer"
+            }
+          }
+        },
+        "warranty": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "products",
+            "thirdPartyBrandCandidates",
+            "approvedMappings",
+            "blockedMappings"
+          ],
+          "properties": {
+            "products": {
+              "type": "integer"
+            },
+            "thirdPartyBrandCandidates": {
+              "type": "integer"
+            },
+            "approvedMappings": {
+              "type": "integer"
+            },
+            "blockedMappings": {
+              "type": "integer"
+            }
+          }
+        },
+        "availability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "variants",
+            "tracked",
+            "untracked",
+            "deny",
+            "unknownNativeAvailability",
+            "unknownTiming"
+          ],
+          "properties": {
+            "variants": {
+              "type": "integer"
+            },
+            "tracked": {
+              "type": "integer"
+            },
+            "untracked": {
+              "type": "integer"
+            },
+            "deny": {
+              "type": "integer"
+            },
+            "unknownNativeAvailability": {
+              "type": "integer"
+            },
+            "unknownTiming": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

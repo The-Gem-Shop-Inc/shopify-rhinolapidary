@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","generatedAt","asOfDate","mode","registry","adminSnapshot","freshness","currentObservedCounts","entries","summary","downstreamGate"],
+  "properties": {
+    "$schema":{"type":"string"},
+    "schemaVersion":{"const":1},
+    "generatedAt":{"type":"string","format":"date-time"},
+    "asOfDate":{"type":"string","format":"date"},
+    "mode":{"const":"read_only_dry_run"},
+    "registry":{"$ref":"#/$defs/registryArtifact"},
+    "adminSnapshot":{"$ref":"#/$defs/snapshotArtifact"},
+    "freshness":{"$ref":"#/$defs/freshness"},
+    "currentObservedCounts":{"type":"object","additionalProperties":false,"required":["PRODUCT","PRODUCTVARIANT","COLLECTION","METAOBJECT"],"properties":{"PRODUCT":{"type":"integer","minimum":0},"PRODUCTVARIANT":{"type":"integer","minimum":0},"COLLECTION":{"type":"integer","minimum":0},"METAOBJECT":{"type":"integer","minimum":0}}},
+    "entries":{"type":"array","items":{"$ref":"#/$defs/entry"}},
+    "summary":{"$ref":"#/$defs/summary"},
+    "downstreamGate":{"type":"object","additionalProperties":false,"required":["mutationPlanPbi","definitionCreationPbi","deterministicInputEligible","mutationAuthorized"],"properties":{"mutationPlanPbi":{"const":"E-PBI-019"},"definitionCreationPbi":{"const":"E-PBI-020"},"deterministicInputEligible":{"type":"boolean"},"mutationAuthorized":{"const":false}}}
+  },
+  "$defs": {
+    "sha":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "registryArtifact":{"type":"object","additionalProperties":false,"required":["path","version","revision","sha256"],"properties":{"path":{"const":"data/metafield-metaobject-definitions.json"},"version":{"type":"string","minLength":3},"revision":{"type":"integer","minimum":1},"sha256":{"$ref":"#/$defs/sha"}}},
+    "snapshotArtifact":{"type":"object","additionalProperties":false,"required":["path","sha256","capturedAt","apiVersion","sourceKind"],"properties":{"path":{"type":"string","minLength":3},"sha256":{"$ref":"#/$defs/sha"},"capturedAt":{"type":"string","format":"date-time"},"apiVersion":{"type":"string","pattern":"^20[0-9]{2}-(01|04|07|10)$"},"sourceKind":{"enum":["live_admin","fixture"]}}},
+    "freshness":{"type":"object","additionalProperties":false,"required":["ageDays","maximumAgeDaysForMutationPlanning","status","refreshRequiredBeforeMutation","perpetualAdminStateClaim"],"properties":{"ageDays":{"type":"integer","minimum":0},"maximumAgeDaysForMutationPlanning":{"type":"integer","minimum":1},"status":{"enum":["current_for_repository_reconciliation","stale_refresh_required"]},"refreshRequiredBeforeMutation":{"type":"boolean"},"perpetualAdminStateClaim":{"const":false}}},
+    "difference":{"type":"object","additionalProperties":false,"required":["field","desired","current"],"properties":{"field":{"type":"string","minLength":1},"desired":{},"current":{}}},
+    "entry":{"type":"object","additionalProperties":false,"required":["definitionId","resourceKind","ownerType","namespace","key","desiredDecisionState","desiredLifecycleState","dependsOnDefinitionIds","currentDefinitionId","action","differences","rationale","mutationAuthorized"],"properties":{"definitionId":{"type":["string","null"],"pattern":"^CD-(MF|MO)-[0-9]{3}$"},"resourceKind":{"enum":["metafield","metaobject"]},"ownerType":{"enum":["PRODUCT","PRODUCTVARIANT","COLLECTION","METAOBJECT"]},"namespace":{"type":["string","null"]},"key":{"type":"string","minLength":1},"desiredDecisionState":{"type":["string","null"],"enum":["observed","proposed","approved","conflicting","blocked","deprecated","superseded",null]},"desiredLifecycleState":{"type":["string","null"],"enum":["approved_desired_state","proposed_future","legacy_repository","deprecated","superseded","blocked","intentionally_absent",null]},"dependsOnDefinitionIds":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^CD-(MF|MO)-[0-9]{3}$"}},"currentDefinitionId":{"type":["string","null"]},"action":{"enum":["create","no_op","conflict","incompatible_type","unexpected_live_definition","desired_not_approved","deprecated_definition_still_live","inaccessible_not_audited"]},"differences":{"type":"array","items":{"$ref":"#/$defs/difference"}},"rationale":{"type":"string","minLength":10},"mutationAuthorized":{"const":false}}},
+    "summary":{"type":"object","additionalProperties":false,"required":["create","no_op","conflict","incompatible_type","unexpected_live_definition","desired_not_approved","deprecated_definition_still_live","inaccessible_not_audited","approvedDesiredDefinitions","totalDesiredRegistryConcepts","totalObservedLiveDefinitions"],"properties":{"create":{"type":"integer","minimum":0},"no_op":{"type":"integer","minimum":0},"conflict":{"type":"integer","minimum":0},"incompatible_type":{"type":"integer","minimum":0},"unexpected_live_definition":{"type":"integer","minimum":0},"desired_not_approved":{"type":"integer","minimum":0},"deprecated_definition_still_live":{"type":"integer","minimum":0},"inaccessible_not_audited":{"type":"integer","minimum":0},"approvedDesiredDefinitions":{"type":"integer","minimum":0},"totalDesiredRegistryConcepts":{"type":"integer","minimum":0},"totalObservedLiveDefinitions":{"type":"integer","minimum":0}}}
+  }
+}

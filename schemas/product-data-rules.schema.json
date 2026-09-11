@@ -6,46 +6,201 @@
     "allowedStatuses",
     "launchRequiredStatuses",
     "keyProductHandles",
-    "requiredTagsByProductClass",
+    "legacyTagAuthority",
+    "skuGovernance",
+    "customDataGovernance",
     "forbiddenTitleFragments",
     "forbiddenDescriptionFragments"
   ],
   "additionalProperties": false,
   "properties": {
-    "$schema": { "type": "string" },
+    "$schema": {
+      "type": "string"
+    },
     "requiredColumns": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 1
     },
     "allowedStatuses": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 1
     },
     "launchRequiredStatuses": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 1
     },
     "keyProductHandles": {
       "type": "array",
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
-    "requiredTagsByProductClass": {
+    "legacyTagAuthority": {
       "type": "object",
-      "additionalProperties": {
-        "type": "array",
-        "items": { "type": "string" }
+      "required": [
+        "decisionState",
+        "deprecatedRule",
+        "replacement",
+        "effectiveDate",
+        "reason",
+        "historicalValues"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "decisionState": {
+          "const": "deprecated"
+        },
+        "deprecatedRule": {
+          "const": "requiredTagsByProductClass"
+        },
+        "replacement": {
+          "const": "rhino.product_class"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "historicalValues": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "skuGovernance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorityState",
+        "registry",
+        "scope",
+        "format",
+        "allowedAllocation",
+        "prohibitedDerivations",
+        "caseInsensitiveUniqueAcrossActiveAndRetired",
+        "retiredSkusNeverReused",
+        "legacyIdentifiersPreserved"
+      ],
+      "properties": {
+        "authorityState": {
+          "const": "approved"
+        },
+        "registry": {
+          "const": "data/rhino-commerce-sku-registry.json"
+        },
+        "scope": {
+          "const": "shopify_variant_sellable_commerce_unit"
+        },
+        "format": {
+          "const": "RH-######"
+        },
+        "allowedAllocation": {
+          "const": "next_unused_identifier_from_governed_registry_only"
+        },
+        "prohibitedDerivations": {
+          "type": "array",
+          "minItems": 14,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "caseInsensitiveUniqueAcrossActiveAndRetired": {
+          "const": true
+        },
+        "retiredSkusNeverReused": {
+          "const": true
+        },
+        "legacyIdentifiersPreserved": {
+          "const": true
+        }
+      }
+    },
+    "customDataGovernance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registry",
+        "canonicalProductClass",
+        "standardShopifyFieldsBeforeCustomData",
+        "nativeSkuRemainsVariantField",
+        "nativeBarcodeRemainsVariantField",
+        "nativeVendorRemainsProductField",
+        "nativeCategoryRemainsProductField",
+        "adminMutationAuthorized",
+        "definitionPlanGate",
+        "definitionCreationPbi",
+        "batch3bContract",
+        "batch3bValueApprovalSeparate"
+      ],
+      "properties": {
+        "registry": {
+          "const": "data/metafield-metaobject-definitions.json"
+        },
+        "canonicalProductClass": {
+          "const": "rhino.product_class"
+        },
+        "standardShopifyFieldsBeforeCustomData": {
+          "const": true
+        },
+        "nativeSkuRemainsVariantField": {
+          "const": true
+        },
+        "nativeBarcodeRemainsVariantField": {
+          "const": true
+        },
+        "nativeVendorRemainsProductField": {
+          "const": true
+        },
+        "nativeCategoryRemainsProductField": {
+          "const": true
+        },
+        "adminMutationAuthorized": {
+          "const": false
+        },
+        "definitionPlanGate": {
+          "const": "E-PBI-019"
+        },
+        "definitionCreationPbi": {
+          "const": "E-PBI-020"
+        },
+        "batch3bContract": {
+          "const": "data/epic-e-batch-3b-contracts.json"
+        },
+        "batch3bValueApprovalSeparate": {
+          "const": true
+        }
       }
     },
     "forbiddenTitleFragments": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "forbiddenDescriptionFragments": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     }
   }
 }

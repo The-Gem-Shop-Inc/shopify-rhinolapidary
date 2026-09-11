@@ -12,6 +12,7 @@ Responsive QA evidence plan.
 
 - `docs/qa/epic-d-responsive-homepage-evidence-plan.md`
 - `docs/architecture/epic-d-homepage-source-hierarchy.md`
+- `data/epic-d-homepage-nfr-readiness.json`
 
 ## Source / Evidence
 
@@ -22,12 +23,12 @@ Responsive QA evidence plan.
 
 ## Automation Added / Reused
 
-The plan defines automated coverage later implemented by `tests/homepage-responsive.spec.js`.
+The plan defines automated coverage implemented by `tests/homepage-responsive.spec.js`; its conditional assertions now cover all implemented homepage modules at all eight governed widths.
 
 ## Validation Output
 
 ```text
-npm run test:homepage-responsive: PASS; 8 tests, 16 state records, 48 passed checks, 0 failures, 16 N/A future-module checks.
+npm run test:homepage-responsive: PASS; 8 tests, 16 state records, 232 passed checks, 0 failures, 0 N/A checks.
 ```
 
 ## Preview Runtime Evidence
@@ -37,11 +38,11 @@ npm run test:homepage-responsive: PASS; 8 tests, 16 state records, 48 passed che
 
 ## Manual Checks
 
-Manual crop, content hierarchy, visual balance, text-over-media legibility, and first-screen usefulness checks are pending or N/A because no hero/path media module is implemented.
+Manual content hierarchy, visual balance, text/media legibility, and real-device checks remain pending Product Owner review for D-PBI-032. They are explicitly separate from automated technical completion in `data/epic-d-homepage-nfr-readiness.json`.
 
 ## Blockers
 
-Future visual approval still requires manual review once the hero, path chooser, and media modules exist.
+Human visual approval of the implemented homepage remains a D-PBI-032 release input; it is not claimed by this automated reconciliation.
 
 ## Acceptance Criteria
 

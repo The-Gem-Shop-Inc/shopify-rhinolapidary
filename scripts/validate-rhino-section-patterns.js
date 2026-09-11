@@ -259,9 +259,9 @@ function main() {
             violations.push(
                 `${relativePath}: unknown pattern "${patternId}".`,
             );
-        } else if (pattern.status === 'retired') {
+        } else if (pattern.status !== 'approved') {
             violations.push(
-                `${relativePath}: uses retired pattern "${patternId}".`,
+                `${relativePath}: uses non-approved pattern "${patternId}" with status "${pattern.status}".`,
             );
         }
 
@@ -274,9 +274,25 @@ function main() {
             );
         }
 
-        if (/<h1\b/i.test(source)) {
+        const h1Matches = source.match(/<h1\b/gi) || [];
+
+        const headingPatternMatch = source.match(
+            /Rhino section pattern:\s*([a-z0-9-]+)/i,
+        );
+
+        const headingPatternId = headingPatternMatch?.[1] || null;
+
+        const ownsPageHeading = headingPatternId === 'homepage-hero';
+
+        if (ownsPageHeading) {
+            if (h1Matches.length !== 1) {
+                violations.push(
+                    `${relativePath}: homepage-hero must render exactly one h1; found ${h1Matches.length}.`,
+                );
+            }
+        } else if (h1Matches.length > 0) {
             violations.push(
-                `${relativePath}: reusable sections must not render an h1.`,
+                `${relativePath}: only the homepage-hero pattern may render an h1; found ${h1Matches.length}.`,
             );
         }
 
@@ -298,12 +314,27 @@ function main() {
             );
         }
 
+        const sourceOutsideTemplates = source.replace(
+            /<template\b[^>]*>[\s\S]*?<\/template>/gi,
+            '',
+        );
+
         if (
             /<iframe\b[^>]*\bsrc\s*=\s*["']https?:/i
-                .test(source)
+                .test(sourceOutsideTemplates)
         ) {
             violations.push(
                 `${relativePath}: immediately loaded external iframe found.`,
+            );
+        }
+
+        if (
+            patternId === 'video'
+            && /<iframe\b[^>]*\bsrc\s*=\s*["']https?:/i.test(source)
+            && !/<template\b[^>]*>[\s\S]*?<iframe\b[^>]*\bsrc\s*=\s*["']https?:[\s\S]*?<\/template>/i.test(source)
+        ) {
+            violations.push(
+                `${relativePath}: external video iframe must remain inside an inert template.`,
             );
         }
 

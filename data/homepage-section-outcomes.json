@@ -28,7 +28,7 @@
           "classification": "commerce",
           "visualPriority": "primary",
           "approvalStatus": "observed",
-          "renderState": "current_rendered",
+          "renderState": "not_applicable",
           "sourceOrder": 1,
           "labelContext": "Machines collection",
           "notes": "Current observed CTA. Route is approved for the current homepage intro."
@@ -44,7 +44,7 @@
           "classification": "support",
           "visualPriority": "secondary",
           "approvalStatus": "observed",
-          "renderState": "current_rendered",
+          "renderState": "not_applicable",
           "sourceOrder": 2,
           "labelContext": "Generic contact page",
           "notes": "Current observed secondary CTA. It does not approve support hours, repair, warranty administration, or response-time claims."
@@ -73,13 +73,13 @@
       "performanceConsideration": "No homepage content images, videos, app blocks, or third-party embeds are loaded by this section.",
       "successMeasure": "Current-state audit records the section and both CTA destinations across repository and persistent preview.",
       "dependencies": [],
-      "implementationState": "current",
-      "notes": "Observed current state is not approval for the final Epic D homepage structure."
+      "implementationState": "deferred",
+      "notes": "Historical Batch 1/2 intro retained as rollback evidence. Replaced in preview by the approved D-PBI-008 hero."
     },
     {
       "id": "homepage-first-screen-gateway",
       "role": "first_screen_gateway",
-      "status": "blocked",
+      "status": "approved",
       "priority": "p1",
       "customerAudience": "First-time, experienced, and existing Rhino customers arriving on the homepage.",
       "customerJourney": "First-screen decision making.",
@@ -89,7 +89,10 @@
         "docs/brand/rhino-brand-positioning.md",
         "docs/brand/rhino-brand-voice-and-copy.md",
         "docs/brand/rhino-product-photography-art-direction.md",
-        "docs/brand/epic-d-homepage-hero-content-model.md"
+        "docs/brand/epic-d-homepage-hero-content-model.md",
+        "data/homepage-content-claims-map.json#hero-promise",
+        "data/media-manifest.json#admin-em-1-homepage-hero-selected",
+        "templates/index.json#sections.homepage_hero"
       ],
       "runtimeSelector": "[data-homepage-module-id=\"homepage-first-screen-gateway\"]",
       "actions": [
@@ -103,12 +106,12 @@
           "destinationType": "internal",
           "classification": "commerce",
           "visualPriority": "primary",
-          "approvalStatus": "draft",
-          "renderState": "blocked",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
           "sourceOrder": 1,
           "labelContext": "Machines collection",
-          "statusReason": "Route and neutral label are usable, but the hero module itself is blocked by copy and media approvals.",
-          "notes": "Future hero primary CTA role. Do not render until the hero moves to implemented with approved copy and media."
+          "statusReason": "Approved Product Owner hero CTA.",
+          "notes": "Primary commerce action."
         },
         {
           "id": "hero-secondary-contact",
@@ -120,24 +123,21 @@
           "destinationType": "internal",
           "classification": "support",
           "visualPriority": "secondary",
-          "approvalStatus": "draft",
-          "renderState": "blocked",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
           "sourceOrder": 2,
           "labelContext": "Generic contact page",
-          "statusReason": "Contact route is approved for generic contact only; support ownership and service promises remain blocked.",
-          "notes": "Future secondary/support CTA role. It must remain visually secondary to the commerce action unless the module scope changes."
+          "statusReason": "Approved Product Owner hero CTA.",
+          "notes": "Generic contact only; no support ownership or service-level promise."
         }
       ],
       "heroContentContract": {
         "stableModuleId": "homepage-first-screen-gateway",
         "h1Ownership": "future_hero_owns_page_h1",
-        "headlineSource": "data/homepage-content-claims-map.json#hero-promise; proposed positioning is not approved storefront copy.",
-        "supportingCopySource": "data/homepage-content-claims-map.json#current-intro-body as safe neutral draft only until a dedicated approved supporting-copy item exists.",
-        "copyApprovalState": "blocked",
-        "safeNeutralDraftContentItemIds": [
-          "current-intro-heading",
-          "current-intro-body"
-        ],
+        "headlineSource": "data/homepage-content-claims-map.json#hero-promise",
+        "supportingCopySource": "data/homepage-content-claims-map.json#hero-supporting-copy",
+        "copyApprovalState": "approved",
+        "safeNeutralDraftContentItemIds": [],
         "requiredApprovers": [
           "Brand Owner",
           "Product Owner",
@@ -145,9 +145,9 @@
           "Content Owner"
         ],
         "mediaRequirement": "First-screen product or workshop media that is rights-cleared, crop-reviewed, alt-reviewed, dimensioned, and performance-approved.",
-        "mediaSourceState": "blocked",
+        "mediaSourceState": "approved",
         "imageFallbackBehavior": "Use no image or a governed non-hero fallback only if the approved content model explicitly allows a text-first hero.",
-        "noMediaFallback": "Do not render a redesigned hero. Keep the current neutral rich-text intro until media and copy approvals are available.",
+        "noMediaFallback": "If the governed EM-1 hero media becomes unavailable, omit the hero rather than substituting unapproved imagery.",
         "mobileSequencingExpectation": "Headline, supporting copy, primary commerce action, secondary support action, and next useful path must remain visible or reachable without horizontal overflow or CTA clipping at 360 px and wider.",
         "firstScreenHeightExpectation": "Future first screen must not consume the viewport with dead vertical space; the next useful path should be visible or reachable with one normal first scroll across supported viewports.",
         "accessibilityExpectation": "Implemented hero must provide the single semantic page h1, named CTAs, informative alt text for informative media, decorative treatment for decorative media, visible focus, and source-order keyboard traversal.",
@@ -171,28 +171,10 @@
           "financing_claim",
           "performance_superiority_claim"
         ],
-        "blockerReasons": [
-          "No approved first-screen homepage promise.",
-          "No launch-ready first-screen product or workshop media.",
-          "Proposed brand positioning is not approved for storefront copy.",
-          "Broad performance, warranty, freight, supplier, manufacturer, patent, exclusivity, and financing claims remain prohibited unless separately approved."
-        ]
+        "blockerReasons": []
       },
-      "claimApprovalState": "blocked",
-      "claimReferences": [
-        {
-          "claimId": "CLAIM-002",
-          "required": false,
-          "approvalState": "approved_plain_use",
-          "notes": "The Everything Machine is approved only as EM-1 positioning, not a universal homepage promise."
-        },
-        {
-          "claimId": "CLAIM-010",
-          "required": true,
-          "approvalState": "blocked",
-          "notes": "Unsupported broad performance or durability claims are blocked."
-        }
-      ],
+      "claimApprovalState": "not_applicable",
+      "claimReferences": [],
       "routeTargetReferences": [
         {
           "routeId": "machines",
@@ -206,30 +188,28 @@
         }
       ],
       "linksRequired": true,
-      "emptyStateBehavior": "Do not render a redesigned first screen until approved promise, routes, and media are available.",
-      "mobileBehavior": "Future first screen must keep decision paths visible without oversized decorative media.",
-      "accessibilityExpectation": "Future section must provide one logical page h1, named CTAs, readable text, and non-overlapping focus states.",
-      "performanceConsideration": "Hero media must fit the brand performance budget and cannot introduce autoplay, immediate video embeds, or synchronous third-party scripts.",
-      "successMeasure": "Future preview evidence shows first-screen route choice without unsupported claims or media blockers.",
-      "dependencies": [
-        "approved homepage first-screen promise",
-        "launch-ready first-screen media"
-      ],
-      "blockerReason": "Approved homepage promise and first-screen media are not available in Batch 1 evidence.",
-      "implementationState": "blocked"
+      "emptyStateBehavior": "Omit the section if approved heading, supporting copy, media, or required routes are unavailable.",
+      "mobileBehavior": "Content precedes the contained EM-1 image on narrow viewports; CTAs wrap without horizontal scrolling.",
+      "accessibilityExpectation": "Hero owns exactly one semantic page h1, renders informative alt text 'Rhino Lapidary EM-1 machine', provides named keyboard-reachable CTAs, and preserves source order.",
+      "performanceConsideration": "First-screen EM-1 Shopify Files media is constrained to 375/550 px responsive derivatives; no custom JavaScript or third-party resource is introduced.",
+      "successMeasure": "Preview shows one semantic h1, approved copy, governed EM-1 media, two approved actions, and passing responsive/accessibility/performance checks.",
+      "dependencies": [],
+      "blockerReason": "",
+      "implementationState": "implemented"
     },
     {
       "id": "homepage-customer-path-chooser",
       "role": "customer_path_chooser",
-      "status": "blocked",
+      "status": "approved",
       "priority": "p1",
-      "customerAudience": "Experienced buyers and existing Rhino owners.",
-      "customerJourney": "Fast routing to machines, parts, consumables, manuals, or contact.",
-      "customerOutcome": "Customer can choose a task-oriented destination without knowing every product handle.",
+      "customerAudience": "First-time, experienced, and existing Rhino customers who need a fast next step.",
+      "customerJourney": "Fast routing to approved machine shopping, catalog browsing, or generic contact destinations.",
+      "customerOutcome": "Customer can choose one of three useful launch-safe tasks without needing to know Rhino product handles or unsupported product taxonomy.",
       "contentOwner": "Product Owner and Shopify Admin Owner",
       "sourceReferences": [
         "data/navigation-spec.json",
-        "docs/architecture/epic-d-homepage-current-state-audit.md"
+        "docs/architecture/epic-d-homepage-current-state-audit.md",
+        "templates/index.json#sections.homepage_customer_paths"
       ],
       "runtimeSelector": "[data-homepage-module-id=\"homepage-customer-path-chooser\"]",
       "actions": [
@@ -244,10 +224,28 @@
           "classification": "commerce",
           "visualPriority": "primary",
           "approvalStatus": "approved",
-          "renderState": "future_optional",
+          "renderState": "implemented",
           "sourceOrder": 1,
           "labelContext": "Machines collection",
-          "notes": "Launch-safe route and label candidate for D-PBI-009."
+          "statusReason": "Approved launch-safe customer path implemented in templates/index.json.",
+          "notes": "Primary commerce path for customers ready to browse Rhino machines."
+        },
+        {
+          "id": "path-catalog",
+          "role": "secondary",
+          "label": "Browse catalog",
+          "accessibleLabel": "Browse catalog",
+          "routeId": "catalog",
+          "actionGroup": "homepage-customer-paths",
+          "destinationType": "internal",
+          "classification": "commerce",
+          "visualPriority": "secondary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 2,
+          "labelContext": "Shopify collections index",
+          "statusReason": "Approved existing catalog index route is suitable as a general product-discovery path.",
+          "notes": "Does not imply that blocked parts, accessories, or consumables aggregate routes exist."
         },
         {
           "id": "path-contact",
@@ -260,42 +258,11 @@
           "classification": "support",
           "visualPriority": "secondary",
           "approvalStatus": "approved",
-          "renderState": "future_optional",
-          "sourceOrder": 2,
-          "labelContext": "Generic contact page",
-          "notes": "Launch-safe generic contact path; no support promise is approved."
-        },
-        {
-          "id": "path-parts",
-          "role": "secondary",
-          "label": "Find replacement parts",
-          "accessibleLabel": "Find replacement parts",
-          "routeId": "homepage-parts",
-          "actionGroup": "homepage-customer-paths",
-          "destinationType": "internal",
-          "classification": "commerce",
-          "visualPriority": "secondary",
-          "approvalStatus": "blocked",
-          "renderState": "blocked",
+          "renderState": "implemented",
           "sourceOrder": 3,
-          "labelContext": "Aggregate parts destination",
-          "statusReason": "No approved aggregate parts route exists."
-        },
-        {
-          "id": "path-consumables",
-          "role": "secondary",
-          "label": "Shop consumables",
-          "accessibleLabel": "Shop consumables",
-          "routeId": "homepage-consumables",
-          "actionGroup": "homepage-customer-paths",
-          "destinationType": "internal",
-          "classification": "commerce",
-          "visualPriority": "secondary",
-          "approvalStatus": "blocked",
-          "renderState": "blocked",
-          "sourceOrder": 4,
-          "labelContext": "Aggregate consumables destination",
-          "statusReason": "No approved aggregate consumables route exists."
+          "labelContext": "Generic contact page",
+          "statusReason": "Approved generic contact route; no support, repair, response-time, or warranty-service promise is implied.",
+          "notes": "Remains visually secondary to the primary commerce path."
         }
       ],
       "claimApprovalState": "not_applicable",
@@ -307,182 +274,274 @@
           "status": "approved"
         },
         {
-          "routeId": "homepage-parts",
+          "routeId": "catalog",
           "required": true,
-          "status": "blocked"
-        },
-        {
-          "routeId": "homepage-consumables",
-          "required": true,
-          "status": "blocked"
+          "status": "approved"
         },
         {
           "routeId": "contact",
-          "required": false,
+          "required": true,
           "status": "approved"
         }
       ],
       "linksRequired": true,
-      "emptyStateBehavior": "Omit unresolved path cards rather than rendering disabled or placeholder links.",
-      "mobileBehavior": "Future cards must remain scannable in a compact single-column or two-column mobile layout.",
-      "accessibilityExpectation": "Every path must be a real link with an accessible name and visible destination meaning.",
-      "performanceConsideration": "Prefer text and lightweight icons; do not require heavy media for this routing module.",
-      "successMeasure": "All displayed path choices map to approved route IDs and preview-resolving destinations.",
-      "dependencies": [
-        "approved parts route",
-        "approved consumables route"
-      ],
-      "blockerReason": "Parts and consumables destinations are not approved for homepage routing.",
-      "implementationState": "blocked"
+      "emptyStateBehavior": "Render only approved customer paths. If an approved path becomes unavailable, omit it; the implemented chooser must retain at least three valid launch-safe paths or fail governance.",
+      "mobileBehavior": "Render three task choices in a scannable single-column mobile layout without horizontal scrolling, clipped labels, or slider-only access.",
+      "accessibilityExpectation": "Each displayed task is a real keyboard-reachable link with a meaningful accessible name; source order matches visual order and the module introduces no additional page h1.",
+      "performanceConsideration": "Text-only native Trade multicolumn implementation; no homepage media, app dependency, custom JavaScript, autoplay, or third-party request is required.",
+      "successMeasure": "Machines, Catalog, and Contact all render as approved preview-resolving customer paths and pass responsive, accessibility, route, and performance checks.",
+      "dependencies": [],
+      "blockerReason": "",
+      "implementationState": "implemented"
     },
     {
       "id": "homepage-machine-family-overview",
       "role": "machine_family_overview",
-      "status": "draft",
+      "status": "approved",
       "priority": "p1",
       "customerAudience": "Customers comparing machine families.",
       "customerJourney": "Product ecosystem discovery.",
-      "customerOutcome": "Customer can distinguish saw, lap, shaping, and individual machine-family paths without compatibility assumptions.",
+      "customerOutcome": "Customer can open an approved destination for EM-1, BeadMaster, ShapeMaster, or TrimMaster without compatibility assumptions.",
       "contentOwner": "Product Owner, Product Data Owner, and Content Owner",
       "sourceReferences": [
-        "data/rhino-section-patterns.json",
         "docs/brand/rhino-machine-family-identifiers.md",
-        "docs/architecture/epic-d-homepage-current-state-audit.md"
+        "data/navigation-spec.json",
+        "data/homepage-content-claims-map.json#machine-family-homepage-identifiers",
+        "templates/index.json#sections.homepage_machine_families"
       ],
-      "claimApprovalState": "needs_review",
-      "claimReferences": [
-        {
-          "claimId": "CLAIM-015",
-          "required": true,
-          "approvalState": "blocked",
-          "notes": "Compatibility must remain explicit and structured."
-        }
-      ],
+      "claimApprovalState": "not_applicable",
+      "claimReferences": [],
       "routeTargetReferences": [
         {
-          "routeId": "machines",
+          "routeId": "homepage-featured-machine-product",
+          "required": true,
+          "status": "approved"
+        },
+        {
+          "routeId": "homepage-family-beadmaster",
+          "required": true,
+          "status": "approved"
+        },
+        {
+          "routeId": "homepage-family-shapemaster",
+          "required": true,
+          "status": "approved"
+        },
+        {
+          "routeId": "homepage-family-trimmaster",
           "required": true,
           "status": "approved"
         }
       ],
       "linksRequired": true,
-      "emptyStateBehavior": "Do not show a family card when its destination, product count, or approved summary is missing.",
-      "mobileBehavior": "Future family cards must preserve product names and avoid cramped image crops.",
-      "accessibilityExpectation": "Machine-family labels must be text, not icon-only, and card links must have unique names.",
-      "performanceConsideration": "Family media must be lazy-loaded unless used in the first screen.",
-      "successMeasure": "Family overview sends users to verified collection routes and avoids unsupported compatibility language.",
-      "dependencies": [
-        "approved family summaries",
-        "approved family destinations",
-        "launch-ready family media"
+      "emptyStateBehavior": "Render only Product Owner-approved families with approved routes; omit unresolved families.",
+      "mobileBehavior": "Four text-only family entries collapse to one column on narrow viewports with no slider requirement.",
+      "accessibilityExpectation": "Every family name is visible text and every route has a unique accessible link name.",
+      "performanceConsideration": "Text-only native Trade multicolumn implementation; no family imagery or custom JavaScript is required.",
+      "successMeasure": "All four approved family links render and resolve without compatibility language.",
+      "dependencies": [],
+      "implementationState": "implemented",
+      "runtimeSelector": "[id$=\"__homepage_machine_families\"]",
+      "actions": [
+        {
+          "id": "family-em-1",
+          "role": "secondary",
+          "label": "View EM-1",
+          "accessibleLabel": "View EM-1",
+          "routeId": "homepage-featured-machine-product",
+          "actionGroup": "homepage-machine-families",
+          "destinationType": "internal",
+          "classification": "commerce",
+          "visualPriority": "secondary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 1,
+          "labelContext": "EM-1 product",
+          "notes": "Family orientation only; no compatibility claim."
+        },
+        {
+          "id": "family-beadmaster",
+          "role": "secondary",
+          "label": "View BeadMaster",
+          "accessibleLabel": "View BeadMaster",
+          "routeId": "homepage-family-beadmaster",
+          "actionGroup": "homepage-machine-families",
+          "destinationType": "internal",
+          "classification": "commerce",
+          "visualPriority": "secondary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 2,
+          "labelContext": "BeadMaster product",
+          "notes": "Family orientation only; no compatibility claim."
+        },
+        {
+          "id": "family-shapemaster",
+          "role": "secondary",
+          "label": "View ShapeMaster",
+          "accessibleLabel": "View ShapeMaster",
+          "routeId": "homepage-family-shapemaster",
+          "actionGroup": "homepage-machine-families",
+          "destinationType": "internal",
+          "classification": "commerce",
+          "visualPriority": "secondary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 3,
+          "labelContext": "ShapeMaster product",
+          "notes": "Family orientation only; no compatibility claim."
+        },
+        {
+          "id": "family-trimmaster",
+          "role": "secondary",
+          "label": "View TrimMaster",
+          "accessibleLabel": "View TrimMaster",
+          "routeId": "homepage-family-trimmaster",
+          "actionGroup": "homepage-machine-families",
+          "destinationType": "internal",
+          "classification": "commerce",
+          "visualPriority": "secondary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 4,
+          "labelContext": "TrimMaster product",
+          "notes": "Family orientation only; exact model-size details remain outside this homepage module."
+        }
       ],
-      "implementationState": "planned"
+      "blockerReason": "",
+      "notes": "LapMaster, SawMaster, JadeMaster, and TumbleMaster are intentionally omitted from this launch slice. Product Owner intends to add family-level displays when their family destinations are ready."
     },
     {
       "id": "homepage-featured-machine",
       "role": "featured_machine",
-      "status": "blocked",
+      "status": "approved",
       "priority": "p1",
       "customerAudience": "Customers who need one representative machine entry point.",
       "customerJourney": "Product detail continuation from the homepage.",
-      "customerOutcome": "Customer can inspect an approved featured machine and continue to a verified product page.",
+      "customerOutcome": "Customer can identify EM-1 as the Product Owner-selected flagship and continue directly to its product page.",
       "contentOwner": "Product Owner and Product Data Owner",
       "sourceReferences": [
-        "docs/brand/rhino-product-photography-art-direction.md",
-        "data/brand-content-migration-register.json"
+        "data/homepage-content-claims-map.json#featured-em-1-homepage",
+        "data/navigation-spec.json#homepage-featured-machine-product",
+        "templates/index.json#sections.homepage_featured_machine",
+        "docs/project/implementation-records/d-pbi-018-featured-merchandising-decision.md"
       ],
-      "claimApprovalState": "blocked",
-      "claimReferences": [
-        {
-          "claimId": "CLAIM-002",
-          "required": false,
-          "approvalState": "approved_plain_use"
-        },
-        {
-          "claimId": "CLAIM-010",
-          "required": true,
-          "approvalState": "blocked"
-        }
-      ],
+      "claimApprovalState": "not_applicable",
+      "claimReferences": [],
       "routeTargetReferences": [
         {
           "routeId": "homepage-featured-machine-product",
           "required": true,
-          "status": "blocked",
-          "notes": "No featured product has been selected for homepage use."
+          "status": "approved"
         }
       ],
       "linksRequired": true,
-      "emptyStateBehavior": "Omit the module until the featured product, product route, copy, and media are approved.",
-      "mobileBehavior": "Future layout must keep product image and primary action visible without hiding specifications.",
-      "accessibilityExpectation": "Future product media must have accurate alt text and the product link must name the product.",
-      "performanceConsideration": "A featured product image may affect LCP and must be sized and optimized before approval.",
-      "successMeasure": "Featured machine route resolves in preview and all displayed product facts are source-backed.",
-      "dependencies": [
-        "featured machine selection",
-        "product route contract",
-        "approved product facts",
-        "approved media"
+      "emptyStateBehavior": "Omit the feature if the approved flagship product route is unavailable.",
+      "mobileBehavior": "Text-first feature remains compact and keeps its single product action visible on narrow screens.",
+      "accessibilityExpectation": "EM-1 is named in visible heading text and the product link has a unique accessible name.",
+      "performanceConsideration": "Uses native Trade rich text without product-gallery JavaScript or additional media; the hero already supplies the governed EM-1 visual.",
+      "successMeasure": "EM-1 flagship identity and product route render in preview without unsupported product facts.",
+      "dependencies": [],
+      "blockerReason": "",
+      "implementationState": "implemented",
+      "runtimeSelector": "[id$=\"__homepage_featured_machine\"]",
+      "actions": [
+        {
+          "id": "featured-em-1",
+          "role": "primary_commerce",
+          "label": "View EM-1",
+          "accessibleLabel": "View EM-1",
+          "routeId": "homepage-featured-machine-product",
+          "actionGroup": "homepage-featured-machine",
+          "destinationType": "internal",
+          "classification": "commerce",
+          "visualPriority": "primary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 1,
+          "labelContext": "EM-1 product",
+          "notes": "No capability, compatibility, freight, warranty, or performance statements are rendered."
+        }
       ],
-      "blockerReason": "No featured machine selection or homepage-safe product fact set is approved.",
-      "implementationState": "blocked"
+      "notes": "D-PBI-018 closes with no additional featured-product or featured-collection section. This existing EM-1 flagship entry plus the machine-family module already supplies the useful merchandising outcome without duplicating routes or adding product-card media and scripts."
     },
     {
       "id": "homepage-parts-accessories-consumables",
       "role": "parts_accessories_consumables",
-      "status": "blocked",
+      "status": "approved",
       "priority": "p1",
       "customerAudience": "Existing Rhino owners and reorder customers.",
       "customerJourney": "Find replacement parts, accessories, and consumables.",
-      "customerOutcome": "Customer can find a relevant, approved category or support fallback without inferred compatibility.",
+      "customerOutcome": "Customer seeking a replacement part can reach the generic Contact route without being asked to infer compatibility.",
       "contentOwner": "Product Data Owner, Support Owner, and Shopify Admin Owner",
       "sourceReferences": [
-        "docs/brand/rhino-reassurance-microcopy.md",
-        "data/navigation-spec.json"
+        "data/navigation-spec.json#contact",
+        "data/homepage-content-claims-map.json#parts-contact-homepage-fallback",
+        "templates/index.json#sections.homepage_parts_fallback",
+        "docs/project/implementation-records/d-pbi-016-consumables-entry-decision.md"
       ],
-      "claimApprovalState": "blocked",
-      "claimReferences": [
-        {
-          "claimId": "CLAIM-015",
-          "required": true,
-          "approvalState": "blocked"
-        }
-      ],
+      "claimApprovalState": "not_applicable",
+      "claimReferences": [],
       "routeTargetReferences": [
         {
-          "routeId": "homepage-parts",
+          "routeId": "contact",
           "required": true,
-          "status": "blocked"
+          "status": "approved",
+          "notes": "Launch fallback while structured parts routing remains incomplete."
+        },
+        {
+          "routeId": "homepage-parts",
+          "required": false,
+          "status": "blocked",
+          "notes": "Future direct route remains unresolved."
         },
         {
           "routeId": "homepage-accessories",
           "required": false,
-          "status": "blocked"
+          "status": "blocked",
+          "notes": "Future direct route remains unresolved."
         },
         {
           "routeId": "homepage-consumables",
-          "required": true,
-          "status": "blocked"
+          "required": false,
+          "status": "blocked",
+          "notes": "D-PBI-016 preview audit found no customer-safe aggregate destination or approved product-role data; omission remains required."
         }
       ],
       "linksRequired": true,
-      "emptyStateBehavior": "Use contact fallback only when approved; otherwise omit unresolved links.",
-      "mobileBehavior": "Future routing must keep part and consumable labels distinct on small screens.",
-      "accessibilityExpectation": "Links must not rely on icons alone and must avoid disabled anchors.",
-      "performanceConsideration": "No media is required for launch if route labels are clear.",
-      "successMeasure": "No homepage link implies compatibility or availability without structured evidence.",
-      "dependencies": [
-        "approved aggregate route for parts",
-        "approved aggregate route for consumables",
-        "compatibility/source rules"
+      "emptyStateBehavior": "Use only the approved generic Contact fallback until a structured direct parts route exists.",
+      "mobileBehavior": "Compact text-first entry point with one keyboard-reachable contact action.",
+      "accessibilityExpectation": "Visible replacement-parts heading and named Contact us link; no disabled or placeholder links.",
+      "performanceConsideration": "Native text-only Trade rich text; no media or custom JavaScript.",
+      "successMeasure": "Customers can reach Contact without any homepage statement implying compatibility or parts availability.",
+      "dependencies": [],
+      "blockerReason": "",
+      "implementationState": "implemented",
+      "runtimeSelector": "[id$=\"__homepage_parts_fallback\"]",
+      "actions": [
+        {
+          "id": "parts-contact-fallback",
+          "role": "support",
+          "label": "Contact us",
+          "accessibleLabel": "Contact us",
+          "routeId": "contact",
+          "actionGroup": "homepage-parts-fallback",
+          "destinationType": "internal",
+          "classification": "support",
+          "visualPriority": "secondary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 1,
+          "labelContext": "Generic contact page",
+          "notes": "Fallback only; does not imply compatibility lookup, parts availability, repair service, or response time."
+        }
       ],
-      "blockerReason": "Route and compatibility evidence are unresolved.",
-      "implementationState": "blocked"
+      "notes": "Direct parts and accessories routing remains deferred to structured product-data work. D-PBI-016 is appropriately blocked: no aggregate consumables destination or approved role relationship was found, so no consumables action renders."
     },
     {
       "id": "homepage-why-rhino-proof",
       "role": "proof",
-      "status": "blocked",
+      "status": "approved",
       "priority": "p1",
       "customerAudience": "Customers evaluating whether Rhino is credible.",
       "customerJourney": "Trust and proof evaluation.",
@@ -490,151 +549,232 @@
       "contentOwner": "Brand Owner, Business Owner, Product Owner, and Legal or Claims Reviewer",
       "sourceReferences": [
         "docs/brand/rhino-brand-positioning.md",
-        "data/legal-claims-register.json"
+        "docs/brand/epic-d-why-rhino-source-evidence.md",
+        "data/homepage-content-claims-map.json#why-rhino-supervision-proof",
+        "data/homepage-content-claims-map.json#why-rhino-process-proof",
+        "data/homepage-content-claims-map.json#why-rhino-component-choice-proof",
+        "templates/index.json#sections.homepage_why_rhino_proof"
       ],
-      "claimApprovalState": "blocked",
-      "claimReferences": [
-        {
-          "claimId": "CLAIM-005",
-          "required": true,
-          "approvalState": "blocked"
-        },
-        {
-          "claimId": "CLAIM-006",
-          "required": true,
-          "approvalState": "blocked"
-        },
-        {
-          "claimId": "CLAIM-010",
-          "required": true,
-          "approvalState": "blocked"
-        }
-      ],
+      "runtimeSelector": "[data-homepage-module-id=\"homepage-why-rhino-proof\"]",
+      "claimApprovalState": "approved",
+      "claimReferences": [],
       "routeTargetReferences": [],
       "linksRequired": false,
-      "emptyStateBehavior": "Omit the module until approved proof statements exist.",
-      "mobileBehavior": "Future proof content must stay concise and not displace decision paths.",
-      "accessibilityExpectation": "Future proof points must be text-readable and not depend on decorative badge images.",
-      "performanceConsideration": "Use static content and avoid app widgets or third-party proof embeds until approved.",
-      "successMeasure": "All proof statements map to approved legal-claims records and source evidence.",
-      "dependencies": [
-        "approved proof points",
-        "legal claim approvals"
-      ],
-      "blockerReason": "Relevant proof and entity-role claims are blocked or unresolved.",
-      "implementationState": "blocked"
+      "emptyStateBehavior": "Omit the module if the three narrowly approved proof statements or their source evidence are unavailable.",
+      "mobileBehavior": "Three text-only proof items stack to one column and remain subordinate to primary commerce paths.",
+      "accessibilityExpectation": "A semantic h2 labels the section; proof points remain understandable as text without icons, media, or links.",
+      "performanceConsideration": "Reuses the inline-styled lightweight homepage link/text section with no external CSS, JavaScript, image, or third-party request.",
+      "successMeasure": "Exactly the three Product Owner-approved, source-backed statements render without prohibited extrapolation.",
+      "dependencies": [],
+      "blockerReason": "",
+      "implementationState": "implemented",
+      "notes": "D-PBI-019 implemented 2026-08-27. Additional technical engineering proof remains a future content enhancement, not a launch blocker. Broad manufacturer, supplier, quality, durability, superiority, and competitor claims remain blocked."
     },
     {
       "id": "homepage-support-reassurance",
       "role": "support_reassurance",
-      "status": "blocked",
+      "status": "approved",
       "priority": "p1",
       "customerAudience": "Customers needing support, warranty, freight, shipping, pickup, or policy clarity.",
       "customerJourney": "Purchase reassurance and post-purchase recovery.",
-      "customerOutcome": "Customer can reach approved support or policy information without unsupported service promises.",
+      "customerOutcome": "Customer can reach the generic Contact page or full Shipping Policy without receiving unsupported service, logistics, payment, or policy summaries.",
       "contentOwner": "Support Owner, Operations Owner, Legal Owner, and Shopify Admin Owner",
       "sourceReferences": [
         "docs/brand/rhino-reassurance-microcopy.md",
         "data/legal-claims-register.json",
-        "data/navigation-spec.json"
+        "data/navigation-spec.json#contact",
+        "data/navigation-spec.json#shipping-policy",
+        "data/homepage-content-claims-map.json#support-contact-route-label",
+        "data/homepage-content-claims-map.json#shipping-policy-route-label",
+        "templates/index.json#sections.homepage_support_reassurance",
+        "sections/rhino-homepage-links.liquid"
       ],
-      "claimApprovalState": "blocked",
+      "claimApprovalState": "not_applicable",
       "claimReferences": [
         {
           "claimId": "CLAIM-007",
-          "required": true,
-          "approvalState": "blocked"
+          "required": false,
+          "approvalState": "blocked",
+          "notes": "No universal duration or product-specific coverage statement is rendered."
         },
         {
           "claimId": "CLAIM-008",
-          "required": true,
-          "approvalState": "blocked"
+          "required": false,
+          "approvalState": "blocked",
+          "notes": "No product-specific short-duration coverage statement is rendered."
         },
         {
           "claimId": "CLAIM-012",
-          "required": true,
-          "approvalState": "blocked"
+          "required": false,
+          "approvalState": "blocked",
+          "notes": "No cost, timing, carrier, or logistics promise is rendered."
         },
         {
           "claimId": "CLAIM-014",
-          "required": true,
-          "approvalState": "blocked"
+          "required": false,
+          "approvalState": "blocked",
+          "notes": "Generic Contact navigation does not establish service ownership or repair responsibility."
+        },
+        {
+          "claimId": "CLAIM-016",
+          "required": false,
+          "approvalState": "blocked",
+          "notes": "No payment-provider, dealer, service-level, or international promise is rendered."
         }
       ],
       "routeTargetReferences": [
         {
           "routeId": "contact",
-          "required": false,
-          "status": "approved"
+          "required": true,
+          "status": "approved",
+          "notes": "Rendered as a generic Contact us action only."
         },
         {
           "routeId": "shipping-policy",
-          "required": false,
-          "status": "approved"
+          "required": true,
+          "status": "approved",
+          "notes": "Rendered as navigation to the complete existing Shopify policy."
         },
         {
-          "routeId": "refund-policy",
+          "routeId": "homepage-freight-information",
           "required": false,
-          "status": "approved"
+          "status": "blocked",
+          "notes": "Intentionally omitted until an approved destination and current operating source exist."
+        },
+        {
+          "routeId": "homepage-pickup-information",
+          "required": false,
+          "status": "blocked",
+          "notes": "Intentionally omitted until operations approves eligibility and destination."
+        },
+        {
+          "routeId": "homepage-warranty-information",
+          "required": false,
+          "status": "blocked",
+          "notes": "Intentionally omitted until a safe destination and scope are approved."
+        },
+        {
+          "routeId": "homepage-financing",
+          "required": false,
+          "status": "blocked",
+          "notes": "Intentionally omitted until business approval, provider evidence, and destination exist."
         }
       ],
-      "linksRequired": false,
-      "emptyStateBehavior": "Omit warranty, freight, support, pickup, and shipping summaries until source-backed language is approved.",
-      "mobileBehavior": "Future reassurance content must remain compact and not hide product path choices.",
-      "accessibilityExpectation": "Future policy links must name the policy and cannot be icon-only.",
-      "performanceConsideration": "No third-party chat, review, or forms script is approved in Batch 1.",
-      "successMeasure": "Displayed support and policy messages are claim-safe and route to approved destinations.",
-      "dependencies": [
-        "support owner approval",
-        "operations approval",
-        "legal approval"
+      "linksRequired": true,
+      "emptyStateBehavior": "Render only approved route-only Contact and Shipping Policy actions. Omit all unresolved policy, logistics, payment, and service statements.",
+      "mobileBehavior": "Two text-only actions collapse to one column on narrow screens without slider behavior or hidden detail.",
+      "accessibilityExpectation": "Section has a visible h2, text-labelled links, keyboard-reachable actions, and no icon-only policy meanings.",
+      "performanceConsideration": "Reuses the existing lightweight homepage-link-group section with inline CSS and no additional external CSS, JavaScript, media, app, chat, or policy-widget request.",
+      "successMeasure": "Contact and Shipping Policy resolve from preview while unresolved freight, pickup, warranty, international, and financing messaging remains absent.",
+      "dependencies": [],
+      "blockerReason": "",
+      "implementationState": "implemented",
+      "runtimeSelector": "[data-homepage-module-id=\"homepage-support-reassurance\"]",
+      "actions": [
+        {
+          "id": "support-contact",
+          "role": "support",
+          "label": "Contact us",
+          "accessibleLabel": "Contact us",
+          "routeId": "contact",
+          "actionGroup": "homepage-support-reassurance",
+          "destinationType": "internal",
+          "classification": "support",
+          "visualPriority": "secondary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 1,
+          "labelContext": "Generic contact page",
+          "statusReason": "Approved generic Contact route; no service-level or responsibility statement.",
+          "notes": "Route-only reassurance action."
+        },
+        {
+          "id": "support-shipping-policy",
+          "role": "tertiary",
+          "label": "Shipping policy",
+          "accessibleLabel": "Shipping policy",
+          "routeId": "shipping-policy",
+          "actionGroup": "homepage-support-reassurance",
+          "destinationType": "internal",
+          "classification": "policy",
+          "visualPriority": "tertiary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 2,
+          "labelContext": "Shopify Shipping Policy",
+          "statusReason": "Approved existing policy destination; no policy summary is rendered.",
+          "notes": "Route-only policy action."
+        }
       ],
-      "blockerReason": "Warranty, freight, support, pickup, and service responsibility claims are blocked or require approval.",
-      "implementationState": "blocked"
+      "notes": "D-PBI-020 implemented as route-only reassurance. D-PBI-021 is complete with explicit deferred dependencies: freight, pickup, warranty, international, and financing content remain omitted until their owners approve both destination and customer-facing information."
     },
     {
       "id": "homepage-education-manuals",
       "role": "education",
-      "status": "draft",
+      "status": "approved",
       "priority": "p2",
-      "customerAudience": "Customers seeking manuals, setup help, and buying guidance.",
+      "customerAudience": "Customers seeking machine manuals.",
       "customerJourney": "Education and support discovery.",
-      "customerOutcome": "Customer can find approved manuals or buying-guide content without treating drafts as launch content.",
+      "customerOutcome": "Customer can open the approved Manuals index without seeing unapproved buying-guide or technical content.",
       "contentOwner": "Content Owner, Product Data Owner, and Shopify Admin Owner",
       "sourceReferences": [
-        "docs/brand/rhino-video-system.md",
-        "docs/architecture/epic-d-homepage-current-state-audit.md"
+        "data/navigation-spec.json#homepage-manuals",
+        "data/homepage-content-claims-map.json#manuals-route-labels",
+        "data/rhino-section-patterns.json#homepage-link-group",
+        "templates/index.json#sections.homepage_education_manuals"
       ],
-      "claimApprovalState": "needs_review",
+      "runtimeSelector": "[data-homepage-module-id=\"homepage-education-manuals\"]",
+      "claimApprovalState": "approved",
       "claimReferences": [],
       "routeTargetReferences": [
         {
           "routeId": "homepage-manuals",
-          "required": false,
-          "status": "observed"
+          "required": true,
+          "status": "approved",
+          "notes": "Verified on persistent preview theme 158631198917 on 2026-08-26."
         },
         {
           "routeId": "homepage-education",
           "required": false,
-          "status": "blocked"
+          "status": "blocked",
+          "notes": "Broader education and buying-guide content remains intentionally omitted."
         }
       ],
-      "linksRequired": false,
+      "linksRequired": true,
       "emptyStateBehavior": "Omit buying-guide links until approved pages or articles exist.",
-      "mobileBehavior": "Future education links must be concise and not compete with primary purchase paths.",
-      "accessibilityExpectation": "Manual and guide links must have distinct names and clear document/page destinations.",
-      "performanceConsideration": "No video player or heavy embed is required for text/manual links.",
-      "successMeasure": "Education links resolve in preview and point to approved, published content.",
+      "mobileBehavior": "Render one concise Manuals entry after purchase and support modules without competing with primary commerce paths.",
+      "accessibilityExpectation": "The module uses a visible H2, a named link, keyboard reachability, and no additional H1.",
+      "performanceConsideration": "Text-only rhino-homepage-links implementation adds no media, external stylesheet, script, video, iframe, or third-party dependency.",
+      "successMeasure": "The single Manuals action resolves to the approved published page in preview and no placeholder education actions render.",
       "dependencies": [
-        "manual page approval",
-        "education or buying-guide content approval"
+        "Broader education or buying-guide content remains deferred until independently approved."
       ],
-      "implementationState": "planned"
+      "implementationState": "implemented",
+      "actions": [
+        {
+          "id": "education-view-manuals",
+          "role": "tertiary",
+          "label": "View manuals",
+          "accessibleLabel": "View manuals",
+          "routeId": "homepage-manuals",
+          "actionGroup": "homepage-education-manuals",
+          "destinationType": "internal",
+          "classification": "content",
+          "visualPriority": "tertiary",
+          "approvalStatus": "approved",
+          "renderState": "implemented",
+          "sourceOrder": 1,
+          "labelContext": "Manuals index",
+          "statusReason": "Neutral navigation to the verified Manuals destination is approved.",
+          "notes": "No technical advice or educational promise is asserted."
+        }
+      ],
+      "notes": "D-PBI-022 implements only the verified Manuals route. Broader buying-guide content remains omitted, no video dependency is introduced, and the text-only module adds no media or external CSS/JS request."
     },
     {
       "id": "homepage-video-demo",
       "role": "video_demo",
-      "status": "blocked",
+      "status": "approved",
       "priority": "p2",
       "customerAudience": "Customers who need demonstration or setup context.",
       "customerJourney": "Media-assisted product understanding.",
@@ -642,31 +782,26 @@
       "contentOwner": "Content Owner, Media Owner, Accessibility Owner, Privacy Owner, and Engineering",
       "sourceReferences": [
         "docs/brand/rhino-video-system.md",
-        "data/rhino-section-patterns.json"
+        "data/rhino-section-patterns.json",
+        "data/media-manifest.json#approved-em1-promotional-video-poster",
+        "data/homepage-content-claims-map.json#video-demo-language",
+        "sections/rhino-homepage-video.liquid",
+        "templates/index.json#sections.homepage_video_demo"
       ],
-      "claimApprovalState": "blocked",
-      "claimReferences": [
-        {
-          "claimId": "CLAIM-010",
-          "required": true,
-          "approvalState": "blocked"
-        }
-      ],
+      "runtimeSelector": "[data-homepage-module-id=\"homepage-video-demo\"]",
+      "claimApprovalState": "approved",
+      "claimReferences": [],
       "routeTargetReferences": [],
       "linksRequired": false,
-      "emptyStateBehavior": "Omit video module until canonical URL, owner, rights, captions, transcript, poster, privacy, and performance evidence exist.",
-      "mobileBehavior": "Future video must preserve 16:9 layout and a 48 px play target.",
-      "accessibilityExpectation": "Captions or transcripts are required for instructional or spoken video.",
-      "performanceConsideration": "Click-to-load only; no autoplay and no third-party iframe before activation.",
-      "successMeasure": "Video module has no immediate player requests and includes captions/transcript evidence.",
-      "dependencies": [
-        "approved video inventory",
-        "poster media",
-        "caption and transcript evidence",
-        "privacy review"
-      ],
-      "blockerReason": "No approved video URL, owner, captions, transcript, or poster exists in Batch 1 evidence.",
-      "implementationState": "blocked"
+      "emptyStateBehavior": "Omit the module if the governed YouTube ID or approved Shopify-hosted poster is unavailable.",
+      "mobileBehavior": "Preserves a responsive 16:9 frame, a 64 px visible play target, and usable width without overflow.",
+      "accessibilityExpectation": "The button is named 'Play Rhino Lapidary EM-1 Machine video'; the activated iframe has an accessible title and receives focus. Captions and transcript are not applicable because the approved source has no spoken or verbal content.",
+      "performanceConsideration": "Below-fold poster is lazy loaded. No YouTube iframe, JavaScript, preconnect, player request, or autoplay exists before deliberate activation; activation loads only youtube-nocookie.com.",
+      "successMeasure": "Initial state has one poster control and zero YouTube requests; deliberate activation creates one titled privacy-enhanced iframe with the approved video ID and stable layout.",
+      "dependencies": [],
+      "blockerReason": "",
+      "implementationState": "implemented",
+      "notes": "D-PBI-023 implemented 2026-08-27 using the approved silent EM-1 promotional video and 1280 x 720 Shopify-hosted poster. No app or autoplay behavior was added."
     },
     {
       "id": "homepage-social-proof",
@@ -679,7 +814,8 @@
       "contentOwner": "Content Owner, Legal or Claims Reviewer, and App/Admin Owner",
       "sourceReferences": [
         "data/legal-claims-register.json",
-        "docs/rhino-lapidary-pbi-tracker-epic-d.md"
+        "docs/rhino-lapidary-pbi-tracker-epic-d.md",
+        "docs/architecture/epic-d-homepage-social-proof-decision.md"
       ],
       "claimApprovalState": "blocked",
       "claimReferences": [],
@@ -691,11 +827,14 @@
       "performanceConsideration": "No review or social widget scripts are approved in Batch 1.",
       "successMeasure": "Any future social proof has source, permission, moderation, accessibility, and performance evidence.",
       "dependencies": [
-        "testimonial or review source",
-        "rights approval",
-        "app/widget review"
+        "source and storefront-use permission for each item",
+        "attribution, editing, freshness, and display-rights policy",
+        "ongoing accuracy owner",
+        "verified rating and review-count sources",
+        "accessibility, privacy, and performance review",
+        "removal, rollback, and any future app data-export strategy"
       ],
-      "blockerReason": "No approved testimonial, review, or social-proof source exists.",
+      "blockerReason": "No approved testimonial/review source with permission, ownership, attribution, freshness, and display rights exists.",
       "implementationState": "blocked"
     },
     {
@@ -709,7 +848,8 @@
       "contentOwner": "Business Owner, Support Owner, Operations Owner, and Shopify Admin Owner",
       "sourceReferences": [
         "data/navigation-spec.json",
-        "data/legal-claims-register.json"
+        "data/legal-claims-register.json",
+        "docs/project/implementation-records/d-pbi-025-inquiry-path-blocker-verification.md"
       ],
       "claimApprovalState": "blocked",
       "claimReferences": [
@@ -750,15 +890,17 @@
       "emptyStateBehavior": "Use the existing contact route only for neutral contact; omit dealer, financing, and institutional paths until approved.",
       "mobileBehavior": "Future inquiry entry points must not overpower primary purchase paths.",
       "accessibilityExpectation": "Future forms must provide labels, errors, privacy context, and keyboard support.",
-      "performanceConsideration": "No form app, financing widget, or lead-capture script is approved in Batch 1.",
+      "performanceConsideration": "No form app, financing widget, or lead-capture script is approved.",
       "successMeasure": "Every visible inquiry path has owner, destination, and follow-up process evidence.",
       "dependencies": [
-        "approved inquiry process",
-        "dealer/institutional decision",
-        "financing decision"
+        "approved destination or form and business/form owners",
+        "required fields, consent behavior, spam handling, and retention policy",
+        "routing, notifications, analytics, and follow-up ownership",
+        "accessible success and error states plus governed mobile behavior"
       ],
-      "blockerReason": "Inquiry, dealer, institutional, and financing paths are unresolved.",
-      "implementationState": "blocked"
+      "blockerReason": "Product Owner explicitly deferred newsletter and dealer, school, club, workshop, or institutional lead capture until post-launch. No owned process defines an approved destination, owners, fields, spam handling, routing, notifications, consent, retention, success/error states, mobile behavior, accessibility, analytics, and follow-up. The generic Contact route is not a specialized program.",
+      "implementationState": "blocked",
+      "notes": "Appropriately blocked and explicitly deferred on 2026-08-27. Not an Epic D launch blocker; future owned form/process work is handed to Epic P. No form app is installed."
     }
   ]
 }

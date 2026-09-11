@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "pbi": "E-PBI-024",
+  "architectureApprovalDoesNotApproveValues": true,
+  "mutationAuthorized": false,
+  "modes": {
+    "repository": {"checks": "All existing Epic E validators/tests plus aggregate schemas, exact references, plan governance and adversarial tests", "success": "Architecture and bounded plan preparation valid; blocked facts remain visible", "blockedValuesAreArchitectureErrors": false},
+    "admin": {"checks": "Fresh complete read audit, definitions, native fields, exact target existence, reference approvals and snapshot-to-snapshot drift", "success": "Selected read-only scope reconciled; never mutation authorization", "inaccessibleOrStaleExitCode": 2},
+    "migration": {"checks": "Per-domain approved inputs, hashes, before/rollback coverage, definitions, exact targets and domain-specific GO", "success": "Plan preparation reported separately from execution preconditions", "unauthorizedExitCode": 2},
+    "all": {"checks": "All repository and execution-readiness checks", "success": "All selected gates satisfied", "expectedBatch4aExitCode": 2}
+  },
+  "exitCodes": {"0": "Selected gate passed with explicit domain states", "1": "Contract/schema/test failure", "2": "Admin reconciliation or execution blocked"},
+  "fullCatalogScope": {"baselineProducts": 122,"baselineVariants": 125,"sample": false,"liveCountsRequireFreshRead": true},
+  "diagnostics": {
+    "productCsv": "Run the existing validator unchanged; preserve individual image-alt/price findings. Blocking for applicable release scope, not a reason to falsify data.",
+    "optionalBarcodes": "Absence is allowed under current governed consumer policy; report duplicates and invalid claims separately.",
+    "shippingWeight": "Positive observed native weight is not a newly approved correction; report all missing native weights.",
+    "launchFixtures": "Run ownership checks after the authorized filename correction; missing ownership is a finalization finding."
+  },
+  "ePbi025": {"complete": false,"requires": ["applicable migrations and verified after snapshots","required human approvals","applicable release findings resolved","Product Owner finalization"]}
+}

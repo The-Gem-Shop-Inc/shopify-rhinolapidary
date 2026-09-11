@@ -781,6 +781,38 @@ class DeferredMedia extends HTMLElement {
     poster.addEventListener('click', this.loadContent.bind(this));
   }
 
+  connectedCallback() {
+    const posterImage = this.querySelector('[data-rhino-video-poster]');
+
+    if (!posterImage) return;
+
+    const loadPoster = () => {
+      if (posterImage.dataset.srcset) posterImage.srcset = posterImage.dataset.srcset;
+      if (posterImage.dataset.src) posterImage.src = posterImage.dataset.src;
+      posterImage.removeAttribute('data-srcset');
+      posterImage.removeAttribute('data-src');
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      loadPoster();
+      return;
+    }
+
+    this.posterObserver = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        this.posterObserver.disconnect();
+        loadPoster();
+      },
+      { rootMargin: '200px 0px' }
+    );
+    this.posterObserver.observe(this);
+  }
+
+  disconnectedCallback() {
+    this.posterObserver?.disconnect();
+  }
+
   loadContent(focus = true) {
     window.pauseAllMedia();
     if (!this.getAttribute('loaded')) {

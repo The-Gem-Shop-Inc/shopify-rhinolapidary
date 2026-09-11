@@ -1,0 +1,3441 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-09-10",
+  "status": "discovery_only",
+  "implementationAuthorized": false,
+  "mutationAuthorized": false,
+  "sources": {
+    "classification": "data/epic-e-product-classification.json",
+    "currentAdmin": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json",
+    "preview": "docs/qa/evidence/epic-f/2026-09-10-preview-observations.json",
+    "epicEReadiness": "data/epic-e-downstream-readiness.json"
+  },
+  "scope": {
+    "approvedMachines": 11,
+    "published": 8,
+    "currentMachineMetafieldValues": 0,
+    "epicECompleteSnapshot": false
+  },
+  "epicEConsumerRows": [
+    {
+      "consumer": "F",
+      "domain": "definitions",
+      "planId": "E-MUT-020",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": true,
+      "value_blocked": false,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 38,
+      "blockedDecisionIds": []
+    },
+    {
+      "consumer": "F",
+      "domain": "product_class",
+      "planId": "E-MUT-021",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": true,
+      "value_blocked": false,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 122,
+      "blockedDecisionIds": []
+    },
+    {
+      "consumer": "F",
+      "domain": "category",
+      "planId": "E-MUT-022",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 3,
+      "blockedDecisionIds": [
+        "CATEGORY-CANDIDATES"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "vendor",
+      "planId": "E-MUT-023",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": []
+    },
+    {
+      "consumer": "F",
+      "domain": "commerce_sku",
+      "planId": "E-MUT-024",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "SKU-ALLOCATIONS",
+        "PO-E-012",
+        "PO-E-013"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "machine_family",
+      "planId": "E-MUT-025",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "FAMILY-MAPPINGS"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "electrical",
+      "planId": "E-MUT-026",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D03"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "motor_speed",
+      "planId": "E-MUT-027",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D03"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "tool_mount",
+      "planId": "E-MUT-028",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D03"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "water_fluid",
+      "planId": "E-MUT-029",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D03"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "durable_measurements",
+      "planId": "E-MUT-030",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D05"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "crate_measurements",
+      "planId": "E-MUT-031",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D05"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "fulfillment_class",
+      "planId": "E-MUT-033",
+      "architecture_ready": true,
+      "definition_plan_ready": false,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3C-D01"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "compatibility",
+      "planId": "E-MUT-034",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "PO-E-012",
+        "PO-E-013",
+        "B3B-D02"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "included_components",
+      "planId": "E-MUT-035",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D04"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "optional_components",
+      "planId": "E-MUT-036",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D04"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "recommendations",
+      "planId": "E-MUT-037",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D04"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "customer_manuals",
+      "planId": "E-MUT-038",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D06"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "diagrams_instructions_videos",
+      "planId": "E-MUT-039",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3B-D06"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "warranty_support",
+      "planId": "E-MUT-040",
+      "architecture_ready": true,
+      "definition_plan_ready": true,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3C-D03",
+        "B3B-D06"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "pickup_region",
+      "planId": "E-MUT-041",
+      "architecture_ready": true,
+      "definition_plan_ready": false,
+      "migration_plan_ready": true,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": true,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "Trusted customer fact rendering requires approved values and verified live state; shell/discovery may proceed.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3C-D02"
+      ]
+    },
+    {
+      "consumer": "F",
+      "domain": "availability_authority",
+      "planId": null,
+      "architecture_ready": true,
+      "definition_plan_ready": false,
+      "migration_plan_ready": false,
+      "value_ready": false,
+      "value_blocked": true,
+      "admin_reconciliation_required": true,
+      "admin_mutation_required": false,
+      "safe_for_shell_only": true,
+      "safe_for_customer_fact_rendering": false,
+      "not_ready": "B3C-D04: Operations must approve timing authority; current native inventory/availability must be read and freshness-checked before customer promises. No durable timing population contract is approved.",
+      "approvedRows": 0,
+      "blockedDecisionIds": [
+        "B3C-D04"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "productGid": "gid://shopify/Product/8905779937477",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "beadmaster",
+      "title": "BeadMaster 6\"",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:05Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/beadmaster",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 200
+        },
+        {
+          "width": 768,
+          "status": 200
+        },
+        {
+          "width": 1440,
+          "status": 200
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:07.450Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484254032069",
+          "title": "Default Title",
+          "price": "2350.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 1,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688660938949",
+            "tracked": true,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 75,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178812211397",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "native_sold_out",
+        "buttonText": "Sold out",
+        "buttonDisabled": true,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": true,
+        "nativeInventoryMessage": "Out of stock",
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451099455685",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p78_i10_w1440.jpg?v=1783011248",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "One front/oblique image shows the working area and staged beads; no rear, connection, scale or in-use sequence. Visible marking is not certification evidence.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905779937477",
+        "descriptionHtmlCharacters": 711,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": [
+          "Product:gid://shopify/Product/8905779937477:9 contains blocked claim CLAIM-010: \"SUPER FAST\"",
+          "Product:gid://shopify/Product/8905779937477:9 contains prohibited wording for CLAIM-010: \"super fast\"",
+          "Product:gid://shopify/Product/8905779937477:33 contains blocked claim CLAIM-012: \"Packed safely\"",
+          "Product:gid://shopify/Product/8905779937477:33 contains prohibited wording for CLAIM-012: \"Packed safely\""
+        ]
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification",
+        "Native storefront sold out; do not override from Admin aggregate availability"
+      ],
+      "safeInterim": "Native identity/price/gallery/purchase shell with approved media/copy and neutral Contact; suppress disputed description/spec/BOM/fit/delivery/warranty/download facts. Existing page is not already certified safe.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 200,
+          "lcpMs": 1052,
+          "clsObserved": 0.011248774076796947,
+          "longTaskBlockingMs": 0,
+          "requests": 220,
+          "transferBytes": 1909302,
+          "imageBytes": 26208,
+          "largestImageBytes": 26208,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 200,
+          "lcpMs": 472,
+          "clsObserved": 0.03017984162356025,
+          "longTaskBlockingMs": 0,
+          "requests": 214,
+          "transferBytes": 1981272,
+          "imageBytes": 54976,
+          "largestImageBytes": 28757,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 200,
+          "lcpMs": 672,
+          "clsObserved": 0.00778134578751929,
+          "longTaskBlockingMs": 0,
+          "requests": 217,
+          "transferBytes": 2061444,
+          "imageBytes": 125362,
+          "largestImageBytes": 69771,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905780756677",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "em-1",
+      "title": "EM-1 Machine",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:18Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/em-1",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 200
+        },
+        {
+          "width": 768,
+          "status": 200
+        },
+        {
+          "width": 1440,
+          "status": 200
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:10.327Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484254949573",
+          "title": "Default Title",
+          "price": "4000.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 2,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688661856453",
+            "tracked": true,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 121,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178813063365",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "native_sold_out",
+        "buttonText": "Sold out",
+        "buttonDisabled": true,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": true,
+        "nativeInventoryMessage": "Out of stock",
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451101683909",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p1_i9_w2489.jpg?v=1783011260",
+              "width": 2489,
+              "height": 2189,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "One front image shows wheels/light/magnifier; patent wording is embedded on the machine label. Does not establish the included attachment list; replacement/detail photography requires review.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905780756677",
+        "descriptionHtmlCharacters": 1483,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": [
+          "Product:gid://shopify/Product/8905780756677:13 contains blocked claim CLAIM-004: \"Patented\"",
+          "Product:gid://shopify/Product/8905780756677:13 contains prohibited wording for CLAIM-004: \"patented\"",
+          "Product:gid://shopify/Product/8905780756677:13 contains blocked claim CLAIM-010: \"100% Torque\"",
+          "Product:gid://shopify/Product/8905780756677:13 contains prohibited wording for CLAIM-010: \"100% Torque\""
+        ]
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification",
+        "Native storefront sold out; do not override from Admin aggregate availability"
+      ],
+      "safeInterim": "Native identity/price/gallery/purchase shell with approved media/copy and neutral Contact; suppress disputed description/spec/BOM/fit/delivery/warranty/download facts. Existing page is not already certified safe.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 200,
+          "lcpMs": 560,
+          "clsObserved": 0.013453228856563798,
+          "longTaskBlockingMs": 0,
+          "requests": 195,
+          "transferBytes": 1264868,
+          "imageBytes": 32679,
+          "largestImageBytes": 32679,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 200,
+          "lcpMs": 444,
+          "clsObserved": 0.011459418104219781,
+          "longTaskBlockingMs": 0,
+          "requests": 199,
+          "transferBytes": 1300464,
+          "imageBytes": 69182,
+          "largestImageBytes": 36501,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 200,
+          "lcpMs": 596,
+          "clsObserved": 0.007798910349151234,
+          "longTaskBlockingMs": 0,
+          "requests": 196,
+          "transferBytes": 1390180,
+          "imageBytes": 151224,
+          "largestImageBytes": 109076,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781248197",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "jademaster",
+      "title": "JadeMaster, 14\"",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "ACTIVE",
+      "publishedAt": null,
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/jademaster",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 404
+        },
+        {
+          "width": 768,
+          "status": 404
+        },
+        {
+          "width": 1440,
+          "status": 404
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:13.096Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484255473861",
+          "title": "Default Title",
+          "price": "2495.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 1,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688662380741",
+            "tracked": true,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 0,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178813587653",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "unpublished_or_draft_route_404",
+        "buttonText": null,
+        "buttonDisabled": null,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": true,
+        "nativeInventoryMessage": null,
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451104075973",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p86_i1_w1440.jpg?v=1783011269",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "One internal source image; unpublished page cannot demonstrate customer crop/gallery behavior. Exact model and rights review precede any release.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905781248197",
+        "descriptionHtmlCharacters": 0,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": []
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "No published customer route; preserve current visibility",
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification"
+      ],
+      "safeInterim": "Keep route unavailable and exclude from customer links; use internal fixtures only. Do not publish for testing.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": null,
+          "scope": "not a Product page"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": null,
+          "scope": "not a Product page"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": null,
+          "scope": "not a Product page"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 404,
+          "lcpMs": 540,
+          "clsObserved": 0.023023437081550108,
+          "longTaskBlockingMs": 0,
+          "requests": 173,
+          "transferBytes": 1097487,
+          "imageBytes": 0,
+          "largestImageBytes": 0,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 404,
+          "lcpMs": 404,
+          "clsObserved": 0.02013811117576537,
+          "longTaskBlockingMs": 0,
+          "requests": 167,
+          "transferBytes": 1094848,
+          "imageBytes": 0,
+          "largestImageBytes": 0,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 404,
+          "lcpMs": 500,
+          "clsObserved": 0.009801548032407409,
+          "longTaskBlockingMs": 0,
+          "requests": 163,
+          "transferBytes": 1087060,
+          "imageBytes": 0,
+          "largestImageBytes": 0,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781412037",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "lapmaster-12",
+      "title": "LapMaster 12\"",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:30Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/lapmaster-12",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 200
+        },
+        {
+          "width": 768,
+          "status": 200
+        },
+        {
+          "width": 1440,
+          "status": 200
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:15.642Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484255637701",
+          "title": "Default Title",
+          "price": "1650.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 0,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688662544581",
+            "tracked": false,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 180,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178813751493",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "native_add_to_cart_enabled",
+        "buttonText": "Add to cart",
+        "buttonDisabled": false,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": false,
+        "nativeInventoryMessage": null,
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451104895173",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p81_i5_w1440.jpg?v=1783011273",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "One oblique top/front image of the lap/control assembly; no rear/power, scale, accessories or packaging views.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905781412037",
+        "descriptionHtmlCharacters": 786,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": [
+          "Product:gid://shopify/Product/8905781412037:33 contains blocked claim CLAIM-012: \"Packed safely\"",
+          "Product:gid://shopify/Product/8905781412037:33 contains prohibited wording for CLAIM-012: \"Packed safely\""
+        ]
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification"
+      ],
+      "safeInterim": "Native identity/price/gallery/purchase shell with approved media/copy and neutral Contact; suppress disputed description/spec/BOM/fit/delivery/warranty/download facts. Existing page is not already certified safe.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 200,
+          "lcpMs": 888,
+          "clsObserved": 0.00994077226466594,
+          "longTaskBlockingMs": 0,
+          "requests": 199,
+          "transferBytes": 1184564,
+          "imageBytes": 20221,
+          "largestImageBytes": 20221,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 200,
+          "lcpMs": 604,
+          "clsObserved": 0.010883527998663172,
+          "longTaskBlockingMs": 0,
+          "requests": 202,
+          "transferBytes": 1205457,
+          "imageBytes": 42270,
+          "largestImageBytes": 22052,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 200,
+          "lcpMs": 628,
+          "clsObserved": 0.00741029009030189,
+          "longTaskBlockingMs": 0,
+          "requests": 202,
+          "transferBytes": 1248529,
+          "imageBytes": 82153,
+          "largestImageBytes": 47746,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781477573",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "lapmaster-18",
+      "title": "LapMaster 18\"",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:31Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/lapmaster-18",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 200
+        },
+        {
+          "width": 768,
+          "status": 200
+        },
+        {
+          "width": 1440,
+          "status": 200
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:18.631Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484255703237",
+          "title": "Default Title",
+          "price": "2850.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 0,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688662610117",
+            "tracked": false,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 180,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178813817029",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "native_add_to_cart_enabled",
+        "buttonText": "Add to cart",
+        "buttonDisabled": false,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": false,
+        "nativeInventoryMessage": null,
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451105255621",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p82_i2_w1440.jpg?v=1783011274",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "One front/top image shows the lap and tall control box; small-screen controls/labels need detail images. No dimensions or contents inferred.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905781477573",
+        "descriptionHtmlCharacters": 774,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": [
+          "Product:gid://shopify/Product/8905781477573:33 contains blocked claim CLAIM-012: \"Packed safely\"",
+          "Product:gid://shopify/Product/8905781477573:33 contains prohibited wording for CLAIM-012: \"Packed safely\""
+        ]
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification"
+      ],
+      "safeInterim": "Native identity/price/gallery/purchase shell with approved media/copy and neutral Contact; suppress disputed description/spec/BOM/fit/delivery/warranty/download facts. Existing page is not already certified safe.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 200,
+          "lcpMs": 804,
+          "clsObserved": 0.009865459720391241,
+          "longTaskBlockingMs": 0,
+          "requests": 196,
+          "transferBytes": 1182885,
+          "imageBytes": 14763,
+          "largestImageBytes": 14763,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 200,
+          "lcpMs": 440,
+          "clsObserved": 0.010852999967200053,
+          "longTaskBlockingMs": 0,
+          "requests": 199,
+          "transferBytes": 1191152,
+          "imageBytes": 31301,
+          "largestImageBytes": 16520,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 200,
+          "lcpMs": 884,
+          "clsObserved": 0.007393771038290894,
+          "longTaskBlockingMs": 0,
+          "requests": 204,
+          "transferBytes": 1241588,
+          "imageBytes": 69361,
+          "largestImageBytes": 37629,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784131781",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "sawmaster-18",
+      "title": "SawMaster 18\"",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:19Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/sawmaster-18",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 200
+        },
+        {
+          "width": 768,
+          "status": 200
+        },
+        {
+          "width": 1440,
+          "status": 200
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:21.491Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484258914501",
+          "title": "Default Title",
+          "price": "5250.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 2,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688665821381",
+            "tracked": true,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 490,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178816635077",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "native_sold_out",
+        "buttonText": "Sold out",
+        "buttonDisabled": true,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": true,
+        "nativeInventoryMessage": "Out of stock",
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451117576389",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p83_i6_w1440.jpg?v=1783011322",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "One open-lid view with a blade; near-identical composition to the other saw image. No closed-lid, clamp/control detail, setup or packing coverage. Blade inclusion remains unapproved.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905784131781",
+        "descriptionHtmlCharacters": 1753,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": [
+          "Product:gid://shopify/Product/8905784131781:19 contains blocked claim CLAIM-003: \"CE and TSEK\"",
+          "Product:gid://shopify/Product/8905784131781:49 contains blocked claim CLAIM-003: \"CE and TSEK\"",
+          "Product:gid://shopify/Product/8905784131781:19 contains blocked claim CLAIM-003: \"TSEK\"",
+          "Product:gid://shopify/Product/8905784131781:49 contains blocked claim CLAIM-003: \"TSEK\"",
+          "Product:gid://shopify/Product/8905784131781:19 contains blocked claim CLAIM-003: \"TSEK certified\"",
+          "Product:gid://shopify/Product/8905784131781:49 contains blocked claim CLAIM-003: \"TSEK certified\"",
+          "Product:gid://shopify/Product/8905784131781:19 contains prohibited wording for CLAIM-003: \"All parts are CE and TSEK certified\"",
+          "Product:gid://shopify/Product/8905784131781:11 contains blocked claim CLAIM-004: \"patented\"",
+          "Product:gid://shopify/Product/8905784131781:15 contains blocked claim CLAIM-004: \"patented\"",
+          "Product:gid://shopify/Product/8905784131781:11 contains prohibited wording for CLAIM-004: \"patented\"",
+          "Product:gid://shopify/Product/8905784131781:7 contains blocked claim CLAIM-010: \"without any problems for years\"",
+          "Product:gid://shopify/Product/8905784131781:7 contains prohibited wording for CLAIM-010: \"without any problems for years\""
+        ]
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification",
+        "Native storefront sold out; do not override from Admin aggregate availability"
+      ],
+      "safeInterim": "Native identity/price/gallery/purchase shell with approved media/copy and neutral Contact; suppress disputed description/spec/BOM/fit/delivery/warranty/download facts. Existing page is not already certified safe.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 200,
+          "lcpMs": 836,
+          "clsObserved": 0.011357512556016492,
+          "longTaskBlockingMs": 0,
+          "requests": 197,
+          "transferBytes": 1180999,
+          "imageBytes": 17872,
+          "largestImageBytes": 17872,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 200,
+          "lcpMs": 504,
+          "clsObserved": 0.03022347351413752,
+          "longTaskBlockingMs": 0,
+          "requests": 193,
+          "transferBytes": 1194619,
+          "imageBytes": 37571,
+          "largestImageBytes": 19689,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 200,
+          "lcpMs": 660,
+          "clsObserved": 0.007804929410204475,
+          "longTaskBlockingMs": 0,
+          "requests": 192,
+          "transferBytes": 1218641,
+          "imageBytes": 63938,
+          "largestImageBytes": 41934,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784197317",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "sawmaster-24",
+      "title": "SawMaster 24\"",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:20Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/sawmaster-24",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 200
+        },
+        {
+          "width": 768,
+          "status": 200
+        },
+        {
+          "width": 1440,
+          "status": 200
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:24.408Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484258980037",
+          "title": "Default Title",
+          "price": "6600.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 2,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688665886917",
+            "tracked": true,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 525,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178816700613",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "native_sold_out",
+        "buttonText": "Sold out",
+        "buttonDisabled": true,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": true,
+        "nativeInventoryMessage": "Out of stock",
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451117871301",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "One open-lid image; exact same image GID also attached to draft SawMaster 36. Requires exact-model review, not a filename/size inference.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905784197317",
+        "descriptionHtmlCharacters": 1702,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": [
+          "Product:gid://shopify/Product/8905784197317:47 contains blocked claim CLAIM-003: \"CE and TSEK\"",
+          "Product:gid://shopify/Product/8905784197317:47 contains blocked claim CLAIM-003: \"TSEK\"",
+          "Product:gid://shopify/Product/8905784197317:47 contains blocked claim CLAIM-003: \"TSEK certified\"",
+          "Product:gid://shopify/Product/8905784197317:47 contains prohibited wording for CLAIM-003: \"All parts are CE and TSEK certified\"",
+          "Product:gid://shopify/Product/8905784197317:11 contains blocked claim CLAIM-004: \"patented\"",
+          "Product:gid://shopify/Product/8905784197317:15 contains blocked claim CLAIM-004: \"patented\"",
+          "Product:gid://shopify/Product/8905784197317:11 contains prohibited wording for CLAIM-004: \"patented\"",
+          "Product:gid://shopify/Product/8905784197317:7 contains blocked claim CLAIM-010: \"without any problems for years\"",
+          "Product:gid://shopify/Product/8905784197317:7 contains prohibited wording for CLAIM-010: \"without any problems for years\""
+        ]
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification",
+        "Native storefront sold out; do not override from Admin aggregate availability"
+      ],
+      "safeInterim": "Native identity/price/gallery/purchase shell with approved media/copy and neutral Contact; suppress disputed description/spec/BOM/fit/delivery/warranty/download facts. Existing page is not already certified safe.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 200,
+          "lcpMs": 848,
+          "clsObserved": 0.011340326188980825,
+          "longTaskBlockingMs": 0,
+          "requests": 198,
+          "transferBytes": 1181907,
+          "imageBytes": 17877,
+          "largestImageBytes": 17877,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 200,
+          "lcpMs": 448,
+          "clsObserved": 0.030216955772137084,
+          "longTaskBlockingMs": 0,
+          "requests": 197,
+          "transferBytes": 1195465,
+          "imageBytes": 37555,
+          "largestImageBytes": 19683,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 200,
+          "lcpMs": 916,
+          "clsObserved": 0.007801424002941743,
+          "longTaskBlockingMs": 0,
+          "requests": 204,
+          "transferBytes": 1233463,
+          "imageBytes": 63937,
+          "largestImageBytes": 41938,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784262853",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "sawmaster-36",
+      "title": "SawMaster, 36\"",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "DRAFT",
+      "publishedAt": null,
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/sawmaster-36",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 404
+        },
+        {
+          "width": 768,
+          "status": 404
+        },
+        {
+          "width": 1440,
+          "status": 404
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:27.490Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484259045573",
+          "title": "Default Title",
+          "price": "11950.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 0,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688665952453",
+            "tracked": false,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 0,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178816766149",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "unpublished_or_draft_route_404",
+        "buttonText": null,
+        "buttonDisabled": null,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": false,
+        "nativeInventoryMessage": null,
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451117871301",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "Draft Product reuses SawMaster 24 image GID. No verified distinct model photography or customer route; do not expose or invent a replacement image.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905784262853",
+        "descriptionHtmlCharacters": 0,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": []
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "No published customer route; preserve current visibility",
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification"
+      ],
+      "safeInterim": "Keep route unavailable and exclude from customer links; use internal fixtures only. Do not publish for testing.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": null,
+          "scope": "not a Product page"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": null,
+          "scope": "not a Product page"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": null,
+          "scope": "not a Product page"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 404,
+          "lcpMs": 808,
+          "clsObserved": 0.023023437081550108,
+          "longTaskBlockingMs": 0,
+          "requests": 180,
+          "transferBytes": 1130793,
+          "imageBytes": 0,
+          "largestImageBytes": 0,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 404,
+          "lcpMs": 452,
+          "clsObserved": 0.02013811117576537,
+          "longTaskBlockingMs": 0,
+          "requests": 167,
+          "transferBytes": 1089556,
+          "imageBytes": 0,
+          "largestImageBytes": 0,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 404,
+          "lcpMs": 696,
+          "clsObserved": 0.009801548032407409,
+          "longTaskBlockingMs": 0,
+          "requests": 170,
+          "transferBytes": 1097301,
+          "imageBytes": 0,
+          "largestImageBytes": 0,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784328389",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "shapemaster",
+      "title": "ShapeMaster 6\"",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:23Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/shapemaster",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 200
+        },
+        {
+          "width": 768,
+          "status": 200
+        },
+        {
+          "width": 1440,
+          "status": 200
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:30.026Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484259111109",
+          "title": "Default Title",
+          "price": "2750.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 3,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688666017989",
+            "tracked": true,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 120,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178816831685",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "native_sold_out",
+        "buttonText": "Sold out",
+        "buttonDisabled": true,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": true,
+        "nativeInventoryMessage": "Out of stock",
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451118428357",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p79_i14_w1440.jpg?v=1783011325",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "One front/oblique image shows mechanism and control housing. No approved accessory layout, scale, connection or operator views.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905784328389",
+        "descriptionHtmlCharacters": 921,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": [
+          "Product:gid://shopify/Product/8905784328389:13 contains blocked claim CLAIM-012: \"Packed safely\"",
+          "Product:gid://shopify/Product/8905784328389:13 contains prohibited wording for CLAIM-012: \"Packed safely\""
+        ]
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification",
+        "Native storefront sold out; do not override from Admin aggregate availability"
+      ],
+      "safeInterim": "Native identity/price/gallery/purchase shell with approved media/copy and neutral Contact; suppress disputed description/spec/BOM/fit/delivery/warranty/download facts. Existing page is not already certified safe.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 200,
+          "lcpMs": 840,
+          "clsObserved": 0.011394824338154452,
+          "longTaskBlockingMs": 0,
+          "requests": 197,
+          "transferBytes": 1194456,
+          "imageBytes": 31792,
+          "largestImageBytes": 31792,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 200,
+          "lcpMs": 440,
+          "clsObserved": 0.010533817626823344,
+          "longTaskBlockingMs": 0,
+          "requests": 190,
+          "transferBytes": 1221457,
+          "imageBytes": 67954,
+          "largestImageBytes": 36155,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 200,
+          "lcpMs": 752,
+          "clsObserved": 0.007796625946421681,
+          "longTaskBlockingMs": 0,
+          "requests": 205,
+          "transferBytes": 1326870,
+          "imageBytes": 154666,
+          "largestImageBytes": 91069,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905785344197",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "trimmaster",
+      "title": "TrimMaster",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:43Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/trimmaster",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 200
+        },
+        {
+          "width": 768,
+          "status": 200
+        },
+        {
+          "width": 1440,
+          "status": 200
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:33.481Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484260290757",
+          "title": "Default Title",
+          "price": "1150.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 1,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688667197637",
+            "tracked": true,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 90,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178817913029",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "native_sold_out",
+        "buttonText": "Sold out",
+        "buttonDisabled": true,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": true,
+        "nativeInventoryMessage": "Out of stock",
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 1,
+        "missingAlt": 1,
+        "items": [
+          {
+            "id": "gid://shopify/MediaImage/33451123409093",
+            "mediaContentType": "IMAGE",
+            "alt": "",
+            "status": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p80_i20_w1440.jpg?v=1783011345",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "visualReview": "One front/oblique image stages a stone and blade; no proof those are included. Certification marking is visible; no certification claim is approved.",
+        "galleryReadiness": "single_image_incomplete; alt and rights/model review required",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905785344197",
+        "descriptionHtmlCharacters": 1158,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": [
+          "Product:gid://shopify/Product/8905785344197:31 contains blocked claim CLAIM-012: \"Packed safely\"",
+          "Product:gid://shopify/Product/8905785344197:31 contains prohibited wording for CLAIM-012: \"Packed safely\""
+        ]
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "Missing meaningful alt and complete exact-model gallery",
+        "All structured Product facts require applicable E approval/migration/verification",
+        "Native storefront sold out; do not override from Admin aggregate availability"
+      ],
+      "safeInterim": "Native identity/price/gallery/purchase shell with approved media/copy and neutral Contact; suppress disputed description/spec/BOM/fit/delivery/warranty/download facts. Existing page is not already certified safe.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": [],
+          "scope": "#MainContent"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 200,
+          "lcpMs": 780,
+          "clsObserved": 0.011423680732774335,
+          "longTaskBlockingMs": 0,
+          "requests": 202,
+          "transferBytes": 1181748,
+          "imageBytes": 18975,
+          "largestImageBytes": 18975,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "shop.app",
+            "rhino-lapidary.myshopify.com"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 200,
+          "lcpMs": 564,
+          "clsObserved": 0.011467417735423268,
+          "longTaskBlockingMs": 0,
+          "requests": 191,
+          "transferBytes": 1193865,
+          "imageBytes": 39596,
+          "largestImageBytes": 20622,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 200,
+          "lcpMs": 916,
+          "clsObserved": 0.007802862699532215,
+          "longTaskBlockingMs": 0,
+          "requests": 199,
+          "transferBytes": 1261265,
+          "imageBytes": 69268,
+          "largestImageBytes": 45915,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        }
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905785868485",
+      "classification": {
+        "value": "machine",
+        "state": "approved",
+        "decisionId": "PO-E-001",
+        "source": "data/epic-e-product-classification.json"
+      },
+      "handle": "tumblemaster",
+      "title": "TumbleMaster",
+      "vendor": "Rhino Lapidary",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "status": "DRAFT",
+      "publishedAt": null,
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "templateObserved": "product.json (default)",
+      "route": "/products/tumblemaster",
+      "routeStatuses": [
+        {
+          "width": 390,
+          "status": 404
+        },
+        {
+          "width": 768,
+          "status": 404
+        },
+        {
+          "width": 1440,
+          "status": 404
+        }
+      ],
+      "currentObservationAt": "2026-09-10T21:08:36.464Z",
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46484260913349",
+          "title": "Default Title",
+          "price": "0.00",
+          "compareAtPrice": null,
+          "sku": null,
+          "barcode": null,
+          "selectedOptions": [
+            {
+              "name": "Title",
+              "value": "Default Title"
+            }
+          ],
+          "availableForSale": true,
+          "inventoryQuantity": 0,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "id": "gid://shopify/InventoryItem/48688667820229",
+            "tracked": false,
+            "requiresShipping": true,
+            "measurement": {
+              "weight": {
+                "value": 0,
+                "unit": "POUNDS"
+              }
+            }
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178818470085",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "purchase": {
+        "observed": "unpublished_or_draft_route_404",
+        "buttonText": null,
+        "buttonDisabled": null,
+        "adminAvailableForSale": true,
+        "inventoryPolicy": "DENY",
+        "stockTracking": false,
+        "nativeInventoryMessage": null,
+        "policy": "Preserve documented standard Trade path; no alternative commercial model authorized",
+        "checkoutTested": false
+      },
+      "media": {
+        "count": 0,
+        "missingAlt": 0,
+        "items": [],
+        "visualReview": "No Product media or current customer route. Technical/commercial/price gates remain unresolved; decorative filler is prohibited.",
+        "galleryReadiness": "missing",
+        "rights": "not established by current Admin attachment",
+        "processOrWorkshopMediaApproved": false,
+        "productVideoCount": 0
+      },
+      "content": {
+        "descriptionHtmlSource": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json#gid://shopify/Product/8905785868485",
+        "descriptionHtmlCharacters": 0,
+        "descriptionIsFactAuthority": false,
+        "claimFindings": []
+      },
+      "metafields": [],
+      "modules": {
+        "technical": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "measurements": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D05"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "components": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D04"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "compatibility": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D02",
+            "PO-E-012",
+            "PO-E-013"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "fulfillment": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D01",
+            "B3C-D02"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "warranty": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D03"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "resources": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3B-D06"
+          ],
+          "safeInterim": "Suppress unapproved facts and empty module; neutral Contact only where useful"
+        },
+        "timing": {
+          "architecture": "Epic E contract consumed; no new F value authority",
+          "customerFactsReady": false,
+          "state": "human_value_blocked_and_migration_pending",
+          "decisionIds": [
+            "B3C-D04"
+          ],
+          "safeInterim": "Use observed native storefront state without timing promise"
+        }
+      },
+      "blockers": [
+        "No published customer route; preserve current visibility",
+        "Missing Product media",
+        "Nonpositive current price",
+        "All structured Product facts require applicable E approval/migration/verification"
+      ],
+      "safeInterim": "Keep route unavailable and exclude from customer links; use internal fixtures only. Do not publish for testing.",
+      "accessibility": [
+        {
+          "width": 390,
+          "overflow": false,
+          "violations": null,
+          "scope": "not a Product page"
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": null,
+          "scope": "not a Product page"
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": null,
+          "scope": "not a Product page"
+        }
+      ],
+      "performance": [
+        {
+          "width": 390,
+          "httpStatus": 404,
+          "lcpMs": 588,
+          "clsObserved": 0.023023437081550108,
+          "longTaskBlockingMs": 0,
+          "requests": 176,
+          "transferBytes": 1100454,
+          "imageBytes": 0,
+          "largestImageBytes": 0,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 768,
+          "httpStatus": 404,
+          "lcpMs": 504,
+          "clsObserved": 0.02013811117576537,
+          "longTaskBlockingMs": 0,
+          "requests": 171,
+          "transferBytes": 1092401,
+          "imageBytes": 0,
+          "largestImageBytes": 0,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        },
+        {
+          "width": 1440,
+          "httpStatus": 404,
+          "lcpMs": 504,
+          "clsObserved": 0.009801548032407409,
+          "longTaskBlockingMs": 0,
+          "requests": 171,
+          "transferBytes": 1093525,
+          "imageBytes": 0,
+          "largestImageBytes": 0,
+          "scriptHosts": [
+            "cdn.shopify.com",
+            "rhino-lapidary.myshopify.com",
+            "shop.app"
+          ]
+        }
+      ]
+    }
+  ]
+}

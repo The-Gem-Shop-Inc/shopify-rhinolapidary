@@ -2,7 +2,7 @@
 
 ## Status
 
-Complete with implementation dependency.
+Complete.
 
 ## Classification
 
@@ -21,20 +21,21 @@ Homepage accessibility automated test plus manual evidence mechanism.
 - Existing `tests/accessibility.spec.js`
 - Existing preview auth helpers
 - `data/homepage-section-outcomes.json`
+- `data/epic-d-homepage-nfr-readiness.json`
 
 ## Automation Added / Reused
 
 - Added `npm run test:homepage-accessibility`.
 - Reused `@axe-core/playwright`.
 - Reused the established `#PBarNextFrame` Shopify preview UI exclusion only.
-- Added conditional module accessibility checks driven by implementation state.
+- Added conditional module accessibility checks driven by implementation state; every currently implemented homepage module is now covered.
 
 ## Validation Output
 
 ```text
 npm run test:homepage-accessibility: PASS; 2 passed.
-Desktop evidence: 10 records, 5 passed, 5 N/A, 0 serious axe, 0 critical axe.
-Mobile evidence: 10 records, 5 passed, 5 N/A, 0 serious axe, 0 critical axe.
+Desktop: 14 records, 12 passed, 2 N/A, 0 serious axe, 0 critical axe.
+Mobile: 14 records, 12 passed, 2 N/A, 0 serious axe, 0 critical axe.
 ```
 
 ## Preview Runtime Evidence
@@ -44,7 +45,7 @@ Mobile evidence: 10 records, 5 passed, 5 N/A, 0 serious axe, 0 critical axe.
 
 ## Manual Checks
 
-Manual accessibility checks were not performed. The checklist marks current/future checks as pending, N/A, or blocked as appropriate.
+Manual accessibility signoff was not performed. Keyboard, screen-reader, and visual accessibility evidence remains pending Product Owner review for D-PBI-032 and is explicitly separate from automated technical completion in `data/epic-d-homepage-nfr-readiness.json`.
 
 ## Blockers
 

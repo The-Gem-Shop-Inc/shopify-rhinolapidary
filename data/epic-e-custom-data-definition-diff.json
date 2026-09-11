@@ -1,0 +1,756 @@
+{
+  "$schema": "../schemas/epic-e-custom-data-definition-diff.schema.json",
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-09T00:00:00.000Z",
+  "asOfDate": "2026-09-09",
+  "mode": "read_only_dry_run",
+  "registry": {
+    "path": "data/metafield-metaobject-definitions.json",
+    "version": "2026.09.09-epic-e-batch-3c",
+    "revision": 3,
+    "sha256": "83374ee5cb880ebbad41cebef8df67a6b132d630ccf6964ba53fb5743a5eb215"
+  },
+  "adminSnapshot": {
+    "path": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+    "sha256": "d2daa618337640c42878f3ed0aa398b2c0cda198229731ca21e248e3f22c6985",
+    "capturedAt": "2026-09-03T17:52:28.268Z",
+    "apiVersion": "2026-07",
+    "sourceKind": "live_admin"
+  },
+  "freshness": {
+    "ageDays": 6,
+    "maximumAgeDaysForMutationPlanning": 7,
+    "status": "current_for_repository_reconciliation",
+    "refreshRequiredBeforeMutation": false,
+    "perpetualAdminStateClaim": false
+  },
+  "currentObservedCounts": {
+    "PRODUCT": 0,
+    "PRODUCTVARIANT": 0,
+    "COLLECTION": 0,
+    "METAOBJECT": 0
+  },
+  "entries": [
+    {
+      "definitionId": "CD-MF-001",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "product_class",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-002",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "machine_family",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MO-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-003",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "compatibility",
+      "desiredDecisionState": "deprecated",
+      "desiredLifecycleState": "deprecated",
+      "dependsOnDefinitionIds": [],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "desired_not_approved",
+      "rationale": "Registry concept is not approved and must not enter a definition-creation plan."
+    },
+    {
+      "definitionId": "CD-MF-004",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "grit",
+      "desiredDecisionState": "proposed",
+      "desiredLifecycleState": "proposed_future",
+      "dependsOnDefinitionIds": [],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "desired_not_approved",
+      "rationale": "Registry concept is not approved and must not enter a definition-creation plan."
+    },
+    {
+      "definitionId": "CD-MF-005",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "machine_specs",
+      "desiredDecisionState": "deprecated",
+      "desiredLifecycleState": "deprecated",
+      "dependsOnDefinitionIds": [],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "desired_not_approved",
+      "rationale": "Registry concept is not approved and must not enter a definition-creation plan."
+    },
+    {
+      "definitionId": "CD-MF-010",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "input_voltage",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-011",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "input_frequencies",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-012",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "motor_power",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-013",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "motor_speed",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-014",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_speed_min",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-015",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_speed_max",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-016",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "flex_shaft_speed_min",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-017",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "flex_shaft_speed_max",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-018",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "blade_diameter_min",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-019",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "blade_diameter_max",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-020",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_diameter",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-021",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "blade_arbor_diameter",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-022",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_arbor_diameter",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-023",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "water_reservoir_capacity",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-024",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "cutting_oil_fill_min",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-025",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "cutting_oil_fill_max",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-026",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "water_system_type",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-027",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "net_weight",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-028",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "assembled_length",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-029",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "assembled_width",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-030",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "assembled_height",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-031",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "crate_length",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-032",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "crate_width",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-033",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "crate_height",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-034",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "compatible_machines",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-035",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "included_products",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-036",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "included_quantities",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-037",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "noncatalog_components",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-039",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "optional_products",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-040",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "recommended_products",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-041",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "manual_files",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-042",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "diagram_files",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-043",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "instruction_files",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-044",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "video_files",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-045",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "support_files",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [
+        "CD-MF-001"
+      ],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    },
+    {
+      "definitionId": "CD-MF-050",
+      "resourceKind": "metafield",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "fulfillment_class",
+      "desiredDecisionState": "proposed",
+      "desiredLifecycleState": "proposed_future",
+      "dependsOnDefinitionIds": [],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "desired_not_approved",
+      "rationale": "Registry concept is not approved and must not enter a definition-creation plan."
+    },
+    {
+      "definitionId": "CD-MO-001",
+      "resourceKind": "metaobject",
+      "ownerType": "METAOBJECT",
+      "namespace": null,
+      "key": "machine_family",
+      "desiredDecisionState": "approved",
+      "desiredLifecycleState": "approved_desired_state",
+      "dependsOnDefinitionIds": [],
+      "currentDefinitionId": null,
+      "differences": [],
+      "mutationAuthorized": false,
+      "action": "create",
+      "rationale": "Approved desired-state definition is absent from the dated Admin snapshot; creation remains gated by E-PBI-019 and E-PBI-020."
+    }
+  ],
+  "summary": {
+    "create": 38,
+    "no_op": 0,
+    "conflict": 0,
+    "incompatible_type": 0,
+    "unexpected_live_definition": 0,
+    "desired_not_approved": 4,
+    "deprecated_definition_still_live": 0,
+    "inaccessible_not_audited": 0,
+    "approvedDesiredDefinitions": 38,
+    "totalDesiredRegistryConcepts": 42,
+    "totalObservedLiveDefinitions": 0
+  },
+  "downstreamGate": {
+    "mutationPlanPbi": "E-PBI-019",
+    "definitionCreationPbi": "E-PBI-020",
+    "deterministicInputEligible": true,
+    "mutationAuthorized": false
+  }
+}

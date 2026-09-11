@@ -5,6 +5,12 @@ const Ajv2020 = require('ajv/dist/2020');
 const ROOT = process.cwd();
 
 const targets = [
+    ...[
+        'epic-e-batch-3b-contracts', 'epic-e-relationship-matrix',
+        'epic-e-measurement-evidence', 'epic-e-component-evidence',
+        'epic-e-resource-catalog', 'epic-e-technical-field-evidence',
+        'epic-e-batch-3b-decision-packet', 'epic-e-batch-3b-extracted-evidence',
+    ].map(name => ({ name, schemaPath: `schemas/${name}.schema.json`, dataPath: `data/${name}.json` })),
     {
         name: 'admin dependency register',
         schemaPath: 'schemas/admin-dependency-register.schema.json',
@@ -76,6 +82,11 @@ const targets = [
         dataPath: 'data/epic-d-homepage-measurement-plan.json',
     },
     {
+        name: 'Epic D homepage NFR readiness',
+        schemaPath: 'schemas/epic-d-homepage-nfr-readiness.schema.json',
+        dataPath: 'data/epic-d-homepage-nfr-readiness.json',
+    },
+    {
         name: 'design token inventory',
         schemaPath: 'schemas/design-token-inventory.schema.json',
         dataPath: 'data/design-token-inventory.json',
@@ -120,6 +131,71 @@ const targets = [
         schemaPath: 'schemas/release-risk-register.schema.json',
         dataPath: 'data/release-risk-register.json',
     },
+    {
+        name: 'Epic E source governance',
+        schemaPath: 'schemas/epic-e-source-governance.schema.json',
+        dataPath: 'data/epic-e-source-governance.json',
+    },
+    {
+        name: 'Epic E technical source index',
+        schemaPath: 'schemas/epic-e-technical-source-index.schema.json',
+        dataPath: 'data/epic-e-technical-source-index.json',
+    },
+    {
+        name: 'Epic E gap and conflict register',
+        schemaPath: 'schemas/epic-e-gap-conflict-register.schema.json',
+        dataPath: 'data/epic-e-gap-conflict-register.json',
+    },
+    {
+        name: 'Epic E Admin mutation-plan template',
+        schemaPath: 'schemas/epic-e-admin-mutation-plan.schema.json',
+        dataPath: 'data/epic-e-admin-mutation-plan-template.json',
+    },
+    {
+        name: 'Epic E product classification',
+        schemaPath: 'schemas/epic-e-product-classification.schema.json',
+        dataPath: 'data/epic-e-product-classification.json',
+    },
+    {
+        name: 'Epic E product identity',
+        schemaPath: 'schemas/epic-e-product-identity.schema.json',
+        dataPath: 'data/epic-e-product-identity.json',
+    },
+    {
+        name: 'Rhino commerce SKU registry',
+        schemaPath: 'schemas/rhino-commerce-sku-registry.schema.json',
+        dataPath: 'data/rhino-commerce-sku-registry.json',
+    },
+    {
+        name: 'Epic E commercial configuration candidates',
+        schemaPath: 'schemas/epic-e-commercial-configuration-candidates.schema.json',
+        dataPath: 'data/epic-e-commercial-configuration-candidates.json',
+    },
+    {
+        name: 'Epic E Product Owner decisions',
+        schemaPath: 'schemas/epic-e-product-owner-decisions.schema.json',
+        dataPath: 'data/epic-e-product-owner-decisions.json',
+    },
+    {
+        name: 'Epic E conflict reference index',
+        schemaPath: 'schemas/epic-e-conflict-reference-index.schema.json',
+        dataPath: 'data/epic-e-conflict-reference-index.json',
+    },
+    {
+        name: 'Epic E Vendor semantic audit',
+        schemaPath: 'schemas/epic-e-vendor-semantic-audit.schema.json',
+        dataPath: 'data/epic-e-vendor-semantic-audit.json',
+    },
+    {
+        name: 'Epic E variant architecture',
+        schemaPath: 'schemas/epic-e-variant-architecture.schema.json',
+        dataPath: 'data/epic-e-variant-architecture.json',
+    },
+    {
+        name: 'Epic E custom-data definition diff',
+        schemaPath: 'schemas/epic-e-custom-data-definition-diff.schema.json',
+        dataPath: 'data/epic-e-custom-data-definition-diff.json',
+    },
 ].filter((target) => fs.existsSync(path.join(ROOT, target.schemaPath)) || fs.existsSync(path.join(ROOT, target.dataPath)));
 
 function readJson(relativePath) {
@@ -129,6 +205,18 @@ function readJson(relativePath) {
 const ajv = new Ajv2020({
     allErrors: true,
     strict: false,
+    formats: {
+        date: /^\d{4}-\d{2}-\d{2}$/,
+        'date-time': (value) => !Number.isNaN(Date.parse(value)),
+        uri: (value) => {
+            try {
+                new URL(value);
+                return true;
+            } catch {
+                return false;
+            }
+        },
+    },
 });
 let failed = false;
 

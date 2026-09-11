@@ -12,7 +12,7 @@ const filters = JSON.parse(
 );
 
 const metafieldIds = new Set(
-    definitions.metafields.map((field) => `${field.ownerType}:${field.namespace}.${field.key}`)
+    definitions.metafields.map((field) => `${field.ownerType === 'PRODUCT' ? 'product' : field.ownerType === 'PRODUCTVARIANT' ? 'variant' : field.ownerType.toLowerCase()}:${field.namespace}.${field.key}`)
 );
 
 const errors = [];
@@ -40,7 +40,9 @@ for (const field of definitions.metafields) {
             filter.key === field.key &&
             (
                 (field.ownerType === 'product' && filter.source === 'product-metafield') ||
-                (field.ownerType === 'variant' && filter.source === 'variant-metafield')
+                (field.ownerType === 'PRODUCT' && filter.source === 'product-metafield') ||
+                (field.ownerType === 'variant' && filter.source === 'variant-metafield') ||
+                (field.ownerType === 'PRODUCTVARIANT' && filter.source === 'variant-metafield')
             )
         );
 
@@ -48,6 +50,13 @@ for (const field of definitions.metafields) {
             errors.push(`Metafield ${field.ownerType}:${field.namespace}.${field.key} is marked usedForFiltering but no filter references it.`);
         }
     }
+}
+
+for (const filter of filters.filters) {
+    if (!filter.requiredForLaunch || !['product-metafield', 'variant-metafield'].includes(filter.source)) continue;
+    const ownerType = filter.source === 'product-metafield' ? 'PRODUCT' : 'PRODUCTVARIANT';
+    const definition = definitions.metafields.find((field) => field.ownerType === ownerType && field.namespace === filter.namespace && field.key === filter.key);
+    if (definition?.decisionState !== 'approved') errors.push(`Launch filter "${filter.id}" cannot depend on unapproved ${ownerType}:${filter.namespace}.${filter.key}.`);
 }
 
 if (errors.length > 0) {

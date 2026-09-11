@@ -1,0 +1,347 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "mutationAuthorized",
+    "inputs",
+    "adminState",
+    "architectureStatus",
+    "migrationPlanningStatus",
+    "mutationStatus",
+    "plans",
+    "metrics",
+    "finalization"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adminState": {
+      "type": "string"
+    },
+    "architectureStatus": {
+      "type": "string"
+    },
+    "migrationPlanningStatus": {
+      "type": "string"
+    },
+    "mutationStatus": {
+      "type": "string"
+    },
+    "plans": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "planId",
+              "targetPbi",
+              "domain",
+              "planPath",
+              "inputPath",
+              "approvedRows",
+              "candidateRows",
+              "planPrepared",
+              "mutationSetEmpty",
+              "mutationAuthorized",
+              "executable",
+              "executionBlockers",
+              "decisionIds",
+              "consumers"
+            ],
+            "properties": {
+              "planId": {
+                "type": "string"
+              },
+              "targetPbi": {
+                "type": "string"
+              },
+              "domain": {
+                "type": "string"
+              },
+              "planPath": {
+                "type": "string"
+              },
+              "inputPath": {
+                "type": "string"
+              },
+              "approvedRows": {
+                "type": "integer"
+              },
+              "candidateRows": {
+                "type": "integer"
+              },
+              "planPrepared": {
+                "type": "boolean"
+              },
+              "mutationSetEmpty": {
+                "type": "boolean"
+              },
+              "mutationAuthorized": {
+                "const": false
+              },
+              "executable": {
+                "const": false
+              },
+              "executionBlockers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "decisionIds": {
+                "type": "array",
+                "items": {}
+              },
+              "consumers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "planId",
+              "targetPbi",
+              "domain",
+              "planPath",
+              "inputPath",
+              "approvedRows",
+              "candidateRows",
+              "planPrepared",
+              "mutationSetEmpty",
+              "mutationAuthorized",
+              "executable",
+              "executionBlockers",
+              "decisionIds",
+              "consumers"
+            ],
+            "properties": {
+              "planId": {
+                "type": "string"
+              },
+              "targetPbi": {
+                "type": "string"
+              },
+              "domain": {
+                "type": "string"
+              },
+              "planPath": {
+                "type": "string"
+              },
+              "inputPath": {
+                "type": "string"
+              },
+              "approvedRows": {
+                "type": "integer"
+              },
+              "candidateRows": {
+                "type": "integer"
+              },
+              "planPrepared": {
+                "type": "boolean"
+              },
+              "mutationSetEmpty": {
+                "type": "boolean"
+              },
+              "mutationAuthorized": {
+                "const": false
+              },
+              "executable": {
+                "const": false
+              },
+              "executionBlockers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "decisionIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "consumers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "productClassApproved",
+        "products",
+        "variants",
+        "skuStates",
+        "blankNativeSkus",
+        "blankOptionalBarcodes",
+        "positiveNativeWeights",
+        "missingNativeWeights",
+        "compatibilityStates",
+        "technicalFactStates",
+        "canonicalResources",
+        "htmlOnlyTechnicalDescriptionProducts",
+        "scope",
+        "duplicateNativeSkus",
+        "duplicateOptionalBarcodes"
+      ],
+      "properties": {
+        "productClassApproved": {
+          "type": "integer"
+        },
+        "products": {
+          "type": "integer"
+        },
+        "variants": {
+          "type": "integer"
+        },
+        "skuStates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "proposed",
+            "blocked",
+            "deferred_non_sellable"
+          ],
+          "properties": {
+            "proposed": {
+              "type": "integer"
+            },
+            "blocked": {
+              "type": "integer"
+            },
+            "deferred_non_sellable": {
+              "type": "integer"
+            }
+          }
+        },
+        "blankNativeSkus": {
+          "type": "integer"
+        },
+        "blankOptionalBarcodes": {
+          "type": "integer"
+        },
+        "positiveNativeWeights": {
+          "type": "integer"
+        },
+        "missingNativeWeights": {
+          "type": "integer"
+        },
+        "compatibilityStates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "blocked",
+            "proposed"
+          ],
+          "properties": {
+            "blocked": {
+              "type": "integer"
+            },
+            "proposed": {
+              "type": "integer"
+            }
+          }
+        },
+        "technicalFactStates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "conflicting"
+          ],
+          "properties": {
+            "conflicting": {
+              "type": "integer"
+            }
+          }
+        },
+        "canonicalResources": {
+          "type": "integer"
+        },
+        "htmlOnlyTechnicalDescriptionProducts": {
+          "type": "integer"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "duplicateNativeSkus": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duplicateOptionalBarcodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "finalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pbi",
+        "complete",
+        "requires"
+      ],
+      "properties": {
+        "pbi": {
+          "type": "string"
+        },
+        "complete": {
+          "type": "boolean"
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

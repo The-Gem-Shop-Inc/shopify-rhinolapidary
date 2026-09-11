@@ -1,0 +1,438 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-10T21:10:03.188Z",
+  "readOnly": true,
+  "results": [
+    {
+      "name": "product_templates",
+      "command": "node scripts/validate-product-templates.js",
+      "exitCode": 0,
+      "stdout": "templates/product.machine.json: optional template not present\ntemplates/product.consumable.json: optional template not present\ntemplates/product.accessory.json: optional template not present\ntemplates/product.replacement-part.json: optional template not present\nProduct template validation passed.\n",
+      "stderr": ""
+    },
+    {
+      "name": "purchase_architecture",
+      "command": "node scripts/validate-product-purchase-architecture.js",
+      "exitCode": 0,
+      "stdout": "Product purchase architecture validation passed.\n",
+      "stderr": ""
+    },
+    {
+      "name": "brand_claims",
+      "command": "node scripts/validate-brand-claims.js",
+      "exitCode": 0,
+      "stdout": "Brand claims valid: 16 claims; 178 customer-facing and governed files scanned.\n",
+      "stderr": ""
+    },
+    {
+      "name": "product_csv",
+      "command": "node scripts/validate-product-csv.js data/product-export/products.csv",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Product CSV validation failed:\n- wrist-rest-knob: Image Src present but Image Alt Text is missing\n- wrist-rest: Image Src present but Image Alt Text is missing\n- wing-nut-set: Image Src present but Image Alt Text is missing\n- water-pump: Image Src present but Image Alt Text is missing\n- water-guard: Image Src present but Image Alt Text is missing\n- vice-clamp-set: Image Src present but Image Alt Text is missing\n- tumblemaster: Variant Price must be greater than 0\n- trimmaster-straight-edge-guide: Image Src present but Image Alt Text is missing\n- trimmaster-splash-guard-upper: Image Src present but Image Alt Text is missing\n- trimmaster-splash-guard-front: Image Src present but Image Alt Text is missing\n- plexiglass-insert: Image Src present but Image Alt Text is missing\n- trimmaster-belt-guard: Image Src present but Image Alt Text is missing\n- trimmaster-feet: Image Src present but Image Alt Text is missing\n- trimmaster: Image Src present but Image Alt Text is missing\n- triangle-latch-screw-set: Image Src present but Image Alt Text is missing\n- toff-brush-wheel: Image Src present but Image Alt Text is missing\n- stonework-taper-head: Image Src present but Image Alt Text is missing\n- stonework-cone-head-30: Image Src present but Image Alt Text is missing\n- stonework-flame-head: Image Src present but Image Alt Text is missing\n- stonework-ball-head: Image Src present but Image Alt Text is missing\n- spoke-wrench: Image Src present but Image Alt Text is missing\n- small-stonework-inverted-cone-head-60: Image Src present but Image Alt Text is missing\n- small-stonework-bullnose-head: Image Src present but Image Alt Text is missing\n- small-silversmithing-ball-head: Image Src present but Image Alt Text is missing\n- small-drill: Image Src present but Image Alt Text is missing\n- shapemaster: Image Src present but Image Alt Text is missing\n- sawmaster-24: Image Src present but Image Alt Text is missing\n- sawmaster-18: Image Src present but Image Alt Text is missing\n- saw-vice-plate-set: Variant Price must be greater than 0\n- saw-table: Image Src present but Image Alt Text is missing\n- right-plexiglass-spray-guard: Image Src present but Image Alt Text is missing\n- right-moss-pad: Image Src present but Image Alt Text is missing\n- right-arbor-shaft: Image Src present but Image Alt Text is missing\n- right-arbor-set-screw-and-spring: Image Src present but Image Alt Text is missing\n- right-arbor-nut: Image Src present but Image Alt Text is missing\n- trimmaster-pulleys: Image Src present but Image Alt Text is missing\n- power-grip-belt: Image Src present but Image Alt Text is missing\n- plexiglass-insert-spacer-set: Image Src present but Image Alt Text is missing\n- plastic-wheel-spacer-set: Image Src present but Image Alt Text is missing\n- plastic-wheel-spacer: Image Src present but Image Alt Text is missing\n- plastic-trim-saw-spacer: Image Src present but Image Alt Text is missing\n- plastic-end-spacer: Image Src present but Image Alt Text is missing\n- nylon-bristle-brush-head: Image Src present but Image Alt Text is missing\n- mr16: Variant Price must be greater than 0\n- mr16: Image Src present but Image Alt Text is missing\n- moss-pad-pack: Image Src present but Image Alt Text is missing\n- metal-spindle-right: Image Src present but Image Alt Text is missing\n- metal-spindle-pair: Image Src present but Image Alt Text is missing\n- metal-spindle-left: Image Src present but Image Alt Text is missing\n- medium-silversmithing-ball-head: Image Src present but Image Alt Text is missing\n- lock-nut-plexiglass-fixture-set: Image Src present but Image Alt Text is missing\n- left-moss-pad: Image Src present but Image Alt Text is missing\n- left-arbor-shaft: Image Src present but Image Alt Text is missing\n- left-arbor-set-screw-and-spring: Image Src present but Image Alt Text is missing\n- left-arbor-nut: Image Src present but Image Alt Text is missing\n- large-stonework-inverted-cone-head-60: Image Src present but Image Alt Text is missing\n- large-stonework-bullnose-head: Image Src present but Image Alt Text is missing\n- large-silversmithing-ball-head: Image Src present but Image Alt Text is missing\n- large-drill: Image Src present but Image Alt Text is missing\n- lapmaster-bolt: Variant Price must be greater than 0\n- lapmaster-18: Image Src present but Image Alt Text is missing\n- lapmaster-12: Image Src present but Image Alt Text is missing\n- lap-fixture-bolt-pack: Image Src present but Image Alt Text is missing\n- kum800: Image Src present but Image Alt Text is missing\n- jademaster: Variant Price must be greater than 0\n- jademaster: Image Src present but Image Alt Text is missing\n- flexible-water-spout: Image Src present but Image Alt Text is missing\n- flexible-shaft-pack: Image Src present but Image Alt Text is missing\n- flexible-shaft-bit-turntable: Image Src present but Image Alt Text is missing\n- flexible-shaft-attachment: Image Src present but Image Alt Text is missing\n- flexible-shaft: Image Src present but Image Alt Text is missing\n- final-sanding-wheel-head: Image Src present but Image Alt Text is missing\n- em-1: Image Src present but Image Alt Text is missing\n- drain-plug-trimmaster: Image Src present but Image Alt Text is missing\n- dialux-superfinishing-paste: Image Src present but Image Alt Text is missing\n- dialux-polishing-paste: Image Src present but Image Alt Text is missing\n- cylindrical-grinder: Image Src present but Image Alt Text is missing\n- conical-grinder: Image Src present but Image Alt Text is missing\n- buffing-wheel-head: Image Src present but Image Alt Text is missing\n- brass-sprayer: Image Src present but Image Alt Text is missing\n- belt-guard-jademaster: Image Src present but Image Alt Text is missing\n- beadmaster: Image Src present but Image Alt Text is missing\n- automatic-feed-clamp: Variant Price must be greater than 0\n- arbor-wrench: Variant Price must be greater than 0\n- arbor-washer-1: Image Src present but Image Alt Text is missing\n- arbor-spoke-nut: Image Src present but Image Alt Text is missing\n- arbor-size-conversion-bolt: Image Src present but Image Alt Text is missing\n- arbor-nut-1: Image Src present but Image Alt Text is missing\n- arbor-adapter-washer-1-and-1-fourth: Image Src present but Image Alt Text is missing\n- allen-wrench: Image Src present but Image Alt Text is missing\n- trim-saw-6: Variant Price must be greater than 0\n- trim-saw-6: Image Src present but Image Alt Text is missing\n- soft-buffing-wheel: Image Src present but Image Alt Text is missing\n- resin-diamond-wheel-600: Image Src present but Image Alt Text is missing\n- resin-diamond-wheel-3000: Image Src present but Image Alt Text is missing\n- resin-diamond-wheel-280: Image Src present but Image Alt Text is missing\n- resin-diamond-wheel-1200: Image Src present but Image Alt Text is missing\n- screw-on-flat-lap: Image Src present but Image Alt Text is missing\n- magnetic-hard-disc: Image Src present but Image Alt Text is missing\n- magnetic-felt-pad: Image Src present but Image Alt Text is missing\n- hard-buffing-wheel: Image Src present but Image Alt Text is missing\n- bonded-diamond-wheel-80: Image Src present but Image Alt Text is missing\n- bonded-diamond-wheel-220: Image Src present but Image Alt Text is missing\n"
+    },
+    {
+      "name": "launch_fixtures",
+      "command": "node scripts/validate-launch-fixtures.js",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Launch fixture ownership validation failed.\n- Required storefront fixture is missing ownership entry: search\n- Required storefront fixture is missing ownership entry: machineProduct\n- Required storefront fixture is missing ownership entry: consumableProduct\n"
+    },
+    {
+      "name": "performance_static",
+      "command": "node scripts/validate-brand-performance-budget.js",
+      "exitCode": 0,
+      "stdout": "◇ injected env (12) from .env // tip: ⌘ suppress logs { quiet: true }\n\nBrand performance repository budget\n- Rhino CSS gzip: 6.7 KB\n- Rhino JavaScript gzip: 797 B\n- Rhino icons: 34\n- Largest Rhino icon: 465 B\n- Texture assets: 0\n- External font hosts: 0\n- Synchronous third party scripts: 0\n- Immediate video embeds: 0\n- Autoplay media: 0\n- Global chrome local assets: 32\n- Global chrome CSS gzip: 4.8 KB\n- Global chrome JS gzip: 1.3 KB\n- Global chrome icon assets: 21\n\nReport: test-results\\brand-performance\\brand-performance-static.json\n\nBrand performance validation passed.\n",
+      "stderr": ""
+    }
+  ],
+  "productClaims": [
+    {
+      "productGid": "gid://shopify/Product/8905779937477",
+      "handle": "beadmaster",
+      "findings": [
+        "Product:gid://shopify/Product/8905779937477:9 contains blocked claim CLAIM-010: \"SUPER FAST\"",
+        "Product:gid://shopify/Product/8905779937477:9 contains prohibited wording for CLAIM-010: \"super fast\"",
+        "Product:gid://shopify/Product/8905779937477:33 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "Product:gid://shopify/Product/8905779937477:33 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905780756677",
+      "handle": "em-1",
+      "findings": [
+        "Product:gid://shopify/Product/8905780756677:13 contains blocked claim CLAIM-004: \"Patented\"",
+        "Product:gid://shopify/Product/8905780756677:13 contains prohibited wording for CLAIM-004: \"patented\"",
+        "Product:gid://shopify/Product/8905780756677:13 contains blocked claim CLAIM-010: \"100% Torque\"",
+        "Product:gid://shopify/Product/8905780756677:13 contains prohibited wording for CLAIM-010: \"100% Torque\""
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781248197",
+      "handle": "jademaster",
+      "findings": []
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781412037",
+      "handle": "lapmaster-12",
+      "findings": [
+        "Product:gid://shopify/Product/8905781412037:33 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "Product:gid://shopify/Product/8905781412037:33 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781477573",
+      "handle": "lapmaster-18",
+      "findings": [
+        "Product:gid://shopify/Product/8905781477573:33 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "Product:gid://shopify/Product/8905781477573:33 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784131781",
+      "handle": "sawmaster-18",
+      "findings": [
+        "Product:gid://shopify/Product/8905784131781:19 contains blocked claim CLAIM-003: \"CE and TSEK\"",
+        "Product:gid://shopify/Product/8905784131781:49 contains blocked claim CLAIM-003: \"CE and TSEK\"",
+        "Product:gid://shopify/Product/8905784131781:19 contains blocked claim CLAIM-003: \"TSEK\"",
+        "Product:gid://shopify/Product/8905784131781:49 contains blocked claim CLAIM-003: \"TSEK\"",
+        "Product:gid://shopify/Product/8905784131781:19 contains blocked claim CLAIM-003: \"TSEK certified\"",
+        "Product:gid://shopify/Product/8905784131781:49 contains blocked claim CLAIM-003: \"TSEK certified\"",
+        "Product:gid://shopify/Product/8905784131781:19 contains prohibited wording for CLAIM-003: \"All parts are CE and TSEK certified\"",
+        "Product:gid://shopify/Product/8905784131781:11 contains blocked claim CLAIM-004: \"patented\"",
+        "Product:gid://shopify/Product/8905784131781:15 contains blocked claim CLAIM-004: \"patented\"",
+        "Product:gid://shopify/Product/8905784131781:11 contains prohibited wording for CLAIM-004: \"patented\"",
+        "Product:gid://shopify/Product/8905784131781:7 contains blocked claim CLAIM-010: \"without any problems for years\"",
+        "Product:gid://shopify/Product/8905784131781:7 contains prohibited wording for CLAIM-010: \"without any problems for years\""
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784197317",
+      "handle": "sawmaster-24",
+      "findings": [
+        "Product:gid://shopify/Product/8905784197317:47 contains blocked claim CLAIM-003: \"CE and TSEK\"",
+        "Product:gid://shopify/Product/8905784197317:47 contains blocked claim CLAIM-003: \"TSEK\"",
+        "Product:gid://shopify/Product/8905784197317:47 contains blocked claim CLAIM-003: \"TSEK certified\"",
+        "Product:gid://shopify/Product/8905784197317:47 contains prohibited wording for CLAIM-003: \"All parts are CE and TSEK certified\"",
+        "Product:gid://shopify/Product/8905784197317:11 contains blocked claim CLAIM-004: \"patented\"",
+        "Product:gid://shopify/Product/8905784197317:15 contains blocked claim CLAIM-004: \"patented\"",
+        "Product:gid://shopify/Product/8905784197317:11 contains prohibited wording for CLAIM-004: \"patented\"",
+        "Product:gid://shopify/Product/8905784197317:7 contains blocked claim CLAIM-010: \"without any problems for years\"",
+        "Product:gid://shopify/Product/8905784197317:7 contains prohibited wording for CLAIM-010: \"without any problems for years\""
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784262853",
+      "handle": "sawmaster-36",
+      "findings": []
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784328389",
+      "handle": "shapemaster",
+      "findings": [
+        "Product:gid://shopify/Product/8905784328389:13 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "Product:gid://shopify/Product/8905784328389:13 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905785344197",
+      "handle": "trimmaster",
+      "findings": [
+        "Product:gid://shopify/Product/8905785344197:31 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "Product:gid://shopify/Product/8905785344197:31 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ]
+    },
+    {
+      "productGid": "gid://shopify/Product/8905785868485",
+      "handle": "tumblemaster",
+      "findings": []
+    }
+  ],
+  "claimScanLimitation": "Existing default brand validator excludes Admin Product descriptions. Discovery additionally invokes its existing validateSourceText against current descriptions; no rules changed. Match counts include overlapping patterns, not independent legal decisions.",
+  "sources": [
+    {
+      "path": "docs/Rhino Lapidary Storefront Backlog and Epics.md",
+      "sha256": "baea11f35cc4e533da6ea57286db5dda94374c941e2b1530d8caec5090727cd6"
+    },
+    {
+      "path": "docs/rhino-lapidary-pbi-tracker-epic-e.md",
+      "sha256": "19d0a210d6ac3490b0ceecbbbd570fb43205c7765195b3a2ef683eaf1a3b1e9d"
+    },
+    {
+      "path": "docs/project/implementation-records/e-pbi-024-batch-4a.md",
+      "sha256": "51587877ebc159db924507995739653d3f84b0c96d527324078c823ec283332a"
+    },
+    {
+      "path": "data/epic-e-downstream-readiness.json",
+      "sha256": "85e9d2bbcdb64f393afd6406e417256f120e9f101f410411401e2d0ab98740c5"
+    },
+    {
+      "path": "data/epic-e-aggregate-gate-report.json",
+      "sha256": "6e2f07a57592f41c1379b84fdfa5ed62ac0abe053f76a58605ea786a153a91ea"
+    },
+    {
+      "path": "data/epic-e-deferred-decision-handoff.json",
+      "sha256": "ee60a7a78ba915ec3804a827e3f61d7a4f7b32e1924281614f6420b08671f044"
+    },
+    {
+      "path": "data/metafield-metaobject-definitions.json",
+      "sha256": "83374ee5cb880ebbad41cebef8df67a6b132d630ccf6964ba53fb5743a5eb215"
+    },
+    {
+      "path": "data/epic-e-product-classification.json",
+      "sha256": "84de9b93b7a068f8138ea76aa0d88cf5a6761cd1d0571424ed99641f114c0b62"
+    },
+    {
+      "path": "data/epic-e-product-identity.json",
+      "sha256": "7917c9348c885067098ded87a416058d32505627df97398c5e048ce18d30d6e2"
+    },
+    {
+      "path": "data/epic-e-technical-field-evidence.json",
+      "sha256": "e64b5df25fb14b42464ac233604f342076fee3afda85a0091b2f1ed85218d6ea"
+    },
+    {
+      "path": "data/epic-e-measurement-evidence.json",
+      "sha256": "28ffb81591f1d42e22e5e260e1db7d8d4138b2b8e2b91e65a83d2b67ed902d69"
+    },
+    {
+      "path": "data/epic-e-relationship-matrix.json",
+      "sha256": "26c029132b0e507fdf5b713c80a0269392d24e5e34b368438569a1906b090199"
+    },
+    {
+      "path": "data/epic-e-component-evidence.json",
+      "sha256": "fd57bd816138397a03bb6ff7daa10b4d67225fbf1b6df97504a5cdb28a06ceb1"
+    },
+    {
+      "path": "data/epic-e-batch-3b-contracts.json",
+      "sha256": "56649880888c9d76985a9b417efd87eb0c20e0b9a0f41b184278832f55c42527"
+    },
+    {
+      "path": "data/epic-e-batch-3c-contracts.json",
+      "sha256": "12db5c4ca81f4ec9dd5ba6d59578d2933dda1629446e76bc0823e7fd807ce1cf"
+    },
+    {
+      "path": "data/epic-e-fulfillment-reconciliation.json",
+      "sha256": "930bea065e4b8f248cc205e619ea754b656789517948651f910e85029692c3d7"
+    },
+    {
+      "path": "data/epic-e-warranty-support-evidence.json",
+      "sha256": "9be4956ce9ec1deccff722c0b13d9376544f992c6209b5a6e750e31352082786"
+    },
+    {
+      "path": "data/epic-e-availability-evidence.json",
+      "sha256": "cad0bd8016a1bb14c622d9038875db43a6357b982c4ee570f9c52388e4d1b1ed"
+    },
+    {
+      "path": "data/epic-e-resource-catalog.json",
+      "sha256": "d58c45bbb208ddf42fed12c72ad80af7b615b12fa8b423181f293d655beece66"
+    },
+    {
+      "path": "data/legal-claims-register.json",
+      "sha256": "dacb078f698c3987b6392d9315a0eade6dedccbdef2f9cf05a167efb35842cb0"
+    },
+    {
+      "path": "data/brand-performance-budget.json",
+      "sha256": "8ac665a093227587ad3e815fcc569d964ec4c44b32d261ef7c03245e87732f8b"
+    },
+    {
+      "path": "docs/brand/rhino-product-terminology-source-audit.md",
+      "sha256": "e403240fe00a943d2e0d60eeeada857f7c061ce0c2d018e932fc11a38a041a9f"
+    },
+    {
+      "path": "docs/architecture/adr-0001-product-template-architecture.md",
+      "sha256": "b022cf0442406eb4f020009abf5d56a9f85bbcf6e41bdaf774fd66cec6befdba"
+    },
+    {
+      "path": "docs/architecture/rhino-custom-section-block-strategy.md",
+      "sha256": "e7cdb6264a848322c01f9841a7c0faff5374e370e8b9018b3d9b556e4387c3d6"
+    },
+    {
+      "path": "docs/analytics/analytics-migration-verification-plan.md",
+      "sha256": "66d2bc3fe40a7cb6e1a50855d44ea8f1e918c9449d8197347fac02715dce349d"
+    },
+    {
+      "path": "data/navigation-spec.json",
+      "sha256": "18a3882be4a5a60ff3061aa07dcd921a9a5435f58be90547ce116041d8644819"
+    },
+    {
+      "path": "data/footer-support-resources.json",
+      "sha256": "34bfefce3179c6807df9aac4e81d907512bbe65252e6645606391d58bec5ae39"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-020-definitions-input.json",
+      "sha256": "c211f7c6258eedea6eed7d0ce64bb9272c70160f91d11b08e770474f2cd43edb"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-020-definitions.json",
+      "sha256": "191445f8511123ba64903ae514d24e3043a5da2d5345cc6c57b1f73b3d866551"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-021-product_class-input.json",
+      "sha256": "d1aa54a482f1ac786f8e616eede866c790ebe123f8d557dfb6b2c0de076614e1"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-021-product_class.json",
+      "sha256": "4ca2e89b2497268977ca8015b9b5353fc1757f252e78b7247ebb0c29c9a16f9d"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-022-category-input.json",
+      "sha256": "2e9580a313ff34796090c86cea1879277991014b0bd21db3dd975d53ffad361a"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-022-category.json",
+      "sha256": "5cb95ac074274399390693df825e8f6ded8f4c03c3e71ba5ca1aaa344c108777"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-023-vendor-input.json",
+      "sha256": "8261bd762493ac92e760f339b3d0d199d62c5949ac0d4195334e98b6fe1606cb"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-023-vendor.json",
+      "sha256": "5ba4758b8b32c5fb591c9306459edb31e67796a7360bdf2e4d9e72f3a917825d"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-024-commerce_sku-input.json",
+      "sha256": "624641af830f2626794fc9a522f2d0da6bdee5e4f5cc6e591369a7639b4f4a84"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-024-commerce_sku.json",
+      "sha256": "83b96e9f13547e1aa68310226092f735f37598d9da2c9a5636a32c93013819e7"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-025-machine_family-input.json",
+      "sha256": "b8151258976533f7916c52baa58de5139e3b290ceeb02336afce7e310696eb1c"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-025-machine_family.json",
+      "sha256": "2db698b5a638cf9637ff6bf18fb94fb479eb3c2f24350d5048fb721b3527e259"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-026-electrical-input.json",
+      "sha256": "1b81f5c2f071aad49b3cd2618a7e01558facc8a7cd32d76bc190ef976e9da7f9"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-026-electrical.json",
+      "sha256": "bff3bec2a4d56a02d9d6ebdeba9942cab830b4891caad5ae02c5518d9dd4bd28"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-027-motor_speed-input.json",
+      "sha256": "9f4a75d8695a02a11dc5aa7a43f29601973dda78f80af70f8e7f5aa30a7dbbf4"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-027-motor_speed.json",
+      "sha256": "ba1ff98fa800f954ecba8e3576caaeac0a72647443f6eb1896305c877dd6c92a"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-028-tool_mount-input.json",
+      "sha256": "e47230aa00b711fd6ddebdac2fb254da6eaf2a0e901bceef35ee0a0dd61f1a16"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-028-tool_mount.json",
+      "sha256": "84179ab2b90722e68c26ccb48de0e2903a3e24e8abad02fe8706d43a4ebff18b"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-029-water_fluid-input.json",
+      "sha256": "5ec86a6debcfdb2716e910ac385cd7081920f40e29c429eff6d23f74eaef9a34"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-029-water_fluid.json",
+      "sha256": "9e6f33bb3e3c18e985d259c998400467340d87bb7117805014e27bfcc04355ec"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-030-durable_measurements-input.json",
+      "sha256": "267fc2208f67401a2aeaea5215222fff1fc6d773a66b905d9f54a9a805ec5dbe"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-030-durable_measurements.json",
+      "sha256": "ec0d9f6ed58fd923ed01d20f4b50d1a414f0baea1660b1d400c7239ded7023e2"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-031-crate_measurements-input.json",
+      "sha256": "d63a436fe746d3f4b897390f688c165c812d714bb27ac9c4523ac88095f1134b"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-031-crate_measurements.json",
+      "sha256": "0602274cffcfa0a8f76f81e213fd08278f214abafe549e4fdf0bcfcb529bac03"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-032-shipping_weight-input.json",
+      "sha256": "4a5f0a59b193f7004a33be751a79e56884be6d780190c897ded33996dac1361d"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-032-shipping_weight.json",
+      "sha256": "ac5741ba484bb97472acdacafb149fac644e93d679b578a921c85489e1581bea"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-033-fulfillment_class-input.json",
+      "sha256": "fecfe87275d1801ddddaa6927070701b5b0cf2f503c5d9e8a8bcf0c7e97d2056"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-033-fulfillment_class.json",
+      "sha256": "f0654267f408f76582d923c506a0ea447c20b3b7ab61648c741c4a6384338523"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-034-compatibility-input.json",
+      "sha256": "3414153390cf41b2904c8f8f5898bd87ed5f246e041739ee1787d4df94e750c1"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-034-compatibility.json",
+      "sha256": "944b9147b098915de8554a9195f134df4988ce4a8bb78e5f3426721a5f0bde52"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-035-included_components-input.json",
+      "sha256": "8756689f9935e96883852d53c763f2274302f94a23557f1347ceab7d67850f01"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-035-included_components.json",
+      "sha256": "c9207f6956778cb35caa5f7012e2d17344831c4dd4df7d4bf53c940fe972ad5e"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-036-optional_components-input.json",
+      "sha256": "25b8653e6bbca3a34bade69a7dd92e3a1652494b660ebeeacf99da3a550c1731"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-036-optional_components.json",
+      "sha256": "dcd63ad3fa74367e367e9bd104fb4e3171ff2cec0a5e9443752b0b21b836ad6a"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-037-recommendations-input.json",
+      "sha256": "23e98505e47416cffdd96e336ea272ce877f7c4b2e27b46451fc504831b6197f"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-037-recommendations.json",
+      "sha256": "95ff3aada7a350d78ac80c0c230b38713042072a783e24ce38768fb04904cd4d"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-038-customer_manuals-input.json",
+      "sha256": "50851b15d1131fa9e695eae9e4de5665d607869131937e436273083b78e634bf"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-038-customer_manuals.json",
+      "sha256": "7376925974373e0b9bd6aafd466aed1535e6423129696b20058c41eb95e728fe"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-039-diagrams_instructions_videos-input.json",
+      "sha256": "d4443e4261801607cce03468abf19617203f2fec0bf944e675b1af4d6de12770"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-039-diagrams_instructions_videos.json",
+      "sha256": "4abfee276804534d5492dd7e91c951f650de46966964c246b41c2c75e2e2de14"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-040-warranty_support-input.json",
+      "sha256": "4ae13df630529acacd45147b610cdbed724949b4cce6c58352cccfc365b50a58"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-040-warranty_support.json",
+      "sha256": "fcd2c970f54ddcc81c7cffd799f5620c17124e680d6ed06cb864a3b18eb8f817"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-041-pickup_region-input.json",
+      "sha256": "a0c914540fc8b0863bc0fb05f2b324932a5821e596bc5a878fa472522d860000"
+    },
+    {
+      "path": "data/epic-e-migration-plans/E-MUT-041-pickup_region.json",
+      "sha256": "ab3dde0aacad13306473e03c84b815fb0bb3133b192225cadc15bbfd99d69a7b"
+    }
+  ]
+}

@@ -16,6 +16,33 @@ Owner: Pending human assignment
 
 Release state: Ready for human signoff / GO candidate. Not approved for production publication.
 
+## Epic D Homepage Signoff Addendum
+
+Technical target: preview theme `158631198917` only. Production theme `158579622085` is not approved for change or publication.
+
+Required commands:
+
+```powershell
+npm run qa:epic-d:static
+npm run qa:epic-d:preview
+npm run qa:epic-d:all
+npm run validate:epic-d-finalization
+```
+
+| Area | Required result |
+| --- | --- |
+| Homepage routes | Passed |
+| Responsive matrix and screenshots | Automated pass plus Product Owner review |
+| Accessibility | Automated pass plus clean-preview keyboard/focus signoff |
+| Performance | Three-run median pass; homepage request ceiling remains 130 |
+| Why Rhino proof | Exactly three approved statements and source record |
+| EM-1 video | Poster, focus, activation, stable layout, no initial provider request, no autoplay |
+| Media and claims | Validators passed |
+| Rollback | Repository revert and preview re-push with `--strict --nodelete` reviewed |
+| D-PBI-032 | Explicit human GO required |
+
+Current manual state: zoom, responsive visual layouts, hero crop/media judgment, and content/CTA clarity passed. Clean-preview keyboard/focus retest and the new video manual preview check remain pending. This addendum does not approve production.
+
 ## Epic C Technical Evidence
 
 | Area | Evidence | Result |

@@ -11,7 +11,9 @@
       "sourceOwner": "Frontend Engineering and Product Owner",
       "approver": "Product Owner",
       "approvalStatus": "observed",
-      "sensitivities": ["none"],
+      "sensitivities": [
+        "none"
+      ],
       "legalClaimIds": [],
       "safeNeutralFallback": "Choose lapidary equipment for the work you need to do",
       "blocker": "",
@@ -26,7 +28,9 @@
       "sourceOwner": "Frontend Engineering and Product Owner",
       "approver": "Product Owner",
       "approvalStatus": "observed",
-      "sensitivities": ["product"],
+      "sensitivities": [
+        "product"
+      ],
       "legalClaimIds": [],
       "safeNeutralFallback": "Find lapidary machines, replacement parts, consumables, and accessories by product role, machine family, and the work you need to do. Confirm product details before ordering.",
       "blocker": "",
@@ -41,7 +45,9 @@
       "sourceOwner": "Frontend Engineering and Shopify Admin Owner",
       "approver": "Product Owner",
       "approvalStatus": "observed",
-      "sensitivities": ["none"],
+      "sensitivities": [
+        "none"
+      ],
       "legalClaimIds": [],
       "safeNeutralFallback": "Shop machines",
       "blocker": "",
@@ -56,7 +62,9 @@
       "sourceOwner": "Frontend Engineering and Shopify Admin Owner",
       "approver": "Product Owner",
       "approvalStatus": "observed",
-      "sensitivities": ["support"],
+      "sensitivities": [
+        "support"
+      ],
       "legalClaimIds": [],
       "safeNeutralFallback": "Contact us",
       "blocker": "",
@@ -66,31 +74,66 @@
       "id": "hero-promise",
       "moduleId": "homepage-first-screen-gateway",
       "contentClass": "first_screen_hero_promise",
-      "proposedPurpose": "Future first-screen promise for what Rhino sells and how customers should choose a path.",
-      "source": "docs/brand/rhino-brand-positioning.md",
-      "sourceOwner": "Brand Owner and Product Owner",
-      "approver": "Brand Owner, Product Owner, Legal or Claims Reviewer",
-      "approvalStatus": "blocked",
-      "sensitivities": ["legal", "product"],
-      "legalClaimIds": ["CLAIM-002", "CLAIM-010", "CLAIM-011"],
-      "safeNeutralFallback": "Choose lapidary equipment for the work you need to do",
-      "blocker": "The positioning document is proposed, not approved for storefront use. The Product Owner-selected EM-1 hero media is now governed separately in data/media-manifest.json and no longer blocks hero media selection.",
-      "notes": "Safe neutral fallback is a draft/observed current heading only. Do not use proposed positioning copy as approved homepage headline text. D-PBI-008 remains blocked on copy; hero media candidate admin-em-1-homepage-hero-selected is selected and governed."
+      "proposedPurpose": "Approved first-screen homepage heading.",
+      "source": "Product Owner homepage approval recorded 2026-08-21",
+      "sourceOwner": "Product Owner, Brand Owner, and Content Owner",
+      "approver": "Brand Owner, Product Owner, Legal or Claims Reviewer, Content Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "none"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Find lapidary equipment for revealing the beauty of the mineral world",
+      "blocker": "",
+      "notes": "Approved for homepage hero use. This is brand and craft orientation and introduces no additional legal, operational, compatibility, availability, or performance assertions."
     },
     {
-      "id": "why-rhino-proof",
+      "id": "why-rhino-supervision-proof",
       "moduleId": "homepage-why-rhino-proof",
       "contentClass": "why_rhino_proof",
-      "proposedPurpose": "Future proof points explaining why a customer should trust Rhino.",
-      "source": "docs/brand/rhino-brand-positioning.md and data/legal-claims-register.json",
-      "sourceOwner": "Brand Owner and Business Owner",
-      "approver": "Legal or Claims Reviewer",
-      "approvalStatus": "blocked",
+      "proposedPurpose": "Approved source-backed statement about supervision and relevant background.",
+      "source": "docs/brand/epic-d-why-rhino-source-evidence.md",
+      "sourceOwner": "Vejdi Ziyansiz and Product Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "legal",
+        "product"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Rhino machines are developed under the supervision of Vejdi Ziyansiz, whose background spans geology, gemology, practical lapidary work, and machine design.",
+      "blocker": "",
+      "notes": "Narrow Product Owner approval dated 2026-08-27. Does not approve manufacturer, supplier, superiority, durability, quality, or competitor claims."
+    },
+    {
+      "id": "why-rhino-process-proof",
+      "moduleId": "homepage-why-rhino-proof",
+      "contentClass": "why_rhino_proof",
+      "proposedPurpose": "Approved source-backed statement about the machine-development process.",
+      "source": "docs/brand/epic-d-why-rhino-source-evidence.md",
+      "sourceOwner": "Vejdi Ziyansiz and Product Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
       "sensitivities": ["legal", "product"],
-      "legalClaimIds": ["CLAIM-005", "CLAIM-006", "CLAIM-010"],
-      "safeNeutralFallback": null,
-      "blocker": "Entity-role, supplier, exclusivity, and broad proof claims remain blocked or need review.",
-      "notes": "No testimonial or review fallback exists."
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Rhino's machine-development process brings together knowledge of stone behavior, hands-on cutting, grinding, and polishing experience, and machine-design experience.",
+      "blocker": "",
+      "notes": "Narrow Product Owner approval dated 2026-08-27. No technical capability or performance result is implied."
+    },
+    {
+      "id": "why-rhino-component-choice-proof",
+      "moduleId": "homepage-why-rhino-proof",
+      "contentClass": "why_rhino_proof",
+      "proposedPurpose": "Approved source-backed statement about component and material evaluation philosophy.",
+      "source": "docs/brand/epic-d-why-rhino-source-evidence.md",
+      "sourceOwner": "Vejdi Ziyansiz and Product Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
+      "sensitivities": ["legal", "product"],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Component and material choices are evaluated for the needs of the machine rather than simply selecting the lowest-cost option.",
+      "blocker": "",
+      "notes": "Narrow Product Owner approval dated 2026-08-27. Does not claim best components, superior quality, reliability, or durability."
     },
     {
       "id": "machine-product-statements",
@@ -101,8 +144,14 @@
       "sourceOwner": "Product Data Owner",
       "approver": "Product Owner and Technical Reviewer",
       "approvalStatus": "draft",
-      "sensitivities": ["product", "legal"],
-      "legalClaimIds": ["CLAIM-010", "CLAIM-015"],
+      "sensitivities": [
+        "product",
+        "legal"
+      ],
+      "legalClaimIds": [
+        "CLAIM-010",
+        "CLAIM-015"
+      ],
       "safeNeutralFallback": null,
       "blocker": "Structured product summaries and compatibility evidence are not complete for homepage use.",
       "notes": "Product titles and collection membership are evidence, but not enough for capability or compatibility claims."
@@ -116,8 +165,14 @@
       "sourceOwner": "Support Owner and Business Owner",
       "approver": "Support Owner, Business Owner, Legal or Claims Reviewer",
       "approvalStatus": "blocked",
-      "sensitivities": ["support", "legal", "operational"],
-      "legalClaimIds": ["CLAIM-014"],
+      "sensitivities": [
+        "support",
+        "legal",
+        "operational"
+      ],
+      "legalClaimIds": [
+        "CLAIM-014"
+      ],
       "safeNeutralFallback": null,
       "blocker": "Support owner, hours, channel ownership, repair handling, warranty administration, and geographic scope are unresolved.",
       "notes": "The current Contact us CTA is route-safe but does not approve support claims."
@@ -131,8 +186,16 @@
       "sourceOwner": "Legal, Business, and Product Data Owners",
       "approver": "Legal or Claims Reviewer",
       "approvalStatus": "blocked",
-      "sensitivities": ["legal", "product", "operational"],
-      "legalClaimIds": ["CLAIM-007", "CLAIM-008", "CLAIM-014"],
+      "sensitivities": [
+        "legal",
+        "product",
+        "operational"
+      ],
+      "legalClaimIds": [
+        "CLAIM-007",
+        "CLAIM-008",
+        "CLAIM-014"
+      ],
       "safeNeutralFallback": "Warranty details",
       "blocker": "Warranty duration and support administration require product-specific and legal approval before homepage publication.",
       "notes": "Safe neutral label can be used only with an approved destination and no implied duration."
@@ -146,8 +209,14 @@
       "sourceOwner": "Operations and Product Data Owners",
       "approver": "Operations Owner and Legal or Claims Reviewer",
       "approvalStatus": "blocked",
-      "sensitivities": ["operational", "legal", "product"],
-      "legalClaimIds": ["CLAIM-012"],
+      "sensitivities": [
+        "operational",
+        "legal",
+        "product"
+      ],
+      "legalClaimIds": [
+        "CLAIM-012"
+      ],
       "safeNeutralFallback": "Freight delivery",
       "blocker": "Current carrier, destination, timing, cost, pickup, and product eligibility rules are not approved.",
       "notes": "Safe neutral label needs approved route and must not imply cost or timing."
@@ -161,8 +230,13 @@
       "sourceOwner": "Operations Owner",
       "approver": "Operations Owner and Legal or Claims Reviewer",
       "approvalStatus": "blocked",
-      "sensitivities": ["operational", "legal"],
-      "legalClaimIds": ["CLAIM-012"],
+      "sensitivities": [
+        "operational",
+        "legal"
+      ],
+      "legalClaimIds": [
+        "CLAIM-012"
+      ],
       "safeNeutralFallback": "Shipping policy",
       "blocker": "Policy route exists, but homepage shipping claims require current operations approval.",
       "notes": "Route existence does not approve customer-facing delivery promises."
@@ -176,7 +250,9 @@
       "sourceOwner": "Operations Owner",
       "approver": "Operations Owner",
       "approvalStatus": "blocked",
-      "sensitivities": ["operational"],
+      "sensitivities": [
+        "operational"
+      ],
       "legalClaimIds": [],
       "safeNeutralFallback": "Pickup availability",
       "blocker": "Product eligibility and preparation requirements are not approved.",
@@ -191,8 +267,13 @@
       "sourceOwner": "",
       "approver": "Business Owner and Legal or Claims Reviewer",
       "approvalStatus": "blocked",
-      "sensitivities": ["legal", "operational"],
-      "legalClaimIds": ["CLAIM-016"],
+      "sensitivities": [
+        "legal",
+        "operational"
+      ],
+      "legalClaimIds": [
+        "CLAIM-016"
+      ],
       "safeNeutralFallback": null,
       "blocker": "No approved financing availability, provider, terms, or route exists.",
       "notes": "Do not render financing language or destination."
@@ -202,45 +283,57 @@
       "moduleId": "homepage-social-proof",
       "contentClass": "testimonial",
       "proposedPurpose": "Future testimonial or customer project content.",
-      "source": "No approved source identified in Batch 1.",
+      "source": "docs/architecture/epic-d-homepage-social-proof-decision.md",
       "sourceOwner": "",
       "approver": "Content Owner and Legal or Claims Reviewer",
       "approvalStatus": "blocked",
-      "sensitivities": ["legal", "media"],
+      "sensitivities": [
+        "legal",
+        "media"
+      ],
       "legalClaimIds": [],
       "safeNeutralFallback": null,
-      "blocker": "No testimonial source, permission, moderation, or claims review exists.",
-      "notes": "Do not manufacture social proof."
+      "blocker": "No approved testimonial source with permission, ownership, attribution, freshness, and display rights exists.",
+      "notes": "The 2026-08-26 decision defers homepage social proof. Do not manufacture or render testimonial content."
     },
     {
       "id": "review-language",
       "moduleId": "homepage-social-proof",
       "contentClass": "review",
       "proposedPurpose": "Future review summary or review widget.",
-      "source": "No approved review app or review source identified in Batch 1.",
+      "source": "docs/architecture/epic-d-homepage-social-proof-decision.md",
       "sourceOwner": "",
       "approver": "Content Owner, App/Admin Owner, and Legal or Claims Reviewer",
       "approvalStatus": "blocked",
-      "sensitivities": ["legal", "performance", "privacy"],
+      "sensitivities": [
+        "legal",
+        "performance",
+        "privacy"
+      ],
       "legalClaimIds": [],
       "safeNeutralFallback": null,
-      "blocker": "No review source, app, moderation policy, or performance/privacy approval exists.",
-      "notes": "Do not show review counts or ratings without source evidence."
+      "blocker": "No approved review source with permission, ownership, attribution, freshness, display rights, or verified rating and review-count data exists.",
+      "notes": "The 2026-08-26 decision defers homepage social proof and installs no app. Do not show ratings, stars, review counts, or a widget without verified source evidence and separate approval."
     },
     {
       "id": "video-demo-language",
       "moduleId": "homepage-video-demo",
       "contentClass": "video_demo_description",
-      "proposedPurpose": "Future video title, description, or demo module copy.",
-      "source": "docs/brand/rhino-video-system.md",
-      "sourceOwner": "Content Owner and Media Owner",
-      "approver": "Content, Media, Privacy, Accessibility, and Technical Owners",
-      "approvalStatus": "blocked",
-      "sensitivities": ["media", "privacy", "performance", "product"],
-      "legalClaimIds": ["CLAIM-010"],
-      "safeNeutralFallback": null,
-      "blocker": "No canonical video URL, owner, rights, captions, transcript, thumbnail, or privacy review exists.",
-      "notes": "No video URL should be rendered until the video inventory exists."
+      "proposedPurpose": "Approved neutral EM-1 promotional video heading, description, and accessible play label.",
+      "source": "docs/brand/rhino-video-system.md and data/media-manifest.json#approved-em1-promotional-video-poster",
+      "sourceOwner": "The Gem Shop, Inc. and Product Owner",
+      "approver": "Product Owner, Media Owner, Privacy Owner, Accessibility Owner, and Technical Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "media",
+        "privacy",
+        "performance",
+        "product"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Watch the Rhino Lapidary EM-1 machine in operation.",
+      "blocker": "",
+      "notes": "Approved 2026-08-27 for the governed EM-1 video only. Captions and transcript are not applicable because the source contains no spoken or verbal content. No technical capability claim is approved."
     },
     {
       "id": "dealer-language",
@@ -251,8 +344,13 @@
       "sourceOwner": "",
       "approver": "Business Owner and Legal or Claims Reviewer",
       "approvalStatus": "blocked",
-      "sensitivities": ["legal", "operational"],
-      "legalClaimIds": ["CLAIM-016"],
+      "sensitivities": [
+        "legal",
+        "operational"
+      ],
+      "legalClaimIds": [
+        "CLAIM-016"
+      ],
       "safeNeutralFallback": null,
       "blocker": "No dealer path, route, pricing, territory, or approver exists.",
       "notes": "Do not render dealer language."
@@ -266,7 +364,10 @@
       "sourceOwner": "",
       "approver": "Business Owner and Support Owner",
       "approvalStatus": "blocked",
-      "sensitivities": ["operational", "support"],
+      "sensitivities": [
+        "operational",
+        "support"
+      ],
       "legalClaimIds": [],
       "safeNeutralFallback": null,
       "blocker": "No institutional inquiry process, routing, or follow-up owner exists.",
@@ -276,16 +377,171 @@
       "id": "education-buying-guide-language",
       "moduleId": "homepage-education-manuals",
       "contentClass": "education_buying_guide",
-      "proposedPurpose": "Future education or buying-guide homepage entry.",
-      "source": "Published manuals page and future Shopify pages/articles.",
+      "proposedPurpose": "Future education or buying-guide homepage entry beyond the approved Manuals navigation.",
+      "source": "Future approved Shopify pages or articles; none found in the governed evidence reviewed on 2026-08-26.",
       "sourceOwner": "Content Owner and Product Data Owner",
       "approver": "Product Owner and Content Owner",
       "approvalStatus": "draft",
-      "sensitivities": ["product"],
+      "sensitivities": [
+        "product"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": null,
+      "blocker": "No approved learning center, buying guide, how-to article collection, or equivalent destination exists.",
+      "notes": "The broader education content record remains draft. The separately governed Manuals route and neutral labels do not approve technical advice or buying-guide content."
+    },
+    {
+      "id": "manuals-route-labels",
+      "moduleId": "homepage-education-manuals",
+      "contentClass": "cta_label",
+      "proposedPurpose": "Neutral homepage orientation and action labels for the approved Manuals destination.",
+      "source": "data/navigation-spec.json#homepage-manuals and preview route verification on theme 158631198917 dated 2026-08-26",
+      "sourceOwner": "Content Owner, Product Data Owner, and Shopify Admin Owner",
+      "approver": "Product Owner and Content Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "none"
+      ],
       "legalClaimIds": [],
       "safeNeutralFallback": "Manuals",
-      "blocker": "Manual route state is observed, but buying-guide content and homepage placement are not approved.",
-      "notes": "No articles are present in the Admin audit."
+      "blocker": "",
+      "notes": "Approved visible copy is limited to Manuals and View manuals. It contains no technical advice, setup summary, product recommendation, or educational promise."
+    },
+    {
+      "id": "hero-supporting-copy",
+      "moduleId": "homepage-first-screen-gateway",
+      "contentClass": "first_screen_hero_promise",
+      "proposedPurpose": "Approved supporting copy beneath the homepage hero heading.",
+      "source": "Product Owner homepage approval recorded 2026-08-21",
+      "sourceOwner": "Product Owner, Brand Owner, and Content Owner",
+      "approver": "Brand Owner, Product Owner, Legal or Claims Reviewer, Content Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "product"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Browse lapidary machines, replacement parts, and accessories by lapidary family, machine type, and the work you need to do. Confirm product details before ordering.",
+      "blocker": "",
+      "notes": "Approved text intentionally avoids compatibility, warranty, freight, support-level, availability, and performance claims."
+    },
+    {
+      "id": "hero-shop-machines-cta",
+      "moduleId": "homepage-first-screen-gateway",
+      "contentClass": "cta_label",
+      "proposedPurpose": "Primary homepage hero commerce action.",
+      "source": "Product Owner homepage approval recorded 2026-08-21",
+      "sourceOwner": "Product Owner and Shopify Admin Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "none"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Shop machines",
+      "blocker": "",
+      "notes": "Targets governed route machines."
+    },
+    {
+      "id": "hero-contact-cta",
+      "moduleId": "homepage-first-screen-gateway",
+      "contentClass": "cta_label",
+      "proposedPurpose": "Secondary homepage hero contact action.",
+      "source": "Product Owner homepage approval recorded 2026-08-21",
+      "sourceOwner": "Product Owner and Shopify Admin Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "support"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Contact us",
+      "blocker": "",
+      "notes": "Generic contact action only. It does not promise support ownership, response time, repair service, or warranty administration."
+    },
+    {
+      "id": "machine-family-homepage-identifiers",
+      "moduleId": "homepage-machine-family-overview",
+      "contentClass": "machine_product_statement",
+      "proposedPurpose": "Approved family-name-only homepage navigation for the initial launch-visible machine families.",
+      "source": "docs/brand/rhino-machine-family-identifiers.md and Product Owner approval recorded 2026-08-21",
+      "sourceOwner": "Product Owner and Product Data Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "product"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": null,
+      "blocker": "",
+      "notes": "Approved visible families are EM-1, BeadMaster, ShapeMaster, and TrimMaster. Labels are orientation only and make no compatibility or technical capability claim."
+    },
+    {
+      "id": "featured-em-1-homepage",
+      "moduleId": "homepage-featured-machine",
+      "contentClass": "machine_product_statement",
+      "proposedPurpose": "Approved homepage flagship-machine identity.",
+      "source": "Product Owner flagship selection recorded 2026-08-21; Shopify product handle em-1",
+      "sourceOwner": "Product Owner and Product Data Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "product"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Featured machine: EM-1",
+      "blocker": "",
+      "notes": "Approves EM-1 identity and homepage feature placement only. No capability, compatibility, durability, freight, or warranty statement is approved by this record."
+    },
+    {
+      "id": "parts-contact-homepage-fallback",
+      "moduleId": "homepage-parts-accessories-consumables",
+      "contentClass": "support",
+      "proposedPurpose": "Neutral replacement-parts entry point while structured compatibility and aggregate parts routing remain incomplete.",
+      "source": "Product Owner fallback decision recorded 2026-08-21; data/navigation-spec.json#contact",
+      "sourceOwner": "Product Owner and Shopify Admin Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "support"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Replacement parts",
+      "blocker": "",
+      "notes": "Only the generic Contact route is approved. The module must not imply compatibility lookup, parts availability, response time, repair service, or support ownership."
+    },
+    {
+      "id": "support-contact-route-label",
+      "moduleId": "homepage-support-reassurance",
+      "contentClass": "cta_label",
+      "proposedPurpose": "Neutral homepage action label for the existing generic Contact destination.",
+      "source": "data/navigation-spec.json#contact; Product Owner implementation direction recorded 2026-08-24",
+      "sourceOwner": "Product Owner and Shopify Admin Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "support"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Contact us",
+      "blocker": "",
+      "notes": "Approves the generic route label only. It adds no additional operational or service assertions."
+    },
+    {
+      "id": "shipping-policy-route-label",
+      "moduleId": "homepage-support-reassurance",
+      "contentClass": "cta_label",
+      "proposedPurpose": "Neutral homepage route label for the existing Shopify Shipping Policy.",
+      "source": "data/navigation-spec.json#shipping-policy; Product Owner implementation direction recorded 2026-08-24",
+      "sourceOwner": "Operations Owner, Legal Owner, and Shopify Admin Owner",
+      "approver": "Product Owner",
+      "approvalStatus": "approved",
+      "sensitivities": [
+        "operational"
+      ],
+      "legalClaimIds": [],
+      "safeNeutralFallback": "Shipping policy",
+      "blocker": "",
+      "notes": "Approves navigation to the existing policy only. It adds no delivery, cost, timing, product-eligibility, or geographic promise."
     }
   ]
 }

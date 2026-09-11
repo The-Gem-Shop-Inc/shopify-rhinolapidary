@@ -143,15 +143,40 @@ async function collectGeometry(page, state) {
         )].filter(visible);
         const ctas = focusables.map((element, index) => {
             const rect = rectFor(element);
+            const style = window.getComputedStyle(element);
+
+            const horizontalOverflow =
+                element.scrollWidth > element.clientWidth + 1;
+
+            const verticalOverflow =
+                element.scrollHeight > element.clientHeight + 1;
+
+            const clipsHorizontal =
+                style.overflowX === 'hidden'
+                || style.overflowX === 'clip';
+
+            const clipsVertical =
+                style.overflowY === 'hidden'
+                || style.overflowY === 'clip';
 
             return {
                 index,
                 tagName: element.tagName.toLowerCase(),
                 text: textFor(element),
                 rect,
-                clipped: element.scrollWidth > element.clientWidth + 1
-                    || element.scrollHeight > element.clientHeight + 1,
-                outOfViewportX: rect.left < -1 || rect.right > viewportWidth + 1,
+                display: style.display,
+                overflowX: style.overflowX,
+                overflowY: style.overflowY,
+                scrollWidth: element.scrollWidth,
+                clientWidth: element.clientWidth,
+                scrollHeight: element.scrollHeight,
+                clientHeight: element.clientHeight,
+                clipped:
+                    (clipsHorizontal && horizontalOverflow)
+                    || (clipsVertical && verticalOverflow),
+                outOfViewportX:
+                    rect.left < -1
+                    || rect.right > viewportWidth + 1,
             };
         });
         const h1s = [...document.querySelectorAll('h1')].filter(visible).map((element) => ({
@@ -309,6 +334,23 @@ async function requireFutureHero(page, record, viewport) {
         await expect(root.locator('h1:visible')).toHaveCount(1);
     });
 
+    await runCheck(record, 'implemented hero approved media visible', async () => {
+        const image = root.locator('img[alt="Rhino Lapidary EM-1 machine"]');
+
+        await expect(image).toHaveCount(1);
+        await expect(image).toBeVisible();
+
+        const dimensions = await image.evaluate((element) => ({
+            width: element.getAttribute('width'),
+            height: element.getAttribute('height'),
+            currentSrc: element.currentSrc,
+        }));
+
+        expect(dimensions.width).toBeTruthy();
+        expect(dimensions.height).toBeTruthy();
+        expect(dimensions.currentSrc).toBeTruthy();
+    });
+
     const primaryAction = (hero.actions || []).find((action) =>
         action.role === 'primary_commerce'
         && action.approvalStatus === 'approved'
@@ -316,7 +358,10 @@ async function requireFutureHero(page, record, viewport) {
 
     await runCheck(record, 'implemented hero primary action visible', async () => {
         expect(primaryAction, 'Hero must define an approved primary commerce action.').toBeTruthy();
-        await expect(page.getByRole('link', { name: primaryAction.accessibleLabel }).first()).toBeVisible();
+
+        await expect(
+            root.getByRole('link', { name: primaryAction.accessibleLabel }),
+        ).toBeVisible();
     });
 
     await runCheck(record, 'implemented hero height is within responsive range', async () => {
@@ -350,7 +395,40 @@ async function requireFuturePathChooser(page, record) {
 
     for (const action of (chooser.actions || []).filter((item) => item.approvalStatus === 'approved')) {
         await runCheck(record, `implemented path action visible: ${action.id}`, async () => {
-            await expect(page.getByRole('link', { name: action.accessibleLabel }).first()).toBeVisible();
+            await expect(
+                root.getByRole('link', { name: action.accessibleLabel }),
+            ).toBeVisible();
+        });
+    }
+}
+
+async function requireImplementedActionModule(page, record, moduleId, label) {
+    const module = moduleById(moduleId);
+
+    if (!implemented(module)) {
+        recordNotApplicable(
+            record,
+            `${label} assertions`,
+            `${moduleId} is ${module?.implementationState || module?.status || 'unknown'}.`,
+        );
+        return;
+    }
+
+    const root = page.locator(module.runtimeSelector).first();
+
+    await runCheck(record, `${label} root visible`, async () => {
+        await expect(root).toBeVisible();
+    });
+
+    for (const action of (module.actions || []).filter(
+        (item) =>
+            item.approvalStatus === 'approved'
+            && item.renderState === 'implemented'
+    )) {
+        await runCheck(record, `${label} action visible: ${action.id}`, async () => {
+            await expect(
+                root.getByRole('link', { name: action.accessibleLabel }),
+            ).toBeVisible();
         });
     }
 }
@@ -406,14 +484,88 @@ for (const viewport of VIEWPORTS) {
             expect(geometry.failures).not.toContain('cta-outside-viewport');
         });
 
-        await runCheck(initialRecord, 'current first screen remains coherent', async () => {
-            await expect(page.getByText('Choose lapidary equipment for the work you need to do')).toBeVisible();
-            await expect(page.getByRole('link', { name: 'Shop machines' })).toBeVisible();
-            await expect(page.getByRole('link', { name: 'Contact us' })).toBeVisible();
+        await runCheck(initialRecord, 'first screen remains coherent', async () => {
+            const hero = moduleById('homepage-first-screen-gateway');
+
+            if (implemented(hero)) {
+                const root = page.locator(hero.runtimeSelector).first();
+
+                await expect(root).toBeVisible();
+                await expect(
+                    root.getByRole('heading', {
+                        level: 1,
+                        name: 'Find lapidary equipment for revealing the beauty of the mineral world',
+                    }),
+                ).toBeVisible();
+                await expect(
+                    root.getByRole('link', { name: 'Shop machines' }),
+                ).toBeVisible();
+                await expect(
+                    root.getByRole('link', { name: 'Contact us' }),
+                ).toBeVisible();
+
+                return;
+            }
+
+            const intro = page.locator('[id$="__rhino_intro"]').first();
+
+            await expect(intro).toBeVisible();
+            await expect(
+                intro.getByText('Choose lapidary equipment for the work you need to do'),
+            ).toBeVisible();
         });
 
         await requireFutureHero(page, initialRecord, viewport);
         await requireFuturePathChooser(page, initialRecord);
+
+        await requireImplementedActionModule(
+            page,
+            initialRecord,
+            'homepage-machine-family-overview',
+            'machine family overview',
+        );
+
+        await requireImplementedActionModule(
+            page,
+            initialRecord,
+            'homepage-featured-machine',
+            'featured machine',
+        );
+
+        await requireImplementedActionModule(
+            page,
+            initialRecord,
+            'homepage-why-rhino-proof',
+            'Why Rhino proof',
+        );
+
+        await requireImplementedActionModule(
+            page,
+            initialRecord,
+            'homepage-parts-accessories-consumables',
+            'parts fallback',
+        );
+
+        await requireImplementedActionModule(
+            page,
+            initialRecord,
+            'homepage-support-reassurance',
+            'support reassurance',
+        );
+
+        await requireImplementedActionModule(
+            page,
+            initialRecord,
+            'homepage-education-manuals',
+            'education/manuals',
+        );
+
+        await requireImplementedActionModule(
+            page,
+            initialRecord,
+            'homepage-video-demo',
+            'video demo',
+        );
 
         evidence.push(initialRecord);
 

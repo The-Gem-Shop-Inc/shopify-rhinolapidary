@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["version", "approvedAt", "decisionStates", "rules", "domains"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"type":"string"},
+    "version": {"type":"integer","minimum":1},
+    "approvedAt": {"type":"string","format":"date"},
+    "decisionStates": {"type":"array","const":["observed","proposed","approved","conflicting","blocked","deprecated","superseded"]},
+    "rules": {"type":"array","minItems":5,"items":{"type":"string","minLength":20}},
+    "domains": {
+      "type":"array","minItems":12,"uniqueItems":true,
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["domain","canonicalAuthority","fallback","owner","requiredState","crossReferences"],
+        "properties": {
+          "domain":{"type":"string","pattern":"^[a-z0-9_]+$"},
+          "canonicalAuthority":{"type":"string","minLength":10},
+          "fallback":{"type":"string","minLength":10},
+          "owner":{"type":"string","minLength":3},
+          "requiredState":{"enum":["observed","proposed","approved","conflicting","blocked","deprecated","superseded"]},
+          "crossReferences":{"type":"array","minItems":1,"items":{"type":"string","minLength":3}}
+        }
+      }
+    }
+  }
+}

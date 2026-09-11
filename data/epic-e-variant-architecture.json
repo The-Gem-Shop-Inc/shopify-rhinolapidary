@@ -1,0 +1,321 @@
+{
+  "$schema": "../schemas/epic-e-variant-architecture.schema.json",
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-03T17:52:28.268Z",
+  "generatedFrom": [
+    "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+    "data/epic-e-product-owner-decisions.json",
+    "data/epic-e-commercial-configuration-candidates.json"
+  ],
+  "canonicalRule": "A Product option exists only for a real customer-selectable commerce distinction on one Product with an enforceable relationship to SKU, inventory, price, fulfillment, media, or physical configuration.",
+  "constraints": {
+    "doNotConvertTechnicalConflict": true,
+    "doNotMergeSeparateProducts": true,
+    "noMutationAuthorized": true,
+    "optionNameRules": {
+      "allowedCanonicalNames": [
+        "Size",
+        "Voltage",
+        "Electrical configuration",
+        "Grit",
+        "Diameter",
+        "Arbor",
+        "Pack size",
+        "Side",
+        "Configuration"
+      ],
+      "oneSemanticAttributePerOption": true,
+      "caseSensitive": true
+    },
+    "normalizedUnits": {
+      "length": "UCUM-compatible unit stored separately from numeric technical value; preserve existing display values until an approved migration.",
+      "currentLegacyDisplayValues": [
+        "6\"",
+        "8\"",
+        "14\"",
+        "18\""
+      ]
+    },
+    "duplicateCombinationPrevention": true,
+    "stableVariantIdentity": "Shopify Variant GID; an approved Rhino commerce SKU maps to the sellable unit only through the governed registry.",
+    "requiredPrice": true,
+    "requiredSku": {
+      "requiredAfterAllocationApproval": true,
+      "currentAuthorityState": "approved",
+      "scheme": "RH-######",
+      "registry": "data/rhino-commerce-sku-registry.json"
+    },
+    "shippingWeight": {
+      "positiveRequiredForShippableClass": true,
+      "currentSawBladeState": "blocked_zero_weight"
+    },
+    "inventoryState": {
+      "requiredWhenTracked": true
+    },
+    "variantTechnicalScope": "Only facts differing for the purchased configuration belong at Variant scope."
+  },
+  "currentOptionAudit": [
+    {
+      "productGid": "gid://shopify/Product/8905783967941",
+      "handle": "saw-blade",
+      "optionEvidence": {
+        "optionSummaries": [
+          {
+            "optionName": "Size",
+            "productValues": [
+              "6\"",
+              "8\"",
+              "14\"",
+              "18\""
+            ],
+            "variantValues": [
+              "6\"",
+              "8\"",
+              "14\"",
+              "18\""
+            ],
+            "summary": "Size: 6\", 8\", 14\", 18\""
+          }
+        ],
+        "combinations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484258652357",
+            "values": {
+              "Size": "6\""
+            },
+            "price": "15.00",
+            "sku": null,
+            "inventoryTracked": false,
+            "weight": {
+              "value": 0,
+              "unit": "POUNDS"
+            }
+          },
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484258685125",
+            "values": {
+              "Size": "8\""
+            },
+            "price": "25.00",
+            "sku": null,
+            "inventoryTracked": false,
+            "weight": {
+              "value": 0,
+              "unit": "POUNDS"
+            }
+          },
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484258717893",
+            "values": {
+              "Size": "14\""
+            },
+            "price": "75.00",
+            "sku": null,
+            "inventoryTracked": false,
+            "weight": {
+              "value": 0,
+              "unit": "POUNDS"
+            }
+          },
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484258750661",
+            "values": {
+              "Size": "18\""
+            },
+            "price": "125.00",
+            "sku": null,
+            "inventoryTracked": false,
+            "weight": {
+              "value": 0,
+              "unit": "POUNDS"
+            }
+          }
+        ],
+        "summary": "Size: 6\", 8\", 14\", 18\""
+      },
+      "priceComplete": true,
+      "skuComplete": false,
+      "positiveShippingWeightComplete": false,
+      "inventoryStateComplete": true
+    }
+  ],
+  "configurationDispositions": [
+    {
+      "candidateId": "CONFIG-001",
+      "decisionId": "PO-E-017",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-002",
+      "decisionId": "PO-E-018",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-003",
+      "decisionId": "PO-E-019",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-004",
+      "decisionId": "PO-E-020",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-005",
+      "decisionId": "PO-E-021",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-006",
+      "decisionId": "PO-E-022",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-007",
+      "decisionId": "PO-E-023",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-008",
+      "decisionId": "PO-E-024",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-009",
+      "decisionId": "PO-E-025",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-010",
+      "decisionId": "PO-E-026",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-011",
+      "decisionId": "PO-E-027",
+      "state": "approved",
+      "disposition": "preserve_current_no_speculative_variant",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-012",
+      "decisionId": "PO-E-028",
+      "state": "approved",
+      "disposition": "preserve_current_variant_architecture",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-013",
+      "decisionId": "PO-E-029",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-014",
+      "decisionId": "PO-E-030",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-015",
+      "decisionId": "PO-E-031",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-016",
+      "decisionId": "PO-E-032",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-017",
+      "decisionId": "PO-E-033",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-018",
+      "decisionId": "PO-E-034",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-019",
+      "decisionId": "PO-E-035",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-020",
+      "decisionId": "PO-E-036",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-021",
+      "decisionId": "PO-E-037",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    },
+    {
+      "candidateId": "CONFIG-022",
+      "decisionId": "PO-E-038",
+      "state": "approved",
+      "disposition": "preserve_separate_products",
+      "authorizesMutation": false
+    }
+  ],
+  "inventoryQuantityExtension": {
+    "needed": false,
+    "reason": "Structural evidence is sufficient; per-location quantity is not required for E-PBI-008 architecture."
+  },
+  "ePbi009Handoff": {
+    "ready": true,
+    "allowedInputs": [
+      "approved product class decisions",
+      "approved Vendor semantics and desired-state proposals",
+      "approved no-new-business-ID conclusion",
+      "approved Rhino SKU authority and scheme",
+      "governed SKU allocation registry",
+      "variant-scope rule",
+      "current option audit",
+      "approved CONFIG dispositions"
+    ],
+    "prohibitedInputs": [
+      "speculative technical facts",
+      "unapproved commerce SKU values",
+      "compatibility relationships",
+      "Admin definitions or values"
+    ]
+  }
+}

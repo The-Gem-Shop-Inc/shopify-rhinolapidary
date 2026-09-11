@@ -1,0 +1,260 @@
+{
+  "$schema": "../schemas/epic-e-product-owner-decisions.schema.json",
+  "schemaVersion": 1,
+  "source": {
+    "title": "Rhino Lapidary — Epic E Batch 2B.1 Product Owner authorization",
+    "authorityKind": "human_owned",
+    "sourceDate": "2026-09-04",
+    "owner": "Rhino Lapidary Product Owner",
+    "ownerRole": "Product Owner"
+  },
+  "evidenceBaseline": {
+    "snapshotPath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+    "capturedAt": "2026-09-03T17:52:28.268Z",
+    "sha256": "d2daa618337640c42878f3ed0aa398b2c0cda198229731ca21e248e3f22c6985",
+    "proposalDigest": "79e6c546cf621f436d3bc51bfaa8694c1e78605e0e76a8b6ad8981520f736194",
+    "staleEvidencePolicy": "reject_unless_explicitly_superseded"
+  },
+  "changeHistory": [
+    {
+      "date": "2026-09-03",
+      "owner": "Rhino Lapidary Product Owner",
+      "ownerRole": "Product Owner",
+      "change": "Initial governed Batch 2B approvals and conservative E-PBI-008 dispositions.",
+      "supersedes": null
+    },
+    {
+      "date": "2026-09-04",
+      "owner": "Rhino Lapidary Product Owner",
+      "ownerRole": "Product Owner",
+      "change": "Reconciled the already-supplied Purple Jade component classification, Rhino commerce SKU authority and opaque scheme, three machine business meanings, and evidence-backed Vendor policy application. Supersedes the conflicting Batch 2B conclusions without changing the snapshot evidence baseline.",
+      "supersedes": "2026-09-03 Batch 2B conclusions for PO-E-004 and PO-E-007"
+    }
+  ],
+  "decisions": {
+    "productClass": {
+      "bulkApproval": {
+        "decisionId": "PO-E-001",
+        "decisionState": "approved",
+        "owner": "Rhino Lapidary Product Owner",
+        "ownerRole": "Product Owner",
+        "decisionDate": "2026-09-03",
+        "rationale": "Approve the 119 evidence proposals only while their baseline digest remains unchanged.",
+        "evidenceRefs": ["data/epic-e-product-classification.json", "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],
+        "supersedes": null,
+        "target": "all_unchanged_proposals",
+        "expectedCount": 119,
+        "expectedProposalDigest": "79e6c546cf621f436d3bc51bfaa8694c1e78605e0e76a8b6ad8981520f736194"
+      },
+      "overrides": [
+        {
+          "decisionId": "PO-E-002",
+          "decisionState": "approved",
+          "owner": "Rhino Lapidary Product Owner",
+          "ownerRole": "Product Owner",
+          "decisionDate": "2026-09-03",
+          "rationale": "The knob is a replacement component, not an optional-use accessory.",
+          "evidenceRefs": ["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],
+          "supersedes": null,
+          "productGid": "gid://shopify/Product/8905785311429",
+          "handle": "trim-saw-accessories-knob",
+          "productClass": "replacement_part",
+          "catalogScopeDisposition": "in_scope"
+        },
+        {
+          "decisionId": "PO-E-003",
+          "decisionState": "approved",
+          "owner": "Rhino Lapidary Product Owner",
+          "ownerRole": "Product Owner",
+          "decisionDate": "2026-09-03",
+          "rationale": "The knob is a replacement component for the wrist-rest assembly.",
+          "evidenceRefs": ["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],
+          "supersedes": null,
+          "productGid": "gid://shopify/Product/8905786360005",
+          "handle": "wrist-rest-knob",
+          "productClass": "replacement_part",
+          "catalogScopeDisposition": "in_scope"
+        },
+        {
+          "decisionId": "PO-E-039",
+          "decisionState": "approved",
+          "owner": "Rhino Lapidary Product Owner",
+          "ownerRole": "Product Owner",
+          "decisionDate": "2026-09-04",
+          "rationale": "The Purple Jade Bead Strand is a functional JadeMaster component used to measure and control how far a stone travels before the auto-stop switch is triggered. It is replacement_part, not decorative finished-stone merchandise in this catalog context.",
+          "evidenceRefs": ["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json", "Rhino Lapidary Product Owner — Epic E Batch 2B.1 decision"],
+          "supersedes": "PO-E-004",
+          "productGid": "gid://shopify/Product/8905783345349",
+          "handle": "purple-jade-bead-strand",
+          "productClass": "replacement_part",
+          "catalogScopeDisposition": "in_scope"
+        }
+      ]
+    },
+    "taxonomy": {
+      "policy": {
+        "decisionId": "PO-E-005",
+        "decisionState": "approved",
+        "owner": "Rhino Lapidary Product Owner",
+        "ownerRole": "Product Owner",
+        "decisionDate": "2026-09-03",
+        "rationale": "Use the deepest defensible node from the versioned official taxonomy; retain broader fallbacks and unresolved states when evidence cannot support a child node.",
+        "evidenceRefs": ["https://raw.githubusercontent.com/Shopify/product-taxonomy/v2026-08/dist/en/categories.txt"],
+        "supersedes": null
+      },
+      "productDecisions": [
+        {
+          "decisionId": "PO-E-042",
+          "decisionState": "approved",
+          "owner": "Rhino Lapidary Product Owner",
+          "ownerRole": "Product Owner",
+          "decisionDate": "2026-09-04",
+          "rationale": "EM-1 is a multi-purpose lapidary machine; Multifunction Power Tools is the broadest accurate operation-neutral child node available in the governed taxonomy.",
+          "evidenceRefs": ["Rhino Lapidary Product Owner — Epic E Batch 2B.1 decision", "https://raw.githubusercontent.com/Shopify/product-taxonomy/v2026-08/dist/en/categories.txt"],
+          "supersedes": null,
+          "productGid": "gid://shopify/Product/8905780756677",
+          "handle": "em-1",
+          "businessMeaning": "multi-purpose lapidary machine",
+          "taxonomyCategoryId": "gid://shopify/TaxonomyCategory/ha-15-38",
+          "disposition": "approve_candidate"
+        },
+        {
+          "decisionId": "PO-E-043",
+          "decisionState": "approved",
+          "owner": "Rhino Lapidary Product Owner",
+          "ownerRole": "Product Owner",
+          "decisionDate": "2026-09-04",
+          "rationale": "JadeMaster is authoritatively a rock saw; Masonry & Tile Saws is the deepest defensible valid saw node because the taxonomy has no lapidary or rock-saw node.",
+          "evidenceRefs": ["Rhino Lapidary Product Owner — Epic E Batch 2B.1 decision", "https://raw.githubusercontent.com/Shopify/product-taxonomy/v2026-08/dist/en/categories.txt"],
+          "supersedes": null,
+          "productGid": "gid://shopify/Product/8905781248197",
+          "handle": "jademaster",
+          "businessMeaning": "rock saw",
+          "taxonomyCategoryId": "gid://shopify/TaxonomyCategory/ha-15-62-6",
+          "disposition": "approve_candidate"
+        },
+        {
+          "decisionId": "PO-E-044",
+          "decisionState": "approved",
+          "owner": "Rhino Lapidary Product Owner",
+          "ownerRole": "Product Owner",
+          "decisionDate": "2026-09-04",
+          "rationale": "TumbleMaster is authoritatively a tumbler. The taxonomy has no rock-tumbler node, so Rotary Polishers & Buffers is the nearest defensible functional node; sale or stock state does not alter product kind.",
+          "evidenceRefs": ["Rhino Lapidary Product Owner — Epic E Batch 2B.1 decision", "https://raw.githubusercontent.com/Shopify/product-taxonomy/v2026-08/dist/en/categories.txt"],
+          "supersedes": null,
+          "productGid": "gid://shopify/Product/8905785868485",
+          "handle": "tumblemaster",
+          "businessMeaning": "tumbler",
+          "taxonomyCategoryId": "gid://shopify/TaxonomyCategory/ha-15-51-2",
+          "disposition": "approve_candidate"
+        }
+      ]
+    },
+    "identity": {
+      "decisionId": "PO-E-006",
+      "decisionState": "approved",
+      "owner": "Rhino Lapidary Product Owner",
+      "ownerRole": "Product Owner",
+      "decisionDate": "2026-09-03",
+      "rationale": "No concrete MVP consumer requires a new Rhino business ID in addition to Shopify GIDs, established model/part identifiers, and future governed SKUs.",
+      "evidenceRefs": ["data/epic-e-product-identity.json"],
+      "supersedes": null,
+      "additionalRhinoBusinessId": "not_justified"
+    },
+    "sku": {
+      "authority": {
+        "decisionId": "PO-E-040",
+        "decisionState": "approved",
+        "owner": "Rhino Lapidary Product Owner",
+        "ownerRole": "Product Owner",
+        "decisionDate": "2026-09-04",
+        "rationale": "Rhino may establish a new governed commerce SKU scheme because no complete authoritative SKU source exists.",
+        "evidenceRefs": ["data/epic-e-product-identity.json", "docs/product/silica-gem", "Rhino Lapidary Product Owner — Epic E Batch 2B.1 decision"],
+        "supersedes": "PO-E-007",
+        "issuer": "Rhino Lapidary governed commerce SKU registry",
+        "owner": "Rhino Lapidary Product Data / Product Owner",
+        "ownerRole": "Product Owner",
+        "operationsRole": "downstream_consumer"
+      },
+      "generationPolicy": {
+        "decisionId": "PO-E-041",
+        "decisionState": "approved",
+        "owner": "Rhino Lapidary Product Owner",
+        "ownerRole": "Product Owner",
+        "decisionDate": "2026-09-04",
+        "rationale": "Approve an opaque, centrally allocated sequence that does not encode mutable or technical product facts.",
+        "evidenceRefs": ["Rhino Lapidary Product Owner — Epic E Batch 2B.1 decision", "data/rhino-commerce-sku-registry.json"],
+        "supersedes": null,
+        "scheme": "opaque_sequence",
+        "format": "RH-######",
+        "scope": "shopify_variant_sellable_commerce_unit",
+        "allocationRule": "next_unused_identifier_from_governed_registry_only",
+        "oneCurrentSkuPerActiveSellableVariant": true,
+        "immutableAfterApproval": true,
+        "caseInsensitiveUniquenessAcrossActiveAndRetired": true,
+        "retiredSkusNeverReused": true,
+        "prohibitedDerivations": ["product_title", "handle", "product_class", "vendor", "machine_family", "voltage", "grit", "size", "compatibility", "dimensions", "shopify_numeric_id", "technical_spec", "sort_position", "arbitrary_agent_sequence"],
+        "legacyIdentifiers": "preserve_as_aliases_and_history",
+        "shopifyGids": "platform_identity_not_commerce_sku",
+        "variantRestructure": "requires_explicit_mapping_decision"
+      },
+      "candidateDecisions": [
+        {"decisionId":"PO-E-008","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve as a sourced legacy order identifier only; do not promote to Shopify SKU.","evidenceRefs":["docs/product/silica-gem/TRIMMASTER PART ORDERING LIST.xlsx"],"supersedes":null,"productGid":"gid://shopify/Product/8905785442501","variantGid":"gid://shopify/ProductVariant/46484260454597","handle":"trimmaster-feet","identifier":"IDM-ST-05","source":"docs/product/silica-gem/TRIMMASTER PART ORDERING LIST.xlsx","disposition":"approved_legacy_identifier_only"},
+        {"decisionId":"PO-E-009","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve as a sourced legacy order identifier only; do not promote to Shopify SKU.","evidenceRefs":["docs/product/silica-gem/TRIMMASTER PART ORDERING LIST.xlsx"],"supersedes":null,"productGid":"gid://shopify/Product/8905785540805","variantGid":"gid://shopify/ProductVariant/46484260552901","handle":"trimmaster-belt-guard","identifier":"IDM-K03","source":"docs/product/silica-gem/TRIMMASTER PART ORDERING LIST.xlsx","disposition":"approved_legacy_identifier_only"},
+        {"decisionId":"PO-E-010","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve as a sourced legacy order identifier only; do not promote to Shopify SKU.","evidenceRefs":["docs/product/silica-gem/TRIMMASTER PART ORDERING LIST.xlsx"],"supersedes":null,"productGid":"gid://shopify/Product/8905785606341","variantGid":"gid://shopify/ProductVariant/46484260651205","handle":"plexiglass-insert","identifier":"IDM-T14","source":"docs/product/silica-gem/TRIMMASTER PART ORDERING LIST.xlsx","disposition":"approved_legacy_identifier_only"},
+        {"decisionId":"PO-E-045","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-04","rationale":"The current Product title evidences one sold x2 pulley set. Allocate one new Rhino commerce SKU to that sold set and preserve IDM-T11 and IDM-T13 as constituent identifiers.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json","docs/product/silica-gem/TRIMMASTER PART ORDERING LIST.xlsx#S1 rows 6 and 11"],"supersedes":"PO-E-011","productGid":"gid://shopify/Product/8905783312581","variantGid":"gid://shopify/ProductVariant/46484257833157","handle":"trimmaster-pulleys","identifier":"IDM-T11","source":"docs/product/silica-gem/TRIMMASTER PART ORDERING LIST.xlsx","disposition":"approved_constituent_identifiers_new_set_sku"},
+        {"decisionId":"PO-E-012","decisionState":"blocked","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"450 and 600 identifiers are machine-size-specific clamp assemblies collapsed into one current product; no common commerce SKU is evidenced.","evidenceRefs":["docs/product/silica-gem/SAWMASTER 18'' PART ORDERING LIST.xlsx#S3 row 7","docs/product/silica-gem/SAWMASTER 24'' PART ORDERING LIST.xlsx#S3 row 7"],"supersedes":null,"productGid":"gid://shopify/Product/8905779871941","variantGid":"gid://shopify/ProductVariant/46484253966533","handle":"automatic-feed-clamp","identifier":"BK-450-K01","source":"docs/product/silica-gem/SAWMASTER 18'' PART ORDERING LIST.xlsx","disposition":"blocked_multi_identifier_semantics"},
+        {"decisionId":"PO-E-013","decisionState":"blocked","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"450 and 600 identifiers are machine-size-specific pressure plates collapsed into one current product; no common commerce SKU is evidenced.","evidenceRefs":["docs/product/silica-gem/SAWMASTER 18'' PART ORDERING LIST.xlsx#S3 row 4","docs/product/silica-gem/SAWMASTER 24'' PART ORDERING LIST.xlsx#S3 row 4"],"supersedes":null,"productGid":"gid://shopify/Product/8905784099013","variantGid":"gid://shopify/ProductVariant/46484258881733","handle":"saw-vice-plate-set","identifier":"BK-450-24","source":"docs/product/silica-gem/SAWMASTER 18'' PART ORDERING LIST.xlsx","disposition":"blocked_multi_identifier_semantics"},
+        {"decisionId":"PO-E-046","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-04","rationale":"The current Product title evidences one sold x2 pulley set. Allocate one new Rhino commerce SKU to that sold set, preserve YL-450-T12 and YL-450-T13 as constituent identifiers, and retain 04T/05T as rejected fixer misassociations.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json","docs/product/silica-gem/LAPMASTER 18'' PART ORDERING LIST.xlsx#PARTS LIST rows 11, 12, 39 and 40"],"supersedes":"PO-E-014","productGid":"gid://shopify/Product/8905783115973","variantGid":"gid://shopify/ProductVariant/46484257603781","handle":"lapmaster-pulleys","identifier":"YL-450-T12","source":"docs/product/silica-gem/LAPMASTER 18'' PART ORDERING LIST.xlsx","disposition":"approved_constituent_identifiers_new_set_sku"}
+      ]
+    },
+    "barcode": {
+      "decisionId": "PO-E-015",
+      "decisionState": "approved",
+      "owner": "Rhino Lapidary Product Owner",
+      "ownerRole": "Product Owner",
+      "decisionDate": "2026-09-03",
+      "rationale": "No POS, warehouse, fulfillment, manufacturer GTIN, marketplace, or label consumer is demonstrated.",
+      "evidenceRefs": ["data/epic-e-product-identity.json"],
+      "supersedes": null,
+      "required": false
+    },
+    "vendor": {
+      "decisionId": "PO-E-016",
+      "decisionState": "approved",
+      "owner": "Rhino Lapidary Product Owner",
+      "ownerRole": "Product Owner",
+      "decisionDate": "2026-09-03",
+      "rationale": "Shopify Vendor represents the marketed product brand; it is not the store seller and must not be documented as manufacturer when brand and manufacturer differ.",
+      "evidenceRefs": ["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],
+      "supersedes": null,
+      "shopifyVendorMeaning": "marketed_product_brand",
+      "manufacturerWhenDistinct": "separate_only_when_a_concrete_consumer_justifies_it"
+      ,"unambiguousEvidenceDisposition": "propose_marketed_brand_without_redundant_human_approval"
+    },
+    "commercialConfiguration": [
+      {"decisionId":"PO-E-017","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Technical conflict alone does not prove an independently orderable configuration.","evidenceRefs":["data/epic-e-commercial-configuration-candidates.json"],"supersedes":null,"candidateId":"CONFIG-001","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-018","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Technical conflict alone does not prove an independently orderable configuration.","evidenceRefs":["data/epic-e-commercial-configuration-candidates.json"],"supersedes":null,"candidateId":"CONFIG-002","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-019","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Technical conflict alone does not prove an independently orderable configuration.","evidenceRefs":["data/epic-e-commercial-configuration-candidates.json"],"supersedes":null,"candidateId":"CONFIG-003","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-020","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Technical conflict alone does not prove an independently orderable configuration.","evidenceRefs":["data/epic-e-commercial-configuration-candidates.json"],"supersedes":null,"candidateId":"CONFIG-004","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-021","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Technical conflict alone does not prove an independently orderable configuration.","evidenceRefs":["data/epic-e-commercial-configuration-candidates.json"],"supersedes":null,"candidateId":"CONFIG-005","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-022","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Technical conflict alone does not prove an independently orderable configuration.","evidenceRefs":["data/epic-e-commercial-configuration-candidates.json"],"supersedes":null,"candidateId":"CONFIG-006","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-023","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Technical conflict alone does not prove an independently orderable configuration.","evidenceRefs":["data/epic-e-commercial-configuration-candidates.json"],"supersedes":null,"candidateId":"CONFIG-007","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-024","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Technical conflict alone does not prove an independently orderable configuration.","evidenceRefs":["data/epic-e-commercial-configuration-candidates.json"],"supersedes":null,"candidateId":"CONFIG-008","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-025","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Technical conflict alone does not prove an independently orderable configuration.","evidenceRefs":["data/epic-e-commercial-configuration-candidates.json"],"supersedes":null,"candidateId":"CONFIG-009","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-026","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Missing JadeMaster technical evidence does not prove a sellable alternate configuration.","evidenceRefs":["C-036","C-037"],"supersedes":null,"candidateId":"CONFIG-010","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-027","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"TumbleMaster availability and zero-price blockers do not prove a sellable alternate configuration.","evidenceRefs":["C-038","C-039"],"supersedes":null,"candidateId":"CONFIG-011","disposition":"preserve_current_no_speculative_variant","authorizesMutation":false,"commerceEvidenceRefs":[]},
+      {"decisionId":"PO-E-028","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve the current customer-selectable Size variants with 6, 8, 14, and 18 inch values; no redesign is authorized.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-012","disposition":"preserve_current_variant_architecture","authorizesMutation":false,"commerceEvidenceRefs":["four distinct variant GIDs","distinct current prices"]},
+      {"decisionId":"PO-E-029","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve current grit products separately.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-013","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]},
+      {"decisionId":"PO-E-030","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve current grit products separately.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-014","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]},
+      {"decisionId":"PO-E-031","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve current grit products separately.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-015","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]},
+      {"decisionId":"PO-E-032","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve Left, Right, and Pack Moss Pad products.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-016","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]},
+      {"decisionId":"PO-E-033","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve Left, Right, and Pair Metal Spindle products.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-017","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]},
+      {"decisionId":"PO-E-034","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve individual and set Plastic Wheel Spacer products.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-018","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]},
+      {"decisionId":"PO-E-035","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve Small and Large Drill products.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-019","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]},
+      {"decisionId":"PO-E-036","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve Small, Medium, and Large Silversmithing Ball Head products.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-020","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]},
+      {"decisionId":"PO-E-037","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve Stonework Head profile, angle, and size products separately.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-021","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]},
+      {"decisionId":"PO-E-038","decisionState":"approved","owner":"Rhino Lapidary Product Owner","ownerRole":"Product Owner","decisionDate":"2026-09-03","rationale":"Preserve Flexible Shaft components and pack as separate products.","evidenceRefs":["docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json"],"supersedes":null,"candidateId":"CONFIG-022","disposition":"preserve_separate_products","authorizesMutation":false,"commerceEvidenceRefs":["separate product GIDs"]}
+    ]
+  }
+}

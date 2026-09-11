@@ -1,0 +1,258 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "mutationAuthorized",
+    "inputs",
+    "rows"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "consumer",
+              "domain",
+              "planId",
+              "architecture_ready",
+              "definition_plan_ready",
+              "migration_plan_ready",
+              "value_ready",
+              "value_blocked",
+              "admin_reconciliation_required",
+              "admin_mutation_required",
+              "safe_for_shell_only",
+              "safe_for_customer_fact_rendering",
+              "not_ready",
+              "approvedRows",
+              "blockedDecisionIds"
+            ],
+            "properties": {
+              "consumer": {
+                "type": "string"
+              },
+              "domain": {
+                "type": "string"
+              },
+              "planId": {
+                "type": "string"
+              },
+              "architecture_ready": {
+                "type": "boolean"
+              },
+              "definition_plan_ready": {
+                "type": "boolean"
+              },
+              "migration_plan_ready": {
+                "type": "boolean"
+              },
+              "value_ready": {
+                "type": "boolean"
+              },
+              "value_blocked": {
+                "type": "boolean"
+              },
+              "admin_reconciliation_required": {
+                "type": "boolean"
+              },
+              "admin_mutation_required": {
+                "type": "boolean"
+              },
+              "safe_for_shell_only": {
+                "type": "boolean"
+              },
+              "safe_for_customer_fact_rendering": {
+                "const": false
+              },
+              "not_ready": {
+                "type": "string"
+              },
+              "approvedRows": {
+                "type": "integer"
+              },
+              "blockedDecisionIds": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "consumer",
+              "domain",
+              "planId",
+              "architecture_ready",
+              "definition_plan_ready",
+              "migration_plan_ready",
+              "value_ready",
+              "value_blocked",
+              "admin_reconciliation_required",
+              "admin_mutation_required",
+              "safe_for_shell_only",
+              "safe_for_customer_fact_rendering",
+              "not_ready",
+              "approvedRows",
+              "blockedDecisionIds"
+            ],
+            "properties": {
+              "consumer": {
+                "type": "string"
+              },
+              "domain": {
+                "type": "string"
+              },
+              "planId": {
+                "type": "string"
+              },
+              "architecture_ready": {
+                "type": "boolean"
+              },
+              "definition_plan_ready": {
+                "type": "boolean"
+              },
+              "migration_plan_ready": {
+                "type": "boolean"
+              },
+              "value_ready": {
+                "type": "boolean"
+              },
+              "value_blocked": {
+                "type": "boolean"
+              },
+              "admin_reconciliation_required": {
+                "type": "boolean"
+              },
+              "admin_mutation_required": {
+                "type": "boolean"
+              },
+              "safe_for_shell_only": {
+                "type": "boolean"
+              },
+              "safe_for_customer_fact_rendering": {
+                "const": false
+              },
+              "not_ready": {
+                "type": "string"
+              },
+              "approvedRows": {
+                "type": "integer"
+              },
+              "blockedDecisionIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "consumer",
+              "domain",
+              "planId",
+              "architecture_ready",
+              "definition_plan_ready",
+              "migration_plan_ready",
+              "value_ready",
+              "value_blocked",
+              "admin_reconciliation_required",
+              "admin_mutation_required",
+              "safe_for_shell_only",
+              "safe_for_customer_fact_rendering",
+              "not_ready",
+              "approvedRows",
+              "blockedDecisionIds"
+            ],
+            "properties": {
+              "consumer": {
+                "type": "string"
+              },
+              "domain": {
+                "type": "string"
+              },
+              "planId": {},
+              "architecture_ready": {
+                "type": "boolean"
+              },
+              "definition_plan_ready": {
+                "type": "boolean"
+              },
+              "migration_plan_ready": {
+                "type": "boolean"
+              },
+              "value_ready": {
+                "type": "boolean"
+              },
+              "value_blocked": {
+                "type": "boolean"
+              },
+              "admin_reconciliation_required": {
+                "type": "boolean"
+              },
+              "admin_mutation_required": {
+                "type": "boolean"
+              },
+              "safe_for_shell_only": {
+                "type": "boolean"
+              },
+              "safe_for_customer_fact_rendering": {
+                "const": false
+              },
+              "not_ready": {
+                "type": "string"
+              },
+              "approvedRows": {
+                "type": "integer"
+              },
+              "blockedDecisionIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

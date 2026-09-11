@@ -1,0 +1,539 @@
+{
+  "schemaVersion": 1,
+  "mode": "repository",
+  "asOf": "2026-09-09T22:12:21.000Z",
+  "scope": "full 122 Product / 125 Variant repository baseline; current live completeness requires successful read audit",
+  "architectureReady": true,
+  "migrationPlanPrepared": true,
+  "valueBlockedDomains": [
+    "category",
+    "vendor",
+    "commerce_sku",
+    "machine_family",
+    "electrical",
+    "motor_speed",
+    "tool_mount",
+    "water_fluid",
+    "durable_measurements",
+    "crate_measurements",
+    "shipping_weight",
+    "fulfillment_class",
+    "compatibility",
+    "included_components",
+    "optional_components",
+    "recommendations",
+    "customer_manuals",
+    "diagrams_instructions_videos",
+    "warranty_support",
+    "pickup_region",
+    "abrasive_grit",
+    "availability_authority"
+  ],
+  "admin": {
+    "snapshotCapturedAt": "2026-09-03T17:52:28.268Z",
+    "asOf": "2026-09-09T22:12:21.000Z",
+    "expiresAt": "2026-09-10T17:52:28.268Z",
+    "temporalState": "within_seven_day_window",
+    "refreshAvailable": false,
+    "missingDatasets": [
+      "variantFulfillment",
+      "deliveryConfiguration",
+      "pickupConfiguration",
+      "marketRegions",
+      "policyPages",
+      "shopPolicies",
+      "files",
+      "machineFamilies"
+    ],
+    "queryErrors": 0,
+    "state": "admin_inaccessible",
+    "currentReconciliationUsable": false,
+    "perpetualStateClaim": false
+  },
+  "mutationAuthorized": false,
+  "checks": [
+    {
+      "name": "all_existing_and_batch4a_contracts_and_tests",
+      "status": "passed",
+      "exitCode": 0,
+      "detail": "Previous Epic E suites and Batch 4A checks passed."
+    }
+  ],
+  "diagnostics": [
+    {
+      "name": "product_csv",
+      "exitCode": 1,
+      "findingCount": 103,
+      "findings": [
+        "- wrist-rest-knob: Image Src present but Image Alt Text is missing",
+        "- wrist-rest: Image Src present but Image Alt Text is missing",
+        "- wing-nut-set: Image Src present but Image Alt Text is missing",
+        "- water-pump: Image Src present but Image Alt Text is missing",
+        "- water-guard: Image Src present but Image Alt Text is missing",
+        "- vice-clamp-set: Image Src present but Image Alt Text is missing",
+        "- tumblemaster: Variant Price must be greater than 0",
+        "- trimmaster-straight-edge-guide: Image Src present but Image Alt Text is missing",
+        "- trimmaster-splash-guard-upper: Image Src present but Image Alt Text is missing",
+        "- trimmaster-splash-guard-front: Image Src present but Image Alt Text is missing",
+        "- plexiglass-insert: Image Src present but Image Alt Text is missing",
+        "- trimmaster-belt-guard: Image Src present but Image Alt Text is missing",
+        "- trimmaster-feet: Image Src present but Image Alt Text is missing",
+        "- trimmaster: Image Src present but Image Alt Text is missing",
+        "- triangle-latch-screw-set: Image Src present but Image Alt Text is missing",
+        "- toff-brush-wheel: Image Src present but Image Alt Text is missing",
+        "- stonework-taper-head: Image Src present but Image Alt Text is missing",
+        "- stonework-cone-head-30: Image Src present but Image Alt Text is missing",
+        "- stonework-flame-head: Image Src present but Image Alt Text is missing",
+        "- stonework-ball-head: Image Src present but Image Alt Text is missing",
+        "- spoke-wrench: Image Src present but Image Alt Text is missing",
+        "- small-stonework-inverted-cone-head-60: Image Src present but Image Alt Text is missing",
+        "- small-stonework-bullnose-head: Image Src present but Image Alt Text is missing",
+        "- small-silversmithing-ball-head: Image Src present but Image Alt Text is missing",
+        "- small-drill: Image Src present but Image Alt Text is missing",
+        "- shapemaster: Image Src present but Image Alt Text is missing",
+        "- sawmaster-24: Image Src present but Image Alt Text is missing",
+        "- sawmaster-18: Image Src present but Image Alt Text is missing",
+        "- saw-vice-plate-set: Variant Price must be greater than 0",
+        "- saw-table: Image Src present but Image Alt Text is missing",
+        "- right-plexiglass-spray-guard: Image Src present but Image Alt Text is missing",
+        "- right-moss-pad: Image Src present but Image Alt Text is missing",
+        "- right-arbor-shaft: Image Src present but Image Alt Text is missing",
+        "- right-arbor-set-screw-and-spring: Image Src present but Image Alt Text is missing",
+        "- right-arbor-nut: Image Src present but Image Alt Text is missing",
+        "- trimmaster-pulleys: Image Src present but Image Alt Text is missing",
+        "- power-grip-belt: Image Src present but Image Alt Text is missing",
+        "- plexiglass-insert-spacer-set: Image Src present but Image Alt Text is missing",
+        "- plastic-wheel-spacer-set: Image Src present but Image Alt Text is missing",
+        "- plastic-wheel-spacer: Image Src present but Image Alt Text is missing",
+        "- plastic-trim-saw-spacer: Image Src present but Image Alt Text is missing",
+        "- plastic-end-spacer: Image Src present but Image Alt Text is missing",
+        "- nylon-bristle-brush-head: Image Src present but Image Alt Text is missing",
+        "- mr16: Variant Price must be greater than 0",
+        "- mr16: Image Src present but Image Alt Text is missing",
+        "- moss-pad-pack: Image Src present but Image Alt Text is missing",
+        "- metal-spindle-right: Image Src present but Image Alt Text is missing",
+        "- metal-spindle-pair: Image Src present but Image Alt Text is missing",
+        "- metal-spindle-left: Image Src present but Image Alt Text is missing",
+        "- medium-silversmithing-ball-head: Image Src present but Image Alt Text is missing",
+        "- lock-nut-plexiglass-fixture-set: Image Src present but Image Alt Text is missing",
+        "- left-moss-pad: Image Src present but Image Alt Text is missing",
+        "- left-arbor-shaft: Image Src present but Image Alt Text is missing",
+        "- left-arbor-set-screw-and-spring: Image Src present but Image Alt Text is missing",
+        "- left-arbor-nut: Image Src present but Image Alt Text is missing",
+        "- large-stonework-inverted-cone-head-60: Image Src present but Image Alt Text is missing",
+        "- large-stonework-bullnose-head: Image Src present but Image Alt Text is missing",
+        "- large-silversmithing-ball-head: Image Src present but Image Alt Text is missing",
+        "- large-drill: Image Src present but Image Alt Text is missing",
+        "- lapmaster-bolt: Variant Price must be greater than 0",
+        "- lapmaster-18: Image Src present but Image Alt Text is missing",
+        "- lapmaster-12: Image Src present but Image Alt Text is missing",
+        "- lap-fixture-bolt-pack: Image Src present but Image Alt Text is missing",
+        "- kum800: Image Src present but Image Alt Text is missing",
+        "- jademaster: Variant Price must be greater than 0",
+        "- jademaster: Image Src present but Image Alt Text is missing",
+        "- flexible-water-spout: Image Src present but Image Alt Text is missing",
+        "- flexible-shaft-pack: Image Src present but Image Alt Text is missing",
+        "- flexible-shaft-bit-turntable: Image Src present but Image Alt Text is missing",
+        "- flexible-shaft-attachment: Image Src present but Image Alt Text is missing",
+        "- flexible-shaft: Image Src present but Image Alt Text is missing",
+        "- final-sanding-wheel-head: Image Src present but Image Alt Text is missing",
+        "- em-1: Image Src present but Image Alt Text is missing",
+        "- drain-plug-trimmaster: Image Src present but Image Alt Text is missing",
+        "- dialux-superfinishing-paste: Image Src present but Image Alt Text is missing",
+        "- dialux-polishing-paste: Image Src present but Image Alt Text is missing",
+        "- cylindrical-grinder: Image Src present but Image Alt Text is missing",
+        "- conical-grinder: Image Src present but Image Alt Text is missing",
+        "- buffing-wheel-head: Image Src present but Image Alt Text is missing",
+        "- brass-sprayer: Image Src present but Image Alt Text is missing",
+        "- belt-guard-jademaster: Image Src present but Image Alt Text is missing",
+        "- beadmaster: Image Src present but Image Alt Text is missing",
+        "- automatic-feed-clamp: Variant Price must be greater than 0",
+        "- arbor-wrench: Variant Price must be greater than 0",
+        "- arbor-washer-1: Image Src present but Image Alt Text is missing",
+        "- arbor-spoke-nut: Image Src present but Image Alt Text is missing",
+        "- arbor-size-conversion-bolt: Image Src present but Image Alt Text is missing",
+        "- arbor-nut-1: Image Src present but Image Alt Text is missing",
+        "- arbor-adapter-washer-1-and-1-fourth: Image Src present but Image Alt Text is missing",
+        "- allen-wrench: Image Src present but Image Alt Text is missing",
+        "- trim-saw-6: Variant Price must be greater than 0",
+        "- trim-saw-6: Image Src present but Image Alt Text is missing",
+        "- soft-buffing-wheel: Image Src present but Image Alt Text is missing",
+        "- resin-diamond-wheel-600: Image Src present but Image Alt Text is missing",
+        "- resin-diamond-wheel-3000: Image Src present but Image Alt Text is missing",
+        "- resin-diamond-wheel-280: Image Src present but Image Alt Text is missing",
+        "- resin-diamond-wheel-1200: Image Src present but Image Alt Text is missing",
+        "- screw-on-flat-lap: Image Src present but Image Alt Text is missing",
+        "- magnetic-hard-disc: Image Src present but Image Alt Text is missing",
+        "- magnetic-felt-pad: Image Src present but Image Alt Text is missing",
+        "- hard-buffing-wheel: Image Src present but Image Alt Text is missing",
+        "- bonded-diamond-wheel-80: Image Src present but Image Alt Text is missing",
+        "- bonded-diamond-wheel-220: Image Src present but Image Alt Text is missing"
+      ],
+      "blockingAt": "applicable release/finalization scope; separate from repository architecture readiness"
+    },
+    {
+      "name": "launch_fixture_ownership",
+      "exitCode": 1,
+      "findingCount": 3,
+      "findings": [
+        "- Required storefront fixture is missing ownership entry: search",
+        "- Required storefront fixture is missing ownership entry: machineProduct",
+        "- Required storefront fixture is missing ownership entry: consumableProduct"
+      ],
+      "blockingAt": "applicable release/finalization scope; separate from repository architecture readiness"
+    }
+  ],
+  "execution": [
+    {
+      "planId": "E-MUT-020",
+      "domain": "definitions",
+      "planPrepared": true,
+      "approvedRows": 38,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-021",
+      "domain": "product_class",
+      "planPrepared": true,
+      "approvedRows": 122,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-022",
+      "domain": "category",
+      "planPrepared": true,
+      "approvedRows": 3,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-023",
+      "domain": "vendor",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-024",
+      "domain": "commerce_sku",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-025",
+      "domain": "machine_family",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-026",
+      "domain": "electrical",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-027",
+      "domain": "motor_speed",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-028",
+      "domain": "tool_mount",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-029",
+      "domain": "water_fluid",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-030",
+      "domain": "durable_measurements",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-031",
+      "domain": "crate_measurements",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-032",
+      "domain": "shipping_weight",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-033",
+      "domain": "fulfillment_class",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-034",
+      "domain": "compatibility",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-035",
+      "domain": "included_components",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-036",
+      "domain": "optional_components",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-037",
+      "domain": "recommendations",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-038",
+      "domain": "customer_manuals",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-039",
+      "domain": "diagrams_instructions_videos",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-040",
+      "domain": "warranty_support",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    },
+    {
+      "planId": "E-MUT-041",
+      "domain": "pickup_region",
+      "planPrepared": true,
+      "approvedRows": 0,
+      "executable": false,
+      "blockers": [
+        "mutation_unauthorized",
+        "admin_inaccessible",
+        "missing_Product Owner_GO",
+        "missing_Shopify Admin Owner_GO",
+        "no_approved_values",
+        "unsatisfied_preconditions"
+      ]
+    }
+  ],
+  "beforeAfter": {
+    "coverage": [
+      {
+        "dataset": "products",
+        "state": "compared",
+        "before": 122,
+        "after": 122
+      },
+      {
+        "dataset": "variants",
+        "state": "compared",
+        "before": 125,
+        "after": 125
+      }
+    ],
+    "changes": [],
+    "interpretation": "Snapshot-to-snapshot observations only. A missing or changed identity is never remapped by title, handle or family."
+  },
+  "planAfterVerification": null,
+  "driftReviewRequired": false,
+  "referenceFailures": [],
+  "definitionFailures": [],
+  "exitCode": 0,
+  "result": "repository_architecture_ready_with_explicit_deferred_values"
+}

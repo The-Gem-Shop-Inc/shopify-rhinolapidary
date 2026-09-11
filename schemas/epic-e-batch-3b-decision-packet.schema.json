@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Batch 3B persisted artifact shape. Cross-contract identity, provenance and approval invariants are enforced by scripts/lib/epic-e-batch-3b-validation.js.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "inputs",
+    "mutationAuthorized",
+    "decisions",
+    "grit",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "rank",
+          "owners",
+          "question",
+          "rows",
+          "impact",
+          "state",
+          "approval"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer"
+          },
+          "owners": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "question": {
+            "type": "string"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "impact": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "approval": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unknownProductGids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "grit": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "handle",
+          "observedGritTokens",
+          "state",
+          "gradingStandard",
+          "scope",
+          "variantRestructureAuthorized"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "handle": {
+            "type": "string"
+          },
+          "observedGritTokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "state": {
+            "type": "string"
+          },
+          "gradingStandard": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "scope": {
+            "type": "string"
+          },
+          "variantRestructureAuthorized": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "E-PBI-010",
+        "E-PBI-011",
+        "E-PBI-012",
+        "E-PBI-013",
+        "E-PBI-014",
+        "E-PBI-018B"
+      ],
+      "properties": {
+        "E-PBI-010": {
+          "type": "string"
+        },
+        "E-PBI-011": {
+          "type": "string"
+        },
+        "E-PBI-012": {
+          "type": "string"
+        },
+        "E-PBI-013": {
+          "type": "string"
+        },
+        "E-PBI-014": {
+          "type": "string"
+        },
+        "E-PBI-018B": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

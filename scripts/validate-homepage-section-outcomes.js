@@ -9,6 +9,7 @@ const REGISTER_PATH = path.join(ROOT, 'data', 'homepage-section-outcomes.json');
 const SCHEMA_PATH = path.join(ROOT, 'schemas', 'homepage-section-outcomes.schema.json');
 const NAVIGATION_PATH = path.join(ROOT, 'data', 'navigation-spec.json');
 const CLAIMS_PATH = path.join(ROOT, 'data', 'legal-claims-register.json');
+const INDEX_TEMPLATE_PATH = path.join(ROOT, 'templates', 'index.json');
 
 function readJson(filePath) {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -19,6 +20,7 @@ function validateHomepageSectionOutcomes(options = {}) {
     const schema = options.schema || readJson(SCHEMA_PATH);
     const navigation = options.navigation || readJson(NAVIGATION_PATH);
     const claims = options.claims || readJson(CLAIMS_PATH);
+    const indexTemplate = options.indexTemplate || readJson(INDEX_TEMPLATE_PATH);
     const ajv = new Ajv2020({ allErrors: true, strict: false });
     const validate = ajv.compile(schema);
     const errors = [];
@@ -256,6 +258,32 @@ function validateHomepageSectionOutcomes(options = {}) {
 
         if (module.status === 'blocked' && !module.blockerReason?.trim()) {
             errors.push(`${module.id}: blocked modules require blockerReason.`);
+        }
+
+        if (module.id === 'homepage-social-proof' && module.status === 'blocked') {
+            if (module.implementationState === 'implemented') {
+                errors.push('homepage-social-proof: blocked module cannot be implemented.');
+            }
+
+            const renderedActions = actions.filter((action) =>
+                ['current_rendered', 'implemented'].includes(action.renderState)
+            );
+
+            if (renderedActions.length > 0) {
+                errors.push('homepage-social-proof: blocked module cannot have rendered actions.');
+            }
+
+            const renderedSections = Object.entries(indexTemplate.sections || {})
+                .filter(([sectionId, section]) => (
+                    section?.settings?.module_id === module.id
+                    || sectionId.replaceAll('_', '-') === module.id
+                ));
+
+            if (renderedSections.length > 0) {
+                errors.push(
+                    'homepage-social-proof: blocked module cannot appear in templates/index.json.',
+                );
+            }
         }
 
         if (module.heroContentContract) {

@@ -1,0 +1,683 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "mutationAuthorized",
+    "inputs",
+    "snapshotCapturedAt",
+    "expiresAt",
+    "temporalState",
+    "refreshAvailable",
+    "missingDatasets",
+    "queryErrors",
+    "state",
+    "currentReconciliationUsable",
+    "perpetualStateClaim",
+    "sourcePath",
+    "readOnlyRefreshPerformed",
+    "refreshDisposition",
+    "definitionDiff",
+    "nativeDrift",
+    "delivery"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "snapshotCapturedAt": {
+      "type": "string"
+    },
+    "expiresAt": {
+      "type": "string"
+    },
+    "temporalState": {
+      "type": "string"
+    },
+    "refreshAvailable": {
+      "type": "boolean"
+    },
+    "missingDatasets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "queryErrors": {
+      "type": "integer"
+    },
+    "state": {
+      "type": "string"
+    },
+    "currentReconciliationUsable": {
+      "type": "boolean"
+    },
+    "perpetualStateClaim": {
+      "type": "boolean"
+    },
+    "sourcePath": {
+      "type": "string"
+    },
+    "readOnlyRefreshPerformed": {
+      "type": "boolean"
+    },
+    "refreshDisposition": {
+      "type": "string"
+    },
+    "definitionDiff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "$schema",
+        "schemaVersion",
+        "generatedAt",
+        "asOfDate",
+        "mode",
+        "registry",
+        "adminSnapshot",
+        "freshness",
+        "currentObservedCounts",
+        "entries",
+        "summary",
+        "downstreamGate"
+      ],
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "schemaVersion": {
+          "type": "integer"
+        },
+        "generatedAt": {
+          "type": "string"
+        },
+        "asOfDate": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "registry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "version",
+            "revision",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "revision": {
+              "type": "integer"
+            },
+            "sha256": {
+              "type": "string"
+            }
+          }
+        },
+        "adminSnapshot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "sha256",
+            "capturedAt",
+            "apiVersion",
+            "sourceKind"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "sha256": {
+              "type": "string"
+            },
+            "capturedAt": {
+              "type": "string"
+            },
+            "apiVersion": {
+              "type": "string"
+            },
+            "sourceKind": {
+              "type": "string"
+            }
+          }
+        },
+        "freshness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ageDays",
+            "maximumAgeDaysForMutationPlanning",
+            "status",
+            "refreshRequiredBeforeMutation",
+            "perpetualAdminStateClaim"
+          ],
+          "properties": {
+            "ageDays": {
+              "type": "integer"
+            },
+            "maximumAgeDaysForMutationPlanning": {
+              "type": "integer"
+            },
+            "status": {
+              "type": "string"
+            },
+            "refreshRequiredBeforeMutation": {
+              "type": "boolean"
+            },
+            "perpetualAdminStateClaim": {
+              "type": "boolean"
+            }
+          }
+        },
+        "currentObservedCounts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "PRODUCT",
+            "PRODUCTVARIANT",
+            "COLLECTION",
+            "METAOBJECT"
+          ],
+          "properties": {
+            "PRODUCT": {
+              "type": "integer"
+            },
+            "PRODUCTVARIANT": {
+              "type": "integer"
+            },
+            "COLLECTION": {
+              "type": "integer"
+            },
+            "METAOBJECT": {
+              "type": "integer"
+            }
+          }
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "definitionId",
+                  "resourceKind",
+                  "ownerType",
+                  "namespace",
+                  "key",
+                  "desiredDecisionState",
+                  "desiredLifecycleState",
+                  "dependsOnDefinitionIds",
+                  "currentDefinitionId",
+                  "differences",
+                  "mutationAuthorized",
+                  "action",
+                  "rationale"
+                ],
+                "properties": {
+                  "definitionId": {
+                    "type": "string"
+                  },
+                  "resourceKind": {
+                    "type": "string"
+                  },
+                  "ownerType": {
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  },
+                  "desiredDecisionState": {
+                    "type": "string"
+                  },
+                  "desiredLifecycleState": {
+                    "type": "string"
+                  },
+                  "dependsOnDefinitionIds": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "currentDefinitionId": {},
+                  "differences": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "mutationAuthorized": {
+                    "const": false
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "rationale": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "definitionId",
+                  "resourceKind",
+                  "ownerType",
+                  "namespace",
+                  "key",
+                  "desiredDecisionState",
+                  "desiredLifecycleState",
+                  "dependsOnDefinitionIds",
+                  "currentDefinitionId",
+                  "differences",
+                  "mutationAuthorized",
+                  "action",
+                  "rationale"
+                ],
+                "properties": {
+                  "definitionId": {
+                    "type": "string"
+                  },
+                  "resourceKind": {
+                    "type": "string"
+                  },
+                  "ownerType": {
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  },
+                  "desiredDecisionState": {
+                    "type": "string"
+                  },
+                  "desiredLifecycleState": {
+                    "type": "string"
+                  },
+                  "dependsOnDefinitionIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "currentDefinitionId": {},
+                  "differences": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "mutationAuthorized": {
+                    "const": false
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "rationale": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "definitionId",
+                  "resourceKind",
+                  "ownerType",
+                  "namespace",
+                  "key",
+                  "desiredDecisionState",
+                  "desiredLifecycleState",
+                  "dependsOnDefinitionIds",
+                  "currentDefinitionId",
+                  "differences",
+                  "mutationAuthorized",
+                  "action",
+                  "rationale"
+                ],
+                "properties": {
+                  "definitionId": {
+                    "type": "string"
+                  },
+                  "resourceKind": {
+                    "type": "string"
+                  },
+                  "ownerType": {
+                    "type": "string"
+                  },
+                  "namespace": {},
+                  "key": {
+                    "type": "string"
+                  },
+                  "desiredDecisionState": {
+                    "type": "string"
+                  },
+                  "desiredLifecycleState": {
+                    "type": "string"
+                  },
+                  "dependsOnDefinitionIds": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "currentDefinitionId": {},
+                  "differences": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "mutationAuthorized": {
+                    "const": false
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "rationale": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "create",
+            "no_op",
+            "conflict",
+            "incompatible_type",
+            "unexpected_live_definition",
+            "desired_not_approved",
+            "deprecated_definition_still_live",
+            "inaccessible_not_audited",
+            "approvedDesiredDefinitions",
+            "totalDesiredRegistryConcepts",
+            "totalObservedLiveDefinitions"
+          ],
+          "properties": {
+            "create": {
+              "type": "integer"
+            },
+            "no_op": {
+              "type": "integer"
+            },
+            "conflict": {
+              "type": "integer"
+            },
+            "incompatible_type": {
+              "type": "integer"
+            },
+            "unexpected_live_definition": {
+              "type": "integer"
+            },
+            "desired_not_approved": {
+              "type": "integer"
+            },
+            "deprecated_definition_still_live": {
+              "type": "integer"
+            },
+            "inaccessible_not_audited": {
+              "type": "integer"
+            },
+            "approvedDesiredDefinitions": {
+              "type": "integer"
+            },
+            "totalDesiredRegistryConcepts": {
+              "type": "integer"
+            },
+            "totalObservedLiveDefinitions": {
+              "type": "integer"
+            }
+          }
+        },
+        "downstreamGate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mutationPlanPbi",
+            "definitionCreationPbi",
+            "deterministicInputEligible",
+            "mutationAuthorized"
+          ],
+          "properties": {
+            "mutationPlanPbi": {
+              "type": "string"
+            },
+            "definitionCreationPbi": {
+              "type": "string"
+            },
+            "deterministicInputEligible": {
+              "type": "boolean"
+            },
+            "mutationAuthorized": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "nativeDrift": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverage",
+        "changes",
+        "interpretation"
+      ],
+      "properties": {
+        "coverage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dataset",
+              "state",
+              "before",
+              "after"
+            ],
+            "properties": {
+              "dataset": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "before": {
+                "type": "integer"
+              },
+              "after": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "changes": {
+          "type": "array",
+          "items": {}
+        },
+        "interpretation": {
+          "type": "string"
+        }
+      }
+    },
+    "delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "freshness",
+        "membershipComplete",
+        "configurationComplete",
+        "rows",
+        "unexpectedVariantGids",
+        "profileObservations",
+        "globalOverrideProfileGids",
+        "statistics"
+      ],
+      "properties": {
+        "freshness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "capturedAt",
+            "asOf",
+            "expiresAt",
+            "state"
+          ],
+          "properties": {
+            "capturedAt": {
+              "type": "string"
+            },
+            "asOf": {
+              "type": "string"
+            },
+            "expiresAt": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            }
+          }
+        },
+        "membershipComplete": {
+          "type": "boolean"
+        },
+        "configurationComplete": {
+          "type": "boolean"
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "variantGid",
+              "productGid",
+              "requiresShipping",
+              "observedProfileGid",
+              "expectedProfileGids",
+              "fulfillmentClass",
+              "state",
+              "reasons"
+            ],
+            "properties": {
+              "variantGid": {
+                "type": "string"
+              },
+              "productGid": {
+                "type": "string"
+              },
+              "requiresShipping": {
+                "type": "boolean"
+              },
+              "observedProfileGid": {},
+              "expectedProfileGids": {
+                "type": "array",
+                "items": {}
+              },
+              "fulfillmentClass": {},
+              "state": {
+                "type": "string"
+              },
+              "reasons": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "unexpectedVariantGids": {
+          "type": "array",
+          "items": {}
+        },
+        "profileObservations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^gid://shopify/DeliveryProfile/[0-9]+$"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "globalOverrideProfileGids": {
+          "type": "array",
+          "items": {}
+        },
+        "statistics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "aligned",
+            "contradiction",
+            "missing_profile",
+            "unassessed",
+            "stale"
+          ],
+          "properties": {
+            "aligned": {
+              "type": "integer"
+            },
+            "contradiction": {
+              "type": "integer"
+            },
+            "missing_profile": {
+              "type": "integer"
+            },
+            "unassessed": {
+              "type": "integer"
+            },
+            "stale": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

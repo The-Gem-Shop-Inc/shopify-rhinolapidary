@@ -1,0 +1,74 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "sources",
+    "note"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sourceId",
+          "path",
+          "sha256",
+          "pages",
+          "extractionState",
+          "decisionState",
+          "currentPolicyApproved"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "sourceId": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "page",
+                "text"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "page": {
+                  "type": "integer"
+                },
+                "text": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "extractionState": {
+            "type": "string"
+          },
+          "decisionState": {
+            "type": "string"
+          },
+          "currentPolicyApproved": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "epic-e-batch-3c-source-extracts repository evidence contract"
+}

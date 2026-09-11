@@ -1,62 +1,1130 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["metafields", "metaobjects"],
   "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "registryVersion",
+    "revision",
+    "generatedAt",
+    "approvedAt",
+    "governingPbi",
+    "decisionStateVocabulary",
+    "adminReconciliation",
+    "batchBoundary",
+    "governance",
+    "ownerRoles",
+    "consumerEpics",
+    "metafields",
+    "metaobjects",
+    "plannedDomains",
+    "statistics"
+  ],
   "properties": {
-    "$schema": { "type": "string" },
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 2
+    },
+    "registryVersion": {
+      "type": "string",
+      "minLength": 3
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "generatedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "approvedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "governingPbi": {
+      "const": "E-PBI-009"
+    },
+    "decisionStateVocabulary": {
+      "const": "data/epic-e-source-governance.json"
+    },
+    "adminReconciliation": {
+      "$ref": "#/$defs/registryReconciliation"
+    },
+    "batchBoundary": {
+      "$ref": "#/$defs/batchBoundary"
+    },
+    "governance": {
+      "$ref": "#/$defs/governance"
+    },
+    "ownerRoles": {
+      "type": "array",
+      "minItems": 7,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/ownerRole"
+      }
+    },
+    "consumerEpics": {
+      "$ref": "#/$defs/consumers"
+    },
     "metafields": {
       "type": "array",
       "items": {
-        "type": "object",
-        "required": [
-          "ownerType",
-          "namespace",
-          "key",
-          "name",
-          "type",
-          "requiredForLaunch",
-          "usedForFiltering",
-          "owner"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "ownerType": { "enum": ["product", "variant", "collection", "page"] },
-          "namespace": { "type": "string", "minLength": 1 },
-          "key": { "type": "string", "minLength": 1 },
-          "name": { "type": "string", "minLength": 2 },
-          "type": { "type": "string", "minLength": 2 },
-          "requiredForLaunch": { "type": "boolean" },
-          "usedForFiltering": { "type": "boolean" },
-          "owner": { "type": "string", "minLength": 2 }
-        }
+        "$ref": "#/$defs/metafield"
       }
     },
     "metaobjects": {
       "type": "array",
       "items": {
-        "type": "object",
-        "required": ["type", "name", "requiredForLaunch", "owner", "fields"],
-        "additionalProperties": false,
-        "properties": {
-          "type": { "type": "string", "minLength": 2 },
-          "name": { "type": "string", "minLength": 2 },
-          "requiredForLaunch": { "type": "boolean" },
-          "owner": { "type": "string", "minLength": 2 },
-          "fields": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["key", "name", "type", "required"],
-              "additionalProperties": false,
-              "properties": {
-                "key": { "type": "string", "minLength": 1 },
-                "name": { "type": "string", "minLength": 2 },
-                "type": { "type": "string", "minLength": 2 },
-                "required": { "type": "boolean" }
-              }
+        "$ref": "#/$defs/metaobject"
+      }
+    },
+    "plannedDomains": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "$ref": "#/$defs/plannedDomain"
+      }
+    },
+    "statistics": {
+      "$ref": "#/$defs/statistics"
+    }
+  },
+  "$defs": {
+    "decisionState": {
+      "enum": [
+        "observed",
+        "proposed",
+        "approved",
+        "conflicting",
+        "blocked",
+        "deprecated",
+        "superseded"
+      ]
+    },
+    "ownerRole": {
+      "enum": [
+        "Product Owner / Product Data",
+        "Technical",
+        "Operations",
+        "Support",
+        "Legal/Business",
+        "Media",
+        "Admin/Engineering"
+      ]
+    },
+    "epic": {
+      "enum": [
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P"
+      ]
+    },
+    "ownerType": {
+      "enum": [
+        "PRODUCT",
+        "PRODUCTVARIANT",
+        "COLLECTION"
+      ]
+    },
+    "registryReconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshotPath",
+        "snapshotSha256",
+        "capturedAt",
+        "apiVersion",
+        "reconciledAt",
+        "snapshotClaim",
+        "freshnessPolicy"
+      ],
+      "properties": {
+        "snapshotPath": {
+          "type": "string",
+          "minLength": 3
+        },
+        "snapshotSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "capturedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "apiVersion": {
+          "type": "string",
+          "pattern": "^20[0-9]{2}-(01|04|07|10)$"
+        },
+        "reconciledAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "snapshotClaim": {
+          "type": "string",
+          "minLength": 20
+        },
+        "freshnessPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "maximumAgeDaysForMutationPlanning",
+            "refreshRequiredWhenOlder",
+            "refreshRequiredOnQueryErrors",
+            "refreshRequiredBeforeMutationAfter"
+          ],
+          "properties": {
+            "maximumAgeDaysForMutationPlanning": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 30
+            },
+            "refreshRequiredWhenOlder": {
+              "const": true
+            },
+            "refreshRequiredOnQueryErrors": {
+              "const": true
+            },
+            "refreshRequiredBeforeMutationAfter": {
+              "type": "string",
+              "format": "date-time"
             }
           }
+        }
+      }
+    },
+    "batchBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repositoryContractOnly",
+        "adminMutationAuthorized",
+        "definitionCreationAuthorized",
+        "valuePopulationAuthorized",
+        "nextPbiImplemented",
+        "allowedOperations"
+      ],
+      "properties": {
+        "repositoryContractOnly": {
+          "const": true
+        },
+        "adminMutationAuthorized": {
+          "const": false
+        },
+        "definitionCreationAuthorized": {
+          "const": false
+        },
+        "valuePopulationAuthorized": {
+          "const": false
+        },
+        "nextPbiImplemented": {
+          "type": "boolean",
+          "description": "True after the explicitly authorized Batch 3B architecture; never Admin execution authority."
+        },
+        "allowedOperations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "read_checked_in_snapshot",
+              "validate_registry",
+              "generate_dry_run_diff"
+            ]
+          }
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lifecycleChangePolicy",
+        "typedDataRules",
+        "nativeFieldExclusions"
+      ],
+      "properties": {
+        "lifecycleChangePolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identityFieldsImmutable",
+            "approvedChangesRequire",
+            "deprecationRequiresReplacementAuthority",
+            "unknownOrConflictingValuesRemainUnapproved"
+          ],
+          "properties": {
+            "identityFieldsImmutable": {
+              "type": "array",
+              "minItems": 5,
+              "uniqueItems": true,
+              "items": {
+                "type": "string"
+              }
+            },
+            "approvedChangesRequire": {
+              "type": "array",
+              "minItems": 5,
+              "uniqueItems": true,
+              "items": {
+                "type": "string"
+              }
+            },
+            "deprecationRequiresReplacementAuthority": {
+              "const": true
+            },
+            "unknownOrConflictingValuesRemainUnapproved": {
+              "const": true
+            }
+          }
+        },
+        "typedDataRules": {
+          "type": "array",
+          "minItems": 9,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 5
+          }
+        },
+        "nativeFieldExclusions": {
+          "type": "array",
+          "minItems": 15,
+          "items": {
+            "$ref": "#/$defs/nativeFieldExclusion"
+          }
+        }
+      }
+    },
+    "nativeFieldExclusion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "concept",
+        "shopifyOwner",
+        "nativePath",
+        "prohibitedCustomKeys"
+      ],
+      "properties": {
+        "concept": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "shopifyOwner": {
+          "$ref": "#/$defs/ownerType"
+        },
+        "nativePath": {
+          "type": "string",
+          "minLength": 3
+        },
+        "prohibitedCustomKeys": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          }
+        }
+      }
+    },
+    "consumers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mvp",
+        "postMvp"
+      ],
+      "properties": {
+        "mvp": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/epic"
+          }
+        },
+        "postMvp": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/epic"
+          }
+        }
+      }
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entityType",
+        "productClasses",
+        "requirement",
+        "condition"
+      ],
+      "properties": {
+        "entityType": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "productClasses": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "machine",
+              "replacement_part",
+              "consumable",
+              "accessory"
+            ]
+          }
+        },
+        "requirement": {
+          "enum": [
+            "required",
+            "optional",
+            "conditional"
+          ]
+        },
+        "condition": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
+    "justification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "nativeFieldAssessment",
+        "duplicatesNativeField"
+      ],
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 10
+        },
+        "nativeFieldAssessment": {
+          "type": "string",
+          "minLength": 10
+        },
+        "duplicatesNativeField": {
+          "const": false
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority",
+        "evidenceOwners"
+      ],
+      "properties": {
+        "authority": {
+          "type": "string",
+          "minLength": 3
+        },
+        "evidenceOwners": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/ownerRole"
+          }
+        }
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "businessApprovalOwner",
+        "operationalOwner",
+        "technicalImplementationOwner"
+      ],
+      "properties": {
+        "businessApprovalOwner": {
+          "$ref": "#/$defs/ownerRole"
+        },
+        "operationalOwner": {
+          "$ref": "#/$defs/ownerRole"
+        },
+        "technicalImplementationOwner": {
+          "const": "Admin/Engineering"
+        }
+      }
+    },
+    "accessIntent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "admin",
+        "storefront",
+        "apiSurfaces"
+      ],
+      "properties": {
+        "admin": {
+          "enum": [
+            "none",
+            "merchant_read",
+            "merchant_read_write"
+          ]
+        },
+        "storefront": {
+          "enum": [
+            "none",
+            "public_read"
+          ]
+        },
+        "apiSurfaces": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "admin",
+              "storefront",
+              "liquid"
+            ]
+          }
+        }
+      }
+    },
+    "validationRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value",
+        "enforcement"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "value": {},
+        "enforcement": {
+          "enum": [
+            "shopify_definition",
+            "repository",
+            "mutation_plan_resolution"
+          ]
+        }
+      }
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "sourceDefinition",
+        "replacementAuthorityPbi",
+        "replacementDefinitionId",
+        "coexistence",
+        "valueMigrationRequired",
+        "rollbackConsiderations"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "new_definition",
+            "existing_compatible_definition",
+            "replacement",
+            "deprecation",
+            "supersession",
+            "temporary_coexistence"
+          ]
+        },
+        "sourceDefinition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "replacementAuthorityPbi": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^E-PBI-[0-9]{3}[A-Z]?$"
+        },
+        "replacementDefinitionId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^CD-(MF|MO)-[0-9]{3}$"
+        },
+        "coexistence": {
+          "type": "string",
+          "minLength": 10
+        },
+        "valueMigrationRequired": {
+          "type": "boolean"
+        },
+        "rollbackConsiderations": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "definitionReconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observedState",
+        "currentDefinitionId",
+        "currentType"
+      ],
+      "properties": {
+        "observedState": {
+          "enum": [
+            "absent_in_snapshot",
+            "matches_snapshot",
+            "conflicts_with_snapshot",
+            "inaccessible_not_audited"
+          ]
+        },
+        "currentDefinitionId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "currentType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "commonDefinition": {
+      "type": "object",
+      "required": [
+        "definitionId",
+        "name",
+        "description",
+        "canonicalRole",
+        "decisionState",
+        "lifecycleState",
+        "sourcePbi",
+        "definitionDependencies",
+        "requiredForLaunch",
+        "applicability",
+        "evidence",
+        "ownership",
+        "consumers",
+        "accessIntent",
+        "migration",
+        "adminReconciliation",
+        "cautions"
+      ],
+      "properties": {
+        "definitionId": {
+          "type": "string",
+          "pattern": "^CD-(MF|MO)-[0-9]{3}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2
+        },
+        "description": {
+          "type": "string",
+          "minLength": 20
+        },
+        "canonicalRole": {
+          "enum": [
+            "canonical",
+            "noncanonical_candidate",
+            "legacy_noncanonical"
+          ]
+        },
+        "decisionState": {
+          "$ref": "#/$defs/decisionState"
+        },
+        "lifecycleState": {
+          "enum": [
+            "approved_desired_state",
+            "proposed_future",
+            "legacy_repository",
+            "deprecated",
+            "superseded",
+            "blocked",
+            "intentionally_absent"
+          ]
+        },
+        "sourcePbi": {
+          "type": "string",
+          "pattern": "^E-PBI-[0-9]{3}[A-Z]?$"
+        },
+        "definitionDependencies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^CD-(MF|MO)-[0-9]{3}$"
+          }
+        },
+        "requiredForLaunch": {
+          "type": "boolean"
+        },
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "evidence": {
+          "$ref": "#/$defs/evidence"
+        },
+        "ownership": {
+          "$ref": "#/$defs/ownership"
+        },
+        "consumers": {
+          "$ref": "#/$defs/consumers"
+        },
+        "accessIntent": {
+          "$ref": "#/$defs/accessIntent"
+        },
+        "migration": {
+          "$ref": "#/$defs/migration"
+        },
+        "adminReconciliation": {
+          "$ref": "#/$defs/definitionReconciliation"
+        },
+        "cautions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
+      }
+    },
+    "metafield": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonDefinition"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "definitionId",
+            "ownerType",
+            "namespace",
+            "key",
+            "name",
+            "description",
+            "type",
+            "cardinality",
+            "canonicalRole",
+            "decisionState",
+            "lifecycleState",
+            "sourcePbi",
+            "definitionDependencies",
+            "requiredForLaunch",
+            "usedForFiltering",
+            "applicability",
+            "customDataJustification",
+            "evidence",
+            "ownership",
+            "consumers",
+            "accessIntent",
+            "validationRules",
+            "allowedBehavior",
+            "migration",
+            "adminReconciliation",
+            "cautions"
+          ],
+          "properties": {
+            "definitionId": {
+              "type": "string",
+              "pattern": "^CD-MF-[0-9]{3}$"
+            },
+            "ownerType": {
+              "$ref": "#/$defs/ownerType"
+            },
+            "namespace": {
+              "type": "string",
+              "pattern": "^[a-z0-9_]+$"
+            },
+            "key": {
+              "type": "string",
+              "pattern": "^[a-z0-9_]+$"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "minLength": 2
+            },
+            "cardinality": {
+              "enum": [
+                "one",
+                "list"
+              ]
+            },
+            "canonicalRole": {},
+            "decisionState": {},
+            "lifecycleState": {},
+            "sourcePbi": {},
+            "definitionDependencies": {},
+            "requiredForLaunch": {},
+            "usedForFiltering": {
+              "type": "boolean"
+            },
+            "applicability": {},
+            "customDataJustification": {
+              "$ref": "#/$defs/justification"
+            },
+            "evidence": {},
+            "ownership": {},
+            "consumers": {},
+            "accessIntent": {},
+            "validationRules": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/validationRule"
+              }
+            },
+            "allowedBehavior": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "allowedValues",
+                "defaultValue",
+                "unknownOrConflictBehavior"
+              ],
+              "properties": {
+                "allowedValues": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {}
+                },
+                "defaultValue": {},
+                "unknownOrConflictBehavior": {
+                  "enum": [
+                    "block_value_population",
+                    "leave_absent",
+                    "preserve_as_unapproved_evidence"
+                  ]
+                }
+              }
+            },
+            "migration": {},
+            "adminReconciliation": {},
+            "cautions": {
+              "type": "array"
+            }
+          }
+        }
+      ]
+    },
+    "metaobjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "name",
+        "description",
+        "type",
+        "cardinality",
+        "required",
+        "validationRules"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10
+        },
+        "type": {
+          "type": "string",
+          "minLength": 2
+        },
+        "cardinality": {
+          "enum": [
+            "one",
+            "list"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "validationRules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/validationRule"
+          }
+        }
+      }
+    },
+    "metaobject": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonDefinition"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "definitionId",
+            "type",
+            "name",
+            "description",
+            "displayNameKey",
+            "canonicalRole",
+            "decisionState",
+            "lifecycleState",
+            "sourcePbi",
+            "definitionDependencies",
+            "requiredForLaunch",
+            "entitySemantics",
+            "reuseJustification",
+            "simplerMetafieldInsufficient",
+            "referenceDirection",
+            "applicability",
+            "evidence",
+            "ownership",
+            "consumers",
+            "accessIntent",
+            "capabilities",
+            "fields",
+            "migration",
+            "adminReconciliation",
+            "cautions"
+          ],
+          "properties": {
+            "definitionId": {
+              "type": "string",
+              "pattern": "^CD-MO-[0-9]{3}$"
+            },
+            "type": {
+              "type": "string",
+              "pattern": "^[a-z0-9_]+$"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "displayNameKey": {
+              "type": "string",
+              "pattern": "^[a-z0-9_]+$"
+            },
+            "canonicalRole": {},
+            "decisionState": {},
+            "lifecycleState": {},
+            "sourcePbi": {},
+            "definitionDependencies": {},
+            "requiredForLaunch": {},
+            "entitySemantics": {
+              "type": "string",
+              "minLength": 20
+            },
+            "reuseJustification": {
+              "type": "string",
+              "minLength": 30
+            },
+            "simplerMetafieldInsufficient": {
+              "type": "string",
+              "minLength": 30
+            },
+            "referenceDirection": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 10
+              }
+            },
+            "applicability": {},
+            "evidence": {},
+            "ownership": {},
+            "consumers": {},
+            "accessIntent": {},
+            "capabilities": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "publishable",
+                "translatable"
+              ],
+              "properties": {
+                "publishable": {
+                  "type": "boolean"
+                },
+                "translatable": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "fields": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/metaobjectField"
+              }
+            },
+            "migration": {},
+            "adminReconciliation": {},
+            "cautions": {
+              "type": "array"
+            }
+          }
+        }
+      ]
+    },
+    "plannedDomain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domain",
+        "owningPbis",
+        "decisionState",
+        "definitionKeysApproved",
+        "notes"
+      ],
+      "properties": {
+        "domain": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "owningPbis": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^E-PBI-(010|011|012|013|014|015|016|017|018B)$"
+          }
+        },
+        "decisionState": {
+          "enum": [
+            "proposed",
+            "approved"
+          ]
+        },
+        "definitionKeysApproved": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metafields",
+        "metaobjects",
+        "byOwnerType",
+        "byDecisionState",
+        "approvedLaunchRequired",
+        "approvedWithTbdOwner"
+      ],
+      "properties": {
+        "metafields": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "metaobjects": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byOwnerType": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "PRODUCT",
+            "PRODUCTVARIANT",
+            "COLLECTION"
+          ],
+          "properties": {
+            "PRODUCT": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "PRODUCTVARIANT": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "COLLECTION": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "byDecisionState": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "approved",
+            "proposed",
+            "deprecated",
+            "blocked"
+          ],
+          "properties": {
+            "approved": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "proposed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "deprecated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "blocked": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "approvedLaunchRequired": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "approvedWithTbdOwner": {
+          "const": 0
         }
       }
     }

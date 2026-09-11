@@ -192,6 +192,19 @@ Use `npm run qa:epic-c:all` only when both static and preview access are
 available. The preview QA must target the unpublished preview theme
 `158631198917`, not production theme `158579622085`.
 
+## Epic D Homepage QA
+
+Homepage transformation uses an aggregate technical gate while retaining D-PBI-032 as human-only production signoff:
+
+```sh
+npm run qa:epic-d:static
+npm run qa:epic-d:preview
+npm run qa:epic-d:all
+npm run validate:epic-d-finalization
+```
+
+The runner targets unpublished preview theme `158631198917`; production theme `158579622085` remains unapproved.
+
 ## Shopify upload policy
 
 The repository includes documentation, tests, scripts, local environment files, and CI configuration that must not be uploaded to Shopify as theme assets.
@@ -276,6 +289,7 @@ Changes to these areas require focused testing:
 * [Epic C global chrome current-state audit](docs/architecture/epic-c-global-chrome-current-state-audit.md)
 * [Epic C breadcrumb architecture](docs/architecture/epic-c-breadcrumb-architecture.md)
 * [Epic C footer and support IA](docs/architecture/epic-c-footer-support-ia.md)
+* [Rhino MVP sequencing decision](docs/roadmap/rhino-mvp-sequencing.md)
 
 ### Development
 
@@ -298,6 +312,8 @@ Changes to these areas require focused testing:
 * [Epic C global chrome QA plan](data/epic-c-global-chrome-qa-plan.json)
 * [Epic C responsive global chrome evidence plan](docs/qa/epic-c-responsive-global-chrome-evidence-plan.md)
 * [Epic C post-launch navigation measurement plan](docs/analytics/epic-c-post-launch-navigation-measurement-plan.md)
+* [Epic D homepage QA plan](data/epic-d-homepage-qa-plan.json)
+* [Epic D technical finalization report](docs/release/epic-d-finalization-report.md)
 
 ### Release
 

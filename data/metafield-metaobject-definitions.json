@@ -1,67 +1,4579 @@
 {
   "$schema": "../schemas/metafield-metaobject-definitions.schema.json",
+  "schemaVersion": 2,
+  "registryVersion": "2026.09.09-epic-e-batch-3c",
+  "revision": 3,
+  "generatedAt": "2026-09-09T16:14:00.000Z",
+  "approvedAt": "2026-09-08",
+  "governingPbi": "E-PBI-009",
+  "decisionStateVocabulary": "data/epic-e-source-governance.json",
+  "adminReconciliation": {
+    "snapshotPath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+    "snapshotSha256": "d2daa618337640c42878f3ed0aa398b2c0cda198229731ca21e248e3f22c6985",
+    "capturedAt": "2026-09-03T17:52:28.268Z",
+    "apiVersion": "2026-07",
+    "reconciledAt": "2026-09-04",
+    "snapshotClaim": "Snapshot-relative observation only; zero live definitions on 2026-09-03 is not a perpetual Admin-state claim.",
+    "freshnessPolicy": {
+      "maximumAgeDaysForMutationPlanning": 7,
+      "refreshRequiredWhenOlder": true,
+      "refreshRequiredOnQueryErrors": true,
+      "refreshRequiredBeforeMutationAfter": "2026-09-10T17:52:28.268Z"
+    }
+  },
+  "batchBoundary": {
+    "repositoryContractOnly": true,
+    "adminMutationAuthorized": false,
+    "definitionCreationAuthorized": false,
+    "valuePopulationAuthorized": false,
+    "nextPbiImplemented": true,
+    "allowedOperations": [
+      "read_checked_in_snapshot",
+      "validate_registry",
+      "generate_dry_run_diff"
+    ]
+  },
+  "governance": {
+    "lifecycleChangePolicy": {
+      "identityFieldsImmutable": [
+        "resourceKind",
+        "ownerType",
+        "namespace",
+        "key",
+        "type"
+      ],
+      "approvedChangesRequire": [
+        "owning_pbi_decision",
+        "owner_approval",
+        "schema_validation",
+        "fresh_admin_reconciliation",
+        "e_pbi_019_mutation_plan"
+      ],
+      "deprecationRequiresReplacementAuthority": true,
+      "unknownOrConflictingValuesRemainUnapproved": true
+    },
+    "typedDataRules": [
+      "standard_shopify_fields_before_custom_data",
+      "typed_atomic_metafields_before_opaque_json",
+      "references_before_duplicated_names",
+      "lists_only_for_true_cardinality",
+      "metaobjects_only_for_reusable_structured_entities",
+      "product_references_for_approved_exact_product_relations",
+      "tags_and_collections_are_not_custom_data_substitutes",
+      "canonical_values_do_not_embed_display_formatting",
+      "unknown_or_conflicting_facts_cannot_be_approved_for_completeness"
+    ],
+    "nativeFieldExclusions": [
+      {
+        "concept": "product_title",
+        "shopifyOwner": "PRODUCT",
+        "nativePath": "Product.title",
+        "prohibitedCustomKeys": [
+          "title",
+          "product_title"
+        ]
+      },
+      {
+        "concept": "product_handle",
+        "shopifyOwner": "PRODUCT",
+        "nativePath": "Product.handle",
+        "prohibitedCustomKeys": [
+          "handle",
+          "product_handle"
+        ]
+      },
+      {
+        "concept": "product_status",
+        "shopifyOwner": "PRODUCT",
+        "nativePath": "Product.status",
+        "prohibitedCustomKeys": [
+          "status",
+          "product_status"
+        ]
+      },
+      {
+        "concept": "shopify_product_category",
+        "shopifyOwner": "PRODUCT",
+        "nativePath": "Product.category",
+        "prohibitedCustomKeys": [
+          "category",
+          "product_category",
+          "shopify_category"
+        ]
+      },
+      {
+        "concept": "product_type",
+        "shopifyOwner": "PRODUCT",
+        "nativePath": "Product.productType",
+        "prohibitedCustomKeys": [
+          "product_type"
+        ]
+      },
+      {
+        "concept": "vendor",
+        "shopifyOwner": "PRODUCT",
+        "nativePath": "Product.vendor",
+        "prohibitedCustomKeys": [
+          "vendor",
+          "brand_vendor"
+        ]
+      },
+      {
+        "concept": "variant_options",
+        "shopifyOwner": "PRODUCTVARIANT",
+        "nativePath": "ProductVariant.selectedOptions",
+        "prohibitedCustomKeys": [
+          "variant_options",
+          "options"
+        ]
+      },
+      {
+        "concept": "price",
+        "shopifyOwner": "PRODUCTVARIANT",
+        "nativePath": "ProductVariant.price",
+        "prohibitedCustomKeys": [
+          "price"
+        ]
+      },
+      {
+        "concept": "compare_at_price",
+        "shopifyOwner": "PRODUCTVARIANT",
+        "nativePath": "ProductVariant.compareAtPrice",
+        "prohibitedCustomKeys": [
+          "compare_at_price"
+        ]
+      },
+      {
+        "concept": "variant_sku",
+        "shopifyOwner": "PRODUCTVARIANT",
+        "nativePath": "ProductVariant.sku",
+        "prohibitedCustomKeys": [
+          "sku",
+          "variant_sku",
+          "commerce_sku"
+        ]
+      },
+      {
+        "concept": "barcode",
+        "shopifyOwner": "PRODUCTVARIANT",
+        "nativePath": "ProductVariant.barcode",
+        "prohibitedCustomKeys": [
+          "barcode",
+          "gtin"
+        ]
+      },
+      {
+        "concept": "native_shipping_weight",
+        "shopifyOwner": "PRODUCTVARIANT",
+        "nativePath": "ProductVariant.inventoryItem.measurement.weight",
+        "prohibitedCustomKeys": [
+          "weight",
+          "shipping_weight",
+          "variant_weight"
+        ]
+      },
+      {
+        "concept": "inventory_identity_state",
+        "shopifyOwner": "PRODUCTVARIANT",
+        "nativePath": "ProductVariant.inventoryItem",
+        "prohibitedCustomKeys": [
+          "inventory",
+          "inventory_state",
+          "inventory_item_id"
+        ]
+      },
+      {
+        "concept": "publication_state",
+        "shopifyOwner": "PRODUCT",
+        "nativePath": "Product.resourcePublicationsV2",
+        "prohibitedCustomKeys": [
+          "published",
+          "publication_state"
+        ]
+      },
+      {
+        "concept": "collection_membership",
+        "shopifyOwner": "PRODUCT",
+        "nativePath": "Product.collections",
+        "prohibitedCustomKeys": [
+          "collections",
+          "collection_membership"
+        ]
+      }
+    ]
+  },
+  "ownerRoles": [
+    "Product Owner / Product Data",
+    "Technical",
+    "Operations",
+    "Support",
+    "Legal/Business",
+    "Media",
+    "Admin/Engineering"
+  ],
+  "consumerEpics": {
+    "mvp": [
+      "F",
+      "G",
+      "J",
+      "K",
+      "L",
+      "O",
+      "P"
+    ],
+    "postMvp": [
+      "H",
+      "I",
+      "M",
+      "N"
+    ]
+  },
   "metafields": [
     {
-      "ownerType": "product",
+      "definitionId": "CD-MF-001",
+      "ownerType": "PRODUCT",
       "namespace": "rhino",
       "key": "product_class",
       "name": "Product class",
+      "description": "Canonical Rhino catalog role used to distinguish machines, replacement parts, consumables, and accessories without relying on Product Type, tags, or collections.",
       "type": "single_line_text_field",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-004",
+      "definitionDependencies": [],
       "requiredForLaunch": true,
       "usedForFiltering": true,
-      "owner": "TBD"
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "required",
+        "condition": "Every current Rhino catalog Product in the approved four-class model has exactly one value."
+      },
+      "customDataJustification": {
+        "purpose": "Rhino-specific business classification with a closed vocabulary and concrete MVP routing/filtering consumers.",
+        "nativeFieldAssessment": "Shopify Category is a separate official taxonomy; Product Type is intentionally blank and must not duplicate this role.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-product-classification.json",
+        "evidenceOwners": [
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Product Owner / Product Data",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "K",
+          "L",
+          "O"
+        ],
+        "postMvp": [
+          "H",
+          "I",
+          "M",
+          "N"
+        ]
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "choices",
+          "value": [
+            "machine",
+            "replacement_part",
+            "consumable",
+            "accessory"
+          ],
+          "enforcement": "shopify_definition"
+        },
+        {
+          "name": "complete_current_catalog_coverage",
+          "value": 122,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "not_applicable",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Definition deletion is not harmless after values exist; later planning must preserve the classification register and before-state evidence."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Do not derive values from tags, collections, Product Type, title, or handle.",
+        "This batch does not create the definition or populate Product values."
+      ]
     },
     {
-      "ownerType": "product",
+      "definitionId": "CD-MF-002",
+      "ownerType": "PRODUCT",
       "namespace": "rhino",
-      "key": "compatibility",
-      "name": "Compatibility",
-      "type": "list.single_line_text_field",
-      "requiredForLaunch": false,
-      "usedForFiltering": true,
-      "owner": "TBD"
-    },
-    {
-      "ownerType": "product",
-      "namespace": "rhino",
-      "key": "grit",
-      "name": "Grit",
-      "type": "single_line_text_field",
-      "requiredForLaunch": false,
-      "usedForFiltering": true,
-      "owner": "TBD"
-    },
-    {
-      "ownerType": "product",
-      "namespace": "rhino",
-      "key": "machine_specs",
-      "name": "Machine specifications",
-      "type": "json",
+      "key": "machine_family",
+      "name": "Machine family",
+      "description": "Reference from a Product to one governed reusable machine-family record; family membership is organizational context, not Product identity or compatibility proof.",
+      "type": "metaobject_reference",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-009",
+      "definitionDependencies": [
+        "CD-MO-001"
+      ],
       "requiredForLaunch": false,
       "usedForFiltering": false,
-      "owner": "TBD"
+      "applicability": {
+        "entityType": "catalog_product_with_approved_family_membership",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "conditional",
+        "condition": "Present only after Product Data approves a family membership; absence is preferred to inference."
+      },
+      "customDataJustification": {
+        "purpose": "Provides one reusable family entity for products and governed support architecture without copying mutable family names.",
+        "nativeFieldAssessment": "No Shopify native Product field represents Rhino machine-family membership.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "docs/brand/rhino-machine-family-identifiers.md",
+        "evidenceOwners": [
+          "Product Owner / Product Data",
+          "Technical"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Product Owner / Product Data",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": [
+          "H",
+          "I",
+          "M",
+          "N"
+        ]
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "metaobject_type",
+          "value": "machine_family",
+          "enforcement": "mutation_plan_resolution"
+        },
+        {
+          "name": "approved_family_membership_only",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "leave_absent"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "not_applicable",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Later plans must preserve metaobject and Product-reference GIDs; deleting and recreating either side can break references."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Family membership is not an identity, compatibility, specification, or exact Product-relation claim.",
+        "Do not infer membership from title, handle, tags, collections, or filenames."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-003",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "compatibility",
+      "name": "Compatibility (legacy string proposal)",
+      "description": "Historical free-text/list proposal retained only for migration audit; it is not canonical compatibility architecture.",
+      "type": "list.single_line_text_field",
+      "cardinality": "list",
+      "canonicalRole": "legacy_noncanonical",
+      "decisionState": "deprecated",
+      "lifecycleState": "deprecated",
+      "sourcePbi": "E-PBI-009",
+      "definitionDependencies": [],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "legacy_repository_concept",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "optional",
+        "condition": "No new values; retained only so E-PBI-012 can plan replacement safely."
+      },
+      "customDataJustification": {
+        "purpose": "Audit and migration history only.",
+        "nativeFieldAssessment": "Compatibility requires a future governed relation contract rather than native Product text or this string list.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "docs/architecture/epic-e-product-information-discovery.md",
+        "evidenceOwners": [
+          "Technical",
+          "Support"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Support",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "none",
+        "storefront": "none",
+        "apiSurfaces": []
+      },
+      "validationRules": [
+        {
+          "name": "new_values_forbidden",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_compatibility_forbidden",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "preserve_as_unapproved_evidence"
+      },
+      "migration": {
+        "state": "deprecation",
+        "sourceDefinition": "repository-v1:PRODUCT:rhino.compatibility",
+        "replacementAuthorityPbi": "E-PBI-012",
+        "replacementDefinitionId": "CD-MF-034",
+        "coexistence": "No live definition exists in the dated snapshot; any later coexistence decision belongs to E-PBI-012 and E-PBI-019.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve any later-discovered legacy values as evidence; never translate names into references without approval."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Do not create this deprecated definition or infer compatibility values."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-004",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "grit",
+      "name": "Grit (legacy proposal)",
+      "description": "Existing repository proposal for a filterable grit attribute; definition semantics and type remain unapproved.",
+      "type": "single_line_text_field",
+      "cardinality": "one",
+      "canonicalRole": "noncanonical_candidate",
+      "decisionState": "proposed",
+      "lifecycleState": "proposed_future",
+      "sourcePbi": "E-PBI-009",
+      "definitionDependencies": [],
+      "requiredForLaunch": false,
+      "usedForFiltering": true,
+      "applicability": {
+        "entityType": "candidate_abrasive_product",
+        "productClasses": [
+          "consumable"
+        ],
+        "requirement": "conditional",
+        "condition": "Only products whose governed semantics establish grit; final type/vocabulary requires a future owning decision."
+      },
+      "customDataJustification": {
+        "purpose": "Potential structured filtering for abrasive products.",
+        "nativeFieldAssessment": "No Shopify native Product field represents abrasive grit, but this candidate is not yet approved.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/collection-filter-spec.json",
+        "evidenceOwners": [
+          "Product Owner / Product Data",
+          "Technical"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Product Owner / Product Data",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "G"
+        ],
+        "postMvp": [
+          "H",
+          "M"
+        ]
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "approval_required_before_definition_plan",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "leave_absent"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "not_applicable",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Do not create or populate until its type, allowed values, and value authority are approved."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Future owner: Product Owner and Technical, Epic E abrasive attribute contract for the existing Epic G filter consumer. Grading standard and mixed-pack semantics remain unapproved; retain separate Products."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-005",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "machine_specs",
+      "name": "Machine specifications (legacy JSON proposal)",
+      "description": "Historical opaque JSON proposal retained for migration audit; it cannot be the sole canonical source for trusted machine facts.",
+      "type": "json",
+      "cardinality": "one",
+      "canonicalRole": "legacy_noncanonical",
+      "decisionState": "deprecated",
+      "lifecycleState": "deprecated",
+      "sourcePbi": "E-PBI-009",
+      "definitionDependencies": [],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "legacy_repository_concept",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "optional",
+        "condition": "No new values; retained only for E-PBI-010 migration design."
+      },
+      "customDataJustification": {
+        "purpose": "Audit and migration history only.",
+        "nativeFieldAssessment": "Machine facts require E-PBI-010 atomic typed definitions; JSON is not approved as final architecture.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "docs/product/rhino-machine-specification-resolution-register.md",
+        "evidenceOwners": [
+          "Technical"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "none",
+        "storefront": "none",
+        "apiSurfaces": []
+      },
+      "validationRules": [
+        {
+          "name": "new_values_forbidden",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "sole_canonical_technical_source_forbidden",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "preserve_as_unapproved_evidence"
+      },
+      "migration": {
+        "state": "deprecation",
+        "sourceDefinition": "repository-v1:PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": "E-PBI-010",
+        "replacementDefinitionId": null,
+        "coexistence": "Replace each JSON property through the explicit legacyMigration map in data/epic-e-batch-3b-contracts.json. Unmapped properties stay evidence-only; no blanket JSON migration.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve any later-discovered JSON as source evidence and migrate facts individually only after field-level approval."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Do not create this deprecated definition or serialize unresolved/conflicting facts into JSON."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-010",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "input_voltage",
+      "name": "input voltage",
+      "description": "Rated machine input voltage; conflicting regional observations are not configurations.",
+      "type": "voltage",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Rated machine input voltage; conflicting regional observations are not configurations."
+      },
+      "customDataJustification": {
+        "purpose": "Rated machine input voltage; conflicting regional observations are not configurations.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "volts",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-011",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "input_frequencies",
+      "name": "input frequencies",
+      "description": "Explicitly rated discrete supply frequencies; do not expand a printed range into a list without Technical confirmation.",
+      "type": "list.frequency",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Explicitly rated discrete supply frequencies; do not expand a printed range into a list without Technical confirmation."
+      },
+      "customDataJustification": {
+        "purpose": "Explicitly rated discrete supply frequencies; do not expand a printed range into a list without Technical confirmation.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "hertz",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-012",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "motor_power",
+      "name": "motor power",
+      "description": "Rated primary drive motor output; input consumption and auxiliary motor power are different facts. Preserve horsepower standard uncertainty before conversion.",
+      "type": "power",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Rated primary drive motor output; input consumption and auxiliary motor power are different facts. Preserve horsepower standard uncertainty before conversion."
+      },
+      "customDataJustification": {
+        "purpose": "Rated primary drive motor output; input consumption and auxiliary motor power are different facts. Preserve horsepower standard uncertainty before conversion.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "horsepower",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-013",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "motor_speed",
+      "name": "motor speed",
+      "description": "Rated primary motor shaft speed; does not represent tool operating speed.",
+      "type": "rotational_speed",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Rated primary motor shaft speed; does not represent tool operating speed."
+      },
+      "customDataJustification": {
+        "purpose": "Rated primary motor shaft speed; does not represent tool operating speed.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "revolutions_per_minute",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-014",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_speed_min",
+      "name": "wheel speed min",
+      "description": "Minimum supported wheel operating speed for the approved current machine configuration.",
+      "type": "rotational_speed",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Minimum supported wheel operating speed for the approved current machine configuration."
+      },
+      "customDataJustification": {
+        "purpose": "Minimum supported wheel operating speed for the approved current machine configuration.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "revolutions_per_minute",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-015",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_speed_max",
+      "name": "wheel speed max",
+      "description": "Maximum supported wheel operating speed; cannot inherit flex-shaft speed.",
+      "type": "rotational_speed",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Maximum supported wheel operating speed; cannot inherit flex-shaft speed."
+      },
+      "customDataJustification": {
+        "purpose": "Maximum supported wheel operating speed; cannot inherit flex-shaft speed.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "revolutions_per_minute",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-016",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "flex_shaft_speed_min",
+      "name": "flex shaft speed min",
+      "description": "Minimum flex-shaft operating speed; attachment-specific EM-1 control range.",
+      "type": "rotational_speed",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Minimum flex-shaft operating speed; attachment-specific EM-1 control range."
+      },
+      "customDataJustification": {
+        "purpose": "Minimum flex-shaft operating speed; attachment-specific EM-1 control range.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "revolutions_per_minute",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-017",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "flex_shaft_speed_max",
+      "name": "flex shaft speed max",
+      "description": "Maximum flex-shaft operating speed; never a motor or wheel speed alias.",
+      "type": "rotational_speed",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Maximum flex-shaft operating speed; never a motor or wheel speed alias."
+      },
+      "customDataJustification": {
+        "purpose": "Maximum flex-shaft operating speed; never a motor or wheel speed alias.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "revolutions_per_minute",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-018",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "blade_diameter_min",
+      "name": "blade diameter min",
+      "description": "Minimum supported blade diameter; range endpoints require an approved mounting specification.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Minimum supported blade diameter; range endpoints require an approved mounting specification."
+      },
+      "customDataJustification": {
+        "purpose": "Minimum supported blade diameter; range endpoints require an approved mounting specification.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-019",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "blade_diameter_max",
+      "name": "blade diameter max",
+      "description": "Maximum supported blade diameter; does not independently prove compatibility.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Maximum supported blade diameter; does not independently prove compatibility."
+      },
+      "customDataJustification": {
+        "purpose": "Maximum supported blade diameter; does not independently prove compatibility.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-020",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_diameter",
+      "name": "wheel diameter",
+      "description": "Nominal supported arbor wheel diameter; does not identify included wheel products.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Nominal supported arbor wheel diameter; does not identify included wheel products."
+      },
+      "customDataJustification": {
+        "purpose": "Nominal supported arbor wheel diameter; does not identify included wheel products.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-021",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "blade_arbor_diameter",
+      "name": "blade arbor diameter",
+      "description": "Blade mounting arbor diameter; excludes wheel mounting and threaded attachments.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Blade mounting arbor diameter; excludes wheel mounting and threaded attachments."
+      },
+      "customDataJustification": {
+        "purpose": "Blade mounting arbor diameter; excludes wheel mounting and threaded attachments.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-022",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_arbor_diameter",
+      "name": "wheel arbor diameter",
+      "description": "Wheel mounting arbor diameter; other mount geometries require separate evidence.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Wheel mounting arbor diameter; other mount geometries require separate evidence."
+      },
+      "customDataJustification": {
+        "purpose": "Wheel mounting arbor diameter; other mount geometries require separate evidence.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-023",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "water_reservoir_capacity",
+      "name": "water reservoir capacity",
+      "description": "Water reservoir nominal capacity; Technical must confirm US versus Imperial gallon before approval.",
+      "type": "volume",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Water reservoir nominal capacity; Technical must confirm US versus Imperial gallon before approval."
+      },
+      "customDataJustification": {
+        "purpose": "Water reservoir nominal capacity; Technical must confirm US versus Imperial gallon before approval.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "us_gallons",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-024",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "cutting_oil_fill_min",
+      "name": "cutting oil fill min",
+      "description": "Minimum operating cutting-oil fill; not nominal tank or water capacity.",
+      "type": "volume",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Minimum operating cutting-oil fill; not nominal tank or water capacity."
+      },
+      "customDataJustification": {
+        "purpose": "Minimum operating cutting-oil fill; not nominal tank or water capacity.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "us_gallons",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-025",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "cutting_oil_fill_max",
+      "name": "cutting oil fill max",
+      "description": "Maximum operating cutting-oil fill; preserve gallon-system ambiguity.",
+      "type": "volume",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Maximum operating cutting-oil fill; preserve gallon-system ambiguity."
+      },
+      "customDataJustification": {
+        "purpose": "Maximum operating cutting-oil fill; preserve gallon-system ambiguity.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "us_gallons",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-026",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "water_system_type",
+      "name": "water system type",
+      "description": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines.",
+      "type": "single_line_text_field",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-010",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines."
+      },
+      "customDataJustification": {
+        "purpose": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "choices",
+          "value": [
+            "recirculating_filtered"
+          ],
+          "enforcement": "shopify_definition"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": [
+          "recirculating_filtered"
+        ],
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.machine_specs",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-027",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "net_weight",
+      "name": "net weight",
+      "description": "Durable net machine weight without shipping packaging, fluid fill and installed accessories explicitly declared.",
+      "type": "weight",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-011",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Durable net machine weight without shipping packaging, fluid fill and installed accessories explicitly declared."
+      },
+      "customDataJustification": {
+        "purpose": "Durable net machine weight without shipping packaging, fluid fill and installed accessories explicitly declared.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Operations",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "J",
+          "K"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "pounds",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-028",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "assembled_length",
+      "name": "assembled length",
+      "description": "Assembled machine length; axis orientation and included assemblies must be approved from the drawing.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-011",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Assembled machine length; axis orientation and included assemblies must be approved from the drawing."
+      },
+      "customDataJustification": {
+        "purpose": "Assembled machine length; axis orientation and included assemblies must be approved from the drawing.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Operations",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "J",
+          "K"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-029",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "assembled_width",
+      "name": "assembled width",
+      "description": "Assembled machine width; axis orientation and included assemblies must be approved from the drawing.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-011",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Assembled machine width; axis orientation and included assemblies must be approved from the drawing."
+      },
+      "customDataJustification": {
+        "purpose": "Assembled machine width; axis orientation and included assemblies must be approved from the drawing.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Operations",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "J",
+          "K"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-030",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "assembled_height",
+      "name": "assembled height",
+      "description": "Assembled machine height; axis orientation and included assemblies must be approved from the drawing.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-011",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Assembled machine height; axis orientation and included assemblies must be approved from the drawing."
+      },
+      "customDataJustification": {
+        "purpose": "Assembled machine height; axis orientation and included assemblies must be approved from the drawing.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Operations",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "J",
+          "K"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-031",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "crate_length",
+      "name": "crate length",
+      "description": "Outer standard shipping crate length; includes packing allowances and must have an Operations-approved packing revision.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-011",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Outer standard shipping crate length; includes packing allowances and must have an Operations-approved packing revision."
+      },
+      "customDataJustification": {
+        "purpose": "Outer standard shipping crate length; includes packing allowances and must have an Operations-approved packing revision.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Operations",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "J",
+          "K"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "none",
+        "apiSurfaces": [
+          "admin"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-032",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "crate_width",
+      "name": "crate width",
+      "description": "Outer standard shipping crate width; includes packing allowances and must have an Operations-approved packing revision.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-011",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Outer standard shipping crate width; includes packing allowances and must have an Operations-approved packing revision."
+      },
+      "customDataJustification": {
+        "purpose": "Outer standard shipping crate width; includes packing allowances and must have an Operations-approved packing revision.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Operations",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "J",
+          "K"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "none",
+        "apiSurfaces": [
+          "admin"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-033",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "crate_height",
+      "name": "crate height",
+      "description": "Outer standard shipping crate height; includes packing allowances and must have an Operations-approved packing revision.",
+      "type": "dimension",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-011",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Outer standard shipping crate height; includes packing allowances and must have an Operations-approved packing revision."
+      },
+      "customDataJustification": {
+        "purpose": "Outer standard shipping crate height; includes packing allowances and must have an Operations-approved packing revision.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Operations",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "J",
+          "K"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "none",
+        "apiSurfaces": [
+          "admin"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        },
+        {
+          "name": "canonical_unit",
+          "value": "inches",
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-034",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "compatible_machines",
+      "name": "compatible machines",
+      "description": "Dependent Product to exact compatible machine Product references; only universally applicable approved Product edges.",
+      "type": "list.product_reference",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-012",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "conditional",
+        "condition": "Dependent Product to exact compatible machine Product references; only universally applicable approved Product edges."
+      },
+      "customDataJustification": {
+        "purpose": "Dependent Product to exact compatible machine Product references; only universally applicable approved Product edges.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": "PRODUCT:rhino.compatibility",
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-035",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "included_products",
+      "name": "included products",
+      "description": "Exact catalog Products included in the current commercial machine package; independent from fit and recommendations.",
+      "type": "list.product_reference",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-014",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Exact catalog Products included in the current commercial machine package; independent from fit and recommendations."
+      },
+      "customDataJustification": {
+        "purpose": "Exact catalog Products included in the current commercial machine package; independent from fit and recommendations.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-036",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "included_quantities",
+      "name": "included quantities",
+      "description": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership.",
+      "type": "json",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-014",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership."
+      },
+      "customDataJustification": {
+        "purpose": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-037",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "noncatalog_components",
+      "name": "noncatalog components",
+      "description": "Product-local component lines with label, positive integer quantity and included/not_included/optional meaning for evidenced noncatalog contents.",
+      "type": "json",
+      "cardinality": "one",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-014",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "conditional",
+        "condition": "Product-local component lines with label, positive integer quantity and included/not_included/optional meaning for evidenced noncatalog contents."
+      },
+      "customDataJustification": {
+        "purpose": "Product-local component lines with label, positive integer quantity and included/not_included/optional meaning for evidenced noncatalog contents.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-039",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "optional_products",
+      "name": "optional products",
+      "description": "Separately selectable optional catalog components confirmed by Technical and Product Owner; not speculative machine Variants.",
+      "type": "list.product_reference",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-014",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Separately selectable optional catalog components confirmed by Technical and Product Owner; not speculative machine Variants."
+      },
+      "customDataJustification": {
+        "purpose": "Separately selectable optional catalog components confirmed by Technical and Product Owner; not speculative machine Variants.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Technical",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-040",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "recommended_products",
+      "name": "recommended products",
+      "description": "Product Owner merchandising recommendations; cannot establish compatibility or box contents.",
+      "type": "list.product_reference",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-014",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine"
+        ],
+        "requirement": "conditional",
+        "condition": "Product Owner merchandising recommendations; cannot establish compatibility or box contents."
+      },
+      "customDataJustification": {
+        "purpose": "Product Owner merchandising recommendations; cannot establish compatibility or box contents.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Technical",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Product Owner / Product Data",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-041",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "manual_files",
+      "name": "manual files",
+      "description": "Exact Shopify File references for approved manual resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "type": "list.file_reference",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-018B",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "conditional",
+        "condition": "Exact Shopify File references for approved manual resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads."
+      },
+      "customDataJustification": {
+        "purpose": "Exact Shopify File references for approved manual resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Support",
+          "Technical",
+          "Media"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Support",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-042",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "diagram_files",
+      "name": "diagram files",
+      "description": "Exact Shopify File references for approved diagram resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "type": "list.file_reference",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-018B",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "conditional",
+        "condition": "Exact Shopify File references for approved diagram resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads."
+      },
+      "customDataJustification": {
+        "purpose": "Exact Shopify File references for approved diagram resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Support",
+          "Technical",
+          "Media"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Support",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-043",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "instruction_files",
+      "name": "instruction files",
+      "description": "Exact Shopify File references for approved instruction resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "type": "list.file_reference",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-018B",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "conditional",
+        "condition": "Exact Shopify File references for approved instruction resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads."
+      },
+      "customDataJustification": {
+        "purpose": "Exact Shopify File references for approved instruction resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Support",
+          "Technical",
+          "Media"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Support",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-044",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "video_files",
+      "name": "video files",
+      "description": "Exact Shopify File references for approved video resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "type": "list.file_reference",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-018B",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "conditional",
+        "condition": "Exact Shopify File references for approved video resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads."
+      },
+      "customDataJustification": {
+        "purpose": "Exact Shopify File references for approved video resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Support",
+          "Technical",
+          "Media"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Support",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-045",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "support_files",
+      "name": "support files",
+      "description": "Exact Shopify File references for approved support resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+      "type": "list.file_reference",
+      "cardinality": "list",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-018B",
+      "definitionDependencies": [
+        "CD-MF-001"
+      ],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "conditional",
+        "condition": "Exact Shopify File references for approved support resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads."
+      },
+      "customDataJustification": {
+        "purpose": "Exact Shopify File references for approved support resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "nativeFieldAssessment": "No native Product field expresses this exact technical state or governed reference. Shipping weight remains native Variant data.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-technical-source-index.json; docs/product/rhino-machine-specification-resolution-register.md; data/epic-e-batch-3b-contracts.json",
+        "evidenceOwners": [
+          "Support",
+          "Technical",
+          "Media"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Support",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "L",
+          "O"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "none",
+        "apiSurfaces": [
+          "admin"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "batch_3b_contract",
+          "value": "data/epic-e-batch-3b-contracts.json",
+          "enforcement": "repository"
+        },
+        {
+          "name": "value_approval_separate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": null,
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "Legacy observations stay in evidence until each fact/edge is separately approved; no blanket conversion.",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Preserve source provenance and any later before-state; removal of definitions with populated values requires E-PBI-019 review."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition architecture approval does not approve any Product values.",
+        "Repository validation and human value approval are mandatory before any later population."
+      ]
+    },
+    {
+      "definitionId": "CD-MF-050",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "fulfillment_class",
+      "name": "Fulfillment class (proposal)",
+      "description": "Proposed durable Product handling requirement. Parcel/freight vocabulary requires Operations approval; never a delivery profile, carrier, rate, availability or timing identity.",
+      "type": "single_line_text_field",
+      "cardinality": "one",
+      "canonicalRole": "noncanonical_candidate",
+      "decisionState": "proposed",
+      "lifecycleState": "proposed_future",
+      "sourcePbi": "E-PBI-015",
+      "definitionDependencies": [],
+      "requiredForLaunch": false,
+      "usedForFiltering": false,
+      "applicability": {
+        "entityType": "current_catalog_product",
+        "productClasses": [
+          "machine",
+          "replacement_part",
+          "consumable",
+          "accessory"
+        ],
+        "requirement": "conditional",
+        "condition": "Assign only from approved handling criteria applying to every purchased Variant; no weight/family/profile-name inference."
+      },
+      "customDataJustification": {
+        "purpose": "Allow F/J/K/O/P to compare approved handling expectations with native delivery enforcement.",
+        "nativeFieldAssessment": "Native profiles own actual rates and eligibility. A handling expectation is distinct, but current criteria and Product assignments are not approved.",
+        "duplicatesNativeField": false
+      },
+      "evidence": {
+        "authority": "data/epic-e-batch-3c-evidence.json; data/epic-e-batch-3c-owner-decisions.json",
+        "evidenceOwners": [
+          "Operations",
+          "Product Owner / Product Data"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Operations",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "J",
+          "K",
+          "O",
+          "P"
+        ],
+        "postMvp": []
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "none",
+        "apiSurfaces": [
+          "admin"
+        ]
+      },
+      "validationRules": [
+        {
+          "name": "choices",
+          "value": [
+            "parcel",
+            "freight"
+          ],
+          "enforcement": "shopify_definition"
+        },
+        {
+          "name": "operations_approval_and_profile_drift_gate",
+          "value": true,
+          "enforcement": "repository"
+        }
+      ],
+      "allowedBehavior": {
+        "allowedValues": [
+          "parcel",
+          "freight"
+        ],
+        "defaultValue": null,
+        "unknownOrConflictBehavior": "block_value_population"
+      },
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "not_applicable",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "No live definition or values exist; keep proposed until criteria, owner process and native drift mapping are approved."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Definition and vocabulary remain proposed; no current Product handling assignments are approved.",
+        "Pickup, regional eligibility, carrier rates and lead time remain separate native/policy/operational authorities."
+      ]
     }
   ],
   "metaobjects": [
     {
+      "definitionId": "CD-MO-001",
       "type": "machine_family",
       "name": "Machine family",
+      "description": "Reusable governed Rhino machine-family entity referenced by Products and potentially by later approved support-resource architecture.",
+      "displayNameKey": "name",
+      "canonicalRole": "canonical",
+      "decisionState": "approved",
+      "lifecycleState": "approved_desired_state",
+      "sourcePbi": "E-PBI-009",
+      "definitionDependencies": [],
       "requiredForLaunch": false,
-      "owner": "TBD",
+      "entitySemantics": "One record represents a governed Rhino machine family, not a Product, sellable configuration, compatibility assertion, or technical specification bundle.",
+      "reuseJustification": "A family is reused across multiple machine, part, consumable, accessory, navigation, and support contexts; copied Product text would create divergent names and descriptions.",
+      "simplerMetafieldInsufficient": "A scalar Product metafield cannot centralize a reusable family label/description or preserve reference identity across multiple Products and future support resources.",
+      "referenceDirection": [
+        "PRODUCT:rhino.machine_family -> METAOBJECT:machine_family"
+      ],
+      "applicability": {
+        "entityType": "machine_family",
+        "productClasses": [],
+        "requirement": "conditional",
+        "condition": "Create family records and Product references only from separately approved family membership data."
+      },
+      "evidence": {
+        "authority": "docs/brand/rhino-machine-family-identifiers.md",
+        "evidenceOwners": [
+          "Product Owner / Product Data",
+          "Technical"
+        ]
+      },
+      "ownership": {
+        "businessApprovalOwner": "Product Owner / Product Data",
+        "operationalOwner": "Product Owner / Product Data",
+        "technicalImplementationOwner": "Admin/Engineering"
+      },
+      "consumers": {
+        "mvp": [
+          "F",
+          "G",
+          "J",
+          "L",
+          "O"
+        ],
+        "postMvp": [
+          "H",
+          "I",
+          "M",
+          "N"
+        ]
+      },
+      "accessIntent": {
+        "admin": "merchant_read_write",
+        "storefront": "public_read",
+        "apiSurfaces": [
+          "admin",
+          "storefront",
+          "liquid"
+        ]
+      },
+      "capabilities": {
+        "publishable": false,
+        "translatable": true
+      },
       "fields": [
         {
           "key": "name",
           "name": "Name",
+          "description": "Approved customer-facing machine-family name.",
           "type": "single_line_text_field",
-          "required": true
+          "cardinality": "one",
+          "required": true,
+          "validationRules": [
+            {
+              "name": "non_blank",
+              "value": true,
+              "enforcement": "repository"
+            }
+          ]
         },
         {
           "key": "description",
           "name": "Description",
+          "description": "Approved family-level description without unresolved technical or compatibility claims.",
           "type": "multi_line_text_field",
-          "required": false
+          "cardinality": "one",
+          "required": false,
+          "validationRules": [
+            {
+              "name": "approved_claims_only",
+              "value": true,
+              "enforcement": "repository"
+            }
+          ]
         }
+      ],
+      "migration": {
+        "state": "new_definition",
+        "sourceDefinition": null,
+        "replacementAuthorityPbi": null,
+        "replacementDefinitionId": null,
+        "coexistence": "not_applicable",
+        "valueMigrationRequired": false,
+        "rollbackConsiderations": "Later plans must preserve metaobject handles/GIDs and inbound Product references; deletion and recreation is not an identity-safe rollback."
+      },
+      "adminReconciliation": {
+        "observedState": "absent_in_snapshot",
+        "currentDefinitionId": null,
+        "currentType": null
+      },
+      "cautions": [
+        "Do not use family membership as compatibility proof.",
+        "Do not place unresolved specifications in family records.",
+        "Exact Product relationships remain owned by later PBIs."
       ]
     }
-  ]
+  ],
+  "plannedDomains": [
+    {
+      "domain": "machine_technical_electrical",
+      "owningPbis": [
+        "E-PBI-010"
+      ],
+      "decisionState": "approved",
+      "definitionKeysApproved": true,
+      "notes": "Batch 3B architecture approved under repository-only authorization; evidence values and human edge/resource decisions remain separate."
+    },
+    {
+      "domain": "physical_package_measurements",
+      "owningPbis": [
+        "E-PBI-011"
+      ],
+      "decisionState": "approved",
+      "definitionKeysApproved": true,
+      "notes": "Batch 3B architecture approved under repository-only authorization; evidence values and human edge/resource decisions remain separate."
+    },
+    {
+      "domain": "compatibility",
+      "owningPbis": [
+        "E-PBI-012"
+      ],
+      "decisionState": "approved",
+      "definitionKeysApproved": true,
+      "notes": "Batch 3B architecture approved under repository-only authorization; evidence values and human edge/resource decisions remain separate."
+    },
+    {
+      "domain": "product_relations_and_components",
+      "owningPbis": [
+        "E-PBI-013",
+        "E-PBI-014"
+      ],
+      "decisionState": "approved",
+      "definitionKeysApproved": true,
+      "notes": "Batch 3B architecture approved under repository-only authorization; evidence values and human edge/resource decisions remain separate."
+    },
+    {
+      "domain": "freight_region",
+      "owningPbis": [
+        "E-PBI-015"
+      ],
+      "decisionState": "proposed",
+      "definitionKeysApproved": false,
+      "notes": "Batch 3C architecture complete; fulfillment_class remains proposed pending Operations vocabulary/criteria and enforcement mapping. No live values authorized."
+    },
+    {
+      "domain": "warranty_support",
+      "owningPbis": [
+        "E-PBI-016"
+      ],
+      "decisionState": "proposed",
+      "definitionKeysApproved": false,
+      "notes": "Batch 3C repository policy/class/role/resource architecture complete. No Shopify warranty metaobject or field justified until current shared terms and entity roles are approved."
+    },
+    {
+      "domain": "lead_time",
+      "owningPbis": [
+        "E-PBI-017"
+      ],
+      "decisionState": "proposed",
+      "definitionKeysApproved": false,
+      "notes": "Batch 3C native availability/freshness architecture complete. Timing source/process unproven; no lead-time field or projection justified."
+    },
+    {
+      "domain": "file_references",
+      "owningPbis": [
+        "E-PBI-018B"
+      ],
+      "decisionState": "approved",
+      "definitionKeysApproved": true,
+      "notes": "Batch 3B architecture approved under repository-only authorization; evidence values and human edge/resource decisions remain separate."
+    }
+  ],
+  "statistics": {
+    "metafields": 41,
+    "metaobjects": 1,
+    "byOwnerType": {
+      "PRODUCT": 41,
+      "PRODUCTVARIANT": 0,
+      "COLLECTION": 0
+    },
+    "byDecisionState": {
+      "approved": 38,
+      "proposed": 2,
+      "deprecated": 2,
+      "blocked": 0
+    },
+    "approvedLaunchRequired": 1,
+    "approvedWithTbdOwner": 0
+  }
 }

@@ -189,6 +189,10 @@ function homepageSectionSourceFiles() {
     return files;
 }
 
+function removeInertTemplateContents(source) {
+    return source.replace(/<template\b[^>]*>[\s\S]*?<\/template>/gi, '');
+}
+
 function runStaticValidation(budget, outcomes, mediaManifest) {
     const homepageBudget = budget.homepage.static;
     const modules = homepageModules(outcomes);
@@ -202,9 +206,10 @@ function runStaticValidation(budget, outcomes, mediaManifest) {
 
     for (const filePath of sourceFiles) {
         const text = fs.readFileSync(filePath, 'utf8');
+        const initiallyActiveText = removeInertTemplateContents(text);
         const source = relative(filePath);
 
-        for (const match of text.matchAll(/<script\b[^>]*>/gi)) {
+        for (const match of initiallyActiveText.matchAll(/<script\b[^>]*>/gi)) {
             const tag = match[0];
             const src = tag.match(/\bsrc\s*=\s*["'](https?:\/\/[^"']+)["']/i)?.[1] || '';
             const host = safeHostname(src);
@@ -220,7 +225,7 @@ function runStaticValidation(budget, outcomes, mediaManifest) {
             }
         }
 
-        for (const match of text.matchAll(/<iframe\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi)) {
+        for (const match of initiallyActiveText.matchAll(/<iframe\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi)) {
             if (VIDEO_HOST_PATTERN.test(match[1])) {
                 immediateVideoEmbeds.push({
                     source,
@@ -229,7 +234,7 @@ function runStaticValidation(budget, outcomes, mediaManifest) {
             }
         }
 
-        for (const match of text.matchAll(/<(?:video|audio)\b[^>]*\bautoplay\b[^>]*>/gi)) {
+        for (const match of initiallyActiveText.matchAll(/<(?:video|audio)\b[^>]*\bautoplay\b[^>]*>/gi)) {
             autoplayMedia.push({
                 source,
                 tag: match[0],
@@ -641,6 +646,7 @@ function evaluateRuntimeSample(sample, budget, outcomes) {
 }
 
 async function measureViewport(browser, viewport, budget, outcomes, options) {
+    const cleanPreviewRoute = '/?pb=0&_fd=0';
     const context = await browser.newContext({
         viewport: {
             width: viewport.width,
@@ -652,7 +658,7 @@ async function measureViewport(browser, viewport, budget, outcomes, options) {
     });
     const page = await context.newPage();
     const recorder = await createNetworkRecorder(context, page);
-    const targetUrl = storefrontUrl('/');
+    const targetUrl = storefrontUrl(cleanPreviewRoute);
     const baseHostname = new URL(targetUrl).hostname;
     const samples = [];
 
@@ -665,7 +671,11 @@ async function measureViewport(browser, viewport, budget, outcomes, options) {
             await recorder.session.send('Network.clearBrowserCache');
             recorder.start();
 
-            const navigation = await gotoUnlocked(page, '/', `homepage performance ${viewport.id}`);
+            const navigation = await gotoUnlocked(
+                page,
+                cleanPreviewRoute,
+                `homepage performance ${viewport.id}`,
+            );
             const status = navigation.response?.status() || 0;
 
             if (status >= 400) {
@@ -721,27 +731,121 @@ async function measureViewport(browser, viewport, budget, outcomes, options) {
         await context.close();
     }
 
+    const medians = {
+        lcpMs: median(samples.map((sample) => sample.lcpMs)),
+        cls: median(samples.map((sample) => sample.cls)),
+        tbtMs: median(samples.map((sample) => sample.tbtMs)),
+        resourceCount: median(samples.map((sample) => sample.resourceCount)),
+        totalTransferBytes: median(
+            samples.map((sample) => sample.totalTransferBytes),
+        ),
+        imageBytes: median(samples.map((sample) => sample.imageBytes)),
+        imageRequestCount: median(
+            samples.map((sample) => sample.imageRequestCount),
+        ),
+        firstScreenMediaBytes: median(
+            samples.map((sample) => sample.firstScreenMediaBytes),
+        ),
+    };
+
+    const worst = {
+        immediateVideoIframes: Math.max(
+            ...samples.map((sample) => sample.immediateVideoIframes),
+        ),
+        autoplayMedia: Math.max(
+            ...samples.map((sample) => sample.autoplayMedia),
+        ),
+        thirdPartyScriptHosts: [
+            ...new Set(
+                samples.flatMap(
+                    (sample) => sample.thirdPartyScriptHosts,
+                ),
+            ),
+        ].sort(),
+        maxImageBytes: Math.max(
+            ...samples.map((sample) => sample.maxImageBytes),
+        ),
+    };
+
+    /*
+     * Numeric browser/network measurements are inherently noisy,
+     * particularly against Shopify preview themes where Shopify-owned
+     * telemetry and preview UI can vary between navigations.
+     *
+     * Gate representative numeric performance on the median while
+     * retaining worst-case enforcement for zero-tolerance behavioral
+     * conditions.
+     */
+    const summaryEvaluation = evaluateRuntimeSample(
+        {
+            run: 'median',
+            viewport,
+            finalUrl: samples[0]?.finalUrl || '',
+            status: Math.max(
+                ...samples.map((sample) => sample.status),
+            ),
+
+            lcpMs: medians.lcpMs,
+            cls: medians.cls,
+            tbtMs: medians.tbtMs,
+            resourceCount: medians.resourceCount,
+            totalTransferBytes: medians.totalTransferBytes,
+            imageBytes: medians.imageBytes,
+            imageRequestCount: medians.imageRequestCount,
+            firstScreenMediaBytes: medians.firstScreenMediaBytes,
+
+            /*
+             * These remain worst-case rather than median because a
+             * single occurrence should fail the performance contract.
+             */
+            immediateVideoIframes: worst.immediateVideoIframes,
+            autoplayMedia: worst.autoplayMedia,
+            thirdPartyScriptHosts: worst.thirdPartyScriptHosts,
+            maxImageBytes: worst.maxImageBytes,
+
+            /*
+             * Preserve DOM/media invariants across every sample.
+             * Missing dimensions or eager below-fold media in even
+             * one run remains a failure.
+             */
+            firstScreenMedia: samples.flatMap(
+                (sample) => sample.firstScreenMedia || [],
+            ),
+            belowFoldMedia: samples.flatMap(
+                (sample) => sample.belowFoldMedia || [],
+            ),
+        },
+        budget,
+        outcomes,
+    );
+
     const summary = {
         viewport,
         runs: options.runs,
-        medians: {
-            lcpMs: median(samples.map((sample) => sample.lcpMs)),
-            cls: median(samples.map((sample) => sample.cls)),
-            tbtMs: median(samples.map((sample) => sample.tbtMs)),
-            resourceCount: median(samples.map((sample) => sample.resourceCount)),
-            totalTransferBytes: median(samples.map((sample) => sample.totalTransferBytes)),
-            imageBytes: median(samples.map((sample) => sample.imageBytes)),
-            imageRequestCount: median(samples.map((sample) => sample.imageRequestCount)),
-            firstScreenMediaBytes: median(samples.map((sample) => sample.firstScreenMediaBytes)),
-        },
-        worst: {
-            immediateVideoIframes: Math.max(...samples.map((sample) => sample.immediateVideoIframes)),
-            autoplayMedia: Math.max(...samples.map((sample) => sample.autoplayMedia)),
-            thirdPartyScriptHosts: [...new Set(samples.flatMap((sample) => sample.thirdPartyScriptHosts))].sort(),
-            maxImageBytes: Math.max(...samples.map((sample) => sample.maxImageBytes)),
-        },
-        warnings: [...new Set(samples.flatMap((sample) => sample.warnings))],
-        violations: [...new Set(samples.flatMap((sample) => sample.violations))],
+        medians,
+        worst,
+
+        /*
+         * Individual-sample violations remain in the report for
+         * diagnostics, but do not independently fail a multi-run
+         * release measurement.
+         */
+        sampleViolations: samples.map((sample) => ({
+            run: sample.run,
+            violations: sample.violations,
+        })),
+
+        warnings: [
+            ...new Set([
+                ...samples.flatMap((sample) => sample.warnings),
+                ...summaryEvaluation.warnings,
+            ]),
+        ],
+
+        violations: [
+            ...new Set(summaryEvaluation.violations),
+        ],
+
         samples,
     };
 

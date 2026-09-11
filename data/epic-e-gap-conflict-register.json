@@ -1,0 +1,494 @@
+{
+  "$schema": "../schemas/epic-e-gap-conflict-register.schema.json",
+  "version": 1,
+  "generatedAt": "2026-09-04T00:00:00.000Z",
+  "decisionStateVocabulary": "data/epic-e-source-governance.json",
+  "inputs": [
+    {
+      "path": "data/product-export/products.csv",
+      "evidenceDate": "2026-07-31",
+      "scopeType": "stale_snapshot",
+      "currentness": "stale"
+    },
+    {
+      "path": "data/epic-e-technical-source-index.json",
+      "evidenceDate": "2026-09-02",
+      "scopeType": "subset",
+      "currentness": "current"
+    },
+    {
+      "path": "docs/product/rhino-machine-specification-resolution-register.md",
+      "evidenceDate": "2026-09-02",
+      "scopeType": "subset",
+      "currentness": "current"
+    },
+    {
+      "path": "docs/qa/evidence/epic-e/2026-08-28-product-owner-admin-handoff.json",
+      "evidenceDate": "2026-08-28",
+      "scopeType": "external_handoff",
+      "currentness": "unknown"
+    },
+    {
+      "path": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "evidenceDate": "2026-09-03",
+      "scopeType": "full_catalog",
+      "currentness": "current"
+    },
+    {
+      "path": "data/metafield-metaobject-definitions.json",
+      "evidenceDate": "2026-09-04",
+      "scopeType": "full_catalog",
+      "currentness": "current"
+    }
+  ],
+  "metrics": [
+    {
+      "metricId": "METRIC-001",
+      "label": "blank variant SKU",
+      "numerator": 125,
+      "denominator": 125,
+      "scopeType": "full_catalog",
+      "evidencePath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "evidenceDate": "2026-09-03"
+    },
+    {
+      "metricId": "METRIC-002",
+      "label": "duplicate nonblank SKU rows",
+      "numerator": 0,
+      "denominator": 125,
+      "scopeType": "full_catalog",
+      "evidencePath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "evidenceDate": "2026-09-03"
+    },
+    {
+      "metricId": "METRIC-003",
+      "label": "blank variant barcode",
+      "numerator": 125,
+      "denominator": 125,
+      "scopeType": "full_catalog",
+      "evidencePath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "evidenceDate": "2026-09-03"
+    },
+    {
+      "metricId": "METRIC-004",
+      "label": "duplicate nonblank barcode rows",
+      "numerator": 0,
+      "denominator": 125,
+      "scopeType": "full_catalog",
+      "evidencePath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "evidenceDate": "2026-09-03"
+    },
+    {
+      "metricId": "METRIC-005",
+      "label": "zero or missing variant weight",
+      "numerator": 44,
+      "denominator": 125,
+      "scopeType": "full_catalog",
+      "evidencePath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "evidenceDate": "2026-09-03"
+    },
+    {
+      "metricId": "METRIC-006",
+      "label": "blank product type",
+      "numerator": 122,
+      "denominator": 122,
+      "scopeType": "full_catalog",
+      "evidencePath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "evidenceDate": "2026-09-03"
+    },
+    {
+      "metricId": "METRIC-007",
+      "label": "blank Shopify category",
+      "numerator": 81,
+      "denominator": 122,
+      "scopeType": "full_catalog",
+      "evidencePath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "evidenceDate": "2026-09-03"
+    },
+    {
+      "metricId": "METRIC-008",
+      "label": "blank tags",
+      "numerator": 100,
+      "denominator": 122,
+      "scopeType": "full_catalog",
+      "evidencePath": "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json",
+      "evidenceDate": "2026-09-03"
+    },
+    {
+      "metricId": "METRIC-009",
+      "label": "products with technical terms in description HTML (stale CSV snapshot)",
+      "numerator": 63,
+      "denominator": 122,
+      "scopeType": "stale_snapshot",
+      "evidencePath": "data/product-export/products.csv",
+      "evidenceDate": "2026-07-31"
+    }
+  ],
+  "gaps": [
+    {
+      "gapId": "E-GAP-001",
+      "entityType": "catalog",
+      "entityId": "all",
+      "domain": "admin_snapshot",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "122 products and 125 variants were consumed from the live Admin snapshot.",
+      "repositoryArchitectureState": "Reusable Admin snapshot and gap-generation architecture are present.",
+      "coverage": "complete",
+      "owner": "Shopify Admin Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "high",
+      "conflictState": "none",
+      "existingConflictIds": [],
+      "mvpConsumers": [
+        "F",
+        "G",
+        "J",
+        "K",
+        "L",
+        "O",
+        "P"
+      ],
+      "downstreamBlockers": [],
+      "validationFeasibility": "Re-run the snapshot and gap build to detect drift.",
+      "humanEvidenceRequirement": "None for observed state; factual approvals remain domain-specific.",
+      "decisionState": "observed"
+    },
+    {
+      "gapId": "E-GAP-002",
+      "entityType": "catalog",
+      "entityId": "all",
+      "domain": "classification",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "122/122 products have blank Type and 81/122 blank taxonomy category in the live Admin snapshot.",
+      "repositoryArchitectureState": "Classification architecture exists but E-PBI-004/005 are not implemented.",
+      "coverage": "missing",
+      "owner": "Product Data Owner and Product Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "medium",
+      "conflictState": "none",
+      "existingConflictIds": [],
+      "mvpConsumers": [
+        "F",
+        "G",
+        "J",
+        "K",
+        "L",
+        "O",
+        "P"
+      ],
+      "downstreamBlockers": [
+        "F/G class behavior"
+      ],
+      "validationFeasibility": "CSV and future Admin snapshot coverage rules.",
+      "humanEvidenceRequirement": "Coordinated E-PBI-004/005 approval.",
+      "decisionState": "observed"
+    },
+    {
+      "gapId": "E-GAP-003",
+      "entityType": "variant",
+      "entityId": "all",
+      "domain": "sku",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "125/125 variant rows have blank SKU in the live Admin snapshot.",
+      "repositoryArchitectureState": "Stable identity architecture remains later work.",
+      "coverage": "missing",
+      "owner": "Operations and Product Data Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "medium",
+      "conflictState": "none",
+      "existingConflictIds": [],
+      "mvpConsumers": [
+        "G",
+        "J",
+        "L",
+        "O"
+      ],
+      "downstreamBlockers": [
+        "Ownership and reorder identity"
+      ],
+      "validationFeasibility": "Uniqueness and required-coverage checks are feasible.",
+      "humanEvidenceRequirement": "Approved source for existing identifiers; do not invent a Rhino ID.",
+      "decisionState": "blocked"
+    },
+    {
+      "gapId": "E-GAP-004",
+      "entityType": "variant",
+      "entityId": "all",
+      "domain": "barcode",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "125/125 variant rows have blank barcode in the live Admin snapshot; business requirement is unproven.",
+      "repositoryArchitectureState": "Barcode requirement is conditional under E-PBI-007.",
+      "coverage": "unknown",
+      "owner": "Operations and Integration Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "medium",
+      "conflictState": "none",
+      "existingConflictIds": [],
+      "mvpConsumers": [
+        "G",
+        "J",
+        "L",
+        "O"
+      ],
+      "downstreamBlockers": [],
+      "validationFeasibility": "Uniqueness checks are feasible once a requirement exists.",
+      "humanEvidenceRequirement": "Demonstrated business/integration need before requiring values.",
+      "decisionState": "proposed"
+    },
+    {
+      "gapId": "E-GAP-005",
+      "entityType": "variant",
+      "entityId": "all",
+      "domain": "shipping_weight",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "44/125 variant rows have zero/missing weight in the live Admin snapshot.",
+      "repositoryArchitectureState": "Physical-state storage architecture remains E-PBI-011.",
+      "coverage": "partial",
+      "owner": "Operations and Technical Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "medium",
+      "conflictState": "confirmed",
+      "existingConflictIds": [
+        "C-005",
+        "C-009",
+        "C-015",
+        "C-017",
+        "C-021",
+        "C-026",
+        "C-031",
+        "C-034"
+      ],
+      "mvpConsumers": [
+        "F",
+        "J",
+        "K"
+      ],
+      "downstreamBlockers": [
+        "K freight/shipping preparation"
+      ],
+      "validationFeasibility": "Compare Admin measurement coverage with approved physical-state facts.",
+      "humanEvidenceRequirement": "Technical and Operations approval by sellable variant/physical state.",
+      "decisionState": "conflicting"
+    },
+    {
+      "gapId": "E-GAP-006",
+      "entityType": "machine_model",
+      "entityId": "catalog machines",
+      "domain": "technical_specifications",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "19 evidence observations are indexed; they are candidates, not approved facts.",
+      "repositoryArchitectureState": "Existing conflict register remains canonical; corpus links rather than duplicates conflicts.",
+      "coverage": "partial",
+      "owner": "Technical Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "high",
+      "conflictState": "confirmed",
+      "existingConflictIds": [
+        "C-002",
+        "C-005",
+        "C-009",
+        "C-015",
+        "C-016",
+        "C-017",
+        "C-018",
+        "C-021",
+        "C-023",
+        "C-024",
+        "C-025",
+        "C-026",
+        "C-031"
+      ],
+      "mvpConsumers": [
+        "F",
+        "J",
+        "K",
+        "L",
+        "O"
+      ],
+      "downstreamBlockers": [
+        "F trustworthy specifications",
+        "K physical facts"
+      ],
+      "validationFeasibility": "Schema and source-reference validation are implemented.",
+      "humanEvidenceRequirement": "Resolve consequential current-configuration conflicts.",
+      "decisionState": "conflicting"
+    },
+    {
+      "gapId": "E-GAP-007",
+      "entityType": "domain",
+      "entityId": "compatibility",
+      "domain": "compatibility_relationships",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "10 evidence-derived candidate relationship groups exist; zero are approved for Shopify migration.",
+      "repositoryArchitectureState": "Reference architecture remains E-PBI-012/013.",
+      "coverage": "partial",
+      "owner": "Technical and Support Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "medium",
+      "conflictState": "confirmed",
+      "existingConflictIds": [],
+      "mvpConsumers": [
+        "F",
+        "G",
+        "J",
+        "L",
+        "O"
+      ],
+      "downstreamBlockers": [
+        "G compatibility",
+        "O reorder"
+      ],
+      "validationFeasibility": "Candidate edges can be checked for sources, direction, orphans, and approval state.",
+      "humanEvidenceRequirement": "Approve unresolved/consequential edges generated from evidence.",
+      "decisionState": "proposed"
+    },
+    {
+      "gapId": "E-GAP-008",
+      "entityType": "product",
+      "entityId": "EM-1",
+      "domain": "included_components",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "Two Shopify Files sources disagree on wheel count/grits.",
+      "repositoryArchitectureState": "New conflict IDs are recorded in the canonical C-register.",
+      "coverage": "partial",
+      "owner": "Technical Owner and Product Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "high",
+      "conflictState": "confirmed",
+      "existingConflictIds": [
+        "C-040"
+      ],
+      "mvpConsumers": [
+        "F",
+        "G",
+        "J",
+        "L"
+      ],
+      "downstreamBlockers": [
+        "F included-components claim"
+      ],
+      "validationFeasibility": "Fact-level source/conflict links are executable.",
+      "humanEvidenceRequirement": "Approve current shipped BOM.",
+      "decisionState": "conflicting"
+    },
+    {
+      "gapId": "E-GAP-009",
+      "entityType": "product",
+      "entityId": "EM-1",
+      "domain": "water_system",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "Instruction says 3.5 gal while prior pamphlet evidence says 4.5 gal.",
+      "repositoryArchitectureState": "New conflict is recorded in canonical C-register.",
+      "coverage": "partial",
+      "owner": "Technical Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "high",
+      "conflictState": "confirmed",
+      "existingConflictIds": [
+        "C-041"
+      ],
+      "mvpConsumers": [
+        "F",
+        "K",
+        "L"
+      ],
+      "downstreamBlockers": [
+        "F/K reservoir specification"
+      ],
+      "validationFeasibility": "Fact-level source/conflict links are executable.",
+      "humanEvidenceRequirement": "Current engineering specification.",
+      "decisionState": "conflicting"
+    },
+    {
+      "gapId": "E-GAP-010",
+      "entityType": "domain",
+      "entityId": "custom_data_definitions",
+      "domain": "custom_data",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Live Admin definition states: Product zero_definitions, Product Variant zero_definitions, Collection zero_definitions, metaobjects zero_definitions."
+      },
+      "technicalEvidenceState": "Live Admin definition states: Product zero_definitions, Product Variant zero_definitions, Collection zero_definitions, metaobjects zero_definitions.",
+      "repositoryArchitectureState": "E-PBI-009 desired-state registry, schema, semantic validation, and dry-run definition diff are complete.",
+      "coverage": "complete",
+      "owner": "Product Owner / Product Data and Admin/Engineering",
+      "evidenceDate": "2026-09-04",
+      "reliability": "high",
+      "conflictState": "none",
+      "existingConflictIds": [],
+      "mvpConsumers": [
+        "F",
+        "G",
+        "J",
+        "K",
+        "L",
+        "O"
+      ],
+      "downstreamBlockers": [
+        "Admin rollout remains separately gated by E-PBI-019 and E-PBI-020"
+      ],
+      "validationFeasibility": "Snapshot identity/hash, definition decisions, native-field boundaries, ownership, consumers, migration, freshness, and diff states are executable.",
+      "humanEvidenceRequirement": "None for E-PBI-009; later mutation requires refreshed observation and explicit GO.",
+      "decisionState": "approved"
+    },
+    {
+      "gapId": "E-GAP-011",
+      "entityType": "product",
+      "entityId": "description HTML",
+      "domain": "structured_fact_coverage",
+      "currentAdminState": {
+        "status": "observed",
+        "summary": "Complete products and variants were consumed from docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json; other dataset states remain available in the source snapshot."
+      },
+      "technicalEvidenceState": "63/122 products contain technical-term candidates in HTML in stale export.",
+      "repositoryArchitectureState": "Atomic field architecture remains later PBIs.",
+      "coverage": "partial",
+      "owner": "Product Data Owner and Technical Owner",
+      "evidenceDate": "2026-09-03",
+      "reliability": "low",
+      "conflictState": "suspected",
+      "existingConflictIds": [],
+      "mvpConsumers": [
+        "F",
+        "G",
+        "J",
+        "K",
+        "L",
+        "O"
+      ],
+      "downstreamBlockers": [
+        "Trustworthy structured consumption"
+      ],
+      "validationFeasibility": "HTML candidate detection can flag, not approve or parse truth.",
+      "humanEvidenceRequirement": "Technical evidence approval and later migration plan.",
+      "decisionState": "observed"
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "pbi",
+    "architectureApprovalDoesNotApproveValues",
+    "mutationAuthorized",
+    "modes",
+    "exitCodes",
+    "fullCatalogScope",
+    "diagnostics",
+    "ePbi025"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "pbi": {
+      "type": "string"
+    },
+    "architectureApprovalDoesNotApproveValues": {
+      "type": "boolean"
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "modes": {
+      "type": "object",
+      "required": [
+        "repository",
+        "admin",
+        "migration",
+        "all"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "type": "object",
+          "required": [
+            "checks",
+            "success",
+            "blockedValuesAreArchitectureErrors"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "checks": {
+              "type": "string"
+            },
+            "success": {
+              "type": "string"
+            },
+            "blockedValuesAreArchitectureErrors": {
+              "type": "boolean"
+            }
+          }
+        },
+        "admin": {
+          "type": "object",
+          "required": [
+            "checks",
+            "success",
+            "inaccessibleOrStaleExitCode"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "checks": {
+              "type": "string"
+            },
+            "success": {
+              "type": "string"
+            },
+            "inaccessibleOrStaleExitCode": {
+              "type": "integer"
+            }
+          }
+        },
+        "migration": {
+          "type": "object",
+          "required": [
+            "checks",
+            "success",
+            "unauthorizedExitCode"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "checks": {
+              "type": "string"
+            },
+            "success": {
+              "type": "string"
+            },
+            "unauthorizedExitCode": {
+              "type": "integer"
+            }
+          }
+        },
+        "all": {
+          "type": "object",
+          "required": [
+            "checks",
+            "success",
+            "expectedBatch4aExitCode"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "checks": {
+              "type": "string"
+            },
+            "success": {
+              "type": "string"
+            },
+            "expectedBatch4aExitCode": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "exitCodes": {
+      "type": "object",
+      "required": [
+        "0",
+        "1",
+        "2"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "0": {
+          "type": "string"
+        },
+        "1": {
+          "type": "string"
+        },
+        "2": {
+          "type": "string"
+        }
+      }
+    },
+    "fullCatalogScope": {
+      "type": "object",
+      "required": [
+        "baselineProducts",
+        "baselineVariants",
+        "sample",
+        "liveCountsRequireFreshRead"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "baselineProducts": {
+          "type": "integer"
+        },
+        "baselineVariants": {
+          "type": "integer"
+        },
+        "sample": {
+          "type": "boolean"
+        },
+        "liveCountsRequireFreshRead": {
+          "type": "boolean"
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "required": [
+        "productCsv",
+        "optionalBarcodes",
+        "shippingWeight",
+        "launchFixtures"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "productCsv": {
+          "type": "string"
+        },
+        "optionalBarcodes": {
+          "type": "string"
+        },
+        "shippingWeight": {
+          "type": "string"
+        },
+        "launchFixtures": {
+          "type": "string"
+        }
+      }
+    },
+    "ePbi025": {
+      "type": "object",
+      "required": [
+        "complete",
+        "requires"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "complete": {
+          "type": "boolean"
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

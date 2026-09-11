@@ -1,0 +1,458 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "asOf",
+    "inputs",
+    "adminMutationAuthorized",
+    "valuePopulationAuthorized",
+    "freshness",
+    "membershipComplete",
+    "configurationComplete",
+    "rows",
+    "unexpectedVariantGids",
+    "profileObservations",
+    "globalOverrideProfileGids",
+    "statistics",
+    "coverage",
+    "pickupObservations",
+    "marketRegionObservations",
+    "gaps",
+    "liveAudit"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
+    "asOf": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adminMutationAuthorized": {
+      "const": false
+    },
+    "valuePopulationAuthorized": {
+      "const": false
+    },
+    "freshness": {
+      "type": "object",
+      "required": [
+        "capturedAt",
+        "asOf",
+        "expiresAt",
+        "state"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "capturedAt": {
+          "type": "string"
+        },
+        "asOf": {
+          "type": "string"
+        },
+        "expiresAt": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    },
+    "membershipComplete": {
+      "type": "boolean"
+    },
+    "configurationComplete": {
+      "type": "boolean"
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "variantGid",
+          "productGid",
+          "requiresShipping",
+          "observedProfileGid",
+          "expectedProfileGids",
+          "fulfillmentClass",
+          "state",
+          "reasons"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "variantGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/ProductVariant/[0-9]+$"
+          },
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "requiresShipping": {
+            "type": "boolean"
+          },
+          "observedProfileGid": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ]
+          },
+          "expectedProfileGids": {
+            "type": "array",
+            "items": {}
+          },
+          "fulfillmentClass": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ]
+          },
+          "state": {
+            "type": "string"
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "unexpectedVariantGids": {
+      "type": "array",
+      "items": {}
+    },
+    "profileObservations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "default",
+          "activeMethodDefinitionsCount",
+          "productVariantsCount"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "default": {
+            "type": "boolean"
+          },
+          "activeMethodDefinitionsCount": {
+            "type": "integer"
+          },
+          "productVariantsCount": {
+            "type": "object",
+            "required": [
+              "count"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "count": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "globalOverrideProfileGids": {
+      "type": "array",
+      "items": {}
+    },
+    "statistics": {
+      "type": "object",
+      "required": [
+        "aligned",
+        "contradiction",
+        "missing_profile",
+        "unassessed",
+        "stale"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "aligned": {
+          "type": "integer"
+        },
+        "contradiction": {
+          "type": "integer"
+        },
+        "missing_profile": {
+          "type": "integer"
+        },
+        "unassessed": {
+          "type": "integer"
+        },
+        "stale": {
+          "type": "integer"
+        }
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "required": [
+              "productGid",
+              "handle",
+              "productClass",
+              "fulfillmentAssignmentIds",
+              "pickupRuleIds",
+              "regionRuleIds",
+              "evidenceIds",
+              "packingLocations",
+              "state"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "productGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "handle": {
+                "type": "string"
+              },
+              "productClass": {
+                "type": "string"
+              },
+              "fulfillmentAssignmentIds": {
+                "type": "array",
+                "items": {}
+              },
+              "pickupRuleIds": {
+                "type": "array",
+                "items": {}
+              },
+              "regionRuleIds": {
+                "type": "array",
+                "items": {}
+              },
+              "evidenceIds": {
+                "type": "array",
+                "items": {}
+              },
+              "packingLocations": {
+                "type": "array",
+                "items": {}
+              },
+              "state": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "productGid",
+              "handle",
+              "productClass",
+              "fulfillmentAssignmentIds",
+              "pickupRuleIds",
+              "regionRuleIds",
+              "evidenceIds",
+              "packingLocations",
+              "state"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "productGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "handle": {
+                "type": "string"
+              },
+              "productClass": {
+                "type": "string"
+              },
+              "fulfillmentAssignmentIds": {
+                "type": "array",
+                "items": {}
+              },
+              "pickupRuleIds": {
+                "type": "array",
+                "items": {}
+              },
+              "regionRuleIds": {
+                "type": "array",
+                "items": {}
+              },
+              "evidenceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "packingLocations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "state": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "productGid",
+              "handle",
+              "productClass",
+              "fulfillmentAssignmentIds",
+              "pickupRuleIds",
+              "regionRuleIds",
+              "evidenceIds",
+              "packingLocations",
+              "state"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "productGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "handle": {
+                "type": "string"
+              },
+              "productClass": {
+                "type": "string"
+              },
+              "fulfillmentAssignmentIds": {
+                "type": "array",
+                "items": {}
+              },
+              "pickupRuleIds": {
+                "type": "array",
+                "items": {}
+              },
+              "regionRuleIds": {
+                "type": "array",
+                "items": {}
+              },
+              "evidenceIds": {
+                "type": "array",
+                "items": {}
+              },
+              "packingLocations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "state": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "pickupObservations": {
+      "type": "array",
+      "items": {}
+    },
+    "marketRegionObservations": {
+      "type": "array",
+      "items": {}
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "liveAudit": {
+      "type": "object",
+      "required": [
+        "executed",
+        "sourcePath",
+        "status",
+        "detailedDatasetPresence"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "executed": {
+          "type": "boolean"
+        },
+        "sourcePath": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "detailedDatasetPresence": {
+          "type": "object",
+          "required": [
+            "variantFulfillment",
+            "deliveryConfiguration",
+            "pickupConfiguration",
+            "marketRegions",
+            "shopPolicies",
+            "policyPages"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "variantFulfillment": {
+              "type": "string"
+            },
+            "deliveryConfiguration": {
+              "type": "string"
+            },
+            "pickupConfiguration": {
+              "type": "string"
+            },
+            "marketRegions": {
+              "type": "string"
+            },
+            "shopPolicies": {
+              "type": "string"
+            },
+            "policyPages": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "epic-e-fulfillment-reconciliation repository evidence contract"
+}

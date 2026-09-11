@@ -1,0 +1,101 @@
+{
+  "$schema": "../schemas/epic-d-homepage-nfr-readiness.schema.json",
+  "schemaVersion": 1,
+  "reviewedAt": "2026-08-27",
+  "scope": "Automated technical reconciliation for D-PBI-026, D-PBI-027, and D-PBI-028 on the implemented Epic D homepage.",
+  "productionSignoffGranted": false,
+  "manualChecks": [
+    {
+      "id": "manual-zoom-200",
+      "area": "accessibility",
+      "status": "pass",
+      "reviewedBy": "Product Owner",
+      "notes": "Product Owner reported 200% zoom review passed."
+    },
+    {
+      "id": "manual-responsive-visual",
+      "area": "responsive",
+      "status": "pass",
+      "reviewedBy": "Product Owner",
+      "notes": "Product Owner reported mobile, tablet, desktop, and wide visual layout review passed."
+    },
+    {
+      "id": "manual-hero-crop",
+      "area": "responsive",
+      "status": "pass",
+      "reviewedBy": "Product Owner",
+      "notes": "Product Owner reported hero crop and media judgment passed."
+    },
+    {
+      "id": "manual-content-cta-clarity",
+      "area": "content",
+      "status": "pass",
+      "reviewedBy": "Product Owner",
+      "notes": "Product Owner reported content and CTA clarity passed."
+    },
+    {
+      "id": "manual-keyboard-focus",
+      "area": "accessibility",
+      "status": "pending_clean_preview_retest",
+      "reviewedBy": "Product Owner",
+      "notes": "Prior failure occurred with Shopify merchant preview chrome and may involve Shopify-owned controls. Retest on a clean preview surface is required before D-PBI-032."
+    },
+    {
+      "id": "manual-video-preview",
+      "area": "video",
+      "status": "pending_product_owner_review",
+      "reviewedBy": "Product Owner",
+      "notes": "After D-PBI-023 implementation, review poster appearance, play-control focus, activation, layout stability, and absence of unexpected autoplay before D-PBI-032."
+    }
+  ],
+  "requirements": [
+    {
+      "pbi": "D-PBI-026",
+      "area": "accessibility",
+      "automatedTechnicalStatus": "complete",
+      "coverage": "all_implemented_homepage_modules",
+      "evidence": [
+        "tests/homepage-accessibility.spec.js",
+        "test-results/epic-d/homepage-accessibility-desktop-chromium.json",
+        "test-results/epic-d/homepage-accessibility-mobile-chromium.json"
+      ],
+      "manualReleaseStatus": "pending_product_owner_review",
+      "manualEvidenceOwner": "Product Owner",
+      "manualEvidenceRequiredFor": "D-PBI-032",
+      "productionSignoffGranted": false,
+      "notes": "Automated conditional assertions cover every implemented homepage module. Manual keyboard, screen-reader, and visual accessibility approval remains a human release input."
+    },
+    {
+      "pbi": "D-PBI-027",
+      "area": "performance",
+      "automatedTechnicalStatus": "complete",
+      "coverage": "all_implemented_homepage_modules",
+      "evidence": [
+        "data/brand-performance-budget.json",
+        "test-results/epic-d/homepage-performance-static.json",
+        "test-results/epic-d/homepage-performance-runtime.json"
+      ],
+      "manualReleaseStatus": "pending_product_owner_review",
+      "manualEvidenceOwner": "Product Owner",
+      "manualEvidenceRequiredFor": "D-PBI-032",
+      "productionSignoffGranted": false,
+      "notes": "Static and governed three-run median runtime validation apply to the implemented homepage. The 130-request ceiling remains unchanged."
+    },
+    {
+      "pbi": "D-PBI-028",
+      "area": "responsive",
+      "automatedTechnicalStatus": "complete",
+      "coverage": "all_implemented_homepage_modules",
+      "evidence": [
+        "tests/homepage-responsive.spec.js",
+        "test-results/epic-d/homepage-responsive-desktop-chromium.json",
+        "docs/qa/evidence/epic-d"
+      ],
+      "manualReleaseStatus": "pending_product_owner_review",
+      "manualEvidenceOwner": "Product Owner",
+      "manualEvidenceRequiredFor": "D-PBI-032",
+      "productionSignoffGranted": false,
+      "notes": "Automated checks cover all eight governed widths. Manual visual hierarchy, crop, balance, and real-device approval remain human release inputs."
+    }
+  ]
+}
