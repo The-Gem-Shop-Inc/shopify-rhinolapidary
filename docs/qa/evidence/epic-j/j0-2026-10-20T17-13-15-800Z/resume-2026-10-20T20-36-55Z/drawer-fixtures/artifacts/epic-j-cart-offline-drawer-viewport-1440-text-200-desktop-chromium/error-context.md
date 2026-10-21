@@ -1,0 +1,97 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: epic-j-cart.spec.js >> offline drawer viewport 1440 text 200
+- Location: tests\epic-j-cart.spec.js:13:70
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: false
+Received: true
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "Cart" [ref=e2] [cursor=pointer]
+  - main
+```
+
+# Test source
+
+```ts
+  1  | 'use strict';
+  2  | const {test,expect}=require('@playwright/test'),fs=require('node:fs');
+  3  | const J=require('../scripts/lib/epic-j-j0'),F=require('../scripts/lib/epic-j-cart-fixtures'),fixture=require('./fixtures/epic-j-cart.json');
+  4  | const {auth}=require('../scripts/probe-epic-f-header-focus-correction'),I=require('../scripts/lib/epic-g-integrated');
+  5  | const AxeBuilder=require('@axe-core/playwright').default;
+  6  | test.describe.configure({mode:'default'});
+  7  | test('offline native cart rejects unavailable inventory and announces update error',async({page})=>{
+  8  |  const f=await F.mount(page);await page.locator('#Quantity-1').fill('9');await page.locator('#Quantity-1').press('Tab');await expect(page.locator('#Line-item-error-1 .cart-item__error-text')).toHaveText('Fixture inventory quantity unavailable');await expect(page.locator('#Quantity-1')).toHaveValue('2');expect(f.requests).toHaveLength(1);expect(f.requests[0]).toMatchObject({line:'1',quantity:9});await expect(page.locator('#cart-live-region-text')).toHaveAttribute('aria-live','polite');expect(f.errors).toEqual([]);
+  9  | });
+  10 | test('offline native drawer keyboard, close/focus return, checkout and page route',async({page})=>{
+  11 |  const f=await F.mount(page,{drawer:true});await page.locator('#cart-icon-bubble').focus();await page.keyboard.press('Enter');const dialog=page.locator('cart-drawer [role=dialog]');await expect(dialog).toBeVisible();await expect(dialog).toHaveAttribute('aria-modal','true');await expect(dialog).toHaveAttribute('aria-label',/cart/i);await page.waitForTimeout(400);await page.keyboard.press('Tab');expect(await page.evaluate(()=>!!document.activeElement.closest('cart-drawer'))).toBe(true);await page.keyboard.press('Escape');await expect(page.locator('cart-drawer')).not.toHaveClass(/active/);await expect(page.locator('#cart-icon-bubble')).toBeFocused();await expect(page.locator('cart-drawer [name=checkout]')).toHaveAttribute('form','CartDrawer-Form');expect(f.errors).toEqual([]);
+  12 | });
+  13 | for(const width of [360,390,1440])for(const enlarged of [false,true])test('offline drawer viewport '+width+' text '+(enlarged?'200':'100'),async({page})=>{
+  14 |  await page.setViewportSize({width,height:1000});const fixture=await F.mount(page,{drawer:true});if(enlarged)await page.evaluate(()=>document.documentElement.style.fontSize=parseFloat(getComputedStyle(document.documentElement).fontSize)*2+'px');
+  15 |  await page.locator('#cart-icon-bubble').focus();await page.keyboard.press('Enter');const dialog=page.locator('cart-drawer [role=dialog]');await expect(dialog).toBeVisible();await expect(dialog).toHaveAttribute('aria-modal','true');await expect(dialog).toHaveAttribute('aria-label',/cart/i);await page.waitForTimeout(400);await page.keyboard.press('Tab');expect(await page.evaluate(()=>!!document.activeElement.closest('cart-drawer'))).toBe(true);
+  16 |  const geometry=await dialog.evaluate(e=>({width:e.getBoundingClientRect().width,scrollWidth:e.scrollWidth,viewport:innerWidth,quantities:[...e.querySelectorAll('[name="updates[]"]')].map(q=>({label:q.getAttribute('aria-label'),width:q.getBoundingClientRect().width})),checkout:!!e.querySelector('[name=checkout]'),cartLink:!!e.querySelector('a[href="/cart"]')}));expect(geometry.quantities.every(q=>q.label&&q.width>0)).toBe(true);expect(geometry.checkout).toBe(true);
+> 17 |  await page.keyboard.press('Escape');await expect(page.locator('#cart-icon-bubble')).toBeFocused();for(let n=0;n<4;n++){await page.keyboard.press('Tab');expect(await page.evaluate(()=>!!document.activeElement.closest('cart-drawer'))).toBe(false);}expect(fixture.errors).toEqual([]);
+     |                                                                                                                                                                                                                                           ^ Error: expect(received).toBe(expected) // Object.is equality
+  18 |  J.write('drawer-'+width+'-text'+(enlarged?'200':'100')+'.json',{mode:'OFFLINE_NATIVE_INACTIVE_DRAWER',width,enlarged,geometry,dialogAndFocus:'PASS',hiddenControlsSkipped:'PASS',actualPreviewCriterion:'NOT APPLICABLE — drawer inactive',fullCartDestination:'/cart',fullCartLinkPresent:geometry.cartLink,layoutObservation:geometry.scrollWidth>geometry.width+1?'OVERFLOW_REQUIRES_REVIEW_BEFORE_DRAWER_ACTIVATION':'NO_OVERFLOW_OBSERVED'});
+  19 | });
+  20 | test('offline cart notes use native update endpoint without new purchasing rules',async({page})=>{
+  21 |  const f=await F.mount(page,{note:true});await page.locator('#Cart-note').fill('Fixture purchase order reference');await expect.poll(()=>f.requests.length).toBe(1);expect(f.requests[0]).toEqual({note:'Fixture purchase order reference'});expect(f.errors).toEqual([]);
+  22 | });
+  23 | test('offline mixed equipment cart uses native identities without a freight or compatibility promise',async({page})=>{
+  24 |  await F.mount(page,{mixed:true});await expect(page.locator('main .cart-item')).toHaveCount(2);await expect(page.locator('#Quantity-1')).toHaveAttribute('data-quantity-variant-id',fixture.items[0].variantId);await expect(page.locator('#Quantity-2')).toHaveAttribute('data-quantity-variant-id',fixture.machine.variantId);await expect(page.locator('main [name=checkout]')).toBeEnabled();expect(await page.locator('main').innerText()).not.toMatch(/guaranteed delivery|free freight|required accessory|compatible with/i);
+  25 | });
+  26 | test('offline Product transport failure records current announcement defect without changing the theme',async({page})=>{
+  27 |  const M=require('../scripts/lib/epic-f-machine-fixtures');await M.mount(page,'tracked-available');await page.route('**/cart/add.js',r=>r.abort('failed'));await page.locator('[name=add]').click();await page.waitForTimeout(600);await expect(page.locator('[name=add]')).not.toHaveAttribute('aria-disabled','true');const visible=await page.locator('.product-form__error-message-wrapper').isVisible();J.write('product-transport-diagnostic.json',{mode:'OFFLINE_NATIVE_PRODUCT_FORM_NETWORK_REJECTION',defect:'J-DEF-001',owner:'J-PBI-001',severity:'high',status:visible?'PASS':'FAIL',visibleError:visible,condition:'Native fetch rejects with network failure',controlsRecovered:true,scope:'Observed baseline defect; no customer-facing correction in J0'});
+  28 | });
+  29 | for(const width of [390,360,1440])test('actual preview isolated native cart '+width,async({browser})=>{
+  30 |  test.setTimeout(240000);expect(process.env.RHINO_J_LIVE).toBe('1');const out={mode:'ACTUAL_UNPUBLISHED_PREVIEW',themeId:'158631198917',width,startedAt:new Date().toISOString(),requests:[],checks:[],findings:[],failures:[]};let context,page,isolated=false,mocked=false;
+  31 |  const record=(id,details={})=>out.checks.push({id,status:'PASS',details});
+  32 |  try{
+  33 |   // Auth itself uses a new anonymous context. Preserve its platform access cookies,
+  34 |   // exclude cart cookies, and independently prove this new cart is empty before writes.
+  35 |   const cookies=(await auth(browser)).filter(c=>!/^cart(?:$|_)/i.test(c.name));context=await browser.newContext({viewport:{width,height:1000}});await context.addCookies(cookies);
+  36 |   context.on('request',r=>{const u=new URL(r.url());if(r.method()==='POST'&&/^\/cart\/(add|change|update|clear)(\.js)?$/.test(u.pathname))out.requests.push({path:u.pathname,method:'POST',mode:mocked?'FIXTURE':'ACTUAL'});});
+  37 |   await context.route('**/*',route=>{const r=route.request(),u=new URL(r.url());if(!J.requestAllowed({pathname:u.pathname,method:r.method(),resourceType:r.resourceType(),navigation:r.isNavigationRequest()})){out.findings.push({id:'blocked-checkout-or-account-request',path:u.pathname,method:r.method(),resourceType:r.resourceType()});return route.abort();}return route.continue();});
+  38 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};
+  39 |   const cart=async()=>{for(let attempt=0;attempt<3;attempt++){const r=await context.request.get('https://sz5dnk-nf.myshopify.com/cart.js',{headers:{Accept:'application/json'}});if(r.status()>=500&&attempt<2){out.findings.push({id:'transient-cart-read',status:r.status(),attempt});await page.waitForTimeout(1000);continue;}expect(r.status()).toBe(200);return r.json();}};
+  40 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);
+  41 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\/cart\/add(?:\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};
+  42 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});
+  43 |   const notification=page.locator('#cart-notification');await expect(notification).toHaveAttribute('role','dialog');await expect(notification).toHaveAttribute('aria-modal','true');await page.waitForTimeout(450);expect(await page.evaluate(()=>!!document.activeElement.closest('cart-notification'))).toBe(true);await page.keyboard.press('Escape');await expect(page.locator('main [name=add]')).toBeFocused();record('notification-Escape-focus-return');
+  44 |   await page.evaluate(()=>document.querySelector('cart-notification').open());await page.locator('#cart-notification-button').click();await page.waitForLoadState('load');expect(new URL(page.url()).pathname).toBe('/cart');expect(await page.locator('cart-drawer').count()).toBe(0);record('active-notification-to-cart-page',{drawer:'NOT APPLICABLE — inactive configuration'});
+  45 |   if(width===390){
+  46 |    await goto('/products/saw-blade');const picker=page.locator('variant-selects');expect(await picker.locator('input[type=radio], option').count()).toBe(4);const second=fixture.items[1];const radio=picker.locator('input[type=radio]').nth(1);if(await radio.count())await picker.locator('label[for="'+await radio.getAttribute('id')+'"]').click();else await picker.locator('select').selectOption({label:second.option});await expect(page.locator('main product-form [name=id]')).toHaveValue(second.variantId);await expect(page).toHaveURL(new RegExp('variant='+second.variantId));record('Saw-Blade-four-Size-native-URL-and-Variant');await add(1);await waitCart(3);await page.locator('#cart-notification-button').click();await page.waitForLoadState('load');const c=await cart();expect(c.items.map(i=>String(i.variant_id)).sort()).toEqual(fixture.items.map(i=>i.variantId).sort());expect(c.total_price).toBe(5500);record('two-Variants-native-subtotal',{subtotalCents:c.total_price});
+  47 |    const row=page.locator('main .cart-item').filter({has:page.locator('[data-quantity-variant-id="'+fixture.items[0].variantId+'"]')});for(const [button,count]of [['plus',4],['minus',3]]){await row.locator('[name='+button+']').click();await waitCart(count);await page.waitForTimeout(400);}record('native-quantity-increase-decrease');
+  48 |    const before=(await cart()).item_count;mocked=true;await page.route('**/cart/change*',r=>r.fulfill({status:422,json:{errors:'J0 fixture inventory quantity unavailable'}}));await row.locator('[name=plus]').click();await expect(row.locator('.cart-item__error-text')).toHaveText('J0 fixture inventory quantity unavailable');expect((await cart()).item_count).toBe(before);await page.unroute('**/cart/change*');mocked=false;record('mocked-invalid-update-visible-error-and-native-state-preservation');
+  49 |    await page.locator('main .cart-item__name').first().click();await page.waitForLoadState('load');await page.goBack({waitUntil:'load'});expect(new URL(page.url()).pathname).toBe('/cart');expect((await cart()).item_count).toBe(3);await expect(page.locator('main .cart-item')).toHaveCount(2);await page.goForward({waitUntil:'load'});await page.goBack({waitUntil:'load'});record('back-forward-native-cart-state');
+  50 |   }
+  51 |   await page.evaluate(()=>document.documentElement.style.fontSize=parseFloat(getComputedStyle(document.documentElement).fontSize)*2+'px');await page.waitForTimeout(400);
+  52 |   const geometry=await page.evaluate(()=>({route:location.pathname,themeId:String(window.Shopify?.theme?.id),viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('main *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).slice(0,12).map(e=>({tag:e.tagName,id:e.id,class:e.className,right:e.getBoundingClientRect().right})),overflow:document.documentElement.scrollWidth>innerWidth+1,headerHeight:document.querySelector('header.header')?.getBoundingClientRect().height,quantity:[...document.querySelectorAll('main input[name="updates[]"]')].map(e=>({label:e.getAttribute('aria-label'),disabled:e.disabled,width:e.getBoundingClientRect().width})),subtotal:document.querySelector('main .totals')?.textContent.trim(),note:!!document.querySelector('main cart-note'),express:document.querySelectorAll('main .additional-checkout-buttons').length,discountInput:!!document.querySelector('main input[name=discount]')}));out.text200=geometry;out.checks.push({id:'enlarged-text-no-horizontal-overflow',status:geometry.overflow?'FAIL':'PASS',details:geometry});if(geometry.overflow)out.findings.push({id:'J-DEF-002',severity:'high',owner:'J-PBI-002',condition:'200% root text on populated native cart',geometry});expect.soft(geometry.overflow,'J-DEF-002 populated cart 200% root text overflow').toBe(false);expect(geometry.quantity.every(q=>q.label&&q.width>0&&!q.disabled)).toBe(true);
+  53 |   const checkout=page.locator('main [name=checkout]');await checkout.focus();await checkout.scrollIntoViewIfNeeded();await page.keyboard.press('Tab');await page.keyboard.press('Shift+Tab');await expect(checkout).toBeFocused();await expect(checkout).toBeVisible();await expect(checkout).toBeEnabled();expect(await checkout.getAttribute('form')).toBe('cart');record('native-checkout-entry-no-submit-no-account-requirement');
+  54 |   const axe=await new AxeBuilder({page}).analyze();out.axe=axe.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)}));const provider={origin:'https://cdn.shopify.com',path:'/shopifycloud/preview-bar/index.html',scriptVerified:await page.evaluate(()=>[...document.querySelectorAll('script[src]')].some(e=>e.src.includes('cdn.shopify.com')&&e.src.includes('preview-bar')))};out.axeOwnership=I.splitAxe(out.axe,provider);const severe=out.axeOwnership.storefront.filter(v=>['serious','critical'].includes(v.impact));if(severe.length){out.findings.push({id:'storefront-accessibility',severity:'serious-or-critical',details:severe});expect.soft(severe,'Unresolved storefront-owned serious/critical axe finding').toEqual([]);}
+  55 |   await page.screenshot({path:J.directory()+'/cart-'+width+'-text200.png',fullPage:true});record('responsive-root-text-labels-and-axe');await page.evaluate(()=>document.documentElement.style.fontSize='');
+  56 |   if(width===390&&geometry.overflow){const baseline=await context.newPage();try{const response=await baseline.goto('https://sz5dnk-nf.myshopify.com/cart?preview_theme_id=158579622085',{waitUntil:'load'});expect(response.status()).toBe(200);expect(await baseline.evaluate(()=>String(Shopify.theme.id))).toBe('158579622085');await baseline.evaluate(()=>document.documentElement.style.fontSize=parseFloat(getComputedStyle(document.documentElement).fontSize)*2+'px');out.unchangedMAIN=await baseline.evaluate(()=>({themeId:String(Shopify.theme.id),viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,overflow:document.documentElement.scrollWidth>innerWidth+1,quantityRight:document.querySelector('main quantity-input')?.getBoundingClientRect().right}));await baseline.screenshot({path:J.outputPath('cart-main-390-text200.png'),fullPage:true});}finally{await baseline.close();await goto('/cart');}}
+  57 |   while((await cart()).item_count){const expected=(await cart()).items.length-1;await page.locator('main cart-remove-button a').first().click();await expect.poll(async()=>(await cart()).items.length).toBe(expected);await page.waitForTimeout(400);}await waitCart(0);await expect(page.locator('main .cart__empty-text')).toBeVisible();await expect(page.locator('main [name=checkout]')).not.toBeVisible();out.cleaned=true;record('native-remove-and-empty-cart-recovery');
+  58 |   if(width===390){for(const handle of ['mr16','saw-vice-plate-set']){await goto('/products/'+handle);await expect(page.locator('main [name=add]')).toBeEnabled();out.checks.push({id:'unresolved-zero-Product-observed-no-cart-write',status:'PASS',details:{handle,variant:await page.locator('main product-form [name=id]').inputValue()}});}await goto('/products/em-1');await expect(page.locator('main [name=add]')).toBeDisabled();record('actual-native-machine-sold-out-no-purchase-attempt');}
+  59 |  }catch(e){out.failures.push({message:e.message,stack:e.stack});if(page)await page.screenshot({path:J.outputPath('failure-'+width+'.png'),fullPage:true}).catch(()=>{});throw e;}finally{
+  60 |   if(context&&isolated&&!out.cleaned){try{const origin='https://sz5dnk-nf.myshopify.com';mocked=false;await page.unroute('**/cart/change*');const r=await context.request.get(origin+'/cart.js',{headers:{Accept:'application/json'}}),c=await r.json();expect(c.items.every(i=>fixture.items.some(v=>v.variantId===String(i.variant_id)))).toBe(true);for(const i of c.items){out.requests.push({path:'/cart/change.js',method:'POST',mode:'ACTUAL_FAILURE_CLEANUP'});const r=await context.request.post(origin+'/cart/change.js',{headers:{Accept:'application/json'},data:{id:i.key,quantity:0}});expect(r.status()).toBe(200);}out.cleaned=(await(await context.request.get(origin+'/cart.js')).json()).item_count===0;}catch(e){out.failures.push({cleanup:e.message});}}
+  61 |   if(context)await context.close();out.completedAt=new Date().toISOString();J.write('cart-live-'+width+'.json',out);
+  62 |  }
+  63 | });
+  64 | 
+```

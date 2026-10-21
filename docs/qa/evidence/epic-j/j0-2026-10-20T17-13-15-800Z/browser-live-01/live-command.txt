@@ -1,0 +1,142 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:epic-j-cart
+> playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1 -g actual preview --output docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/browser-live-01/artifacts --reporter=line,json
+
+◇ injected env (12) from .env // tip: ⌘ suppress logs { quiet: true }
+
+Running 3 tests using 1 worker
+
+
+(node:14448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+
+[1/3] [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 390
+  1) [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 390 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 401
+
+      25 |   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/\/checkouts?(\/|$)|\/payments?(\/|$)|\/orders?(\/|$)|\/admin(\/|$)/.test(u.pathname)){out.findings.push({id:'prohibited-navigation-attempt',path:u.pathname});return route.abort();}return route.continue();});
+      26 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};
+    > 27 |   const cart=async()=>{const r=await context.request.get(new URL('/cart.js',page.url()).toString());expect(r.status()).toBe(200);return r.json();};
+         |                                                                                                                        ^
+      28 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);
+      29 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\/cart\/add(?:\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};
+      30 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});
+        at cart (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\tests\epic-j-cart.spec.js:27:120)
+        at C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\tests\epic-j-cart.spec.js:30:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+(node:21552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+
+[2/3] [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 360
+  2) [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 360 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 401
+
+      25 |   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/\/checkouts?(\/|$)|\/payments?(\/|$)|\/orders?(\/|$)|\/admin(\/|$)/.test(u.pathname)){out.findings.push({id:'prohibited-navigation-attempt',path:u.pathname});return route.abort();}return route.continue();});
+      26 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};
+    > 27 |   const cart=async()=>{const r=await context.request.get(new URL('/cart.js',page.url()).toString());expect(r.status()).toBe(200);return r.json();};
+         |                                                                                                                        ^
+      28 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);
+      29 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\/cart\/add(?:\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};
+      30 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});
+        at cart (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\tests\epic-j-cart.spec.js:27:120)
+        at C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\tests\epic-j-cart.spec.js:30:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+(node:25572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+
+[3/3] [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 1440
+  3) [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 1440 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 401
+
+      25 |   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/\/checkouts?(\/|$)|\/payments?(\/|$)|\/orders?(\/|$)|\/admin(\/|$)/.test(u.pathname)){out.findings.push({id:'prohibited-navigation-attempt',path:u.pathname});return route.abort();}return route.continue();});
+      26 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};
+    > 27 |   const cart=async()=>{const r=await context.request.get(new URL('/cart.js',page.url()).toString());expect(r.status()).toBe(200);return r.json();};
+         |                                                                                                                        ^
+      28 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);
+      29 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\/cart\/add(?:\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};
+      30 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});
+        at cart (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\tests\epic-j-cart.spec.js:27:120)
+        at C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\tests\epic-j-cart.spec.js:30:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-1440-desktop-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-1440-desktop-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-1440-desktop-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-1440-desktop-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-01\artifacts\epic-j-cart-actual-preview-isolated-native-cart-1440-desktop-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  3 failed
+    [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 390 ─
+    [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 360 ─
+    [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 1440 

@@ -1,0 +1,416 @@
+{
+  "mode": "ACTUAL_UNPUBLISHED_PREVIEW",
+  "themeId": "158631198917",
+  "width": 360,
+  "startedAt": "2026-10-20T17:31:23.893Z",
+  "requests": [
+    {
+      "path": "/cart/add",
+      "method": "POST",
+      "mode": "ACTUAL"
+    },
+    {
+      "path": "/cart/change",
+      "method": "POST",
+      "mode": "ACTUAL"
+    }
+  ],
+  "checks": [
+    {
+      "id": "isolated-initial-cart-empty",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "single-Variant-native-add",
+      "status": "PASS",
+      "details": {
+        "variant": "46484258652357",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "notification-Escape-focus-return",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "active-notification-to-cart-page",
+      "status": "PASS",
+      "details": {
+        "drawer": "NOT APPLICABLE — inactive configuration"
+      }
+    },
+    {
+      "id": "enlarged-text-no-horizontal-overflow",
+      "status": "FAIL",
+      "details": {
+        "route": "/cart",
+        "themeId": "158631198917",
+        "viewport": 360,
+        "scrollWidth": 504,
+        "offenders": [
+          {
+            "tag": "TD",
+            "id": "",
+            "class": "cart-item__totals right medium-hide large-up-hide",
+            "right": 378.25
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "class": "cart-item__price-wrapper",
+            "right": 378.25
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "class": "price price--end",
+            "right": 378.25
+          },
+          {
+            "tag": "TD",
+            "id": "",
+            "class": "cart-item__quantity",
+            "right": 378.25
+          },
+          {
+            "tag": "QUANTITY-POPOVER",
+            "id": "",
+            "class": "",
+            "right": 378.25
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "class": "cart-item__quantity-wrapper quantity-popover-wrapper",
+            "right": 378.25
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "class": "quantity-popover-container",
+            "right": 504
+          },
+          {
+            "tag": "QUANTITY-INPUT",
+            "id": "",
+            "class": "quantity cart-quantity",
+            "right": 494
+          },
+          {
+            "tag": "INPUT",
+            "id": "Quantity-1",
+            "class": "quantity__input",
+            "right": 403
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "class": "quantity__button",
+            "right": 493
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "class": "visually-hidden",
+            "right": 448.5
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "class": "svg-wrapper",
+            "right": 458
+          }
+        ],
+        "overflow": true,
+        "headerHeight": 558,
+        "quantity": [
+          {
+            "label": "Quantity for Saw Blade",
+            "disabled": false,
+            "width": 100
+          }
+        ],
+        "subtotal": "Estimated total\n                  $15.00 USD",
+        "note": false,
+        "express": 1,
+        "discountInput": false
+      }
+    },
+    {
+      "id": "native-checkout-entry-no-submit-no-account-requirement",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "responsive-root-text-labels-and-axe",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "native-remove-and-empty-cart-recovery",
+      "status": "PASS",
+      "details": {}
+    }
+  ],
+  "findings": [
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "J-DEF-002",
+      "severity": "high",
+      "owner": "J-PBI-002",
+      "condition": "200% root text on populated native cart",
+      "geometry": {
+        "route": "/cart",
+        "themeId": "158631198917",
+        "viewport": 360,
+        "scrollWidth": 504,
+        "offenders": [
+          {
+            "tag": "TD",
+            "id": "",
+            "class": "cart-item__totals right medium-hide large-up-hide",
+            "right": 378.25
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "class": "cart-item__price-wrapper",
+            "right": 378.25
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "class": "price price--end",
+            "right": 378.25
+          },
+          {
+            "tag": "TD",
+            "id": "",
+            "class": "cart-item__quantity",
+            "right": 378.25
+          },
+          {
+            "tag": "QUANTITY-POPOVER",
+            "id": "",
+            "class": "",
+            "right": 378.25
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "class": "cart-item__quantity-wrapper quantity-popover-wrapper",
+            "right": 378.25
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "class": "quantity-popover-container",
+            "right": 504
+          },
+          {
+            "tag": "QUANTITY-INPUT",
+            "id": "",
+            "class": "quantity cart-quantity",
+            "right": 494
+          },
+          {
+            "tag": "INPUT",
+            "id": "Quantity-1",
+            "class": "quantity__input",
+            "right": 403
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "class": "quantity__button",
+            "right": 493
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "class": "visually-hidden",
+            "right": 448.5
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "class": "svg-wrapper",
+            "right": 458
+          }
+        ],
+        "overflow": true,
+        "headerHeight": 558,
+        "quantity": [
+          {
+            "label": "Quantity for Saw Blade",
+            "disabled": false,
+            "width": 100
+          }
+        ],
+        "subtotal": "Estimated total\n                  $15.00 USD",
+        "note": false,
+        "express": 1,
+        "discountInput": false
+      }
+    }
+  ],
+  "failures": [],
+  "text200": {
+    "route": "/cart",
+    "themeId": "158631198917",
+    "viewport": 360,
+    "scrollWidth": 504,
+    "offenders": [
+      {
+        "tag": "TD",
+        "id": "",
+        "class": "cart-item__totals right medium-hide large-up-hide",
+        "right": 378.25
+      },
+      {
+        "tag": "DIV",
+        "id": "",
+        "class": "cart-item__price-wrapper",
+        "right": 378.25
+      },
+      {
+        "tag": "SPAN",
+        "id": "",
+        "class": "price price--end",
+        "right": 378.25
+      },
+      {
+        "tag": "TD",
+        "id": "",
+        "class": "cart-item__quantity",
+        "right": 378.25
+      },
+      {
+        "tag": "QUANTITY-POPOVER",
+        "id": "",
+        "class": "",
+        "right": 378.25
+      },
+      {
+        "tag": "DIV",
+        "id": "",
+        "class": "cart-item__quantity-wrapper quantity-popover-wrapper",
+        "right": 378.25
+      },
+      {
+        "tag": "DIV",
+        "id": "",
+        "class": "quantity-popover-container",
+        "right": 504
+      },
+      {
+        "tag": "QUANTITY-INPUT",
+        "id": "",
+        "class": "quantity cart-quantity",
+        "right": 494
+      },
+      {
+        "tag": "INPUT",
+        "id": "Quantity-1",
+        "class": "quantity__input",
+        "right": 403
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "class": "quantity__button",
+        "right": 493
+      },
+      {
+        "tag": "SPAN",
+        "id": "",
+        "class": "visually-hidden",
+        "right": 448.5
+      },
+      {
+        "tag": "SPAN",
+        "id": "",
+        "class": "svg-wrapper",
+        "right": 458
+      }
+    ],
+    "overflow": true,
+    "headerHeight": 558,
+    "quantity": [
+      {
+        "label": "Quantity for Saw Blade",
+        "disabled": false,
+        "width": 100
+      }
+    ],
+    "subtotal": "Estimated total\n                  $15.00 USD",
+    "note": false,
+    "express": 1,
+    "discountInput": false
+  },
+  "axe": [
+    {
+      "id": "aria-dialog-name",
+      "impact": "serious",
+      "nodes": [
+        [
+          "#PBarNextFrame",
+          ".Online-Store-UI-BottomSheet_104qo"
+        ]
+      ]
+    },
+    {
+      "id": "frame-title",
+      "impact": "serious",
+      "nodes": [
+        [
+          "#PBarNextFrame"
+        ]
+      ]
+    }
+  ],
+  "axeOwnership": {
+    "storefront": [],
+    "provider": [
+      {
+        "id": "aria-dialog-name",
+        "impact": "serious",
+        "nodes": [
+          [
+            "#PBarNextFrame",
+            ".Online-Store-UI-BottomSheet_104qo"
+          ]
+        ]
+      },
+      {
+        "id": "frame-title",
+        "impact": "serious",
+        "nodes": [
+          [
+            "#PBarNextFrame"
+          ]
+        ]
+      }
+    ],
+    "providerVerified": true
+  },
+  "cleaned": true,
+  "completedAt": "2026-10-20T17:31:45.396Z"
+}

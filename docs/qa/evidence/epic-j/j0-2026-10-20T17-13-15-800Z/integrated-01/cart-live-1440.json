@@ -1,0 +1,207 @@
+{
+  "mode": "ACTUAL_UNPUBLISHED_PREVIEW",
+  "themeId": "158631198917",
+  "width": 1440,
+  "startedAt": "2026-10-20T17:31:49.264Z",
+  "requests": [
+    {
+      "path": "/cart/add",
+      "method": "POST",
+      "mode": "ACTUAL"
+    },
+    {
+      "path": "/cart/change",
+      "method": "POST",
+      "mode": "ACTUAL"
+    }
+  ],
+  "checks": [
+    {
+      "id": "isolated-initial-cart-empty",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "single-Variant-native-add",
+      "status": "PASS",
+      "details": {
+        "variant": "46484258652357",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "notification-Escape-focus-return",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "active-notification-to-cart-page",
+      "status": "PASS",
+      "details": {
+        "drawer": "NOT APPLICABLE — inactive configuration"
+      }
+    },
+    {
+      "id": "enlarged-text-no-horizontal-overflow",
+      "status": "PASS",
+      "details": {
+        "route": "/cart",
+        "themeId": "158631198917",
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "offenders": [],
+        "overflow": false,
+        "headerHeight": 184.78125,
+        "quantity": [
+          {
+            "label": "Quantity for Saw Blade",
+            "disabled": false,
+            "width": 100
+          }
+        ],
+        "subtotal": "Estimated total\n                  $15.00 USD",
+        "note": false,
+        "express": 1,
+        "discountInput": false
+      }
+    },
+    {
+      "id": "native-checkout-entry-no-submit-no-account-requirement",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "responsive-root-text-labels-and-axe",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "native-remove-and-empty-cart-recovery",
+      "status": "PASS",
+      "details": {}
+    }
+  ],
+  "findings": [
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    }
+  ],
+  "failures": [],
+  "text200": {
+    "route": "/cart",
+    "themeId": "158631198917",
+    "viewport": 1440,
+    "scrollWidth": 1440,
+    "offenders": [],
+    "overflow": false,
+    "headerHeight": 184.78125,
+    "quantity": [
+      {
+        "label": "Quantity for Saw Blade",
+        "disabled": false,
+        "width": 100
+      }
+    ],
+    "subtotal": "Estimated total\n                  $15.00 USD",
+    "note": false,
+    "express": 1,
+    "discountInput": false
+  },
+  "axe": [
+    {
+      "id": "button-name",
+      "impact": "critical",
+      "nodes": [
+        [
+          "#PBarNextFrame",
+          "._GrabberButton_3033z_8"
+        ]
+      ]
+    },
+    {
+      "id": "frame-title",
+      "impact": "serious",
+      "nodes": [
+        [
+          "#PBarNextFrame"
+        ]
+      ]
+    },
+    {
+      "id": "region",
+      "impact": "moderate",
+      "nodes": [
+        [
+          "#PBarNextFrame",
+          "._Button_49d3l_2"
+        ],
+        [
+          "#PBarNextFrame",
+          "._ThemeInfo_12w0u_56"
+        ],
+        [
+          "#PBarNextFrame",
+          "._PwdButton_12w0u_1"
+        ]
+      ]
+    }
+  ],
+  "axeOwnership": {
+    "storefront": [],
+    "provider": [
+      {
+        "id": "button-name",
+        "impact": "critical",
+        "nodes": [
+          [
+            "#PBarNextFrame",
+            "._GrabberButton_3033z_8"
+          ]
+        ]
+      },
+      {
+        "id": "frame-title",
+        "impact": "serious",
+        "nodes": [
+          [
+            "#PBarNextFrame"
+          ]
+        ]
+      },
+      {
+        "id": "region",
+        "impact": "moderate",
+        "nodes": [
+          [
+            "#PBarNextFrame",
+            "._Button_49d3l_2"
+          ],
+          [
+            "#PBarNextFrame",
+            "._ThemeInfo_12w0u_56"
+          ],
+          [
+            "#PBarNextFrame",
+            "._PwdButton_12w0u_1"
+          ]
+        ]
+      }
+    ],
+    "providerVerified": true
+  },
+  "cleaned": true,
+  "completedAt": "2026-10-20T17:32:10.072Z"
+}

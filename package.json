@@ -217,7 +217,11 @@
     "validate:epic-g-integrated": "node scripts/validate-epic-g-integrated.js",
     "test:epic-g-integrated": "node scripts/test-epic-g-integrated.js",
     "test:epic-g-integrated:browser": "node scripts/validate-epic-g-integrated-browser.js",
-    "test:epic-g-integrated:performance": "node scripts/validate-epic-g-integrated-performance.js"
+    "test:epic-g-integrated:performance": "node scripts/validate-epic-g-integrated-performance.js",
+    "validate:epic-j-readiness": "node scripts/validate-epic-j-readiness.js",
+    "test:epic-j-readiness": "node scripts/test-epic-j-readiness.js",
+    "test:epic-j-cart": "playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1",
+    "validate:epic-j-j0": "node scripts/run-epic-j-j0.js"
   },
   "repository": {
     "type": "git",

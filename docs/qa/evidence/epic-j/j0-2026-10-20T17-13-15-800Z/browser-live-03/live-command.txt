@@ -1,0 +1,108 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:epic-j-cart
+> playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1 -g actual preview --output docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/browser-live-03/artifacts --reporter=line,json
+
+◇ injected env (12) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+
+Running 3 tests using 1 worker
+
+
+(node:21624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+
+[1/3] [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 390
+  1) [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 390 
+
+    Error: J-DEF-002 populated cart 200% root text overflow
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      40 |   }
+      41 |   await page.evaluate(()=>document.documentElement.style.fontSize=parseFloat(getComputedStyle(document.documentElement).fontSize)*2+'px');await page.waitForTimeout(400);
+    > 42 |   const geometry=await page.evaluate(()=>({route:location.pathname,themeId:String(window.Shopify?.theme?.id),viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('main *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).slice(0,12).map(e=>({tag:e.tagName,id:e.id,class:e.className,right:e.getBoundingClientRect().right})),overflow:document.documentElement.scrollWidth>innerWidth+1,headerHeight:document.querySelector('header.header')?.getBoundingClientRect().height,quantity:[...document.querySelectorAll('main input[name="updates[]"]')].map(e=>({label:e.getAttribute('aria-label'),disabled:e.disabled,width:e.getBoundingClientRect().width})),subtotal:document.querySelector('main .totals')?.textContent.trim(),note:!!document.querySelector('main cart-note'),express:document.querySelectorAll('main .additional-checkout-buttons').length,discountInput:!!document.querySelector('main input[name=discount]')}));out.text200=geometry;out.checks.push({id:'enlarged-text-no-horizontal-overflow',status:geometry.overflow?'FAIL':'PASS',details:geometry});if(geometry.overflow)out.findings.push({id:'J-DEF-002',severity:'high',owner:'J-PBI-002',condition:'200% root text on populated native cart',geometry});expect.soft(geometry.overflow,'J-DEF-002 populated cart 200% root text overflow').toBe(false);expect(geometry.quantity.every(q=>q.label&&q.width>0&&!q.disabled)).toBe(true);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^
+      43 |   const checkout=page.locator('main [name=checkout]');await checkout.focus();await checkout.scrollIntoViewIfNeeded();await page.keyboard.press('Tab');await page.keyboard.press('Shift+Tab');await expect(checkout).toBeFocused();await expect(checkout).toBeVisible();await expect(checkout).toBeEnabled();expect(await checkout.getAttribute('form')).toBe('cart');record('native-checkout-entry-no-submit-no-account-requirement');
+      44 |   const axe=await new AxeBuilder({page}).analyze();out.axe=axe.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)}));const provider={origin:'https://cdn.shopify.com',path:'/shopifycloud/preview-bar/index.html',scriptVerified:await page.evaluate(()=>[...document.querySelectorAll('script[src]')].some(e=>e.src.includes('cdn.shopify.com')&&e.src.includes('preview-bar')))};out.axeOwnership=I.splitAxe(out.axe,provider);const severe=out.axeOwnership.storefront.filter(v=>['serious','critical'].includes(v.impact));if(severe.length)out.findings.push({id:'storefront-accessibility',severity:'serious-or-critical',details:severe});
+      45 |   await page.screenshot({path:J.directory()+'/cart-'+width+'-text200.png',fullPage:true});record('responsive-root-text-labels-and-axe');await page.evaluate(()=>document.documentElement.style.fontSize='');
+        at C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\tests\epic-j-cart.spec.js:42:1346
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+(node:12372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+
+[2/3] [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 360
+  2) [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 360 
+
+    Error: J-DEF-002 populated cart 200% root text overflow
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      40 |    const row=page.locator('main .cart-item').filter({has:page.locator('[data-quantity-variant-id="'+fixture.items[0].variantId+'"]')});for(const [button,count]of [['plus',4],['minus',3]]){await row.locator('[name='+button+']').click();await waitCart(count);await page.waitForTimeout(400);}record('native-quantity-increase-decrease');
+      41 |    const before=(await cart()).item_count;mocked=true;await page.route('**/cart/change*',r=>r.fulfill({status:422,json:{errors:'J0 fixture inventory quantity unavailable'}}));await row.locator('[name=plus]').click();await expect(row.locator('.cart-item__error-text')).toHaveText('J0 fixture inventory quantity unavailable');expect((await cart()).item_count).toBe(before);await page.unroute('**/cart/change*');mocked=false;record('mocked-invalid-update-visible-error-and-native-state-preservation');
+    > 42 |    await page.locator('main .cart-item__name').first().click();await page.waitForLoadState('load');await page.goBack({waitUntil:'load'});expect(new URL(page.url()).pathname).toBe('/cart');expect((await cart()).item_count).toBe(3);await expect(page.locator('main .cart-item')).toHaveCount(2);await page.goForward({waitUntil:'load'});await page.goBack({waitUntil:'load'});record('back-forward-native-cart-state');
+         |                                                                                                                                                                                                                                                                                                                                                                                                                            ^
+      43 |   }
+      44 |   await page.evaluate(()=>document.documentElement.style.fontSize=parseFloat(getComputedStyle(document.documentElement).fontSize)*2+'px');await page.waitForTimeout(400);
+      45 |   const geometry=await page.evaluate(()=>({route:location.pathname,themeId:String(window.Shopify?.theme?.id),viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('main *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).slice(0,12).map(e=>({tag:e.tagName,id:e.id,class:e.className,right:e.getBoundingClientRect().right})),overflow:document.documentElement.scrollWidth>innerWidth+1,headerHeight:document.querySelector('header.header')?.getBoundingClientRect().height,quantity:[...document.querySelectorAll('main input[name="updates[]"]')].map(e=>({label:e.getAttribute('aria-label'),disabled:e.disabled,width:e.getBoundingClientRect().width})),subtotal:document.querySelector('main .totals')?.textContent.trim(),note:!!document.querySelector('main cart-note'),express:document.querySelectorAll('main .additional-checkout-buttons').length,discountInput:!!document.querySelector('main input[name=discount]')}));out.text200=geometry;out.checks.push({id:'enlarged-text-no-horizontal-overflow',status:geometry.overflow?'FAIL':'PASS',details:geometry});if(geometry.overflow)out.findings.push({id:'J-DEF-002',severity:'high',owner:'J-PBI-002',condition:'200% root text on populated native cart',geometry});expect.soft(geometry.overflow,'J-DEF-002 populated cart 200% root text overflow').toBe(false);expect(geometry.quantity.every(q=>q.label&&q.width>0&&!q.disabled)).toBe(true);
+        at C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\tests\epic-j-cart.spec.js:42:1346
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace docs\qa\evidence\epic-j\j0-2026-10-20T17-13-15-800Z\browser-live-03\artifacts\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+(node:9232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+
+[3/3] [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 1440
+  2 failed
+    [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 390 ─
+    [desktop-chromium] › tests\epic-j-cart.spec.js:19:35 › actual preview isolated native cart 360 ─
+  1 passed (1.6m)

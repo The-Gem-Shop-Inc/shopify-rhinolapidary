@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T17:14:12.641Z",
+  "planEvidence": "docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/shop-capabilities.json",
+  "plan": "Basic",
+  "shopifyPlus": false,
+  "checkoutApiSupportedIsEntitlement": false,
+  "officialSources": [
+    {
+      "url": "https://help.shopify.com/en/manual/checkout-settings/customize-checkout-configurations",
+      "checkedAt": "2026-10-20T17:32:04.221Z",
+      "supports": "Basic editor/standard branding; Plus checkout-step UI and Branding API"
+    },
+    {
+      "url": "https://shopify.dev/docs/apps/build/checkout/technologies",
+      "checkedAt": "2026-10-20T17:32:04.223Z",
+      "supports": "Technology and target-specific plan restrictions; thank-you/order-status and post-purchase are distinct"
+    },
+    {
+      "url": "https://help.shopify.com/en/manual/checkout-settings/checkout-customization",
+      "checkedAt": "2026-10-20T17:32:04.223Z",
+      "supports": "Eligible payment/delivery customization apps have plan, geography and app constraints"
+    }
+  ],
+  "themeControlled": [
+    "Notification and optional drawer",
+    "Full cart page",
+    "Native line quantities/removal",
+    "Native cart notes setting and save behavior",
+    "Product links, approved in-theme messages and errors",
+    "Standard checkout entry and conditional provider placement"
+  ],
+  "adminOrOperations": [
+    "Shipping profiles and rates",
+    "Pickup availability/locations",
+    "Taxes/exemptions",
+    "Enabled payment methods",
+    "Inventory and fulfillment policies",
+    "Approved delivery/freight/lead-time promises",
+    "Abandoned checkout recovery",
+    "Checkout/account settings and standard branding"
+  ],
+  "checkoutLimited": [
+    {
+      "capability": "Standard checkout/account editor branding",
+      "planAvailable": true,
+      "actualConfigurationVerified": false
+    },
+    {
+      "capability": "Checkout information/shipping/payment-step UI extensions",
+      "planAvailable": false
+    },
+    {
+      "capability": "Checkout Branding API",
+      "planAvailable": false
+    },
+    {
+      "capability": "Eligible thank-you/order-status apps",
+      "planAvailable": true,
+      "installationOrDeploymentAuthorized": false
+    },
+    {
+      "capability": "Eligible payment/delivery customization apps or Functions",
+      "planAvailable": "CONDITIONAL — exact API, app distribution, plan, geography and merchant entitlement require a separate check",
+      "installationOrDeploymentAuthorized": false
+    }
+  ],
+  "notCertified": [
+    "Actual checkout page",
+    "Payment wallets/providers",
+    "Delivery rates and destinations",
+    "Tax exemptions",
+    "Pickup",
+    "Abandoned recovery settings"
+  ],
+  "j0ChangesAuthorized": false
+}

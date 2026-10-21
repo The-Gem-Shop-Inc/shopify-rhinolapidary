@@ -1,0 +1,20 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:epic-j-cart
+> playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1 -g offline --output docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/browser-03/artifacts --reporter=line
+
+◇ injected env (12) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+
+Running 4 tests using 1 worker
+
+
+(node:24900) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+
+[1/4] [desktop-chromium] › tests\epic-j-cart.spec.js:7:1 › offline native cart rejects unavailable inventory and announces update error
+[2/4] [desktop-chromium] › tests\epic-j-cart.spec.js:10:1 › offline native drawer keyboard, close/focus return, checkout and page route
+[3/4] [desktop-chromium] › tests\epic-j-cart.spec.js:13:1 › offline cart notes use native update endpoint without new purchasing rules
+[4/4] [desktop-chromium] › tests\epic-j-cart.spec.js:16:1 › offline mixed equipment cart uses native identities without a freight or compatibility promise
+  4 passed (3.3s)

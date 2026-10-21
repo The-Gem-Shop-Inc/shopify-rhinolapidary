@@ -1,0 +1,171 @@
+{
+  "mode": "ACTUAL_UNPUBLISHED_PREVIEW",
+  "themeId": "158631198917",
+  "width": 390,
+  "startedAt": "2026-10-20T17:23:22.368Z",
+  "requests": [
+    {
+      "path": "/cart/add",
+      "method": "POST",
+      "mode": "ACTUAL"
+    },
+    {
+      "path": "/cart/add",
+      "method": "POST",
+      "mode": "ACTUAL"
+    },
+    {
+      "path": "/cart/change",
+      "method": "POST",
+      "mode": "ACTUAL"
+    },
+    {
+      "path": "/cart/change",
+      "method": "POST",
+      "mode": "ACTUAL"
+    },
+    {
+      "path": "/cart/change",
+      "method": "POST",
+      "mode": "FIXTURE"
+    },
+    {
+      "path": "/cart/change.js",
+      "method": "POST",
+      "mode": "ACTUAL_FAILURE_CLEANUP"
+    },
+    {
+      "path": "/cart/change.js",
+      "method": "POST",
+      "mode": "ACTUAL_FAILURE_CLEANUP"
+    }
+  ],
+  "checks": [
+    {
+      "id": "isolated-initial-cart-empty",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "single-Variant-native-add",
+      "status": "PASS",
+      "details": {
+        "variant": "46484258652357",
+        "quantity": 2
+      }
+    },
+    {
+      "id": "notification-Escape-focus-return",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "active-notification-to-cart-page",
+      "status": "PASS",
+      "details": {
+        "drawer": "NOT APPLICABLE — inactive configuration"
+      }
+    },
+    {
+      "id": "Saw-Blade-four-Size-native-URL-and-Variant",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "two-Variants-native-subtotal",
+      "status": "PASS",
+      "details": {
+        "subtotalCents": 5500
+      }
+    },
+    {
+      "id": "native-quantity-increase-decrease",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "mocked-invalid-update-visible-error-and-native-state-preservation",
+      "status": "PASS",
+      "details": {}
+    },
+    {
+      "id": "back-forward-native-cart-state",
+      "status": "PASS",
+      "details": {}
+    }
+  ],
+  "findings": [
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    },
+    {
+      "id": "prohibited-navigation-attempt",
+      "path": "/checkouts/internal/preloads.js"
+    }
+  ],
+  "failures": [
+    {
+      "message": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+      "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:42:656"
+    }
+  ],
+  "cleaned": true,
+  "completedAt": "2026-10-20T17:23:59.023Z"
+}

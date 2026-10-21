@@ -1,0 +1,358 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+      "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/epic-j-cart.spec.js",
+      "--project=desktop-chromium",
+      "--workers=1",
+      "-g",
+      "actual preview",
+      "--output",
+      "docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/browser-live-01/artifacts",
+      "--reporter=line,json"
+    ],
+    "configFile": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\playwright.config.js",
+    "rootDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/browser-live-01/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-chromium",
+        "name": "desktop-chromium",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/browser-live-01/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-chromium",
+        "name": "mobile-chromium",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/browser-live-01/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-webkit",
+        "name": "desktop-webkit",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "epic-j-cart.spec.js",
+      "file": "epic-j-cart.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "actual preview isolated native cart 390",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 11005,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m401\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m401\u001b[39m\n    at cart (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:27:120)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:30:45",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js",
+                      "column": 120,
+                      "line": 27
+                    },
+                    "snippet": "  25 |   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/\\/checkouts?(\\/|$)|\\/payments?(\\/|$)|\\/orders?(\\/|$)|\\/admin(\\/|$)/.test(u.pathname)){out.findings.push({id:'prohibited-navigation-attempt',path:u.pathname});return route.abort();}return route.continue();});\n  26 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};\n> 27 |   const cart=async()=>{const r=await context.request.get(new URL('/cart.js',page.url()).toString());expect(r.status()).toBe(200);return r.json();};\n     |                                                                                                                        ^\n  28 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);\n  29 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\\/cart\\/add(?:\\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};\n  30 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js",
+                        "column": 120,
+                        "line": 27
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m401\u001b[39m\n\n  25 |   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/\\/checkouts?(\\/|$)|\\/payments?(\\/|$)|\\/orders?(\\/|$)|\\/admin(\\/|$)/.test(u.pathname)){out.findings.push({id:'prohibited-navigation-attempt',path:u.pathname});return route.abort();}return route.continue();});\n  26 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};\n> 27 |   const cart=async()=>{const r=await context.request.get(new URL('/cart.js',page.url()).toString());expect(r.status()).toBe(200);return r.json();};\n     |                                                                                                                        ^\n  28 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);\n  29 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\\/cart\\/add(?:\\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};\n  30 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});\n    at cart (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:27:120)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:30:45"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T17:21:07.250Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js",
+                    "column": 120,
+                    "line": 27
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-ffff9de99c0497131458",
+          "file": "epic-j-cart.spec.js",
+          "line": 19,
+          "column": 35
+        },
+        {
+          "title": "actual preview isolated native cart 360",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7018,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m401\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m401\u001b[39m\n    at cart (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:27:120)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:30:45",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js",
+                      "column": 120,
+                      "line": 27
+                    },
+                    "snippet": "  25 |   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/\\/checkouts?(\\/|$)|\\/payments?(\\/|$)|\\/orders?(\\/|$)|\\/admin(\\/|$)/.test(u.pathname)){out.findings.push({id:'prohibited-navigation-attempt',path:u.pathname});return route.abort();}return route.continue();});\n  26 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};\n> 27 |   const cart=async()=>{const r=await context.request.get(new URL('/cart.js',page.url()).toString());expect(r.status()).toBe(200);return r.json();};\n     |                                                                                                                        ^\n  28 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);\n  29 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\\/cart\\/add(?:\\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};\n  30 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js",
+                        "column": 120,
+                        "line": 27
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m401\u001b[39m\n\n  25 |   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/\\/checkouts?(\\/|$)|\\/payments?(\\/|$)|\\/orders?(\\/|$)|\\/admin(\\/|$)/.test(u.pathname)){out.findings.push({id:'prohibited-navigation-attempt',path:u.pathname});return route.abort();}return route.continue();});\n  26 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};\n> 27 |   const cart=async()=>{const r=await context.request.get(new URL('/cart.js',page.url()).toString());expect(r.status()).toBe(200);return r.json();};\n     |                                                                                                                        ^\n  28 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);\n  29 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\\/cart\\/add(?:\\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};\n  30 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});\n    at cart (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:27:120)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:30:45"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T17:21:19.106Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js",
+                    "column": 120,
+                    "line": 27
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-56a21d484a1714b9eb8a",
+          "file": "epic-j-cart.spec.js",
+          "line": 19,
+          "column": 35
+        },
+        {
+          "title": "actual preview isolated native cart 1440",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7199,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m401\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m401\u001b[39m\n    at cart (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:27:120)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:30:45",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js",
+                      "column": 120,
+                      "line": 27
+                    },
+                    "snippet": "  25 |   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/\\/checkouts?(\\/|$)|\\/payments?(\\/|$)|\\/orders?(\\/|$)|\\/admin(\\/|$)/.test(u.pathname)){out.findings.push({id:'prohibited-navigation-attempt',path:u.pathname});return route.abort();}return route.continue();});\n  26 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};\n> 27 |   const cart=async()=>{const r=await context.request.get(new URL('/cart.js',page.url()).toString());expect(r.status()).toBe(200);return r.json();};\n     |                                                                                                                        ^\n  28 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);\n  29 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\\/cart\\/add(?:\\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};\n  30 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js",
+                        "column": 120,
+                        "line": 27
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m401\u001b[39m\n\n  25 |   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/\\/checkouts?(\\/|$)|\\/payments?(\\/|$)|\\/orders?(\\/|$)|\\/admin(\\/|$)/.test(u.pathname)){out.findings.push({id:'prohibited-navigation-attempt',path:u.pathname});return route.abort();}return route.continue();});\n  26 |   page=await context.newPage();page.setDefaultTimeout(20000);const goto=async route=>{const r=await page.goto('https://sz5dnk-nf.myshopify.com'+route+(route.includes('?')?'&':'?')+'preview_theme_id=158631198917',{waitUntil:'load',timeout:45000});expect(r.status()).toBe(200);expect(await page.evaluate(()=>String(Shopify.theme.id))).toBe(out.themeId);await page.waitForTimeout(500);};\n> 27 |   const cart=async()=>{const r=await context.request.get(new URL('/cart.js',page.url()).toString());expect(r.status()).toBe(200);return r.json();};\n     |                                                                                                                        ^\n  28 |   const waitCart=async count=>expect.poll(async()=>(await cart()).item_count,{timeout:15000}).toBe(count);\n  29 |   const add=async qty=>{await page.locator('main input[name=quantity]').fill(String(qty));const response=page.waitForResponse(r=>/\\/cart\\/add(?:\\.js)?$/.test(new URL(r.url()).pathname)&&r.request().method()==='POST');await page.locator('main [name=add]').click();expect((await response).status()).toBe(200);await expect(page.locator('#cart-notification')).toHaveClass(/active/);};\n  30 |   await goto('/products/saw-blade');expect((await cart()).item_count).toBe(0);isolated=true;record('isolated-initial-cart-empty');expect(await page.locator('main product-form [name=id]').inputValue()).toBe(fixture.items[0].variantId);await add(width===390?2:1);await waitCart(width===390?2:1);record('single-Variant-native-add',{variant:fixture.items[0].variantId,quantity:width===390?2:1});\n    at cart (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:27:120)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js:30:45"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T17:21:26.985Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-1440-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-1440-desktop-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-1440-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j0-2026-10-20T17-13-15-800Z\\browser-live-01\\artifacts\\epic-j-cart-actual-preview-isolated-native-cart-1440-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-cart.spec.js",
+                    "column": 120,
+                    "line": 27
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-7c8139d19a75a2ccd2a1",
+          "file": "epic-j-cart.spec.js",
+          "line": 19,
+          "column": 35
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T17:21:06.549Z",
+    "duration": 27968.199,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

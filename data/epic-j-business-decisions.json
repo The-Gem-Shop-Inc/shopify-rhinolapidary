@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "scope": "FUTURE_FEATURE_DECISIONS_NOT_J0_OR_J1_GATES",
+  "firstBatchNeedsBusinessDecision": false,
+  "decisions": [
+    {
+      "id": "J-DEC-001",
+      "status": "REQUIRED_BEFORE_FEATURE",
+      "owner": "Product Owner + Epic K operations",
+      "blocks": [
+        "J-PBI-003"
+      ],
+      "question": "Which exact Products require freight/delivery messaging, which approved shipping profiles and destinations apply, and what exact customer wording/contact route may be shown?",
+      "requiredEvidence": [
+        "Product GIDs and shipping profile mapping",
+        "Approved freight/oversize/lead-time/pickup/split-shipment wording",
+        "Operational delivery and estimate authority"
+      ],
+      "defaultBehavior": "Existing native Shopify shipping/tax note; no new promise"
+    },
+    {
+      "id": "J-DEC-002",
+      "status": "REQUIRED_BEFORE_FEATURE",
+      "owner": "Product Owner + Epic L service",
+      "blocks": [
+        "J-PBI-004"
+      ],
+      "question": "Should optional cart notes or purchase-order/contact guidance be offered, and what approved copy and handling channel apply?",
+      "requiredEvidence": [
+        "Optional versus mandatory input",
+        "Approved contact/PO/tax-exempt/service route and copy",
+        "Named staff handling and privacy expectations"
+      ],
+      "defaultBehavior": "Notes remain disabled; native cart entry unchanged"
+    },
+    {
+      "id": "J-DEC-003",
+      "status": "REQUIRED_BEFORE_FEATURE",
+      "owner": "Product Owner / Epic G commercial owner",
+      "blocks": [
+        "J-PBI-005"
+      ],
+      "question": "For each exact unresolved Product/Variant, what disposition and any specific warning/restriction is explicitly approved?",
+      "requiredEvidence": [
+        "G006 MR16 price and specification disposition",
+        "Saw Vice identity/Variant/model mapping",
+        "Exact Product-level customer copy and enforcement authority if desired"
+      ],
+      "defaultBehavior": "Published native zero-price Products remain purchasable; no arbitrary threshold rule"
+    },
+    {
+      "id": "J-DEC-004",
+      "status": "REQUIRED_BEFORE_FEATURE",
+      "owner": "Product Owner + payments/discount operations",
+      "blocks": [
+        "J-PBI-006"
+      ],
+      "question": "Should existing checkout/express placement change, and what verified payment eligibility and discount workflow should customers use?",
+      "requiredEvidence": [
+        "Actual payment provider and wallet eligibility",
+        "Approved express placement if changed",
+        "Approved discount-code expectation without creating promotions"
+      ],
+      "defaultBehavior": "Retain existing native entry and provider eligibility; no new payment method claim"
+    },
+    {
+      "id": "J-DEC-005",
+      "status": "REQUIRED_BEFORE_FEATURE",
+      "owner": "Technical/Product Owner + Epic G",
+      "blocks": [
+        "J-PBI-007"
+      ],
+      "question": "Is any cart compatibility or required-accessory guidance needed, with which exact approved meaning, complete source set, copy and lifecycle?",
+      "requiredEvidence": [
+        "Current E/F relationship authority and audience",
+        "Compatible/included/optional/recommended distinction",
+        "G003 private revocation and production operating policy"
+      ],
+      "defaultBehavior": "No compatibility warning, cross-sell or required accessory inference"
+    }
+  ]
+}
