@@ -4,7 +4,7 @@ const fs = require('node:fs'), path = require('node:path'), cp = require('node:c
 const P = require('./epic-j-j1-portability-v1');
 const ID = 'J1-EVIDENCE-PORTABILITY-V2-2026-10-21';
 const CONTRACT = 'data/epic-j-j1-portability-v2.json';
-const CONTRACT_SHA256 = '6d90c51b3225370793ecb5f881eb58cd71a35e9518fc428836fefcef7de312ad';
+const CONTRACT_SHA256 = '89e3aa97500d9eb27bf29dcab9bbf88432e54f1e3926caeae951e9e51d9c43ac';
 const PRIVATE = 'docs/product/AMER\u0130KA ROCK SHOPS.xlsx';
 const PRIVATE_SHA = 'cb74336c9584d8a52d92fd1d791650d730ae50c058cc1867f3a11fb81958968c';
 const REPOSITORY = 'The-Gem-Shop-Inc/shopify-rhinolapidary';
@@ -44,7 +44,18 @@ function load(root, io = {}) {
   }
   const required = [...legacy.c.requiredFiles.filter(r => r.path !== PRIVATE), ...legacy.c.implementation, { path: P.CONTRACT, sha256: v2.predecessor.sha256 },
     ...v2.implementation, v2.ownerDecision];
-  return { ...legacy, v2, decision, required, bytes, exists };
+  // Exact checkout serialization restores historical Windows working bytes without changing any old hash.
+  // No wildcard, custom filter, evidence exclusion or arbitrary content transformation is permitted.
+  const allowedPaths=new Set([...required.map(r=>r.path),CONTRACT]),checkoutPaths=new Set(),checkoutCrlf=new Set();
+  for(const line of bytes('.gitattributes').toString('utf8').split(/\r?\n/)){
+    if(!line||line.startsWith('#'))continue;
+    const match=line.match(/^("(?:[^"\\]|\\.)*") (-text|text eol=crlf) -filter -ident -working-tree-encoding$/);
+    if(!match)fail('INVALID_CHECKOUT_RULE');const p=JSON.parse(match[1]).slice(1);P.canonical(p);
+    if(!allowedPaths.has(p)||checkoutPaths.has(p))fail('INVALID_CHECKOUT_RULE',p);checkoutPaths.add(p);
+    if(match[2]==='text eol=crlf')checkoutCrlf.add(p);
+  }
+  if(checkoutPaths.size!==allowedPaths.size)fail('CHECKOUT_COVERAGE_GAP');
+  return { ...legacy, v2, decision, required, bytes, exists, checkoutCrlf };
 }
 function normalized(p, b) {
   if (p === 'scripts/lib/epic-j-j1-portability-v1.js') return Buffer.from(b.toString('utf8').replace('7841693dc348cf47ee481da8d5b32faa285fd046c2eefa0002bf9385705cfffd', 'PORTABILITY_MANIFEST_PIN_PENDING'));
@@ -126,7 +137,12 @@ function treeGate({root=process.cwd(),tip='HEAD',base='c803d44697de39c0b12b939ec
   if(checkSource){
     verify({root,mode:'portable'});const final=new Map(entries(root,tip).map(r=>[r.path,r.oid]));
     for(const row of [...state.required,{path:CONTRACT,sha256:CONTRACT_SHA256}]){
-      const b=state.bytes(row.path),oid=require('node:crypto').createHash('sha1').update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');
+      let b=state.bytes(row.path);
+      if(state.checkoutCrlf.has(row.path)){
+        const text=b.toString('utf8');if(!Buffer.from(text).equals(b))fail('CHECKOUT_ENCODING_UNSUPPORTED',row.path);
+        b=Buffer.from(text.replaceAll('\r\n','\n'));
+      }
+      const oid=require('node:crypto').createHash('sha1').update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');
       if(final.get(row.path)!==oid)fail('COMMITTED_SOURCE_MISMATCH',row.path);
     }
   }

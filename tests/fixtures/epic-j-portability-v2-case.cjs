@@ -17,7 +17,9 @@ if(scenario.startsWith('changed-document-'))target=decision.approved[Number(scen
 if(scenario==='runtime')target=undefined;
 if(target)io.read=(p,full)=>p===target?Buffer.concat([fs.readFileSync(full),Buffer.from('\nsynthetic alteration')]):fs.readFileSync(full);
 if(scenario==='private-altered'){io.exists=(p,full)=>p===V.PRIVATE||fs.existsSync(full);io.read=(p,full)=>p===V.PRIVATE?Buffer.from('Synthetic altered workbook; no historical private content'):fs.readFileSync(full);}
-if(scenario==='trace-altered')io.read=(p,full)=>p===traces[0].path?Buffer.from('Synthetic altered trace'):fs.readFileSync(full);
+if(scenario==='trace-altered'){io.exists=(p,full)=>p===traces[0].path||fs.existsSync(full);io.read=(p,full)=>p===traces[0].path?Buffer.from('Synthetic altered trace'):fs.readFileSync(full);}
+if(scenario==='checkout-drift')io.read=(p,full)=>p==='.gitattributes'?Buffer.from('"/**" -text\n'):fs.readFileSync(full);
+if(scenario==='runtime-newline')io.read=(p,full)=>{const b=fs.readFileSync(full);return p==='assets/product-form.js'?Buffer.from(b.toString('utf8').includes('\r\n')?b.toString('utf8').replaceAll('\r\n','\n'):b.toString('utf8').replaceAll('\n','\r\n')):b;};
 if(['decision-changed','decision-repository','decision-audience'].includes(scenario)){
  const d=structuredClone(decision);if(scenario==='decision-repository')d.repository='synthetic/other';else if(scenario==='decision-audience')d.audience='PRIVATE';else d.scope='Synthetic altered approval';
  io.read=(p,full)=>p===manifest.ownerDecision.path?Buffer.from(JSON.stringify(d)):fs.readFileSync(full);
