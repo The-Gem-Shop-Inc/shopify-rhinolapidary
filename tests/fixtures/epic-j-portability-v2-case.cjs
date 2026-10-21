@@ -10,7 +10,7 @@ let target;
 if(scenario.startsWith('missing-document-'))target=decision.approved[Number(scenario.slice(-1))].path;
 if(scenario==='missing-source')target='assets/cart.js';
 if(scenario==='missing-public')target=traces[0].safeSummary;
-if(scenario==='missing-clean-evidence')target=manifest.cleanCheckoutEvidence[0].path;
+if(scenario.startsWith('missing-clean-evidence-'))target=manifest.cleanCheckoutEvidence[Number(scenario.slice(-1))].path;
 if(scenario==='missing-decision')target=manifest.ownerDecision.path;
 if(target){const omitted=target;io.exists=(p,full)=>p!==omitted&&fs.existsSync(full);}
 const changed={'js-runtime':'assets/product-form.js','css-runtime':'assets/component-cart-items.css','j1-manifest':'data/epic-j-j1-source-successor.json','j0-contract':'data/epic-j-j0-contract.json','v1-contract':P.CONTRACT,'owner-receipt':'docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/reconciliation.json','commercial':'data/epic-g-commercial-decisions.json','compatibility':'data/epic-e-bom-owner-followup.json','changed-summary':traces[0].safeSummary};

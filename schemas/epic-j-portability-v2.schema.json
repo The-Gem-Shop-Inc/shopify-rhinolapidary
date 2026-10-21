@@ -51,24 +51,35 @@
     },
     "cleanCheckoutEvidence": {
       "type": "array",
-      "minItems": 1,
-      "maxItems": 1,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "path",
-          "sha256"
-        ],
-        "properties": {
-          "path": {
-            "const": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/diff.log"
-          },
-          "sha256": {
-            "const": "7851d1ed5cb2898278b72a87051c13f1c14573ee4e79764fcf2b6d451a23291e"
-          }
+      "minItems": 4,
+      "maxItems": 4,
+      "additionalItems": false,
+      "items": [
+        {
+          "allOf": [
+            { "$ref": "#/definitions/identity" },
+            { "type": "object", "properties": { "path": { "const": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/diff.log" }, "sha256": { "const": "7851d1ed5cb2898278b72a87051c13f1c14573ee4e79764fcf2b6d451a23291e" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/definitions/identity" },
+            { "type": "object", "properties": { "path": { "const": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/registers.log" }, "sha256": { "const": "6a0d7fca9ebc11ad99bcbe27ce12e1c83b8c3d32f02abcd700ee2bb295fbe1db" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/definitions/identity" },
+            { "type": "object", "properties": { "path": { "const": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/review.log" }, "sha256": { "const": "f9628aa7856036165b3329a7bcc6fc3b548da9dac07016b7e018a86e36a65756" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/definitions/identity" },
+            { "type": "object", "properties": { "path": { "const": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/theme-check.log" }, "sha256": { "const": "b154cb2d4e0dbe3f3ad203bec0b9e01799b1c95fd818970db0f56c4a8d422f78" } } }
+          ]
         }
-      }
+      ]
     },
     "privateTraceGitIdentities": {
       "type": "array",

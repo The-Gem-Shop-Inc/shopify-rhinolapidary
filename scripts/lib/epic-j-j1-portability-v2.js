@@ -4,11 +4,15 @@ const fs = require('node:fs'), path = require('node:path'), cp = require('node:c
 const P = require('./epic-j-j1-portability-v1');
 const ID = 'J1-EVIDENCE-PORTABILITY-V2-2026-10-21';
 const CONTRACT = 'data/epic-j-j1-portability-v2.json';
-const CONTRACT_SHA256 = '0fb90ff6db236be723abe1101159b3350e04bf259ed3444091a4e3792eaa8493';
+const CONTRACT_SHA256 = '28ae61a47e29cee9bd62882020fabbca7c5ce9edefe19286677918cc0bc74f91';
 const PRIVATE = 'docs/product/AMER\u0130KA ROCK SHOPS.xlsx';
 const PRIVATE_SHA = 'cb74336c9584d8a52d92fd1d791650d730ae50c058cc1867f3a11fb81958968c';
-const CLEAN_EVIDENCE = 'docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/diff.log';
-const CLEAN_EVIDENCE_SHA = '7851d1ed5cb2898278b72a87051c13f1c14573ee4e79764fcf2b6d451a23291e';
+const CLEAN_EVIDENCE = [
+  { path:'docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/diff.log', sha256:'7851d1ed5cb2898278b72a87051c13f1c14573ee4e79764fcf2b6d451a23291e' },
+  { path:'docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/registers.log', sha256:'6a0d7fca9ebc11ad99bcbe27ce12e1c83b8c3d32f02abcd700ee2bb295fbe1db' },
+  { path:'docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/review.log', sha256:'f9628aa7856036165b3329a7bcc6fc3b548da9dac07016b7e018a86e36a65756' },
+  { path:'docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/theme-check.log', sha256:'b154cb2d4e0dbe3f3ad203bec0b9e01799b1c95fd818970db0f56c4a8d422f78' }
+];
 const REPOSITORY = 'The-Gem-Shop-Inc/shopify-rhinolapidary';
 const fail = (code, file) => { throw new P.IntegrityError(code, file); };
 function load(root, io = {}) {
@@ -37,7 +41,7 @@ function load(root, io = {}) {
   if (decision.private.path !== PRIVATE || decision.private.sha256 !== PRIVATE_SHA || decision.private.disposition !== 'PRIVATE_RELOCATED_DO_NOT_PUBLISH') fail('INVALID_BUSINESS_EXCEPTION');
   const privateRequired = legacy.c.requiredFiles.find(r => r.path === PRIVATE);
   if (privateRequired?.sha256 !== PRIVATE_SHA || v2.businessException.path !== PRIVATE || v2.businessException.sha256 !== PRIVATE_SHA) fail('INVALID_BUSINESS_EXCEPTION');
-  if (v2.cleanCheckoutEvidence.length !== 1 || v2.cleanCheckoutEvidence[0].path !== CLEAN_EVIDENCE || v2.cleanCheckoutEvidence[0].sha256 !== CLEAN_EVIDENCE_SHA) fail('CLEAN_CHECKOUT_EVIDENCE_INVALID');
+  if (v2.cleanCheckoutEvidence.length !== CLEAN_EVIDENCE.length || CLEAN_EVIDENCE.some((row,i) => v2.cleanCheckoutEvidence[i].path !== row.path || v2.cleanCheckoutEvidence[i].sha256 !== row.sha256)) fail('CLEAN_CHECKOUT_EVIDENCE_INVALID');
   const visibility = JSON.parse(bytes(decision.visibilityEvidence));
   if (visibility.nameWithOwner !== REPOSITORY || visibility.visibility !== 'PUBLIC' || visibility.isPrivate !== false) fail('REPOSITORY_VISIBILITY_INVALID');
   const traces = legacy.privateManifest.entries;
