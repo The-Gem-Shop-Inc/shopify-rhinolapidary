@@ -4,9 +4,11 @@ const fs = require('node:fs'), path = require('node:path'), cp = require('node:c
 const P = require('./epic-j-j1-portability-v1');
 const ID = 'J1-EVIDENCE-PORTABILITY-V2-2026-10-21';
 const CONTRACT = 'data/epic-j-j1-portability-v2.json';
-const CONTRACT_SHA256 = '89e3aa97500d9eb27bf29dcab9bbf88432e54f1e3926caeae951e9e51d9c43ac';
+const CONTRACT_SHA256 = '0fb90ff6db236be723abe1101159b3350e04bf259ed3444091a4e3792eaa8493';
 const PRIVATE = 'docs/product/AMER\u0130KA ROCK SHOPS.xlsx';
 const PRIVATE_SHA = 'cb74336c9584d8a52d92fd1d791650d730ae50c058cc1867f3a11fb81958968c';
+const CLEAN_EVIDENCE = 'docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/diff.log';
+const CLEAN_EVIDENCE_SHA = '7851d1ed5cb2898278b72a87051c13f1c14573ee4e79764fcf2b6d451a23291e';
 const REPOSITORY = 'The-Gem-Shop-Inc/shopify-rhinolapidary';
 const fail = (code, file) => { throw new P.IntegrityError(code, file); };
 function load(root, io = {}) {
@@ -35,6 +37,7 @@ function load(root, io = {}) {
   if (decision.private.path !== PRIVATE || decision.private.sha256 !== PRIVATE_SHA || decision.private.disposition !== 'PRIVATE_RELOCATED_DO_NOT_PUBLISH') fail('INVALID_BUSINESS_EXCEPTION');
   const privateRequired = legacy.c.requiredFiles.find(r => r.path === PRIVATE);
   if (privateRequired?.sha256 !== PRIVATE_SHA || v2.businessException.path !== PRIVATE || v2.businessException.sha256 !== PRIVATE_SHA) fail('INVALID_BUSINESS_EXCEPTION');
+  if (v2.cleanCheckoutEvidence.length !== 1 || v2.cleanCheckoutEvidence[0].path !== CLEAN_EVIDENCE || v2.cleanCheckoutEvidence[0].sha256 !== CLEAN_EVIDENCE_SHA) fail('CLEAN_CHECKOUT_EVIDENCE_INVALID');
   const visibility = JSON.parse(bytes(decision.visibilityEvidence));
   if (visibility.nameWithOwner !== REPOSITORY || visibility.visibility !== 'PUBLIC' || visibility.isPrivate !== false) fail('REPOSITORY_VISIBILITY_INVALID');
   const traces = legacy.privateManifest.entries;
@@ -43,7 +46,7 @@ function load(root, io = {}) {
     if (legacy.c.requiredFiles.find(r => r.path === approved.path)?.sha256 !== approved.sha256) fail('APPROVED_DOCUMENT_IDENTITY_INVALID', approved.path);
   }
   const required = [...legacy.c.requiredFiles.filter(r => r.path !== PRIVATE), ...legacy.c.implementation, { path: P.CONTRACT, sha256: v2.predecessor.sha256 },
-    ...v2.implementation, v2.ownerDecision];
+    ...v2.cleanCheckoutEvidence, ...v2.implementation, v2.ownerDecision];
   // Exact checkout serialization restores historical Windows working bytes without changing any old hash.
   // No wildcard, custom filter, evidence exclusion or arbitrary content transformation is permitted.
   const allowedPaths=new Set([...required.map(r=>r.path),CONTRACT]),checkoutPaths=new Set(),checkoutCrlf=new Set();
