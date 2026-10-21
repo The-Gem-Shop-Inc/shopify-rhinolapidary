@@ -1,0 +1,16 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 validate:epic-g-products
+> node scripts/validate-epic-g-products.js
+
+AssertionError [ERR_ASSERTION]: G2 presentation lease expired
+    at Object.verify (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\lib\epic-g-product-release.js:78:72)
+    at verify (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\validate-epic-g-products.js:7:27)
+    at Object.<anonymous> (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\validate-epic-g-products.js:32:40)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)

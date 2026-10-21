@@ -1,0 +1,181 @@
+
+> shopify-rhinolapidary@1.0.0 test:epic-g-foundation
+> node scripts/test-epic-g-foundation.js --output docs/qa/evidence/epic-g/g1-2026-10-16/tests.json
+
+{
+  "suite": "G-PBI-001 foundation negative tests",
+  "tests": 42,
+  "passed": 42,
+  "failed": 0,
+  "results": [
+    {
+      "name": "baseline fixture is explicitly offline, full exact sets eligible",
+      "status": "PASS"
+    },
+    {
+      "name": "removed current compatibility approval revokes output",
+      "status": "PASS"
+    },
+    {
+      "name": "revoked approval state is never accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "receipt expires exactly at exclusive upper boundary; reading never renews it",
+      "status": "PASS"
+    },
+    {
+      "name": "future receipt is ineligible",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid receipt date fails closed",
+      "status": "PASS"
+    },
+    {
+      "name": "stale Admin observation blocks fit independently of valid receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "changed source Product class does not disable native commerce",
+      "status": "PASS"
+    },
+    {
+      "name": "tags/type/title cannot repair changed class",
+      "status": "PASS"
+    },
+    {
+      "name": "missing machine target is an orphan even if its identity remains approved",
+      "status": "PASS"
+    },
+    {
+      "name": "duplicate Product reference rejects whole fit list",
+      "status": "PASS"
+    },
+    {
+      "name": "changed multi-machine list does not render its surviving approved subset",
+      "status": "PASS"
+    },
+    {
+      "name": "reference order alone is not a technical relationship change",
+      "status": "PASS"
+    },
+    {
+      "name": "unpublished JadeMaster remains approved data but cannot become customer destination",
+      "status": "PASS"
+    },
+    {
+      "name": "unpublished source suppresses customer fit without revoking source approval",
+      "status": "PASS"
+    },
+    {
+      "name": "unsupported Saw Vice relationship is rejected despite live reference",
+      "status": "PASS"
+    },
+    {
+      "name": "expected absent Saw Vice relationship is not Admin drift",
+      "status": "PASS"
+    },
+    {
+      "name": "unknown Product reference is not inferred by matching title/handle",
+      "status": "PASS"
+    },
+    {
+      "name": "Variant GID is not accepted as a Product reference",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong metafield type rejects fit",
+      "status": "PASS"
+    },
+    {
+      "name": "definition/metafield identity drift rejects reconciled grant",
+      "status": "PASS"
+    },
+    {
+      "name": "included/optional/recommended references cannot become compatibility",
+      "status": "PASS"
+    },
+    {
+      "name": "missing optional SKU/media/description/resources do not invalidate role or native purchasing",
+      "status": "PASS"
+    },
+    {
+      "name": "missing approved Variant is accounted for without a purchase restriction",
+      "status": "PASS"
+    },
+    {
+      "name": "new/unknown Variant identity cannot enter governed G role",
+      "status": "PASS"
+    },
+    {
+      "name": "incomplete outer pagination cannot claim reconciliation",
+      "status": "PASS"
+    },
+    {
+      "name": "incomplete nested metafields cannot claim reconciliation",
+      "status": "PASS"
+    },
+    {
+      "name": "unconsumed/repeated response cannot satisfy pagination proof",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong shop fails closed",
+      "status": "PASS"
+    },
+    {
+      "name": "changed handle cannot silently remap approved Product identity",
+      "status": "PASS"
+    },
+    {
+      "name": "changed target class rejects compatibility even when GID exists",
+      "status": "PASS"
+    },
+    {
+      "name": "missing previously approved live metafield is drift",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin GraphQL errors cannot be mislabeled reconciled",
+      "status": "PASS"
+    },
+    {
+      "name": "envelope schema explicitly rejects mutation accounting",
+      "status": "PASS"
+    },
+    {
+      "name": "read adapter preserves native transport absence rather than silently using fixtures",
+      "status": "PASS"
+    },
+    {
+      "name": "reprocessing recorded reads preserves original observation time",
+      "status": "PASS"
+    },
+    {
+      "name": "serialized/forged authority objects are not accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "fixture authority can never authorize live data",
+      "status": "PASS"
+    },
+    {
+      "name": "production-looking approval cannot be injected into fixture authority",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline count differences are observations, not a new permanent authority",
+      "status": "PASS"
+    },
+    {
+      "name": "E paginator override rejects mutation before transport",
+      "status": "PASS"
+    },
+    {
+      "name": "E paginator rejects unknown override dataset and invalid page size",
+      "status": "PASS"
+    }
+  ]
+}
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.

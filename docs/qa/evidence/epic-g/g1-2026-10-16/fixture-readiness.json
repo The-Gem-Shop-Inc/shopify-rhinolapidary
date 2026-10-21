@@ -1,0 +1,1069 @@
+{
+  "schemaVersion": 1,
+  "contract": "epic-g-foundation",
+  "mode": "OFFLINE_FIXTURE",
+  "asOf": "2026-10-16T12:01:00.000Z",
+  "source": {
+    "reasons": [],
+    "current": true,
+    "receiptPath": "fixture:receipt",
+    "reconciledAt": "2026-10-15T12:00:00.000Z",
+    "expiresAt": "2026-10-22T12:00:00.000Z",
+    "snapshotCapturedAt": "2026-10-16T12:00:00.000Z",
+    "snapshotExpiresAt": "2026-10-23T12:00:00.000Z",
+    "checkedAt": "2026-10-16T12:01:00.000Z",
+    "fixtureOnly": true,
+    "bindingSha256": null,
+    "provenance": []
+  },
+  "counts": {
+    "products": 9,
+    "variants": 9,
+    "gProducts": 5,
+    "gVariants": 5,
+    "approvedCompatibilityValues": 3,
+    "approvedEdges": 4,
+    "dataEligibleValues": 3,
+    "customerEdges": 3,
+    "approvedUnpublishedTargetEdges": 1,
+    "productsWithoutApprovedCompatibility": 2,
+    "missingGSkus": 5,
+    "missingGMedia": 3,
+    "missingGDescriptions": 3,
+    "zeroPricedGVariants": 4
+  },
+  "byClass": {
+    "machine": {
+      "products": 4,
+      "variants": 4,
+      "gRoleEligible": 0,
+      "published": 3
+    },
+    "replacement_part": {
+      "products": 3,
+      "variants": 3,
+      "gRoleEligible": 3,
+      "published": 3
+    },
+    "consumable": {
+      "products": 1,
+      "variants": 1,
+      "gRoleEligible": 1,
+      "published": 1
+    },
+    "accessory": {
+      "products": 1,
+      "variants": 1,
+      "gRoleEligible": 1,
+      "published": 1
+    }
+  },
+  "reconciliation": {
+    "complete": true,
+    "liveAdmin": false,
+    "paginationComplete": true,
+    "classCoverageComplete": true,
+    "identityProblems": [],
+    "missingProducts": [],
+    "missingVariants": [],
+    "unknownProducts": [],
+    "sourceClassErrors": [],
+    "referenceDrift": [],
+    "publicationDrift": [],
+    "nativeDrift": {
+      "coverage": [
+        {
+          "dataset": "products",
+          "state": "compared",
+          "before": 9,
+          "after": 9
+        },
+        {
+          "dataset": "variants",
+          "state": "compared",
+          "before": 9,
+          "after": 9
+        }
+      ],
+      "changes": [],
+      "interpretation": "Snapshot-to-snapshot observations only. A missing or changed identity is never remapped by title, handle or family."
+    },
+    "commercialDrift": [],
+    "baselineDifferences": [
+      {
+        "metric": "products",
+        "baseline": 122,
+        "current": 9
+      },
+      {
+        "metric": "variants",
+        "baseline": 125,
+        "current": 9
+      },
+      {
+        "metric": "gProducts",
+        "baseline": 111,
+        "current": 5
+      },
+      {
+        "metric": "gVariants",
+        "baseline": 114,
+        "current": 5
+      },
+      {
+        "metric": "approvedCompatibilityValues",
+        "baseline": 39,
+        "current": 3
+      },
+      {
+        "metric": "approvedEdges",
+        "baseline": 40,
+        "current": 4
+      },
+      {
+        "metric": "productsWithoutApprovedCompatibility",
+        "baseline": 72,
+        "current": 2
+      },
+      {
+        "metric": "missingGMedia",
+        "baseline": 24,
+        "current": 3
+      }
+    ],
+    "baselineAuthority": false
+  },
+  "products": [
+    {
+      "productGid": "gid://shopify/Product/8905779282117",
+      "approvedClass": "consumable",
+      "observedClass": "consumable",
+      "reasons": [],
+      "valid": true,
+      "published": true,
+      "gRoleEligible": true,
+      "customerProductEligible": true,
+      "consumerReasons": [],
+      "variants": [
+        {
+          "variantGid": "gid://shopify/ProductVariant/46484253278405",
+          "valid": true,
+          "reasons": []
+        }
+      ],
+      "compatibility": {
+        "meaning": "compatible",
+        "field": "rhino.compatible_machines",
+        "sourceApproved": true,
+        "liveReferenceList": [
+          "gid://shopify/Product/8905780756677"
+        ],
+        "approvedReferenceList": [
+          "gid://shopify/Product/8905780756677"
+        ],
+        "dataEligible": true,
+        "customerEligible": true,
+        "reasons": [],
+        "targets": [
+          {
+            "productGid": "gid://shopify/Product/8905780756677",
+            "handle": "em-1",
+            "title": "EM-1 Machine",
+            "known": true,
+            "present": true,
+            "technicalReasons": [],
+            "published": true,
+            "approved": true,
+            "eligible": true,
+            "reasons": []
+          }
+        ],
+        "provenance": {
+          "rowId": "TEAM:8905779282117:compatible_machines",
+          "approvalDecisionId": "fixture:compatibility:gid://shopify/Product/8905779282117",
+          "ownerDecisionId": "B3B-D02",
+          "receiptPath": "fixture:receipt",
+          "metafieldGid": "gid://shopify/Metafield/71530341761221"
+        }
+      },
+      "relationships": {
+        "compatible": {
+          "field": "rhino.compatible_machines",
+          "observed": [
+            "gid://shopify/Product/8905780756677"
+          ],
+          "grantsFitAuthority": true
+        },
+        "included": {
+          "field": "rhino.included_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "optional": {
+          "field": "rhino.optional_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "recommended": {
+          "field": "rhino.recommended_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        }
+      },
+      "optionalAbsences": {
+        "skuVariantGids": [
+          "gid://shopify/ProductVariant/46484253278405"
+        ],
+        "media": false,
+        "description": false,
+        "itemAttributes": [
+          "grit",
+          "diameter",
+          "arbor_mount",
+          "blade_type",
+          "wheel_type"
+        ],
+        "resources": [
+          "manual_files",
+          "diagram_files",
+          "instruction_files",
+          "video_files",
+          "support_files"
+        ]
+      },
+      "nativeCommerce": {
+        "action": "PRESERVE_NATIVE_SHOPIFY",
+        "disabledByG": false,
+        "adminVariantObservations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484253278405",
+            "sku": null,
+            "price": "0.00",
+            "inventoryQuantity": 0,
+            "inventoryTracked": false,
+            "inventoryPolicy": "DENY",
+            "aggregateAvailable": true
+          }
+        ],
+        "qualification": "Aggregate inventory/availability is observation, not a storefront purchase or fulfillment decision."
+      }
+    },
+    {
+      "productGid": "gid://shopify/Product/8905779839173",
+      "approvedClass": "accessory",
+      "observedClass": "accessory",
+      "reasons": [],
+      "valid": true,
+      "published": true,
+      "gRoleEligible": true,
+      "customerProductEligible": true,
+      "consumerReasons": [],
+      "variants": [
+        {
+          "variantGid": "gid://shopify/ProductVariant/46484253835461",
+          "valid": true,
+          "reasons": []
+        }
+      ],
+      "compatibility": {
+        "meaning": "compatible",
+        "field": "rhino.compatible_machines",
+        "sourceApproved": false,
+        "liveReferenceList": null,
+        "approvedReferenceList": null,
+        "dataEligible": false,
+        "customerEligible": false,
+        "reasons": [
+          "APPROVAL_MISSING",
+          "RELATIONSHIP_VALUE_ABSENT"
+        ],
+        "targets": [],
+        "provenance": null
+      },
+      "relationships": {
+        "compatible": {
+          "field": "rhino.compatible_machines",
+          "observed": null,
+          "grantsFitAuthority": true
+        },
+        "included": {
+          "field": "rhino.included_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "optional": {
+          "field": "rhino.optional_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "recommended": {
+          "field": "rhino.recommended_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        }
+      },
+      "optionalAbsences": {
+        "skuVariantGids": [
+          "gid://shopify/ProductVariant/46484253835461"
+        ],
+        "media": true,
+        "description": true,
+        "itemAttributes": [
+          "grit",
+          "diameter",
+          "arbor_mount",
+          "blade_type",
+          "wheel_type"
+        ],
+        "resources": [
+          "manual_files",
+          "diagram_files",
+          "instruction_files",
+          "video_files",
+          "support_files"
+        ]
+      },
+      "nativeCommerce": {
+        "action": "PRESERVE_NATIVE_SHOPIFY",
+        "disabledByG": false,
+        "adminVariantObservations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484253835461",
+            "sku": null,
+            "price": "0.00",
+            "inventoryQuantity": 0,
+            "inventoryTracked": false,
+            "inventoryPolicy": "DENY",
+            "aggregateAvailable": true
+          }
+        ],
+        "qualification": "Aggregate inventory/availability is observation, not a storefront purchase or fulfillment decision."
+      }
+    },
+    {
+      "productGid": "gid://shopify/Product/8905779871941",
+      "approvedClass": "replacement_part",
+      "observedClass": "replacement_part",
+      "reasons": [],
+      "valid": true,
+      "published": true,
+      "gRoleEligible": true,
+      "customerProductEligible": true,
+      "consumerReasons": [],
+      "variants": [
+        {
+          "variantGid": "gid://shopify/ProductVariant/46484253966533",
+          "valid": true,
+          "reasons": []
+        }
+      ],
+      "compatibility": {
+        "meaning": "compatible",
+        "field": "rhino.compatible_machines",
+        "sourceApproved": true,
+        "liveReferenceList": [
+          "gid://shopify/Product/8905784131781",
+          "gid://shopify/Product/8905784197317"
+        ],
+        "approvedReferenceList": [
+          "gid://shopify/Product/8905784131781",
+          "gid://shopify/Product/8905784197317"
+        ],
+        "dataEligible": true,
+        "customerEligible": true,
+        "reasons": [],
+        "targets": [
+          {
+            "productGid": "gid://shopify/Product/8905784131781",
+            "handle": "sawmaster-18",
+            "title": "SawMaster 18\"",
+            "known": true,
+            "present": true,
+            "technicalReasons": [],
+            "published": true,
+            "approved": true,
+            "eligible": true,
+            "reasons": []
+          },
+          {
+            "productGid": "gid://shopify/Product/8905784197317",
+            "handle": "sawmaster-24",
+            "title": "SawMaster 24\"",
+            "known": true,
+            "present": true,
+            "technicalReasons": [],
+            "published": true,
+            "approved": true,
+            "eligible": true,
+            "reasons": []
+          }
+        ],
+        "provenance": {
+          "rowId": "TEAM:8905779871941:compatible_machines",
+          "approvalDecisionId": "fixture:compatibility:gid://shopify/Product/8905779871941",
+          "ownerDecisionId": "B3B-D02",
+          "receiptPath": "fixture:receipt",
+          "metafieldGid": "gid://shopify/Metafield/71530341662917"
+        }
+      },
+      "relationships": {
+        "compatible": {
+          "field": "rhino.compatible_machines",
+          "observed": [
+            "gid://shopify/Product/8905784131781",
+            "gid://shopify/Product/8905784197317"
+          ],
+          "grantsFitAuthority": true
+        },
+        "included": {
+          "field": "rhino.included_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "optional": {
+          "field": "rhino.optional_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "recommended": {
+          "field": "rhino.recommended_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        }
+      },
+      "optionalAbsences": {
+        "skuVariantGids": [
+          "gid://shopify/ProductVariant/46484253966533"
+        ],
+        "media": true,
+        "description": true,
+        "itemAttributes": [
+          "grit",
+          "diameter",
+          "arbor_mount",
+          "blade_type",
+          "wheel_type"
+        ],
+        "resources": [
+          "manual_files",
+          "diagram_files",
+          "instruction_files",
+          "video_files",
+          "support_files"
+        ]
+      },
+      "nativeCommerce": {
+        "action": "PRESERVE_NATIVE_SHOPIFY",
+        "disabledByG": false,
+        "adminVariantObservations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484253966533",
+            "sku": null,
+            "price": "0.00",
+            "inventoryQuantity": 0,
+            "inventoryTracked": false,
+            "inventoryPolicy": "DENY",
+            "aggregateAvailable": true
+          }
+        ],
+        "qualification": "Aggregate inventory/availability is observation, not a storefront purchase or fulfillment decision."
+      }
+    },
+    {
+      "productGid": "gid://shopify/Product/8905780003013",
+      "approvedClass": "replacement_part",
+      "observedClass": "replacement_part",
+      "reasons": [],
+      "valid": true,
+      "published": true,
+      "gRoleEligible": true,
+      "customerProductEligible": true,
+      "consumerReasons": [],
+      "variants": [
+        {
+          "variantGid": "gid://shopify/ProductVariant/46484254097605",
+          "valid": true,
+          "reasons": []
+        }
+      ],
+      "compatibility": {
+        "meaning": "compatible",
+        "field": "rhino.compatible_machines",
+        "sourceApproved": true,
+        "liveReferenceList": [
+          "gid://shopify/Product/8905781248197"
+        ],
+        "approvedReferenceList": [
+          "gid://shopify/Product/8905781248197"
+        ],
+        "dataEligible": true,
+        "customerEligible": false,
+        "reasons": [],
+        "targets": [
+          {
+            "productGid": "gid://shopify/Product/8905781248197",
+            "handle": "jademaster",
+            "title": "JadeMaster, 14\"",
+            "known": true,
+            "present": true,
+            "technicalReasons": [],
+            "published": false,
+            "approved": true,
+            "eligible": false,
+            "reasons": [
+              "TARGET_NOT_PUBLISHED"
+            ]
+          }
+        ],
+        "provenance": {
+          "rowId": "TEAM:8905780003013:compatible_machines",
+          "approvalDecisionId": "fixture:compatibility:gid://shopify/Product/8905780003013",
+          "ownerDecisionId": "B3B-D02",
+          "receiptPath": "fixture:receipt",
+          "metafieldGid": "gid://shopify/Metafield/71530341630149"
+        }
+      },
+      "relationships": {
+        "compatible": {
+          "field": "rhino.compatible_machines",
+          "observed": [
+            "gid://shopify/Product/8905781248197"
+          ],
+          "grantsFitAuthority": true
+        },
+        "included": {
+          "field": "rhino.included_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "optional": {
+          "field": "rhino.optional_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "recommended": {
+          "field": "rhino.recommended_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        }
+      },
+      "optionalAbsences": {
+        "skuVariantGids": [
+          "gid://shopify/ProductVariant/46484254097605"
+        ],
+        "media": false,
+        "description": false,
+        "itemAttributes": [
+          "grit",
+          "diameter",
+          "arbor_mount",
+          "blade_type",
+          "wheel_type"
+        ],
+        "resources": [
+          "manual_files",
+          "diagram_files",
+          "instruction_files",
+          "video_files",
+          "support_files"
+        ]
+      },
+      "nativeCommerce": {
+        "action": "PRESERVE_NATIVE_SHOPIFY",
+        "disabledByG": false,
+        "adminVariantObservations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484254097605",
+            "sku": null,
+            "price": "85.00",
+            "inventoryQuantity": 0,
+            "inventoryTracked": false,
+            "inventoryPolicy": "DENY",
+            "aggregateAvailable": true
+          }
+        ],
+        "qualification": "Aggregate inventory/availability is observation, not a storefront purchase or fulfillment decision."
+      }
+    },
+    {
+      "productGid": "gid://shopify/Product/8905780756677",
+      "approvedClass": "machine",
+      "observedClass": "machine",
+      "reasons": [],
+      "valid": true,
+      "published": true,
+      "gRoleEligible": false,
+      "customerProductEligible": false,
+      "consumerReasons": [],
+      "variants": [
+        {
+          "variantGid": "gid://shopify/ProductVariant/46484254949573",
+          "valid": true,
+          "reasons": []
+        }
+      ],
+      "compatibility": {
+        "meaning": "compatible",
+        "field": "rhino.compatible_machines",
+        "sourceApproved": false,
+        "liveReferenceList": null,
+        "approvedReferenceList": null,
+        "dataEligible": false,
+        "customerEligible": false,
+        "reasons": [
+          "APPROVAL_MISSING",
+          "COMPATIBILITY_SOURCE_CLASS_UNSUPPORTED",
+          "RELATIONSHIP_VALUE_ABSENT"
+        ],
+        "targets": [],
+        "provenance": null
+      },
+      "relationships": {
+        "compatible": {
+          "field": "rhino.compatible_machines",
+          "observed": null,
+          "grantsFitAuthority": true
+        },
+        "included": {
+          "field": "rhino.included_products",
+          "observed": [
+            "gid://shopify/Product/8905778430149",
+            "gid://shopify/Product/8905778331845",
+            "gid://shopify/Product/8905778987205",
+            "gid://shopify/Product/8905779118277",
+            "gid://shopify/Product/8905778921669",
+            "gid://shopify/Product/8905779052741",
+            "gid://shopify/Product/8905782034629",
+            "gid://shopify/Product/8905783574725"
+          ],
+          "grantsFitAuthority": false
+        },
+        "optional": {
+          "field": "rhino.optional_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "recommended": {
+          "field": "rhino.recommended_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        }
+      },
+      "optionalAbsences": {
+        "skuVariantGids": [
+          "gid://shopify/ProductVariant/46484254949573"
+        ],
+        "media": false,
+        "description": false,
+        "itemAttributes": [
+          "grit",
+          "diameter",
+          "arbor_mount",
+          "blade_type",
+          "wheel_type"
+        ],
+        "resources": [
+          "manual_files",
+          "diagram_files",
+          "instruction_files",
+          "video_files",
+          "support_files"
+        ]
+      },
+      "nativeCommerce": {
+        "action": "PRESERVE_NATIVE_SHOPIFY",
+        "disabledByG": false,
+        "adminVariantObservations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484254949573",
+            "sku": null,
+            "price": "4000.00",
+            "inventoryQuantity": 2,
+            "inventoryTracked": true,
+            "inventoryPolicy": "DENY",
+            "aggregateAvailable": true
+          }
+        ],
+        "qualification": "Aggregate inventory/availability is observation, not a storefront purchase or fulfillment decision."
+      }
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781248197",
+      "approvedClass": "machine",
+      "observedClass": "machine",
+      "reasons": [],
+      "valid": true,
+      "published": false,
+      "gRoleEligible": false,
+      "customerProductEligible": false,
+      "consumerReasons": [],
+      "variants": [
+        {
+          "variantGid": "gid://shopify/ProductVariant/46484255473861",
+          "valid": true,
+          "reasons": []
+        }
+      ],
+      "compatibility": {
+        "meaning": "compatible",
+        "field": "rhino.compatible_machines",
+        "sourceApproved": false,
+        "liveReferenceList": null,
+        "approvedReferenceList": null,
+        "dataEligible": false,
+        "customerEligible": false,
+        "reasons": [
+          "APPROVAL_MISSING",
+          "COMPATIBILITY_SOURCE_CLASS_UNSUPPORTED",
+          "RELATIONSHIP_VALUE_ABSENT"
+        ],
+        "targets": [],
+        "provenance": null
+      },
+      "relationships": {
+        "compatible": {
+          "field": "rhino.compatible_machines",
+          "observed": null,
+          "grantsFitAuthority": true
+        },
+        "included": {
+          "field": "rhino.included_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "optional": {
+          "field": "rhino.optional_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "recommended": {
+          "field": "rhino.recommended_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        }
+      },
+      "optionalAbsences": {
+        "skuVariantGids": [
+          "gid://shopify/ProductVariant/46484255473861"
+        ],
+        "media": false,
+        "description": true,
+        "itemAttributes": [
+          "grit",
+          "diameter",
+          "arbor_mount",
+          "blade_type",
+          "wheel_type"
+        ],
+        "resources": [
+          "manual_files",
+          "diagram_files",
+          "instruction_files",
+          "video_files",
+          "support_files"
+        ]
+      },
+      "nativeCommerce": {
+        "action": "PRESERVE_NATIVE_SHOPIFY",
+        "disabledByG": false,
+        "adminVariantObservations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484255473861",
+            "sku": null,
+            "price": "2495.00",
+            "inventoryQuantity": 1,
+            "inventoryTracked": true,
+            "inventoryPolicy": "DENY",
+            "aggregateAvailable": true
+          }
+        ],
+        "qualification": "Aggregate inventory/availability is observation, not a storefront purchase or fulfillment decision."
+      }
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784099013",
+      "approvedClass": "replacement_part",
+      "observedClass": "replacement_part",
+      "reasons": [],
+      "valid": true,
+      "published": true,
+      "gRoleEligible": true,
+      "customerProductEligible": true,
+      "consumerReasons": [],
+      "variants": [
+        {
+          "variantGid": "gid://shopify/ProductVariant/46484258881733",
+          "valid": true,
+          "reasons": []
+        }
+      ],
+      "compatibility": {
+        "meaning": "compatible",
+        "field": "rhino.compatible_machines",
+        "sourceApproved": false,
+        "liveReferenceList": null,
+        "approvedReferenceList": null,
+        "dataEligible": false,
+        "customerEligible": false,
+        "reasons": [
+          "APPROVAL_MISSING",
+          "RELATIONSHIP_BLOCKED_BY_SOURCE",
+          "RELATIONSHIP_VALUE_ABSENT"
+        ],
+        "targets": [],
+        "provenance": null
+      },
+      "relationships": {
+        "compatible": {
+          "field": "rhino.compatible_machines",
+          "observed": null,
+          "grantsFitAuthority": true
+        },
+        "included": {
+          "field": "rhino.included_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "optional": {
+          "field": "rhino.optional_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "recommended": {
+          "field": "rhino.recommended_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        }
+      },
+      "optionalAbsences": {
+        "skuVariantGids": [
+          "gid://shopify/ProductVariant/46484258881733"
+        ],
+        "media": true,
+        "description": true,
+        "itemAttributes": [
+          "grit",
+          "diameter",
+          "arbor_mount",
+          "blade_type",
+          "wheel_type"
+        ],
+        "resources": [
+          "manual_files",
+          "diagram_files",
+          "instruction_files",
+          "video_files",
+          "support_files"
+        ]
+      },
+      "nativeCommerce": {
+        "action": "PRESERVE_NATIVE_SHOPIFY",
+        "disabledByG": false,
+        "adminVariantObservations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484258881733",
+            "sku": null,
+            "price": "0.00",
+            "inventoryQuantity": 0,
+            "inventoryTracked": false,
+            "inventoryPolicy": "DENY",
+            "aggregateAvailable": true
+          }
+        ],
+        "qualification": "Aggregate inventory/availability is observation, not a storefront purchase or fulfillment decision."
+      }
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784131781",
+      "approvedClass": "machine",
+      "observedClass": "machine",
+      "reasons": [],
+      "valid": true,
+      "published": true,
+      "gRoleEligible": false,
+      "customerProductEligible": false,
+      "consumerReasons": [],
+      "variants": [
+        {
+          "variantGid": "gid://shopify/ProductVariant/46484258914501",
+          "valid": true,
+          "reasons": []
+        }
+      ],
+      "compatibility": {
+        "meaning": "compatible",
+        "field": "rhino.compatible_machines",
+        "sourceApproved": false,
+        "liveReferenceList": null,
+        "approvedReferenceList": null,
+        "dataEligible": false,
+        "customerEligible": false,
+        "reasons": [
+          "APPROVAL_MISSING",
+          "COMPATIBILITY_SOURCE_CLASS_UNSUPPORTED",
+          "RELATIONSHIP_VALUE_ABSENT"
+        ],
+        "targets": [],
+        "provenance": null
+      },
+      "relationships": {
+        "compatible": {
+          "field": "rhino.compatible_machines",
+          "observed": null,
+          "grantsFitAuthority": true
+        },
+        "included": {
+          "field": "rhino.included_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "optional": {
+          "field": "rhino.optional_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "recommended": {
+          "field": "rhino.recommended_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        }
+      },
+      "optionalAbsences": {
+        "skuVariantGids": [
+          "gid://shopify/ProductVariant/46484258914501"
+        ],
+        "media": false,
+        "description": false,
+        "itemAttributes": [
+          "grit",
+          "diameter",
+          "arbor_mount",
+          "blade_type",
+          "wheel_type"
+        ],
+        "resources": [
+          "manual_files",
+          "diagram_files",
+          "instruction_files",
+          "video_files",
+          "support_files"
+        ]
+      },
+      "nativeCommerce": {
+        "action": "PRESERVE_NATIVE_SHOPIFY",
+        "disabledByG": false,
+        "adminVariantObservations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484258914501",
+            "sku": null,
+            "price": "5250.00",
+            "inventoryQuantity": 2,
+            "inventoryTracked": true,
+            "inventoryPolicy": "DENY",
+            "aggregateAvailable": true
+          }
+        ],
+        "qualification": "Aggregate inventory/availability is observation, not a storefront purchase or fulfillment decision."
+      }
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784197317",
+      "approvedClass": "machine",
+      "observedClass": "machine",
+      "reasons": [],
+      "valid": true,
+      "published": true,
+      "gRoleEligible": false,
+      "customerProductEligible": false,
+      "consumerReasons": [],
+      "variants": [
+        {
+          "variantGid": "gid://shopify/ProductVariant/46484258980037",
+          "valid": true,
+          "reasons": []
+        }
+      ],
+      "compatibility": {
+        "meaning": "compatible",
+        "field": "rhino.compatible_machines",
+        "sourceApproved": false,
+        "liveReferenceList": null,
+        "approvedReferenceList": null,
+        "dataEligible": false,
+        "customerEligible": false,
+        "reasons": [
+          "APPROVAL_MISSING",
+          "COMPATIBILITY_SOURCE_CLASS_UNSUPPORTED",
+          "RELATIONSHIP_VALUE_ABSENT"
+        ],
+        "targets": [],
+        "provenance": null
+      },
+      "relationships": {
+        "compatible": {
+          "field": "rhino.compatible_machines",
+          "observed": null,
+          "grantsFitAuthority": true
+        },
+        "included": {
+          "field": "rhino.included_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "optional": {
+          "field": "rhino.optional_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        },
+        "recommended": {
+          "field": "rhino.recommended_products",
+          "observed": null,
+          "grantsFitAuthority": false
+        }
+      },
+      "optionalAbsences": {
+        "skuVariantGids": [
+          "gid://shopify/ProductVariant/46484258980037"
+        ],
+        "media": false,
+        "description": false,
+        "itemAttributes": [
+          "grit",
+          "diameter",
+          "arbor_mount",
+          "blade_type",
+          "wheel_type"
+        ],
+        "resources": [
+          "manual_files",
+          "diagram_files",
+          "instruction_files",
+          "video_files",
+          "support_files"
+        ]
+      },
+      "nativeCommerce": {
+        "action": "PRESERVE_NATIVE_SHOPIFY",
+        "disabledByG": false,
+        "adminVariantObservations": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484258980037",
+            "sku": null,
+            "price": "6600.00",
+            "inventoryQuantity": 2,
+            "inventoryTracked": true,
+            "inventoryPolicy": "DENY",
+            "aggregateAvailable": true
+          }
+        ],
+        "qualification": "Aggregate inventory/availability is observation, not a storefront purchase or fulfillment decision."
+      }
+    }
+  ],
+  "operations": {
+    "readRequests": 2,
+    "mutations": 0,
+    "themePushes": 0
+  },
+  "nativeCommercePolicy": "G never disables native commerce; optional absence and unsupported fit gate only their own G consumer."
+}

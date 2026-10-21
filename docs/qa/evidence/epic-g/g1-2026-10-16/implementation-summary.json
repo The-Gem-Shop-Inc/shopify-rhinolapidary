@@ -1,0 +1,110 @@
+{
+  "completedAt": "2026-10-16T19:20:19.745Z",
+  "pbi": "G-PBI-001",
+  "recommendedStatus": "COMPLETE_G1_REPOSITORY",
+  "implementedPbis": 1,
+  "newFiles": [
+    "scripts/lib/epic-g-foundation.js",
+    "scripts/lib/epic-g-admin-read.js",
+    "scripts/audit-epic-g-admin.js",
+    "scripts/validate-epic-g-foundation.js",
+    "scripts/test-epic-g-foundation.js",
+    "schemas/epic-g-foundation-read.schema.json",
+    "schemas/epic-g-foundation-report.schema.json",
+    "schemas/epic-g-foundation-fixture.schema.json",
+    "tests/fixtures/epic-g-foundation.json",
+    "docs/architecture/adr-0002-epic-g-default-product-template.md",
+    "docs/architecture/epic-g-foundation-contract.md",
+    "docs/project/implementation-records/g-pbi-001-batch-g1.md"
+  ],
+  "modifiedFiles": [
+    "scripts/lib/epic-e-admin-audit.js",
+    "scripts/validate-json-registers.js",
+    "package.json",
+    "docs/rhino-lapidary-pbi-tracker-epic-g.md",
+    "docs/project/epic-g-proposed-backlog.json",
+    "docs/project/epic-g-required-decisions.md"
+  ],
+  "checks": {
+    "gTests": 43,
+    "gTestsFailed": 0,
+    "validationCommandsPassed": 21,
+    "currentAdminReconciliation": true,
+    "documentLinks": true,
+    "newJavaScriptSyntax": true,
+    "unexpectedProtectedChanges": 0,
+    "unchangedProtectedPaths": 104,
+    "boundRuntimePathsUnchanged": 45
+  },
+  "counts": {
+    "products": 122,
+    "variants": 125,
+    "gProducts": 111,
+    "gVariants": 114,
+    "approvedCompatibilityValues": 39,
+    "approvedEdges": 40,
+    "dataEligibleValues": 39,
+    "customerEdges": 31,
+    "approvedUnpublishedTargetEdges": 9,
+    "productsWithoutApprovedCompatibility": 72,
+    "missingGSkus": 114,
+    "missingGMedia": 24,
+    "missingGDescriptions": 5,
+    "zeroPricedGVariants": 6
+  },
+  "sourceExpiry": "2026-10-22T20:26:37.102Z",
+  "partialG1AcceptanceCriteria": [],
+  "shopify": {
+    "batch": "G1 / G-PBI-001",
+    "date": "2026-10-16",
+    "adminDataQueries": 26,
+    "queryEvidence": "docs/qa/evidence/epic-g/g1-2026-10-16/connector-reads.json",
+    "schemaReads": [
+      {
+        "tool": "shopify_graphql_schema",
+        "type_name": "QueryRoot"
+      },
+      {
+        "tool": "shopify_graphql_schema",
+        "type_name": "Product"
+      },
+      {
+        "tool": "shopify_graphql_schema",
+        "type_name": "ProductVariant"
+      }
+    ],
+    "documentationReads": [
+      {
+        "tool": "shopify_search_docs_chunks",
+        "api_name": "admin",
+        "prompt": "Product metafields list.product_reference references jsonValue productVariants inventoryItem tracked inventoryQuantity Admin GraphQL pagination read only"
+      }
+    ],
+    "validationCalls": [
+      {
+        "tool": "shopify_validate_graphql_codeblocks",
+        "artifactIds": [
+          "epic-g1-products-read",
+          "epic-g1-variants-read"
+        ],
+        "result": "helper returned validation skipped; read query execution validated operations"
+      }
+    ],
+    "totalShopifyToolCalls": 31,
+    "mutationCalls": 0,
+    "themePushes": 0,
+    "themePublications": 0,
+    "themeSettingsWrites": 0,
+    "productCreations": 0,
+    "variantCreations": 0,
+    "collectionCreations": 0,
+    "qualification": "Connector responses were replayed locally through E's paginator to create the normalized read envelope. Replay/validators/unit fixtures make no additional Shopify calls. Effective connector API version was not exposed and is recorded as null."
+  },
+  "themePushes": 0,
+  "historicalReceiptsRewritten": 0,
+  "nextBatch": [
+    "G-PBI-002",
+    "G-PBI-003"
+  ],
+  "qualification": "Repository foundation only; no UI/price/ownership implementation or F closure. All later consumer use must recheck observation and receipt validity."
+}

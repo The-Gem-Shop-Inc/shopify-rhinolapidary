@@ -1,0 +1,19 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),cp=require('node:child_process'),E=require('../../../../../scripts/lib/epic-e-owner-response-adapter');
+const DIR='docs/qa/evidence/epic-g/g1-2026-10-16',newFiles=[
+'scripts/lib/epic-g-foundation.js','scripts/lib/epic-g-admin-read.js','scripts/audit-epic-g-admin.js','scripts/validate-epic-g-foundation.js','scripts/test-epic-g-foundation.js',
+'schemas/epic-g-foundation-read.schema.json','schemas/epic-g-foundation-report.schema.json','schemas/epic-g-foundation-fixture.schema.json','tests/fixtures/epic-g-foundation.json',
+'docs/architecture/adr-0002-epic-g-default-product-template.md','docs/architecture/epic-g-foundation-contract.md','docs/project/implementation-records/g-pbi-001-batch-g1.md'
+],modifiedFiles=['scripts/lib/epic-e-admin-audit.js','scripts/validate-json-registers.js','package.json','docs/rhino-lapidary-pbi-tracker-epic-g.md','docs/project/epic-g-proposed-backlog.json','docs/project/epic-g-required-decisions.md'];
+const read=E.read,tests=read(DIR+'/tests.json'),report=read(DIR+'/readiness.json'),protection=read(DIR+'/protected-after.json'),commands=[...read(DIR+'/validation-commands.json').results,...read(DIR+'/final-validation-commands.json').results];
+assert.equal(tests.failed,0);assert.equal(tests.passed,43);assert.equal(report.reconciliation.complete,true);assert.equal(report.reconciliation.liveAdmin,true);
+assert.equal(report.source.fixtureOnly,false);assert.deepEqual(protection.unexpectedChanges,[]);assert(commands.every(c=>c.exitCode===0));
+assert.equal(read('docs/project/epic-g-proposed-backlog.json').items.filter(p=>p.status==='COMPLETE_G1_REPOSITORY').length,1);
+const syntaxFiles=newFiles.filter(p=>p.endsWith('.js'));for(const p of syntaxFiles)assert.equal(cp.spawnSync(process.execPath,['--check',p],{windowsHide:true}).status,0);
+const broken=[];for(const p of [...newFiles,...modifiedFiles].filter(p=>p.endsWith('.md'))){const s=fs.readFileSync(p,'utf8');for(const m of s.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)){if(/^(https?:|#)/.test(m[1]))continue;const t=decodeURIComponent(m[1].split('#')[0]);if(!fs.existsSync(path.resolve(path.dirname(p),t)))broken.push({file:p,target:t});}}assert.deepEqual(broken,[]);
+for(const p of [...newFiles,...modifiedFiles])assert(!/shpat_[A-Za-z0-9]{20,}|shpca_[A-Za-z0-9]{20,}/.test(fs.readFileSync(p,'utf8')),'Credential material in '+p);
+const summary={completedAt:new Date().toISOString(),pbi:'G-PBI-001',recommendedStatus:'COMPLETE_G1_REPOSITORY',implementedPbis:1,newFiles,modifiedFiles,checks:{gTests:43,gTestsFailed:0,validationCommandsPassed:commands.length,currentAdminReconciliation:true,documentLinks:true,newJavaScriptSyntax:true,unexpectedProtectedChanges:0,unchangedProtectedPaths:104,boundRuntimePathsUnchanged:45},counts:report.counts,sourceExpiry:report.source.expiresAt,partialG1AcceptanceCriteria:[],shopify:read(DIR+'/shopify-operations.json'),themePushes:0,historicalReceiptsRewritten:0,nextBatch:['G-PBI-002','G-PBI-003'],qualification:'Repository foundation only; no UI/price/ownership implementation or F closure. All later consumer use must recheck observation and receipt validity.'};
+fs.writeFileSync(DIR+'/implementation-summary.json',JSON.stringify(summary,null,2)+'\n');
+const artifacts=[...newFiles,...modifiedFiles,...fs.readdirSync(DIR).filter(p=>p!=='evidence-manifest.json').map(p=>DIR+'/'+p)].sort();
+fs.writeFileSync(DIR+'/evidence-manifest.json',JSON.stringify({sealedAt:new Date().toISOString(),selfExcluded:true,sourceBindingSha256:report.source.bindingSha256,files:artifacts.map(p=>({path:p,bytes:fs.statSync(p).size,sha256:E.hash(fs.readFileSync(p))}))},null,2)+'\n');console.log(JSON.stringify({status:summary.recommendedStatus,tests:43,commandsPassed:commands.length,artifacts:artifacts.length,brokenLinks:0,mutations:0,themePushes:0}));
+

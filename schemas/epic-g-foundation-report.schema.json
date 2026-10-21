@@ -1,0 +1,20 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "type":"object","additionalProperties":false,
+ "required":["schemaVersion","contract","mode","asOf","source","counts","byClass","reconciliation","products","operations","nativeCommercePolicy"],
+ "properties":{
+  "schemaVersion":{"const":1},"contract":{"const":"epic-g-foundation"},"mode":{"enum":["OFFLINE_FIXTURE","CAPTURED_ADMIN_READ"]},"asOf":{"type":"string","format":"date-time"},
+  "source":{"type":"object","required":["reasons","current","expiresAt","fixtureOnly","receiptPath","provenance"],"properties":{"reasons":{"$ref":"#/$defs/reasons"},"current":{"type":"boolean"},"expiresAt":{"type":["string","null"]},"fixtureOnly":{"type":"boolean"},"provenance":{"type":"array"}}},
+  "counts":{"type":"object","additionalProperties":{"type":"integer","minimum":0}},
+  "byClass":{"type":"object","required":["machine","replacement_part","consumable","accessory"]},
+  "reconciliation":{"type":"object","required":["complete","liveAdmin","paginationComplete","classCoverageComplete","missingProducts","missingVariants","unknownProducts","sourceClassErrors","referenceDrift","publicationDrift","nativeDrift","baselineDifferences"],"properties":{"complete":{"type":"boolean"},"liveAdmin":{"type":"boolean"},"paginationComplete":{"type":"boolean"},"classCoverageComplete":{"type":"boolean"}}},
+  "products":{"type":"array","items":{"type":"object","required":["productGid","reasons","gRoleEligible","customerProductEligible","variants","compatibility","relationships","optionalAbsences","nativeCommerce"],"properties":{
+   "productGid":{"type":"string"},"reasons":{"$ref":"#/$defs/reasons"},"gRoleEligible":{"type":"boolean"},"customerProductEligible":{"type":"boolean"},
+   "nativeCommerce":{"type":"object","required":["action","disabledByG"],"properties":{"action":{"const":"PRESERVE_NATIVE_SHOPIFY"},"disabledByG":{"const":false}}},
+   "compatibility":{"type":"object","required":["meaning","sourceApproved","dataEligible","customerEligible","reasons","targets"],"properties":{"meaning":{"const":"compatible"},"sourceApproved":{"type":"boolean"},"dataEligible":{"type":"boolean"},"customerEligible":{"type":"boolean"},"reasons":{"$ref":"#/$defs/reasons"},"targets":{"type":"array","items":{"type":"object","required":["productGid","approved","eligible","published","reasons"],"properties":{"reasons":{"$ref":"#/$defs/reasons"}}}}}}
+  }}},
+  "operations":{"type":"object","additionalProperties":false,"required":["readRequests","mutations","themePushes"],"properties":{"readRequests":{"type":"integer","minimum":0},"mutations":{"const":0},"themePushes":{"const":0}}},
+  "nativeCommercePolicy":{"type":"string"}
+ },
+ "$defs":{"reasons":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^[A-Z][A-Z0-9_]+$"}}}
+}

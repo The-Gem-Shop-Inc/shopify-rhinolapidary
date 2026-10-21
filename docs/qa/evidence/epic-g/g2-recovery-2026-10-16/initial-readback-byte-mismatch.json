@@ -1,0 +1,10 @@
+{
+  "command": "Initial strict byte-only readback comparison (Node stdin)",
+  "exitCode": 1,
+  "reason": "Shopify preserved its existing generated template warning and changed JSON whitespace; four non-JSON files were byte identical.",
+  "template": {
+    "localSha256": "f979369720afa2e4ddddaf4e6112e0b88326b73fc2f4c2183b7ab1f7f925e8a2",
+    "remoteSha256": "bda2a8ac9521016b743e5675cfabd35ecaffde8c69da5d6320b8b47b9385a4fe"
+  },
+  "resolution": "Stopped browser work; reconciled exact JSON structure plus the exact existing warning. No settings/block/order change; rollback unnecessary. See readback-proof.json."
+}

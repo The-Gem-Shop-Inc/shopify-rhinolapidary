@@ -1,0 +1,25 @@
+npm.cmd run test:epic-g-catalog:deployment
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:epic-g-catalog:deployment
+> node scripts/test-epic-g-catalog-deployment.js
+
+Unrelated Product and F runtime changes remain protected AssertionError [ERR_ASSERTION]: Protected runtime/E/F source changed snippets/rhino-g-product-fit.liquid
++ actual - expected
+
++ '89b9f2fe417bd90f21b3e78d73ac68309eb77bbff000ceac58ece601bebaef82'
+- '5222ffd9d3e39aba51355df2b12985ae7c8514366827deaab7da0529da79d8d3'
+
+    at Object.protectedState (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\deploy-epic-g-catalog-preview.js:7:218)
+    at C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\test-epic-g-catalog-deployment.js:7:79
+    at test (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\test-epic-g-catalog-deployment.js:5:28)
+    at Object.<anonymous> (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\test-epic-g-catalog-deployment.js:7:1)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+{"passed":21,"failed":1}
+
+EXIT_CODE=1

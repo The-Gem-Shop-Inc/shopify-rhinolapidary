@@ -1,0 +1,18 @@
+{
+  "mode": "BROWSER_ONLY_OVERLAY_NOT_DEPLOYED",
+  "tests": [],
+  "readRequests": [
+    {
+      "path": "/products/saw-blade",
+      "sectionId": "template--22706185666757__main",
+      "optionValues": "7809900773573",
+      "httpStatus": 429,
+      "variantJson": null,
+      "responseHasProductInfo": false
+    }
+  ],
+  "mockedWrites": [],
+  "actualCommerceWrites": 0,
+  "error": "Error: expect(locator).toHaveValue(expected) failed\n\nLocator:  locator('main product-form [name=id]')\nExpected: \"46484258685125\"\nReceived: \"\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.value\" with timeout 5000ms\n  - waiting for locator('main product-form [name=id]')\n    2 × locator resolved to <input name=\"id\" type=\"hidden\" value=\"46484258652357\" class=\"product-variant-id\"/>\n      - unexpected value \"46484258652357\"\n    11 × locator resolved to <input value=\"\" name=\"id\" type=\"hidden\" class=\"product-variant-id\"/>\n       - unexpected value \"\"\n\n    at captureRawStack (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\node_modules\\playwright-core\\lib\\coreBundle.js:3172:17)\n    at callMatcherAsStep (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\node_modules\\playwright\\lib\\matchers\\expect.js:12877:57)\n    at Object.toHaveValue (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\node_modules\\playwright\\lib\\matchers\\expect.js:12867:23)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\test-epic-g-product-runtime-overlay.js:27:85",
+  "completedAt": "2026-10-16T19:55:38.022Z"
+}

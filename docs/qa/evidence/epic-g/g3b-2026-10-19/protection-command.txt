@@ -1,0 +1,30 @@
+{"existingFiles":4165,"changed":11,"remoteFiles":7,"MAINChanges":0,"previewOnly":true,"operations":{"reportedConnectorReadQueries":75,"individuallyLoggedQueries":69,"initialSnapshotQueriesCarriedFromContinuation":6,"previewPushCommands":4,"previewFileWriteOccurrences":9,"uniquePreviewFiles":7,"AdminCatalogMutations":0,"MAINWrites":0,"publicationEvents":0,"nativeAnonymousCartPosts":2,"cartCleaned":true,"note":"Initial six theme reads are carried from continuation accounting; inventory/body snapshots persist, but the initial identity timestamp was not retained. CLI internal HTTP calls and browser GET counts are not inferred."}}
+AssertionError [ERR_ASSERTION]: Unrelated existing files changed; see preserved failure hashes in protected-state.json
++ actual - expected
+
++ [
++   {
++     afterSha256: 'efb5a55c5dbcb627510d9ee75a0f8f64726a7c87f2815e2ba35ad60c4d0462f5',
++     beforeSha256: 'c026ef5f0b1d01ee47fbefcc1e5cf0ee7642182e7b9e8fb6962b77fabbb10a90',
++     path: 'docs/qa/evidence/epic-g/g3a-2026-10-19/deployed-sawmaster-18-1440.png'
++   },
++   {
++     afterSha256: 'afeeae1105e9c20a80870be7de8afa5c671f01f6b1a592247442dc2af01f404d',
++     beforeSha256: 'efedf2814aaa418f331b764db4ce8f875fc96e0ce2c8b24aecf4c4f672b106f0',
++     path: 'docs/qa/evidence/epic-g/g3a-2026-10-19/deployed-trimmaster-1440.png'
++   }
++ ]
+- []
+
+    at run (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\report-epic-g-catalog.js:75:10)
+    at Object.<anonymous> (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\report-epic-g-catalog.js:78:35)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
+
+EXIT_CODE=1

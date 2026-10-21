@@ -1,0 +1,7 @@
+'use strict';
+const fs=require('node:fs'),cp=require('node:child_process'),D=require('./deploy-epic-g-catalog-preview'),R=require('./lib/epic-g-catalog');
+async function run(){const rows=[],sources=D.SOURCES.map(R.digest);fs.mkdirSync(R.DIR+'/logs',{recursive:true});let cursor=0;
+ async function worker(){while(cursor<D.REQUIRED.length){const command=D.REQUIRED[cursor++],name=command.replace('npm.cmd run ',''),startedAt=new Date().toISOString(),log=R.DIR+'/logs/'+name.replace(/:/g,'-')+'.txt';fs.writeFileSync(log,command+'\n');const child=cp.spawn('cmd.exe',['/d','/s','/c',command],{env:{...process.env,NODE_OPTIONS:[process.env.NODE_OPTIONS,'--require ./scripts/lib/epic-g-test-evidence.js'].filter(Boolean).join(' ')},windowsHide:true,stdio:['ignore','pipe','pipe']});child.stdout.on('data',v=>fs.appendFileSync(log,v));child.stderr.on('data',v=>fs.appendFileSync(log,v));const exitCode=await new Promise((resolve,reject)=>{child.once('error',reject);child.once('exit',resolve);});rows.push({command,startedAt,completedAt:new Date().toISOString(),exitCode,sources,log});fs.writeFileSync(R.DIR+'/predeployment-gates.json',JSON.stringify(rows,null,2)+'\n');console.log(JSON.stringify({command,exitCode}));}}
+ // Independent processes, bounded to two. Browser fixtures are local and use separate outputs.
+ await Promise.all([worker(),worker()]);if(rows.some(r=>r.exitCode))process.exitCode=1;}
+run().catch(e=>{console.error(e.stack);process.exitCode=1;});

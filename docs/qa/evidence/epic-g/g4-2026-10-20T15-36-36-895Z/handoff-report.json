@@ -1,0 +1,2565 @@
+{
+  "schemaVersion": 1,
+  "pbi": "G-PBI-007",
+  "startedAt": "2026-10-20T15:42:44.699Z",
+  "evidenceDirectory": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z",
+  "themeId": "158631198917",
+  "productionThemeId": "158579622085",
+  "commands": [
+    {
+      "label": "current-foundation",
+      "command": "npm.cmd run validate:epic-g-foundation -- --read docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/admin-read.json --output docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/current-foundation.json",
+      "startedAt": "2026-10-20T15:42:50.280Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/current-foundation.txt",
+      "completedAt": "2026-10-20T15:42:54.462Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "test-epic-g-foundation",
+      "command": "npm.cmd run test:epic-g-foundation",
+      "startedAt": "2026-10-20T15:42:54.607Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-g-foundation.txt",
+      "completedAt": "2026-10-20T15:42:55.417Z",
+      "reason": null,
+      "reportedPassCounts": [
+        43
+      ]
+    },
+    {
+      "label": "test-epic-g-products",
+      "command": "npm.cmd run test:epic-g-products",
+      "startedAt": "2026-10-20T15:42:54.630Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-g-products.txt",
+      "completedAt": "2026-10-20T15:42:55.437Z",
+      "reason": null,
+      "reportedPassCounts": [
+        27
+      ]
+    },
+    {
+      "label": "test-epic-g-recovery-protection",
+      "command": "npm.cmd run test:epic-g-recovery-protection",
+      "startedAt": "2026-10-20T15:42:55.418Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-g-recovery-protection.txt",
+      "completedAt": "2026-10-20T15:43:03.086Z",
+      "reason": null,
+      "reportedPassCounts": [
+        49
+      ]
+    },
+    {
+      "label": "test-epic-g-machine-routes",
+      "command": "npm.cmd run test:epic-g-machine-routes",
+      "startedAt": "2026-10-20T15:42:55.438Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-g-machine-routes.txt",
+      "completedAt": "2026-10-20T15:43:09.380Z",
+      "reason": null,
+      "reportedPassCounts": [
+        26,
+        16
+      ]
+    },
+    {
+      "label": "test-epic-g-machine-entry-fixtures",
+      "command": "npm.cmd run test:epic-g-machine-entry:fixtures",
+      "startedAt": "2026-10-20T15:43:03.087Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-g-machine-entry-fixtures.txt",
+      "completedAt": "2026-10-20T15:43:08.854Z",
+      "reason": null,
+      "reportedPassCounts": [
+        8
+      ]
+    },
+    {
+      "label": "test-epic-g-catalog",
+      "command": "npm.cmd run test:epic-g-catalog",
+      "startedAt": "2026-10-20T15:43:08.854Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-g-catalog.txt",
+      "completedAt": "2026-10-20T15:43:12.662Z",
+      "reason": null,
+      "reportedPassCounts": [
+        41
+      ]
+    },
+    {
+      "label": "test-epic-g-catalog-deployment",
+      "command": "npm.cmd run test:epic-g-catalog:deployment",
+      "startedAt": "2026-10-20T15:43:09.381Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-g-catalog-deployment.txt",
+      "completedAt": "2026-10-20T15:43:12.065Z",
+      "reason": null,
+      "reportedPassCounts": [
+        22
+      ]
+    },
+    {
+      "label": "test-epic-g-catalog-entry",
+      "command": "npm.cmd run test:epic-g-catalog:entry",
+      "startedAt": "2026-10-20T15:43:12.066Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-g-catalog-entry.txt",
+      "completedAt": "2026-10-20T15:43:13.699Z",
+      "reason": null,
+      "reportedPassCounts": [
+        14
+      ]
+    },
+    {
+      "label": "test-epic-f-consumer",
+      "command": "npm.cmd run test:epic-f-consumer",
+      "startedAt": "2026-10-20T15:43:12.663Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-f-consumer.txt",
+      "completedAt": "2026-10-20T15:43:15.430Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "test-epic-f-facts",
+      "command": "npm.cmd run test:epic-f-facts",
+      "startedAt": "2026-10-20T15:43:13.701Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-f-facts.txt",
+      "completedAt": "2026-10-20T15:43:20.697Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "test-epic-f-context-delivery",
+      "command": "npm.cmd run test:epic-f-context-delivery",
+      "startedAt": "2026-10-20T15:43:15.431Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-f-context-delivery.txt",
+      "completedAt": "2026-10-20T15:43:20.012Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "test-epic-f-support-resources",
+      "command": "npm.cmd run test:epic-f-support-resources",
+      "startedAt": "2026-10-20T15:43:20.012Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-f-support-resources.txt",
+      "completedAt": "2026-10-20T15:43:24.368Z",
+      "reason": null,
+      "reportedPassCounts": [
+        177
+      ]
+    },
+    {
+      "label": "test-epic-f-media",
+      "command": "npm.cmd run test:epic-f-media",
+      "startedAt": "2026-10-20T15:43:20.698Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/test-epic-f-media.txt",
+      "completedAt": "2026-10-20T15:43:21.397Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-epic-f-machine",
+      "command": "npm.cmd run validate:epic-f-machine",
+      "startedAt": "2026-10-20T15:43:21.398Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-epic-f-machine.txt",
+      "completedAt": "2026-10-20T15:43:22.198Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-epic-f-context-delivery",
+      "command": "npm.cmd run validate:epic-f-context-delivery",
+      "startedAt": "2026-10-20T15:43:22.199Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-epic-f-context-delivery.txt",
+      "completedAt": "2026-10-20T15:43:30.409Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-epic-f-facts",
+      "command": "npm.cmd run validate:epic-f-facts",
+      "startedAt": "2026-10-20T15:43:24.369Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-epic-f-facts.txt",
+      "completedAt": "2026-10-20T15:43:32.374Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-epic-f-gallery",
+      "command": "npm.cmd run validate:epic-f-gallery",
+      "startedAt": "2026-10-20T15:43:30.411Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-epic-f-gallery.txt",
+      "completedAt": "2026-10-20T15:43:38.337Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-epic-f-support-resources",
+      "command": "npm.cmd run validate:epic-f-support-resources",
+      "startedAt": "2026-10-20T15:43:32.375Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-epic-f-support-resources.txt",
+      "completedAt": "2026-10-20T15:43:40.120Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-epic-g-machine-routes",
+      "command": "npm.cmd run validate:epic-g-machine-routes",
+      "startedAt": "2026-10-20T15:43:38.339Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-epic-g-machine-routes.txt",
+      "completedAt": "2026-10-20T15:43:53.908Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-epic-g-catalog",
+      "command": "npm.cmd run validate:epic-g-catalog",
+      "startedAt": "2026-10-20T15:43:40.121Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-epic-g-catalog.txt",
+      "completedAt": "2026-10-20T15:43:58.373Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-product-templates",
+      "command": "npm.cmd run validate:product-templates",
+      "startedAt": "2026-10-20T15:43:53.910Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-product-templates.txt",
+      "completedAt": "2026-10-20T15:43:54.596Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-product-purchase",
+      "command": "npm.cmd run validate:product-purchase",
+      "startedAt": "2026-10-20T15:43:54.597Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-product-purchase.txt",
+      "completedAt": "2026-10-20T15:43:55.258Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-registers",
+      "command": "npm.cmd run validate:registers",
+      "startedAt": "2026-10-20T15:43:55.259Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-registers.txt",
+      "completedAt": "2026-10-20T15:43:56.836Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-metafields",
+      "command": "npm.cmd run validate:metafields",
+      "startedAt": "2026-10-20T15:43:56.837Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-metafields.txt",
+      "completedAt": "2026-10-20T15:43:57.799Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-navigation",
+      "command": "npm.cmd run validate:navigation",
+      "startedAt": "2026-10-20T15:43:57.800Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-navigation.txt",
+      "completedAt": "2026-10-20T15:43:58.638Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-global-navigation-ia",
+      "command": "npm.cmd run validate:global-navigation-ia",
+      "startedAt": "2026-10-20T15:43:58.375Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-global-navigation-ia.txt",
+      "completedAt": "2026-10-20T15:43:59.237Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-theme-architecture",
+      "command": "npm.cmd run validate:theme-architecture",
+      "startedAt": "2026-10-20T15:43:58.639Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-theme-architecture.txt",
+      "completedAt": "2026-10-20T15:44:02.507Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-rhino-style-contract",
+      "command": "npm.cmd run validate:rhino-style-contract",
+      "startedAt": "2026-10-20T15:43:59.238Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-rhino-style-contract.txt",
+      "completedAt": "2026-10-20T15:43:59.906Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "validate-brand-performance",
+      "command": "npm.cmd run validate:brand-performance",
+      "startedAt": "2026-10-20T15:43:59.907Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/validate-brand-performance.txt",
+      "completedAt": "2026-10-20T15:44:00.749Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "theme-check",
+      "command": "npm.cmd run theme:check",
+      "startedAt": "2026-10-20T15:44:00.751Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/theme-check.txt",
+      "completedAt": "2026-10-20T15:44:20.387Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "current-final-owner-release",
+      "command": "node scripts/test-epic-f-final-owner-release.js",
+      "startedAt": "2026-10-20T15:44:20.388Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/current-final-owner-release.txt",
+      "completedAt": "2026-10-20T15:44:24.630Z",
+      "reason": null,
+      "reportedPassCounts": [
+        9
+      ]
+    },
+    {
+      "label": "g4-negative-matrix",
+      "command": "npm.cmd run test:epic-g-integrated",
+      "startedAt": "2026-10-20T15:44:24.631Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/g4-negative-matrix.txt",
+      "completedAt": "2026-10-20T15:44:25.486Z",
+      "reason": null,
+      "reportedPassCounts": [
+        36
+      ]
+    },
+    {
+      "label": "g2-presentation-lifecycle",
+      "command": "npm.cmd run validate:epic-g-products",
+      "startedAt": "2026-10-20T15:44:25.488Z",
+      "status": "BLOCKED",
+      "exitCode": 1,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/g2-presentation-lifecycle.txt",
+      "completedAt": "2026-10-20T15:44:26.060Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "machine-shell-fixtures",
+      "command": "npm.cmd run test:machine-shell",
+      "startedAt": "2026-10-20T15:44:26.061Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/machine-shell-fixtures.txt",
+      "completedAt": "2026-10-20T15:45:40.597Z",
+      "reason": null,
+      "reportedPassCounts": [
+        58
+      ]
+    },
+    {
+      "label": "gallery-fixtures",
+      "command": "npm.cmd run test:machine-gallery",
+      "startedAt": "2026-10-20T15:45:40.599Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/gallery-fixtures.txt",
+      "completedAt": "2026-10-20T15:46:13.003Z",
+      "reason": null,
+      "reportedPassCounts": [
+        32
+      ]
+    },
+    {
+      "label": "catalog-deployed",
+      "command": "npm.cmd run test:epic-g-catalog:browser",
+      "startedAt": "2026-10-20T15:46:13.005Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/catalog-deployed.txt",
+      "completedAt": "2026-10-20T15:49:01.269Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "machine-deployed",
+      "command": "node scripts/validate-epic-g-machine-routes-browser.js --deployed --current-read docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/admin-read.json",
+      "startedAt": "2026-10-20T15:49:01.271Z",
+      "status": "FAIL",
+      "exitCode": 1,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/machine-deployed.txt",
+      "completedAt": "2026-10-20T15:50:26.434Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "sku-runtime-fixtures",
+      "command": "node scripts/test-epic-g-product-runtime-overlay.js --deployed --sku-only",
+      "startedAt": "2026-10-20T15:50:26.435Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/sku-runtime-fixtures.txt",
+      "completedAt": "2026-10-20T15:50:31.944Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "responsive-enlargement",
+      "command": "npm.cmd run test:epic-g-integrated:browser",
+      "startedAt": "2026-10-20T15:50:31.945Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/responsive-enlargement.txt",
+      "completedAt": "2026-10-20T15:51:20.298Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "performance",
+      "command": "npm.cmd run test:epic-g-integrated:performance",
+      "startedAt": "2026-10-20T15:51:20.299Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/performance.txt",
+      "completedAt": "2026-10-20T15:53:13.988Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "anonymous-native-cart",
+      "command": "node scripts/probe-epic-g-anonymous-cart.js",
+      "startedAt": "2026-10-20T15:53:13.989Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/anonymous-native-cart.txt",
+      "completedAt": "2026-10-20T15:53:22.782Z",
+      "reason": null,
+      "reportedPassCounts": []
+    },
+    {
+      "label": "owner-source-chain",
+      "command": "node scripts/validate-epic-g-owner-sources.js",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-commands.json",
+      "childCommands": [
+        {
+          "command": "node scripts/test-epic-e-owner-response-adapter.js",
+          "startedAt": "2026-10-20T15:49:41.574Z",
+          "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-e-owner-response-adapter.js.txt",
+          "exitCode": 0,
+          "status": "PASS",
+          "completedAt": "2026-10-20T15:49:42.528Z"
+        },
+        {
+          "command": "node scripts/test-epic-e-bom-owner-followup.js",
+          "startedAt": "2026-10-20T15:49:42.539Z",
+          "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-e-bom-owner-followup.js.txt",
+          "exitCode": 0,
+          "status": "PASS",
+          "completedAt": "2026-10-20T15:49:43.137Z"
+        },
+        {
+          "command": "node scripts/test-epic-f-006b-amended.js",
+          "startedAt": "2026-10-20T15:49:43.139Z",
+          "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-f-006b-amended.js.txt",
+          "exitCode": 0,
+          "status": "PASS",
+          "completedAt": "2026-10-20T15:49:46.488Z"
+        },
+        {
+          "command": "node scripts/test-epic-f-final-owner-delta.js",
+          "startedAt": "2026-10-20T15:49:46.489Z",
+          "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-f-final-owner-delta.js.txt",
+          "exitCode": 0,
+          "status": "PASS",
+          "completedAt": "2026-10-20T15:49:54.014Z"
+        },
+        {
+          "command": "node scripts/test-epic-f-bom-contents-compiler.js",
+          "startedAt": "2026-10-20T15:49:54.016Z",
+          "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-f-bom-contents-compiler.js.txt",
+          "exitCode": 0,
+          "status": "PASS",
+          "completedAt": "2026-10-20T15:49:54.904Z"
+        },
+        {
+          "command": "node scripts/test-epic-f-owner-review.js",
+          "startedAt": "2026-10-20T15:49:54.906Z",
+          "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-f-owner-review.js.txt",
+          "exitCode": 0,
+          "status": "PASS",
+          "completedAt": "2026-10-20T15:49:57.179Z"
+        }
+      ],
+      "timestampBasis": "Child command timestamps are recorded; wrapper bounds were not independently captured"
+    },
+    {
+      "label": "native-zoom-viewport",
+      "command": "node scripts/probe-epic-g-zoom-viewport.js",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/zoom-viewport-command.txt",
+      "startedAt": "2026-10-20T15:53:32.363Z",
+      "completedAt": "2026-10-20T15:53:43.149Z"
+    }
+  ],
+  "criteria": [
+    {
+      "id": "current-catalog-authority",
+      "status": "PASS",
+      "details": {
+        "complete": true,
+        "liveAdmin": true,
+        "paginationComplete": true,
+        "classCoverageComplete": true,
+        "identityProblems": [],
+        "missingProducts": [],
+        "missingVariants": [],
+        "unknownProducts": [],
+        "sourceClassErrors": [],
+        "referenceDrift": [],
+        "publicationDrift": [],
+        "nativeDrift": {
+          "coverage": [
+            {
+              "dataset": "products",
+              "state": "compared",
+              "before": 122,
+              "after": 122
+            },
+            {
+              "dataset": "variants",
+              "state": "compared",
+              "before": 125,
+              "after": 125
+            }
+          ],
+          "changes": [],
+          "interpretation": "Snapshot-to-snapshot observations only. A missing or changed identity is never remapped by title, handle or family."
+        },
+        "commercialDrift": [
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484253278405",
+            "field": "price",
+            "before": "0.00",
+            "after": "75.00"
+          },
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484253835461",
+            "field": "price",
+            "before": "0.00",
+            "after": "12.00"
+          },
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484253966533",
+            "field": "price",
+            "before": "0.00",
+            "after": "65.50"
+          },
+          {
+            "variantGid": "gid://shopify/ProductVariant/46484255867077",
+            "field": "price",
+            "before": "0.00",
+            "after": "5.75"
+          }
+        ],
+        "baselineDifferences": [],
+        "baselineAuthority": false
+      }
+    },
+    {
+      "id": "exact-commercial-observation",
+      "status": "FAIL",
+      "details": {
+        "status": "FAIL",
+        "reason": "UNAUTHORIZED_COMMERCIAL_PRICE_CHANGE gid://shopify/ProductVariant/46484253278405",
+        "launchStatus": "BLOCKED",
+        "mutations": 0,
+        "nativePriceChanges": [
+          {
+            "productGid": "gid://shopify/Product/8905779282117",
+            "variantGid": "gid://shopify/ProductVariant/46484253278405",
+            "before": "0.00",
+            "after": "75.00",
+            "approved": false,
+            "updatedAt": "2026-10-20T15:30:28Z"
+          },
+          {
+            "productGid": "gid://shopify/Product/8905779839173",
+            "variantGid": "gid://shopify/ProductVariant/46484253835461",
+            "before": "0.00",
+            "after": "12.00",
+            "approved": true,
+            "updatedAt": "2026-10-19T20:24:17Z"
+          },
+          {
+            "productGid": "gid://shopify/Product/8905779871941",
+            "variantGid": "gid://shopify/ProductVariant/46484253966533",
+            "before": "0.00",
+            "after": "65.50",
+            "approved": true,
+            "updatedAt": "2026-10-19T20:24:23Z"
+          },
+          {
+            "productGid": "gid://shopify/Product/8905781575877",
+            "variantGid": "gid://shopify/ProductVariant/46484255867077",
+            "before": "0.00",
+            "after": "5.75",
+            "approved": true,
+            "updatedAt": "2026-10-19T20:24:28Z"
+          }
+        ],
+        "rows": [
+          {
+            "title": "Arbor Wrench",
+            "productGid": "gid://shopify/Product/8905779839173",
+            "variantGid": "gid://shopify/ProductVariant/46484253835461",
+            "status": "APPLIED",
+            "currency": "USD",
+            "approvedPrice": "12.00",
+            "observedPrice": "12.00",
+            "commercialReady": true,
+            "purchaseMitigationExecuted": false
+          },
+          {
+            "title": "Automatic Feed Clamp",
+            "productGid": "gid://shopify/Product/8905779871941",
+            "variantGid": "gid://shopify/ProductVariant/46484253966533",
+            "status": "APPLIED",
+            "currency": "USD",
+            "approvedPrice": "65.50",
+            "observedPrice": "65.50",
+            "commercialReady": true,
+            "purchaseMitigationExecuted": false
+          },
+          {
+            "title": "LapMaster Lap Bolt",
+            "productGid": "gid://shopify/Product/8905781575877",
+            "variantGid": "gid://shopify/ProductVariant/46484255867077",
+            "status": "APPLIED",
+            "currency": "USD",
+            "approvedPrice": "5.75",
+            "observedPrice": "5.75",
+            "commercialReady": true,
+            "purchaseMitigationExecuted": false
+          },
+          {
+            "title": "6 in Trim Saw attachment",
+            "productGid": "gid://shopify/Product/8905779282117",
+            "variantGid": "gid://shopify/ProductVariant/46484253278405",
+            "status": "DEFERRED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "75.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00",
+            "observationException": "Native price changed outside the three approved updates; updatedAt 2026-10-20T15:30:28Z. No new owner approval in this task. Decision remains DEFERRED."
+          },
+          {
+            "title": "MR16 LED Bulb",
+            "productGid": "gid://shopify/Product/8905782558917",
+            "variantGid": "gid://shopify/ProductVariant/46484256948421",
+            "status": "DEFERRED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "0.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00"
+          },
+          {
+            "title": "Saw Vice Plate Set",
+            "productGid": "gid://shopify/Product/8905784099013",
+            "variantGid": "gid://shopify/ProductVariant/46484258881733",
+            "status": "MAPPING_UNAPPROVED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "0.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00"
+          }
+        ],
+        "launchBlockers": [
+          {
+            "title": "6 in Trim Saw attachment",
+            "productGid": "gid://shopify/Product/8905779282117",
+            "variantGid": "gid://shopify/ProductVariant/46484253278405",
+            "status": "DEFERRED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "75.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00",
+            "observationException": "Native price changed outside the three approved updates; updatedAt 2026-10-20T15:30:28Z. No new owner approval in this task. Decision remains DEFERRED."
+          },
+          {
+            "title": "MR16 LED Bulb",
+            "productGid": "gid://shopify/Product/8905782558917",
+            "variantGid": "gid://shopify/ProductVariant/46484256948421",
+            "status": "DEFERRED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "0.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00"
+          },
+          {
+            "title": "Saw Vice Plate Set",
+            "productGid": "gid://shopify/Product/8905784099013",
+            "variantGid": "gid://shopify/ProductVariant/46484258881733",
+            "status": "MAPPING_UNAPPROVED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "0.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00"
+          }
+        ]
+      }
+    },
+    {
+      "id": "commercial-gid://shopify/ProductVariant/46484253278405",
+      "status": "DEFERRED",
+      "details": {
+        "title": "6 in Trim Saw attachment",
+        "productGid": "gid://shopify/Product/8905779282117",
+        "variantGid": "gid://shopify/ProductVariant/46484253278405",
+        "status": "DEFERRED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "75.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00",
+        "observationException": "Native price changed outside the three approved updates; updatedAt 2026-10-20T15:30:28Z. No new owner approval in this task. Decision remains DEFERRED."
+      }
+    },
+    {
+      "id": "commercial-gid://shopify/ProductVariant/46484256948421",
+      "status": "DEFERRED",
+      "details": {
+        "title": "MR16 LED Bulb",
+        "productGid": "gid://shopify/Product/8905782558917",
+        "variantGid": "gid://shopify/ProductVariant/46484256948421",
+        "status": "DEFERRED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "0.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00"
+      }
+    },
+    {
+      "id": "commercial-gid://shopify/ProductVariant/46484258881733",
+      "status": "BLOCKED",
+      "details": {
+        "title": "Saw Vice Plate Set",
+        "productGid": "gid://shopify/Product/8905784099013",
+        "variantGid": "gid://shopify/ProductVariant/46484258881733",
+        "status": "MAPPING_UNAPPROVED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "0.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00"
+      }
+    },
+    {
+      "id": "theme-identities-and-drift",
+      "status": "PASS",
+      "details": {
+        "status": "PASS",
+        "themes": [
+          {
+            "id": "158579622085",
+            "role": "MAIN",
+            "files": 438,
+            "capturedAt": "2026-10-20T15:37:32.852Z",
+            "fullInventoryUnchanged": true,
+            "bodyHashes": [
+              {
+                "path": "assets/product-form.js",
+                "sha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+                "storedChecksumMd5": "6902a1ab19575a55ed967f8ccc24c23d",
+                "bodyRepresentationMd5": "6902a1ab19575a55ed967f8ccc24c23d",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/product-info.js",
+                "sha256": "8432cb3ad3f356406155e8c62ed2a7d57b3ecfd2d8e2a5f8a71b9e2ae28a4207",
+                "storedChecksumMd5": "bbfa4e3c5d1f73496c2048bd0878ed51",
+                "bodyRepresentationMd5": "bbfa4e3c5d1f73496c2048bd0878ed51",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/rhino-custom.css",
+                "sha256": "32f44d332f5b1d51b95213292c54d6e5c17751ebf4e79878eba4e2c17ce5f961",
+                "storedChecksumMd5": "e3e2de8ce74e722d424bf8627b05faa1",
+                "bodyRepresentationMd5": "e3e2de8ce74e722d424bf8627b05faa1",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/rhino-storefront.js",
+                "sha256": "f4b187b74e258ae01db5142eac3d8d5a3adf7b8755f82f9fe4dee94a96b91486",
+                "storedChecksumMd5": "5b24583ce2fe616834269c575c264ddd",
+                "bodyRepresentationMd5": "5b24583ce2fe616834269c575c264ddd",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "config/settings_data.json",
+                "sha256": "74de2b23899b7db09eac0a27ee66e43fcaa2fad01ede7bd1724ab1a1996e4db5",
+                "storedChecksumMd5": "f16ff7c2e42d6fc412e012afd1d5e443",
+                "bodyRepresentationMd5": "ce7c0bfb72ab5b028e48b2b4ba8a9e34",
+                "representation": "Unchanged stored checksum; separate formatted API body digest, no raw-byte equality claim"
+              },
+              {
+                "path": "layout/theme.liquid",
+                "sha256": "87086adef642d447d2cba82186641e93460d815549375bf608da035534cec5af",
+                "storedChecksumMd5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+                "bodyRepresentationMd5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "sections/main-collection-product-grid.liquid",
+                "sha256": "abed10566af9ce14161cd10c6f6dbb77014b1aa825a2eb3301ae75057ab8d60c",
+                "storedChecksumMd5": "33b394616545584be78f7eaa9cf3ab15",
+                "bodyRepresentationMd5": "33b394616545584be78f7eaa9cf3ab15",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "sections/main-product.liquid",
+                "sha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3",
+                "storedChecksumMd5": "bf649d184fe72f0ba57161632924c8b8",
+                "bodyRepresentationMd5": "bf649d184fe72f0ba57161632924c8b8",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "snippets/header-drawer.liquid",
+                "sha256": "0e2a5fa26dd6bb17a271b50420ed8b4b9dc2f69899a99e99cb6a72d808e90dc3",
+                "storedChecksumMd5": "57ec6385564f8e56cf6cead6ded23f5b",
+                "bodyRepresentationMd5": "57ec6385564f8e56cf6cead6ded23f5b",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "snippets/header-mega-menu.liquid",
+                "sha256": "66a494edf4b5254d325956e2573cb0dd0c8f38a1a4b8c5fa1b1f9e86312e4e76",
+                "storedChecksumMd5": "25ec2a85651ccf1d597408b9da946577",
+                "bodyRepresentationMd5": "25ec2a85651ccf1d597408b9da946577",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "templates/index.json",
+                "sha256": "2be333c67f7321a413f4946c9cff6f1ee1562ddf6d0a79486231ed2f47d49b9f",
+                "storedChecksumMd5": "071bd7ee26e6d984ddec3a03671499e3",
+                "bodyRepresentationMd5": "071bd7ee26e6d984ddec3a03671499e3",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "templates/product.json",
+                "sha256": "5a337836b1d8ff95306456c63ea9cca3364740b984591185cb8044678094fcaf",
+                "storedChecksumMd5": "432168cad7cfb5ae9b7bc6be863fa8c6",
+                "bodyRepresentationMd5": "432168cad7cfb5ae9b7bc6be863fa8c6",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "templates/product.machine.json",
+                "sha256": "483894bbfedbf3d814da773d85409c3ad3225858373505c69b41c0a2ac5a9637",
+                "storedChecksumMd5": "98e5cb615f2fde3497837cd6821f995d",
+                "bodyRepresentationMd5": "98e5cb615f2fde3497837cd6821f995d",
+                "representation": "Verified stored representation; templates omit generated API header"
+              }
+            ]
+          },
+          {
+            "id": "158631198917",
+            "role": "UNPUBLISHED",
+            "files": 450,
+            "capturedAt": "2026-10-20T15:37:36.120Z",
+            "fullInventoryUnchanged": true,
+            "bodyHashes": [
+              {
+                "path": "assets/product-form.js",
+                "sha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+                "storedChecksumMd5": "6902a1ab19575a55ed967f8ccc24c23d",
+                "bodyRepresentationMd5": "6902a1ab19575a55ed967f8ccc24c23d",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/product-info.js",
+                "sha256": "8432cb3ad3f356406155e8c62ed2a7d57b3ecfd2d8e2a5f8a71b9e2ae28a4207",
+                "storedChecksumMd5": "bbfa4e3c5d1f73496c2048bd0878ed51",
+                "bodyRepresentationMd5": "bbfa4e3c5d1f73496c2048bd0878ed51",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/rhino-custom.css",
+                "sha256": "32f44d332f5b1d51b95213292c54d6e5c17751ebf4e79878eba4e2c17ce5f961",
+                "storedChecksumMd5": "e3e2de8ce74e722d424bf8627b05faa1",
+                "bodyRepresentationMd5": "e3e2de8ce74e722d424bf8627b05faa1",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/rhino-g-catalog.css",
+                "sha256": "7bc9186a84626b5f2dde3bfedcf525587575fc3192f9c257d7f0114c3cfb3aee",
+                "storedChecksumMd5": "f747d98050351d2a210d64ac863871f2",
+                "bodyRepresentationMd5": "f747d98050351d2a210d64ac863871f2",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/rhino-g-catalog.js",
+                "sha256": "67a35d7d31755f70c61e084b8e723895209e7043d121642450cae08bc6368018",
+                "storedChecksumMd5": "094039b276d2e1d4198c1190dbcc5a8a",
+                "bodyRepresentationMd5": "094039b276d2e1d4198c1190dbcc5a8a",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/rhino-g-fit.js",
+                "sha256": "ccbcc3628453b612561939f52c83bf061cc8b56a6969df9439128e72643084d2",
+                "storedChecksumMd5": "4e82ba72f4c8995d54cd7d1714d6ce71",
+                "bodyRepresentationMd5": "4e82ba72f4c8995d54cd7d1714d6ce71",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/rhino-g-product.css",
+                "sha256": "14a7c09a79424eeb73e9498531d8a07dd02fd6d524f5f55b2aa16cad08e4cb36",
+                "storedChecksumMd5": "e7f488a8bce656dfc63e3ce1b0117091",
+                "bodyRepresentationMd5": "e7f488a8bce656dfc63e3ce1b0117091",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "assets/rhino-storefront.js",
+                "sha256": "900fab1962efba38c19664feffc64386b94315919f8f3fa894eb790416c929fc",
+                "storedChecksumMd5": "52c7f1fad8c3cb5e55fb644800c35db6",
+                "bodyRepresentationMd5": "52c7f1fad8c3cb5e55fb644800c35db6",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "config/settings_data.json",
+                "sha256": "74de2b23899b7db09eac0a27ee66e43fcaa2fad01ede7bd1724ab1a1996e4db5",
+                "storedChecksumMd5": "e4fe6ae8e07be18f03601c7332975550",
+                "bodyRepresentationMd5": "ce7c0bfb72ab5b028e48b2b4ba8a9e34",
+                "representation": "Unchanged stored checksum; separate formatted API body digest, no raw-byte equality claim"
+              },
+              {
+                "path": "layout/theme.liquid",
+                "sha256": "87086adef642d447d2cba82186641e93460d815549375bf608da035534cec5af",
+                "storedChecksumMd5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+                "bodyRepresentationMd5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "sections/main-collection-product-grid.liquid",
+                "sha256": "239d6ca6cac9179b5d2aa3bd210c62cc4bd88ae38b1306dcf2407ae14d44a7e4",
+                "storedChecksumMd5": "26dd5cae68869244292ab11a92c8aa28",
+                "bodyRepresentationMd5": "26dd5cae68869244292ab11a92c8aa28",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "sections/main-product.liquid",
+                "sha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3",
+                "storedChecksumMd5": "bf649d184fe72f0ba57161632924c8b8",
+                "bodyRepresentationMd5": "bf649d184fe72f0ba57161632924c8b8",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "snippets/header-drawer.liquid",
+                "sha256": "ca8a119916dec6c0e4ea2343215bf80fea8a41f836799bb49c6cc3411d4659dd",
+                "storedChecksumMd5": "9315599bedf425b6670fa3c4782e7797",
+                "bodyRepresentationMd5": "9315599bedf425b6670fa3c4782e7797",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "snippets/header-mega-menu.liquid",
+                "sha256": "e32f7b5159fbc423356314124ecdc71f7504296877e646ca0129e2962805e596",
+                "storedChecksumMd5": "c5b0207802717778a479aadbc5dcdca1",
+                "bodyRepresentationMd5": "c5b0207802717778a479aadbc5dcdca1",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "snippets/rhino-g-catalog-authority.liquid",
+                "sha256": "3879702532c4c36da9e3b94c8362ad96b4ca25fb16660ee2aefcbdd121de5ea2",
+                "storedChecksumMd5": "ffd671fde693673698fc2c7f84132297",
+                "bodyRepresentationMd5": "ffd671fde693673698fc2c7f84132297",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "snippets/rhino-g-catalog-index.liquid",
+                "sha256": "075b61276f802340d2bdd2259ef961bc2360ce88d5d46e5d929490f0df52810e",
+                "storedChecksumMd5": "7569c85e989e16b556fa08e6bd0d7ac7",
+                "bodyRepresentationMd5": "7569c85e989e16b556fa08e6bd0d7ac7",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "snippets/rhino-g-product-detail.liquid",
+                "sha256": "779d1be42f83b70de01abc011990e6b3f2fe30fecaac514768882cc407ea5218",
+                "storedChecksumMd5": "93a474eb2ead8dcd37f0727842af3f11",
+                "bodyRepresentationMd5": "93a474eb2ead8dcd37f0727842af3f11",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "snippets/rhino-g-product-fit.liquid",
+                "sha256": "5222ffd9d3e39aba51355df2b12985ae7c8514366827deaab7da0529da79d8d3",
+                "storedChecksumMd5": "af993a572add6e5806df93928890a667",
+                "bodyRepresentationMd5": "af993a572add6e5806df93928890a667",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "templates/index.json",
+                "sha256": "edb28c51b0b99a9bcf9c33fc9c70a7213373899544f98c3b2a0ff529b624fd66",
+                "storedChecksumMd5": "14720e5340c2d95212c97da6943521be",
+                "bodyRepresentationMd5": "14720e5340c2d95212c97da6943521be",
+                "representation": "Verified stored representation; templates omit generated API header"
+              },
+              {
+                "path": "templates/product.json",
+                "sha256": "bda2a8ac9521016b743e5675cfabd35ecaffde8c69da5d6320b8b47b9385a4fe",
+                "storedChecksumMd5": "b915cbac23bd8db7ead5f408039c1386",
+                "bodyRepresentationMd5": "b915cbac23bd8db7ead5f408039c1386",
+                "representation": "Exact G2 native template structure; unchanged remote checksum preserves Shopify generated header/formatting"
+              },
+              {
+                "path": "templates/product.machine.json",
+                "sha256": "483894bbfedbf3d814da773d85409c3ad3225858373505c69b41c0a2ac5a9637",
+                "storedChecksumMd5": "98e5cb615f2fde3497837cd6821f995d",
+                "bodyRepresentationMd5": "98e5cb615f2fde3497837cd6821f995d",
+                "representation": "Verified stored representation; templates omit generated API header"
+              }
+            ]
+          }
+        ],
+        "previewWrites": 0,
+        "MAINWrites": 0,
+        "publications": 0
+      }
+    },
+    {
+      "id": "current-forward-fit-render",
+      "status": "BLOCKED",
+      "details": {
+        "reason": "Current presentation/source prerequisite unavailable; no projection refresh or preview writes executed by this runner",
+        "historicalEvidence": "docs/qa/evidence/epic-g/g2-recovery-2026-10-16/deployed-fit-coverage.json",
+        "currentEligibleEdges": 31
+      }
+    },
+    {
+      "id": "historical-PNG-recovery",
+      "status": "DEFERRED",
+      "details": {
+        "open": true,
+        "originalRecord": "docs/qa/evidence/epic-g/g3b-2026-10-19/screenshot-preservation-audit.json",
+        "reason": "Do not reconstruct missing historical bytes; current output isolation is separately tested."
+      }
+    },
+    {
+      "id": "optional-selectors-and-account-reorder",
+      "status": "NOT APPLICABLE",
+      "details": {
+        "owners": [
+          "G008/G009",
+          "Epic H post-O",
+          "Epic O"
+        ],
+        "reason": "Not implemented MVP G functionality; absence does not fail ordinary purchasing."
+      }
+    },
+    {
+      "id": "current-output-and-source-protection",
+      "status": "PASS",
+      "details": {
+        "status": "PASS",
+        "checked": 4857,
+        "changed": [
+          {
+            "path": "docs/project/epic-g-proposed-backlog.json",
+            "beforeSha256": "edaebeb8f6729e254380f6dc0a2b5d74099f2e7b19574fecdda4eabb7ed141db",
+            "afterSha256": "77df27d5fd4fe6b34f37b3d9f89a5f6f0f99babc36a560d40db12b1eef86a3b5"
+          },
+          {
+            "path": "docs/rhino-lapidary-pbi-tracker-epic-g.md",
+            "beforeSha256": "e91c2bcca25d087f043fa8b4eb1fd32713e964332fe201aa276d9ce6843c38d9",
+            "afterSha256": "2f8195b986a7f08a8ee3e63756cc5cba20126949572be22ffea6c43d84bbb656"
+          }
+        ],
+        "missing": [],
+        "unauthorized": [],
+        "historicalEvidenceChanged": [],
+        "historicalRecovery": "DEFERRED — original G3B two-PNG exception remains unchanged; current task baseline is distinct"
+      }
+    },
+    {
+      "id": "closing-admin-no-during-QA-drift",
+      "status": "PASS",
+      "details": {
+        "path": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/closing-reconciliation.json",
+        "allCapturedFieldsCompared": true,
+        "changes": 0
+      }
+    },
+    {
+      "id": "native-zoom-viewport-corners",
+      "status": "PASS",
+      "details": {
+        "cases": 3,
+        "path": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/zoom-viewport.json",
+        "fullPageCaptureLimitation": "Original native-zoom full-page screenshots are cropped; preserved unchanged. New un-clipped actual viewport captures and four-corner hit tests confirm controls remain visible."
+      }
+    }
+  ],
+  "counts": {
+    "integrated": {
+      "fixtureOnly": true,
+      "authorizedStateFixture": "docs/qa/evidence/epic-g/g4-2026-10-19T21-31-56-178Z/closing-admin-read.json",
+      "results": [
+        {
+          "name": "Controlled authorized applied/deferred commercial fixture",
+          "kind": "positive",
+          "status": "PASS"
+        },
+        {
+          "name": "Unauthorized unrelated price",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Wrong applied price",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Deferred attachment price cannot become TrimMaster price",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "MR16 retail inference rejected",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Saw Vice generic mapping rejected",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Variant ownership drift",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Observed unapproved $75 attachment remains a deterministic commercial failure",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Deferred rows cannot be called commercially ready",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Blocked prerequisite never aggregates to pass",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Failed prerequisite never aggregates to pass",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Unknown result status rejected",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Verified platform preview findings remain separately reported",
+          "kind": "positive",
+          "status": "PASS"
+        },
+        {
+          "name": "A serious storefront issue cannot use provider classification",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Unverified provider iframe cannot exempt a serious issue",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Transparent shadow cannot prove visible keyboard focus",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Settled native shadow paints a real focus ring",
+          "kind": "positive",
+          "status": "PASS"
+        },
+        {
+          "name": "Unrelated commercial drift does not disable independent native assertions",
+          "kind": "positive",
+          "status": "PASS"
+        },
+        {
+          "name": "Exact applied native price and offer successor",
+          "kind": "positive",
+          "status": "PASS"
+        },
+        {
+          "name": "Native variantId regression remains protected",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Native title regression remains protected",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Native quantity regression remains protected",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Native price successor rejects changed structured-data currency",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Expired fit does not prevent native SKU fixture",
+          "kind": "positive",
+          "status": "PASS"
+        },
+        {
+          "name": "Shopify generated template formatting retains exact structural protection",
+          "kind": "positive",
+          "status": "PASS"
+        },
+        {
+          "name": "Stored settings checksum drift is never waived",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Unrelated runtime body drift is never waived",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Remote template rejects removed Variant block",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Remote template rejects unauthorized block",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Remote template rejects changed purchase setting",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Sync writer redirected",
+          "kind": "positive",
+          "status": "PASS"
+        },
+        {
+          "name": "Async screenshot writer redirected",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Callback writer redirected",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Stream writer redirected",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Traversal to prior evidence cannot bypass isolation",
+          "kind": "negative",
+          "status": "PASS"
+        },
+        {
+          "name": "Current evidence stays in current directory",
+          "kind": "positive",
+          "status": "PASS"
+        }
+      ],
+      "positive": 9,
+      "negative": 27,
+      "passed": 36,
+      "failed": 0
+    },
+    "commandPassed": 42,
+    "commandFailed": 1,
+    "commandBlocked": 1,
+    "commandReportedPassingCases": 558,
+    "positiveNegativeClassification": "Explicit kinds in integrated-unit-tests.json; legacy suites retain their own named scenario matrices."
+  },
+  "repositoryImplemented": true,
+  "productionDeployable": false,
+  "formallyComplete": false,
+  "operations": {
+    "AdminCatalogWrites": 0,
+    "previewAssetWrites": 0,
+    "MAINWrites": 0,
+    "publications": 0,
+    "authenticatedAdminReadQueries": 60,
+    "storefrontCartPosts": [
+      {
+        "method": "POST",
+        "path": "/cart/add"
+      },
+      {
+        "method": "POST",
+        "path": "/cart/change"
+      }
+    ],
+    "cartCleaned": true,
+    "currentSessionStorefrontCartPosts": [
+      {
+        "method": "POST",
+        "path": "/cart/add"
+      },
+      {
+        "method": "POST",
+        "path": "/cart/change"
+      },
+      {
+        "method": "POST",
+        "path": "/cart/add"
+      },
+      {
+        "method": "POST",
+        "path": "/cart/change"
+      }
+    ],
+    "currentSessionCartCleaned": true,
+    "primaryRunStorefrontCartPosts": [
+      {
+        "method": "POST",
+        "path": "/cart/add"
+      },
+      {
+        "method": "POST",
+        "path": "/cart/change"
+      }
+    ],
+    "priorInterruptedRunCartAccounting": "UNKNOWN: original run stopped before a completed cart receipt; no total is invented"
+  },
+  "source": {
+    "reasons": [],
+    "current": true,
+    "receiptPath": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/reconciliation.json",
+    "reconciledAt": "2026-10-15T20:26:37.102Z",
+    "expiresAt": "2026-10-22T20:26:37.102Z",
+    "snapshotCapturedAt": "2026-10-20T15:51:20.088Z",
+    "snapshotExpiresAt": "2026-10-27T15:51:20.088Z",
+    "checkedAt": "2026-10-20T15:52:01.944Z",
+    "fixtureOnly": false,
+    "bindingSha256": "b90bf2089788e77c04fbdd5bd1766bc4d03cfb9e358179884a47b74095be949b",
+    "provenance": [
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/reconciliation.json",
+        "sha256": "89a0a4584eb2dcaa449baa63e52b588211b55f4b03ba8c0344144384f11b443a"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/source-binding.json",
+        "sha256": "f21956d9a0f64877e134a4df504650d0f6facfd9a7a884786855fee3ca01ad60"
+      },
+      {
+        "path": "data/epic-f-customer-fact-release.json",
+        "sha256": "de5413d6d1a2fa0fcea9bd5095b1d55099bdbebc9e0de9ca11c6156e2afa9981"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/catalog-after.json",
+        "sha256": "130ba9a2da903781d61797df864fbb78e1d4da3eb188bed61005bb2bc45e3601"
+      },
+      {
+        "path": "data/epic-e-final-006b-bom-approved-delta.json",
+        "sha256": "a8d7e909bc8d385bbc817f848da639734d45d5723564233960d545b5fb0a00d4"
+      },
+      {
+        "path": "data/epic-e-final-006b-bom-owner-amendment.json",
+        "sha256": "52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/catalog-before.json",
+        "sha256": "40d26817f728aec6dfea3d04ceca2a9da258d5c258036ceb9ffce24fe4f00299"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/definitions-before.json",
+        "sha256": "16de33197a70db7f87c936d51535d9497363c986f7e9456995b8221bee535bba"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/definitions-after.json",
+        "sha256": "84d4032ba3ff48eb25dc9bd1c19098b95b2073a19d51801480be8566b55ccd5c"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/execution-authorization.json",
+        "sha256": "d01f1e2ffe551f046d8a21736e117145175c0b5f88a7a570f631ffc512a3bf56"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-026-journal.json",
+        "sha256": "25aa429d163560c1f891d59a69d3758bfb551458e2b4b0bc6ba6519fbbf7b7dd"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-027-journal.json",
+        "sha256": "a9a8a1b1ebcce906420dbd48f25199fe277e895c70b4cf4b85a770cad0cc6bd4"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-028-journal.json",
+        "sha256": "2c1dbbbd207010df9c05d696368e1ac85940af420b424ff5db1c45e83c981ab2"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-029-journal.json",
+        "sha256": "ffece07974d668542376c7fe208cabeb981774be67607afa8ba2e93cce5b980f"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-035-journal.json",
+        "sha256": "fee19201b01dcf58084c7ced5658a7fdf2c7ecda0a964d1596614e97791e3cfa"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-026-mutation-1.json",
+        "sha256": "c47aac0f2440d842ce88985d87436b623c0de1e315fb1be0cc75fcb48edb1788"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-027-mutation-1.json",
+        "sha256": "6df74064106dedb0dfa09d3a89682537c666d94c13f1ee80efcdd81dfb3315e5"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-028-mutation-1.json",
+        "sha256": "dd88142359df7a20935cc0d8a2bf70f96d989f200566a71d88730d588fd69cb7"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-029-mutation-1.json",
+        "sha256": "b0aea174d56da5e595f3d5ab5e8116989d138dd0f4dc758dfa1f88095547a89b"
+      },
+      {
+        "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-035-mutation-1.json",
+        "sha256": "3cae0c641e828f165f8a8d5a47851740a02e0e8f09d7023f765772a7df9f1e15"
+      },
+      {
+        "path": "data/epic-e-product-classification.json",
+        "sha256": "84de9b93b7a068f8138ea76aa0d88cf5a6761cd1d0571424ed99641f114c0b62"
+      },
+      {
+        "path": "data/epic-e-product-identity.json",
+        "sha256": "7917c9348c885067098ded87a416058d32505627df97398c5e048ce18d30d6e2"
+      },
+      {
+        "path": "data/epic-e-product-owner-decisions.json",
+        "sha256": "74f9afb00c7327029ef73ad9ca84e17bab93b3598382715e5e0864927107fd5a"
+      }
+    ]
+  },
+  "catalog": {
+    "products": 122,
+    "variants": 125,
+    "gProducts": 111,
+    "gVariants": 114,
+    "approvedCompatibilityValues": 39,
+    "approvedEdges": 40,
+    "dataEligibleValues": 39,
+    "customerEdges": 31,
+    "approvedUnpublishedTargetEdges": 9,
+    "productsWithoutApprovedCompatibility": 72,
+    "missingGSkus": 114,
+    "missingGMedia": 24,
+    "missingGDescriptions": 5,
+    "zeroPricedGVariants": 2
+  },
+  "roles": {
+    "machine": {
+      "products": 11,
+      "variants": 11,
+      "gRoleEligible": 0,
+      "published": 8
+    },
+    "replacement_part": {
+      "products": 54,
+      "variants": 54,
+      "gRoleEligible": 54,
+      "published": 54
+    },
+    "consumable": {
+      "products": 39,
+      "variants": 42,
+      "gRoleEligible": 39,
+      "published": 39
+    },
+    "accessory": {
+      "products": 18,
+      "variants": 18,
+      "gRoleEligible": 18,
+      "published": 18
+    }
+  },
+  "adminObservation": {
+    "path": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/admin-read.json",
+    "sourceKind": "live_admin",
+    "startedAt": "2026-10-20T15:36:47.241Z",
+    "completedAt": "2026-10-20T15:37:11.457Z",
+    "queries": 26
+  },
+  "commercial": {
+    "status": "FAIL",
+    "reason": "UNAUTHORIZED_COMMERCIAL_PRICE_CHANGE gid://shopify/ProductVariant/46484253278405",
+    "launchStatus": "BLOCKED",
+    "mutations": 0,
+    "nativePriceChanges": [
+      {
+        "productGid": "gid://shopify/Product/8905779282117",
+        "variantGid": "gid://shopify/ProductVariant/46484253278405",
+        "before": "0.00",
+        "after": "75.00",
+        "approved": false,
+        "updatedAt": "2026-10-20T15:30:28Z"
+      },
+      {
+        "productGid": "gid://shopify/Product/8905779839173",
+        "variantGid": "gid://shopify/ProductVariant/46484253835461",
+        "before": "0.00",
+        "after": "12.00",
+        "approved": true,
+        "updatedAt": "2026-10-19T20:24:17Z"
+      },
+      {
+        "productGid": "gid://shopify/Product/8905779871941",
+        "variantGid": "gid://shopify/ProductVariant/46484253966533",
+        "before": "0.00",
+        "after": "65.50",
+        "approved": true,
+        "updatedAt": "2026-10-19T20:24:23Z"
+      },
+      {
+        "productGid": "gid://shopify/Product/8905781575877",
+        "variantGid": "gid://shopify/ProductVariant/46484255867077",
+        "before": "0.00",
+        "after": "5.75",
+        "approved": true,
+        "updatedAt": "2026-10-19T20:24:28Z"
+      }
+    ],
+    "rows": [
+      {
+        "title": "Arbor Wrench",
+        "productGid": "gid://shopify/Product/8905779839173",
+        "variantGid": "gid://shopify/ProductVariant/46484253835461",
+        "status": "APPLIED",
+        "currency": "USD",
+        "approvedPrice": "12.00",
+        "observedPrice": "12.00",
+        "commercialReady": true,
+        "purchaseMitigationExecuted": false
+      },
+      {
+        "title": "Automatic Feed Clamp",
+        "productGid": "gid://shopify/Product/8905779871941",
+        "variantGid": "gid://shopify/ProductVariant/46484253966533",
+        "status": "APPLIED",
+        "currency": "USD",
+        "approvedPrice": "65.50",
+        "observedPrice": "65.50",
+        "commercialReady": true,
+        "purchaseMitigationExecuted": false
+      },
+      {
+        "title": "LapMaster Lap Bolt",
+        "productGid": "gid://shopify/Product/8905781575877",
+        "variantGid": "gid://shopify/ProductVariant/46484255867077",
+        "status": "APPLIED",
+        "currency": "USD",
+        "approvedPrice": "5.75",
+        "observedPrice": "5.75",
+        "commercialReady": true,
+        "purchaseMitigationExecuted": false
+      },
+      {
+        "title": "6 in Trim Saw attachment",
+        "productGid": "gid://shopify/Product/8905779282117",
+        "variantGid": "gid://shopify/ProductVariant/46484253278405",
+        "status": "DEFERRED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "75.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00",
+        "observationException": "Native price changed outside the three approved updates; updatedAt 2026-10-20T15:30:28Z. No new owner approval in this task. Decision remains DEFERRED."
+      },
+      {
+        "title": "MR16 LED Bulb",
+        "productGid": "gid://shopify/Product/8905782558917",
+        "variantGid": "gid://shopify/ProductVariant/46484256948421",
+        "status": "DEFERRED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "0.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00"
+      },
+      {
+        "title": "Saw Vice Plate Set",
+        "productGid": "gid://shopify/Product/8905784099013",
+        "variantGid": "gid://shopify/ProductVariant/46484258881733",
+        "status": "MAPPING_UNAPPROVED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "0.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00"
+      }
+    ],
+    "launchBlockers": [
+      {
+        "title": "6 in Trim Saw attachment",
+        "productGid": "gid://shopify/Product/8905779282117",
+        "variantGid": "gid://shopify/ProductVariant/46484253278405",
+        "status": "DEFERRED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "75.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00",
+        "observationException": "Native price changed outside the three approved updates; updatedAt 2026-10-20T15:30:28Z. No new owner approval in this task. Decision remains DEFERRED."
+      },
+      {
+        "title": "MR16 LED Bulb",
+        "productGid": "gid://shopify/Product/8905782558917",
+        "variantGid": "gid://shopify/ProductVariant/46484256948421",
+        "status": "DEFERRED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "0.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00"
+      },
+      {
+        "title": "Saw Vice Plate Set",
+        "productGid": "gid://shopify/Product/8905784099013",
+        "variantGid": "gid://shopify/ProductVariant/46484258881733",
+        "status": "MAPPING_UNAPPROVED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "0.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00"
+      }
+    ]
+  },
+  "remote": {
+    "status": "PASS",
+    "themes": [
+      {
+        "id": "158579622085",
+        "role": "MAIN",
+        "files": 438,
+        "capturedAt": "2026-10-20T15:37:32.852Z",
+        "fullInventoryUnchanged": true,
+        "bodyHashes": [
+          {
+            "path": "assets/product-form.js",
+            "sha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+            "storedChecksumMd5": "6902a1ab19575a55ed967f8ccc24c23d",
+            "bodyRepresentationMd5": "6902a1ab19575a55ed967f8ccc24c23d",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/product-info.js",
+            "sha256": "8432cb3ad3f356406155e8c62ed2a7d57b3ecfd2d8e2a5f8a71b9e2ae28a4207",
+            "storedChecksumMd5": "bbfa4e3c5d1f73496c2048bd0878ed51",
+            "bodyRepresentationMd5": "bbfa4e3c5d1f73496c2048bd0878ed51",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/rhino-custom.css",
+            "sha256": "32f44d332f5b1d51b95213292c54d6e5c17751ebf4e79878eba4e2c17ce5f961",
+            "storedChecksumMd5": "e3e2de8ce74e722d424bf8627b05faa1",
+            "bodyRepresentationMd5": "e3e2de8ce74e722d424bf8627b05faa1",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/rhino-storefront.js",
+            "sha256": "f4b187b74e258ae01db5142eac3d8d5a3adf7b8755f82f9fe4dee94a96b91486",
+            "storedChecksumMd5": "5b24583ce2fe616834269c575c264ddd",
+            "bodyRepresentationMd5": "5b24583ce2fe616834269c575c264ddd",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "config/settings_data.json",
+            "sha256": "74de2b23899b7db09eac0a27ee66e43fcaa2fad01ede7bd1724ab1a1996e4db5",
+            "storedChecksumMd5": "f16ff7c2e42d6fc412e012afd1d5e443",
+            "bodyRepresentationMd5": "ce7c0bfb72ab5b028e48b2b4ba8a9e34",
+            "representation": "Unchanged stored checksum; separate formatted API body digest, no raw-byte equality claim"
+          },
+          {
+            "path": "layout/theme.liquid",
+            "sha256": "87086adef642d447d2cba82186641e93460d815549375bf608da035534cec5af",
+            "storedChecksumMd5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+            "bodyRepresentationMd5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "sections/main-collection-product-grid.liquid",
+            "sha256": "abed10566af9ce14161cd10c6f6dbb77014b1aa825a2eb3301ae75057ab8d60c",
+            "storedChecksumMd5": "33b394616545584be78f7eaa9cf3ab15",
+            "bodyRepresentationMd5": "33b394616545584be78f7eaa9cf3ab15",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "sections/main-product.liquid",
+            "sha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3",
+            "storedChecksumMd5": "bf649d184fe72f0ba57161632924c8b8",
+            "bodyRepresentationMd5": "bf649d184fe72f0ba57161632924c8b8",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "snippets/header-drawer.liquid",
+            "sha256": "0e2a5fa26dd6bb17a271b50420ed8b4b9dc2f69899a99e99cb6a72d808e90dc3",
+            "storedChecksumMd5": "57ec6385564f8e56cf6cead6ded23f5b",
+            "bodyRepresentationMd5": "57ec6385564f8e56cf6cead6ded23f5b",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "snippets/header-mega-menu.liquid",
+            "sha256": "66a494edf4b5254d325956e2573cb0dd0c8f38a1a4b8c5fa1b1f9e86312e4e76",
+            "storedChecksumMd5": "25ec2a85651ccf1d597408b9da946577",
+            "bodyRepresentationMd5": "25ec2a85651ccf1d597408b9da946577",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "templates/index.json",
+            "sha256": "2be333c67f7321a413f4946c9cff6f1ee1562ddf6d0a79486231ed2f47d49b9f",
+            "storedChecksumMd5": "071bd7ee26e6d984ddec3a03671499e3",
+            "bodyRepresentationMd5": "071bd7ee26e6d984ddec3a03671499e3",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "templates/product.json",
+            "sha256": "5a337836b1d8ff95306456c63ea9cca3364740b984591185cb8044678094fcaf",
+            "storedChecksumMd5": "432168cad7cfb5ae9b7bc6be863fa8c6",
+            "bodyRepresentationMd5": "432168cad7cfb5ae9b7bc6be863fa8c6",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "templates/product.machine.json",
+            "sha256": "483894bbfedbf3d814da773d85409c3ad3225858373505c69b41c0a2ac5a9637",
+            "storedChecksumMd5": "98e5cb615f2fde3497837cd6821f995d",
+            "bodyRepresentationMd5": "98e5cb615f2fde3497837cd6821f995d",
+            "representation": "Verified stored representation; templates omit generated API header"
+          }
+        ]
+      },
+      {
+        "id": "158631198917",
+        "role": "UNPUBLISHED",
+        "files": 450,
+        "capturedAt": "2026-10-20T15:37:36.120Z",
+        "fullInventoryUnchanged": true,
+        "bodyHashes": [
+          {
+            "path": "assets/product-form.js",
+            "sha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+            "storedChecksumMd5": "6902a1ab19575a55ed967f8ccc24c23d",
+            "bodyRepresentationMd5": "6902a1ab19575a55ed967f8ccc24c23d",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/product-info.js",
+            "sha256": "8432cb3ad3f356406155e8c62ed2a7d57b3ecfd2d8e2a5f8a71b9e2ae28a4207",
+            "storedChecksumMd5": "bbfa4e3c5d1f73496c2048bd0878ed51",
+            "bodyRepresentationMd5": "bbfa4e3c5d1f73496c2048bd0878ed51",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/rhino-custom.css",
+            "sha256": "32f44d332f5b1d51b95213292c54d6e5c17751ebf4e79878eba4e2c17ce5f961",
+            "storedChecksumMd5": "e3e2de8ce74e722d424bf8627b05faa1",
+            "bodyRepresentationMd5": "e3e2de8ce74e722d424bf8627b05faa1",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/rhino-g-catalog.css",
+            "sha256": "7bc9186a84626b5f2dde3bfedcf525587575fc3192f9c257d7f0114c3cfb3aee",
+            "storedChecksumMd5": "f747d98050351d2a210d64ac863871f2",
+            "bodyRepresentationMd5": "f747d98050351d2a210d64ac863871f2",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/rhino-g-catalog.js",
+            "sha256": "67a35d7d31755f70c61e084b8e723895209e7043d121642450cae08bc6368018",
+            "storedChecksumMd5": "094039b276d2e1d4198c1190dbcc5a8a",
+            "bodyRepresentationMd5": "094039b276d2e1d4198c1190dbcc5a8a",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/rhino-g-fit.js",
+            "sha256": "ccbcc3628453b612561939f52c83bf061cc8b56a6969df9439128e72643084d2",
+            "storedChecksumMd5": "4e82ba72f4c8995d54cd7d1714d6ce71",
+            "bodyRepresentationMd5": "4e82ba72f4c8995d54cd7d1714d6ce71",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/rhino-g-product.css",
+            "sha256": "14a7c09a79424eeb73e9498531d8a07dd02fd6d524f5f55b2aa16cad08e4cb36",
+            "storedChecksumMd5": "e7f488a8bce656dfc63e3ce1b0117091",
+            "bodyRepresentationMd5": "e7f488a8bce656dfc63e3ce1b0117091",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "assets/rhino-storefront.js",
+            "sha256": "900fab1962efba38c19664feffc64386b94315919f8f3fa894eb790416c929fc",
+            "storedChecksumMd5": "52c7f1fad8c3cb5e55fb644800c35db6",
+            "bodyRepresentationMd5": "52c7f1fad8c3cb5e55fb644800c35db6",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "config/settings_data.json",
+            "sha256": "74de2b23899b7db09eac0a27ee66e43fcaa2fad01ede7bd1724ab1a1996e4db5",
+            "storedChecksumMd5": "e4fe6ae8e07be18f03601c7332975550",
+            "bodyRepresentationMd5": "ce7c0bfb72ab5b028e48b2b4ba8a9e34",
+            "representation": "Unchanged stored checksum; separate formatted API body digest, no raw-byte equality claim"
+          },
+          {
+            "path": "layout/theme.liquid",
+            "sha256": "87086adef642d447d2cba82186641e93460d815549375bf608da035534cec5af",
+            "storedChecksumMd5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+            "bodyRepresentationMd5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "sections/main-collection-product-grid.liquid",
+            "sha256": "239d6ca6cac9179b5d2aa3bd210c62cc4bd88ae38b1306dcf2407ae14d44a7e4",
+            "storedChecksumMd5": "26dd5cae68869244292ab11a92c8aa28",
+            "bodyRepresentationMd5": "26dd5cae68869244292ab11a92c8aa28",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "sections/main-product.liquid",
+            "sha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3",
+            "storedChecksumMd5": "bf649d184fe72f0ba57161632924c8b8",
+            "bodyRepresentationMd5": "bf649d184fe72f0ba57161632924c8b8",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "snippets/header-drawer.liquid",
+            "sha256": "ca8a119916dec6c0e4ea2343215bf80fea8a41f836799bb49c6cc3411d4659dd",
+            "storedChecksumMd5": "9315599bedf425b6670fa3c4782e7797",
+            "bodyRepresentationMd5": "9315599bedf425b6670fa3c4782e7797",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "snippets/header-mega-menu.liquid",
+            "sha256": "e32f7b5159fbc423356314124ecdc71f7504296877e646ca0129e2962805e596",
+            "storedChecksumMd5": "c5b0207802717778a479aadbc5dcdca1",
+            "bodyRepresentationMd5": "c5b0207802717778a479aadbc5dcdca1",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "snippets/rhino-g-catalog-authority.liquid",
+            "sha256": "3879702532c4c36da9e3b94c8362ad96b4ca25fb16660ee2aefcbdd121de5ea2",
+            "storedChecksumMd5": "ffd671fde693673698fc2c7f84132297",
+            "bodyRepresentationMd5": "ffd671fde693673698fc2c7f84132297",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "snippets/rhino-g-catalog-index.liquid",
+            "sha256": "075b61276f802340d2bdd2259ef961bc2360ce88d5d46e5d929490f0df52810e",
+            "storedChecksumMd5": "7569c85e989e16b556fa08e6bd0d7ac7",
+            "bodyRepresentationMd5": "7569c85e989e16b556fa08e6bd0d7ac7",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "snippets/rhino-g-product-detail.liquid",
+            "sha256": "779d1be42f83b70de01abc011990e6b3f2fe30fecaac514768882cc407ea5218",
+            "storedChecksumMd5": "93a474eb2ead8dcd37f0727842af3f11",
+            "bodyRepresentationMd5": "93a474eb2ead8dcd37f0727842af3f11",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "snippets/rhino-g-product-fit.liquid",
+            "sha256": "5222ffd9d3e39aba51355df2b12985ae7c8514366827deaab7da0529da79d8d3",
+            "storedChecksumMd5": "af993a572add6e5806df93928890a667",
+            "bodyRepresentationMd5": "af993a572add6e5806df93928890a667",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "templates/index.json",
+            "sha256": "edb28c51b0b99a9bcf9c33fc9c70a7213373899544f98c3b2a0ff529b624fd66",
+            "storedChecksumMd5": "14720e5340c2d95212c97da6943521be",
+            "bodyRepresentationMd5": "14720e5340c2d95212c97da6943521be",
+            "representation": "Verified stored representation; templates omit generated API header"
+          },
+          {
+            "path": "templates/product.json",
+            "sha256": "bda2a8ac9521016b743e5675cfabd35ecaffde8c69da5d6320b8b47b9385a4fe",
+            "storedChecksumMd5": "b915cbac23bd8db7ead5f408039c1386",
+            "bodyRepresentationMd5": "b915cbac23bd8db7ead5f408039c1386",
+            "representation": "Exact G2 native template structure; unchanged remote checksum preserves Shopify generated header/formatting"
+          },
+          {
+            "path": "templates/product.machine.json",
+            "sha256": "483894bbfedbf3d814da773d85409c3ad3225858373505c69b41c0a2ac5a9637",
+            "storedChecksumMd5": "98e5cb615f2fde3497837cd6821f995d",
+            "bodyRepresentationMd5": "98e5cb615f2fde3497837cd6821f995d",
+            "representation": "Verified stored representation; templates omit generated API header"
+          }
+        ]
+      }
+    ],
+    "previewWrites": 0,
+    "MAINWrites": 0,
+    "publications": 0
+  },
+  "protectedFiles": {
+    "status": "PASS",
+    "checked": 4857,
+    "changed": [
+      {
+        "path": "docs/project/epic-g-proposed-backlog.json",
+        "beforeSha256": "edaebeb8f6729e254380f6dc0a2b5d74099f2e7b19574fecdda4eabb7ed141db",
+        "afterSha256": "77df27d5fd4fe6b34f37b3d9f89a5f6f0f99babc36a560d40db12b1eef86a3b5"
+      },
+      {
+        "path": "docs/rhino-lapidary-pbi-tracker-epic-g.md",
+        "beforeSha256": "e91c2bcca25d087f043fa8b4eb1fd32713e964332fe201aa276d9ce6843c38d9",
+        "afterSha256": "2f8195b986a7f08a8ee3e63756cc5cba20126949572be22ffea6c43d84bbb656"
+      }
+    ],
+    "missing": [],
+    "unauthorized": [],
+    "historicalEvidenceChanged": [],
+    "historicalRecovery": "DEFERRED — original G3B two-PNG exception remains unchanged; current task baseline is distinct"
+  },
+  "technicalQAStatus": "FAIL",
+  "commercialLaunchStatus": "BLOCKED",
+  "automatedIntegrationTestsPassing": false,
+  "actualPreviewVerified": false,
+  "currentAuthorityValid": true,
+  "authorityRecheckedAt": "2026-10-20T15:53:28.059Z",
+  "blockedAcceptance": [
+    {
+      "id": "commercial-gid://shopify/ProductVariant/46484258881733",
+      "status": "BLOCKED",
+      "details": {
+        "title": "Saw Vice Plate Set",
+        "productGid": "gid://shopify/Product/8905784099013",
+        "variantGid": "gid://shopify/ProductVariant/46484258881733",
+        "status": "MAPPING_UNAPPROVED",
+        "currency": "USD",
+        "approvedPrice": null,
+        "observedPrice": "0.00",
+        "commercialReady": false,
+        "purchaseMitigationExecuted": false,
+        "expectedNativePrice": "0.00"
+      }
+    },
+    {
+      "id": "current-forward-fit-render",
+      "status": "BLOCKED",
+      "details": {
+        "reason": "Current presentation/source prerequisite unavailable; no projection refresh or preview writes executed by this runner",
+        "historicalEvidence": "docs/qa/evidence/epic-g/g2-recovery-2026-10-16/deployed-fit-coverage.json",
+        "currentEligibleEdges": 31
+      }
+    }
+  ],
+  "completedAt": "2026-10-20T15:57:05.433Z",
+  "reportKind": "FINAL_CONSOLIDATED_G4_HANDOFF",
+  "primaryReport": {
+    "path": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/integrated-report.json",
+    "sha256": "5deb93346e81f12839f72f9528cccbe4af9cebd219fe6615466c9fd13edcf204",
+    "counts": {
+      "integrated": {
+        "fixtureOnly": true,
+        "authorizedStateFixture": "docs/qa/evidence/epic-g/g4-2026-10-19T21-31-56-178Z/closing-admin-read.json",
+        "results": [
+          {
+            "name": "Controlled authorized applied/deferred commercial fixture",
+            "kind": "positive",
+            "status": "PASS"
+          },
+          {
+            "name": "Unauthorized unrelated price",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Wrong applied price",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Deferred attachment price cannot become TrimMaster price",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "MR16 retail inference rejected",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Saw Vice generic mapping rejected",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Variant ownership drift",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Observed unapproved $75 attachment remains a deterministic commercial failure",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Deferred rows cannot be called commercially ready",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Blocked prerequisite never aggregates to pass",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Failed prerequisite never aggregates to pass",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Unknown result status rejected",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Verified platform preview findings remain separately reported",
+            "kind": "positive",
+            "status": "PASS"
+          },
+          {
+            "name": "A serious storefront issue cannot use provider classification",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Unverified provider iframe cannot exempt a serious issue",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Transparent shadow cannot prove visible keyboard focus",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Settled native shadow paints a real focus ring",
+            "kind": "positive",
+            "status": "PASS"
+          },
+          {
+            "name": "Unrelated commercial drift does not disable independent native assertions",
+            "kind": "positive",
+            "status": "PASS"
+          },
+          {
+            "name": "Exact applied native price and offer successor",
+            "kind": "positive",
+            "status": "PASS"
+          },
+          {
+            "name": "Native variantId regression remains protected",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Native title regression remains protected",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Native quantity regression remains protected",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Native price successor rejects changed structured-data currency",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Expired fit does not prevent native SKU fixture",
+            "kind": "positive",
+            "status": "PASS"
+          },
+          {
+            "name": "Shopify generated template formatting retains exact structural protection",
+            "kind": "positive",
+            "status": "PASS"
+          },
+          {
+            "name": "Stored settings checksum drift is never waived",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Unrelated runtime body drift is never waived",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Remote template rejects removed Variant block",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Remote template rejects unauthorized block",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Remote template rejects changed purchase setting",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Sync writer redirected",
+            "kind": "positive",
+            "status": "PASS"
+          },
+          {
+            "name": "Async screenshot writer redirected",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Callback writer redirected",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Stream writer redirected",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Traversal to prior evidence cannot bypass isolation",
+            "kind": "negative",
+            "status": "PASS"
+          },
+          {
+            "name": "Current evidence stays in current directory",
+            "kind": "positive",
+            "status": "PASS"
+          }
+        ],
+        "positive": 9,
+        "negative": 27,
+        "passed": 36,
+        "failed": 0
+      },
+      "commandPassed": 40,
+      "commandFailed": 1,
+      "commandBlocked": 1,
+      "commandReportedPassingCases": 558,
+      "positiveNegativeClassification": "Explicit kinds in integrated-unit-tests.json; legacy suites retain their own named scenario matrices."
+    }
+  },
+  "closingAdminObservation": {
+    "startedAt": "2026-10-20T15:51:20.088Z",
+    "completedAt": "2026-10-20T15:51:43.142Z"
+  },
+  "sourceChainExecution": {
+    "schemaVersion": 1,
+    "scope": "Existing E/F owner-source assertions, isolated outputs; not a renewed receipt",
+    "commands": [
+      {
+        "command": "node scripts/test-epic-e-owner-response-adapter.js",
+        "startedAt": "2026-10-20T15:49:41.574Z",
+        "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-e-owner-response-adapter.js.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T15:49:42.528Z"
+      },
+      {
+        "command": "node scripts/test-epic-e-bom-owner-followup.js",
+        "startedAt": "2026-10-20T15:49:42.539Z",
+        "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-e-bom-owner-followup.js.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T15:49:43.137Z"
+      },
+      {
+        "command": "node scripts/test-epic-f-006b-amended.js",
+        "startedAt": "2026-10-20T15:49:43.139Z",
+        "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-f-006b-amended.js.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T15:49:46.488Z"
+      },
+      {
+        "command": "node scripts/test-epic-f-final-owner-delta.js",
+        "startedAt": "2026-10-20T15:49:46.489Z",
+        "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-f-final-owner-delta.js.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T15:49:54.014Z"
+      },
+      {
+        "command": "node scripts/test-epic-f-bom-contents-compiler.js",
+        "startedAt": "2026-10-20T15:49:54.016Z",
+        "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-f-bom-contents-compiler.js.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T15:49:54.904Z"
+      },
+      {
+        "command": "node scripts/test-epic-f-owner-review.js",
+        "startedAt": "2026-10-20T15:49:54.906Z",
+        "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/owner-source-logs/test-epic-f-owner-review.js.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T15:49:57.179Z"
+      }
+    ],
+    "status": "PASS",
+    "catalogWrites": 0
+  },
+  "zoomViewportExecution": {
+    "path": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/zoom-viewport.json",
+    "cases": 3,
+    "status": "PASS"
+  },
+  "finalTaskProtection": {
+    "status": "PASS",
+    "checked": 4491,
+    "baseline": "docs/qa/evidence/epic-g/g4-2026-10-19T20-53-45-309Z/repository-before.json",
+    "at": "2026-10-20T15:57:05.429Z",
+    "allowed": [
+      "docs/project/epic-g-proposed-backlog.json",
+      "docs/project/epic-g-required-decisions.md",
+      "docs/rhino-lapidary-pbi-tracker-epic-g.md",
+      "package.json",
+      "scripts/lib/epic-g-product-browser-overlay.js",
+      "scripts/probe-epic-g-anonymous-cart.js",
+      "scripts/test-epic-g-product-runtime-overlay.js",
+      "scripts/validate-epic-g-machine-routes-browser.js"
+    ],
+    "changed": [
+      {
+        "path": "docs/project/epic-g-proposed-backlog.json",
+        "beforeSha256": "de3ceaba4495822c83a1efc7f7fb5bbbb56f030c52918d28d5031ff8567f7c44",
+        "afterSha256": "77df27d5fd4fe6b34f37b3d9f89a5f6f0f99babc36a560d40db12b1eef86a3b5",
+        "allowed": true
+      },
+      {
+        "path": "docs/project/epic-g-required-decisions.md",
+        "beforeSha256": "57cfcdfa5aa220865c8fde2453a27f9996674c5b45781e88cb075f193e4cfada",
+        "afterSha256": "f187a4867f90f30d944db5e85997f3a10d866048086ce5e5d6ec0848baad97aa",
+        "allowed": true
+      },
+      {
+        "path": "docs/rhino-lapidary-pbi-tracker-epic-g.md",
+        "beforeSha256": "b4e5b338e0cd1d7997b7739e25952235daaf7ae269b88175acfc0b04a95cb219",
+        "afterSha256": "2f8195b986a7f08a8ee3e63756cc5cba20126949572be22ffea6c43d84bbb656",
+        "allowed": true
+      },
+      {
+        "path": "package.json",
+        "beforeSha256": "7765c7aff2d5fef5baaf9ea8acb21df2cc3feaf33281e8c9844b878a4345a924",
+        "afterSha256": "3e125daaa8f0197078b3516690028b833ae65ea545e774b02602a708703573f5",
+        "allowed": true
+      },
+      {
+        "path": "scripts/lib/epic-g-product-browser-overlay.js",
+        "beforeSha256": "22eb8359f2474ba5284f6a7cd5fafd3e486117752ef472974ea59f7a5a8fcbab",
+        "afterSha256": "9a101c2953336788b4372b7b3189e5fc29effb5f7188e4f23c853e16d205f18a",
+        "allowed": true
+      },
+      {
+        "path": "scripts/probe-epic-g-anonymous-cart.js",
+        "beforeSha256": "af06d063c11857d9b7ccb3eef7a010e8feabab0fc61652244d464c50d863c982",
+        "afterSha256": "5506fa806011848e949161774dbd7835e5bac8e4e2a45033c2f79500c75f04cc",
+        "allowed": true
+      },
+      {
+        "path": "scripts/test-epic-g-product-runtime-overlay.js",
+        "beforeSha256": "1450319cfc6274a6aa810ec402cd5d7b4d26d8e2428f5c3e04f7b15d35257b17",
+        "afterSha256": "a072910b28e1219fcc5d712c1472b36149d07196b587d4d22348958386a49e66",
+        "allowed": true
+      },
+      {
+        "path": "scripts/validate-epic-g-machine-routes-browser.js",
+        "beforeSha256": "678edb06b2488fe73d2fbfe0b04583366281d3a82ca45c92febd8b4d7ffdead0",
+        "afterSha256": "24df4c8b5cc29177ecb7b3a6a5499c83fd7855526295fa875f54fa35e42cd1f6",
+        "allowed": true
+      }
+    ],
+    "missing": [],
+    "unauthorized": [],
+    "runtimeChanges": [],
+    "historicalEvidenceChanged": []
+  },
+  "actualPreviewCoverage": {
+    "catalogDestinations": 111,
+    "machineViewportCases": 22,
+    "machineRouteCaseFailures": 0,
+    "protectedNativeDestinations": 33,
+    "protectedNativeDestinationFailures": 1,
+    "responsiveCases": 9,
+    "browserZoomCases": 3,
+    "nativeViewportZoomCases": 3,
+    "performanceSamples": 24
+  },
+  "failedAcceptance": [
+    {
+      "id": "exact-commercial-observation",
+      "status": "FAIL",
+      "details": {
+        "status": "FAIL",
+        "reason": "UNAUTHORIZED_COMMERCIAL_PRICE_CHANGE gid://shopify/ProductVariant/46484253278405",
+        "launchStatus": "BLOCKED",
+        "mutations": 0,
+        "nativePriceChanges": [
+          {
+            "productGid": "gid://shopify/Product/8905779282117",
+            "variantGid": "gid://shopify/ProductVariant/46484253278405",
+            "before": "0.00",
+            "after": "75.00",
+            "approved": false,
+            "updatedAt": "2026-10-20T15:30:28Z"
+          },
+          {
+            "productGid": "gid://shopify/Product/8905779839173",
+            "variantGid": "gid://shopify/ProductVariant/46484253835461",
+            "before": "0.00",
+            "after": "12.00",
+            "approved": true,
+            "updatedAt": "2026-10-19T20:24:17Z"
+          },
+          {
+            "productGid": "gid://shopify/Product/8905779871941",
+            "variantGid": "gid://shopify/ProductVariant/46484253966533",
+            "before": "0.00",
+            "after": "65.50",
+            "approved": true,
+            "updatedAt": "2026-10-19T20:24:23Z"
+          },
+          {
+            "productGid": "gid://shopify/Product/8905781575877",
+            "variantGid": "gid://shopify/ProductVariant/46484255867077",
+            "before": "0.00",
+            "after": "5.75",
+            "approved": true,
+            "updatedAt": "2026-10-19T20:24:28Z"
+          }
+        ],
+        "rows": [
+          {
+            "title": "Arbor Wrench",
+            "productGid": "gid://shopify/Product/8905779839173",
+            "variantGid": "gid://shopify/ProductVariant/46484253835461",
+            "status": "APPLIED",
+            "currency": "USD",
+            "approvedPrice": "12.00",
+            "observedPrice": "12.00",
+            "commercialReady": true,
+            "purchaseMitigationExecuted": false
+          },
+          {
+            "title": "Automatic Feed Clamp",
+            "productGid": "gid://shopify/Product/8905779871941",
+            "variantGid": "gid://shopify/ProductVariant/46484253966533",
+            "status": "APPLIED",
+            "currency": "USD",
+            "approvedPrice": "65.50",
+            "observedPrice": "65.50",
+            "commercialReady": true,
+            "purchaseMitigationExecuted": false
+          },
+          {
+            "title": "LapMaster Lap Bolt",
+            "productGid": "gid://shopify/Product/8905781575877",
+            "variantGid": "gid://shopify/ProductVariant/46484255867077",
+            "status": "APPLIED",
+            "currency": "USD",
+            "approvedPrice": "5.75",
+            "observedPrice": "5.75",
+            "commercialReady": true,
+            "purchaseMitigationExecuted": false
+          },
+          {
+            "title": "6 in Trim Saw attachment",
+            "productGid": "gid://shopify/Product/8905779282117",
+            "variantGid": "gid://shopify/ProductVariant/46484253278405",
+            "status": "DEFERRED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "75.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00",
+            "observationException": "Native price changed outside the three approved updates; updatedAt 2026-10-20T15:30:28Z. No new owner approval in this task. Decision remains DEFERRED."
+          },
+          {
+            "title": "MR16 LED Bulb",
+            "productGid": "gid://shopify/Product/8905782558917",
+            "variantGid": "gid://shopify/ProductVariant/46484256948421",
+            "status": "DEFERRED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "0.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00"
+          },
+          {
+            "title": "Saw Vice Plate Set",
+            "productGid": "gid://shopify/Product/8905784099013",
+            "variantGid": "gid://shopify/ProductVariant/46484258881733",
+            "status": "MAPPING_UNAPPROVED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "0.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00"
+          }
+        ],
+        "launchBlockers": [
+          {
+            "title": "6 in Trim Saw attachment",
+            "productGid": "gid://shopify/Product/8905779282117",
+            "variantGid": "gid://shopify/ProductVariant/46484253278405",
+            "status": "DEFERRED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "75.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00",
+            "observationException": "Native price changed outside the three approved updates; updatedAt 2026-10-20T15:30:28Z. No new owner approval in this task. Decision remains DEFERRED."
+          },
+          {
+            "title": "MR16 LED Bulb",
+            "productGid": "gid://shopify/Product/8905782558917",
+            "variantGid": "gid://shopify/ProductVariant/46484256948421",
+            "status": "DEFERRED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "0.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00"
+          },
+          {
+            "title": "Saw Vice Plate Set",
+            "productGid": "gid://shopify/Product/8905784099013",
+            "variantGid": "gid://shopify/ProductVariant/46484258881733",
+            "status": "MAPPING_UNAPPROVED",
+            "currency": "USD",
+            "approvedPrice": null,
+            "observedPrice": "0.00",
+            "commercialReady": false,
+            "purchaseMitigationExecuted": false,
+            "expectedNativePrice": "0.00"
+          }
+        ]
+      }
+    },
+    {
+      "id": "machine-deployed",
+      "status": "FAIL",
+      "details": {
+        "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/logs/machine-deployed.txt",
+        "exitCode": 1
+      }
+    }
+  ],
+  "sourceFinalization": {
+    "changesAfterFullRun": "Added the separately passing six-suite owner-source wrapper and three-case native zoom viewport probe to default orchestration. Existing browser journey/performance source and runtime assets are unchanged.",
+    "fullRunRepeatedAfterThoseTwoAdditions": false,
+    "validation": "Both added commands executed successfully; final JavaScript syntax and JSON-register checks passed. This report does not claim another full browser run."
+  }
+}

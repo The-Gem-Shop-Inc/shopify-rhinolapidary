@@ -1,0 +1,33 @@
+{%- comment -%}
+  F1: native commerce identity only for contained Products. No description,
+  Vendor-derived responsibility, technical values or unreviewed media.
+  The calling section owns the single script element.
+{%- endcomment -%}
+{%- capture consumer_route -%}{%- render 'rhino-product-consumer-route', product: product -%}{%- endcapture -%}
+{%- if consumer_route == 'replacement_part' or consumer_route == 'consumable' or consumer_route == 'accessory' -%}
+  {{ product | structured_data }}
+{%- else -%}
+  {%- assign product_url = product.url | prepend: request.origin -%}
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": {{ product_url | append: '#product' | json | replace: '<', '\u003c' }},
+    "productID": {{ product.id | prepend: 'gid://shopify/Product/' | json }},
+    "name": {{ product.title | json | replace: '<', '\u003c' }},
+    "url": {{ product_url | json | replace: '<', '\u003c' }},
+    "offers": [
+      {%- for variant in product.variants -%}
+        {%- assign variant_url = variant.url | prepend: request.origin -%}
+        {
+          "@type": "Offer",
+          "@id": {{ variant_url | append: '#offer' | json | replace: '<', '\u003c' }},
+          "url": {{ variant_url | json | replace: '<', '\u003c' }},
+          "identifier": {{ variant.id | prepend: 'gid://shopify/ProductVariant/' | json }},
+          "price": {{ variant.price | divided_by: 100.0 | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}"
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+{%- endif -%}

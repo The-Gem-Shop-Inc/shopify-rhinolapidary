@@ -1,0 +1,3 @@
+'use strict';
+const fs=require('node:fs'),R=require('./lib/epic-g-catalog');
+try{if(process.argv.includes('--build')){const r=R.build();fs.writeFileSync(R.RELEASE,JSON.stringify(r,null,2)+'\n');fs.writeFileSync('snippets/rhino-g-catalog-authority.liquid',R.compile(r));fs.writeFileSync(R.FILES[0],R.section());}const r=R.verify();console.log(JSON.stringify({publishedProducts:r.publishedProducts,GProducts:r.roles.reduce((s,r)=>s+r.count,0),roles:r.roles,pageSize:r.pageSize,pages:r.pages.length,expiresAt:r.expiresAt,machines:r.machines.length,allProductsLookups:0}));}catch(e){console.error(e.stack);process.exitCode=1;}

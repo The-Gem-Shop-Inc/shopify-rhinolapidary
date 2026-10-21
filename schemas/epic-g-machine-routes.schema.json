@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "consumer", "fixtureOnly", "themeId", "scope", "validatedAt", "expiresAt", "sourceBindingSha256", "receiptExpiresAt", "observationCapturedAt", "browserObservedAt", "routes", "provenance"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "consumer": {"const": "G-PBI-004"},
+    "fixtureOnly": {"const": false},
+    "themeId": {"const": "158631198917"},
+    "scope": {"const": "UNPUBLISHED_PREVIEW"},
+    "validatedAt": {"type": "string", "format": "date-time"},
+    "expiresAt": {"type": "string", "format": "date-time"},
+    "receiptExpiresAt": {"type": "string", "format": "date-time"},
+    "observationCapturedAt": {"type": "string", "format": "date-time"},
+    "browserObservedAt": {"type": "string", "format": "date-time"},
+    "sourceBindingSha256": {"$ref": "#/$defs/digest"},
+    "provenance": {"type": "array", "minItems": 6, "items": {"type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": {"path": {"type": "string"}, "sha256": {"$ref": "#/$defs/digest"}}}},
+    "routes": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["machineProductGid", "nativeProductUrl", "observedNativeHandle", "templateSuffix", "fragment", "published", "dataEligible", "customerEligible", "expectedApprovedReverseCount", "omissionReasons", "lookupBudget"],
+      "properties": {
+        "machineProductGid": {"type": "string", "pattern": "^gid://shopify/Product/[0-9]+$"},
+        "nativeProductUrl": {"type": ["string", "null"], "pattern": "^/products/[a-z0-9-]+$"},
+        "observedNativeHandle": {"type": "string"},
+        "templateSuffix": {"type": ["string", "null"]},
+        "fragment": {"type": ["string", "null"], "pattern": "^#OwnerContext-[A-Za-z0-9_-]+$"},
+        "published": {"type": "boolean"}, "dataEligible": {"type": "boolean"}, "customerEligible": {"type": "boolean"},
+        "expectedApprovedReverseCount": {"type": "integer", "minimum": 0},
+        "omissionReasons": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z0-9_]+$"}},
+        "lookupBudget": {"type": "object", "additionalProperties": false, "required": ["reverse", "included", "uniqueHandles", "limit", "addedByG3A"], "properties": {"reverse": {"type": "integer", "minimum": 0}, "included": {"type": "integer", "minimum": 0}, "uniqueHandles": {"type": "array", "maxItems": 20, "uniqueItems": true, "items": {"type": "string"}}, "limit": {"const": 20}, "addedByG3A": {"const": 0}}}
+      }
+    }}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

@@ -1,0 +1,86 @@
+{
+  "at": "2026-10-20T16:26:57.053Z",
+  "status": "PASS",
+  "initialReport": "docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/initial-preflight-failure.json",
+  "originalFailures": [
+    {
+      "label": "test-epic-g-catalog-deployment",
+      "command": "npm.cmd run test:epic-g-catalog:deployment",
+      "startedAt": "2026-10-20T16:17:14.604Z",
+      "status": "FAIL",
+      "exitCode": 1,
+      "log": "docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/logs/test-epic-g-catalog-deployment.txt",
+      "completedAt": "2026-10-20T16:17:18.676Z",
+      "reason": null,
+      "reportedPassCounts": [
+        21
+      ]
+    },
+    {
+      "label": "machine-deployed",
+      "command": "node scripts/validate-epic-g-machine-routes-browser.js --deployed --current-read docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/admin-read.json",
+      "startedAt": "2026-10-20T16:20:48.456Z",
+      "status": "FAIL",
+      "exitCode": 1,
+      "log": "docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/logs/machine-deployed.txt",
+      "completedAt": "2026-10-20T16:22:25.696Z",
+      "reason": null,
+      "reportedPassCounts": []
+    }
+  ],
+  "actualReplacementExecutions": [
+    {
+      "label": "test-epic-g-catalog-deployment",
+      "command": "npm.cmd run test:epic-g-catalog:deployment",
+      "startedAt": "2026-10-20T16:22:59.762Z",
+      "completedAt": "2026-10-20T16:23:11.570Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/g3b-protection-final-rerun.txt",
+      "reportedPassCounts": [
+        23
+      ]
+    },
+    {
+      "label": "g4-negative-matrix",
+      "command": "npm.cmd run test:epic-g-integrated",
+      "startedAt": "2026-10-20T16:26:08.437Z",
+      "completedAt": "2026-10-20T16:26:09.534Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/native-successor-corrected-command.txt",
+      "reportedPassCounts": [
+        47
+      ]
+    },
+    {
+      "label": "machine-deployed",
+      "command": "node scripts/validate-epic-g-machine-routes-browser.js --deployed --current-read docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/admin-read.json",
+      "startedAt": "2026-10-20T16:24:09.450Z",
+      "completedAt": "2026-10-20T16:25:35.864Z",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/machine-native-successor-rerun.txt"
+    }
+  ],
+  "sourceChanges": [
+    {
+      "path": "scripts/test-epic-g-integrated.js",
+      "sha256": "a0c945b7743b9a330d9c0bd3521839360baf92e33f27e0862b3d5a8e57c33896",
+      "afterSha256": "4a90a024324111f1c905c6de6e7c0f4a2e7743760513ff6e85aef02ddc7b67e6"
+    },
+    {
+      "path": "scripts/validate-epic-g-integrated.js",
+      "sha256": "bfb5fd4896a4da5791d777e71714841a450862a943d750e23e873c3861a80271",
+      "afterSha256": "f805e87057d4dc012a03463a7c6ad9817b09af24934d731511fa06677b4c6f37"
+    },
+    {
+      "path": "scripts/lib/epic-g-integrated.js",
+      "sha256": "1e5cec82cde3800426af9ce7e5b0ee5d8ae62a152656f566f56cbc7ae0cfba66",
+      "afterSha256": "535bde3c2862b3cc7f3247ec488e6f1dc2d81d786a23d19900e458560bf62da6"
+    }
+  ],
+  "reason": "Exact regenerated G2 fit provenance replaces stale byte pin; exact approved Product breadcrumb successor; unrelated runtime/URLs/classes/relationships remain protected. Actual corrected suites reran and passed.",
+  "deduplicatedRepeatedPassingG2Validation": true,
+  "canonicalGates": 31
+}

@@ -1,0 +1,54 @@
+{
+  "at": "2026-10-16T20:04:36.873Z",
+  "Admin": {
+    "dataQueries": 37,
+    "breakdown": {
+      "productPages": 13,
+      "variantPages": 13,
+      "themeIdentities": 1,
+      "targetedThemeBodies": 2,
+      "fullInventoryBefore": 4,
+      "fullInventoryAfter": 4
+    },
+    "schemaReads": 5,
+    "documentationSearches": 1,
+    "graphqlValidationHelperCalls": 4,
+    "helperValidation": "Helpers reported skipped; actual read-only query execution validated operations.",
+    "totalConnectorToolCalls": 47,
+    "mutations": 0,
+    "productCreates": 0,
+    "variantCreates": 0,
+    "metafieldWrites": 0,
+    "priceWrites": 0,
+    "publicationWrites": 0
+  },
+  "themes": {
+    "identifiedPreview": "158631198917",
+    "MAIN": "158579622085",
+    "pushes": 0,
+    "published": 0,
+    "settingsWrites": 0,
+    "reason": "Stopped before push under user F regression stop condition; native/default template snapshot guards fail."
+  },
+  "storefront": {
+    "baselinePageCells": 34,
+    "fullOverlayPageCells": 34,
+    "finalGOverlayPageCells": 18,
+    "actualExistingProductAxeTests": 2,
+    "runtimeOverlayCases": 7,
+    "mockedCartWrites": 1,
+    "actualCartWrites": 0,
+    "qualification": "Browser page and asset reads plus existing password authentication are separate from Admin queries. Per-resource CDN/auth request totals were not instrumented; no complete HTTP request-count claim is made."
+  },
+  "evidence": [
+    "connector-reads.json",
+    "theme-identity-before.json",
+    "preview-files-before.json",
+    "main-files-before.json",
+    "preview-inventory-before.json",
+    "main-inventory-before.json",
+    "preview-inventory-after.json",
+    "main-inventory-after.json"
+  ],
+  "newApprovalReceipts": 0
+}

@@ -1,0 +1,135 @@
+{
+  "environment": {
+    "RHINO_EPIC_F_OWNER_BINDING": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/source-binding.json"
+  },
+  "results": [
+    {
+      "command": "npm.cmd run test:epic-g-foundation -- --output docs/qa/evidence/epic-g/g1-2026-10-16/tests.json",
+      "startedAt": "2026-10-16T19:13:18.765Z",
+      "completedAt": "2026-10-16T19:13:19.706Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-01.txt"
+    },
+    {
+      "command": "npm.cmd run validate:epic-g-foundation -- --fixture --output docs/qa/evidence/epic-g/g1-2026-10-16/fixture-readiness.json",
+      "startedAt": "2026-10-16T19:13:19.708Z",
+      "completedAt": "2026-10-16T19:13:20.534Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-02.txt"
+    },
+    {
+      "command": "npm.cmd run validate:epic-g-foundation -- --read docs/qa/evidence/epic-g/g1-2026-10-16/admin-read.json --output docs/qa/evidence/epic-g/g1-2026-10-16/readiness.json",
+      "startedAt": "2026-10-16T19:13:20.535Z",
+      "completedAt": "2026-10-16T19:13:22.798Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-03.txt"
+    },
+    {
+      "command": "npm.cmd run validate:registers",
+      "startedAt": "2026-10-16T19:13:22.799Z",
+      "completedAt": "2026-10-16T19:13:25.240Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-04.txt"
+    },
+    {
+      "command": "npm.cmd run validate:metafields",
+      "startedAt": "2026-10-16T19:13:25.240Z",
+      "completedAt": "2026-10-16T19:13:26.234Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-05.txt"
+    },
+    {
+      "command": "npm.cmd run validate:product-templates",
+      "startedAt": "2026-10-16T19:13:26.235Z",
+      "completedAt": "2026-10-16T19:13:26.802Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-06.txt"
+    },
+    {
+      "command": "npm.cmd run test:epic-e-admin-audit",
+      "startedAt": "2026-10-16T19:13:26.803Z",
+      "completedAt": "2026-10-16T19:13:27.391Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-07.txt"
+    },
+    {
+      "command": "npm.cmd run test:epic-e-batch-2b",
+      "startedAt": "2026-10-16T19:13:27.392Z",
+      "completedAt": "2026-10-16T19:13:28.812Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-08.txt"
+    },
+    {
+      "command": "npm.cmd run test:epic-e-pbi-009",
+      "startedAt": "2026-10-16T19:13:28.813Z",
+      "completedAt": "2026-10-16T19:13:29.567Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-09.txt"
+    },
+    {
+      "command": "npm.cmd run test:epic-e-batch-3b",
+      "startedAt": "2026-10-16T19:13:29.568Z",
+      "completedAt": "2026-10-16T19:13:31.114Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-10.txt"
+    },
+    {
+      "command": "npm.cmd run test:epic-f-consumer",
+      "startedAt": "2026-10-16T19:13:31.114Z",
+      "completedAt": "2026-10-16T19:13:34.613Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-11.txt"
+    },
+    {
+      "command": "npm.cmd run validate:epic-f-consumer",
+      "startedAt": "2026-10-16T19:13:34.614Z",
+      "completedAt": "2026-10-16T19:13:35.542Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-12.txt"
+    },
+    {
+      "command": "npm.cmd run test:epic-f-context-delivery",
+      "startedAt": "2026-10-16T19:13:35.543Z",
+      "completedAt": "2026-10-16T19:13:39.682Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-13.txt"
+    },
+    {
+      "command": "node scripts/test-epic-e-owner-response-adapter.js",
+      "startedAt": "2026-10-16T19:13:39.683Z",
+      "completedAt": "2026-10-16T19:13:40.261Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-14.txt"
+    },
+    {
+      "command": "node scripts/test-epic-f-final-owner-delta.js",
+      "startedAt": "2026-10-16T19:13:40.262Z",
+      "completedAt": "2026-10-16T19:13:43.700Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-15.txt"
+    },
+    {
+      "command": "node scripts/test-epic-f-final-owner-release.js",
+      "startedAt": "2026-10-16T19:13:43.700Z",
+      "completedAt": "2026-10-16T19:13:47.350Z",
+      "exitCode": 0,
+      "error": null,
+      "log": "docs/qa/evidence/epic-g/g1-2026-10-16/validation-16.txt"
+    }
+  ]
+}

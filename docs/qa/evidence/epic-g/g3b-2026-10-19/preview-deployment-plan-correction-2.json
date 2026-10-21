@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-19T16:09:53.737Z",
+  "themeId": "158631198917",
+  "correction": 2,
+  "files": [
+    {
+      "path": "snippets/rhino-g-catalog-index.liquid",
+      "beforeSha256": "5e693e68af7bb2ac9a5ef621de2ca3e48e62157c2a2238151beb1016c859b579",
+      "afterSha256": "075b61276f802340d2bdd2259ef961bc2360ce88d5d46e5d929490f0df52810e"
+    }
+  ],
+  "release": {
+    "path": "data/epic-g-catalog-release.json",
+    "sha256": "910d0d64535d79cefb5210515d0f47988e49a7cf4e8cb5ee7a74c7a5d2d20624"
+  },
+  "rollback": {
+    "source": "docs/qa/evidence/epic-g/g3b-2026-10-19/preview-files-ready-correction-2.json",
+    "sha256": "5536af25c16c4f8a72003e153bc0508753239e7b86f24adc46bda8a73b0618e6",
+    "procedure": "Verify theme roles, then restore only changed file predecessors from this exact source with --only and --nodelete. For complete index withdrawal restore the original preview-files-ready.json collection section. Never restore a whole theme."
+  },
+  "args": [
+    "theme",
+    "push",
+    "--store",
+    "sz5dnk-nf.myshopify.com",
+    "--theme",
+    "158631198917",
+    "--path",
+    ".",
+    "--nodelete",
+    "--strict",
+    "--json",
+    "--only",
+    "snippets/rhino-g-catalog-index.liquid"
+  ],
+  "AdminCatalogMutations": 0,
+  "publish": false
+}

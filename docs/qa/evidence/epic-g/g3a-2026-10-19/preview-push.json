@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-19T14:37:00.668Z",
+  "themeId": "158631198917",
+  "files": [
+    {
+      "path": "assets/rhino-storefront.js",
+      "beforeSha256": "f4b187b74e258ae01db5142eac3d8d5a3adf7b8755f82f9fe4dee94a96b91486",
+      "afterSha256": "b61e6162d7aa911757b2018617b936760950204c4d961081769a5ec64122fb62"
+    }
+  ],
+  "sourceBinding": "b90bf2089788e77c04fbdd5bd1766bc4d03cfb9e358179884a47b74095be949b",
+  "receiptExpiresAt": "2026-10-22T20:26:37.102Z",
+  "routeContract": {
+    "path": "data/epic-g-machine-routes.json",
+    "sha256": "4d74b0c2fd2ddba77c2dac4fd7870f33b5d9246ed6b444096cb255ce04557ff7"
+  },
+  "rollback": {
+    "source": "docs/qa/evidence/epic-g/g3a-2026-10-19/preview-files-ready.json",
+    "sha256": "b9d3c40423550bca38023c6b93766d648e5f13ef1d3f038ef09cc94464127ab9",
+    "procedure": "Write the saved original assets/rhino-storefront.js alone to the same UNPUBLISHED preview using --only assets/rhino-storefront.js and --nodelete, after verifying theme roles. Read back and reconcile both full inventories. Never restore the full theme."
+  },
+  "args": [
+    "theme",
+    "push",
+    "--store",
+    "sz5dnk-nf.myshopify.com",
+    "--theme",
+    "158631198917",
+    "--path",
+    ".",
+    "--nodelete",
+    "--strict",
+    "--json",
+    "--only",
+    "assets/rhino-storefront.js"
+  ],
+  "AdminMutations": 0,
+  "publication": false,
+  "completedAt": "2026-10-19T14:37:20.431Z",
+  "exitCode": 0,
+  "stdout": "[]\n{\"environment\":\"default\",\"theme\":{\"id\":158631198917,\"name\":\"Rhino Lapidary - Preview\",\"role\":\"unpublished\",\"shop\":\"sz5dnk-nf.myshopify.com\",\"editor_url\":\"https://sz5dnk-nf.myshopify.com/admin/themes/158631198917/editor\",\"preview_url\":\"https://sz5dnk-nf.myshopify.com?preview_theme_id=158631198917\"}}\n",
+  "stderr": "╭─ info ───────────────────────────────────────────────────────────────────────╮\n│                                                                              │\n│  Using applicable flags from default environment:                            │\n│                                                                              │\n│    • ignore: config/settings_data.json                                       │\n│                                                                              │\n╰──────────────────────────────────────────────────────────────────────────────╯\n\n\n\n\n"
+}

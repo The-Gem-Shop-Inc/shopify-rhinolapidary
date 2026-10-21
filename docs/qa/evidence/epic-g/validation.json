@@ -1,0 +1,181 @@
+{
+  "completedAt": "2026-10-15T21:45:50.364Z",
+  "scope": "DISCOVERY_PACKAGE_INTEGRITY_NOT_IMPLEMENTATION_OR_RELEASE_CERTIFICATION",
+  "passed": true,
+  "pbiCount": 10,
+  "implementationPreMvp": 7,
+  "contractsOnly": 2,
+  "deferred": 1,
+  "pbisImplemented": 0,
+  "catalogProducts": 122,
+  "catalogVariants": 125,
+  "classes": {
+    "machine": {
+      "products": 11,
+      "variants": 11,
+      "active": 9,
+      "published": 8,
+      "defaultTemplate": 3,
+      "withMedia": 10,
+      "mediaAttachments": 10,
+      "blankMediaAlt": 4,
+      "withoutDescription": 3,
+      "nonblankSku": 0,
+      "nonblankBarcode": 0,
+      "tracked": 7,
+      "adminAvailable": 11,
+      "zeroPriced": 1,
+      "relationshipProducts": 0,
+      "relationshipEdges": 0
+    },
+    "replacement_part": {
+      "products": 54,
+      "variants": 54,
+      "active": 54,
+      "published": 54,
+      "defaultTemplate": 54,
+      "withMedia": 37,
+      "mediaAttachments": 37,
+      "blankMediaAlt": 37,
+      "withoutDescription": 3,
+      "nonblankSku": 0,
+      "nonblankBarcode": 0,
+      "tracked": 1,
+      "adminAvailable": 54,
+      "zeroPriced": 4,
+      "relationshipProducts": 28,
+      "relationshipEdges": 29
+    },
+    "consumable": {
+      "products": 39,
+      "variants": 42,
+      "active": 39,
+      "published": 39,
+      "defaultTemplate": 39,
+      "withMedia": 37,
+      "mediaAttachments": 38,
+      "blankMediaAlt": 38,
+      "withoutDescription": 1,
+      "nonblankSku": 0,
+      "nonblankBarcode": 0,
+      "tracked": 0,
+      "adminAvailable": 42,
+      "zeroPriced": 1,
+      "relationshipProducts": 4,
+      "relationshipEdges": 4
+    },
+    "accessory": {
+      "products": 18,
+      "variants": 18,
+      "active": 18,
+      "published": 18,
+      "defaultTemplate": 18,
+      "withMedia": 13,
+      "mediaAttachments": 13,
+      "blankMediaAlt": 13,
+      "withoutDescription": 1,
+      "nonblankSku": 0,
+      "nonblankBarcode": 0,
+      "tracked": 0,
+      "adminAvailable": 18,
+      "zeroPriced": 1,
+      "relationshipProducts": 7,
+      "relationshipEdges": 7
+    }
+  },
+  "approvedEdges": 40,
+  "coveredProducts": 39,
+  "publishedTargetEdges": 31,
+  "localBoundRefsVerified": 127,
+  "mainRuntimeChecksumMatches": 45,
+  "productTemplateSemanticParity": true,
+  "mainHomepageDiffers": true,
+  "currentSourceBinding": "b90bf2089788e77c04fbdd5bd1766bc4d03cfb9e358179884a47b74095be949b",
+  "observations": 56,
+  "axeRuns": 32,
+  "axeViolations": 0,
+  "nativeFourVariantSelectionsAtThreeWidths": true,
+  "nativeSoldOutAtThreeWidths": true,
+  "sixZeroPricesEnabled": true,
+  "productUpdateTimestampsUnchanged": true,
+  "documentLinksChecked": true,
+  "backlogRequiredFieldsChecked": true,
+  "discoverySyntaxChecks": [
+    "discover-browser.cjs",
+    "discover-interactions.cjs",
+    "discover-media.cjs",
+    "discover-prices.cjs",
+    "summarize-discovery.cjs",
+    "validate-discovery.cjs"
+  ],
+  "commands": [
+    {
+      "command": "node docs/qa/evidence/epic-g/summarize-discovery.cjs",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run validate:product-templates",
+      "exitCode": 0
+    },
+    {
+      "command": "node docs/qa/evidence/epic-g/validate-discovery.cjs",
+      "exitCode": 0
+    }
+  ],
+  "browserRuns": [
+    {
+      "script": "discover-browser.cjs",
+      "exitCode": 0,
+      "cells": 35
+    },
+    {
+      "script": "discover-interactions.cjs",
+      "exitCode": 0,
+      "cells": 12,
+      "earlierAttempts": [
+        {
+          "exitCode": 1,
+          "evidence": "2026-10-15-interactions-first-attempt.json",
+          "reason": "strict label locator matched duplicate nodes during native option updates"
+        },
+        {
+          "exitCode": 1,
+          "evidence": "2026-10-15-interactions-second-attempt.json",
+          "reason": "attempt to click hidden zero-size media toggle timed out"
+        }
+      ]
+    },
+    {
+      "script": "discover-prices.cjs",
+      "exitCode": 0,
+      "cells": 6
+    },
+    {
+      "script": "discover-media.cjs",
+      "exitCode": 0,
+      "cells": 3
+    }
+  ],
+  "unresolvedConcerns": [
+    "Six zero-price Product owner dispositions pending; no inferred hold or approval",
+    "Shared chrome wraps heavily at 200% root text: header 63 to 558 pixels at 360 width",
+    "Configured lightbox toggle geometry zero in sampled ordinary pages; no successful modal interaction claimed",
+    "Native SKU values absent; empty accessible label/container needs conditional behavior",
+    "MAIN homepage differs from local D fallback configuration",
+    "Existing fit grant expiry remains 2026-10-22T20:26:37.102Z; discovery does not renew"
+  ],
+  "limitations": [
+    "Representative browser coverage, not every Product or manual screen-reader certification",
+    "No cart add, checkout, order, account or customer data operations",
+    "Product updatedAt drift comparison does not certify concurrent inventory immutability",
+    "API validation helper deferred validation to execution-time query tool"
+  ],
+  "shopifyMutationCount": 0,
+  "themePushCount": 0,
+  "productCreationCount": 0,
+  "variantCreationCount": 0,
+  "collectionCreationCount": 0,
+  "metaobjectCreationCount": 0,
+  "sourceThemeFilesEdited": 0,
+  "productionReleaseCertification": false
+}

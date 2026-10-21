@@ -1,0 +1,46 @@
+{
+  "batch": "G1 / G-PBI-001",
+  "date": "2026-10-16",
+  "adminDataQueries": 26,
+  "queryEvidence": "docs/qa/evidence/epic-g/g1-2026-10-16/connector-reads.json",
+  "schemaReads": [
+    {
+      "tool": "shopify_graphql_schema",
+      "type_name": "QueryRoot"
+    },
+    {
+      "tool": "shopify_graphql_schema",
+      "type_name": "Product"
+    },
+    {
+      "tool": "shopify_graphql_schema",
+      "type_name": "ProductVariant"
+    }
+  ],
+  "documentationReads": [
+    {
+      "tool": "shopify_search_docs_chunks",
+      "api_name": "admin",
+      "prompt": "Product metafields list.product_reference references jsonValue productVariants inventoryItem tracked inventoryQuantity Admin GraphQL pagination read only"
+    }
+  ],
+  "validationCalls": [
+    {
+      "tool": "shopify_validate_graphql_codeblocks",
+      "artifactIds": [
+        "epic-g1-products-read",
+        "epic-g1-variants-read"
+      ],
+      "result": "helper returned validation skipped; read query execution validated operations"
+    }
+  ],
+  "totalShopifyToolCalls": 31,
+  "mutationCalls": 0,
+  "themePushes": 0,
+  "themePublications": 0,
+  "themeSettingsWrites": 0,
+  "productCreations": 0,
+  "variantCreations": 0,
+  "collectionCreations": 0,
+  "qualification": "Connector responses were replayed locally through E's paginator to create the normalized read envelope. Replay/validators/unit fixtures make no additional Shopify calls. Effective connector API version was not exposed and is recorded as null."
+}

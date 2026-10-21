@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-20T16:30:06.298Z",
+  "reason": "Export existing REQUIRED gates before invoking fit-only main entry point; check mode exercises the actual entry point without writes",
+  "changes": [
+    {
+      "path": "scripts/deploy-epic-g-products-preview.js",
+      "sha256": "7b8ce6bdc2e14a1c44417d4880352eab29111145e6644f450211bbba9793b102",
+      "afterSha256": "165d855f33bc3d6f7d33a759df2cbdd02d1090c3970ab04bb6f5a20676d8ffc7"
+    }
+  ],
+  "verification": {
+    "command": "node scripts/deploy-epic-g-products-preview.js --fit-only --check --evidence docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z",
+    "startedAt": "2026-10-20T16:29:46.157Z",
+    "completedAt": "2026-10-20T16:29:53.436Z",
+    "exitCode": 0,
+    "status": "PASS",
+    "log": "docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/fit-entrypoint-check.txt",
+    "themeWrites": 0
+  },
+  "priorAttemptReachedShopify": false
+}

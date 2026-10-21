@@ -1,0 +1,26 @@
+[
+  {
+    "command": "npm.cmd run validate:registers",
+    "exitCode": 0,
+    "stdout": "\n> shopify-rhinolapidary@1.0.0 validate:registers\n> node scripts/validate-json-registers.js\n\nEpic G isolated foundation fixture: valid\nEpic F machine-page repository readiness: valid\nepic-f-machine-measurement-contract: valid\nepic-f-machine-template-rollout-policy: valid\nepic-f-machine-template-rollout-plan: valid\nF7 historical before-read fixture: valid\nEpic F contextual/delivery architecture contract: valid\nEpic F support/resources architecture contract: valid\nEpic F specification/contents presentation roles: valid\nEpic F suppressed media release: valid\nEpic F synthetic gallery fixtures: valid\nEpic F future content cleanup: valid\nEpic F consumer release: valid\nEpic F consumer fixtures: valid\nepic-e-batch-3b-contracts: valid\nepic-e-relationship-matrix: valid\nepic-e-measurement-evidence: valid\nepic-e-component-evidence: valid\nepic-e-resource-catalog: valid\nepic-e-technical-field-evidence: valid\nepic-e-batch-3b-decision-packet: valid\nepic-e-batch-3b-extracted-evidence: valid\nadmin dependency register: valid\nstorefront fixtures: valid\nproduct data rules: valid\ncollection filter spec: valid\nsearch discovery desired state: valid\nmetafield and metaobject definitions: valid\nnavigation spec: valid\nhomepage section outcomes: valid\nhomepage content claims map: valid\nglobal navigation IA: valid\nfooter support resources: valid\nlocalization market decision: valid\nEpic C navigation measurement plan: valid\nEpic D homepage measurement plan: valid\nEpic D homepage NFR readiness: valid\ndesign token inventory: valid\nstorefront event contracts: valid\nstock asset ledger: valid\nmedia manifest: valid\nstock Trade remnants: valid\nhardcoded string allowlist: valid\ntheme environments: valid\nlaunch fixture ownership: valid\nrelease risk register: valid\nEpic E source governance: valid\nEpic E technical source index: valid\nEpic E gap and conflict register: valid\nEpic E Admin mutation-plan template: valid\nEpic E product classification: valid\nEpic E product identity: valid\nRhino commerce SKU registry: valid\nEpic E commercial configuration candidates: valid\nEpic E Product Owner decisions: valid\nEpic E conflict reference index: valid\nEpic E Vendor semantic audit: valid\nEpic E variant architecture: valid\nEpic E custom-data definition diff: valid\n",
+    "stderr": "npm warn Unknown env config \"min-release-age\". This will stop working in the next major version of npm.\n"
+  },
+  {
+    "command": "npm.cmd run validate:product-templates",
+    "exitCode": 0,
+    "stdout": "\n> shopify-rhinolapidary@1.0.0 validate:product-templates\n> node scripts/validate-product-templates.js\n\ntemplates/product.consumable.json: optional template not present\ntemplates/product.accessory.json: optional template not present\ntemplates/product.replacement-part.json: optional template not present\nProduct template validation passed.\n",
+    "stderr": "npm warn Unknown env config \"min-release-age\". This will stop working in the next major version of npm.\n"
+  },
+  {
+    "command": "node scripts/validate-epic-g-products.js",
+    "exitCode": 0,
+    "stdout": "{\n  \"validatedAt\": \"2026-10-16T20:07:01.049Z\",\n  \"sourceBindingSha256\": \"b90bf2089788e77c04fbdd5bd1766bc4d03cfb9e358179884a47b74095be949b\",\n  \"sourceCurrent\": true,\n  \"approvedSources\": 39,\n  \"customerEdges\": 31,\n  \"expiresAt\": \"2026-10-16T20:40:27.437Z\",\n  \"receiptExpiresAt\": \"2026-10-22T20:26:37.102Z\",\n  \"files\": [\n    {\n      \"path\": \"templates/product.json\",\n      \"sha256\": \"f979369720afa2e4ddddaf4e6112e0b88326b73fc2f4c2183b7ab1f7f925e8a2\"\n    },\n    {\n      \"path\": \"snippets/rhino-g-product-detail.liquid\",\n      \"sha256\": \"779d1be42f83b70de01abc011990e6b3f2fe30fecaac514768882cc407ea5218\"\n    },\n    {\n      \"path\": \"snippets/rhino-g-product-fit.liquid\",\n      \"sha256\": \"2d2964ff514784c7528fdbbff4c161352af5f01c31b10551c1800114ef92c00f\"\n    },\n    {\n      \"path\": \"assets/rhino-g-product.css\",\n      \"sha256\": \"14a7c09a79424eeb73e9498531d8a07dd02fd6d524f5f55b2aa16cad08e4cb36\"\n    },\n    {\n      \"path\": \"assets/rhino-g-fit.js\",\n      \"sha256\": \"ccbcc3628453b612561939f52c83bf061cc8b56a6969df9439128e72643084d2\"\n    }\n  ],\n  \"protectedSourceFilesChecked\": 105,\n  \"unrelatedThemeFilesChecked\": 442,\n  \"localLiquidProductsChecked\": 111,\n  \"ShopifyMutations\": 0,\n  \"privateRevocationImmediateGuarantee\": false\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --check -- .theme-check.yml templates/product.json package.json docs/rhino-lapidary-pbi-tracker-epic-g.md",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "warning: in the working copy of '.theme-check.yml', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'templates/product.json', LF will be replaced by CRLF the next time Git touches it\n"
+  }
+]

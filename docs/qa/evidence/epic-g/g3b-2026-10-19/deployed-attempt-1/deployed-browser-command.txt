@@ -1,0 +1,27 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:epic-g-catalog:browser
+> node scripts/validate-epic-g-catalog-browser.js
+
+{"width":390,"error":"Expected values to be strictly equal:\n\n'false' !== 'true'\n"}
+{"width":1440,"error":"Expected values to be strictly equal:\n\n'false' !== 'true'\n"}
+{"cells":2,"destinations":0,"failures":3}
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   {
++     error: "Expected values to be strictly equal:\n\n'false' !== 'true'\n",
++     width: 390
++   },
++   {
++     error: "Expected values to be strictly equal:\n\n'false' !== 'true'\n",
++     width: 1440
++   },
++   {
++     fatal: 'Expected values to be strictly equal:\n\n0 !== 3\n'
++   }
++ ]
+- []
+
+    at run (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\validate-epic-g-catalog-browser.js:34:329)

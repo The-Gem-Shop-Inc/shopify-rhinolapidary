@@ -1,0 +1,442 @@
+{
+  "at": "2026-10-16T19:01:55.635Z",
+  "gitStatus": " M .shopifyignore\n M assets/rhino-custom.css\n M data/brand-performance-budget.json\nAM data/epic-f-support-resources-contract.json\n M data/launch-fixture-ownership.json\n M data/storefront-event-contracts.json\n M docs/analytics/analytics-migration-verification-plan.md\n M docs/architecture/adr-0001-product-template-architecture.md\nA  docs/product/006B-remaining-machine-specs-and-measurements.pdf\nA  docs/product/007B-remaining-contents-and-bom.pdf\nA  docs/product/008B-remaining-compatibility-and-product-identity.pdf\nAM docs/project/implementation-records/epic-f-active-development-handoff.md\n M docs/release/production-launch-readiness-gate.md\n M docs/rhino-lapidary-pbi-tracker-epic-f.md\n M layout/theme.liquid\n M locales/bg.json\n M locales/cs.json\n M locales/cs.schema.json\n M locales/da.json\n M locales/da.schema.json\n M locales/de.json\n M locales/de.schema.json\n M locales/el.json\n M locales/en.default.json\n M locales/en.default.schema.json\n M locales/es.json\n M locales/es.schema.json\n M locales/fi.json\n M locales/fi.schema.json\n M locales/fr.json\n M locales/fr.schema.json\n M locales/hr.json\n M locales/hu.json\n M locales/id.json\n M locales/it.json\n M locales/it.schema.json\n M locales/ja.json\n M locales/ja.schema.json\n M locales/ko.json\n M locales/ko.schema.json\n M locales/lt.json\n M locales/nb.json\n M locales/nb.schema.json\n M locales/nl.json\n M locales/nl.schema.json\n M locales/pl.json\n M locales/pl.schema.json\n M locales/pt-BR.json\n M locales/pt-BR.schema.json\n M locales/pt-PT.json\n M locales/pt-PT.schema.json\n M locales/ro.json\n M locales/ru.json\n M locales/sk.json\n M locales/sl.json\n M locales/sv.json\n M locales/sv.schema.json\n M locales/th.json\n M locales/th.schema.json\n M locales/tr.json\n M locales/tr.schema.json\n M locales/vi.json\n M locales/zh-CN.json\n M locales/zh-CN.schema.json\n M locales/zh-TW.json\n M locales/zh-TW.schema.json\n M package-lock.json\n M package.json\n M schemas/epic-e-admin-snapshot.schema.json\nAM schemas/epic-f-support-resources-contract.schema.json\nAM schemas/epic-f-support-resources-projection.schema.json\nAM schemas/epic-f-support-resources.schema.json\n M schemas/storefront-event-contracts.schema.json\n M scripts/lib/epic-e-custom-data-contract.js\n M scripts/lib/epic-e-readiness.js\nAM scripts/lib/epic-f-support-resources.js\n M scripts/validate-brand-claims.js\n M scripts/validate-brand-performance-budget.js\nAM scripts/validate-epic-f-support-resources.js\n M scripts/validate-json-registers.js\n M scripts/validate-product-templates.js\n M scripts/validate-production-readiness.js\n M sections/cart-notification-product.liquid\n M sections/featured-product.liquid\n M sections/header.liquid\n M sections/main-cart-items.liquid\n M sections/main-product.liquid\n M sections/predictive-search.liquid\n M snippets/card-product.liquid\n M snippets/cart-disclosure-indicator.liquid\n M snippets/cart-drawer.liquid\n M snippets/facets.liquid\n M snippets/meta-tags.liquid\n M snippets/product-disclosures.liquid\n M snippets/product-media-gallery.liquid\n M snippets/product-media-modal.liquid\n M snippets/product-media.liquid\n M snippets/product-thumbnail.liquid\n M snippets/quick-order-list-row.liquid\n M tests/fixtures/storefront-fixtures.json\n?? data/epic-e-006b-amended-approved-rows.json\n?? data/epic-e-006b-amended-execution-status.json\n?? data/epic-e-006b-completed-worksheet-responses.json\n?? data/epic-e-006b-owner-amendments.json\n?? data/epic-e-006b-worksheet-intake.json\n?? data/epic-e-bom-followup-execution-status.json\n?? data/epic-e-bom-owner-followup.json\n?? data/epic-e-completed-owner-responses.json\n?? data/epic-e-current-execution-status.json\n?? data/epic-e-final-006b-bom-approved-delta.json\n?? data/epic-e-final-006b-bom-owner-amendment.json\n?? data/epic-f-006b-migration-preview.json\n?? data/epic-f-006b-owner-value-review.json\n?? data/epic-f-007b-bom-owner-review.json\n?? data/epic-f-008b-compatibility-owner-review.json\n?? data/epic-f-activation-readiness-review.json\n?? data/epic-f-consumer-release.json\n?? data/epic-f-content-cleanup-plan.json\n?? data/epic-f-context-delivery-contract.json\n?? data/epic-f-current-decisions.json\n?? data/epic-f-current-development-status.json\n?? data/epic-f-current-shopify-eligibility.json\n?? data/epic-f-customer-fact-release.json\n?? data/epic-f-field-roles.json\n?? data/epic-f-final-owner-decision-status.json\n?? data/epic-f-lapmaster-variable-speed-preparation.json\n?? data/epic-f-machine-measurement-contract.json\n?? data/epic-f-machine-page-readiness-contract.json\n?? data/epic-f-machine-page-readiness.json\n?? data/epic-f-machine-template-rollout-plan.json\n?? data/epic-f-machine-template-rollout-policy.json\n?? data/epic-f-media-release.json\n?? data/epic-f-owner-customer-eligibility.json\n?? data/epic-f-owner-decision-readiness.json\n?? data/epic-f-performance-profiles.json\n?? data/epic-f-performance-recorder-v2.json\n?? data/epic-f-performance-recorder-v3.json\n?? data/epic-f-saw-vice-catalog-split-preparation.json\n?? data/epic-f-shell-only-release-preparation.json\n?? data/epic-f-tumblemaster-14gal-and-future-40gal-preparation.json\n?? data/epic-f-tumblemaster-identity-preparation.json\n?? docs/project/completed-007b-008b-responses-transcribed.md\n?? docs/project/completed-worksheet-decisions-transcribed.md\n?? docs/project/e-mut-020-execution-and-preview-deployment.md\n?? docs/project/e-mut-021-product-classification-execution.md\n?? docs/project/epic-f-004b-live-media-activation.md\n?? docs/project/epic-f-006b-amended-activation.md\n?? docs/project/epic-f-006b-completed-worksheet-review.md\n?? docs/project/epic-f-006b-owner-value-decision-preparation.md\n?? docs/project/epic-f-006b-technical-intake-preflight.md\n?? docs/project/epic-f-007b-008b-owner-followup.md\n?? docs/project/epic-f-007b-008b-remaining-owner-values.md\n?? docs/project/epic-f-007b-bom-owner-review.md\n?? docs/project/epic-f-008b-compatibility-owner-review.md\n?? docs/project/epic-f-014b-assigned-route-accessibility-closure.md\n?? docs/project/epic-f-015b-live-performance-certification.md\n?? docs/project/epic-f-015b-recorder-v2-integrity.md\n?? docs/project/epic-f-015b-recorder-v3-integrity.md\n?? docs/project/epic-f-activation-readiness-review.md\n?? docs/project/epic-f-batch-f1-file-manifest.json\n?? docs/project/epic-f-batch-f2-file-manifest.json\n?? docs/project/epic-f-batch-f3-file-manifest.json\n?? docs/project/epic-f-batch-f4-file-manifest.json\n?? docs/project/epic-f-batch-f5-file-manifest.json\n?? docs/project/epic-f-batch-f6-file-manifest.json\n?? docs/project/epic-f-batch-f7-file-manifest.json\n?? docs/project/epic-f-batch-f8-file-manifest.json\n?? docs/project/epic-f-final-006b-bom-delta.md\n?? docs/project/epic-f-global-header-focus-correction.md\n?? docs/project/epic-f-lapmaster-variable-speed-preparation.md\n?? docs/project/epic-f-live-machine-template-activation.md\n?? docs/project/epic-f-nonpersistent-equivalent-css-preview.md\n?? docs/project/epic-f-nonpersistent-shopify-shell-preview.md\n?? docs/project/epic-f-owner-response-activation.md\n?? docs/project/epic-f-owner-response-ingestion-2026-10-13.md\n?? docs/project/epic-f-owner-response-remaining-worksheet.md\n?? docs/project/epic-f-pre-persistent-release-gate-cleanup.md\n?? docs/project/epic-f-saw-vice-split-preparation.md\n?? docs/project/epic-f-shell-only-release-handoff.md\n?? docs/project/epic-f-theme-preview-400-diagnostic.md\n?? docs/project/epic-g-discovery.md\n?? docs/project/epic-g-proposed-backlog.json\n?? docs/project/epic-g-required-decisions.md\n?? docs/project/implementation-records/f-pbi-001-005-batch-f1.md\n?? docs/project/implementation-records/f-pbi-002-003-012-014a-batch-f2.md\n?? docs/project/implementation-records/f-pbi-004a-015a-batch-f3.md\n?? docs/project/implementation-records/f-pbi-006a-007a-batch-f4.md\n?? docs/project/implementation-records/f-pbi-008a-009a-batch-f5.md\n?? docs/project/implementation-records/f-pbi-010a-011a-batch-f6.md\n?? docs/project/implementation-records/f-pbi-016-017a-batch-f7.md\n?? docs/project/implementation-records/f-pbi-018a-batch-f8.md\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-after-admin-snapshot.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-after-drift.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-before-admin-snapshot.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-definition-after-inventory.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-development-execution-summary.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-execution-authorization.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-final-development-state.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-final-local-audit.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-final-post-smoke-state.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-journal.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-read-provenance.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-reconciliation.json\n?? docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-rows/\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-after-admin-snapshot.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-after-drift.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-01-before.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-01-receipt.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-02-before.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-02-receipt.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-03-before.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-03-receipt.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-04-before.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-04-receipt.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-05-before.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-batch-05-receipt.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-before-admin-snapshot.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-compare-before.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-definition-after.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-definition-before.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-development-execution-summary.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-execution-authorization.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-final-local-audit.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-final-post-smoke-state.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-journal.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-post-smoke-product-observation.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-read-provenance.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-reconciliation.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-validated-queries.json\n?? docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-validation-results.json\n?? docs/qa/evidence/epic-f/004b-live-media-2026-10-10/\n?? docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/\n?? docs/qa/evidence/epic-f/006b-technical-preflight-2026-10-14/\n?? docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/\n?? docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/\n?? docs/qa/evidence/epic-f/014b-assigned-2026-10-06/\n?? docs/qa/evidence/epic-f/015b-live-2026-10-06/\n?? docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-1/\n?? docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-2/\n?? docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3/\n?? docs/qa/evidence/epic-f/015b-live-2026-10-07/\n?? docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/\n?? docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/\n?? docs/qa/evidence/epic-f/2026-10-05-e-mut-021-current-eligibility.json\n?? docs/qa/evidence/epic-f/2026-10-05-e-mut-021-persistent-preview-smoke.json\n?? docs/qa/evidence/epic-f/2026-10-05-e-mut-021-template-activation-decision.json\n?? docs/qa/evidence/epic-f/2026-10-05-e-mut-021-theme-before.json\n?? docs/qa/evidence/epic-f/2026-10-05-persistent-css-cdn-fidelity.json\n?? docs/qa/evidence/epic-f/2026-10-05-persistent-development-source-binding.json\n?? docs/qa/evidence/epic-f/2026-10-05-persistent-preview-after-push.json\n?? docs/qa/evidence/epic-f/2026-10-05-persistent-preview-before.json\n?? docs/qa/evidence/epic-f/2026-10-05-persistent-preview-computed-smoke.json\n?? docs/qa/evidence/epic-f/2026-10-05-persistent-preview-password-gate-attempt.json\n?? docs/qa/evidence/epic-f/2026-10-05-persistent-preview-push.json\n?? docs/qa/evidence/epic-f/2026-10-05-persistent-preview-readback.json\n?? docs/qa/evidence/epic-f/2026-10-05-persistent-preview-smoke.json\n?? docs/qa/evidence/epic-f/activation-review-admin-audit.json\n?? docs/qa/evidence/epic-f/activation-review-adversarial-tests.json\n?? docs/qa/evidence/epic-f/activation-review-validation.json\n?? docs/qa/evidence/epic-f/batch-f1-validation.json\n?? docs/qa/evidence/epic-f/batch-f2-validation.json\n?? docs/qa/evidence/epic-f/batch-f3-development-validation.json\n?? docs/qa/evidence/epic-f/batch-f3-performance-runtime.json\n?? docs/qa/evidence/epic-f/batch-f3-validation.json\n?? docs/qa/evidence/epic-f/batch-f4-development-validation.json\n?? docs/qa/evidence/epic-f/batch-f4-performance-runtime.json\n?? docs/qa/evidence/epic-f/batch-f4-validation.json\n?? docs/qa/evidence/epic-f/batch-f5-development-validation.json\n?? docs/qa/evidence/epic-f/batch-f5-performance-runtime.json\n?? docs/qa/evidence/epic-f/batch-f5-validation.json\n?? docs/qa/evidence/epic-f/batch-f6-development-validation.json\n?? docs/qa/evidence/epic-f/batch-f6-performance-runtime.json\n?? docs/qa/evidence/epic-f/batch-f6-validation.json\n?? docs/qa/evidence/epic-f/batch-f7-development-validation.json\n?? docs/qa/evidence/epic-f/batch-f7-validation.json\n?? docs/qa/evidence/epic-f/batch-f8-first-attempt.json\n?? docs/qa/evidence/epic-f/batch-f8-first-diff-check.json\n?? docs/qa/evidence/epic-f/batch-f8-historical-diagnostics.json\n?? docs/qa/evidence/epic-f/batch-f8-validation.json\n?? docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/\n?? docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/\n?? docs/qa/evidence/epic-f/live-activation-2026-10-05/\n?? docs/qa/evidence/epic-f/nonpersistent-equivalent-css-browser-validation.json\n?? docs/qa/evidence/epic-f/nonpersistent-equivalent-css-preview.json\n?? docs/qa/evidence/epic-f/nonpersistent-shell-preview-cli-help.txt\n?? docs/qa/evidence/epic-f/nonpersistent-shell-preview-validation.json\n?? docs/qa/evidence/epic-f/owner-decision-preparation-2026-10-12/\n?? docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/\n?? docs/qa/evidence/epic-f/pre-persistent-release-gate-cleanup.json\n?? docs/qa/evidence/epic-f/release-gate-cleanup-source-binding.json\n?? docs/qa/evidence/epic-f/shell-only-release-handoff-validation.json\n?? docs/qa/evidence/epic-f/theme-preview-400-diagnostic.json\n?? docs/qa/evidence/epic-f/theme-preview-assets-minimal-repro.json\n?? docs/qa/evidence/epic-g/\n?? docs/rhino-lapidary-pbi-tracker-epic-g.md\n?? playwright.machine-context-delivery.config.js\n?? playwright.machine-facts.config.js\n?? playwright.machine-gallery.config.js\n?? playwright.machine-support-resources.config.js\n?? playwright.machine.config.js\n?? schemas/epic-e-006b-completed-worksheet-responses.schema.json\n?? schemas/epic-e-bom-owner-followup.schema.json\n?? schemas/epic-e-completed-owner-responses.schema.json\n?? schemas/epic-f-activation-readiness-review.schema.json\n?? schemas/epic-f-bom-owner-review.schema.json\n?? schemas/epic-f-compatibility-owner-review.schema.json\n?? schemas/epic-f-consumer-fixtures.schema.json\n?? schemas/epic-f-consumer-release.schema.json\n?? schemas/epic-f-consumer-state.schema.json\n?? schemas/epic-f-content-cleanup-plan.schema.json\n?? schemas/epic-f-context-delivery-contract.schema.json\n?? schemas/epic-f-context-delivery-projection.schema.json\n?? schemas/epic-f-context-delivery.schema.json\n?? schemas/epic-f-fact-projection.schema.json\n?? schemas/epic-f-field-roles.schema.json\n?? schemas/epic-f-gallery-fixtures.schema.json\n?? schemas/epic-f-machine-measurement-contract.schema.json\n?? schemas/epic-f-machine-measurement-payload.schema.json\n?? schemas/epic-f-machine-page-readiness.schema.json\n?? schemas/epic-f-machine-template-before.schema.json\n?? schemas/epic-f-machine-template-rollout-plan.schema.json\n?? schemas/epic-f-machine-template-rollout-policy.schema.json\n?? schemas/epic-f-media-release.schema.json\n?? schemas/epic-f-owner-value-review.schema.json\n?? schemas/epic-f-performance-measurement.schema.json\n?? scripts/build-epic-f-006b-amended-release.js\n?? scripts/build-epic-f-batch-f8-manifest.js\n?? scripts/build-epic-f-bom-followup-release.js\n?? scripts/build-epic-f-consumer.js\n?? scripts/build-epic-f-content-cleanup.js\n?? scripts/build-epic-f-context-delivery.js\n?? scripts/build-epic-f-development-media-schema.js\n?? scripts/build-epic-f-fact-projection.js\n?? scripts/build-epic-f-final-owner-release.js\n?? scripts/build-epic-f-live-machine-deployment-plan.js\n?? scripts/build-epic-f-live-media-activation.js\n?? scripts/build-epic-f-machine-page-readiness.js\n?? scripts/build-epic-f-machine-template-rollout-plan.js\n?? scripts/build-epic-f-media-dependency-refresh.js\n?? scripts/build-epic-f-owner-customer-release.js\n?? scripts/build-epic-f-owner-review-schemas.js\n?? scripts/build-epic-f-owner-review.js\n?? scripts/build-epic-f-persistent-development-binding.js\n?? scripts/build-epic-f-recorder-v2.js\n?? scripts/build-epic-f-recorder-v3.js\n?? scripts/build-epic-f-support-resources.js\n?? scripts/compare-epic-f-live-non-machine.js\n?? scripts/complete-epic-f-live-performance-v2-evidence.js\n?? scripts/deploy-epic-f-006b-amended.js\n?? scripts/deploy-epic-f-bom-followup.js\n?? scripts/deploy-epic-f-development-preview.js\n?? scripts/deploy-epic-f-final-owner-delta.js\n?? scripts/deploy-epic-f-header-focus-correction.js\n?? scripts/deploy-epic-f-live-machine-template.js\n?? scripts/deploy-epic-f-live-media.js\n?? scripts/deploy-epic-f-owner-activation.js\n?? scripts/diagnose-epic-f-live-performance-v2.js\n?? scripts/diagnose-epic-f-live-performance-v3.js\n?? scripts/diagnose-epic-f-media-preview-gate.js\n?? scripts/finalize-epic-f-006b-activation.js\n?? scripts/finalize-epic-f-006b-local-validation.js\n?? scripts/finalize-epic-f-014b-assigned-accessibility.js\n?? scripts/finalize-epic-f-bom-local-validation.js\n?? scripts/finalize-epic-f-final-owner-delta.js\n?? scripts/finalize-epic-f-header-focus-correction.js\n?? scripts/finalize-epic-f-live-machine-activation.js\n?? scripts/finalize-epic-f-live-media-activation.js\n?? scripts/finalize-epic-f-live-performance-certification.js\n?? scripts/finalize-epic-f-live-performance-v2.js\n?? scripts/finalize-epic-f-live-performance-v3.js\n?? scripts/finalize-epic-f-owner-local-validation.js\n?? scripts/finalize-epic-f-owner-review.js\n?? scripts/freeze-epic-f-006b-binding.js\n?? scripts/freeze-epic-f-bom-followup-binding.js\n?? scripts/freeze-epic-f-final-owner-binding.js\n?? scripts/freeze-epic-f-owner-binding.js\n?? scripts/lib/e-mut-020-development-execution.js\n?? scripts/lib/e-mut-021-development-execution.js\n?? scripts/lib/epic-e-006b-amended.js\n?? scripts/lib/epic-e-bom-owner-followup.js\n?? scripts/lib/epic-e-final-owner-delta.js\n?? scripts/lib/epic-e-owner-response-adapter.js\n?? scripts/lib/epic-f-006b-binding.js\n?? scripts/lib/epic-f-014b-assigned-validation.js\n?? scripts/lib/epic-f-014b-browser-zoom.js\n?? scripts/lib/epic-f-014b-focus.js\n?? scripts/lib/epic-f-activation-readiness-review.js\n?? scripts/lib/epic-f-bom-contents-compiler.js\n?? scripts/lib/epic-f-bom-owner-binding.js\n?? scripts/lib/epic-f-consumer.js\n?? scripts/lib/epic-f-contact-context.js\n?? scripts/lib/epic-f-context-delivery-fixtures.js\n?? scripts/lib/epic-f-context-delivery.js\n?? scripts/lib/epic-f-customer-release.js\n?? scripts/lib/epic-f-fact-fixtures.js\n?? scripts/lib/epic-f-facts.js\n?? scripts/lib/epic-f-final-owner-binding.js\n?? scripts/lib/epic-f-gallery-fixtures.js\n?? scripts/lib/epic-f-governance.js\n?? scripts/lib/epic-f-header-focus-correction.js\n?? scripts/lib/epic-f-header-preview-focus.js\n?? scripts/lib/epic-f-liquid-fixtures.js\n?? scripts/lib/epic-f-live-excluded-preview.js\n?? scripts/lib/epic-f-live-machine-activation.js\n?? scripts/lib/epic-f-live-media-activation.js\n?? scripts/lib/epic-f-live-performance-campaign-v2.js\n?? scripts/lib/epic-f-live-performance-campaign-v3.js\n?? scripts/lib/epic-f-live-performance-campaign.js\n?? scripts/lib/epic-f-live-performance-collector-v2.js\n?? scripts/lib/epic-f-live-performance-collector-v3.js\n?? scripts/lib/epic-f-live-performance-collector.js\n?? scripts/lib/epic-f-live-performance-guard-v3.js\n?? scripts/lib/epic-f-live-performance-network-v2.js\n?? scripts/lib/epic-f-live-performance-network-v3.js\n?? scripts/lib/epic-f-live-performance-profile.js\n?? scripts/lib/epic-f-machine-fixtures.js\n?? scripts/lib/epic-f-machine-measurement.js\n?? scripts/lib/epic-f-machine-page-readiness.js\n?? scripts/lib/epic-f-machine-template-rollout.js\n?? scripts/lib/epic-f-media.js\n?? scripts/lib/epic-f-nonpersistent-preview.js\n?? scripts/lib/epic-f-owner-activation-binding.js\n?? scripts/lib/epic-f-owner-review.js\n?? scripts/lib/epic-f-performance.js\n?? scripts/lib/epic-f-preview-browser.js\n?? scripts/lib/epic-f-preview-network-guard.js\n?? scripts/lib/epic-f-preview-response-observer.cjs\n?? scripts/lib/epic-f-release-cleanup-binding.js\n?? scripts/lib/epic-f-support-resources-fixtures.js\n?? scripts/manage-epic-e-006b-amended-execution.js\n?? scripts/manage-epic-e-final-owner-delta.js\n?? scripts/preflight-epic-f-006b-technical-intake.js\n?? scripts/prepare-epic-e-006b-completed-review.js\n?? scripts/prepare-epic-e-owner-execution.js\n?? scripts/prepare-epic-f-bom-followup.js\n?? scripts/prepare-epic-f-live-assignment-authorization.js\n?? scripts/preview-epic-f-owner-responses.js\n?? scripts/probe-epic-f-header-focus-correction.js\n?? scripts/probe-epic-f-owner-liquid.js\n?? scripts/prove-epic-f-live-description-equivalence.js\n?? scripts/recheck-epic-f-batch-f8-regression.js\n?? scripts/reconcile-epic-e-bom-followup.js\n?? scripts/reconcile-epic-e-owner-execution.js\n?? scripts/reconcile-epic-f-live-machine-activation.js\n?? scripts/reconcile-epic-f-media-resume.js\n?? scripts/record-epic-f-live-performance-v3-blocker.js\n?? scripts/refresh-epic-f-current-shopify-eligibility.js\n?? scripts/refresh-epic-f-media-binding.js\n?? scripts/report-epic-f-006b-completed-review.js\n?? scripts/report-epic-f-bom-followup.js\n?? scripts/report-epic-f-live-media-activation.js\n?? scripts/report-epic-f-owner-activation.js\n?? scripts/run-epic-f-014b-assigned-accessibility.js\n?? scripts/run-epic-f-014b-focus-confirmation.js\n?? scripts/run-epic-f-batch-f1.js\n?? scripts/run-epic-f-batch-f2.js\n?? scripts/run-epic-f-batch-f3.js\n?? scripts/run-epic-f-batch-f4.js\n?? scripts/run-epic-f-batch-f5.js\n?? scripts/run-epic-f-batch-f6.js\n?? scripts/run-epic-f-batch-f7.js\n?? scripts/run-epic-f-batch-f8.js\n?? scripts/run-epic-f-context-delivery-performance.js\n?? scripts/run-epic-f-fact-performance.js\n?? scripts/run-epic-f-header-focus-validation.js\n?? scripts/run-epic-f-live-media-validation.js\n?? scripts/run-epic-f-live-performance-canary-v2.js\n?? scripts/run-epic-f-live-performance-canary-v3.js\n?? scripts/run-epic-f-live-performance-certification.js\n?? scripts/run-epic-f-live-performance-v3-validation.js\n?? scripts/run-epic-f-machine-performance.js\n?? scripts/run-epic-f-nonpersistent-shopify-preview.js\n?? scripts/run-epic-f-support-resources-performance.js\n?? scripts/seal-epic-f-006b-activation.js\n?? scripts/seal-epic-f-006b-completed-review.js\n?? scripts/seal-epic-f-006b-preflight.js\n?? scripts/seal-epic-f-bom-followup.js\n?? scripts/seal-epic-f-final-owner-delta.js\n?? scripts/seal-epic-f-live-media-evidence.js\n?? scripts/seal-epic-f-live-performance-v3-evidence.js\n?? scripts/seal-epic-f-owner-activation.js\n?? scripts/smoke-epic-f-live-machine-activation.js\n?? scripts/smoke-epic-f-persistent-development-preview.js\n?? scripts/test-e-mut-020-development-execution.js\n?? scripts/test-e-mut-021-development-execution.js\n?? scripts/test-e-mut-021-reconciliation.js\n?? scripts/test-epic-e-bom-owner-followup.js\n?? scripts/test-epic-e-owner-response-adapter.js\n?? scripts/test-epic-f-006b-amended.js\n?? scripts/test-epic-f-014b-assigned-accessibility.js\n?? scripts/test-epic-f-015b-certification-preflight.js\n?? scripts/test-epic-f-activation-readiness-review.js\n?? scripts/test-epic-f-bom-contents-compiler.js\n?? scripts/test-epic-f-claims.js\n?? scripts/test-epic-f-cleanup-facets-browser.js\n?? scripts/test-epic-f-consumer.js\n?? scripts/test-epic-f-contact-context.js\n?? scripts/test-epic-f-context-delivery.js\n?? scripts/test-epic-f-current-shopify-eligibility.js\n?? scripts/test-epic-f-facts.js\n?? scripts/test-epic-f-final-owner-delta.js\n?? scripts/test-epic-f-final-owner-release.js\n?? scripts/test-epic-f-header-focus-correction.js\n?? scripts/test-epic-f-header-preview-attribution.js\n?? scripts/test-epic-f-live-machine-activation.js\n?? scripts/test-epic-f-live-media-activation.js\n?? scripts/test-epic-f-live-performance-beacon.js\n?? scripts/test-epic-f-live-performance-cutoff.js\n?? scripts/test-epic-f-live-performance-profile-v2.js\n?? scripts/test-epic-f-live-performance-profile-v3.js\n?? scripts/test-epic-f-live-performance-profile.js\n?? scripts/test-epic-f-live-performance-recorder.js\n?? scripts/test-epic-f-live-performance-v2-safety.js\n?? scripts/test-epic-f-live-performance-v2.js\n?? scripts/test-epic-f-live-performance-v3-safety.js\n?? scripts/test-epic-f-live-performance-v3.js\n?? scripts/test-epic-f-machine-measurement.js\n?? scripts/test-epic-f-machine-page-readiness.js\n?? scripts/test-epic-f-machine-template-rollout-plan.js\n?? scripts/test-epic-f-media.js\n?? scripts/test-epic-f-nonpersistent-shopify-preview.js\n?? scripts/test-epic-f-owner-review.js\n?? scripts/test-epic-f-performance.js\n?? scripts/test-epic-f-preview-accessibility-ownership.js\n?? scripts/test-epic-f-preview-network-guard.js\n?? scripts/test-epic-f-release-cleanup-extractions.js\n?? scripts/test-epic-f-support-resources.js\n?? scripts/validate-e-mut-020-execution-reconciliation.js\n?? scripts/validate-e-mut-021-execution-reconciliation.js\n?? scripts/validate-epic-e-006b-completed-review.js\n?? scripts/validate-epic-e-owner-activation.js\n?? scripts/validate-epic-f-006b-final-protected.js\n?? scripts/validate-epic-f-006b-live-browser.js\n?? scripts/validate-epic-f-006b-zoom.js\n?? scripts/validate-epic-f-015b-certification-preflight.js\n?? scripts/validate-epic-f-activation-readiness-review.js\n?? scripts/validate-epic-f-batch-f8-manifest.js\n?? scripts/validate-epic-f-bom-live-browser.js\n?? scripts/validate-epic-f-claims.js\n?? scripts/validate-epic-f-consumer.js\n?? scripts/validate-epic-f-context-delivery.js\n?? scripts/validate-epic-f-facts.js\n?? scripts/validate-epic-f-final-owner-live-browser.js\n?? scripts/validate-epic-f-final-owner-local.js\n?? scripts/validate-epic-f-final-owner-protected.js\n?? scripts/validate-epic-f-final-owner-zoom.js\n?? scripts/validate-epic-f-gallery.js\n?? scripts/validate-epic-f-header-focus-gates.js\n?? scripts/validate-epic-f-live-assignment-input.js\n?? scripts/validate-epic-f-live-media-browser.js\n?? scripts/validate-epic-f-live-media-zoom.js\n?? scripts/validate-epic-f-live-performance-certification.js\n?? scripts/validate-epic-f-live-performance-v2.js\n?? scripts/validate-epic-f-live-source-readback.js\n?? scripts/validate-epic-f-machine-measurement.js\n?? scripts/validate-epic-f-machine-page-readiness.js\n?? scripts/validate-epic-f-machine-template-rollout-plan.js\n?? scripts/validate-epic-f-machine.js\n?? scripts/validate-epic-f-owner-live-browser.js\n?? scripts/validate-epic-f-owner-review.js\n?? scripts/validate-epic-f-persistent-preview-readback.js\n?? scripts/validate-epic-f-shell-only-release-handoff.js\n?? scripts/verify-epic-f-header-focus-readback.js\n?? snippets/card-product-placeholder.liquid\n?? snippets/facets-mobile.liquid\n?? snippets/product-inventory.liquid\n?? snippets/rhino-machine-contents.liquid\n?? snippets/rhino-machine-contextual.liquid\n?? snippets/rhino-machine-delivery.liquid\n?? snippets/rhino-machine-resources.liquid\n?? snippets/rhino-machine-specification-row.liquid\n?? snippets/rhino-machine-specifications.liquid\n?? snippets/rhino-machine-support.liquid\n?? snippets/rhino-owner-approved-contents-8905780756677.liquid\n?? snippets/rhino-owner-approved-context-8905780756677.liquid\n?? snippets/rhino-owner-approved-context-8905781477573.liquid\n?? snippets/rhino-owner-approved-context-8905784131781.liquid\n?? snippets/rhino-owner-approved-context-8905784197317.liquid\n?? snippets/rhino-owner-approved-context-8905785344197.liquid\n?? snippets/rhino-owner-approved-context.liquid\n?? snippets/rhino-owner-approved-facts-8905779937477.liquid\n?? snippets/rhino-owner-approved-facts-8905780756677.liquid\n?? snippets/rhino-owner-approved-facts-8905781412037.liquid\n?? snippets/rhino-owner-approved-facts-8905781477573.liquid\n?? snippets/rhino-owner-approved-facts-8905784131781.liquid\n?? snippets/rhino-owner-approved-facts-8905784197317.liquid\n?? snippets/rhino-owner-approved-facts-8905784328389.liquid\n?? snippets/rhino-owner-approved-facts-8905785344197.liquid\n?? snippets/rhino-owner-approved-facts.liquid\n?? snippets/rhino-product-consumer-route.liquid\n?? snippets/rhino-product-context-delivery-projection.liquid\n?? snippets/rhino-product-description.liquid\n?? snippets/rhino-product-fact-projection.liquid\n?? snippets/rhino-product-media-eligibility.liquid\n?? snippets/rhino-product-structured-data.liquid\n?? snippets/rhino-product-support-resources-projection.liquid\n?? templates/product.machine.json\n?? tests/epic-f-context-delivery.spec.js\n?? tests/epic-f-facts.spec.js\n?? tests/epic-f-gallery.spec.js\n?? tests/epic-f-support-resources.spec.js\n?? tests/fixtures/epic-f-consumer.json\n?? tests/fixtures/epic-f-f7-runtime-baseline.json\n?? tests/fixtures/epic-f-f8-file-baseline.json\n?? tests/fixtures/epic-f-f8-governance-baseline.json\n?? tests/fixtures/epic-f-gallery-native-baseline.json\n?? tests/fixtures/epic-f-gallery.json\n?? tests/fixtures/epic-f-historical-diagnostics.json\n?? tests/fixtures/epic-f-machine-measurement.json\n?? tests/fixtures/epic-f-machine-shell.json\n?? tests/fixtures/epic-f-machine-template-before.json\n?? tests/fixtures/epic-f-native-baseline.json\n?? tests/fixtures/epic-f-performance-policy-baseline.json\n?? tests/fixtures/epic-f-support-resources-baseline.json\n?? tests/machine-purchase.spec.js\n?? tests/machine-shell.spec.js\n?? tests/machine-zoom.spec.js\n",
+  "files": [
+    {
+      "path": "docs/project/completed-worksheet-decisions-transcribed.md",
+      "sha256": "99dc261e78db99360d218ccab29a38d8ce9dd1818dd8386b7dc8a7d1737f3c8c"
+    },
+    {
+      "path": "data/epic-e-completed-owner-responses.json",
+      "sha256": "7f9beb003cb0e0cb50ca2ce6a9fb2b8f1f641aa8bda4e4ae0bb058434a3bd74f"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/reconciliation.json",
+      "sha256": "3225a112cf4e2be5c567ca1ccc18688bcc72a10237507bddd0c56ca779ffac9b"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/execution-authorization.json",
+      "sha256": "ad1df3b22237ad598923bd30a1e4cc180b9b8c016c94437f2a6e7ea6e6ae0709"
+    },
+    {
+      "path": "data/epic-f-customer-fact-release.json",
+      "sha256": "de5413d6d1a2fa0fcea9bd5095b1d55099bdbebc9e0de9ca11c6156e2afa9981"
+    },
+    {
+      "path": "scripts/lib/epic-e-owner-response-adapter.js",
+      "sha256": "71e2d5033c67a287a6093998e895a5ed9a73d98075d8d25491c468eb08bde845"
+    },
+    {
+      "path": "scripts/lib/epic-e-readiness.js",
+      "sha256": "85d362c06c620745024ad0511dae00bbde98466cd55f69a8c600357d4e41cd85"
+    },
+    {
+      "path": "scripts/lib/epic-f-facts.js",
+      "sha256": "d0c698758f432a2640793b7621e5d824283602edd412bd9af719d83a944137fe"
+    },
+    {
+      "path": "scripts/lib/epic-f-customer-release.js",
+      "sha256": "1907a1b97da45ca1bf32270d8782570483f6571017d60647430c7dace630b2b6"
+    },
+    {
+      "path": "scripts/lib/epic-f-owner-activation-binding.js",
+      "sha256": "a7450d81f157ee556da5042e123c3209da70f3efff5663cfa1be7fe1314eff49"
+    },
+    {
+      "path": "scripts/build-epic-f-owner-customer-release.js",
+      "sha256": "be99540ad297dc8d35432edcb8c4883d5340a7128b29eac1cb7dad0c905bd05f"
+    },
+    {
+      "path": "schemas/epic-e-completed-owner-responses.schema.json",
+      "sha256": "56237924bf163b521ff33e7f102d0aa05c1e8d2f8e67c3919d63fba20acd72d0"
+    },
+    {
+      "path": "scripts/deploy-epic-f-owner-activation.js",
+      "sha256": "eec602f8dcd155ae84ee80449ff9eba26ba2fd3ee76faf3076fc9649571d471a"
+    },
+    {
+      "path": "scripts/validate-epic-f-owner-live-browser.js",
+      "sha256": "8ebb7e560d39565344ece02056c48bbec929f41929fcfe7f03bc69ee7f59f3bb"
+    },
+    {
+      "path": "scripts/finalize-epic-f-owner-local-validation.js",
+      "sha256": "8f31ee10fc03b11f99cc1731ddaa3ce3cb5ae8db8d967a943031518656904b23"
+    },
+    {
+      "path": "scripts/probe-epic-f-owner-liquid.js",
+      "sha256": "33586affcf12d9de5399e81190b6f1785ff67f351183e646ee4d05d40e1118b8"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/liquid-live-representation-beadmaster.json",
+      "sha256": "d8f78c79a3e182fd9a83d768699bf62f99ea688ea042bfa5da2164cc36530154"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/liquid-live-representation-em-1.json",
+      "sha256": "1750dacaae34301e06177dc3dd48691bec4349d0539f71bcb790f3b534fdf70d"
+    },
+    {
+      "path": "data/epic-e-bom-owner-followup.json",
+      "sha256": "57276edf5effb7939d35ff56d068a11d9aefc158fbd8bda132bd9bc22975a2b7"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/reconciliation.json",
+      "sha256": "3a4bfbcd94af1fb5ae872286b7fe3b59a819ec16eb97fe7340251acc87802bc2"
+    },
+    {
+      "path": "docs/product/007B-remaining-contents-and-bom.pdf",
+      "sha256": "c408c521ac3eb6db49a83268614a0eeee316b30291f4b097055e8883c1a856ca"
+    },
+    {
+      "path": "docs/product/008B-remaining-compatibility-and-product-identity.pdf",
+      "sha256": "d7f4fcd829ffaf65566096c1e444f0d52d02a1751d744a2fa4eab1d9e256408d"
+    },
+    {
+      "path": "scripts/lib/epic-e-bom-owner-followup.js",
+      "sha256": "11be3d03e75ece263af80189fbdaa84a2ddd62539b41089862ddfb8617dfa683"
+    },
+    {
+      "path": "scripts/lib/epic-f-bom-contents-compiler.js",
+      "sha256": "ebd1c9d7c824d8570ec8467972c51baf984c459c39478620ec16b1f5f675e880"
+    },
+    {
+      "path": "scripts/lib/epic-f-bom-owner-binding.js",
+      "sha256": "ecd70d60ea8f97c828dde814a84d53479c95ae325bdddac601f1c6be38c24ca9"
+    },
+    {
+      "path": "scripts/build-epic-f-bom-followup-release.js",
+      "sha256": "e4c8369f375d4be093373540ce4ccee44cbc6a8d01ff593b47ea91c73526eeef"
+    },
+    {
+      "path": "schemas/epic-e-bom-owner-followup.schema.json",
+      "sha256": "031c88d8e9a1a012e248ecacff417dafd584053e856aabfddbca874ee9be280e"
+    },
+    {
+      "path": "scripts/deploy-epic-f-bom-followup.js",
+      "sha256": "2bfa16f5022b984eb9caaa0a0ca765d3bd00c33d842eddd596df61e11441adac"
+    },
+    {
+      "path": "scripts/validate-epic-f-bom-live-browser.js",
+      "sha256": "305aae98e2d4fc880145291188e542d10ebcafd4c38935832c69f4ca96c1dd6c"
+    },
+    {
+      "path": "data/epic-e-006b-amended-approved-rows.json",
+      "sha256": "512bbc4699b9f3f5caef29c808e6ec2c379b7ba7b77652d59605a2cb5ca14742"
+    },
+    {
+      "path": "data/epic-e-006b-owner-amendments.json",
+      "sha256": "b01f8a4f0baa15624cf9c98136941f22e8821c5de39fa80c2cce6033ba333a6b"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/reconciliation.json",
+      "sha256": "bf1363cc58a98afc7aa084c24b07ad10f087b6a657bef6e6a07ed4907f6cb410"
+    },
+    {
+      "path": "scripts/lib/epic-e-006b-amended.js",
+      "sha256": "9988995787683ed1c7e2b015aa41d5a2b2d3bd57dfb539406b791c56b8c76da3"
+    },
+    {
+      "path": "scripts/lib/epic-f-006b-binding.js",
+      "sha256": "79ce15301a3b598c57ad3febca3c26791e5ea50c161fcfedb6d121f29b9cf1e3"
+    },
+    {
+      "path": "scripts/build-epic-f-006b-amended-release.js",
+      "sha256": "f69e920e90395b6fa73ebb071d719941e5494ddcde4762a16d18d7ee928d514a"
+    },
+    {
+      "path": "scripts/manage-epic-e-006b-amended-execution.js",
+      "sha256": "7d638856823d05ee73a276be8c92133831629c04a9a7a3451cfa952def5d03d9"
+    },
+    {
+      "path": "scripts/test-epic-f-006b-amended.js",
+      "sha256": "6bf68e4c765eeee0bfe507b2b34ac21c118945c3db5571c7636977526b40aff6"
+    },
+    {
+      "path": "scripts/deploy-epic-f-006b-amended.js",
+      "sha256": "f376a1854321f34ac605d0a0acd71961902467a383d912f776ab37a211fda17e"
+    },
+    {
+      "path": "scripts/validate-epic-f-006b-zoom.js",
+      "sha256": "aa72a61b56b02f0fc86eeb922f406347669c767b27dc954d5a514bd908cd3a14"
+    },
+    {
+      "path": "scripts/validate-epic-f-006b-live-browser.js",
+      "sha256": "ecff1fb3bdf2067401074431a07665d720197a0c28b4877a1565244ab57e2c1a"
+    },
+    {
+      "path": "data/epic-e-final-006b-bom-approved-delta.json",
+      "sha256": "a8d7e909bc8d385bbc817f848da639734d45d5723564233960d545b5fb0a00d4"
+    },
+    {
+      "path": "data/epic-e-final-006b-bom-owner-amendment.json",
+      "sha256": "52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/reconciliation.json",
+      "sha256": "89a0a4584eb2dcaa449baa63e52b588211b55f4b03ba8c0344144384f11b443a"
+    },
+    {
+      "path": "scripts/lib/epic-e-final-owner-delta.js",
+      "sha256": "2614b116c0e9a35901973f4f1b1f7a472c251cef1730697f7bce036356d2ea91"
+    },
+    {
+      "path": "scripts/lib/epic-f-final-owner-binding.js",
+      "sha256": "d2cd934b9ef1332a5c4bd9e48d92436203258c7bda100e68cb97d8f58e47bf60"
+    },
+    {
+      "path": "scripts/build-epic-f-final-owner-release.js",
+      "sha256": "b02dae8b6e194cf674707692a086afef0e676cc57a7ef93b6c12fa38bd7496a8"
+    },
+    {
+      "path": "scripts/manage-epic-e-final-owner-delta.js",
+      "sha256": "a21a917bac1482cd59e8bd7364f1a95c878205d3c6858116e6328968d59d84ad"
+    },
+    {
+      "path": "scripts/test-epic-f-final-owner-delta.js",
+      "sha256": "69c5282f379d25ffd6dfacf0086ced3dc21765f7b025d9404f500185c8917c20"
+    },
+    {
+      "path": "scripts/deploy-epic-f-final-owner-delta.js",
+      "sha256": "9b113dc1ea07a7b4ac81938323d3b7abba902f90a8dfe87854e156b1a7798b39"
+    },
+    {
+      "path": "scripts/test-epic-f-final-owner-release.js",
+      "sha256": "26152a1c41a83e5893b559ab1b540d80191d115d536f7671612d08c0508e9f39"
+    },
+    {
+      "path": "scripts/validate-epic-f-final-owner-live-browser.js",
+      "sha256": "a83cab93d3e058a7fe09659ba782937c62fb1593606ad9f34c46a54fa9ebbee8"
+    },
+    {
+      "path": "assets/rhino-custom.css",
+      "sha256": "32f44d332f5b1d51b95213292c54d6e5c17751ebf4e79878eba4e2c17ce5f961"
+    },
+    {
+      "path": "layout/theme.liquid",
+      "sha256": "87086adef642d447d2cba82186641e93460d815549375bf608da035534cec5af"
+    },
+    {
+      "path": "locales/en.default.json",
+      "sha256": "1c9b35a463badc81f9b84c0e690b70c644c80f974338138875df761b281e792f"
+    },
+    {
+      "path": "locales/en.default.schema.json",
+      "sha256": "8009bbec50222d4d8e9bb160f03e53ca00fd15e8be5b938070f1a8c52f7bfdd9"
+    },
+    {
+      "path": "sections/cart-notification-product.liquid",
+      "sha256": "7e775b942acae3ea9b6f76dce09fd7881dcf687271c8e365aece510fb41e652f"
+    },
+    {
+      "path": "sections/main-cart-items.liquid",
+      "sha256": "d043f0d8ddc3148076866e19bae02efd52db7dbf7ee1ca7f19ea2cf832850cc6"
+    },
+    {
+      "path": "sections/main-product.liquid",
+      "sha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3"
+    },
+    {
+      "path": "sections/predictive-search.liquid",
+      "sha256": "1f05232069cb26cdc28b4736ac6e681b863865f30c97740503231be030658575"
+    },
+    {
+      "path": "snippets/card-product.liquid",
+      "sha256": "633af81940909ae416624abd638b3c6d9b491ff53f8de5f77c816fb53403aae1"
+    },
+    {
+      "path": "snippets/cart-drawer.liquid",
+      "sha256": "c1091354befbffa1bc0ed114d978377c436b8dc47e8e9eb348a843845d619c9a"
+    },
+    {
+      "path": "snippets/meta-tags.liquid",
+      "sha256": "ebe74785f747771721b4ab7678f78a1a6e45be3a6c5f600bf04612c01cc2ca52"
+    },
+    {
+      "path": "snippets/product-media-modal.liquid",
+      "sha256": "97744048cb27bb56e323eaeee7307901331cb9f90c145d24cf2cc3861c3565ef"
+    },
+    {
+      "path": "snippets/rhino-machine-contents.liquid",
+      "sha256": "daefb3ad5757bf38cbaa0a372a42e8ef0b2283c716387f286c9a9f831d0802fd"
+    },
+    {
+      "path": "snippets/rhino-machine-contextual.liquid",
+      "sha256": "da07184dd3b1b621d2980b50c2e2aed9d40ce6ec75414d31eb48d0566437fe0b"
+    },
+    {
+      "path": "snippets/rhino-machine-delivery.liquid",
+      "sha256": "1703a28753259ec81943fabafe89d883cf9ef975f12db9c337f66bc926a18ff9"
+    },
+    {
+      "path": "snippets/rhino-machine-resources.liquid",
+      "sha256": "0726da0a37eb47db309a4d3f376554b1c3ddf120091393933f1ab244960c7018"
+    },
+    {
+      "path": "snippets/rhino-machine-specifications.liquid",
+      "sha256": "39ed3f9e1968db38d373ebf56c6c96b0ba2c1cefc2a16128a41dcbb0a42f4e74"
+    },
+    {
+      "path": "snippets/rhino-machine-support.liquid",
+      "sha256": "9226eeee5163438988478d985782a25d6facc8354b4cc67a376009989fe24b1f"
+    },
+    {
+      "path": "snippets/rhino-product-consumer-route.liquid",
+      "sha256": "62fbf208573b7800de0b30046940eaa1e7a445acb77aa42b32c7e558ee7c9bbd"
+    },
+    {
+      "path": "snippets/rhino-product-context-delivery-projection.liquid",
+      "sha256": "f35d4d399b844f3d56af29c6630b512f1aba57d90dd4c530ed05674a0d2bd39e"
+    },
+    {
+      "path": "snippets/rhino-product-description.liquid",
+      "sha256": "fd7af1f35621fd0c393f528cc40eb1c7ff16cfe81517525c2446363ef21b7d0c"
+    },
+    {
+      "path": "snippets/rhino-product-fact-projection.liquid",
+      "sha256": "39c63d516cf03d3fe50fc94d51a1873a27d1c13bc3e347c590f481f82dcb1d79"
+    },
+    {
+      "path": "snippets/rhino-product-media-eligibility.liquid",
+      "sha256": "309c5fd98199953857829f181c573aeb08802e143ab13bd42ba453b7ea73d745"
+    },
+    {
+      "path": "snippets/rhino-product-structured-data.liquid",
+      "sha256": "2ea5c3cc0f467b4ca9e14a4802622adb035b782b4c9a4e2fbc723e8864dcad5c"
+    },
+    {
+      "path": "snippets/rhino-product-support-resources-projection.liquid",
+      "sha256": "70c7226c5376af3693dadc3bb5b377a7096764e201aa0a7d5f44aa3ea8658b25"
+    },
+    {
+      "path": "templates/product.machine.json",
+      "sha256": "1527450e3324c0240a93618ea3a0a8371ec94dcbc0efb8d02719d0d290b652af"
+    },
+    {
+      "path": "snippets/product-inventory.liquid",
+      "sha256": "36de2da4743a045416f800f2638879b1d41c007ed9f825d55530e0a6a61d8fb9"
+    },
+    {
+      "path": "snippets/card-product-placeholder.liquid",
+      "sha256": "b36b75fb04a96ee49d4304e7c834a0b666004729f84aa2080b503f4a5a0fef56"
+    },
+    {
+      "path": "sections/header.liquid",
+      "sha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-facts.liquid",
+      "sha256": "da6645e8eeef5c246f37089e4ff9339de2bf5a49252b8d21fceb9dd06d7da060"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-context.liquid",
+      "sha256": "4879c1c1ddb65916e7f0ec54b83e3c563de3dd6453c18782f6033c326473f524"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-facts-8905779937477.liquid",
+      "sha256": "aab9d8880115611b38765ae54df6b495dc158fc95d86b146b56f30a3d4ddad8d"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-facts-8905780756677.liquid",
+      "sha256": "a8b2e62521dc7f0ebde8eb4f63e4524993c3909949db8adce14a9552481d3b9d"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-facts-8905781412037.liquid",
+      "sha256": "0ebf690ad4c180e2a399c2258b43c046af227ce28251a57b1c2ac81eb6b2fad8"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-facts-8905781477573.liquid",
+      "sha256": "8f715b9b77858279fb6016e9e737c78503c5b22e23f4716be36b8310477b1dae"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-facts-8905784131781.liquid",
+      "sha256": "f755790b666255ff52c6b23478df009818ef9c378ce11b3a2655f642652a3b12"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-facts-8905784197317.liquid",
+      "sha256": "601656afb40f49e19e0ec4da6aae7828334084f66fae3da0007f829fd19d55cb"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-facts-8905784328389.liquid",
+      "sha256": "2f29ad2ac68c511f531b30b878f1958aceb3f3d62ac0e617e89dbc54a145a200"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-facts-8905785344197.liquid",
+      "sha256": "e2776209f7386c2b54f7c19f514c6cd0c7bfd6b582169c8075fe90436b94fa7a"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-context-8905780756677.liquid",
+      "sha256": "00e50e2b2c77104672e604b0de779bb25a5781c70659ccf8f376350a8db92fa0"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-context-8905781477573.liquid",
+      "sha256": "003bc7cd06695fe05e75b0e6225b7449cc783f0043efbb82a72b76dfc34885ff"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-context-8905784131781.liquid",
+      "sha256": "8d4d0dac840e9f13955faba1cfd110bfe09dc9baac864d01253a85af1c37a305"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-context-8905784197317.liquid",
+      "sha256": "3f650f83e710626e4703371833c5f609ae8c5bc20bfe638c61d0f5116fc60058"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-context-8905785344197.liquid",
+      "sha256": "aa1433d27222beda97e270c0a7dfe2273bd7d4d8bdbb1b3ce54a6c6b642f3205"
+    },
+    {
+      "path": "snippets/rhino-owner-approved-contents-8905780756677.liquid",
+      "sha256": "d204d5eb2d964a61a6ff27d907dc0c9c2c84bba8c4d40835a9f07cdc6dacb0dd"
+    },
+    {
+      "path": "scripts/lib/epic-f-consumer.js",
+      "sha256": "bd058b5b1dd4001a3d8586c6d3349fd94742286e553cb9e341a53bb53b1186da"
+    },
+    {
+      "path": "scripts/lib/epic-f-release-cleanup-binding.js",
+      "sha256": "8266f9a23576fc7f1c8c982294c1ced7ed2df90c7f888f0b698bd91830302e1d"
+    },
+    {
+      "path": "scripts/lib/epic-f-machine-page-readiness.js",
+      "sha256": "503da5b418b28d9b34f047ef96f54ec8c01f210c9d60b9a446c46286dfd713cb"
+    },
+    {
+      "path": "scripts/lib/epic-f-live-media-activation.js",
+      "sha256": "a0da5d742a08d00f3d7711c880c58e570ee96721871c38c11b3818f42bb3fce2"
+    },
+    {
+      "path": "scripts/validate-epic-f-claims.js",
+      "sha256": "18c38852950c3e33b791d9062fad55bc22966442deeaf2b2a203b1e633bf6bf1"
+    },
+    {
+      "path": "scripts/validate-epic-f-support-resources.js",
+      "sha256": "ccabd696dfeae2f7bc3e82e0ad3108ff354ec532664aaa8735c8ced6312bbfef"
+    },
+    {
+      "path": "scripts/test-epic-f-machine-page-readiness.js",
+      "sha256": "5c4eff46e89c57bd694ec7e5ba92785d6e8c817fa5d31ab80031b82679dc6010"
+    },
+    {
+      "path": "package.json",
+      "sha256": "2711107518fd44ed0b0f9ec98fdbdc70b11250818aaebe1215f7e97e1f8b3d3e"
+    },
+    {
+      "path": "scripts/validate-json-registers.js",
+      "sha256": "67ee7cf1116781d9674df7f695ffc830f929ba18dfdcf5a9a7b893ece617881a"
+    },
+    {
+      "path": "docs/architecture/adr-0001-product-template-architecture.md",
+      "sha256": "5b4ecd40a1f14efff36a397b1a8212f096ea2807c040f69e661e3e595e124b64"
+    },
+    {
+      "path": "docs/rhino-lapidary-pbi-tracker-epic-g.md",
+      "sha256": "a290bf6964139003a08e1ca2ca576391176f43bacdf52fd29d21bbf32daad178"
+    },
+    {
+      "path": "docs/project/epic-g-required-decisions.md",
+      "sha256": "f852a86f1203da942092024a2ad40ea4aef80338bcfd1e53918002717cef35e5"
+    },
+    {
+      "path": "docs/project/epic-g-proposed-backlog.json",
+      "sha256": "fb6d7d321b99387a5401c38d04f9e6bd76c32379c8f7c287673f14125c958c15"
+    }
+  ]
+}

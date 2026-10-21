@@ -1,0 +1,25 @@
+{
+  "capturedAt": "2026-10-16T22:40:27.021Z",
+  "data": {
+    "theme": {
+      "id": "gid://shopify/OnlineStoreTheme/158631198917",
+      "name": "Rhino Lapidary - Preview",
+      "role": "UNPUBLISHED",
+      "files": {
+        "nodes": [
+          {
+            "filename": "assets/rhino-storefront.js",
+            "checksumMd5": "5b24583ce2fe616834269c575c264ddd",
+            "body": {
+              "content": "(() => {\n    const namespace = window.RhinoLapidary = window.RhinoLapidary || {};\n    const policyBodySelector = '.shopify-policy__body';\n    const inlineColorSelector = '[style*=\"color\" i]';\n\n    namespace.version = '0.1.1';\n\n    function removeInlineColor(element) {\n        if (!element?.style?.color) {\n            return;\n        }\n\n        element.style.removeProperty('color');\n\n        if ((element.getAttribute('style') || '').trim() === '') {\n            element.removeAttribute('style');\n        }\n    }\n\n    function normalizePolicyInlineColors(root = document) {\n        const bodies = root.matches?.(policyBodySelector)\n            ? [root]\n            : [...root.querySelectorAll?.(policyBodySelector) || []];\n\n        for (const body of bodies) {\n            for (const element of body.querySelectorAll(inlineColorSelector)) {\n                removeInlineColor(element);\n            }\n        }\n    }\n\n    function observePolicyBody(body) {\n        const observer = new MutationObserver((mutations) => {\n            for (const mutation of mutations) {\n                if (\n                    mutation.type === 'attributes'\n                    && mutation.attributeName === 'style'\n                ) {\n                    removeInlineColor(mutation.target);\n                    continue;\n                }\n\n                for (const node of mutation.addedNodes) {\n                    if (node.nodeType !== Node.ELEMENT_NODE) {\n                        continue;\n                    }\n\n                    normalizePolicyInlineColors(node);\n\n                    if (node.matches?.(inlineColorSelector)) {\n                        removeInlineColor(node);\n                    }\n                }\n            }\n        });\n\n        observer.observe(body, {\n            attributes: true,\n            attributeFilter: ['style'],\n            childList: true,\n            subtree: true,\n        });\n\n        return observer;\n    }\n\n    function initPolicyColorNormalization() {\n        const policyBodies = [...document.querySelectorAll(policyBodySelector)];\n\n        if (policyBodies.length === 0) {\n            return;\n        }\n\n        normalizePolicyInlineColors();\n        namespace.policyColorObservers = policyBodies.map(observePolicyBody);\n    }\n\n    namespace.normalizePolicyInlineColors = normalizePolicyInlineColors;\n\n    if (document.readyState === 'loading') {\n        document.addEventListener(\n            'DOMContentLoaded',\n            initPolicyColorNormalization,\n            { once: true },\n        );\n    } else {\n        initPolicyColorNormalization();\n    }\n})();\n"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "ImFzc2V0c1wvcmhpbm8tc3RvcmVmcm9udC5qcyI="
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "mode": "BROWSER_ONLY_OVERLAY_NOT_DEPLOYED",
+  "tests": [
+    {
+      "name": "Native fragment SKU transition 0",
+      "sku": "G2 Fixture - A",
+      "variant": "46484258685125",
+      "passed": true
+    }
+  ],
+  "readRequests": [
+    {
+      "path": "/products/saw-blade",
+      "sectionId": "template--22706185666757__main",
+      "optionValues": "7809900773573",
+      "httpStatus": 200
+    }
+  ],
+  "mockedWrites": [],
+  "actualCommerceWrites": 0,
+  "error": "locator.click: Error: strict mode violation: locator('label[for=\"template--22706185666757__main-1-0\"]') resolved to 2 elements:\n    1) <label for=\"template--22706185666757__main-1-0\">…</label> aka getByText('6\"Variant sold out or').first()\n    2) <label for=\"template--22706185666757__main-1-0\">…</label> aka getByText('6\"Variant sold out or').nth(1)\n\nCall log:\n\u001b[2m  - waiting for locator('label[for=\"template--22706185666757__main-1-0\"]')\u001b[22m\n\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\test-epic-g-product-runtime-overlay.js:27:57",
+  "completedAt": "2026-10-16T19:56:08.147Z"
+}

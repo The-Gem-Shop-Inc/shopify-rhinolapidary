@@ -1,0 +1,36 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:epic-g-catalog:browser
+> node scripts/validate-epic-g-catalog-browser.js
+
+{"width":390,"error":"The expression evaluated to a falsy value:\n\n  assert(await link.evaluate(e=>getComputedStyle(e).outlineStyle!=='none'))\n"}
+{"width":1440,"error":"The expression evaluated to a falsy value:\n\n  assert(await link.evaluate(e=>getComputedStyle(e).outlineStyle!=='none'))\n"}
+{"cells":2,"destinations":0,"failures":3}
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   {
++     error: 'The expression evaluated to a falsy value:\n' +
++       '\n' +
++       "  assert(await link.evaluate(e=>getComputedStyle(e).outlineStyle!=='none'))\n",
++     width: 390
++   },
++   {
++     error: 'The expression evaluated to a falsy value:\n' +
++       '\n' +
++       "  assert(await link.evaluate(e=>getComputedStyle(e).outlineStyle!=='none'))\n",
++     width: 1440
++   },
++   {
++     fatal: 'Expected values to be strictly equal:\n' +
++       '+ actual - expected\n' +
++       '\n' +
++       "+ '158631198917'\n" +
++       "- '158579622085'\n" +
++       '      ^\n'
++   }
++ ]
+- []
+
+    at run (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\validate-epic-g-catalog-browser.js:34:329)

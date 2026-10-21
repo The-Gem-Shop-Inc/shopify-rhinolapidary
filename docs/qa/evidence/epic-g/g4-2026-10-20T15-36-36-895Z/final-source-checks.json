@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-20T15:59:52.526Z",
+  "commands": [
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/final-source-check-0.txt"
+    },
+    {
+      "command": "node --check scripts/validate-epic-g-integrated.js",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/final-source-check-1.txt"
+    },
+    {
+      "command": "node --check scripts/validate-epic-g-owner-sources.js",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/final-source-check-2.txt"
+    },
+    {
+      "command": "node --check scripts/probe-epic-g-zoom-viewport.js",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/final-source-check-3.txt"
+    }
+  ],
+  "diagnosticNote": "An earlier git core.autocrlf=false override interpreted existing CRLF line endings as whitespace. This check uses normal repository settings; no normalization or file rewrite was performed."
+}

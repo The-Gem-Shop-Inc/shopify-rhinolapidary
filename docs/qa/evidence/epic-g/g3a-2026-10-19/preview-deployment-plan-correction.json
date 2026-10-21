@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-19T14:50:01.336Z",
+  "themeId": "158631198917",
+  "correction": true,
+  "files": [
+    {
+      "path": "assets/rhino-storefront.js",
+      "beforeSha256": "b61e6162d7aa911757b2018617b936760950204c4d961081769a5ec64122fb62",
+      "afterSha256": "900fab1962efba38c19664feffc64386b94315919f8f3fa894eb790416c929fc"
+    }
+  ],
+  "sourceBinding": "b90bf2089788e77c04fbdd5bd1766bc4d03cfb9e358179884a47b74095be949b",
+  "receiptExpiresAt": "2026-10-22T20:26:37.102Z",
+  "routeContract": {
+    "path": "data/epic-g-machine-routes.json",
+    "sha256": "4d74b0c2fd2ddba77c2dac4fd7870f33b5d9246ed6b444096cb255ce04557ff7"
+  },
+  "rollback": {
+    "source": "docs/qa/evidence/epic-g/g3a-2026-10-19/preview-files-ready-correction.json",
+    "sha256": "6d3c33c1eaa0d47643eb025107c617422dc5b6258736482b3a9a111ae1893aa4",
+    "procedure": "Write only the saved predecessor assets/rhino-storefront.js to the same UNPUBLISHED preview using --only assets/rhino-storefront.js and --nodelete, after verifying theme roles. Read back both full inventories. Never restore the full theme. For complete G3A withdrawal use the original preview-files-ready.json predecessor."
+  },
+  "args": [
+    "theme",
+    "push",
+    "--store",
+    "sz5dnk-nf.myshopify.com",
+    "--theme",
+    "158631198917",
+    "--path",
+    ".",
+    "--nodelete",
+    "--strict",
+    "--json",
+    "--only",
+    "assets/rhino-storefront.js"
+  ],
+  "AdminMutations": 0,
+  "publication": false
+}

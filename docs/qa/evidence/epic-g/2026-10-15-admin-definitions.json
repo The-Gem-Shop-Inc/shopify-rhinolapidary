@@ -1,0 +1,504 @@
+{
+  "capturedAt": "2026-10-15T21:30:45.848Z",
+  "readOnly": true,
+  "query": "query EpicGDefinitions{ productDefinitions:metafieldDefinitions(first:100,ownerType:PRODUCT){nodes{id namespace key type{name} access{storefront} validations{name value}}pageInfo{hasNextPage endCursor}} variantDefinitions:metafieldDefinitions(first:100,ownerType:PRODUCTVARIANT){nodes{id namespace key type{name} access{storefront}}pageInfo{hasNextPage endCursor}} metaobjectDefinitions(first:30){nodes{id type name access{storefront} metaobjects(first:50){nodes{id handle type fields{key jsonValue}}pageInfo{hasNextPage endCursor}}}pageInfo{hasNextPage endCursor}}}",
+  "data": {
+    "productDefinitions": {
+      "nodes": [
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658201797",
+          "namespace": "rhino",
+          "key": "product_class",
+          "type": {
+            "name": "single_line_text_field"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": [
+            {
+              "name": "choices",
+              "value": "[\"machine\",\"replacement_part\",\"consumable\",\"accessory\"]"
+            }
+          ]
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658234565",
+          "namespace": "rhino",
+          "key": "machine_family",
+          "type": {
+            "name": "metaobject_reference"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": [
+            {
+              "name": "metaobject_definition_id",
+              "value": "gid://shopify/MetaobjectDefinition/25406406853"
+            }
+          ]
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658267333",
+          "namespace": "rhino",
+          "key": "input_voltage",
+          "type": {
+            "name": "voltage"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658300101",
+          "namespace": "rhino",
+          "key": "input_frequencies",
+          "type": {
+            "name": "list.frequency"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658332869",
+          "namespace": "rhino",
+          "key": "motor_power",
+          "type": {
+            "name": "power"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658365637",
+          "namespace": "rhino",
+          "key": "motor_speed",
+          "type": {
+            "name": "rotational_speed"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658398405",
+          "namespace": "rhino",
+          "key": "wheel_speed_min",
+          "type": {
+            "name": "rotational_speed"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658431173",
+          "namespace": "rhino",
+          "key": "wheel_speed_max",
+          "type": {
+            "name": "rotational_speed"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658463941",
+          "namespace": "rhino",
+          "key": "flex_shaft_speed_min",
+          "type": {
+            "name": "rotational_speed"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298658496709",
+          "namespace": "rhino",
+          "key": "flex_shaft_speed_max",
+          "type": {
+            "name": "rotational_speed"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298659119301",
+          "namespace": "rhino",
+          "key": "blade_diameter_min",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298659152069",
+          "namespace": "rhino",
+          "key": "blade_diameter_max",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298659184837",
+          "namespace": "rhino",
+          "key": "wheel_diameter",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298659217605",
+          "namespace": "rhino",
+          "key": "blade_arbor_diameter",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298659250373",
+          "namespace": "rhino",
+          "key": "wheel_arbor_diameter",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298659381445",
+          "namespace": "rhino",
+          "key": "water_reservoir_capacity",
+          "type": {
+            "name": "volume"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298659610821",
+          "namespace": "rhino",
+          "key": "cutting_oil_fill_min",
+          "type": {
+            "name": "volume"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298659840197",
+          "namespace": "rhino",
+          "key": "cutting_oil_fill_max",
+          "type": {
+            "name": "volume"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660069573",
+          "namespace": "rhino",
+          "key": "water_system_type",
+          "type": {
+            "name": "single_line_text_field"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": [
+            {
+              "name": "choices",
+              "value": "[\"recirculating_filtered\"]"
+            }
+          ]
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660102341",
+          "namespace": "rhino",
+          "key": "net_weight",
+          "type": {
+            "name": "weight"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660135109",
+          "namespace": "rhino",
+          "key": "assembled_length",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660167877",
+          "namespace": "rhino",
+          "key": "assembled_width",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660200645",
+          "namespace": "rhino",
+          "key": "assembled_height",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660233413",
+          "namespace": "rhino",
+          "key": "crate_length",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "NONE"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660266181",
+          "namespace": "rhino",
+          "key": "crate_width",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "NONE"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660298949",
+          "namespace": "rhino",
+          "key": "crate_height",
+          "type": {
+            "name": "dimension"
+          },
+          "access": {
+            "storefront": "NONE"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660331717",
+          "namespace": "rhino",
+          "key": "compatible_machines",
+          "type": {
+            "name": "list.product_reference"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660364485",
+          "namespace": "rhino",
+          "key": "included_products",
+          "type": {
+            "name": "list.product_reference"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660397253",
+          "namespace": "rhino",
+          "key": "included_quantities",
+          "type": {
+            "name": "json"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660430021",
+          "namespace": "rhino",
+          "key": "noncatalog_components",
+          "type": {
+            "name": "json"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660462789",
+          "namespace": "rhino",
+          "key": "optional_products",
+          "type": {
+            "name": "list.product_reference"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660495557",
+          "namespace": "rhino",
+          "key": "recommended_products",
+          "type": {
+            "name": "list.product_reference"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660528325",
+          "namespace": "rhino",
+          "key": "manual_files",
+          "type": {
+            "name": "list.file_reference"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660561093",
+          "namespace": "rhino",
+          "key": "diagram_files",
+          "type": {
+            "name": "list.file_reference"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660593861",
+          "namespace": "rhino",
+          "key": "instruction_files",
+          "type": {
+            "name": "list.file_reference"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660626629",
+          "namespace": "rhino",
+          "key": "video_files",
+          "type": {
+            "name": "list.file_reference"
+          },
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "validations": []
+        },
+        {
+          "id": "gid://shopify/MetafieldDefinition/298660659397",
+          "namespace": "rhino",
+          "key": "support_files",
+          "type": {
+            "name": "list.file_reference"
+          },
+          "access": {
+            "storefront": "NONE"
+          },
+          "validations": []
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjoyOTg2NjA2NTkzOTcsImxhc3RfdmFsdWUiOiIyOTg2NjA2NTkzOTcifQ=="
+      }
+    },
+    "variantDefinitions": {
+      "nodes": [],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": null
+      }
+    },
+    "metaobjectDefinitions": {
+      "nodes": [
+        {
+          "id": "gid://shopify/MetaobjectDefinition/25406406853",
+          "type": "machine_family",
+          "name": "Machine family",
+          "access": {
+            "storefront": "PUBLIC_READ"
+          },
+          "metaobjects": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          }
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjoyNTQwNjQwNjg1MywibGFzdF92YWx1ZSI6IjI1NDA2NDA2ODUzIn0="
+      }
+    }
+  }
+}

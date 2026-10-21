@@ -1,0 +1,14 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict'),E=require('./lib/epic-e-owner-response-adapter'),V=require('./validate-epic-g-products');
+function reconcile(){
+ const d=V.DIR,plan=E.read(d+'/preview-deployment-plan.json'),after=E.read(d+'/preview-files-after.json'),before=E.read(d+'/preview-files-before.json');assert.equal(after.data.theme.id,'gid://shopify/OnlineStoreTheme/158631198917');assert.equal(after.data.theme.role,'UNPUBLISHED');assert.equal(after.data.theme.files.pageInfo.hasNextPage,false);assert.equal(after.data.theme.files.nodes.length,5);
+ const files=plan.files.map(f=>{const remote=after.data.theme.files.nodes.find(r=>r.filename===f.path);assert(remote?.body?.content);const body=remote.body.content,local=fs.readFileSync(f.path,'utf8'),afterSha256=E.hash(body);assert.equal(E.hash(local),f.sha256,'Local source changed after reviewed deployment');
+ let comparison='BYTE_IDENTICAL';
+ if(afterSha256!==f.sha256){assert.equal(f.path,'templates/product.json','Only Shopify JSON serialization may differ');const original=before.data.theme.files.nodes.find(r=>r.filename===f.path).body.content,header=original.match(/^\/\*[\s\S]*?\*\/\r?\n/)?.[0];assert(header&&body.startsWith(header),'Only the existing Shopify generated warning is allowed');assert.deepEqual(JSON.parse(body.slice(header.length)),JSON.parse(local));require('./lib/epic-g-current-protection').assertTemplate(body.slice(header.length));comparison='EXACT_JSON_STRUCTURE_WITH_EXISTING_SHOPIFY_WARNING_AND_WHITESPACE';}
+ return {...f,afterSha256,afterMd5:remote.checksumMd5,comparison};});
+ const a=E.read(d+'/preview-inventory-before.json'),b=E.read(d+'/preview-inventory-after.json'),old=new Map(a.files.map(f=>[f.filename,f.checksumMd5])),now=new Map(b.files.map(f=>[f.filename,f.checksumMd5])),changedFiles=[...new Set([...old.keys(),...now.keys()])].filter(p=>old.get(p)!==now.get(p));assert.deepEqual(changedFiles.sort(),V.FILES.slice().sort());assert.equal(b.role,'UNPUBLISHED');
+ const m=E.read(d+'/main-inventory-before.json'),n=E.read(d+'/main-inventory-after.json');assert.equal(n.role,'MAIN');assert.deepEqual(m.files,n.files);assert.deepEqual(n.files,E.read('docs/qa/evidence/epic-g/g2-2026-10-16/main-inventory-before.json').files);
+ require('./lib/epic-g-product-release').verify();const result={at:new Date().toISOString(),files,previewThemeId:b.id,previewRole:b.role,changedFiles,unrelatedChanges:0,MAINUnchangedFiles:n.files.length,MAINMatchesOriginalG2Inventory:true,releaseProvenanceVerified:true,rollbackRequired:false};fs.writeFileSync(d+'/readback-proof.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));return result;
+}
+if(require.main===module)try{reconcile();}catch(e){console.error(e.stack);process.exitCode=1;}
+module.exports={reconcile};

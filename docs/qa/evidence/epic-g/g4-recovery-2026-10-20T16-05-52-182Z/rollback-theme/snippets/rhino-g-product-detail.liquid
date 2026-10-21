@@ -1,0 +1,17 @@
+{% doc %}
+  Ordinary G Product detail: native SKU fragment and scoped native media styling.
+  @param {product} product - Current Product.
+  @param {section} section - Existing main-product section.
+{% enddoc %}
+{%- comment -%}Rendered by product.json custom_liquid; static Theme Check cannot follow template setting strings.{%- endcomment -%}
+{%- capture g_role -%}{%- render 'rhino-product-consumer-route', product: product -%}{%- endcapture -%}
+{%- if g_role == 'replacement_part' or g_role == 'consumable' or g_role == 'accessory' -%}
+  {{ 'rhino-g-product.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'rhino-g-fit.js' | asset_url }}" defer="defer"></script>
+  <p id="Sku-{{ section.id }}" class="product__sku{% if product.selected_or_first_available_variant.sku == blank %} hidden{% endif %}" role="status" data-rhino-g-detail>
+    {%- if product.selected_or_first_available_variant.sku != blank -%}
+      <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
+      <span data-rhino-g-sku-value>{{ product.selected_or_first_available_variant.sku | escape }}</span>
+    {%- endif -%}
+  </p>
+{%- endif -%}

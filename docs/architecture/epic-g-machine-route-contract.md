@@ -1,0 +1,27 @@
+# Epic G machine route consumer
+
+G-PBI-004 consumes the current Epic F owner release. `scripts/lib/epic-g-machine-routes.js` verifies the existing E receipt, F binding and reproduced compiler output, then reads `verifyRelease().projection.pages`. It does not invert `compatible_machines`, add relationships or use collections as fit authority. G1 independently reconciles every projected card against the complete current native reference set, exact identities, governed classes, Variant membership and Online Store publication.
+
+`data/epic-g-machine-routes.json` is generated evidence for G3B. Its schema is `schemas/epic-g-machine-routes.schema.json`. Each machine records its exact GID, verified native URL, actual F heading fragment, publication/data/customer eligibility, approved reverse count, omission reasons and lookup budget. The count describes the existing compiled F surface, not all technical source approvals: unpublished JadeMaster has no F customer surface while G1 separately preserves its nine approved unpublished-target edges. Root provenance binds the actual Admin read, actual browser observation, F release/binding and C/D navigation registers. Expiration is the earlier of the existing receipt and E's observation freshness limit; recompilation cannot renew either. Fixtures cannot enter the live builder.
+
+The contract is explicitly scoped to unpublished preview theme **158631198917**. Shopify's section instance ID is part of the existing F heading ID, so a fragment must be re-observed on its intended deployment theme. A preview fragment is not certified for MAIN. G3B may consume only current `customerEligible` routes from the verified contract, with the matching theme scope. It must not treat a count, cached route or collection membership as approval. This batch does not implement G3B or `/collections/all` changes.
+
+## Runtime boundary
+
+F already renders one conditional compatible-products section with heading `OwnerContext-{{ section.id }}`. Its compiled shards retain their exact bytes. Machine templates, `main-product`, owner compiler, receipts, media grants and existing cards remain unchanged.
+
+The already loaded, unbound `assets/rhino-storefront.js` adds a progressive enhancement only when the existing F section, its unique heading, an approved-card marker and the existing machine Contact control are present. It inserts one named native fragment link before Contact. It creates no cards, Product URLs, compatibility claims or `all_products` queries. The original script prefix is byte-preserved, and the validator pins the exact predecessor and reviewed extension rather than allowing arbitrary suffixes.
+
+The native hash remains in browser history. Navigation focuses the existing heading (`tabindex=-1`) and accounts for the current header height with scroll margin; the next Tab reaches its first Product link. Direct fragment arrivals receive the same positioning. Modified clicks retain native browser behavior. Machines without a rendered section receive no entry. Existing neutral Contact remains available. Without JavaScript the existing server-rendered F section and Product links remain usable by ordinary document navigation.
+
+The extension's receipt cutoff matches the unchanged governing expiration and is checked by validation. Invalid browser time, expiry, page restoration and visibility changes suppress the added entry. Browser timers and Shopify caching cannot guarantee instantaneous private revocation. G3A neither strengthens nor replaces F's private authority boundary, and it does not reactivate the expired G2 forward-fit lease. A new actual source reconciliation remains necessary before a later release.
+
+## Lookup accounting and deployment
+
+The consumer compares its handle union to the actual compiled F shards. EM-1 currently makes twelve reverse and eight included references but uses **eighteen unique handles**: `left-moss-pad` and `right-moss-pad` appear in both sets. G3A adds zero, within the native twenty-handle limit. Other machine counts derive from current F projection, not permanent constants.
+
+`scripts/deploy-epic-g-machine-routes-preview.js` permits only `assets/rhino-storefront.js` on unpublished theme 158631198917. It requires current authority, real baseline browser evidence, passing source-bound gates, fresh theme inventories and an exact predecessor body for rollback. It refuses MAIN, extra files, the G2 fit snippet, stale reads, missing gates and changed gate sources. Readback compares actual remote bytes and both full inventories; no unrelated file or setting may change. Historical E/F validators are not modified by this batch.
+
+Use `npm.cmd run test:epic-g-machine-routes`, `npm.cmd run test:epic-g-machine-entry:fixtures`, `npm.cmd run validate:epic-g-machine-routes` and `npm.cmd run test:epic-g-machine-routes:browser -- --deployed`. Fixture browser checks and deployed Shopify checks are separate evidence. The implementation record lists exact commands, results and remaining constraints.
+
+The first preview revision used an incorrect header selector. The corrected release uses Trade's actual `.section-header` container. A fixed-header fixture and actual element hit tests require the target heading to remain unobscured at normal and enlarged text sizes. Both one-file preview manifests and readbacks are retained; the correction guard accepts only the exact independently verified first release as its predecessor. No F-bound file or approval changes.

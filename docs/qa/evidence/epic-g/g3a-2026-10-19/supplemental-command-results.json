@@ -1,0 +1,72 @@
+{
+  "at": "2026-10-19T14:29:44.158Z",
+  "tooling": [
+    {
+      "command": "node C:/Users/dajem/.codex/plugins/cache/openai-curated-remote/shopify/4.1.2/skills/shopify/scripts/validate.mjs --api liquid --theme-path C:/Users/dajem/WebstormProjects/shopify-rhinolapidary --files assets/rhino-storefront.js --artifact-id g3a-entry --revision 2 --model gpt-6 --client-name codex",
+      "exitCode": 1,
+      "reason": "Bundled helper cannot import @shopify/theme-check-common. No dependencies installed. Actual repository Shopify Theme Check is the deployment gate."
+    }
+  ],
+  "baselineAttempts": [
+    {
+      "command": "node scripts/validate-epic-g-machine-routes-browser.js",
+      "exitCode": 1,
+      "evidence": "docs/qa/evidence/epic-g/g3a-2026-10-19/baseline-browser-first-attempt.json",
+      "reason": "Harness expected URL rewrite for an already-selected first Variant. Native unchanged selection can retain canonical URL. Changed selections still strictly require matching Variant URL."
+    },
+    {
+      "command": "node scripts/validate-epic-g-machine-routes-browser.js",
+      "exitCode": 0,
+      "evidence": "docs/qa/evidence/epic-g/g3a-2026-10-19/baseline-browser.json"
+    }
+  ],
+  "sourceReadCommands": [
+    {
+      "command": "node scripts/audit-epic-g-admin.js --connector-log docs/qa/evidence/epic-g/g3a-2026-10-19/admin-connector-log.json --output docs/qa/evidence/epic-g/g3a-2026-10-19/admin-read.json",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-g-foundation.js --read docs/qa/evidence/epic-g/g3a-2026-10-19/admin-read.json --output docs/qa/evidence/epic-g/g3a-2026-10-19/foundation-report.json",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-g-machine-routes.js --build",
+      "exitCode": 0
+    }
+  ],
+  "postDeploymentFocus": {
+    "originalCommand": "npm.cmd run test:epic-g-machine-routes:browser -- --deployed",
+    "originalExitCode": 1,
+    "evidence": "docs/qa/evidence/epic-g/g3a-2026-10-19/deployed-browser-first-attempt.json",
+    "reason": "Trade card link has outline:none on the anchor and a real 2px solid nontransparent outline/shadow on its ::after pseudo-element. The first assertion measured the wrong box. Supplemental actual browser observations prove the native ring. The corrected assertion checks rendered focus-visible geometry and the anchor or pseudo-element ring; new negative tests reject absent/hidden/transparent/zero-area indicators.",
+    "correctedExitCode": 0,
+    "evidenceAfter": "docs/qa/evidence/epic-g/g3a-2026-10-19/deployed-browser-before-header-correction.json"
+  },
+  "headerCorrection": {
+    "reason": "Final source inspection found .shopify-section-header does not match Trade .section-header. Corrected only G3A scroll-margin lookup; F runtime remains unchanged. A fixed-header regression and actual hit testing were added.",
+    "firstPreviewPreserved": true
+  },
+  "finalPreview": {
+    "command": "npm.cmd run test:epic-g-machine-routes:browser -- --deployed",
+    "exitCode": 0,
+    "evidence": "docs/qa/evidence/epic-g/g3a-2026-10-19/deployed-browser.json"
+  },
+  "finalProbes": {
+    "command": "node scripts/probe-epic-g-machine-route-entry.js",
+    "exitCode": 0,
+    "evidence": "docs/qa/evidence/epic-g/g3a-2026-10-19/supplemental-preview-browser.json"
+  },
+  "finalPreservation": {
+    "command": "node scripts/report-epic-g-machine-routes.js",
+    "exitCode": 0,
+    "evidence": "docs/qa/evidence/epic-g/g3a-2026-10-19/protected-state.json"
+  },
+  "finalMetadataValidation": {
+    "command": "npm.cmd run validate:registers",
+    "exitCode": 0
+  },
+  "finalSyntax": {
+    "command": "node --check assets/rhino-storefront.js",
+    "exitCode": 0
+  }
+}

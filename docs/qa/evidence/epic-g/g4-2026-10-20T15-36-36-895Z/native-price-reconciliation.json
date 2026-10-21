@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "status": "FAIL",
+  "observedAt": "2026-10-20T15:37:11.457Z",
+  "readPath": "docs/qa/evidence/epic-g/g4-2026-10-20T15-36-36-895Z/admin-read.json",
+  "sourceBinding": "b90bf2089788e77c04fbdd5bd1766bc4d03cfb9e358179884a47b74095be949b",
+  "ownerReceiptExpiresAt": "2026-10-22T20:26:37.102Z",
+  "historicalProof": "scripts/lib/epic-e-owner-response-adapter.js reconcile compares protected full native records, including price",
+  "generalNativeComparison": "scripts/lib/epic-e-readiness.js compareNative omits price; price must be separately reconciled",
+  "approvedPriceSuccessors": [
+    {
+      "productGid": "gid://shopify/Product/8905779839173",
+      "variantGid": "gid://shopify/ProductVariant/46484253835461",
+      "before": "0.00",
+      "after": "12.00",
+      "approved": true,
+      "updatedAt": "2026-10-19T20:24:17Z"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905779871941",
+      "variantGid": "gid://shopify/ProductVariant/46484253966533",
+      "before": "0.00",
+      "after": "65.50",
+      "approved": true,
+      "updatedAt": "2026-10-19T20:24:23Z"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781575877",
+      "variantGid": "gid://shopify/ProductVariant/46484255867077",
+      "before": "0.00",
+      "after": "5.75",
+      "approved": true,
+      "updatedAt": "2026-10-19T20:24:28Z"
+    }
+  ],
+  "unapprovedPriceChanges": [
+    {
+      "productGid": "gid://shopify/Product/8905779282117",
+      "variantGid": "gid://shopify/ProductVariant/46484253278405",
+      "before": "0.00",
+      "after": "75.00",
+      "approved": false,
+      "updatedAt": "2026-10-20T15:30:28Z"
+    }
+  ],
+  "exactChangedFields": [
+    {
+      "dataset": "products",
+      "id": "gid://shopify/Product/8905779282117",
+      "field": "updatedAt",
+      "before": "2026-10-13T20:25:06Z",
+      "after": "2026-10-20T15:30:27Z"
+    },
+    {
+      "dataset": "products",
+      "id": "gid://shopify/Product/8905779839173",
+      "field": "updatedAt",
+      "before": "2026-10-05T19:59:36Z",
+      "after": "2026-10-19T20:24:16Z"
+    },
+    {
+      "dataset": "products",
+      "id": "gid://shopify/Product/8905779871941",
+      "field": "updatedAt",
+      "before": "2026-10-13T20:25:06Z",
+      "after": "2026-10-19T20:24:22Z"
+    },
+    {
+      "dataset": "products",
+      "id": "gid://shopify/Product/8905781575877",
+      "field": "updatedAt",
+      "before": "2026-10-05T19:59:41Z",
+      "after": "2026-10-19T20:24:28Z"
+    },
+    {
+      "dataset": "variants",
+      "id": "gid://shopify/ProductVariant/46484253278405",
+      "field": "price",
+      "before": "0.00",
+      "after": "75.00"
+    },
+    {
+      "dataset": "variants",
+      "id": "gid://shopify/ProductVariant/46484253278405",
+      "field": "updatedAt",
+      "before": "2026-07-02T16:53:54Z",
+      "after": "2026-10-20T15:30:28Z"
+    },
+    {
+      "dataset": "variants",
+      "id": "gid://shopify/ProductVariant/46484253835461",
+      "field": "price",
+      "before": "0.00",
+      "after": "12.00"
+    },
+    {
+      "dataset": "variants",
+      "id": "gid://shopify/ProductVariant/46484253835461",
+      "field": "updatedAt",
+      "before": "2026-07-02T16:54:03Z",
+      "after": "2026-10-19T20:24:17Z"
+    },
+    {
+      "dataset": "variants",
+      "id": "gid://shopify/ProductVariant/46484253966533",
+      "field": "price",
+      "before": "0.00",
+      "after": "65.50"
+    },
+    {
+      "dataset": "variants",
+      "id": "gid://shopify/ProductVariant/46484253966533",
+      "field": "updatedAt",
+      "before": "2026-07-02T16:54:04Z",
+      "after": "2026-10-19T20:24:23Z"
+    },
+    {
+      "dataset": "variants",
+      "id": "gid://shopify/ProductVariant/46484255867077",
+      "field": "price",
+      "before": "0.00",
+      "after": "5.75"
+    },
+    {
+      "dataset": "variants",
+      "id": "gid://shopify/ProductVariant/46484255867077",
+      "field": "updatedAt",
+      "before": "2026-07-02T16:54:32Z",
+      "after": "2026-10-19T20:24:28Z"
+    }
+  ],
+  "approvalsRewritten": false,
+  "historicalReceiptModified": false,
+  "compatibilityAuthorityChanged": false,
+  "catalogWrites": 0
+}

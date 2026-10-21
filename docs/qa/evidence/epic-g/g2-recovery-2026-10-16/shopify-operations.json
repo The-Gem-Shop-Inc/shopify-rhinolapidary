@@ -1,0 +1,99 @@
+{
+  "AdminDataQueries": 37,
+  "breakdown": {
+    "products": 13,
+    "variants": 13,
+    "themeIdentity": 1,
+    "themeInventoriesBefore": 4,
+    "previewBackupBodies": 1,
+    "previewReadbackBodies": 1,
+    "themeInventoriesAfter": 4
+  },
+  "schemaToolCalls": 5,
+  "documentationToolCalls": 2,
+  "documentationCallsRejectedBeforeExecution": 1,
+  "graphqlValidationHelperCalls": 2,
+  "validationHelperOutcome": "Skipped by helper; successful real read-only query execution validated operations",
+  "mutationToolCalls": 0,
+  "catalogWrites": 0,
+  "productCreates": 0,
+  "variantCreates": 0,
+  "priceWrites": 0,
+  "skuWrites": 0,
+  "inventoryWrites": 0,
+  "metafieldWrites": 0,
+  "publicationWrites": 0,
+  "theme": {
+    "pushes": 1,
+    "fileWrites": 5,
+    "themeId": "158631198917",
+    "role": "UNPUBLISHED",
+    "files": [
+      {
+        "path": "templates/product.json",
+        "sha256": "f979369720afa2e4ddddaf4e6112e0b88326b73fc2f4c2183b7ab1f7f925e8a2",
+        "beforeMd5": "639e47f21ec88c562b68f8d34d6ec9cc",
+        "beforeSha256": "7c82a849e091ed77e5986e48381ba76f10374bbf09e21660487abc97c9c4d6d0",
+        "previouslyAbsent": false,
+        "afterSha256": "bda2a8ac9521016b743e5675cfabd35ecaffde8c69da5d6320b8b47b9385a4fe",
+        "afterMd5": "b915cbac23bd8db7ead5f408039c1386",
+        "comparison": "EXACT_JSON_STRUCTURE_WITH_EXISTING_SHOPIFY_WARNING_AND_WHITESPACE"
+      },
+      {
+        "path": "snippets/rhino-g-product-detail.liquid",
+        "sha256": "779d1be42f83b70de01abc011990e6b3f2fe30fecaac514768882cc407ea5218",
+        "beforeMd5": null,
+        "beforeSha256": null,
+        "previouslyAbsent": true,
+        "afterSha256": "779d1be42f83b70de01abc011990e6b3f2fe30fecaac514768882cc407ea5218",
+        "afterMd5": "93a474eb2ead8dcd37f0727842af3f11",
+        "comparison": "BYTE_IDENTICAL"
+      },
+      {
+        "path": "snippets/rhino-g-product-fit.liquid",
+        "sha256": "5222ffd9d3e39aba51355df2b12985ae7c8514366827deaab7da0529da79d8d3",
+        "beforeMd5": null,
+        "beforeSha256": null,
+        "previouslyAbsent": true,
+        "afterSha256": "5222ffd9d3e39aba51355df2b12985ae7c8514366827deaab7da0529da79d8d3",
+        "afterMd5": "af993a572add6e5806df93928890a667",
+        "comparison": "BYTE_IDENTICAL"
+      },
+      {
+        "path": "assets/rhino-g-product.css",
+        "sha256": "14a7c09a79424eeb73e9498531d8a07dd02fd6d524f5f55b2aa16cad08e4cb36",
+        "beforeMd5": null,
+        "beforeSha256": null,
+        "previouslyAbsent": true,
+        "afterSha256": "14a7c09a79424eeb73e9498531d8a07dd02fd6d524f5f55b2aa16cad08e4cb36",
+        "afterMd5": "e7f488a8bce656dfc63e3ce1b0117091",
+        "comparison": "BYTE_IDENTICAL"
+      },
+      {
+        "path": "assets/rhino-g-fit.js",
+        "sha256": "ccbcc3628453b612561939f52c83bf061cc8b56a6969df9439128e72643084d2",
+        "beforeMd5": null,
+        "beforeSha256": null,
+        "previouslyAbsent": true,
+        "afterSha256": "ccbcc3628453b612561939f52c83bf061cc8b56a6969df9439128e72643084d2",
+        "afterMd5": "4e82ba72f4c8995d54cd7d1714d6ce71",
+        "comparison": "BYTE_IDENTICAL"
+      }
+    ],
+    "MAINWrites": 0,
+    "unrelatedFileWrites": 0,
+    "themePublications": 0,
+    "rollbackExecuted": false
+  },
+  "storefront": {
+    "baselinePageCells": 40,
+    "deployedCorePageCells": 40,
+    "deployedFitCells": 150,
+    "deployedMachineAxeCells": 22,
+    "unchangedMAINBaselineAxeCells": 2,
+    "runtimeFixtureCases": 8,
+    "interceptedLocalCartPosts": 1,
+    "realCartWrites": 0,
+    "qualification": "Browser/CDN/auth and Shopify CLI internal transport request totals are not instrumented. Counts above enumerate actual connected Admin reads and reconciled theme file writes, not every HTTP request."
+  }
+}

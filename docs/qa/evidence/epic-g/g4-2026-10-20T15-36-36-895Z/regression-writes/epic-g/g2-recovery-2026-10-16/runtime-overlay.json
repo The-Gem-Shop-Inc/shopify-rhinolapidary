@@ -1,0 +1,81 @@
+{
+  "mode": "DEPLOYED_PREVIEW_WITH_LOCAL_SKU_CART_CLOCK_FIXTURES",
+  "tests": [
+    {
+      "name": "Native fragment SKU transition 0",
+      "sku": "G2 Fixture - A",
+      "variant": "46484258685125",
+      "passed": true
+    },
+    {
+      "name": "Native fragment SKU transition 1",
+      "sku": "",
+      "variant": "46484258652357",
+      "passed": true
+    },
+    {
+      "name": "Native fragment SKU transition 2",
+      "sku": "G2 Fixture - B",
+      "variant": "46484258717893",
+      "passed": true
+    },
+    {
+      "name": "Native fragment SKU transition 3",
+      "sku": "G2 Fixture - C",
+      "variant": "46484258750661",
+      "passed": true
+    },
+    {
+      "name": "Native quantity and mocked 422 alert recovery",
+      "passed": true
+    },
+    {
+      "name": "Native unavailable Variant response",
+      "passed": true
+    }
+  ],
+  "readRequests": [
+    {
+      "path": "/products/saw-blade",
+      "sectionId": "template--22706185666757__main",
+      "optionValues": "7809900773573",
+      "httpStatus": 200
+    },
+    {
+      "path": "/products/saw-blade",
+      "sectionId": "template--22706185666757__main",
+      "optionValues": "7809900740805",
+      "httpStatus": 200
+    },
+    {
+      "path": "/products/saw-blade",
+      "sectionId": "template--22706185666757__main",
+      "optionValues": "7809900806341",
+      "httpStatus": 200
+    },
+    {
+      "path": "/products/saw-blade",
+      "sectionId": "template--22706185666757__main",
+      "optionValues": "7809900839109",
+      "httpStatus": 200
+    },
+    {
+      "path": "/products/saw-blade",
+      "sectionId": "template--22706185666757__main",
+      "optionValues": "7809900740805",
+      "httpStatus": 200
+    }
+  ],
+  "mockedWrites": [
+    {
+      "method": "POST",
+      "path": "/cart/add"
+    }
+  ],
+  "actualCommerceWrites": 0,
+  "forwardFit": {
+    "status": "BLOCKED",
+    "reason": "Expired presentation; SKU/commerce fixture remains independent"
+  },
+  "completedAt": "2026-10-20T15:50:31.921Z"
+}

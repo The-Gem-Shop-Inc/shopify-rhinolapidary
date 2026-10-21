@@ -1,0 +1,9 @@
+.rhino-g-catalog { max-width: 90rem; margin-inline: auto; padding-block: 1rem 3rem; }
+.rhino-g-catalog__choices { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-block: 1.5rem 2.5rem; }
+.rhino-g-catalog__choices a { display: inline-block; padding-block: .75rem; }
+.rhino-g-catalog section { margin-block: 2.5rem; }
+.rhino-g-catalog__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem 2rem; padding-inline-start: 2rem; }
+.rhino-g-catalog__links a { display: inline-block; padding-block: .5rem; overflow-wrap: anywhere; }
+.rhino-g-catalog [id], .rhino-g-catalog a, .rhino-g-catalog[id] { scroll-margin-top: var(--rhino-g-catalog-offset, 12rem); }
+.rhino-g-catalog a:focus-visible, .rhino-g-catalog [tabindex="-1"]:focus { outline: .2rem solid currentColor; outline-offset: .3rem; }
+@media screen and (max-width: 749px) { .rhino-g-catalog__links { grid-template-columns: minmax(0, 1fr); } }

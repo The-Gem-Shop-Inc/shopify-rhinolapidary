@@ -1,0 +1,65 @@
+{
+  "at": "2026-10-19T15:52:13.192Z",
+  "themeId": "158631198917",
+  "files": [
+    {
+      "path": "sections/main-collection-product-grid.liquid",
+      "beforeSha256": "abed10566af9ce14161cd10c6f6dbb77014b1aa825a2eb3301ae75057ab8d60c",
+      "afterSha256": "239d6ca6cac9179b5d2aa3bd210c62cc4bd88ae38b1306dcf2407ae14d44a7e4"
+    },
+    {
+      "path": "snippets/rhino-g-catalog-authority.liquid",
+      "beforeSha256": null,
+      "afterSha256": "3879702532c4c36da9e3b94c8362ad96b4ca25fb16660ee2aefcbdd121de5ea2"
+    },
+    {
+      "path": "snippets/rhino-g-catalog-index.liquid",
+      "beforeSha256": null,
+      "afterSha256": "21781addf17d152e37380b7e5ecde41981c1ba58684424deaea99aad01924600"
+    },
+    {
+      "path": "assets/rhino-g-catalog.css",
+      "beforeSha256": null,
+      "afterSha256": "7bc9186a84626b5f2dde3bfedcf525587575fc3192f9c257d7f0114c3cfb3aee"
+    },
+    {
+      "path": "assets/rhino-g-catalog.js",
+      "beforeSha256": null,
+      "afterSha256": "67a35d7d31755f70c61e084b8e723895209e7043d121642450cae08bc6368018"
+    }
+  ],
+  "release": {
+    "path": "data/epic-g-catalog-release.json",
+    "sha256": "910d0d64535d79cefb5210515d0f47988e49a7cf4e8cb5ee7a74c7a5d2d20624"
+  },
+  "rollback": {
+    "source": "docs/qa/evidence/epic-g/g3b-2026-10-19/preview-files-ready.json",
+    "sha256": "2b737666e91dccfab95c7e55947ee01e5eae575a3381c78ea1108f4d73d92417",
+    "procedure": "After verifying roles, restore only the saved main-collection-product-grid.liquid predecessor using --only and --nodelete. This withdraws the index. Leave four unreachable new assets inert, or delete only those four after a separate exact asset audit. Never restore a whole theme."
+  },
+  "args": [
+    "theme",
+    "push",
+    "--store",
+    "sz5dnk-nf.myshopify.com",
+    "--theme",
+    "158631198917",
+    "--path",
+    ".",
+    "--nodelete",
+    "--strict",
+    "--json",
+    "--only",
+    "sections/main-collection-product-grid.liquid",
+    "--only",
+    "snippets/rhino-g-catalog-authority.liquid",
+    "--only",
+    "snippets/rhino-g-catalog-index.liquid",
+    "--only",
+    "assets/rhino-g-catalog.css",
+    "--only",
+    "assets/rhino-g-catalog.js"
+  ],
+  "AdminCatalogMutations": 0,
+  "publish": false
+}

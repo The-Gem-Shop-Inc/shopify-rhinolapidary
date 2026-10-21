@@ -1,0 +1,132 @@
+node scripts/validate-epic-g-machine-routes-browser.js --deployed --current-read docs/qa/evidence/epic-g/g4-recovery-2026-10-20T16-05-52-182Z/admin-read.json
+{"phase":"deployed","machine":"gid://shopify/Product/8905779937477","width":390,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905780756677","width":390,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905781412037","width":390,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905781477573","width":390,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905784131781","width":390,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905784197317","width":390,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905784328389","width":390,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905785344197","width":390,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905779937477","width":1440,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905780756677","width":1440,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905781412037","width":1440,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905781477573","width":1440,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905784131781","width":1440,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905784197317","width":1440,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905784328389","width":1440,"error":null}
+{"phase":"deployed","machine":"gid://shopify/Product/8905785344197","width":1440,"error":null}
+{"phase":"deployed","cells":22,"destinations":33,"failures":1,"inheritedAxe":2}
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   {
++     error: 'Native/F output regression beyond exact approved price changes\n' +
++       '+ actual - expected\n' +
++       '... Skipped lines\n' +
++       '\n' +
++       '  {\n' +
++       '    contact: null,\n' +
++       '    contents: [],\n' +
++       '    facts: [],\n' +
++       '    gallery: [\n' +
++       '...\n' +
++       "            item: 'https://rhino-lapidary.myshopify.com/products/trim-saw-6',\n" +
++       "+           name: '6 in Trim Saw Attachment (EM-1)',\n" +
++       "-           name: '6 in Trim Saw',\n" +
++       '            position: 2\n' +
++       '          }\n' +
++       '        ]\n' +
++       '      },\n' +
++       '      {\n',
++     observedProductGid: 'gid://shopify/Product/8905779282117',
++     productGid: 'gid://shopify/Product/8905779282117',
++     protectedDom: {
++       contact: null,
++       contents: [],
++       facts: [],
++       gallery: [
++         {
++           alt: '',
++           src: '//rhino-lapidary.myshopify.com/cdn/shop/files/s886176631913542175_p27_i1_w1800.jpg'
++         }
++       ],
++       jsonLd: [
++         '{\n' +
++           '    "@context": "http://schema.org",\n' +
++           '    "@type": "Organization",\n' +
++           '    "name": "Rhino Lapidary",\n' +
++           '    \n' +
++           '    "sameAs": [\n' +
++           '      "",\n' +
++           '      "",\n' +
++           '      "",\n' +
++           '      "",\n' +
++           '      "",\n' +
++           '      "",\n' +
++           '      "",\n' +
++           '      "",\n' +
++           '      ""\n' +
++           '    ],\n' +
++           '    "url": "https:\\/\\/rhino-lapidary.myshopify.com"\n' +
++           '  }',
++         '{\n' +
++           '      "@context": "https://schema.org",\n' +
++           '      "@type": "BreadcrumbList",\n' +
++           '      "itemListElement": [\n' +
++           '        {\n' +
++           '          "@type": "ListItem",\n' +
++           '          "position": 1,\n' +
++           '          "name": "Home",\n' +
++           '          "item": "https:\\/\\/rhino-lapidary.myshopify.com\\/"\n' +
++           '        },{\n' +
++           '              "@type": "ListItem",\n' +
++           '              "position": 2,\n' +
++           '              "name": "6 in Trim Saw Attachment (EM-1)",\n' +
++           '              "item": "https:\\/\\/rhino-lapidary.myshopify.com\\/products\\/trim-saw-6"\n' +
++           '            }]\n' +
++           '    }',
++         '{"@context":"http:\\/\\/schema.org\\/","@id":"\\/products\\/trim-saw-6#product","@type":"Product","brand":{"@type":"Brand","name":"Rhino Lapidary"},"category":"","description":"A 6-inch diameter diamond saw with an Arbor Nut securing it to the 5.75-inch-long Trim Saw Arbor, which attaches to the Rhino Lapidary EM-1 Variable-Speed Motor.","image":"https:\\/\\/rhino-lapidary.myshopify.com\\/cdn\\/shop\\/files\\/s886176631913542175_p27_i1_w1800.jpg?v=1783011236\\u0026width=1920","name":"6 in Trim Saw Attachment (EM-1)","offers":{"@id":"\\/products\\/trim-saw-6?variant=46484253278405#offer","@type":"Offer","availability":"http:\\/\\/schema.org\\/InStock","price":"75.00","priceCurrency":"USD","url":"https:\\/\\/rhino-lapidary.myshopify.com\\/products\\/trim-saw-6?variant=46484253278405"},"url":"https:\\/\\/rhino-lapidary.myshopify.com\\/products\\/trim-saw-6"}'
++       ],
++       price: 'Regular price\n' +
++         '          \n' +
++         '            $75.00 USD\n' +
++         '          \n' +
++         '      \n' +
++         '          Regular price\n' +
++         '          \n' +
++         '            \n' +
++         '              \n' +
++         '                \n' +
++         '              \n' +
++         '            \n' +
++         '          Sale price\n' +
++         '        \n' +
++         '          $75.00 USD\n' +
++         '        \n' +
++         '      \n' +
++         '        Sale\n' +
++         '      \n' +
++         '\n' +
++         '      \n' +
++         '        Sold out',
++       productGid: 'gid://shopify/Product/8905779282117',
++       purchase: {
++         disabled: false,
++         name: 'Add to cart'
++       },
++       quantity: '1',
++       sku: null,
++       support: [],
++       title: '6 in Trim Saw Attachment (EM-1)',
++       variantId: '46484253278405'
++     },
++     status: 200,
++     url: '/products/trim-saw-6'
++   }
++ ]
+- []
+
+    at run (C:\Users\dajem\WebstormProjects\shopify-rhinolapidary\scripts\validate-epic-g-machine-routes-browser.js:58:200)
+
+EXIT_CODE=1

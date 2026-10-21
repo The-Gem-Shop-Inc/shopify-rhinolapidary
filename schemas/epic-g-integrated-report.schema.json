@@ -1,0 +1,13 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "type":"object",
+ "required":["schemaVersion","pbi","commands","criteria","technicalQAStatus","commercialLaunchStatus","productionDeployable","formallyComplete","operations","protectedFiles"],
+ "properties":{
+  "schemaVersion":{"const":1},"pbi":{"const":"G-PBI-007"},
+  "technicalQAStatus":{"$ref":"#/$defs/state"},"commercialLaunchStatus":{"$ref":"#/$defs/state"},
+  "productionDeployable":{"const":false},"formallyComplete":{"type":"boolean"},
+  "commands":{"type":"array","items":{"type":"object","required":["command","exitCode","status","log"],"properties":{"status":{"$ref":"#/$defs/state"},"exitCode":{"type":["integer","null"]}}}},
+  "criteria":{"type":"array","items":{"type":"object","required":["id","status","details"],"properties":{"status":{"$ref":"#/$defs/state"}}}}
+ },
+ "$defs":{"state":{"enum":["PASS","FAIL","BLOCKED","DEFERRED","NOT APPLICABLE"]}}
+}

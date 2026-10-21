@@ -1,0 +1,9 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","additionalProperties":false,
+ "required":["schemaVersion","fixtureOnly","asOf","authority","envelope"],
+ "properties":{
+  "schemaVersion":{"const":1},"fixtureOnly":{"const":true},"asOf":{"type":"string","format":"date-time"},
+  "authority":{"type":"object","required":["fixtureOnly","shop","receipt","classes","rows","release","holds","sourceProducts"],"properties":{"fixtureOnly":{"const":true},"rows":{"type":"array","items":{"type":"object","required":["approvalDecisionId"],"properties":{"approvalDecisionId":{"type":"string","pattern":"^fixture:"}}}}}},
+  "envelope":{"type":"object","required":["sourceKind","snapshot","operations"],"properties":{"sourceKind":{"const":"fixture"},"snapshot":{"type":"object","required":["sourceKind"],"properties":{"sourceKind":{"const":"fixture"}}}}}
+ }
+}

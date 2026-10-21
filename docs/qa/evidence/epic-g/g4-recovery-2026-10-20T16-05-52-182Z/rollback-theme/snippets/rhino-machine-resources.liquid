@@ -1,0 +1,25 @@
+{%- if request.host == 'machine.local' and projection.fixture_only and projection.resources.size > 0 -%}
+  <section class="rhino-machine-facts rhino-machine-resources" aria-labelledby="MachineResources-{{ section.id }}">
+    <h2 id="MachineResources-{{ section.id }}">{{ 'products.product.machine_resources.heading' | t }}</h2>
+    <ul class="rhino-machine-resource-list">
+      {% for resource in projection.resources %}
+        {% assign type_key = 'products.product.machine_resources.' | append: resource.type %}
+        <li>
+          <span id="ResourceType-{{ section.id }}-{{ forloop.index }}">{{ type_key | t }}</span>
+          {% if resource.type == 'video' %}
+            <deferred-media class="rhino-machine-resource-video" style="aspect-ratio: {{ resource.video.width }} / {{ resource.video.height }};">
+              <button id="Deferred-Poster-resource-{{ section.id }}-{{ forloop.index }}" class="button button--secondary" type="button" aria-describedby="ResourceType-{{ section.id }}-{{ forloop.index }}">
+                {{ 'products.product.machine_resources.load_video' | t }}: {{ resource.title | escape }}
+              </button>
+              <template>
+                <iframe src="{{ resource.video.embed_url | escape }}" title="{{ resource.title | escape }}" width="{{ resource.video.width }}" height="{{ resource.video.height }}" allowfullscreen></iframe>
+              </template>
+            </deferred-media>
+          {% else %}
+            <a class="link underlined-link" href="{{ resource.url | escape }}" aria-describedby="ResourceType-{{ section.id }}-{{ forloop.index }}">{{ resource.title | escape }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{%- endif -%}

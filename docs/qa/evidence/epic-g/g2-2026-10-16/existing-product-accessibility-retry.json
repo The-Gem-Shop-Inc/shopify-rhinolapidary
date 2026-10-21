@@ -1,0 +1,7 @@
+{
+  "command": "node node_modules/@playwright/test/cli.js test tests/accessibility.spec.js --project=desktop-chromium --project=mobile-chromium --grep=product",
+  "previewThemeId": "158631198917",
+  "exitCode": 0,
+  "stdout": "◇ injected env (9) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }\n◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]\n\nRunning 2 tests using 2 workers\n\n◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }\n◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }\n◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]\n◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]\n  ok 1 [desktop-chromium] › tests\\accessibility.spec.js:40:5 › product has no serious or critical axe violations (6.4s)\n  ok 2 [mobile-chromium] › tests\\accessibility.spec.js:40:5 › product has no serious or critical axe violations (6.4s)\n\n  2 passed (7.1s)\n",
+  "stderr": "(node:11080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:29656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+}

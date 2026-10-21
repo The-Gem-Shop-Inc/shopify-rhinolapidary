@@ -1,0 +1,106 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 theme:check
+> shopify theme check --fail-level warning
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  [default] :\Users\dajem\WebstormProjects\shopify-rhinolapidary\snippets\rh  │
+│  ino-g-catalog-authority.liquid                                              │
+│                                                                              │
+│                                                                              │
+│  [warning]: LiquidComplexity                                                 │
+│  Liquid complexity is 860, which exceeds the maximum of 120. The decision    │
+│  at line 41 pushed it over the limit. Consider simplifying conditional       │
+│  logic, or moving self-contained decision logic into snippets with the       │
+│  render tag.                                                                 │
+│                                                                              │
+│  41  {%- if product.handle == 'arbor-adapter-washer-1-and-1-fourth' and      │
+│  product.published_at != blank and                                           │
+│  product.metafields.rhino.product_class.type == 'single_line_text_field'     │
+│  and product.metafields.rhino.product_class.value == 'replacement_part' and  │
+│   product.variants.size == 1 and g_variants == '46484253475013'              │
+│  -%}replacement_part{%- endif -%}                                            │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'paginate' used.                                             │
+│                                                                              │
+│  250  {%- case paginate.current_page -%}                                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'paginate' used.                                             │
+│                                                                              │
+│  249  {%- if collection.all_products_count == 119 and                        │
+│  collection.products_count == 119 and paginate.page_param == 'page' -%}      │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'role' used.                                                 │
+│                                                                              │
+│  256  {%- case role -%}                                                      │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'mode' used.                                                 │
+│                                                                              │
+│  4  {%- case mode -%}                                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  [default] :\Users\dajem\WebstormProjects\shopify-rhinolapidary\snippets\rh  │
+│  ino-g-catalog-index.liquid                                                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'paginate' used.                                             │
+│                                                                              │
+│  5  {%- capture g_page -%}{%- render 'rhino-g-catalog-authority', mode:      │
+│  'page', collection: collection, paginate: paginate -%}{%- endcapture -%}    │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'paginate' used.                                             │
+│                                                                              │
+│  79  {%- if paginate.pages > 1 -%}<p>Page {{ paginate.current_page }} of {{  │
+│   paginate.pages }}. Groups may continue on another page.</p>{%- render      │
+│  'pagination', paginate: paginate, anchor: '#g-catalog' -%}{%- endif -%}     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'paginate' used.                                             │
+│                                                                              │
+│  79  {%- if paginate.pages > 1 -%}<p>Page {{ paginate.current_page }} of {{  │
+│   paginate.pages }}. Groups may continue on another page.</p>{%- render      │
+│  'pagination', paginate: paginate, anchor: '#g-catalog' -%}{%- endif -%}     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'paginate' used.                                             │
+│                                                                              │
+│  79  {%- if paginate.pages > 1 -%}<p>Page {{ paginate.current_page }} of {{  │
+│   paginate.pages }}. Groups may continue on another page.</p>{%- render      │
+│  'pagination', paginate: paginate, anchor: '#g-catalog' -%}{%- endif -%}     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'paginate' used.                                             │
+│                                                                              │
+│  79  {%- if paginate.pages > 1 -%}<p>Page {{ paginate.current_page }} of {{  │
+│   paginate.pages }}. Groups may continue on another page.</p>{%- render      │
+│  'pagination', paginate: paginate, anchor: '#g-catalog' -%}{%- endif -%}     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  [default] Theme Check Summary.                                              │
+│                                                                              │
+│  490 files inspected with 10 total offenses found across 2 files.            │
+│  10 warnings.                                                                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+

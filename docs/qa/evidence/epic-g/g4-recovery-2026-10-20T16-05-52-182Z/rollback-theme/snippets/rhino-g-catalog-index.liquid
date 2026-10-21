@@ -1,0 +1,90 @@
+{% doc %}
+  Text directory inside the collection's single pager. Native Product objects supply
+  names/URLs; the disposable G1 projection supplies only exact approved roles.
+  @param {collection} collection - Current native catalog
+  @param {object} paginate - The section's sole pager
+{% enddoc %}
+{%- capture g_page -%}{%- render 'rhino-g-catalog-authority', mode: 'page', collection: collection, paginate: paginate -%}{%- endcapture -%}
+{%- assign g_page = g_page | strip -%}
+{%- assign g_valid = false -%}
+{%- assign g_invalid_id = nil -%}
+{%- assign g_members = '' -%}
+{%- assign g_chunks = '0,50,100' | split: ',' -%}
+{%- if g_page == 'eligible' -%}
+  {%- assign g_valid = true -%}
+  {%- for chunk in g_chunks -%}
+    {%- assign g_offset = chunk | plus: 0 -%}
+    {%- for item in collection.products offset: g_offset limit: 50 -%}
+      {%- capture g_role -%}{%- render 'rhino-g-catalog-authority', mode: 'role', product: item -%}{%- endcapture -%}
+      {%- assign g_role = g_role | strip -%}
+      {%- if g_role == blank -%}{%- assign g_valid = false -%}{%- endif -%}
+      {%- if g_role == blank -%}{%- assign g_invalid_id = item.id -%}{%- endif -%}
+      {%- capture g_member -%}|{{ item.id }}:{{ g_role }}|{%- endcapture -%}
+      {%- assign g_members = g_members | append: g_member -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endif -%}
+<div class="rhino-g-catalog" id="g-catalog" tabindex="-1" data-rhino-g-catalog data-governed="{{ g_valid }}" data-page-state="{{ g_page | escape }}" data-page="{{ paginate.current_page }}" data-page-param="{{ paginate.page_param }}" data-page-items="{{ collection.products.size }}" data-catalog-total="{{ collection.products_count }}" data-rejected-role="{{ g_invalid_id }}" data-server-now="{{ 'now' | date: '%s' }}">
+  {%- if g_valid -%}
+    <h2>Find parts and supplies</h2>
+    <p>Choose a group, then open a Product to select its options and quantity. No account or SKU is needed.</p>
+    <nav aria-label="Product groups" class="rhino-g-catalog__choices">
+      {%- assign g_roles = 'replacement_part,consumable,accessory' | split: ',' -%}
+      {%- assign g_labels = 'Replacement Parts,Consumables,Accessories' | split: ',' -%}
+      {%- assign g_fragments = 'g-replacement-parts,g-consumables,g-accessories' | split: ',' -%}
+      {%- for role in g_roles -%}
+        {%- capture first_page -%}{%- render 'rhino-g-catalog-authority', mode: 'first-page', role: role -%}{%- endcapture -%}
+        {%- assign first_page = first_page | strip -%}
+        {%- assign needle = ':' | append: role | append: '|' -%}
+        {%- if first_page != blank -%}
+          <a href="{%- unless g_members contains needle -%}{{ collection.url }}?page={{ first_page }}{%- endunless -%}#{{ g_fragments[forloop.index0] }}">{{ g_labels[forloop.index0] }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+    {%- for role in g_roles -%}
+      {%- assign needle = ':' | append: role | append: '|' -%}
+      {%- if g_members contains needle -%}
+        <section aria-labelledby="{{ g_fragments[forloop.index0] }}" data-role="{{ role }}">
+          <h3 id="{{ g_fragments[forloop.index0] }}" tabindex="-1">{{ g_labels[forloop.index0] }}</h3>
+          <ul class="rhino-g-catalog__links" role="list">
+            {%- for chunk in g_chunks -%}
+              {%- assign g_offset = chunk | plus: 0 -%}
+              {%- for item in collection.products offset: g_offset limit: 50 -%}
+                {%- capture needle -%}|{{ item.id }}:{{ role }}|{%- endcapture -%}
+                {%- if g_members contains needle -%}<li><a href="{{ item.url }}" data-g-product="{{ item.id }}">{{ item.title | escape }}</a></li>{%- endif -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          </ul>
+        </section>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- capture g_machines -%}
+      {%- for chunk in g_chunks -%}
+        {%- assign g_offset = chunk | plus: 0 -%}
+        {%- for item in collection.products offset: g_offset limit: 50 -%}
+          {%- capture needle -%}|{{ item.id }}:machine|{%- endcapture -%}
+          {%- if g_members contains needle -%}
+            {%- capture fragment -%}{%- render 'rhino-g-catalog-authority', mode: 'machine', product: item -%}{%- endcapture -%}
+            {%- assign fragment = fragment | strip -%}
+            {%- if fragment != blank -%}<li><a href="{{ item.url }}{{ fragment }}" data-g-machine="{{ item.id }}">{{ item.title | escape }}</a></li>{%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if g_machines != blank -%}
+      <section aria-labelledby="g-machine-context"><h3 id="g-machine-context" tabindex="-1">Know your machine?</h3><p>Browse the approved compatible products on its machine page.</p><ul class="rhino-g-catalog__links" role="list">{{ g_machines }}</ul></section>
+    {%- endif -%}
+  {%- else -%}
+    <h2 id="g-replacement-parts" tabindex="-1">Browse Products</h2>
+    <p id="g-consumables" tabindex="-1">Product groups are being verified. You can still open any Product below to select its options and quantity.</p>
+    <p id="g-accessories" tabindex="-1">Use the Product page for current options and availability.</p>
+    <ul class="rhino-g-catalog__links" role="list">
+      {%- for chunk in g_chunks -%}
+        {%- assign g_offset = chunk | plus: 0 -%}
+        {%- for item in collection.products offset: g_offset limit: 50 -%}<li><a href="{{ item.url }}">{{ item.title | escape }}</a></li>{%- endfor -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+  {%- if paginate.pages > 1 -%}<p>Page {{ paginate.current_page }} of {{ paginate.pages }}. Groups may continue on another page.</p>{%- render 'pagination', paginate: paginate, anchor: '#g-catalog' -%}{%- endif -%}
+  <p><a href="{{ collection.url }}?sort_by=title-ascending">View the photo catalog</a></p>
+</div>

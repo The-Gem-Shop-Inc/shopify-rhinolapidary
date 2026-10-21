@@ -1,0 +1,31 @@
+{
+  "fixtureOnly": true,
+  "positive": 1,
+  "negative": 3,
+  "passed": 4,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Actual one-file readback with unchanged MAIN",
+      "kind": "positive",
+      "status": "PASS"
+    },
+    {
+      "name": "Readback rejects unrelated preview file",
+      "kind": "negative",
+      "status": "PASS"
+    },
+    {
+      "name": "Readback rejects MAIN modification",
+      "kind": "negative",
+      "status": "PASS"
+    },
+    {
+      "name": "Readback rejects wrong fit bytes",
+      "kind": "negative",
+      "status": "PASS"
+    }
+  ],
+  "catalogWrites": 0,
+  "themeWrites": 0
+}

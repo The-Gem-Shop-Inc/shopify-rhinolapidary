@@ -1,0 +1,452 @@
+{
+  "capturedAt": "2026-10-15T21:30:45.892Z",
+  "readOnly": true,
+  "query": "query EpicGRoutes{ collections(first:50){nodes{id title handle productsCount{count} ruleSet{appliedDisjunctively rules{column relation condition}}}pageInfo{hasNextPage endCursor}} pages(first:50){nodes{id title handle templateSuffix isPublished}pageInfo{hasNextPage endCursor}} menus(first:20){nodes{id title handle items{title url resourceId items{title url resourceId items{title url resourceId}}}}pageInfo{hasNextPage endCursor}} themes(first:10){nodes{id name role}pageInfo{hasNextPage endCursor}}}",
+  "data": {
+    "collections": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Collection/354923610309",
+          "title": "Home page",
+          "handle": "frontpage",
+          "productsCount": {
+            "count": 1
+          },
+          "ruleSet": null
+        },
+        {
+          "id": "gid://shopify/Collection/355080962245",
+          "title": "Machines",
+          "handle": "machines",
+          "productsCount": {
+            "count": 11
+          },
+          "ruleSet": null
+        },
+        {
+          "id": "gid://shopify/Collection/355081224389",
+          "title": "TrimMaster Parts",
+          "handle": "trimmaster-parts",
+          "productsCount": {
+            "count": 0
+          },
+          "ruleSet": null
+        },
+        {
+          "id": "gid://shopify/Collection/355081355461",
+          "title": "JadeMaster Parts",
+          "handle": "jademaster-parts",
+          "productsCount": {
+            "count": 0
+          },
+          "ruleSet": null
+        },
+        {
+          "id": "gid://shopify/Collection/355081486533",
+          "title": "18\" LapMaster Parts",
+          "handle": "18-lapmaster-parts",
+          "productsCount": {
+            "count": 0
+          },
+          "ruleSet": null
+        },
+        {
+          "id": "gid://shopify/Collection/355081584837",
+          "title": "EM-1 Parts",
+          "handle": "em-1-parts",
+          "productsCount": {
+            "count": 49
+          },
+          "ruleSet": null
+        },
+        {
+          "id": "gid://shopify/Collection/355082010821",
+          "title": "Blades & Wheels",
+          "handle": "blades-wheels",
+          "productsCount": {
+            "count": 11
+          },
+          "ruleSet": {
+            "appliedDisjunctively": true,
+            "rules": [
+              {
+                "column": "TAG",
+                "relation": "EQUALS",
+                "condition": "Saw Blade"
+              },
+              {
+                "column": "TAG",
+                "relation": "EQUALS",
+                "condition": "Wheel"
+              }
+            ]
+          }
+        },
+        {
+          "id": "gid://shopify/Collection/364020531397",
+          "title": "Saws",
+          "handle": "saws",
+          "productsCount": {
+            "count": 6
+          },
+          "ruleSet": {
+            "appliedDisjunctively": false,
+            "rules": [
+              {
+                "column": "TAG",
+                "relation": "EQUALS",
+                "condition": "Saw"
+              }
+            ]
+          }
+        },
+        {
+          "id": "gid://shopify/Collection/364020564165",
+          "title": "Flat Laps",
+          "handle": "flat-laps",
+          "productsCount": {
+            "count": 2
+          },
+          "ruleSet": {
+            "appliedDisjunctively": false,
+            "rules": [
+              {
+                "column": "TAG",
+                "relation": "EQUALS",
+                "condition": "Flat Lap"
+              }
+            ]
+          }
+        },
+        {
+          "id": "gid://shopify/Collection/364020596933",
+          "title": "Shaping Machines",
+          "handle": "shaping",
+          "productsCount": {
+            "count": 4
+          },
+          "ruleSet": {
+            "appliedDisjunctively": false,
+            "rules": [
+              {
+                "column": "TAG",
+                "relation": "EQUALS",
+                "condition": "Shaping"
+              }
+            ]
+          }
+        },
+        {
+          "id": "gid://shopify/Collection/366292107461",
+          "title": "Flexible Shaft Accessories",
+          "handle": "flexible-shaft-accessories",
+          "productsCount": {
+            "count": 24
+          },
+          "ruleSet": null
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjozNjYyOTIxMDc0NjEsImxhc3RfdmFsdWUiOiIzNjYyOTIxMDc0NjEifQ=="
+      }
+    },
+    "pages": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Page/127975358661",
+          "title": "Contact",
+          "handle": "contact",
+          "templateSuffix": "contact",
+          "isPublished": true
+        },
+        {
+          "id": "gid://shopify/Page/127975391429",
+          "title": "Your Privacy Choices",
+          "handle": "data-sharing-opt-out",
+          "templateSuffix": null,
+          "isPublished": true
+        },
+        {
+          "id": "gid://shopify/Page/129808957637",
+          "title": "12 in. LapMaster Manual",
+          "handle": "12-in-lapmaster-manual",
+          "templateSuffix": "page",
+          "isPublished": false
+        },
+        {
+          "id": "gid://shopify/Page/129809055941",
+          "title": "18 in. LapMaster Manual",
+          "handle": "18-in-lapmaster-manual",
+          "templateSuffix": "page",
+          "isPublished": false
+        },
+        {
+          "id": "gid://shopify/Page/129809154245",
+          "title": "18 in. SawMaster Manual",
+          "handle": "18-in-sawmaster-manual",
+          "templateSuffix": "page",
+          "isPublished": false
+        },
+        {
+          "id": "gid://shopify/Page/129809318085",
+          "title": "24 in. SawMaster Manual",
+          "handle": "24-in-sawmaster-manual",
+          "templateSuffix": "page",
+          "isPublished": false
+        },
+        {
+          "id": "gid://shopify/Page/129809416389",
+          "title": "36 in. SawMaster Manual",
+          "handle": "36-in-sawmaster-manual",
+          "templateSuffix": "page",
+          "isPublished": false
+        },
+        {
+          "id": "gid://shopify/Page/129809449157",
+          "title": "TrimMaster Manual",
+          "handle": "trimmaster-manual",
+          "templateSuffix": "page",
+          "isPublished": true
+        },
+        {
+          "id": "gid://shopify/Page/129809514693",
+          "title": "JadeMaster Manual",
+          "handle": "jademaster-manual",
+          "templateSuffix": "page",
+          "isPublished": false
+        },
+        {
+          "id": "gid://shopify/Page/129809580229",
+          "title": "BeadMaster Manual",
+          "handle": "beadmaster-manual",
+          "templateSuffix": "page",
+          "isPublished": false
+        },
+        {
+          "id": "gid://shopify/Page/129809744069",
+          "title": "ShapeMaster Manual",
+          "handle": "shapemaster-manual",
+          "templateSuffix": "page",
+          "isPublished": true
+        },
+        {
+          "id": "gid://shopify/Page/129809809605",
+          "title": "EM-1 Manual",
+          "handle": "em-1-manual",
+          "templateSuffix": "page",
+          "isPublished": true
+        },
+        {
+          "id": "gid://shopify/Page/129898545349",
+          "title": "Manuals",
+          "handle": "manuals",
+          "templateSuffix": "page",
+          "isPublished": true
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjoxMjk4OTg1NDUzNDksImxhc3RfdmFsdWUiOiIxMjk4OTg1NDUzNDkifQ=="
+      }
+    },
+    "menus": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Menu/254120886469",
+          "title": "Main menu",
+          "handle": "main-menu",
+          "items": [
+            {
+              "title": "Home",
+              "url": "/",
+              "resourceId": null,
+              "items": []
+            },
+            {
+              "title": "Catalog",
+              "url": "/collections/all",
+              "resourceId": null,
+              "items": [
+                {
+                  "title": "Saws",
+                  "url": "/collections/saws",
+                  "resourceId": "gid://shopify/Collection/364020531397",
+                  "items": []
+                },
+                {
+                  "title": "Laps",
+                  "url": "/collections/flat-laps",
+                  "resourceId": "gid://shopify/Collection/364020564165",
+                  "items": []
+                },
+                {
+                  "title": "Shaping",
+                  "url": "/collections/shaping",
+                  "resourceId": "gid://shopify/Collection/364020596933",
+                  "items": []
+                }
+              ]
+            },
+            {
+              "title": "Manuals",
+              "url": "/pages/manuals",
+              "resourceId": "gid://shopify/Page/129898545349",
+              "items": []
+            },
+            {
+              "title": "Contact",
+              "url": "/pages/contact",
+              "resourceId": "gid://shopify/Page/127975358661",
+              "items": []
+            }
+          ]
+        },
+        {
+          "id": "gid://shopify/Menu/254120919237",
+          "title": "Footer menu",
+          "handle": "footer",
+          "items": [
+            {
+              "title": "Search",
+              "url": "/search",
+              "resourceId": null,
+              "items": []
+            },
+            {
+              "title": "Privacy Policy",
+              "url": "/policies/privacy-policy",
+              "resourceId": "gid://shopify/ShopPolicy/43713626309",
+              "items": []
+            }
+          ]
+        },
+        {
+          "id": "gid://shopify/Menu/254120952005",
+          "title": "Customer account main menu",
+          "handle": "customer-account-main-menu",
+          "items": [
+            {
+              "title": "Orders",
+              "url": "https://shopify.com/79279947973/account/orders",
+              "resourceId": "gid://shopify/CustomerAccountPage/99164160197",
+              "items": []
+            },
+            {
+              "title": "Profile",
+              "url": "https://shopify.com/79279947973/account/profile",
+              "resourceId": "gid://shopify/CustomerAccountPage/99164192965",
+              "items": []
+            }
+          ]
+        },
+        {
+          "id": "gid://shopify/Menu/257402405061",
+          "title": "Preview Primary Navigation Menu",
+          "handle": "preview-primary-navigation-menu",
+          "items": [
+            {
+              "title": "Home",
+              "url": "/",
+              "resourceId": null,
+              "items": []
+            },
+            {
+              "title": "Catalog",
+              "url": "/collections",
+              "resourceId": null,
+              "items": [
+                {
+                  "title": "Saws",
+                  "url": "/collections/saws",
+                  "resourceId": "gid://shopify/Collection/364020531397",
+                  "items": []
+                },
+                {
+                  "title": "Laps",
+                  "url": "/collections/flat-laps",
+                  "resourceId": "gid://shopify/Collection/364020564165",
+                  "items": []
+                },
+                {
+                  "title": "Shaping",
+                  "url": "/collections/shaping",
+                  "resourceId": "gid://shopify/Collection/364020596933",
+                  "items": []
+                }
+              ]
+            },
+            {
+              "title": "Manuals",
+              "url": "/pages/manuals",
+              "resourceId": "gid://shopify/Page/129898545349",
+              "items": []
+            },
+            {
+              "title": "Contact",
+              "url": "/pages/contact",
+              "resourceId": "gid://shopify/Page/127975358661",
+              "items": []
+            }
+          ]
+        },
+        {
+          "id": "gid://shopify/Menu/257402437829",
+          "title": "Preview Footer Menu",
+          "handle": "preview-footer-menu",
+          "items": [
+            {
+              "title": "Search",
+              "url": "/search",
+              "resourceId": null,
+              "items": []
+            },
+            {
+              "title": "Your Privacy Choices",
+              "url": "/policies/privacy-policy",
+              "resourceId": "gid://shopify/ShopPolicy/43713626309",
+              "items": []
+            }
+          ]
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjoyNTc0MDI0Mzc4MjksImxhc3RfdmFsdWUiOjI1NzQwMjQzNzgyOX0="
+      }
+    },
+    "themes": {
+      "nodes": [
+        {
+          "id": "gid://shopify/OnlineStoreTheme/158572150981",
+          "name": "Horizon",
+          "role": "UNPUBLISHED"
+        },
+        {
+          "id": "gid://shopify/OnlineStoreTheme/158572347589",
+          "name": "Trade",
+          "role": "UNPUBLISHED"
+        },
+        {
+          "id": "gid://shopify/OnlineStoreTheme/158579622085",
+          "name": "shopify-rhinolapidary/main",
+          "role": "MAIN"
+        },
+        {
+          "id": "gid://shopify/OnlineStoreTheme/158631198917",
+          "name": "Rhino Lapidary - Preview",
+          "role": "UNPUBLISHED"
+        },
+        {
+          "id": "gid://shopify/OnlineStoreTheme/160251707589",
+          "name": "shopify-rhinolapidary/dev",
+          "role": "UNPUBLISHED"
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjoxNjAyNTE3MDc1ODksImxhc3RfdmFsdWUiOjE2MDI1MTcwNzU4OX0="
+      }
+    }
+  }
+}

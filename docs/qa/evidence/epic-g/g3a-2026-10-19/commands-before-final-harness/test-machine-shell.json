@@ -1,0 +1,86 @@
+{
+  "command": "npm.cmd run test:machine-shell",
+  "startedAt": "2026-10-19T14:30:09.720Z",
+  "completedAt": "2026-10-19T14:31:40.876Z",
+  "exitCode": 0,
+  "sourceRefs": [
+    {
+      "path": "assets/rhino-storefront.js",
+      "sha256": "b61e6162d7aa911757b2018617b936760950204c4d961081769a5ec64122fb62"
+    },
+    {
+      "path": "data/epic-g-machine-routes.json",
+      "sha256": "4d74b0c2fd2ddba77c2dac4fd7870f33b5d9246ed6b444096cb255ce04557ff7"
+    },
+    {
+      "path": "docs/qa/evidence/epic-g/g3a-2026-10-19/admin-read.json",
+      "sha256": "14c6edc988a990abd925e5c1683821fe6e9ff8e76bd07665cf21db630b2d02ae"
+    },
+    {
+      "path": "docs/qa/evidence/epic-g/g3a-2026-10-19/baseline-browser.json",
+      "sha256": "cbb227476507db9bc11b8309bf843e6876774c064163f16738cae4a95bbb9de2"
+    },
+    {
+      "path": "schemas/epic-g-machine-routes.schema.json",
+      "sha256": "0fd501ee27cf674513153dd91d2c0f81459742a67a4605cde07dd5ce5641a005"
+    },
+    {
+      "path": "scripts/lib/epic-g-machine-routes.js",
+      "sha256": "9cc2cc3d8ed6d0bb3a042212dc525708e46c3d7868bc14b6a523bd65b50d3961"
+    },
+    {
+      "path": "scripts/validate-epic-g-machine-routes.js",
+      "sha256": "502b2cca7555d71c1733aadafd94f5766d91f0635650f97cf9c2ec2e589e0685"
+    },
+    {
+      "path": "scripts/validate-epic-g-machine-routes-browser.js",
+      "sha256": "6cf3dbdcfd610db56d15d639947e92742975dbdd0a8cef6468e79cd9f8e5790c"
+    },
+    {
+      "path": "scripts/test-epic-g-machine-routes.js",
+      "sha256": "b3bd0fc7b14837c8ee37a6dd7d2fbfe27275fc28cb425819e8672f9b93728847"
+    },
+    {
+      "path": "scripts/test-epic-g-machine-entry-runtime.js",
+      "sha256": "22cf626d7927e30d3b5710b3d1a4caf0cfaa8d66dc97641a257437583210a7f0"
+    },
+    {
+      "path": "scripts/test-epic-g-machine-routes-deployment.js",
+      "sha256": "2718674a90e6554456f788741060f3084bba0259bbf435f8a61403954d6421aa"
+    },
+    {
+      "path": "scripts/deploy-epic-g-machine-routes-preview.js",
+      "sha256": "d7da217a484be4fe270420ab1a59ffdc739e3db77a89e477f65db7f6fb0167a7"
+    },
+    {
+      "path": "scripts/run-epic-g-machine-routes-validation.js",
+      "sha256": "ae056bc94bb09406a851efc85d22c90885596a5502d54ecb54939de743ec3992"
+    },
+    {
+      "path": "scripts/lib/epic-g-foundation.js",
+      "sha256": "989ff21626808975cbbbf81a98194c72c1bf6d73931c160b743ac2eccf1c70ad"
+    },
+    {
+      "path": "scripts/lib/epic-f-customer-release.js",
+      "sha256": "1907a1b97da45ca1bf32270d8782570483f6571017d60647430c7dace630b2b6"
+    },
+    {
+      "path": "sections/main-product.liquid",
+      "sha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3"
+    },
+    {
+      "path": "templates/product.machine.json",
+      "sha256": "1527450e3324c0240a93618ea3a0a8371ec94dcbc0efb8d02719d0d290b652af"
+    },
+    {
+      "path": "templates/product.json",
+      "sha256": "f979369720afa2e4ddddaf4e6112e0b88326b73fc2f4c2183b7ab1f7f925e8a2"
+    },
+    {
+      "path": "package.json",
+      "sha256": "197de9d573a815bd4755c114b0846fff763126db65066d25a085dd2d514edd12"
+    }
+  ],
+  "stdout": "\n> shopify-rhinolapidary@1.0.0 test:machine-shell\n> playwright test --config=playwright.machine.config.js\n\n\nRunning 58 tests using 1 worker\n\n  ok  1 tests\\machine-purchase.spec.js:4:1 › valid quantity submits exactly the selected Variant once through native product-form (592ms)\n  ok  2 tests\\machine-purchase.spec.js:20:1 › native quantity controls and invalid-quantity response retain error semantics (388ms)\n  ok  3 tests\\machine-purchase.spec.js:36:1 › native Variant changes use section response state, including unavailable and recovery (389ms)\n  ok  4 tests\\machine-purchase.spec.js:52:65 › draft route stays unavailable (130ms)\n  ok  5 tests\\machine-purchase.spec.js:52:65 › unpublished route stays unavailable (126ms)\n  ok  6 tests\\machine-purchase.spec.js:59:1 › no-JavaScript retains basic native form action, Variant ID and quantity (262ms)\n  ok  7 tests\\machine-shell.spec.js:15:3 › 320px tracked-available: hierarchy, focus, no media, reflow and axe (1.2s)\n  ok  8 tests\\machine-shell.spec.js:15:3 › 320px tracked-unavailable: hierarchy, focus, no media, reflow and axe (1.2s)\n  ok  9 tests\\machine-shell.spec.js:15:3 › 320px zero-deny: hierarchy, focus, no media, reflow and axe (1.2s)\n  ok 10 tests\\machine-shell.spec.js:15:3 › 320px untracked-available: hierarchy, focus, no media, reflow and axe (1.3s)\n  ok 11 tests\\machine-shell.spec.js:15:3 › 320px invalid-variant: hierarchy, focus, no media, reflow and axe (1.2s)\n  ok 12 tests\\machine-shell.spec.js:15:3 › 320px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe (1.2s)\n  ok 13 tests\\machine-shell.spec.js:15:3 › 360px tracked-available: hierarchy, focus, no media, reflow and axe (1.3s)\n  ok 14 tests\\machine-shell.spec.js:15:3 › 360px tracked-unavailable: hierarchy, focus, no media, reflow and axe (1.2s)\n  ok 15 tests\\machine-shell.spec.js:15:3 › 360px zero-deny: hierarchy, focus, no media, reflow and axe (1.3s)\n  ok 16 tests\\machine-shell.spec.js:15:3 › 360px untracked-available: hierarchy, focus, no media, reflow and axe (1.5s)\n  ok 17 tests\\machine-shell.spec.js:15:3 › 360px invalid-variant: hierarchy, focus, no media, reflow and axe (1.3s)\n  ok 18 tests\\machine-shell.spec.js:15:3 › 360px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe (1.7s)\n  ok 19 tests\\machine-shell.spec.js:15:3 › 390px tracked-available: hierarchy, focus, no media, reflow and axe (2.1s)\n  ok 20 tests\\machine-shell.spec.js:15:3 › 390px tracked-unavailable: hierarchy, focus, no media, reflow and axe (1.9s)\n  ok 21 tests\\machine-shell.spec.js:15:3 › 390px zero-deny: hierarchy, focus, no media, reflow and axe (2.0s)\n  ok 22 tests\\machine-shell.spec.js:15:3 › 390px untracked-available: hierarchy, focus, no media, reflow and axe (2.2s)\n  ok 23 tests\\machine-shell.spec.js:15:3 › 390px invalid-variant: hierarchy, focus, no media, reflow and axe (2.0s)\n  ok 24 tests\\machine-shell.spec.js:15:3 › 390px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe (2.6s)\n  ok 25 tests\\machine-shell.spec.js:15:3 › 768px tracked-available: hierarchy, focus, no media, reflow and axe (1.8s)\n  ok 26 tests\\machine-shell.spec.js:15:3 › 768px tracked-unavailable: hierarchy, focus, no media, reflow and axe (2.0s)\n  ok 27 tests\\machine-shell.spec.js:15:3 › 768px zero-deny: hierarchy, focus, no media, reflow and axe (2.1s)\n  ok 28 tests\\machine-shell.spec.js:15:3 › 768px untracked-available: hierarchy, focus, no media, reflow and axe (2.2s)\n  ok 29 tests\\machine-shell.spec.js:15:3 › 768px invalid-variant: hierarchy, focus, no media, reflow and axe (1.6s)\n  ok 30 tests\\machine-shell.spec.js:15:3 › 768px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe (1.7s)\n  ok 31 tests\\machine-shell.spec.js:15:3 › 1024px tracked-available: hierarchy, focus, no media, reflow and axe (2.1s)\n  ok 32 tests\\machine-shell.spec.js:15:3 › 1024px tracked-unavailable: hierarchy, focus, no media, reflow and axe (2.3s)\n  ok 33 tests\\machine-shell.spec.js:15:3 › 1024px zero-deny: hierarchy, focus, no media, reflow and axe (1.8s)\n  ok 34 tests\\machine-shell.spec.js:15:3 › 1024px untracked-available: hierarchy, focus, no media, reflow and axe (1.8s)\n  ok 35 tests\\machine-shell.spec.js:15:3 › 1024px invalid-variant: hierarchy, focus, no media, reflow and axe (1.9s)\n  ok 36 tests\\machine-shell.spec.js:15:3 › 1024px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe (2.0s)\n  ok 37 tests\\machine-shell.spec.js:15:3 › 1440px tracked-available: hierarchy, focus, no media, reflow and axe (1.9s)\n  ok 38 tests\\machine-shell.spec.js:15:3 › 1440px tracked-unavailable: hierarchy, focus, no media, reflow and axe (1.7s)\n  ok 39 tests\\machine-shell.spec.js:15:3 › 1440px zero-deny: hierarchy, focus, no media, reflow and axe (2.0s)\n  ok 40 tests\\machine-shell.spec.js:15:3 › 1440px untracked-available: hierarchy, focus, no media, reflow and axe (2.2s)\n  ok 41 tests\\machine-shell.spec.js:15:3 › 1440px invalid-variant: hierarchy, focus, no media, reflow and axe (1.6s)\n  ok 42 tests\\machine-shell.spec.js:15:3 › 1440px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe (1.6s)\n  ok 43 tests\\machine-shell.spec.js:15:3 › 1920px tracked-available: hierarchy, focus, no media, reflow and axe (1.7s)\n  ok 44 tests\\machine-shell.spec.js:15:3 › 1920px tracked-unavailable: hierarchy, focus, no media, reflow and axe (1.6s)\n  ok 45 tests\\machine-shell.spec.js:15:3 › 1920px zero-deny: hierarchy, focus, no media, reflow and axe (1.6s)\n  ok 46 tests\\machine-shell.spec.js:15:3 › 1920px untracked-available: hierarchy, focus, no media, reflow and axe (1.7s)\n  ok 47 tests\\machine-shell.spec.js:15:3 › 1920px invalid-variant: hierarchy, focus, no media, reflow and axe (1.6s)\n  ok 48 tests\\machine-shell.spec.js:15:3 › 1920px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe (2.2s)\n  ok 49 tests\\machine-shell.spec.js:58:38 › 320px long content and 200% text enlargement (1.6s)\n  ok 50 tests\\machine-shell.spec.js:58:38 › 360px long content and 200% text enlargement (1.4s)\n  ok 51 tests\\machine-shell.spec.js:58:38 › 390px long content and 200% text enlargement (1.3s)\n  ok 52 tests\\machine-shell.spec.js:58:38 › 768px long content and 200% text enlargement (1.3s)\n  ok 53 tests\\machine-shell.spec.js:58:38 › 1024px long content and 200% text enlargement (1.2s)\n  ok 54 tests\\machine-shell.spec.js:58:38 › 1440px long content and 200% text enlargement (1.3s)\n  ok 55 tests\\machine-shell.spec.js:58:38 › 1920px long content and 200% text enlargement (1.3s)\n  ok 56 tests\\machine-shell.spec.js:71:1 › Contact uses the approved route without context or intake enhancement (284ms)\n  ok 57 tests\\machine-shell.spec.js:80:1 › default Product template remains a native non-machine purchase page (253ms)\n  ok 58 tests\\machine-zoom.spec.js:7:1 › Chromium actual browser zoom to 200% reflows the machine shell (2.2s)\n\n  58 passed (1.5m)\n",
+  "stderr": "npm warn Unknown env config \"min-release-age\". This will stop working in the next major version of npm.\n(node:26904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+}

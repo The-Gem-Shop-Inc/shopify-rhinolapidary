@@ -1,0 +1,76 @@
+{
+  "at": "2026-10-16T21:09:03.021Z",
+  "themeId": "158631198917",
+  "role": "UNPUBLISHED",
+  "files": [
+    {
+      "path": "templates/product.json",
+      "sha256": "f979369720afa2e4ddddaf4e6112e0b88326b73fc2f4c2183b7ab1f7f925e8a2",
+      "beforeMd5": "639e47f21ec88c562b68f8d34d6ec9cc",
+      "beforeSha256": "7c82a849e091ed77e5986e48381ba76f10374bbf09e21660487abc97c9c4d6d0",
+      "previouslyAbsent": false
+    },
+    {
+      "path": "snippets/rhino-g-product-detail.liquid",
+      "sha256": "779d1be42f83b70de01abc011990e6b3f2fe30fecaac514768882cc407ea5218",
+      "beforeMd5": null,
+      "beforeSha256": null,
+      "previouslyAbsent": true
+    },
+    {
+      "path": "snippets/rhino-g-product-fit.liquid",
+      "sha256": "5222ffd9d3e39aba51355df2b12985ae7c8514366827deaab7da0529da79d8d3",
+      "beforeMd5": null,
+      "beforeSha256": null,
+      "previouslyAbsent": true
+    },
+    {
+      "path": "assets/rhino-g-product.css",
+      "sha256": "14a7c09a79424eeb73e9498531d8a07dd02fd6d524f5f55b2aa16cad08e4cb36",
+      "beforeMd5": null,
+      "beforeSha256": null,
+      "previouslyAbsent": true
+    },
+    {
+      "path": "assets/rhino-g-fit.js",
+      "sha256": "ccbcc3628453b612561939f52c83bf061cc8b56a6969df9439128e72643084d2",
+      "beforeMd5": null,
+      "beforeSha256": null,
+      "previouslyAbsent": true
+    }
+  ],
+  "command": [
+    "shopify",
+    "theme",
+    "push",
+    "--store",
+    "sz5dnk-nf.myshopify.com",
+    "--theme",
+    "158631198917",
+    "--path",
+    ".",
+    "--nodelete",
+    "--strict",
+    "--json",
+    "--only",
+    "templates/product.json",
+    "--only",
+    "snippets/rhino-g-product-detail.liquid",
+    "--only",
+    "snippets/rhino-g-product-fit.liquid",
+    "--only",
+    "assets/rhino-g-product.css",
+    "--only",
+    "assets/rhino-g-fit.js"
+  ],
+  "approvalDigest": "f1b84254f4873bc0233540bbfd3b3f145e5dca2c8194269b3c40188e278913ee",
+  "gatesSha256": "3ad9a124cb65095bfa0fb33ca473472b56377281fdf8c56da46b22bf13658a60",
+  "rollback": {
+    "source": "docs/qa/evidence/epic-g/g2-recovery-2026-10-16/preview-files-before.json",
+    "sha256": "fd7f66261b12faa8a929462dc6bf6008fe125bee5e0c480bdb5b3fc4ca922e9e",
+    "procedure": "Push only the saved original templates/product.json to the same unpublished preview using --only and --nodelete; new unreferenced G assets may remain. Never synchronize the theme."
+  },
+  "authorization": "User Epic G2 recovery preview-only instruction",
+  "AdminMutations": 0,
+  "publication": false
+}

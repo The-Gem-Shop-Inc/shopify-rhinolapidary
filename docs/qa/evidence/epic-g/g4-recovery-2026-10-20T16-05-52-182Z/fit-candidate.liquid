@@ -1,0 +1,276 @@
+{% doc %}
+  Materialized G1-approved forward fit. Public content only; no private tokens.
+  @param {product} product - Current Product.
+  @param {section} section - Native Product section.
+  @param {string} heading - Merchant-configured module heading.
+{% enddoc %}
+{%- comment -%}Called from product.json custom_liquid; Theme Check cannot trace that render. Projection SHA256: 36116c18a75a9fcdb259f2ce73caa259f9a1a0a0d0d58530da7501e8f8171fc2. Private revocation requires revalidation/deployment; immediate cache invalidation is not claimed.{%- endcomment -%}
+{%- assign g_now = 'now' | date: '%s' | plus: 0 -%}
+{%- assign g_source_published = product.published_at | date: '%s' | plus: 0 -%}
+{%- if heading != blank and g_now >= 1792512812 and g_now < 1792516002 and product.published_at != blank and g_source_published <= g_now and product.metafields.rhino.product_class.type == 'single_line_text_field' and product.metafields.rhino.compatible_machines.type == 'list.product_reference' -%}
+{%- assign g_expected_handle = nil -%}
+{%- case product.id -%}
+{%- when 8905779282117 -%}
+{%- assign g_expected_handle = 'trim-saw-6' -%}
+{%- assign g_expected_class = 'consumable' -%}
+{%- assign g_expected_variants = '46484253278405' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905779577029 -%}
+{%- assign g_expected_handle = 'arbor-size-conversion-bolt' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484253573317' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905779642565 -%}
+{%- assign g_expected_handle = 'arbor-spoke-nut' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484253638853' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905779871941 -%}
+{%- assign g_expected_handle = 'automatic-feed-clamp' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484253966533' -%}
+{%- assign g_expected_references = '8905784131781,8905784197317' -%}
+{%- assign g_expected_count = 2 -%}
+{%- assign g_target_contracts = '|8905784131781:sawmaster-18:46484258914501|8905784197317:sawmaster-24:46484258980037|' -%}
+{%- assign g_customer_ids = '|8905784131781|8905784197317|' -%}
+{%- when 8905780428997 -%}
+{%- assign g_expected_handle = 'debris-guard' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484254556357' -%}
+{%- assign g_expected_references = '8905781477573' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905781477573:lapmaster-18:46484255703237|' -%}
+{%- assign g_customer_ids = '|8905781477573|' -%}
+{%- when 8905780691141 -%}
+{%- assign g_expected_handle = 'drain-plug-trimmaster' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484254884037' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- when 8905781018821 -%}
+{%- assign g_expected_handle = 'flexible-shaft-attachment' -%}
+{%- assign g_expected_class = 'accessory' -%}
+{%- assign g_expected_variants = '46484255244485' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905781182661 -%}
+{%- assign g_expected_handle = 'flexible-water-spout' -%}
+{%- assign g_expected_class = 'accessory' -%}
+{%- assign g_expected_variants = '46484255408325' -%}
+{%- assign g_expected_references = '8905781477573' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905781477573:lapmaster-18:46484255703237|' -%}
+{%- assign g_customer_ids = '|8905781477573|' -%}
+{%- when 8905781969093 -%}
+{%- assign g_expected_handle = 'left-arbor-shaft' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484256260293' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905782034629 -%}
+{%- assign g_expected_handle = 'left-moss-pad' -%}
+{%- assign g_expected_class = 'consumable' -%}
+{%- assign g_expected_variants = '46484256325829' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905782165701 -%}
+{%- assign g_expected_handle = 'magnifying-glass-arm' -%}
+{%- assign g_expected_class = 'accessory' -%}
+{%- assign g_expected_variants = '46484256522437' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905782493381 -%}
+{%- assign g_expected_handle = 'moss-pad-pack' -%}
+{%- assign g_expected_class = 'consumable' -%}
+{%- assign g_expected_variants = '46484256882885' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905782984901 -%}
+{%- assign g_expected_handle = 'plexiglass-insert-spacer-set' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484257472709' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- when 8905783083205 -%}
+{%- assign g_expected_handle = 'power-grip-belt' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484257571013' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- when 8905783115973 -%}
+{%- assign g_expected_handle = 'lapmaster-pulleys' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484257603781' -%}
+{%- assign g_expected_references = '8905781477573' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905781477573:lapmaster-18:46484255703237|' -%}
+{%- assign g_customer_ids = '|8905781477573|' -%}
+{%- when 8905783312581 -%}
+{%- assign g_expected_handle = 'trimmaster-pulleys' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484257833157' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- when 8905783509189 -%}
+{%- assign g_expected_handle = 'right-arbor-shaft' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484258095301' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905783574725 -%}
+{%- assign g_expected_handle = 'right-moss-pad' -%}
+{%- assign g_expected_class = 'consumable' -%}
+{%- assign g_expected_variants = '46484258160837' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905783640261 -%}
+{%- assign g_expected_handle = 'right-plexiglass-spray-guard' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484258226373' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905783673029 -%}
+{%- assign g_expected_handle = 'rotation-table' -%}
+{%- assign g_expected_class = 'accessory' -%}
+{%- assign g_expected_variants = '46484258259141' -%}
+{%- assign g_expected_references = '8905781477573' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905781477573:lapmaster-18:46484255703237|' -%}
+{%- assign g_customer_ids = '|8905781477573|' -%}
+{%- when 8905783771333 -%}
+{%- assign g_expected_handle = 'rotational-lock' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484258390213' -%}
+{%- assign g_expected_references = '8905781477573' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905781477573:lapmaster-18:46484255703237|' -%}
+{%- assign g_customer_ids = '|8905781477573|' -%}
+{%- when 8905783869637 -%}
+{%- assign g_expected_handle = 'rotational-lock-handle' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484258554053' -%}
+{%- assign g_expected_references = '8905781477573' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905781477573:lapmaster-18:46484255703237|' -%}
+{%- assign g_customer_ids = '|8905781477573|' -%}
+{%- when 8905783935173 -%}
+{%- assign g_expected_handle = 'lapmaster-feet' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484258586821' -%}
+{%- assign g_expected_references = '8905781477573' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905781477573:lapmaster-18:46484255703237|' -%}
+{%- assign g_customer_ids = '|8905781477573|' -%}
+{%- when 8905784787141 -%}
+{%- assign g_expected_handle = 'spotlight' -%}
+{%- assign g_expected_class = 'accessory' -%}
+{%- assign g_expected_variants = '46484259602629' -%}
+{%- assign g_expected_references = '8905780756677' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905780756677:em-1:46484254949573|' -%}
+{%- assign g_customer_ids = '|8905780756677|' -%}
+{%- when 8905785245893 -%}
+{%- assign g_expected_handle = 'triangle-latch-screw-set' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484260192453' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- when 8905785442501 -%}
+{%- assign g_expected_handle = 'trimmaster-feet' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484260454597' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- when 8905785540805 -%}
+{%- assign g_expected_handle = 'trimmaster-belt-guard' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484260552901' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- when 8905785606341 -%}
+{%- assign g_expected_handle = 'plexiglass-insert' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484260651205' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- when 8905785737413 -%}
+{%- assign g_expected_handle = 'trimmaster-splash-guard-upper' -%}
+{%- assign g_expected_class = 'replacement_part' -%}
+{%- assign g_expected_variants = '46484260782277' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- when 8905785802949 -%}
+{%- assign g_expected_handle = 'trimmaster-straight-edge-guide' -%}
+{%- assign g_expected_class = 'accessory' -%}
+{%- assign g_expected_variants = '46484260815045' -%}
+{%- assign g_expected_references = '8905785344197' -%}
+{%- assign g_expected_count = 1 -%}
+{%- assign g_target_contracts = '|8905785344197:trimmaster:46484260290757|' -%}
+{%- assign g_customer_ids = '|8905785344197|' -%}
+{%- endcase -%}
+{%- assign g_machines = product.metafields.rhino.compatible_machines.value | sort: 'id' -%}
+{%- assign g_references = g_machines | map: 'id' | join: ',' -%}
+{%- assign g_variants = product.variants | map: 'id' | sort | join: ',' -%}
+{%- if g_expected_handle != nil and product.handle == g_expected_handle and product.metafields.rhino.product_class.value == g_expected_class and product.metafields.rhino.compatible_machines.value.size == g_expected_count and g_references == g_expected_references and g_variants == g_expected_variants -%}
+{%- assign g_targets_valid = true -%}
+{%- for g_machine in g_machines -%}
+{%- assign g_machine_variants = g_machine.variants | map: 'id' | sort | join: ',' -%}
+{%- capture g_contract -%}|{{ g_machine.id }}:{{ g_machine.handle }}:{{ g_machine_variants }}|{%- endcapture -%}
+{%- unless g_target_contracts contains g_contract and g_machine.metafields.rhino.product_class.type == 'single_line_text_field' and g_machine.metafields.rhino.product_class.value == 'machine' -%}{%- assign g_targets_valid = false -%}{%- endunless -%}
+{%- endfor -%}
+{%- if g_targets_valid -%}{%- capture g_links -%}
+{%- for g_machine in g_machines -%}
+{%- capture g_machine_key -%}|{{ g_machine.id }}|{%- endcapture -%}
+{%- assign g_machine_published = g_machine.published_at | date: '%s' | plus: 0 -%}
+{%- if g_customer_ids contains g_machine_key and g_machine.published_at != blank and g_machine_published <= g_now -%}
+<li><a class="link" href="{{ g_machine.url | escape }}" data-rhino-g-machine="{{ g_machine.id }}">{{ g_machine.title | escape }}</a></li>
+{%- endif -%}{%- endfor -%}{%- endcapture -%}
+{%- assign g_links = g_links | strip -%}
+{%- if g_links != blank -%}
+<rhino-g-fit hidden data-product-id="{{ product.id }}" data-valid-from="2026-10-20T16:13:31.588Z" data-expires-at="2026-10-20T17:06:42.312Z" data-projection="36116c18a75a9fcdb259f2ce73caa259f9a1a0a0d0d58530da7501e8f8171fc2" role="region" aria-labelledby="GFit-{{ section.id }}">
+<h2 id="GFit-{{ section.id }}">{{ heading | escape }}</h2><ul role="list">{{ g_links }}</ul></rhino-g-fit>
+{%- endif -%}{%- endif -%}{%- endif -%}{%- endif -%}
+
