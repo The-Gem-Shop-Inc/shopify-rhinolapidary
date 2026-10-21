@@ -1,0 +1,1104 @@
+{
+  "schemaVersion": 1,
+  "adminCurrentRead": "succeeded",
+  "environment": "Shopify Admin connector; merchant store; read-only",
+  "api": "Shopify Admin GraphQL",
+  "apiVersion": null,
+  "apiVersionEvidence": "Connector does not expose negotiated endpoint version; validated against connector schema",
+  "observedAt": "2026-09-30T17:14:01.434Z",
+  "shop": {
+    "id": "gid://shopify/Shop/79279947973",
+    "name": "Rhino Lapidary",
+    "myshopifyDomain": "sz5dnk-nf.myshopify.com",
+    "primaryDomain": {
+      "url": "https://rhino-lapidary.myshopify.com"
+    }
+  },
+  "queries": [
+    {
+      "dataset": "currentMachineRead",
+      "tool": "mcp__codex_apps__shopify_graphql_query",
+      "startedAt": "2026-09-30T17:08:12.748Z",
+      "completedAt": "2026-09-30T17:08:13.700Z",
+      "query": "query EpicFActivationMachineAudit($ids: [ID!]!) {\n shop { id name myshopifyDomain primaryDomain { url } }\n nodes(ids: $ids) { ... on Product {\n id title handle status templateSuffix updatedAt publishedAt onlineStoreUrl\n metafields(namespace: \"rhino\", first: 25) { nodes { id namespace key type jsonValue updatedAt definition { id } } pageInfo { hasNextPage endCursor } }\n media(first: 10) { nodes { id mediaContentType status alt ... on MediaImage { updatedAt image { url width height altText } } } pageInfo { hasNextPage endCursor } }\n resourcePublicationsV2(first: 10, onlyPublished: false) { nodes { publication { id } publishDate isPublished } pageInfo { hasNextPage endCursor } }\n variants(first: 5) { nodes { id availableForSale inventoryPolicy updatedAt } pageInfo { hasNextPage endCursor } }\n } }\n}",
+      "variables": {
+        "ids": [
+          "gid://shopify/Product/8905779937477",
+          "gid://shopify/Product/8905780756677",
+          "gid://shopify/Product/8905781248197",
+          "gid://shopify/Product/8905781412037",
+          "gid://shopify/Product/8905781477573",
+          "gid://shopify/Product/8905784131781",
+          "gid://shopify/Product/8905784197317",
+          "gid://shopify/Product/8905784262853",
+          "gid://shopify/Product/8905784328389",
+          "gid://shopify/Product/8905785344197",
+          "gid://shopify/Product/8905785868485"
+        ]
+      },
+      "data": {
+        "shop": {
+          "id": "gid://shopify/Shop/79279947973",
+          "name": "Rhino Lapidary",
+          "myshopifyDomain": "sz5dnk-nf.myshopify.com",
+          "primaryDomain": {
+            "url": "https://rhino-lapidary.myshopify.com"
+          }
+        },
+        "nodes": [
+          {
+            "id": "gid://shopify/Product/8905779937477",
+            "title": "BeadMaster 6\"",
+            "handle": "beadmaster",
+            "status": "ACTIVE",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:26:56Z",
+            "publishedAt": "2026-07-02T16:54:05Z",
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451099455685",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-20T18:10:42Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p78_i10_w1440.jpg?v=1783011248",
+                    "width": 1440,
+                    "height": 1440,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTA5OTQ1NTY4NSwibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": "2026-07-02T16:54:05Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": "2026-07-02T16:54:06Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": "2026-07-02T16:54:06Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": "2026-08-18T17:18:05Z",
+                  "isPublished": true
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMTA4MjY5MywibGFzdF92YWx1ZSI6MjY0MTIwMzEwODI2OTN9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484254032069",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-08-31T19:55:47Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NDAzMjA2OSwibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905780756677",
+            "title": "EM-1 Machine",
+            "handle": "em-1",
+            "status": "ACTIVE",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:27:11Z",
+            "publishedAt": "2026-07-02T16:54:18Z",
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451101683909",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-20T18:10:42Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p1_i9_w2489.jpg?v=1783011260",
+                    "width": 2489,
+                    "height": 2189,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwMTY4MzkwOSwibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": "2026-07-02T16:54:18Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": "2026-07-02T16:54:18Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": "2026-07-02T16:54:18Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": "2026-08-18T17:18:07Z",
+                  "isPublished": true
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMTcwNTI4NSwibGFzdF92YWx1ZSI6MjY0MTIwMzE3MDUyODV9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484254949573",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-08-31T19:45:46Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NDk0OTU3MywibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905781248197",
+            "title": "JadeMaster, 14\"",
+            "handle": "jademaster",
+            "status": "ACTIVE",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T18:26:46Z",
+            "publishedAt": null,
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451104075973",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-20T18:10:42Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p86_i1_w1440.jpg?v=1783011269",
+                    "width": 1440,
+                    "height": 1440,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDA3NTk3MywibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": "2026-08-31T19:44:35Z",
+                  "isPublished": true
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNTQ5ODE5MzY1ODA1MywibGFzdF92YWx1ZSI6MjU0OTgxOTM2NTgwNTN9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484255473861",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-09-01T21:53:46Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTQ3Mzg2MSwibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905781412037",
+            "title": "LapMaster 12\"",
+            "handle": "lapmaster-12",
+            "status": "ACTIVE",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:27:11Z",
+            "publishedAt": "2026-07-02T16:54:30Z",
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451104895173",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-20T18:10:42Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p81_i5_w1440.jpg?v=1783011273",
+                    "width": 1440,
+                    "height": 1440,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDg5NTE3MywibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": "2026-07-02T16:54:30Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": "2026-07-02T16:54:31Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": "2026-07-02T16:54:31Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": "2026-08-18T17:18:09Z",
+                  "isPublished": true
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMjM5MzQxMywibGFzdF92YWx1ZSI6MjY0MTIwMzIzOTM0MTN9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484255637701",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-07-02T16:54:30Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTYzNzcwMSwibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905781477573",
+            "title": "LapMaster 18\"",
+            "handle": "lapmaster-18",
+            "status": "ACTIVE",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:27:11Z",
+            "publishedAt": "2026-07-02T16:54:31Z",
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451105255621",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-20T18:10:42Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p82_i2_w1440.jpg?v=1783011274",
+                    "width": 1440,
+                    "height": 1440,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNTI1NTYyMSwibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": "2026-07-02T16:54:31Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": "2026-07-02T16:54:32Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": "2026-07-02T16:54:32Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": "2026-08-18T17:18:09Z",
+                  "isPublished": true
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMjQyNjE4MSwibGFzdF92YWx1ZSI6MjY0MTIwMzI0MjYxODF9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484255703237",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-07-02T16:54:31Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTcwMzIzNywibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905784131781",
+            "title": "SawMaster 18\"",
+            "handle": "sawmaster-18",
+            "status": "ACTIVE",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:27:43Z",
+            "publishedAt": "2026-07-02T16:55:19Z",
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451117576389",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-20T18:10:42Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p83_i6_w1440.jpg?v=1783011322",
+                    "width": 1440,
+                    "height": 1440,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzU3NjM4OSwibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": "2026-07-02T16:55:19Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": "2026-07-02T16:55:20Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": "2026-07-02T16:55:20Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": "2026-08-18T17:18:17Z",
+                  "isPublished": true
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNDk4MjA4NSwibGFzdF92YWx1ZSI6MjY0MTIwMzQ5ODIwODV9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484258914501",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-08-31T19:42:07Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1ODkxNDUwMSwibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905784197317",
+            "title": "SawMaster 24\"",
+            "handle": "sawmaster-24",
+            "status": "ACTIVE",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:27:43Z",
+            "publishedAt": "2026-07-02T16:55:20Z",
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451117871301",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-21T20:11:01Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+                    "width": 1440,
+                    "height": 1440,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": "2026-07-02T16:55:20Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": "2026-07-02T16:55:21Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": "2026-07-02T16:55:21Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": "2026-08-18T17:18:17Z",
+                  "isPublished": true
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNTAxNDg1MywibGFzdF92YWx1ZSI6MjY0MTIwMzUwMTQ4NTN9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484258980037",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-08-31T19:39:21Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1ODk4MDAzNywibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905784262853",
+            "title": "SawMaster, 36\"",
+            "handle": "sawmaster-36",
+            "status": "DRAFT",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:27:43Z",
+            "publishedAt": null,
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451117871301",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-21T20:11:01Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+                    "width": 1440,
+                    "height": 1440,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": null,
+                  "isPublished": false
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": null,
+                  "isPublished": false
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": null,
+                  "isPublished": false
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": null,
+                  "isPublished": false
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNTA0NzYyMSwibGFzdF92YWx1ZSI6MjY0MTIwMzUwNDc2MjF9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484259045573",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-07-02T16:55:22Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1OTA0NTU3MywibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905784328389",
+            "title": "ShapeMaster 6\"",
+            "handle": "shapemaster",
+            "status": "ACTIVE",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:27:43Z",
+            "publishedAt": "2026-07-02T16:55:23Z",
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451118428357",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-20T18:10:42Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p79_i14_w1440.jpg?v=1783011325",
+                    "width": 1440,
+                    "height": 1440,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExODQyODM1NywibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": "2026-07-02T16:55:23Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": "2026-07-02T16:55:24Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": "2026-07-02T16:55:24Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": "2026-08-18T17:18:17Z",
+                  "isPublished": true
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNTExMzE1NywibGFzdF92YWx1ZSI6MjY0MTIwMzUxMTMxNTd9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484259111109",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-08-31T19:46:59Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1OTExMTEwOSwibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905785344197",
+            "title": "TrimMaster",
+            "handle": "trimmaster",
+            "status": "ACTIVE",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:27:55Z",
+            "publishedAt": "2026-07-02T16:55:43Z",
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/MediaImage/33451123409093",
+                  "mediaContentType": "IMAGE",
+                  "status": "READY",
+                  "alt": "",
+                  "updatedAt": "2026-08-20T18:10:42Z",
+                  "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p80_i20_w1440.jpg?v=1783011345",
+                    "width": 1440,
+                    "height": 1440,
+                    "altText": ""
+                  }
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEyMzQwOTA5MywibGFzdF92YWx1ZSI6IjEifQ=="
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": "2026-07-02T16:55:43Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": "2026-07-02T16:55:44Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": "2026-07-02T16:55:44Z",
+                  "isPublished": true
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": "2026-08-18T17:18:20Z",
+                  "isPublished": true
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNjAzMDY2MSwibGFzdF92YWx1ZSI6MjY0MTIwMzYwMzA2NjF9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484260290757",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-08-31T19:55:26Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI2MDI5MDc1NywibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          },
+          {
+            "id": "gid://shopify/Product/8905785868485",
+            "title": "TumbleMaster",
+            "handle": "tumblemaster",
+            "status": "DRAFT",
+            "templateSuffix": null,
+            "updatedAt": "2026-09-02T15:28:16Z",
+            "publishedAt": null,
+            "onlineStoreUrl": null,
+            "metafields": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            },
+            "resourcePublicationsV2": {
+              "nodes": [
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345582277"
+                  },
+                  "publishDate": null,
+                  "isPublished": false
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345615045"
+                  },
+                  "publishDate": null,
+                  "isPublished": false
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/207345647813"
+                  },
+                  "publishDate": null,
+                  "isPublished": false
+                },
+                {
+                  "publication": {
+                    "id": "gid://shopify/Publication/213331837125"
+                  },
+                  "publishDate": null,
+                  "isPublished": false
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNjQ1NjY0NSwibGFzdF92YWx1ZSI6MjY0MTIwMzY0NTY2NDV9"
+              }
+            },
+            "variants": {
+              "nodes": [
+                {
+                  "id": "gid://shopify/ProductVariant/46484260913349",
+                  "availableForSale": true,
+                  "inventoryPolicy": "DENY",
+                  "updatedAt": "2026-07-02T16:55:52Z"
+                }
+              ],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI2MDkxMzM0OSwibGFzdF92YWx1ZSI6MX0="
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "dataset": "currentDefinitionsRead",
+      "tool": "mcp__codex_apps__shopify_graphql_query",
+      "startedAt": null,
+      "completedAt": "2026-09-30T17:13:48.427Z",
+      "query": "query EpicFActivationDefinitionsAudit($after: String) {\n shop { id name myshopifyDomain }\n productDefinitions: metafieldDefinitions(ownerType: PRODUCT, namespace: \"rhino\", first: 50, after: $after) {\n nodes { id namespace key name ownerType type { name } access { admin storefront } validations { name value } }\n pageInfo { hasNextPage endCursor }\n }\n machineFamilyDefinition: metaobjectDefinitionByType(type: \"machine_family\") { id type name }\n}",
+      "variables": {},
+      "data": {
+        "shop": {
+          "id": "gid://shopify/Shop/79279947973",
+          "name": "Rhino Lapidary",
+          "myshopifyDomain": "sz5dnk-nf.myshopify.com"
+        },
+        "productDefinitions": {
+          "nodes": [],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        },
+        "machineFamilyDefinition": null
+      }
+    },
+    {
+      "dataset": "currentThemeRead",
+      "tool": "mcp__codex_apps__shopify_graphql_query",
+      "startedAt": null,
+      "completedAt": "2026-09-30T17:14:01.434Z",
+      "query": "query EpicFActivationThemeAudit { themes(first: 10) { nodes { id name role updatedAt files(filenames: [\"templates/product.machine.json\"], first: 1) { nodes { filename checksumMd5 updatedAt } pageInfo { hasNextPage endCursor } } } pageInfo { hasNextPage endCursor } } }",
+      "variables": {},
+      "data": {
+        "themes": {
+          "nodes": [
+            {
+              "id": "gid://shopify/OnlineStoreTheme/158572150981",
+              "name": "Horizon",
+              "role": "UNPUBLISHED",
+              "updatedAt": "2026-07-02T21:15:52Z",
+              "files": {
+                "nodes": [],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "InRlbXBsYXRlc1wvcHJvZHVjdC5tYWNoaW5lLmpzb24i"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/OnlineStoreTheme/158572347589",
+              "name": "Trade",
+              "role": "UNPUBLISHED",
+              "updatedAt": "2026-07-01T16:03:08Z",
+              "files": {
+                "nodes": [],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "InRlbXBsYXRlc1wvcHJvZHVjdC5tYWNoaW5lLmpzb24i"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/OnlineStoreTheme/158579622085",
+              "name": "shopify-rhinolapidary/main",
+              "role": "MAIN",
+              "updatedAt": "2026-08-20T19:54:05Z",
+              "files": {
+                "nodes": [],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "InRlbXBsYXRlc1wvcHJvZHVjdC5tYWNoaW5lLmpzb24i"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/OnlineStoreTheme/158631198917",
+              "name": "Rhino Lapidary - Preview",
+              "role": "UNPUBLISHED",
+              "updatedAt": "2026-08-27T18:04:28Z",
+              "files": {
+                "nodes": [],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "InRlbXBsYXRlc1wvcHJvZHVjdC5tYWNoaW5lLmpzb24i"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/OnlineStoreTheme/160251707589",
+              "name": "shopify-rhinolapidary/dev",
+              "role": "UNPUBLISHED",
+              "updatedAt": "2026-08-21T19:59:42Z",
+              "files": {
+                "nodes": [],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "InRlbXBsYXRlc1wvcHJvZHVjdC5tYWNoaW5lLmpzb24i"
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjoxNjAyNTE3MDc1ODksImxhc3RfdmFsdWUiOjE2MDI1MTcwNzU4OX0="
+          }
+        }
+      }
+    }
+  ],
+  "freshness": {
+    "maxAgeSeconds": 900,
+    "source": "data/epic-f-machine-template-rollout-policy.json#/beforeRead/maxAgeSeconds",
+    "interpretation": "Conservative review freshness boundary only. This bounded read lacks protected-field digests and is not the complete immediately-before-execution read required by F7."
+  },
+  "scopeLimitations": [
+    "No dependent accessory Product reads",
+    "No File/Page/policy/media rights/consent owner audits",
+    "No delivery/location configuration or full Variant metafield audit",
+    "No storefront navigation, submissions, analytics emission, performance certification or mutation"
+  ],
+  "mutations": 0
+}

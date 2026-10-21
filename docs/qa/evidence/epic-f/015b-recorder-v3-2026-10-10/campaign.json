@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-10T19:49:51.242Z",
+  "approvalMode": "delegated_development_override",
+  "methodIdentity": "EPIC_F_015B_LIVE_RECORDER_V3",
+  "methodSha256": "03611c152c662bcec5e1fee98435e3f6d92919b65a1a3daaefea87c3c63eb892",
+  "sourceBinding": {
+    "passed": true,
+    "checkedAt": "2026-10-10T19:49:51.187Z",
+    "themeIdentity": {
+      "id": "158579622085",
+      "name": "shopify-rhinolapidary/main",
+      "role": "MAIN"
+    },
+    "boundRuntimeFiles": 29,
+    "sourceBindingIdentity": "GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06",
+    "sourceBindingSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+    "headerSha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339",
+    "catalogCount": 122,
+    "distribution": {
+      "consumable": 39,
+      "accessory": 18,
+      "replacement_part": 54,
+      "machine": 11
+    },
+    "machineAssignments": 8,
+    "exclusions": 3,
+    "factualGrants": 0,
+    "beforeReadCompletedAt": "2026-10-10T19:48:41.294Z"
+  },
+  "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+  "plannedSamples": 6,
+  "fullCertificationSamples": 96,
+  "attempted": 1,
+  "valid": 0,
+  "invalid": 1,
+  "retries": 0,
+  "records": [],
+  "attemptJournal": [
+    {
+      "attempt": 1,
+      "cache": "cold",
+      "slot": 1,
+      "probe": true,
+      "retry": false,
+      "valid": false,
+      "evidence": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/attempt-001-beadmaster-mobile-cold.json",
+      "integrity": [
+        "Incomplete mandatory CDP network totals or invalid CDP identity/safety"
+      ]
+    }
+  ],
+  "interRunDelays": [],
+  "probe": {
+    "predeclared": true,
+    "planned": 1,
+    "attempted": 1,
+    "valid": false,
+    "retainedAsColdSample1": false,
+    "noAutomaticRetry": true,
+    "identicalFrozenCertificationMethod": true,
+    "evidence": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/attempt-001-beadmaster-mobile-cold.json",
+    "invalidReason": [
+      "Incomplete mandatory CDP network totals or invalid CDP identity/safety"
+    ]
+  },
+  "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+  "persistentShopifyMutations": 0,
+  "fullCampaignRun": false,
+  "environment": {
+    "browser": "149.0.7827.55",
+    "Playwright": "1.61.1",
+    "Node": "v24.13.0",
+    "OS": "Windows_NT 10.0.26300"
+  },
+  "error": "Single integrity probe invalid; no retry, warm or further canary permitted",
+  "completedAt": "2026-10-10T19:50:06.525Z",
+  "secretDisposal": {
+    "cookiesPersisted": false,
+    "browserClosed": true
+  }
+}

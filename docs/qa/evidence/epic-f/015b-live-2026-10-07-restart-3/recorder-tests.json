@@ -1,0 +1,179 @@
+{
+  "passed": 5,
+  "failed": 0,
+  "tests": [
+    "all requests completed with actual byte observations",
+    "warm cache remains enabled",
+    "applied rule observed on request",
+    "HTTP 403 retained including bytes",
+    "cached image has zero network bytes"
+  ],
+  "cold": [
+    {
+      "url": "http://127.0.0.1:62894/",
+      "method": "GET",
+      "type": "Document",
+      "mimeType": "text/html",
+      "status": 200,
+      "completed": true,
+      "failed": false,
+      "bytes": 281,
+      "byteObservation": "measured",
+      "byteSource": "CDP encodedDataLength",
+      "cache": {
+        "servedFromCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": "CC1BADB71EDD341BE642114DD41BA2FA",
+      "cdpCorrelated": true,
+      "CDPCompletionObserved": true,
+      "failure": "",
+      "decision": {
+        "action": "ALLOW",
+        "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+        "passive": false,
+        "purpose": null
+      },
+      "startedAt": "2026-10-07T15:29:34.527Z"
+    },
+    {
+      "url": "http://127.0.0.1:62894/img",
+      "method": "GET",
+      "type": "Image",
+      "mimeType": "image/svg+xml",
+      "status": 200,
+      "completed": true,
+      "failed": false,
+      "bytes": 276,
+      "byteObservation": "measured",
+      "byteSource": "CDP encodedDataLength",
+      "cache": {
+        "servedFromCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": null,
+      "cdpCorrelated": true,
+      "CDPCompletionObserved": true,
+      "failure": "",
+      "decision": {
+        "action": "ALLOW",
+        "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+        "passive": true,
+        "purpose": null
+      },
+      "startedAt": "2026-10-07T15:29:35.147Z"
+    },
+    {
+      "url": "http://127.0.0.1:62894/denied",
+      "method": "GET",
+      "type": "Fetch",
+      "mimeType": "text/plain",
+      "status": 403,
+      "completed": true,
+      "failed": false,
+      "bytes": 208,
+      "byteObservation": "measured",
+      "byteSource": "CDP encodedDataLength",
+      "cache": {
+        "servedFromCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": "CC1BADB71EDD341BE642114DD41BA2FA",
+      "cdpCorrelated": true,
+      "CDPCompletionObserved": true,
+      "failure": "",
+      "decision": {
+        "action": "ALLOW",
+        "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+        "passive": false,
+        "purpose": null
+      },
+      "startedAt": "2026-10-07T15:29:35.160Z"
+    }
+  ],
+  "warm": [
+    {
+      "url": "http://127.0.0.1:62894/",
+      "method": "GET",
+      "type": "Document",
+      "mimeType": "text/html",
+      "status": 200,
+      "completed": true,
+      "failed": false,
+      "bytes": 281,
+      "byteObservation": "measured",
+      "byteSource": "CDP encodedDataLength",
+      "cache": {
+        "servedFromCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": "CC1BADB71EDD341BE642114DD41BA2FA",
+      "cdpCorrelated": true,
+      "CDPCompletionObserved": true,
+      "failure": "",
+      "decision": {
+        "action": "ALLOW",
+        "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+        "passive": false,
+        "purpose": null
+      },
+      "startedAt": "2026-10-07T15:29:37.253Z"
+    },
+    {
+      "url": "http://127.0.0.1:62894/img",
+      "method": "GET",
+      "type": "Image",
+      "mimeType": "image/svg+xml",
+      "status": 200,
+      "completed": true,
+      "failed": false,
+      "bytes": 0,
+      "byteObservation": "measured",
+      "byteSource": "CDP cache hit; zero network transfer (loadingFinished may report cached body length)",
+      "cache": {
+        "servedFromCache": true,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": null,
+      "cdpCorrelated": true,
+      "CDPCompletionObserved": true,
+      "failure": "",
+      "decision": {
+        "action": "ALLOW",
+        "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+        "passive": true,
+        "purpose": null
+      },
+      "startedAt": "2026-10-07T15:29:37.860Z"
+    },
+    {
+      "url": "http://127.0.0.1:62894/denied",
+      "method": "GET",
+      "type": "Fetch",
+      "mimeType": "text/plain",
+      "status": 403,
+      "completed": true,
+      "failed": false,
+      "bytes": 208,
+      "byteObservation": "measured",
+      "byteSource": "CDP encodedDataLength",
+      "cache": {
+        "servedFromCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": "CC1BADB71EDD341BE642114DD41BA2FA",
+      "cdpCorrelated": true,
+      "CDPCompletionObserved": true,
+      "failure": "",
+      "decision": {
+        "action": "ALLOW",
+        "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+        "passive": false,
+        "purpose": null
+      },
+      "startedAt": "2026-10-07T15:29:37.868Z"
+    }
+  ],
+  "assetNetworkRequests": 1,
+  "PlaywrightRoutingUsed": false
+}

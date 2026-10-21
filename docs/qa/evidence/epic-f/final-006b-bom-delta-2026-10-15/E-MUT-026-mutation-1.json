@@ -1,0 +1,65 @@
+{
+  "startedAt": "2026-10-15T20:24:40.974Z",
+  "completedAt": "2026-10-15T20:24:41.952Z",
+  "query": "mutation AmendedTechnicalValues($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type jsonValue compareDigest definition{id}} userErrors{field message}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905781248197",
+        "namespace": "rhino",
+        "key": "input_frequencies",
+        "type": "list.frequency",
+        "value": "[{\"value\":60,\"unit\":\"hertz\"}]",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905781248197",
+        "namespace": "rhino",
+        "key": "input_voltage",
+        "type": "voltage",
+        "value": "{\"value\":110,\"unit\":\"volts\"}",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71579106967749",
+            "namespace": "rhino",
+            "key": "input_frequencies",
+            "type": "list.frequency",
+            "jsonValue": [
+              {
+                "value": 60,
+                "unit": "hertz"
+              }
+            ],
+            "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658300101"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71579106934981",
+            "namespace": "rhino",
+            "key": "input_voltage",
+            "type": "voltage",
+            "jsonValue": {
+              "value": 110,
+              "unit": "VOLTS"
+            },
+            "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658267333"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  },
+  "isError": false
+}

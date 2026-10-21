@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "upstream": "data/epic-e-batch-3b-contracts.json",
+  "keyLimit": 3,
+  "fields": [
+    {
+      "id": "input_voltage",
+      "fields": [
+        "input_voltage"
+      ],
+      "domain": "electrical",
+      "labelKey": "products.product.machine_facts.fields.input_voltage",
+      "keyRole": true
+    },
+    {
+      "id": "input_frequencies",
+      "fields": [
+        "input_frequencies"
+      ],
+      "domain": "electrical",
+      "labelKey": "products.product.machine_facts.fields.input_frequencies",
+      "keyRole": false
+    },
+    {
+      "id": "motor_power",
+      "fields": [
+        "motor_power"
+      ],
+      "domain": "motor_speed",
+      "labelKey": "products.product.machine_facts.fields.motor_power",
+      "keyRole": false
+    },
+    {
+      "id": "motor_speed",
+      "fields": [
+        "motor_speed"
+      ],
+      "domain": "motor_speed",
+      "labelKey": "products.product.machine_facts.fields.motor_speed",
+      "keyRole": false
+    },
+    {
+      "id": "wheel_speed",
+      "fields": [
+        "wheel_speed_min",
+        "wheel_speed_max"
+      ],
+      "domain": "motor_speed",
+      "labelKey": "products.product.machine_facts.fields.wheel_speed",
+      "keyRole": false
+    },
+    {
+      "id": "flex_shaft_speed",
+      "fields": [
+        "flex_shaft_speed_min",
+        "flex_shaft_speed_max"
+      ],
+      "domain": "motor_speed",
+      "labelKey": "products.product.machine_facts.fields.flex_shaft_speed",
+      "keyRole": false
+    },
+    {
+      "id": "blade_diameter",
+      "fields": [
+        "blade_diameter_min",
+        "blade_diameter_max"
+      ],
+      "domain": "tool_mount",
+      "labelKey": "products.product.machine_facts.fields.blade_diameter",
+      "keyRole": true
+    },
+    {
+      "id": "wheel_diameter",
+      "fields": [
+        "wheel_diameter"
+      ],
+      "domain": "tool_mount",
+      "labelKey": "products.product.machine_facts.fields.wheel_diameter",
+      "keyRole": true
+    },
+    {
+      "id": "blade_arbor_diameter",
+      "fields": [
+        "blade_arbor_diameter"
+      ],
+      "domain": "tool_mount",
+      "labelKey": "products.product.machine_facts.fields.blade_arbor_diameter",
+      "keyRole": false
+    },
+    {
+      "id": "wheel_arbor_diameter",
+      "fields": [
+        "wheel_arbor_diameter"
+      ],
+      "domain": "tool_mount",
+      "labelKey": "products.product.machine_facts.fields.wheel_arbor_diameter",
+      "keyRole": false
+    },
+    {
+      "id": "water_reservoir_capacity",
+      "fields": [
+        "water_reservoir_capacity"
+      ],
+      "domain": "water_fluid",
+      "labelKey": "products.product.machine_facts.fields.water_reservoir_capacity",
+      "keyRole": false
+    },
+    {
+      "id": "cutting_oil_fill",
+      "fields": [
+        "cutting_oil_fill_min",
+        "cutting_oil_fill_max"
+      ],
+      "domain": "water_fluid",
+      "labelKey": "products.product.machine_facts.fields.cutting_oil_fill",
+      "keyRole": false
+    },
+    {
+      "id": "water_system_type",
+      "fields": [
+        "water_system_type"
+      ],
+      "domain": "water_fluid",
+      "labelKey": "products.product.machine_facts.fields.water_system_type",
+      "keyRole": false
+    },
+    {
+      "id": "net_weight",
+      "fields": [
+        "net_weight"
+      ],
+      "domain": "durable_measurements",
+      "labelKey": "products.product.machine_facts.fields.net_weight",
+      "keyRole": false
+    },
+    {
+      "id": "assembled_length",
+      "fields": [
+        "assembled_length"
+      ],
+      "domain": "durable_measurements",
+      "labelKey": "products.product.machine_facts.fields.assembled_length",
+      "keyRole": false
+    },
+    {
+      "id": "assembled_width",
+      "fields": [
+        "assembled_width"
+      ],
+      "domain": "durable_measurements",
+      "labelKey": "products.product.machine_facts.fields.assembled_width",
+      "keyRole": false
+    },
+    {
+      "id": "assembled_height",
+      "fields": [
+        "assembled_height"
+      ],
+      "domain": "durable_measurements",
+      "labelKey": "products.product.machine_facts.fields.assembled_height",
+      "keyRole": false
+    },
+    {
+      "id": "crate_length",
+      "fields": [
+        "crate_length"
+      ],
+      "domain": "crate_measurements",
+      "labelKey": "products.product.machine_facts.fields.crate_length",
+      "keyRole": false
+    },
+    {
+      "id": "crate_width",
+      "fields": [
+        "crate_width"
+      ],
+      "domain": "crate_measurements",
+      "labelKey": "products.product.machine_facts.fields.crate_width",
+      "keyRole": false
+    },
+    {
+      "id": "crate_height",
+      "fields": [
+        "crate_height"
+      ],
+      "domain": "crate_measurements",
+      "labelKey": "products.product.machine_facts.fields.crate_height",
+      "keyRole": false
+    }
+  ],
+  "contents": [
+    {
+      "field": "included_products",
+      "domain": "included_components",
+      "meaning": "included",
+      "quantityRequired": true
+    },
+    {
+      "field": "optional_products",
+      "domain": "optional_components",
+      "meaning": "optional",
+      "quantityRequired": false
+    },
+    {
+      "field": "recommended_products",
+      "domain": "recommendations",
+      "meaning": "recommended",
+      "quantityRequired": false
+    }
+  ],
+  "unsupported": [
+    "blade_speed",
+    "mount_thread",
+    "net_dimensions",
+    "packaged_dimensions",
+    "shipping_weight",
+    "operating_footprint",
+    "package_count"
+  ],
+  "conversions": []
+}

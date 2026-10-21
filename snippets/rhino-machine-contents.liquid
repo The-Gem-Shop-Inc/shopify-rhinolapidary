@@ -1,0 +1,29 @@
+{%- if request.host == 'machine.local' and projection.fixture_only -%}
+{%- if projection.contents.size > 0 -%}
+  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  <section class="rhino-machine-facts rhino-machine-contents" aria-labelledby="MachineContents-{{ section.id }}">
+    <h2 id="MachineContents-{{ section.id }}">{{ 'products.product.machine_facts.contents' | t }}</h2>
+    {% for group in projection.contents %}
+      {% if group.items.size > 0 %}
+        <section aria-labelledby="MachineContents-{{ section.id }}-{{ group.meaning }}">
+          <h3 id="MachineContents-{{ section.id }}-{{ group.meaning }}">{{ group.label_key | t }}</h3>
+          <ul class="rhino-machine-contents-list" role="list">
+            {% for item in group.items %}
+              <li class="rhino-machine-component"{% if item.quantity %} aria-describedby="ComponentQuantity-{{ section.id }}-{{ group.meaning }}-{{ forloop.index }}"{% endif %}>
+                {% if item.product %}
+                  {% assign contents_section_id = section.id | append: '-contents-' | append: group.meaning | append: '-' | append: forloop.index %}
+                  {% render 'card-product', card_product: item.product, section_id: contents_section_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true %}
+                {% else %}
+                  <span>{{ item.label | escape }}</span>
+                {% endif %}
+                {% if item.quantity %}<p id="ComponentQuantity-{{ section.id }}-{{ group.meaning }}-{{ forloop.index }}">{{ 'products.product.machine_facts.quantity' | t: count: item.quantity }}</p>{% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+    {% endfor %}
+  </section>
+{%- endif -%}
+{%- endif -%}

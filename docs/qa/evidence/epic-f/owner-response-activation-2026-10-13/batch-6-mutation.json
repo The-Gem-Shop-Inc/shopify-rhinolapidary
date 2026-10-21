@@ -1,0 +1,46 @@
+{
+  "completedAt": "2026-10-13 20:25:14 UTC",
+  "query": "mutation OwnerFactsSet($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type value jsonValue compareDigest owner{...on Product{id}}definition{id}}userErrors{field message code}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "noncatalog_components",
+        "type": "json",
+        "value": "[{\"label\":\"Moss Filtration Pads\",\"quantity\":2,\"meaning\":\"included\"}]",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71530344415429",
+            "namespace": "rhino",
+            "key": "noncatalog_components",
+            "type": "json",
+            "value": "[{\"label\":\"Moss Filtration Pads\",\"quantity\":2,\"meaning\":\"included\"}]",
+            "jsonValue": [
+              {
+                "label": "Moss Filtration Pads",
+                "quantity": 2,
+                "meaning": "included"
+              }
+            ],
+            "compareDigest": "6b7f02b71e0e3c68ff1e93f6d18629e8d364201fcb75cbe0bc9a719189ca25cc",
+            "owner": {
+              "id": "gid://shopify/Product/8905780756677"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660430021"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  }
+}

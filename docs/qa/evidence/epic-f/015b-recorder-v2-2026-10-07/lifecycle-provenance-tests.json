@@ -1,0 +1,675 @@
+{
+  "assessedAt": "2026-10-07T17:39:38.998Z",
+  "passed": 32,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "measured normal resource counts",
+      "passed": true
+    },
+    {
+      "name": "measured telemetry counts without URL exclusion",
+      "passed": true
+    },
+    {
+      "name": "admitted request finishes during terminal drain",
+      "passed": true
+    },
+    {
+      "name": "unresolved admitted request invalidates completeness",
+      "passed": true
+    },
+    {
+      "name": "post-window request not admitted",
+      "passed": true
+    },
+    {
+      "name": "explicit loadingFailed distinct from unresolved",
+      "passed": true
+    },
+    {
+      "name": "missing encoded bytes remain null despite loadingFinished",
+      "passed": true
+    },
+    {
+      "name": "provenance retains target frame loader ID timestamp and initiator",
+      "passed": true
+    },
+    {
+      "name": "bounded drain freezes metric/request window",
+      "passed": true
+    },
+    {
+      "name": "cold policy unchanged and valid",
+      "passed": true
+    },
+    {
+      "name": "warm requires isolated A/B sharing one context",
+      "passed": true
+    },
+    {
+      "name": "reject warm without prime",
+      "passed": true
+    },
+    {
+      "name": "reject wrong prime route",
+      "passed": true
+    },
+    {
+      "name": "reject clear after prime",
+      "passed": true
+    },
+    {
+      "name": "reject cold with prior navigation",
+      "passed": true
+    },
+    {
+      "name": "reject missing cache state",
+      "passed": true
+    },
+    {
+      "name": "reject same target A/B",
+      "passed": true
+    },
+    {
+      "name": "reject same page A/B",
+      "passed": true
+    },
+    {
+      "name": "reject unclosed prime",
+      "passed": true
+    },
+    {
+      "name": "reject CDN cached does not establish warm",
+      "passed": true
+    },
+    {
+      "name": "reject reused measured context",
+      "passed": true
+    },
+    {
+      "name": "no telemetry URL blacklist in V2 recorder",
+      "passed": true
+    },
+    {
+      "name": "mandatory canary failure sufficient without remaining 90",
+      "passed": true
+    },
+    {
+      "name": "passing canary cannot certify full 96",
+      "passed": true
+    },
+    {
+      "name": "missing samples cannot be certified",
+      "passed": true
+    },
+    {
+      "name": "actual page B receives A-warmed HTTP cache",
+      "passed": true
+    },
+    {
+      "name": "actual prime unload telemetry occurred but is not in B record",
+      "passed": true
+    },
+    {
+      "name": "actual page B telemetry counted",
+      "passed": true
+    },
+    {
+      "name": "actual target IDs differ and measured provenance is exclusively B",
+      "passed": true
+    },
+    {
+      "name": "all local measured request terminal and byte evidence complete",
+      "passed": true
+    },
+    {
+      "name": "actual acknowledged throttle rule belongs to measured document",
+      "passed": true
+    },
+    {
+      "name": "fresh cold sample cannot inherit earlier context cache",
+      "passed": true
+    }
+  ],
+  "actualChromium": {
+    "browser": "149.0.7827.55",
+    "assetRequests": 1,
+    "assetRequestsAfterWarm": 1,
+    "prime": {
+      "rows": [
+        {
+          "url": "http://127.0.0.1:49876/products/beadmaster",
+          "method": "GET",
+          "type": "Document",
+          "mimeType": "text/html",
+          "status": 200,
+          "bytes": 421,
+          "terminalObserved": true,
+          "failed": false,
+          "completed": true,
+          "terminalState": "COMPLETED_WITH_BYTES",
+          "terminalEvent": "Network.loadingFinished",
+          "byteObservation": "measured",
+          "byteSource": "CDP encodedDataLength",
+          "cache": {
+            "servedFromCache": false,
+            "serviceWorker": false
+          },
+          "appliedNetworkRule": "55320E456DC1D05AC6DD4E2DD21D0E33",
+          "cdpCorrelated": true,
+          "CDPCompletionObserved": true,
+          "failure": "",
+          "blockedReason": null,
+          "decision": {
+            "action": "ALLOW",
+            "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+            "passive": false,
+            "purpose": null
+          },
+          "startedAt": "2026-10-07T17:39:32.556Z",
+          "provenance": {
+            "contextId": "local-warm",
+            "pageId": "A",
+            "targetId": "5C82BCF4DFF150DBD3A6A97D7F7F50DB",
+            "lifecycle": "PRIMING_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": "1AC8585EADCA0192627CC825F66A4922",
+            "requestSequence": 0,
+            "playwrightRequestOrdinal": 0,
+            "frameId": "5C82BCF4DFF150DBD3A6A97D7F7F50DB",
+            "frameUrl": "nullblank",
+            "loaderId": "1AC8585EADCA0192627CC825F66A4922",
+            "timestamp": 13091.194614,
+            "wallTime": 1791394772554.2332,
+            "playwrightStartTime": 1791394772555.115,
+            "correlation": "same target; unique wall time ±2ms + method + URL",
+            "initiator": {
+              "type": "other",
+              "url": null,
+              "lineNumber": null
+            },
+            "responseTiming": {
+              "requestTime": 13091.195548,
+              "proxyStart": 0.284,
+              "proxyEnd": 0.29,
+              "dnsStart": 0.366,
+              "dnsEnd": 1.699,
+              "connectStart": 1.699,
+              "connectEnd": 2.494,
+              "sslStart": -1,
+              "sslEnd": -1,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 2.628,
+              "sendEnd": 2.752,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 9.676,
+              "receiveHeadersEnd": 581.484
+            }
+          }
+        },
+        {
+          "url": "http://127.0.0.1:49876/asset.js",
+          "method": "GET",
+          "type": "Script",
+          "mimeType": "application/javascript",
+          "status": 200,
+          "bytes": 245,
+          "terminalObserved": true,
+          "failed": false,
+          "completed": true,
+          "terminalState": "COMPLETED_WITH_BYTES",
+          "terminalEvent": "Network.loadingFinished",
+          "byteObservation": "measured",
+          "byteSource": "CDP encodedDataLength",
+          "cache": {
+            "servedFromCache": false,
+            "serviceWorker": false
+          },
+          "appliedNetworkRule": null,
+          "cdpCorrelated": true,
+          "CDPCompletionObserved": true,
+          "failure": "",
+          "blockedReason": null,
+          "decision": {
+            "action": "ALLOW",
+            "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+            "passive": true,
+            "purpose": null
+          },
+          "startedAt": "2026-10-07T17:39:33.159Z",
+          "provenance": {
+            "contextId": "local-warm",
+            "pageId": "A",
+            "targetId": "5C82BCF4DFF150DBD3A6A97D7F7F50DB",
+            "lifecycle": "PRIMING_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": "8468.2",
+            "requestSequence": 0,
+            "playwrightRequestOrdinal": 1,
+            "frameId": "5C82BCF4DFF150DBD3A6A97D7F7F50DB",
+            "frameUrl": "http://127.0.0.1:49876/products/beadmaster",
+            "loaderId": "1AC8585EADCA0192627CC825F66A4922",
+            "timestamp": 13091.791198,
+            "wallTime": 1791394773150.964,
+            "playwrightStartTime": 1791394773152.7852,
+            "correlation": "same target; unique wall time ±2ms + method + URL",
+            "initiator": {
+              "type": "parser",
+              "url": "http://127.0.0.1:49876/products/beadmaster",
+              "lineNumber": 0
+            },
+            "responseTiming": {
+              "requestTime": 13091.793199,
+              "proxyStart": 0.073,
+              "proxyEnd": 0.076,
+              "dnsStart": -1,
+              "dnsEnd": -1,
+              "connectStart": -1,
+              "connectEnd": -1,
+              "sslStart": -1,
+              "sslEnd": -1,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 0.155,
+              "sendEnd": 0.24,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 0.696,
+              "receiveHeadersEnd": 595.228
+            }
+          }
+        },
+        {
+          "url": "http://127.0.0.1:49876/.well-known/native-measured-telemetry",
+          "method": "GET",
+          "type": "Fetch",
+          "mimeType": "",
+          "status": 200,
+          "bytes": 148,
+          "terminalObserved": true,
+          "failed": false,
+          "completed": true,
+          "terminalState": "COMPLETED_WITH_BYTES",
+          "terminalEvent": "Network.loadingFinished",
+          "byteObservation": "measured",
+          "byteSource": "CDP encodedDataLength",
+          "cache": {
+            "servedFromCache": false,
+            "serviceWorker": false
+          },
+          "appliedNetworkRule": null,
+          "cdpCorrelated": true,
+          "CDPCompletionObserved": true,
+          "failure": "",
+          "blockedReason": null,
+          "decision": {
+            "action": "ALLOW",
+            "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+            "passive": false,
+            "purpose": null
+          },
+          "startedAt": "2026-10-07T17:39:33.795Z",
+          "provenance": {
+            "contextId": "local-warm",
+            "pageId": "A",
+            "targetId": "5C82BCF4DFF150DBD3A6A97D7F7F50DB",
+            "lifecycle": "PRIMING_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": "8468.4",
+            "requestSequence": 0,
+            "playwrightRequestOrdinal": 2,
+            "frameId": "5C82BCF4DFF150DBD3A6A97D7F7F50DB",
+            "frameUrl": "http://127.0.0.1:49876/products/beadmaster",
+            "loaderId": "1AC8585EADCA0192627CC825F66A4922",
+            "timestamp": 13092.431897,
+            "wallTime": 1791394773792.055,
+            "playwrightStartTime": 1791394773793.241,
+            "correlation": "same target; unique wall time ±2ms + method + URL",
+            "initiator": {
+              "type": "script",
+              "url": null,
+              "lineNumber": null,
+              "stack": {
+                "callFrames": [
+                  {
+                    "functionName": "",
+                    "scriptId": "5",
+                    "url": "http://127.0.0.1:49876/products/beadmaster",
+                    "lineNumber": 0,
+                    "columnNumber": 71
+                  }
+                ]
+              }
+            },
+            "responseTiming": {
+              "requestTime": 13092.43327,
+              "proxyStart": 0.067,
+              "proxyEnd": 0.07,
+              "dnsStart": -1,
+              "dnsEnd": -1,
+              "connectStart": -1,
+              "connectEnd": -1,
+              "sslStart": -1,
+              "sslEnd": -1,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 0.147,
+              "sendEnd": 0.224,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 0.856,
+              "receiveHeadersEnd": 591.232
+            }
+          }
+        }
+      ],
+      "ambiguity": [],
+      "postWindow": [],
+      "window": {
+        "start": 1791394772550,
+        "close": 1791394775354,
+        "admittedCount": 3,
+        "metricsExtendedDuringDrain": false,
+        "maximumDrainMs": 5000,
+        "actualDrainMs": 1
+      }
+    },
+    "measured": {
+      "rows": [
+        {
+          "url": "http://127.0.0.1:49876/products/beadmaster",
+          "method": "GET",
+          "type": "Document",
+          "mimeType": "text/html",
+          "status": 200,
+          "bytes": 421,
+          "terminalObserved": true,
+          "failed": false,
+          "completed": true,
+          "terminalState": "COMPLETED_WITH_BYTES",
+          "terminalEvent": "Network.loadingFinished",
+          "byteObservation": "measured",
+          "byteSource": "CDP encodedDataLength",
+          "cache": {
+            "servedFromCache": false,
+            "serviceWorker": false
+          },
+          "appliedNetworkRule": "BF94784A0C458CB84049292E8A165FC8",
+          "cdpCorrelated": true,
+          "CDPCompletionObserved": true,
+          "failure": "",
+          "blockedReason": null,
+          "decision": {
+            "action": "ALLOW",
+            "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+            "passive": false,
+            "purpose": null
+          },
+          "startedAt": "2026-10-07T17:39:35.437Z",
+          "provenance": {
+            "contextId": "local-warm",
+            "pageId": "B",
+            "targetId": "D3EA0142E835D8F6895A741E536FDBDE",
+            "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": "A33B425937AA10D4AC3895CF403D05C9",
+            "requestSequence": 0,
+            "playwrightRequestOrdinal": 0,
+            "frameId": "D3EA0142E835D8F6895A741E536FDBDE",
+            "frameUrl": "nullblank",
+            "loaderId": "A33B425937AA10D4AC3895CF403D05C9",
+            "timestamp": 13094.078056,
+            "wallTime": 1791394775437.642,
+            "playwrightStartTime": 1791394775438.481,
+            "correlation": "same target; unique wall time ±2ms + method + URL",
+            "initiator": {
+              "type": "other",
+              "url": null,
+              "lineNumber": null
+            },
+            "responseTiming": {
+              "requestTime": 13094.078928,
+              "proxyStart": 0.054,
+              "proxyEnd": 0.057,
+              "dnsStart": -1,
+              "dnsEnd": -1,
+              "connectStart": -1,
+              "connectEnd": -1,
+              "sslStart": -1,
+              "sslEnd": -1,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 0.124,
+              "sendEnd": 0.2,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 0.556,
+              "receiveHeadersEnd": 590.04
+            }
+          }
+        },
+        {
+          "url": "http://127.0.0.1:49876/asset.js",
+          "method": "GET",
+          "type": "Script",
+          "mimeType": "application/javascript",
+          "status": 200,
+          "bytes": 0,
+          "terminalObserved": true,
+          "failed": false,
+          "completed": true,
+          "terminalState": "COMPLETED_WITH_BYTES",
+          "terminalEvent": "Network.loadingFinished",
+          "byteObservation": "measured",
+          "byteSource": "Observed browser cache hit plus explicit terminal completion: zero network transfer",
+          "cache": {
+            "servedFromCache": true,
+            "serviceWorker": false
+          },
+          "appliedNetworkRule": null,
+          "cdpCorrelated": true,
+          "CDPCompletionObserved": true,
+          "failure": "",
+          "blockedReason": null,
+          "decision": {
+            "action": "ALLOW",
+            "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+            "passive": true,
+            "purpose": null
+          },
+          "startedAt": "2026-10-07T17:39:36.050Z",
+          "provenance": {
+            "contextId": "local-warm",
+            "pageId": "B",
+            "targetId": "D3EA0142E835D8F6895A741E536FDBDE",
+            "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": "21324.2",
+            "requestSequence": 0,
+            "playwrightRequestOrdinal": 1,
+            "frameId": "D3EA0142E835D8F6895A741E536FDBDE",
+            "frameUrl": "http://127.0.0.1:49876/products/beadmaster",
+            "loaderId": "A33B425937AA10D4AC3895CF403D05C9",
+            "timestamp": 13094.681225,
+            "wallTime": 1791394776040.968,
+            "playwrightStartTime": 1791394776041.685,
+            "correlation": "same target; unique wall time ±2ms + method + URL",
+            "initiator": {
+              "type": "parser",
+              "url": "http://127.0.0.1:49876/products/beadmaster",
+              "lineNumber": 0
+            },
+            "responseTiming": {
+              "requestTime": 13094.682114,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": -1,
+              "dnsEnd": -1,
+              "connectStart": -1,
+              "connectEnd": -1,
+              "sslStart": -1,
+              "sslEnd": -1,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 0.049,
+              "sendEnd": 0.049,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 0.076,
+              "receiveHeadersEnd": 2.077
+            }
+          }
+        },
+        {
+          "url": "http://127.0.0.1:49876/.well-known/native-measured-telemetry",
+          "method": "GET",
+          "type": "Fetch",
+          "mimeType": "",
+          "status": 200,
+          "bytes": 148,
+          "terminalObserved": true,
+          "failed": false,
+          "completed": true,
+          "terminalState": "COMPLETED_WITH_BYTES",
+          "terminalEvent": "Network.loadingFinished",
+          "byteObservation": "measured",
+          "byteSource": "CDP encodedDataLength",
+          "cache": {
+            "servedFromCache": false,
+            "serviceWorker": false
+          },
+          "appliedNetworkRule": "BF94784A0C458CB84049292E8A165FC8",
+          "cdpCorrelated": true,
+          "CDPCompletionObserved": true,
+          "failure": "",
+          "blockedReason": null,
+          "decision": {
+            "action": "ALLOW",
+            "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+            "passive": false,
+            "purpose": null
+          },
+          "startedAt": "2026-10-07T17:39:36.060Z",
+          "provenance": {
+            "contextId": "local-warm",
+            "pageId": "B",
+            "targetId": "D3EA0142E835D8F6895A741E536FDBDE",
+            "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": "21324.4",
+            "requestSequence": 0,
+            "playwrightRequestOrdinal": 2,
+            "frameId": "D3EA0142E835D8F6895A741E536FDBDE",
+            "frameUrl": "http://127.0.0.1:49876/products/beadmaster",
+            "loaderId": "A33B425937AA10D4AC3895CF403D05C9",
+            "timestamp": 13094.698082,
+            "wallTime": 1791394776058.268,
+            "playwrightStartTime": 1791394776059.382,
+            "correlation": "same target; unique wall time ±2ms + method + URL",
+            "initiator": {
+              "type": "script",
+              "url": null,
+              "lineNumber": null,
+              "stack": {
+                "callFrames": [
+                  {
+                    "functionName": "",
+                    "scriptId": "5",
+                    "url": "http://127.0.0.1:49876/products/beadmaster",
+                    "lineNumber": 0,
+                    "columnNumber": 71
+                  }
+                ]
+              }
+            },
+            "responseTiming": {
+              "requestTime": 13094.69944,
+              "proxyStart": 0.127,
+              "proxyEnd": 0.131,
+              "dnsStart": -1,
+              "dnsEnd": -1,
+              "connectStart": -1,
+              "connectEnd": -1,
+              "sslStart": -1,
+              "sslEnd": -1,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 0.239,
+              "sendEnd": 0.358,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 1.089,
+              "receiveHeadersEnd": 581.009
+            }
+          }
+        }
+      ],
+      "ambiguity": [],
+      "postWindow": [],
+      "window": {
+        "start": 1791394775436,
+        "close": 1791394777605,
+        "admittedCount": 3,
+        "metricsExtendedDuringDrain": false,
+        "maximumDrainMs": 5000,
+        "actualDrainMs": 0
+      }
+    },
+    "primeTelemetryObserved": [
+      "/.well-known/native-measured-telemetry",
+      "/.well-known/prime-unload-telemetry",
+      "/.well-known/native-measured-telemetry",
+      "/.well-known/native-measured-telemetry"
+    ],
+    "appliedPrime": {
+      "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+      "appliedAt": "2026-10-07T17:39:32.548Z",
+      "network": {
+        "offline": false,
+        "latency": 562.5,
+        "downloadThroughput": 184320,
+        "uploadThroughput": 84375
+      },
+      "cpu": {
+        "rate": 4
+      },
+      "packetLoss": 0,
+      "ruleId": "55320E456DC1D05AC6DD4E2DD21D0E33",
+      "acknowledged": true,
+      "verificationMethod": "Exact CDP command acknowledgements plus per-request appliedNetworkConditionsId; local actual-network self-test. CDP exposes no numerical CPU getter."
+    },
+    "appliedMeasured": {
+      "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+      "appliedAt": "2026-10-07T17:39:35.434Z",
+      "network": {
+        "offline": false,
+        "latency": 562.5,
+        "downloadThroughput": 184320,
+        "uploadThroughput": 84375
+      },
+      "cpu": {
+        "rate": 4
+      },
+      "packetLoss": 0,
+      "ruleId": "BF94784A0C458CB84049292E8A165FC8",
+      "acknowledged": true,
+      "verificationMethod": "Exact CDP command acknowledgements plus per-request appliedNetworkConditionsId; local actual-network self-test. CDP exposes no numerical CPU getter."
+    }
+  },
+  "ShopifySamples": 0
+}

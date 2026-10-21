@@ -1,0 +1,45 @@
+'use strict';
+const assert = require('node:assert/strict');
+const { read, report } = require('./lib/epic-f-governance');
+const { validateContract, validateActivation, validateRuntime } = require('./lib/epic-f-machine-measurement');
+const original = read('data/epic-f-machine-measurement-contract.json');
+const fixture = read('tests/fixtures/epic-f-machine-measurement.json');
+const activationContext = { fixture, moduleActive: true, action: 'destination_activation' };
+const cases = [];
+function check(name, work) { work(); cases.push(name); }
+function rejectContract(name, mutate) { check(name, () => { const c = structuredClone(original); mutate(c); assert.ok(validateContract(c).length); }); }
+const contact = { productGid: fixture.productGid, module: 'contact', eventId: 'rhino:machine:contact-activate', destinationRoute: '/pages/contact' };
+const resource = { productGid: fixture.productGid, module: 'resources', eventId: 'rhino:machine:resource-activate', destinationRoute: fixture.resources[0].route, resourceId: fixture.resources[0].resourceId, variantGid: fixture.resources[0].variantGid };
+const contextual = { productGid: fixture.productGid, module: 'contextual', eventId: 'rhino:machine:context-navigate', destinationRoute: fixture.relationships[0].route, relationshipId: fixture.relationships[0].relationshipId, targetProductGid: fixture.relationships[0].targetProductGid };
+function rejectPayload(name, base, changes, options = {}) { check(name, () => assert.ok(validateActivation({ ...base, ...changes }, { ...activationContext, ...options }).length)); }
+check('contract with unresolved consent is valid but blocked', () => assert.deepEqual(validateContract(original), []));
+check('one native owner slot per action, no fabricated owner', () => assert.ok(original.nativeEvents.every(e => e.owner === null && e.ownerAssignment === 'unresolved' && !e.emissionByF)));
+for (const [name, payload] of Object.entries({ contact, resource, contextual, delivery: { ...contact, module: 'delivery', eventId: 'rhino:machine:delivery-navigate', destinationRoute: '/policies/shipping-policy' } })) check(`valid exact ${name} decision fixture`, () => assert.deepEqual(validateActivation(payload, activationContext), []));
+check('missing module/action state fails closed', () => assert.ok(validateActivation(contact, { fixture }).length));
+rejectContract('duplicate native owner', c => c.nativeEvents.push(structuredClone(c.nativeEvents[0])));
+rejectContract('same-size duplicate native owner displaces an action', c => c.nativeEvents[1] = structuredClone(c.nativeEvents[0]));
+rejectContract('F claims existing native owner', c => c.nativeEvents[0].owner = 'F');
+rejectContract('duplicate native event emission', c => c.nativeEvents[0].emissionByF = true);
+rejectContract('native event renamed to duplicate custom alias', c => c.nativeEvents[0].name = 'machine_view');
+rejectContract('optional owner slot claimed by F', c => c.optionalEvents[0].ownerSlot = 'F/optional/contact');
+rejectContract('deduplication strategy cannot be weakened', c => c.nativeEvents[0].deduplication.strategy = 'allow duplicates');
+rejectContract('native marked custom', c => c.nativeEvents[0].native = false);
+rejectContract('optional duplicate native alias', c => c.optionalEvents[0].name = 'machine_add_to_cart');
+rejectContract('missing question', c => c.optionalEvents[0].businessQuestionId = 'unknown');
+rejectContract('missing reporting owner', c => delete c.optionalEvents[0].reportingOwner);
+rejectContract('unresolved consent cannot be ready', c => c.optionalEvents[0].instrumentationState = 'ready');
+rejectContract('section expansion is not optional success', c => c.optionalEvents[0].decisionBoundary = 'accordion_expansion');
+check('shared registry duplicate native alias rejected', () => { const r = read('data/storefront-event-contracts.json'); r.events.push({ name: 'rhino:machine:purchase' }); assert.ok(validateContract(original, r).length); });
+rejectPayload('invalid Product GID', contact, { productGid: 'beadmaster' });
+rejectPayload('unknown exact Product GID', contact, { productGid: 'gid://shopify/Product/999' });
+rejectPayload('wrong Variant/Product pair', resource, { variantGid: 'gid://shopify/ProductVariant/46484249903301' });
+rejectPayload('invalid contextual target', contextual, { targetProductGid: fixture.productGid });
+rejectPayload('invalid contextual relationship', contextual, { relationshipId: 'wrong-edge' });
+rejectPayload('invalid resource identity', resource, { resourceId: 'unapproved-resource' });
+for (const route of ['/pages/contact?email=private', '/pages/contact#private', 'https://example.com/pages/contact', '//example.com/path', '/pages/%2e%2e/private', '/pages/%252e%252e/private', '/pages/../private', '/account/1234', '/pages/token-secret', '/pages/user@example.com']) rejectPayload(`unsafe/unapproved route: ${route}`, contact, { destinationRoute: route });
+for (const field of ['email', 'customerName', 'phone', 'address', 'accountId', 'orderNotes', 'formContents', 'inquiryText', 'searchText', 'description', 'domText', 'referrer', 'arbitrary']) rejectPayload(`unbounded or private field: ${field}`, contact, { [field]: 'forbidden' });
+rejectPayload('suppressed module event', contact, {}, { moduleActive: false });
+rejectPayload('section expansion action', contact, {}, { action: 'section_expansion' });
+rejectPayload('fixture-only release instrumentation', contact, {}, { release: true });
+check('no storefront code/config/budget changes', () => assert.deepEqual(validateRuntime(), []));
+report('measurement-tests', cases);

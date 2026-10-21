@@ -1,0 +1,85 @@
+{
+  "startedAt": "2026-10-15T20:24:48.160Z",
+  "completedAt": "2026-10-15T20:24:49.073Z",
+  "query": "mutation AmendedTechnicalValues($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type jsonValue compareDigest definition{id}} userErrors{field message}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905779937477",
+        "namespace": "rhino",
+        "key": "motor_power",
+        "type": "power",
+        "value": "{\"value\":1,\"unit\":\"horsepower\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "motor_speed",
+        "type": "rotational_speed",
+        "value": "{\"value\":3000,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784131781",
+        "namespace": "rhino",
+        "key": "motor_power",
+        "type": "power",
+        "value": "{\"value\":1,\"unit\":\"horsepower\"}",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71579110867141",
+            "namespace": "rhino",
+            "key": "motor_power",
+            "type": "power",
+            "jsonValue": {
+              "value": 1,
+              "unit": "HORSEPOWER"
+            },
+            "compareDigest": "aee0727953f9e10f4eb08539d056f9782d139eac9796eabba38fd0287fe0dd9c",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658332869"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71579110834373",
+            "namespace": "rhino",
+            "key": "motor_speed",
+            "type": "rotational_speed",
+            "jsonValue": {
+              "value": 3000,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658365637"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71579110801605",
+            "namespace": "rhino",
+            "key": "motor_power",
+            "type": "power",
+            "jsonValue": {
+              "value": 1,
+              "unit": "HORSEPOWER"
+            },
+            "compareDigest": "aee0727953f9e10f4eb08539d056f9782d139eac9796eabba38fd0287fe0dd9c",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658332869"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  },
+  "isError": false
+}

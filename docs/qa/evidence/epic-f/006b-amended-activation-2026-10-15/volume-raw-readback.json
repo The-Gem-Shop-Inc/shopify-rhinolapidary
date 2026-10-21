@@ -1,0 +1,348 @@
+{
+  "completedAt": "2026-10-15T18:13:59.034Z",
+  "query": "query AmendedVolumeReadback($ids:[ID!]!){nodes(ids:$ids){...on Product{id metafields(first:50,namespace:\"rhino\"){nodes{key type value jsonValue compareDigest}pageInfo{hasNextPage endCursor}}}}}",
+  "response": {
+    "data": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Product/8905781248197",
+          "metafields": {
+            "nodes": [
+              {
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "value": "machine",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7"
+              },
+              {
+                "key": "motor_speed",
+                "type": "rotational_speed",
+                "value": "{\"value\":1725.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+                "jsonValue": {
+                  "value": 1725,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "bc7a65017417fd88a1bce1d7d27f7b7678743b3650972e988f4cf8bd7aeec9eb"
+              },
+              {
+                "key": "motor_power",
+                "type": "power",
+                "value": "{\"value\":0.75,\"unit\":\"HORSEPOWER\"}",
+                "jsonValue": {
+                  "value": 0.75,
+                  "unit": "HORSEPOWER"
+                },
+                "compareDigest": "27077075f4d19d93fe27a7738ab20d1671355b2cc3be35b55388d39d24f6a61b"
+              },
+              {
+                "key": "cutting_oil_fill_min",
+                "type": "volume",
+                "value": "{\"value\":8.0,\"unit\":\"GALLONS\"}",
+                "jsonValue": {
+                  "value": 8,
+                  "unit": "GALLONS"
+                },
+                "compareDigest": "30d45f51dc7e131f303957da26e414b84928c077e02a8055f3ab525922fbcee9"
+              },
+              {
+                "key": "cutting_oil_fill_max",
+                "type": "volume",
+                "value": "{\"value\":8.0,\"unit\":\"GALLONS\"}",
+                "jsonValue": {
+                  "value": 8,
+                  "unit": "GALLONS"
+                },
+                "compareDigest": "30d45f51dc7e131f303957da26e414b84928c077e02a8055f3ab525922fbcee9"
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTU3NjM5Njc5MjAwNSwibGFzdF92YWx1ZSI6IjcxNTc2Mzk2NzkyMDA1In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905784131781",
+          "metafields": {
+            "nodes": [
+              {
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "value": "machine",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7"
+              },
+              {
+                "key": "input_voltage",
+                "type": "voltage",
+                "value": "{\"value\":110.0,\"unit\":\"VOLTS\"}",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748"
+              },
+              {
+                "key": "input_frequencies",
+                "type": "list.frequency",
+                "value": "[{\"value\":60.0,\"unit\":\"HERTZ\"}]",
+                "jsonValue": [
+                  {
+                    "value": 60,
+                    "unit": "hertz"
+                  }
+                ],
+                "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5"
+              },
+              {
+                "key": "motor_speed",
+                "type": "rotational_speed",
+                "value": "{\"value\":1700.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+                "jsonValue": {
+                  "value": 1700,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "e7d4b28f62a5ae781baa45d2360016795704a2b1947381c5bf2e3b7ae9d42ec8"
+              },
+              {
+                "key": "blade_diameter_max",
+                "type": "dimension",
+                "value": "{\"value\":18.0,\"unit\":\"INCHES\"}",
+                "jsonValue": {
+                  "value": 18,
+                  "unit": "INCHES"
+                },
+                "compareDigest": "8d4f5a3e3c4d5bd9fc13b1d4a1ae3ac1353ad9c9e184cb4af2d5f4b266987009"
+              },
+              {
+                "key": "blade_diameter_min",
+                "type": "dimension",
+                "value": "{\"value\":12.0,\"unit\":\"INCHES\"}",
+                "jsonValue": {
+                  "value": 12,
+                  "unit": "INCHES"
+                },
+                "compareDigest": "bf654380eb51e646a5ab227c4872d30594a81e100e5edcdd2eb0eb6904c9d3a4"
+              },
+              {
+                "key": "blade_arbor_diameter",
+                "type": "dimension",
+                "value": "{\"value\":1.0,\"unit\":\"INCHES\"}",
+                "jsonValue": {
+                  "value": 1,
+                  "unit": "INCHES"
+                },
+                "compareDigest": "5e0a6687d87124bf366af5e764a5a86bcb9e90535133a88b57a325f4e64c3691"
+              },
+              {
+                "key": "cutting_oil_fill_min",
+                "type": "volume",
+                "value": "{\"value\":8.0,\"unit\":\"GALLONS\"}",
+                "jsonValue": {
+                  "value": 8,
+                  "unit": "GALLONS"
+                },
+                "compareDigest": "30d45f51dc7e131f303957da26e414b84928c077e02a8055f3ab525922fbcee9"
+              },
+              {
+                "key": "cutting_oil_fill_max",
+                "type": "volume",
+                "value": "{\"value\":10.0,\"unit\":\"GALLONS\"}",
+                "jsonValue": {
+                  "value": 10,
+                  "unit": "GALLONS"
+                },
+                "compareDigest": "6b9578329e733b2e71424e3e3e5a7942639909ac6cd6e8a045999668fc490ee9"
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTU3NjM5NjcyNjQ2OSwibGFzdF92YWx1ZSI6IjcxNTc2Mzk2NzI2NDY5In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905784197317",
+          "metafields": {
+            "nodes": [
+              {
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "value": "machine",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7"
+              },
+              {
+                "key": "input_voltage",
+                "type": "voltage",
+                "value": "{\"value\":110.0,\"unit\":\"VOLTS\"}",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748"
+              },
+              {
+                "key": "input_frequencies",
+                "type": "list.frequency",
+                "value": "[{\"value\":60.0,\"unit\":\"HERTZ\"}]",
+                "jsonValue": [
+                  {
+                    "value": 60,
+                    "unit": "hertz"
+                  }
+                ],
+                "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5"
+              },
+              {
+                "key": "motor_speed",
+                "type": "rotational_speed",
+                "value": "{\"value\":1700.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+                "jsonValue": {
+                  "value": 1700,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "e7d4b28f62a5ae781baa45d2360016795704a2b1947381c5bf2e3b7ae9d42ec8"
+              },
+              {
+                "key": "blade_diameter_max",
+                "type": "dimension",
+                "value": "{\"value\":24.0,\"unit\":\"INCHES\"}",
+                "jsonValue": {
+                  "value": 24,
+                  "unit": "INCHES"
+                },
+                "compareDigest": "490262fd71ead2f65fc32fea70a38c2b2018f7f2b9005acc171cb370d9e7b4d8"
+              },
+              {
+                "key": "motor_power",
+                "type": "power",
+                "value": "{\"value\":2.0,\"unit\":\"HORSEPOWER\"}",
+                "jsonValue": {
+                  "value": 2,
+                  "unit": "HORSEPOWER"
+                },
+                "compareDigest": "032957e0bb8a25a83c1a10c3bd5a48e477b21b8a44ee2f6029f43bda5f82b018"
+              },
+              {
+                "key": "blade_diameter_min",
+                "type": "dimension",
+                "value": "{\"value\":16.0,\"unit\":\"INCHES\"}",
+                "jsonValue": {
+                  "value": 16,
+                  "unit": "INCHES"
+                },
+                "compareDigest": "64318ee5cf997c435f2088fb4e90315b151cd16b1d3acc340346708b4fed8bd0"
+              },
+              {
+                "key": "blade_arbor_diameter",
+                "type": "dimension",
+                "value": "{\"value\":1.0,\"unit\":\"INCHES\"}",
+                "jsonValue": {
+                  "value": 1,
+                  "unit": "INCHES"
+                },
+                "compareDigest": "5e0a6687d87124bf366af5e764a5a86bcb9e90535133a88b57a325f4e64c3691"
+              },
+              {
+                "key": "cutting_oil_fill_min",
+                "type": "volume",
+                "value": "{\"value\":12.0,\"unit\":\"GALLONS\"}",
+                "jsonValue": {
+                  "value": 12,
+                  "unit": "GALLONS"
+                },
+                "compareDigest": "b2de12ac51ef6c78e662d9921c6a1c7effc96ded97b33a181869d30d8f7a146d"
+              },
+              {
+                "key": "cutting_oil_fill_max",
+                "type": "volume",
+                "value": "{\"value\":12.0,\"unit\":\"GALLONS\"}",
+                "jsonValue": {
+                  "value": 12,
+                  "unit": "GALLONS"
+                },
+                "compareDigest": "b2de12ac51ef6c78e662d9921c6a1c7effc96ded97b33a181869d30d8f7a146d"
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTU3NjM5NjY2MDkzMywibGFzdF92YWx1ZSI6IjcxNTc2Mzk2NjYwOTMzIn0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905784262853",
+          "metafields": {
+            "nodes": [
+              {
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "value": "machine",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7"
+              },
+              {
+                "key": "input_voltage",
+                "type": "voltage",
+                "value": "{\"value\":110.0,\"unit\":\"VOLTS\"}",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748"
+              },
+              {
+                "key": "input_frequencies",
+                "type": "list.frequency",
+                "value": "[{\"value\":60.0,\"unit\":\"HERTZ\"}]",
+                "jsonValue": [
+                  {
+                    "value": 60,
+                    "unit": "hertz"
+                  }
+                ],
+                "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5"
+              },
+              {
+                "key": "motor_speed",
+                "type": "rotational_speed",
+                "value": "{\"value\":1760.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+                "jsonValue": {
+                  "value": 1760,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "9e0811cc5c0b1d299324bb4a587c4003e35d99f9d208f2a7d34690791cc4ba5c"
+              },
+              {
+                "key": "motor_power",
+                "type": "power",
+                "value": "{\"value\":3.0,\"unit\":\"HORSEPOWER\"}",
+                "jsonValue": {
+                  "value": 3,
+                  "unit": "HORSEPOWER"
+                },
+                "compareDigest": "a3f255996c35783719305e3846c466f3d2d0d4868f83f77fd169e91aaeacf475"
+              },
+              {
+                "key": "water_reservoir_capacity",
+                "type": "volume",
+                "value": "{\"value\":27.0,\"unit\":\"GALLONS\"}",
+                "jsonValue": {
+                  "value": 27,
+                  "unit": "GALLONS"
+                },
+                "compareDigest": "3eb44a5bd6cd142dc8738a77a8d42c0f4a2137181634b4c2f3241ddc73f95ab2"
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTU3NjM5NjU5NTM5NywibGFzdF92YWx1ZSI6IjcxNTc2Mzk2NTk1Mzk3In0="
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fixture_only",
+    "product_gid",
+    "contextual",
+    "delivery",
+    "policy",
+    "suppressed"
+  ],
+  "properties": {
+    "fixture_only": {
+      "type": "boolean"
+    },
+    "product_gid": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contextual": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "product",
+          "meaning",
+          "scope",
+          "source"
+        ],
+        "properties": {
+          "product": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "title",
+              "url",
+              "featured_media"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[0-9]+$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1500
+              },
+              "url": {
+                "type": "string",
+                "pattern": "^/products/[a-z0-9-]+$"
+              },
+              "featured_media": {
+                "type": "null"
+              }
+            }
+          },
+          "meaning": {
+            "enum": [
+              "contextual_accessory",
+              "contextual_consumable",
+              "compatible"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1500
+          },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "approvalDecisionId",
+              "state",
+              "audience",
+              "lifecycle",
+              "activation",
+              "sourceIds",
+              "effectiveAt",
+              "expiresAt",
+              "conflictIds",
+              "edgeId",
+              "dependentProductGid",
+              "targetMachineProductGid",
+              "meaning",
+              "scope",
+              "sourceRowId"
+            ],
+            "properties": {
+              "approvalDecisionId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "state": {
+                "enum": [
+                  "approved",
+                  "proposed",
+                  "blocked"
+                ]
+              },
+              "audience": {
+                "enum": [
+                  "customer",
+                  "internal"
+                ]
+              },
+              "lifecycle": {
+                "enum": [
+                  "current",
+                  "stale",
+                  "deleted"
+                ]
+              },
+              "activation": {
+                "enum": [
+                  "fixture-only",
+                  "inactive"
+                ]
+              },
+              "sourceIds": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1200
+                }
+              },
+              "effectiveAt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "expiresAt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "conflictIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1200
+                }
+              },
+              "edgeId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "dependentProductGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "targetMachineProductGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "meaning": {
+                "enum": [
+                  "contextual_accessory",
+                  "contextual_consumable",
+                  "compatible"
+                ]
+              },
+              "scope": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "variantGid",
+                  "configurationId",
+                  "label"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "PRODUCT",
+                      "PRODUCTVARIANT",
+                      "CONFIGURATION"
+                    ]
+                  },
+                  "variantGid": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "pattern": "^gid://shopify/ProductVariant/[0-9]+$"
+                  },
+                  "configurationId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1200
+                  }
+                }
+              },
+              "sourceRowId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "delivery": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "value",
+          "scope",
+          "source"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "region",
+              "timing",
+              "handling",
+              "pickup_scope"
+            ]
+          },
+          "value": {
+            "type": "object"
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1500
+          },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "approvalDecisionId",
+              "state",
+              "audience",
+              "lifecycle",
+              "activation",
+              "sourceIds",
+              "effectiveAt",
+              "expiresAt",
+              "conflictIds",
+              "recordId",
+              "productGid",
+              "kind",
+              "scope",
+              "value"
+            ],
+            "properties": {
+              "approvalDecisionId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "state": {
+                "enum": [
+                  "approved",
+                  "proposed",
+                  "blocked"
+                ]
+              },
+              "audience": {
+                "enum": [
+                  "customer",
+                  "internal"
+                ]
+              },
+              "lifecycle": {
+                "enum": [
+                  "current",
+                  "stale",
+                  "deleted"
+                ]
+              },
+              "activation": {
+                "enum": [
+                  "fixture-only",
+                  "inactive"
+                ]
+              },
+              "sourceIds": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1200
+                }
+              },
+              "effectiveAt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "expiresAt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "conflictIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1200
+                }
+              },
+              "recordId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "productGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "kind": {
+                "enum": [
+                  "region",
+                  "timing",
+                  "handling",
+                  "pickup_scope"
+                ]
+              },
+              "scope": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "variantGid",
+                  "configurationId",
+                  "label"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "PRODUCT",
+                      "PRODUCTVARIANT",
+                      "CONFIGURATION"
+                    ]
+                  },
+                  "variantGid": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "pattern": "^gid://shopify/ProductVariant/[0-9]+$"
+                  },
+                  "configurationId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1200
+                  }
+                }
+              },
+              "value": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "policy": {
+      "enum": [
+        null,
+        "/policies/shipping-policy"
+      ]
+    },
+    "suppressed": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "fixture_only": {
+            "const": false
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "contextual": {
+            "maxItems": 0
+          },
+          "delivery": {
+            "maxItems": 0
+          },
+          "policy": {
+            "const": null
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "planId",
+    "state",
+    "mutationAuthorized",
+    "source",
+    "owners",
+    "requiredBeforeExecution",
+    "externalExposure",
+    "rows"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "planId": {
+      "const": "F1-CONTENT-CLEANUP"
+    },
+    "state": {
+      "const": "proposed_not_executable"
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "capturedAt"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "capturedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "owners": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredBeforeExecution": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3
+    },
+    "externalExposure": {
+      "type": "string"
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "fields",
+          "sourceClaimFindings",
+          "mediaReviewIds",
+          "mediaDisposition"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "field",
+                "proposedValue",
+                "beforeState",
+                "beforeSha256"
+              ],
+              "properties": {
+                "field": {
+                  "enum": [
+                    "Product.descriptionHtml",
+                    "Product.seo.description",
+                    "Product.seo.title"
+                  ]
+                },
+                "proposedValue": {
+                  "const": ""
+                },
+                "beforeState": {
+                  "enum": [
+                    "dated_observation",
+                    "not_queried"
+                  ]
+                },
+                "beforeSha256": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          "sourceClaimFindings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mediaReviewIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^gid://shopify/MediaImage/[0-9]+$"
+            }
+          },
+          "mediaDisposition": {
+            "const": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+          }
+        }
+      },
+      "minItems": 1
+    }
+  }
+}

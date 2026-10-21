@@ -1,0 +1,2108 @@
+{
+  "schemaVersion": 1,
+  "lane": "008B",
+  "mutationAuthorized": false,
+  "decisionIds": [
+    "B3B-D02",
+    "PO-E-012",
+    "PO-E-013"
+  ],
+  "source": {
+    "path": "data/epic-e-relationship-matrix.json",
+    "sha256": "26c029132b0e507fdf5b713c80a0269392d24e5e34b368438569a1906b090199"
+  },
+  "rows": [
+    {
+      "edgeId": "EDGE-001",
+      "dependentProductGid": "gid://shopify/Product/8905779871941",
+      "targetMachineProductGid": "gid://shopify/Product/8905784131781",
+      "targetModel": "SawMaster 18",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "blocked",
+      "evidence": [
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-sawmaster-18-part-ordering-list-xlsx",
+          "location": "S3!row 7",
+          "revision": null,
+          "excerpt": "A7: 3.6 | B7: clamp  | C7: BK-450-K01",
+          "legacyIdentifier": "BK-450-K01",
+          "identityDecisionId": "PO-E-012"
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": "Current Product collapses size-specific technical items; resolve PO-E-012/PO-E-013 before any compatibility approval.",
+      "supersededByEdgeId": null,
+      "reviewReadiness": "identity_decision_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Automatic Feed Clamp",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-002",
+      "dependentProductGid": "gid://shopify/Product/8905779871941",
+      "targetMachineProductGid": "gid://shopify/Product/8905784197317",
+      "targetModel": "SawMaster 24",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "blocked",
+      "evidence": [
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-sawmaster-24-part-ordering-list-xlsx",
+          "location": "S3!row 7",
+          "revision": null,
+          "excerpt": "A7: 3.6 | B7: clamp  | C7: BK-600-K01",
+          "legacyIdentifier": "BK-600-K01",
+          "identityDecisionId": "PO-E-012"
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": "Current Product collapses size-specific technical items; resolve PO-E-012/PO-E-013 before any compatibility approval.",
+      "supersededByEdgeId": null,
+      "reviewReadiness": "identity_decision_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Automatic Feed Clamp",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-003",
+      "dependentProductGid": "gid://shopify/Product/8905783115973",
+      "targetMachineProductGid": "gid://shopify/Product/8905781477573",
+      "targetModel": "LapMaster 18",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-lapmaster-18-part-ordering-list-xlsx",
+          "location": "PARTS LIST!row 39",
+          "revision": null,
+          "excerpt": "A39: 38 | B39: lap side pulley | C39: YL-450-T12",
+          "legacyIdentifier": "YL-450-T12",
+          "identityDecisionId": "PO-E-046"
+        },
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-lapmaster-18-part-ordering-list-xlsx",
+          "location": "PARTS LIST!row 40",
+          "revision": null,
+          "excerpt": "A40: 39 | B40: motor side pulley | C40: YL-450-T13",
+          "legacyIdentifier": "YL-450-T13",
+          "identityDecisionId": "PO-E-046"
+        },
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: lapmaster-pulleys: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A set of two pulleys meant for Rhino Lapidary's 18\" LapMaster, connected to both the motor at the back of the machine and the rotation table spoke on the bottom of the machine.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "high",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "approval_ready_exact_legacy_identity",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Pulleys, x2 (18\" LapMaster)",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-004",
+      "dependentProductGid": "gid://shopify/Product/8905783312581",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-trimmaster-part-ordering-list-xlsx",
+          "location": "S1!row 6",
+          "revision": null,
+          "excerpt": "A6: 5 | B6: timing belt pulley shaft side | C6: IDM-T11",
+          "legacyIdentifier": "IDM-T11",
+          "identityDecisionId": "PO-E-045"
+        },
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-trimmaster-part-ordering-list-xlsx",
+          "location": "S1!row 11",
+          "revision": null,
+          "excerpt": "A11: 10 | B11: timing belt pulley motor side | C11: IDM-T13",
+          "legacyIdentifier": "IDM-T13",
+          "identityDecisionId": "PO-E-045"
+        }
+      ],
+      "confidence": "high",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "approval_ready_exact_legacy_identity",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Pulleys, x2 (TrimMaster)",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-005",
+      "dependentProductGid": "gid://shopify/Product/8905784099013",
+      "targetMachineProductGid": "gid://shopify/Product/8905784131781",
+      "targetModel": "SawMaster 18",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "blocked",
+      "evidence": [
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-sawmaster-18-part-ordering-list-xlsx",
+          "location": "S3!row 4",
+          "revision": null,
+          "excerpt": "A4: 3.3 | B4: clamp lenght pressure plate | C4: BK-450-24",
+          "legacyIdentifier": "BK-450-24",
+          "identityDecisionId": "PO-E-013"
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": "Current Product collapses size-specific technical items; resolve PO-E-012/PO-E-013 before any compatibility approval.",
+      "supersededByEdgeId": null,
+      "reviewReadiness": "identity_decision_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Saw Vice Plate Set",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-006",
+      "dependentProductGid": "gid://shopify/Product/8905784099013",
+      "targetMachineProductGid": "gid://shopify/Product/8905784197317",
+      "targetModel": "SawMaster 24",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "blocked",
+      "evidence": [
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-sawmaster-24-part-ordering-list-xlsx",
+          "location": "S3!row 4",
+          "revision": null,
+          "excerpt": "A4: 3.3 | B4: clamp lenght pressure plate | C4: BK-600-24",
+          "legacyIdentifier": "BK-600-24",
+          "identityDecisionId": "PO-E-013"
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": "Current Product collapses size-specific technical items; resolve PO-E-012/PO-E-013 before any compatibility approval.",
+      "supersededByEdgeId": null,
+      "reviewReadiness": "identity_decision_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Saw Vice Plate Set",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-007",
+      "dependentProductGid": "gid://shopify/Product/8905785442501",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-trimmaster-part-ordering-list-xlsx",
+          "location": "S2!row 4",
+          "revision": null,
+          "excerpt": "A4: 34 | B4: rubber leg ( mertric 8 screwed x 40 mm diameter ) | C4: IDM-ST-05",
+          "legacyIdentifier": "IDM-ST-05",
+          "identityDecisionId": "PO-E-008"
+        },
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: trimmaster-feet: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "These Adjustable feet screw onto the four corners of the bottom of the TrimMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "high",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "approval_ready_exact_legacy_identity",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "TrimMaster Adjustable Feet, x4",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-008",
+      "dependentProductGid": "gid://shopify/Product/8905785540805",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-trimmaster-part-ordering-list-xlsx",
+          "location": "S1!row 8",
+          "revision": null,
+          "excerpt": "A8: 7 | B8: belt guard | C8: IDM-K03",
+          "legacyIdentifier": "IDM-K03",
+          "identityDecisionId": "PO-E-009"
+        },
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: trimmaster-belt-guard: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A steel frame for protecting the motor belt and pulleys on the left side of the TrimMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "high",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "approval_ready_exact_legacy_identity",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "TrimMaster Belt Guard",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-009",
+      "dependentProductGid": "gid://shopify/Product/8905785606341",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "legacy_identifier_exact",
+          "sourceId": "repo-trimmaster-part-ordering-list-xlsx",
+          "location": "S2!row 2",
+          "revision": null,
+          "excerpt": "A2: 32 | B2: plexiglass bottom platform | C2: IDM-T14",
+          "legacyIdentifier": "IDM-T14",
+          "identityDecisionId": "PO-E-010"
+        },
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: plexiglass-insert: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A blue plexiglass panel with a slit for the TrimMaster saw blade to fit through, and screw holes for securing and adjusting the plexiglass panel between its raised and lowered configurations.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "high",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "approval_ready_exact_legacy_identity",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "TrimMaster Plexiglass Insert",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-010",
+      "dependentProductGid": "gid://shopify/Product/8905779282117",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: trim-saw-6: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A 6-inch diameter diamond saw with an Arbor Nut securing it to the 5.75-inch-long Trim Saw Arbor, which attaches to the Rhino Lapidary EM-1 Variable-Speed Motor.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "6 in Trim Saw",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-011",
+      "dependentProductGid": "gid://shopify/Product/8905779577029",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: arbor-size-conversion-bolt: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A 0.5-inch diameter, 1.25-inch-long bolt that attaches to Rhino Lapidary's EM-1 Variable-Speed Motor on the right side.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Arbor Size Conversion Bolt",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-012",
+      "dependentProductGid": "gid://shopify/Product/8905779642565",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: arbor-spoke-nut: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A 1.75-inch diameter, 0.5-inch-wide nut used to separate the Right Arbor Shaft and Rhino Lapidary's EM-1 Variable-Speed Motor.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Arbor Spoke Nut",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-013",
+      "dependentProductGid": "gid://shopify/Product/8905780003013",
+      "targetMachineProductGid": "gid://shopify/Product/8905781248197",
+      "targetModel": "JadeMaster 14",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: belt-guard-jademaster: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A metal guard for the pulleys and belt to Rhino Lapidary's JadeMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": false,
+        "customerEligible": false
+      },
+      "dependentLabel": "Belt Guard (JadeMaster)",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-014",
+      "dependentProductGid": "gid://shopify/Product/8905780428997",
+      "targetMachineProductGid": "gid://shopify/Product/8905781477573",
+      "targetModel": "LapMaster 18",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: debris-guard: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A perforated circular metal insert that sits below the rotation disc on Rhino Lapidary's 18\" LapMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Debris Guard",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-015",
+      "dependentProductGid": "gid://shopify/Product/8905780625605",
+      "targetMachineProductGid": "gid://shopify/Product/8905781248197",
+      "targetModel": "JadeMaster 14",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: drain-plug-jademaster: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A plug used to stopper the oil reservoir of Rhino Lapidary's JadeMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": false,
+        "customerEligible": false
+      },
+      "dependentLabel": "Drain Plug (JadeMaster)",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-016",
+      "dependentProductGid": "gid://shopify/Product/8905780691141",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: drain-plug-trimmaster: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A cylindrical screw-in stopper for the reservoir of the TrimMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Drain Plug, 15/16\"",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-017",
+      "dependentProductGid": "gid://shopify/Product/8905780789445",
+      "targetMachineProductGid": "gid://shopify/Product/8905781248197",
+      "targetModel": "JadeMaster 14",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: jademaster-feet: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A set of four wheeled feet for Rhino Lapidary's JadeMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": false,
+        "customerEligible": false
+      },
+      "dependentLabel": "Feet, x4 (JadeMaster)",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-018",
+      "dependentProductGid": "gid://shopify/Product/8905781018821",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: flexible-shaft-attachment: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A 1.5-inch diameter, 3-inch-long metal piece used to attach the Flexible Shaft to Rhino Lapidary's EM-1 Variable-Speed Motor.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Flexible Shaft Attachment",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-019",
+      "dependentProductGid": "gid://shopify/Product/8905781182661",
+      "targetMachineProductGid": "gid://shopify/Product/8905781477573",
+      "targetModel": "LapMaster 18",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: flexible-water-spout: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "An adjustable segmented white spout attached to the water source on Rhino Lapidary's 18\" LapMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Flexible Water Spout",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-020",
+      "dependentProductGid": "gid://shopify/Product/8905781969093",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: left-arbor-shaft: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "An 8-inch-long, 1-inch diameter shaft that attaches to the left side of the Rhino Lapidary EM-1 Variable-Speed Motor.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Left Arbor Shaft",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-021",
+      "dependentProductGid": "gid://shopify/Product/8905782034629",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: left-moss-pad: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "14x13x0.25-inch plastic blue moss pad used to cover Rhino Lapidary's EM-1 left arbor floor.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Left Moss Pad",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-022",
+      "dependentProductGid": "gid://shopify/Product/8905782165701",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: magnifying-glass-arm: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A 6-inch diameter magnifying glass on a 2-foot-long arm that attaches to Rhino Lapidary's EM-1 machine.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Magnifying Glass Arm",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-023",
+      "dependentProductGid": "gid://shopify/Product/8905782493381",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: moss-pad-pack: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "Two 14x13x0.25-inch plastic blue moss pads used to cover Rhino Lapidary's EM-1 arbor floors.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Moss Pad, Pack of 2",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-024",
+      "dependentProductGid": "gid://shopify/Product/8905782984901",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: plexiglass-insert-spacer-set: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A set of 4 cylinders used to raise the TrimMaster Plexiglass Insert using the Lock Nut Fixture for Plexiglass Insert sets.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Plexiglass Insert Spacers, x4",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-025",
+      "dependentProductGid": "gid://shopify/Product/8905783050437",
+      "targetMachineProductGid": "gid://shopify/Product/8905781248197",
+      "targetModel": "JadeMaster 14",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: power-feed-bearings-set: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A pack of two bearings for Rhino Lapidary's JadeMaster's power feed mechanism rod.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": false,
+        "customerEligible": false
+      },
+      "dependentLabel": "Power Feed Bearings Set, x2",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-026",
+      "dependentProductGid": "gid://shopify/Product/8905783083205",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: power-grip-belt: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A 26\" belt designed for compatibility with the Power Grip Pulleys on the TrimMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Power Grip Belt, 26\"",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-027",
+      "dependentProductGid": "gid://shopify/Product/8905783181509",
+      "targetMachineProductGid": "gid://shopify/Product/8905781248197",
+      "targetModel": "JadeMaster 14",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: jademaster-pulleys: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A set of two pulleys to mount the belt between Rhino Lapidary's JadeMaster's motor and arbor.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": false,
+        "customerEligible": false
+      },
+      "dependentLabel": "Pulleys, x2 (JadeMaster)",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-028",
+      "dependentProductGid": "gid://shopify/Product/8905783345349",
+      "targetMachineProductGid": "gid://shopify/Product/8905781248197",
+      "targetModel": "JadeMaster 14",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: purple-jade-bead-strand: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A strand of round purple jade beads used in Rhino Lapidary's JadeMaster as a measurement tool for the automatic stop mechanism of the rock saw.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": false,
+        "customerEligible": false
+      },
+      "dependentLabel": "Purple Jade Bead Strand",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-029",
+      "dependentProductGid": "gid://shopify/Product/8905783509189",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: right-arbor-shaft: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "An 8-inch-long, 1-inch diameter shaft that attaches to the right side of the Rhino Lapidary EM-1 Variable-Speed Motor.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Right Arbor Shaft",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-030",
+      "dependentProductGid": "gid://shopify/Product/8905783574725",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: right-moss-pad: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "14x13x0.25-inch plastic blue moss pad used to cover Rhino Lapidary's EM-1 right arbor floor.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Right Moss Pad",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-031",
+      "dependentProductGid": "gid://shopify/Product/8905783640261",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: right-plexiglass-spray-guard: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A 10.5x9x6.5-inch blue plexiglass attachment that fits between Rhino Lapidary's EM-1 motor and the Plastic Washer to cover the Right Arbor Shaft along with any other mounted accessories.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Right Plexiglass Spray Guard",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-032",
+      "dependentProductGid": "gid://shopify/Product/8905783673029",
+      "targetMachineProductGid": "gid://shopify/Product/8905781477573",
+      "targetModel": "LapMaster 18",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: rotation-table: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A metal plate for holding and rotating flat lap attachments onto Rhino Lapidary's 18\" LapMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Rotation Table",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-033",
+      "dependentProductGid": "gid://shopify/Product/8905783771333",
+      "targetMachineProductGid": "gid://shopify/Product/8905781477573",
+      "targetModel": "LapMaster 18",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: rotational-lock: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A pushpin component for securing Rhino Lapidary's 18\" LapMaster's rotation table in place while parts are screwed on and adjusted.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Rotational Lock",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-034",
+      "dependentProductGid": "gid://shopify/Product/8905783869637",
+      "targetMachineProductGid": "gid://shopify/Product/8905781477573",
+      "targetModel": "LapMaster 18",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: rotational-lock-handle: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "The round black handle that attaches to the rotational lock for Rhino Lapidary's 18\" LapMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Rotational Lock Handle",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-035",
+      "dependentProductGid": "gid://shopify/Product/8905783935173",
+      "targetMachineProductGid": "gid://shopify/Product/8905781477573",
+      "targetModel": "LapMaster 18",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: lapmaster-feet: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A set of three rubber feet caps for the base of Rhino Lapidary's 18\" LapMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Rubber Feet for 18\" LapMaster, x3",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-036",
+      "dependentProductGid": "gid://shopify/Product/8905784426693",
+      "targetMachineProductGid": "gid://shopify/Product/8905781248197",
+      "targetModel": "JadeMaster 14",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: sled-release-handle: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A metal clamp release mechanism used to adjust Rhino Lapidary's JadeMaster's vice sled forwards and backwards.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": false,
+        "customerEligible": false
+      },
+      "dependentLabel": "Sled Release Handle",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-037",
+      "dependentProductGid": "gid://shopify/Product/8905784787141",
+      "targetMachineProductGid": "gid://shopify/Product/8905780756677",
+      "targetModel": "EM-1",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: spotlight: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A 3.5-inch diameter light attached to a 38-inch-long jointed metal arm that fits into Rhino Lapidary's EM-1 and plugs into the EM-1's electric line.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Spotlight",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-038",
+      "dependentProductGid": "gid://shopify/Product/8905785114821",
+      "targetMachineProductGid": "gid://shopify/Product/8905781248197",
+      "targetModel": "JadeMaster 14",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: thumb-spindle-knob: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A black knob on Rhino Lapidary's JadeMaster's thumb spindle that is used to secure the horizontal movement of the vice sled.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": false,
+        "customerEligible": false
+      },
+      "dependentLabel": "Thumb Spindle Knob",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-039",
+      "dependentProductGid": "gid://shopify/Product/8905785245893",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: triangle-latch-screw-set: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A set of two screws with triangular latch heads, used for hooking either side of the workspace cover of the TrimMaster to the reservoir frame, securing the workspace during machine operation.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "Triangle Latch Screws, x2",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-040",
+      "dependentProductGid": "gid://shopify/Product/8905785737413",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: trimmaster-splash-guard-upper: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A metal guard for controlling lubricant spray while operating the TrimMaster saw.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "TrimMaster Splash Guard, Upper",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-041",
+      "dependentProductGid": "gid://shopify/Product/8905785802949",
+      "targetMachineProductGid": "gid://shopify/Product/8905785344197",
+      "targetModel": "TrimMaster 8",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: trimmaster-straight-edge-guide: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "This device is mounted on the left side of the work area on the TrimMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": true,
+        "customerEligible": true
+      },
+      "dependentLabel": "TrimMaster Straight Edge Guide",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "edgeId": "EDGE-042",
+      "dependentProductGid": "gid://shopify/Product/8905785934021",
+      "targetMachineProductGid": "gid://shopify/Product/8905781248197",
+      "targetModel": "JadeMaster 14",
+      "scope": "PRODUCT",
+      "variantGid": null,
+      "state": "proposed",
+      "evidence": [
+        {
+          "kind": "explicit_description_statement",
+          "sourceId": "catalog-description",
+          "location": "data/product-export/products.csv: vice-clamp-riser: Body (HTML)",
+          "revision": "July export",
+          "excerpt": "A 3\" tall riser for holding specimens at a higher level while using Rhino Lapidary's JadeMaster.",
+          "legacyIdentifier": null,
+          "identityDecisionId": null
+        }
+      ],
+      "confidence": "medium",
+      "decisionOwner": "Technical / Product Owner",
+      "approvalDecisionId": null,
+      "conflictIds": [],
+      "blocker": null,
+      "supersededByEdgeId": null,
+      "reviewReadiness": "technical_confirmation_of_description_required",
+      "targetAvailability": {
+        "status": "ACTIVE",
+        "published": false,
+        "customerEligible": false
+      },
+      "dependentLabel": "Vice Clamp Riser",
+      "decisionState": "PENDING_OWNER",
+      "decisionOptions": [
+        "COMPATIBLE",
+        "INCOMPATIBLE",
+        "IDENTITY_UNRESOLVED",
+        "UNKNOWN_DEFER"
+      ],
+      "reviewerResponse": {
+        "decision": null,
+        "identityDecisionEvidence": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    }
+  ],
+  "identityDecisions": [
+    {
+      "decisionId": "PO-E-012",
+      "productGid": "gid://shopify/Product/8905779871941",
+      "label": "Automatic Feed Clamp",
+      "state": "PENDING_IDENTITY_OWNER_RESPONSE",
+      "response": null
+    },
+    {
+      "decisionId": "PO-E-013",
+      "productGid": "gid://shopify/Product/8905784099013",
+      "label": "Saw Vice Plate Set",
+      "state": "PENDING_IDENTITY_OWNER_RESPONSE",
+      "response": null
+    }
+  ],
+  "recommendations": {
+    "decisionId": "B3B-D04",
+    "planId": "E-MUT-037",
+    "candidateCount": 0,
+    "state": "NO_GOVERNED_CANDIDATES"
+  }
+}

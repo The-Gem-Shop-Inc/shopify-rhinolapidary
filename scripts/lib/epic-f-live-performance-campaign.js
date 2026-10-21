@@ -1,0 +1,28 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const H=require('../validate-epic-f-015b-certification-preflight'),M=require('./epic-f-live-machine-activation'),T=require('./epic-f-live-performance-profile'),P=require('./epic-f-performance');
+const DIR='docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3';
+const read=H.read,hash=H.hash,write=(name,data)=>fs.writeFileSync(DIR+'/'+name,JSON.stringify(data,null,2)+'\n');
+const bindingPath=H.CORRECTED+'/source-binding.json';
+function verifyBefore(){
+ const binding=read(bindingPath),{bindingSha256,...body}=binding;assert.equal(bindingSha256,'7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37');assert.equal(hash(JSON.stringify(body)),bindingSha256);
+ const theme=read(DIR+'/themes-before.json').response.data,old=read('docs/qa/evidence/epic-f/015b-live-2026-10-06/themes-after.json').response.data;
+ assert.equal(theme.main.role,'MAIN');assert.equal(theme.main.name,'shopify-rhinolapidary/main');assert.equal(theme.main.id,'gid://shopify/OnlineStoreTheme/158579622085');assert.equal(theme.preview.role,'UNPUBLISHED');assert.equal(theme.preview.id,'gid://shopify/OnlineStoreTheme/158631198917');
+ const historicalFields=rows=>rows.map(({filename,checksumMd5,updatedAt})=>({filename,checksumMd5,updatedAt}));
+ assert.equal(theme.main.files.pageInfo.hasNextPage,false);assert.equal(theme.preview.files.pageInfo.hasNextPage,false);assert.deepEqual(historicalFields(theme.main.files.nodes),historicalFields(old.main.files.nodes));assert.deepEqual(historicalFields(theme.preview.files.nodes),historicalFields(old.preview.files.nodes));
+ assert.equal(theme.main.source.nodes.length,29);assert.equal(theme.main.source.pageInfo.hasNextPage,false);
+ for(const f of binding.files){assert.equal(hash(fs.readFileSync(f.path)),f.sha256);const actual=theme.main.source.nodes.find(r=>r.filename===f.path);assert.ok(actual);assert.equal(actual.checksumMd5,theme.main.files.nodes.find(r=>r.filename===f.path).checksumMd5);const expected=read(M.PLAN).files.find(r=>r.path===f.path);if(f.path==='sections/header.liquid')assert.equal(hash(actual.body.content),'e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339');else if(f.path.endsWith('.json'))assert.deepEqual(M.parseJson(actual.body.content),M.parseJson(expected.intendedBody));else assert.equal(actual.body.content.replace(/\r\n/g,'\n'),fs.readFileSync(f.path,'utf8').replace(/\r\n/g,'\n'));}
+ const catalog=read(DIR+'/catalog-before.json');assert.equal(catalog.paginationExhausted,true);assert.equal(catalog.products.length,122);assert.deepEqual(M.protectedComparable(catalog.products),M.protectedComparable(read('docs/qa/evidence/epic-f/015b-live-2026-10-06/catalog-after.json').products));
+ const classes={};for(const product of catalog.products){const mf=product.metafields.nodes.filter(x=>x.namespace==='rhino');assert.equal(product.metafields.pageInfo.hasNextPage,false);assert.equal(mf.length,1);assert.equal(mf[0].key,'product_class');classes[mf[0].jsonValue]=(classes[mf[0].jsonValue]||0)+1;if(M.PRODUCTS.some(p=>p.gid===product.id)){assert.equal(product.templateSuffix,'machine');assert.equal(mf[0].jsonValue,'machine');}if(M.EXCLUSIONS.includes(product.id))assert.equal(product.templateSuffix,null);}
+ assert.deepEqual(classes,{machine:11,replacement_part:54,consumable:39,accessory:18});const current=read('data/epic-f-current-development-status.json');assert.equal(current.F_DEC_001,'APPROVED_OPTION_A');assert.equal(current.F_PBI_017B,'COMPLETE');assert.equal(current.F_PBI_014B_currentShell,'PASS');
+ return {passed:true,checkedAt:new Date().toISOString(),themeIdentity:{id:'158579622085',name:theme.main.name,role:'MAIN'},boundRuntimeFiles:29,sourceBindingIdentity:binding.identity,sourceBindingSha256:bindingSha256,headerSha256:binding.files.find(x=>x.path==='sections/header.liquid').sha256,catalogCount:122,distribution:classes,machineAssignments:8,exclusions:3,factualGrants:0,beforeReadCompletedAt:catalog.completedAt};
+}
+const toolPaths=['data/epic-f-performance-profiles.json','scripts/lib/epic-f-live-performance-profile.js','scripts/lib/epic-f-live-performance-collector.js','scripts/lib/epic-f-live-performance-campaign.js','scripts/run-epic-f-live-performance-certification.js','scripts/lib/epic-f-performance.js','scripts/validate-brand-performance-budget.js','data/brand-performance-budget.json','schemas/epic-f-performance-measurement.schema.json'];
+function freeze(){return {runtime:H.runtimeInventory(),tooling:toolPaths.map(path=>({path,sha256:hash(fs.readFileSync(path))}))};}
+function unchanged(frozen){assert.deepEqual(freeze(),frozen,'Source/profile/collector/budget changed; invalidate campaign');}
+function validateRecord(row){
+ assert.ok(['RELEASE_CERTIFICATION','SUPPORTING_RELEASE_COMPARISON'].includes(row.classification));assert.equal(row.record.samples.length,3);assert.equal(row.record.requestedRuns,3);assert.equal(row.record.stage,row.profile==='mobile'?'release-certification':'preview-diagnostic');assert.equal(row.classification,row.profile==='mobile'?'RELEASE_CERTIFICATION':'SUPPORTING_RELEASE_COMPARISON');
+ for(const s of row.record.samples){assert.equal(s.viewport.profile,row.profile);assert.equal(s.policy.cache,row.cache);assert.equal(s.policy.throttling.profileId,T.frozen.profileId);assert.equal(s.policy.throttling.latencyMs,562.5);assert.equal(s.policy.throttling.downloadBytesPerSecond,184320);assert.equal(s.policy.throttling.uploadBytesPerSecond,84375);assert.equal(s.policy.throttling.cpuSlowdown,4);}
+ assert.deepEqual(row.record.medians,P.mediansFor(row.record.samples));return P.evaluateRun(row.record);
+}
+module.exports={DIR,read,hash,write,verifyBefore,freeze,unchanged,validateRecord,toolPaths};

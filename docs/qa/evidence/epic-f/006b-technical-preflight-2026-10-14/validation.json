@@ -1,0 +1,42 @@
+{
+  "assessedAt": "2026-10-14T22:22:54.655Z",
+  "sourceBindingSha256": "b09c7305fbf1171c45f8f99c5a00ba8f80602e79dcadac6daa14d7d50d49f2c2",
+  "commands": [
+    {
+      "command": "node scripts/preflight-epic-f-006b-technical-intake.js",
+      "exitCode": 0,
+      "scope": "Fresh protected current state plus six read-only compiler probes; intentional STOP before mutation"
+    },
+    {
+      "command": "007B/008B sealed evidence/state verification",
+      "exitCode": 0,
+      "files": 153
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-technical-preflight-2026-10-14/registers.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-technical-preflight-2026-10-14/diff.log"
+    },
+    {
+      "command": "shopify theme check --fail-level warning",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0,
+      "log": "docs/qa/evidence/epic-f/006b-technical-preflight-2026-10-14/theme-check.log"
+    }
+  ],
+  "credentialHits": 0,
+  "priorSealedFilesUnchanged": 153,
+  "readOnlyPreflightChecksPassed": true,
+  "executionState": "BLOCKED_SOURCE_DOCUMENT_AND_RUNTIME_CAPABILITY",
+  "mutations": 0,
+  "runtimeSourceChanges": 0,
+  "themePushes": 0,
+  "liveBrowserValidationForNewValues": "NOT_RUN_NO_NEW_VALUES",
+  "fullF1F8Rerun": "Not rerun: no current runtime/consumer/governance code changed; prior complete aggregate remains sealed and exact"
+}

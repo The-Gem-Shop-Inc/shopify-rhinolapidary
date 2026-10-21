@@ -1,0 +1,426 @@
+{
+  "failed": 1,
+  "error": "[{\"targetId\":\"CF19645441089F53BAE4317E84FAF370\",\"reason\":\"Child CDP setup failed: Emulation.setCPUThrottlingRate: Operation is only supported for pages, not workers\"}]\n\n1 !== 0\n",
+  "tests": [
+    {
+      "group": "request-identity",
+      "name": "ordinary loadingFinished authoritative bytes",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "same URL twice retains independent CDP IDs",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "simultaneous same URL and wall time distinct",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "same URL different resource types",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "same URL different frames",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "near-identical wall time never merged",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "throttle event ordering never joins timing",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "redirect leg ordinals preserve chain",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "redirect response terminalizes previous leg",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "final redirect leg has only one record",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "cache indicators from CDP",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "disk and prefetch cache evidence retained",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "no duplicate authoritative keys",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "no ambiguous timing identity",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "Playwright diagnostic mismatch cannot enter inventory",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "zero required Playwright timing matches",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "target/frame/loader/timestamps/initiator retained",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "terminal drain completes admitted request",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "explicit measured zero accepted",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "missing encodedDataLength stays null",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "loadingFailed distinct from unresolved",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "dataReceived cannot supply failed transfer",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "cache indication cannot invent zero bytes",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "unresolved request invalidates sample",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "post-window request not admitted",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "post-window incomplete request diagnostic only",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "drain does not extend metrics",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "duplicate ID without redirect is fail-closed",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "harness inspector passive block is fail-closed",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "incomplete post-window traffic cannot invalidate complete ledger",
+      "passed": true
+    },
+    {
+      "group": "transfer-integrity",
+      "name": "post-window failure cannot invalidate measured transfer completeness",
+      "passed": true
+    },
+    {
+      "group": "request-identity",
+      "name": "post-window redirect terminalizes old leg without admitting new leg",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Script /checkouts/internal/preloads.js passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Script https://shop.app/checkouts/internal/preloads.js passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "HEAD script /checkouts/internal/preloads.js passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Script https://shop.app/pay/payment-terms.js passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Script /assets/product-info.js passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Stylesheet /assets/theme.css passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Fetch /preload passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Font /font.woff2 passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Image /image.png passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET XHR /pay/preload passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST Fetch /telemetry passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST Fetch https://monorail-edge.shopifysvc.com/v1/produce passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Fetch /pay/metrics passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET Script /assets/checkout-helper.js passes",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /cart/add.js invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /cart/change.js invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /cart/update.js invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /cart/clear.js invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /contact invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /checkout invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /checkouts/action invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /orders invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /account invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "POST /pay/transaction invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "GET checkout main document navigation invalidates",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "passive payment iframe document not a transaction",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "uppercase normalized at ingress",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "main-frame departure /checkout",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "main-frame departure /cart/add",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "main-frame departure /challenge",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "main-frame departure /account/login",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "main-frame departure /error",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "main-frame departure /products/other",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "main-frame departure https://shop.app/pay/transaction",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "expected Product main navigation allowed",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "no interception in scripts/lib/epic-f-live-performance-collector-v3.js",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "no interception in scripts/lib/epic-f-live-performance-network-v3.js",
+      "passed": true
+    },
+    {
+      "group": "guard",
+      "name": "CDP ledger contains no timing/sizes join",
+      "passed": true
+    },
+    {
+      "group": "decision",
+      "name": "six valid mandatory failure suffices without remaining90",
+      "passed": true
+    },
+    {
+      "group": "decision",
+      "name": "passing canary cannot mark full certification complete",
+      "passed": true
+    },
+    {
+      "group": "decision",
+      "name": "five valid samples cannot be graded",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "valid independent cold",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "valid same-context two-page warm",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "missing prime rejected",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "wrong route rejected",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "same target rejected",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "same page rejected",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "unclosed prime rejected",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "clear after prime rejected",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "cold primed rejected",
+      "passed": true
+    },
+    {
+      "group": "cache",
+      "name": "context reuse rejected",
+      "passed": true
+    },
+    {
+      "group": "real-chromium",
+      "name": "0 duplicate authoritative keys under throttle",
+      "passed": true
+    }
+  ]
+}

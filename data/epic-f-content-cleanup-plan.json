@@ -1,0 +1,376 @@
+{
+  "schemaVersion": 1,
+  "planId": "F1-CONTENT-CLEANUP",
+  "state": "proposed_not_executable",
+  "mutationAuthorized": false,
+  "source": {
+    "path": "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json",
+    "sha256": "ed8646ec21792efd3f5074a14f45d18f4a7cd15cb3c66643851e979682f766f1",
+    "capturedAt": "2026-09-10 21:05:58 UTC"
+  },
+  "owners": [
+    "Content / Brand",
+    "Product Owner",
+    "Shopify Admin Owner",
+    "Legal / Claims"
+  ],
+  "requiredBeforeExecution": [
+    "Fresh exact-GID Product and SEO before-state read",
+    "Approved omission scope and dated Product Owner/Admin GO",
+    "Bounded mutation plan with input hashes, dry run, rollback and after verification under existing Admin change governance"
+  ],
+  "externalExposure": "Theme containment cannot remove Shopify-hosted Product JSON/API/feed or app-controlled copies. Native cleanup and external verification remain blocked pending separately governed execution.",
+  "rows": [
+    {
+      "productGid": "gid://shopify/Product/8905779937477",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "cbe505ad45152f079fdcc57c33f878826ce4191354bfd7c39323bee1a6f2af1f"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [
+        "gid://shopify/Product/8905779937477:9 contains blocked claim CLAIM-010: \"SUPER FAST\"",
+        "gid://shopify/Product/8905779937477:9 contains prohibited wording for CLAIM-010: \"super fast\"",
+        "gid://shopify/Product/8905779937477:33 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "gid://shopify/Product/8905779937477:33 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451099455685"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905780756677",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "ed74470d814703eee9e0ce93e48cc22a8fdecdfa42ac772876abc937cba412df"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [
+        "gid://shopify/Product/8905780756677:13 contains blocked claim CLAIM-004: \"Patented\"",
+        "gid://shopify/Product/8905780756677:13 contains prohibited wording for CLAIM-004: \"patented\"",
+        "gid://shopify/Product/8905780756677:13 contains blocked claim CLAIM-010: \"100% Torque\"",
+        "gid://shopify/Product/8905780756677:13 contains prohibited wording for CLAIM-010: \"100% Torque\""
+      ],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451101683909"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781248197",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451104075973"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781412037",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "f10712d5e52b705c4638f2e8527cafb3fde6311ed0b7b0dc7dce549fd5aa9d1c"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [
+        "gid://shopify/Product/8905781412037:33 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "gid://shopify/Product/8905781412037:33 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451104895173"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781477573",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "3c659751685a33ce69eadf9e86b24a35188014d4c7075b0531b46be20c5e915c"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [
+        "gid://shopify/Product/8905781477573:33 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "gid://shopify/Product/8905781477573:33 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451105255621"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784131781",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "007e2de14c3a9e745f5dfdff77826c06b3a4a3c151ec5380ce06aa4d5b06124a"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [
+        "gid://shopify/Product/8905784131781:19 contains blocked claim CLAIM-003: \"CE and TSEK\"",
+        "gid://shopify/Product/8905784131781:49 contains blocked claim CLAIM-003: \"CE and TSEK\"",
+        "gid://shopify/Product/8905784131781:19 contains blocked claim CLAIM-003: \"TSEK\"",
+        "gid://shopify/Product/8905784131781:49 contains blocked claim CLAIM-003: \"TSEK\"",
+        "gid://shopify/Product/8905784131781:19 contains blocked claim CLAIM-003: \"TSEK certified\"",
+        "gid://shopify/Product/8905784131781:49 contains blocked claim CLAIM-003: \"TSEK certified\"",
+        "gid://shopify/Product/8905784131781:19 contains prohibited wording for CLAIM-003: \"All parts are CE and TSEK certified\"",
+        "gid://shopify/Product/8905784131781:11 contains blocked claim CLAIM-004: \"patented\"",
+        "gid://shopify/Product/8905784131781:15 contains blocked claim CLAIM-004: \"patented\"",
+        "gid://shopify/Product/8905784131781:11 contains prohibited wording for CLAIM-004: \"patented\"",
+        "gid://shopify/Product/8905784131781:7 contains blocked claim CLAIM-010: \"without any problems for years\"",
+        "gid://shopify/Product/8905784131781:7 contains prohibited wording for CLAIM-010: \"without any problems for years\""
+      ],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451117576389"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784197317",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "f53bf74d0c2d85d9ceac1d899ae44d40b7e58fd94bba19aa91b1a2d761c4c0b4"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [
+        "gid://shopify/Product/8905784197317:47 contains blocked claim CLAIM-003: \"CE and TSEK\"",
+        "gid://shopify/Product/8905784197317:47 contains blocked claim CLAIM-003: \"TSEK\"",
+        "gid://shopify/Product/8905784197317:47 contains blocked claim CLAIM-003: \"TSEK certified\"",
+        "gid://shopify/Product/8905784197317:47 contains prohibited wording for CLAIM-003: \"All parts are CE and TSEK certified\"",
+        "gid://shopify/Product/8905784197317:11 contains blocked claim CLAIM-004: \"patented\"",
+        "gid://shopify/Product/8905784197317:15 contains blocked claim CLAIM-004: \"patented\"",
+        "gid://shopify/Product/8905784197317:11 contains prohibited wording for CLAIM-004: \"patented\"",
+        "gid://shopify/Product/8905784197317:7 contains blocked claim CLAIM-010: \"without any problems for years\"",
+        "gid://shopify/Product/8905784197317:7 contains prohibited wording for CLAIM-010: \"without any problems for years\""
+      ],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451117871301"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784262853",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451117871301"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784328389",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "c04d2bfd54ecf4fabf850035696ad4a1cfcf6f5b3c9f05d1e8d3f60f91df81db"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [
+        "gid://shopify/Product/8905784328389:13 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "gid://shopify/Product/8905784328389:13 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451118428357"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905785344197",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "cba4422cc46b18ab7038b943793849f9f46227d6676c8faa596e56524c779deb"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [
+        "gid://shopify/Product/8905785344197:31 contains blocked claim CLAIM-012: \"Packed safely\"",
+        "gid://shopify/Product/8905785344197:31 contains prohibited wording for CLAIM-012: \"Packed safely\""
+      ],
+      "mediaReviewIds": [
+        "gid://shopify/MediaImage/33451123409093"
+      ],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905785868485",
+      "fields": [
+        {
+          "field": "Product.descriptionHtml",
+          "proposedValue": "",
+          "beforeState": "dated_observation",
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "field": "Product.seo.description",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        },
+        {
+          "field": "Product.seo.title",
+          "proposedValue": "",
+          "beforeState": "not_queried",
+          "beforeSha256": null
+        }
+      ],
+      "sourceClaimFindings": [],
+      "mediaReviewIds": [],
+      "mediaDisposition": "suppressed_in_theme_pending_F-DEC-002; no_media_mutation_proposed"
+    }
+  ]
+}

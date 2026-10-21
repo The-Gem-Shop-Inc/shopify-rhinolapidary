@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "planId": "E-MUT-026",
+  "mode": "OWNER_REVIEW_PROJECTION_NOT_EXECUTABLE",
+  "source": {
+    "path": "docs/product/006B-remaining-machine-specs-and-measurements.pdf",
+    "sha256": "f9bcb9844847da134bfcd9429ee337e6a434387d6118251b5b1d5da82b6a09e1",
+    "pages": 15,
+    "filenameNote": "Actual file omits the requested (1) suffix"
+  },
+  "currentSourceBindingSha256": "b09c7305fbf1171c45f8f99c5a00ba8f80602e79dcadac6daa14d7d50d49f2c2",
+  "rows": [
+    {
+      "rowId": "006B:8905780756677:input_frequencies",
+      "kind": "value",
+      "targetGid": "gid://shopify/Product/8905780756677",
+      "domain": "electrical",
+      "planId": "E-MUT-026",
+      "field": "PRODUCT.metafields.rhino.input_frequencies",
+      "type": "list.frequency",
+      "canonicalUnit": "hertz",
+      "desired": [
+        {
+          "value": 60,
+          "unit": "hertz"
+        }
+      ],
+      "physicalState": "technical_configuration",
+      "audience": "public_read",
+      "responseIds": [
+        "em-frequency"
+      ],
+      "ownerDecision": "OWNER_CONFIRMED",
+      "contractState": "CONTRACT_DETERMINATE",
+      "holdReason": null,
+      "priorApprovedValue": null,
+      "liveBefore": null,
+      "overwriteState": "CREATE_ABSENT",
+      "executionEligible": false,
+      "executionGate": "SECTION_18_STOP_BEFORE_RUNTIME_CAPABILITY_CHANGE",
+      "approvalDecisionId": "006B-WORKSHEET:f9bcb9844847da134bfcd9429ee337e6a434387d6118251b5b1d5da82b6a09e1",
+      "provenance": {
+        "sourceId": "006B-WORKSHEET:f9bcb9844847da134bfcd9429ee337e6a434387d6118251b5b1d5da82b6a09e1",
+        "responseIds": [
+          "em-frequency"
+        ],
+        "sourceValue": [
+          "60"
+        ],
+        "sourceUnit": "hertz",
+        "physicalState": "technical_configuration",
+        "configurationId": "CURRENT_PRODUCT:gid://shopify/Product/8905780756677",
+        "configurationLabel": "Current Product configuration",
+        "conversionRuleId": null
+      }
+    },
+    {
+      "rowId": "006B:8905784262853:input_voltage",
+      "kind": "value",
+      "targetGid": "gid://shopify/Product/8905784262853",
+      "domain": "electrical",
+      "planId": "E-MUT-026",
+      "field": "PRODUCT.metafields.rhino.input_voltage",
+      "type": "voltage",
+      "canonicalUnit": "volts",
+      "desired": {
+        "value": 110,
+        "unit": "volts"
+      },
+      "physicalState": "technical_configuration",
+      "audience": "public_read",
+      "responseIds": [
+        "saw36-motor"
+      ],
+      "ownerDecision": "OWNER_CONFIRMED",
+      "contractState": "CONTRACT_DETERMINATE",
+      "holdReason": null,
+      "priorApprovedValue": null,
+      "liveBefore": null,
+      "overwriteState": "CREATE_ABSENT",
+      "executionEligible": false,
+      "executionGate": "SECTION_18_STOP_BEFORE_RUNTIME_CAPABILITY_CHANGE",
+      "approvalDecisionId": "006B-WORKSHEET:f9bcb9844847da134bfcd9429ee337e6a434387d6118251b5b1d5da82b6a09e1",
+      "provenance": {
+        "sourceId": "006B-WORKSHEET:f9bcb9844847da134bfcd9429ee337e6a434387d6118251b5b1d5da82b6a09e1",
+        "responseIds": [
+          "saw36-motor"
+        ],
+        "sourceValue": "110",
+        "sourceUnit": "volts",
+        "physicalState": "technical_configuration",
+        "configurationId": "CURRENT_PRODUCT:gid://shopify/Product/8905784262853",
+        "configurationLabel": "Current Product configuration",
+        "conversionRuleId": null
+      }
+    },
+    {
+      "rowId": "006B:8905784262853:input_frequencies",
+      "kind": "value",
+      "targetGid": "gid://shopify/Product/8905784262853",
+      "domain": "electrical",
+      "planId": "E-MUT-026",
+      "field": "PRODUCT.metafields.rhino.input_frequencies",
+      "type": "list.frequency",
+      "canonicalUnit": "hertz",
+      "desired": [
+        {
+          "value": 60,
+          "unit": "hertz"
+        }
+      ],
+      "physicalState": "technical_configuration",
+      "audience": "public_read",
+      "responseIds": [
+        "saw36-motor"
+      ],
+      "ownerDecision": "OWNER_CONFIRMED",
+      "contractState": "CONTRACT_DETERMINATE",
+      "holdReason": null,
+      "priorApprovedValue": null,
+      "liveBefore": null,
+      "overwriteState": "CREATE_ABSENT",
+      "executionEligible": false,
+      "executionGate": "SECTION_18_STOP_BEFORE_RUNTIME_CAPABILITY_CHANGE",
+      "approvalDecisionId": "006B-WORKSHEET:f9bcb9844847da134bfcd9429ee337e6a434387d6118251b5b1d5da82b6a09e1",
+      "provenance": {
+        "sourceId": "006B-WORKSHEET:f9bcb9844847da134bfcd9429ee337e6a434387d6118251b5b1d5da82b6a09e1",
+        "responseIds": [
+          "saw36-motor"
+        ],
+        "sourceValue": [
+          "60"
+        ],
+        "sourceUnit": "hertz",
+        "physicalState": "technical_configuration",
+        "configurationId": "CURRENT_PRODUCT:gid://shopify/Product/8905784262853",
+        "configurationLabel": "Current Product configuration",
+        "conversionRuleId": null
+      }
+    }
+  ],
+  "plannedValueChanges": 3,
+  "exactNoOps": 0,
+  "rollback": [
+    {
+      "targetGid": "gid://shopify/Product/8905780756677",
+      "field": "PRODUCT.metafields.rhino.input_frequencies",
+      "restore": null
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905784262853",
+      "field": "PRODUCT.metafields.rhino.input_voltage",
+      "restore": null
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905784262853",
+      "field": "PRODUCT.metafields.rhino.input_frequencies",
+      "restore": null
+    }
+  ],
+  "compareBeforeWrite": "Fresh re-read and digest comparison required after runtime gate closure; this review read is not a future write reservation",
+  "executionAuthorized": false,
+  "gate": "User section 18 requires stop before missing runtime capability modification"
+}

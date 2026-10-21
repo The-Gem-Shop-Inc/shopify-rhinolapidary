@@ -1,0 +1,1166 @@
+{
+  "batch": "F4",
+  "assessedAt": "2026-10-07T18:08:16.812Z",
+  "exitCode": 0,
+  "scope": "repository and isolated synthetic local fixtures only",
+  "status": {
+    "F-PBI-006A": "complete repository scope",
+    "F-PBI-007A": "complete repository scope",
+    "F-PBI-006B": "open; not ready",
+    "F-PBI-007B": "open; not ready",
+    "F-PBI-004B": "open; blocked by F-DEC-002",
+    "F-PBI-013": "open; F-DEC-001 unresolved",
+    "F-PBI-014B": "open; F4 specification/contents partial evidence only",
+    "F-PBI-015B": "deferred; not run"
+  },
+  "results": [
+    {
+      "command": "npm run validate:epic-f-facts",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F4 repository",
+      "log": "test-results/epic-f/f4/validate-epic-f-facts.txt"
+    },
+    {
+      "command": "npm run test:epic-f-facts",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F4 repository",
+      "log": "test-results/epic-f/f4/test-epic-f-facts.txt"
+    },
+    {
+      "command": "npm run test:machine-facts",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F4 repository",
+      "log": "test-results/epic-f/f4/test-machine-facts.txt"
+    },
+    {
+      "command": "npm run test:machine-fact-performance",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F4 repository",
+      "log": "test-results/epic-f/f4/test-machine-fact-performance.txt"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f3",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F1-F3 regression",
+      "log": "test-results/epic-f/f4/validate-epic-f-batch-f3.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "required": true
+    }
+  ],
+  "contracts": {
+    "fixtureOnly": true,
+    "checks": [
+      {
+        "name": "zero surfaces disappear",
+        "status": "passed"
+      },
+      {
+        "name": "one key and bounded multiple keys share formatted row",
+        "status": "passed"
+      },
+      {
+        "name": "integer decimal range zero and precision",
+        "status": "passed"
+      },
+      {
+        "name": "explicit source trailing precision preserved",
+        "status": "passed"
+      },
+      {
+        "name": "absent",
+        "status": "passed"
+      },
+      {
+        "name": "wrong metafield type",
+        "status": "passed"
+      },
+      {
+        "name": "malformed number",
+        "status": "passed"
+      },
+      {
+        "name": "range where scalar required",
+        "status": "passed"
+      },
+      {
+        "name": "ambiguous unit",
+        "status": "passed"
+      },
+      {
+        "name": "wrong physical state",
+        "status": "passed"
+      },
+      {
+        "name": "unsupported conversion",
+        "status": "passed"
+      },
+      {
+        "name": "conflicting source",
+        "status": "passed"
+      },
+      {
+        "name": "proposed value",
+        "status": "passed"
+      },
+      {
+        "name": "wrong domain",
+        "status": "passed"
+      },
+      {
+        "name": "wrong field",
+        "status": "passed"
+      },
+      {
+        "name": "wrong Product GID",
+        "status": "passed"
+      },
+      {
+        "name": "unauthorized value",
+        "status": "passed"
+      },
+      {
+        "name": "missing configuration",
+        "status": "passed"
+      },
+      {
+        "name": "missing source decimal",
+        "status": "passed"
+      },
+      {
+        "name": "floating point artifact differs from source",
+        "status": "passed"
+      },
+      {
+        "name": "missing range endpoint",
+        "status": "passed"
+      },
+      {
+        "name": "incompatible endpoint dimension",
+        "status": "passed"
+      },
+      {
+        "name": "mixed endpoint units",
+        "status": "passed"
+      },
+      {
+        "name": "different endpoint configuration",
+        "status": "passed"
+      },
+      {
+        "name": "different endpoint source",
+        "status": "passed"
+      },
+      {
+        "name": "reversed range",
+        "status": "passed"
+      },
+      {
+        "name": "scalar cannot stand in for a complete range",
+        "status": "passed"
+      },
+      {
+        "name": "motor wheel flex shaft and arbor meanings stay separate",
+        "status": "passed"
+      },
+      {
+        "name": "ambiguous horsepower fails closed",
+        "status": "passed"
+      },
+      {
+        "name": "assembled crate net and shipping states cannot be aliased",
+        "status": "passed"
+      },
+      {
+        "name": "ambiguous gallon fails closed",
+        "status": "passed"
+      },
+      {
+        "name": "two technical configurations cannot become one Product value",
+        "status": "passed"
+      },
+      {
+        "name": "configuration preserved and long values supported",
+        "status": "passed"
+      },
+      {
+        "name": "stale source",
+        "status": "passed"
+      },
+      {
+        "name": "stale reconciliation",
+        "status": "passed"
+      },
+      {
+        "name": "denied activation",
+        "status": "passed"
+      },
+      {
+        "name": "denied audience",
+        "status": "passed"
+      },
+      {
+        "name": "after state drift",
+        "status": "passed"
+      },
+      {
+        "name": "expired receipt",
+        "status": "passed"
+      },
+      {
+        "name": "nonblank live data without source row is unauthorized",
+        "status": "passed"
+      },
+      {
+        "name": "real context stays empty; fixtures cannot publish",
+        "status": "passed"
+      },
+      {
+        "name": "included exact-GID quantities and all distinct meanings",
+        "status": "passed"
+      },
+      {
+        "name": "missing quantity join",
+        "status": "passed"
+      },
+      {
+        "name": "zero quantity",
+        "status": "passed"
+      },
+      {
+        "name": "negative quantity",
+        "status": "passed"
+      },
+      {
+        "name": "decimal quantity",
+        "status": "passed"
+      },
+      {
+        "name": "duplicate quantity mapping",
+        "status": "passed"
+      },
+      {
+        "name": "conflicting quantity mapping",
+        "status": "passed"
+      },
+      {
+        "name": "unauthorized quantity",
+        "status": "passed"
+      },
+      {
+        "name": "wrong quantity target",
+        "status": "passed"
+      },
+      {
+        "name": "C-040 still blocked",
+        "status": "passed"
+      },
+      {
+        "name": "one included Product",
+        "status": "passed"
+      },
+      {
+        "name": "conflicting semantic sets suppress the Product in both sets",
+        "status": "passed"
+      },
+      {
+        "name": "deleted reference suppressed without replacement",
+        "status": "passed"
+      },
+      {
+        "name": "unpublished reference suppressed without replacement",
+        "status": "passed"
+      },
+      {
+        "name": "wrong class reference suppressed without replacement",
+        "status": "passed"
+      },
+      {
+        "name": "unavailable audience reference suppressed without replacement",
+        "status": "passed"
+      },
+      {
+        "name": "noncatalog name match stays plain unlinked component",
+        "status": "passed"
+      },
+      {
+        "name": "stale contents are suppressed",
+        "status": "passed"
+      },
+      {
+        "name": "arbitrary description/tag/title/media/manual/Custom Liquid cannot populate modules",
+        "status": "passed"
+      },
+      {
+        "name": "structured data has no specification or BOM additions",
+        "status": "passed"
+      },
+      {
+        "name": "quantity map rejects orphan keys without inferred defaults",
+        "status": "passed"
+      },
+      {
+        "name": "escaped duplicate quantity aliases fail closed",
+        "status": "passed"
+      },
+      {
+        "name": "malformed noncatalog entry suppresses safely",
+        "status": "passed"
+      },
+      {
+        "name": "unknown catalog GID does not resolve by name or handle",
+        "status": "passed"
+      },
+      {
+        "name": "default native card preserves price and heading; contents card is contextual",
+        "status": "passed"
+      },
+      {
+        "name": "forged customer projection rejected by schema",
+        "status": "passed"
+      }
+    ]
+  },
+  "browser": {
+    "startTime": "2026-10-07T18:01:21.216Z",
+    "duration": 104958.12000000001,
+    "expected": 27,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "performance": {
+    "budgets": {
+      "mobile": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "desktop": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      }
+    },
+    "observations": [
+      {
+        "state": "zero",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 148
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 295982
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "zero",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 80
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 295982
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "specifications",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 196
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 55
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 301065
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "specifications",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 100
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 301065
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "long",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 76
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 347791
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 22
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "long",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 104
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 347791
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 22
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "contents",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 76
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 323486
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 22
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "contents",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 80
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 323486
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 22
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "large-contents",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 68
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 345726
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 22
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "large-contents",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 76
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 345726
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 22
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      }
+    ],
+    "record": "test-results/epic-f/f4/performance-runtime.json",
+    "fixtureOnly": true,
+    "releaseCertification": false
+  },
+  "thresholdChanges": false,
+  "regression": {
+    "f1": [
+      {
+        "command": "npm run validate:epic-f-consumer",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run test:epic-f-consumer",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:epic-f-claims",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run test:epic-f-claims",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:registers",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:product-templates",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:product-purchase",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:brand-claims",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run test:brand-claims-validator",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:metafields",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:epic-e-batch-2b1-registers",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:epic-e-batch-4a-contracts",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:theme-repository",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:theme-architecture",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:storefront-js",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:settings-data",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:fixtures",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run theme:check",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "node scripts/validate-social-metadata-contract.js",
+        "exitCode": 0,
+        "requiredForBatch": true
+      }
+    ],
+    "f2": [
+      {
+        "command": "npm run validate:epic-f-machine",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-1.txt"
+      },
+      {
+        "command": "npm run test:epic-f-contact-context",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-2.txt"
+      },
+      {
+        "command": "npm run test:machine-shell",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-3.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f1",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-4.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-5.txt"
+      },
+      {
+        "command": "F2 historical diagnostic comparison",
+        "exitCode": 0,
+        "required": true
+      }
+    ],
+    "f3": [
+      {
+        "command": "npm run validate:epic-f-gallery",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/validate-epic-f-gallery.txt"
+      },
+      {
+        "command": "npm run test:epic-f-media",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-epic-f-media.txt"
+      },
+      {
+        "command": "npm run test:epic-f-performance",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-epic-f-performance.txt"
+      },
+      {
+        "command": "npm run test:machine-gallery",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-machine-gallery.txt"
+      },
+      {
+        "command": "npm run test:machine-performance",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-machine-performance.txt"
+      },
+      {
+        "command": "npm run validate:brand-performance",
+        "exitCode": 0,
+        "category": "F1/F2 and existing performance regression",
+        "log": "test-results/epic-f/f3/validate-brand-performance.txt"
+      },
+      {
+        "command": "npm run validate:homepage-performance",
+        "exitCode": 0,
+        "category": "F1/F2 and existing performance regression",
+        "log": "test-results/epic-f/f3/validate-homepage-performance.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f2",
+        "exitCode": 0,
+        "category": "F1/F2 and existing performance regression",
+        "log": "test-results/epic-f/f3/validate-epic-f-batch-f2.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "category": "required F3 repository"
+      }
+    ]
+  },
+  "factGrants": {
+    "before": 0,
+    "after": 0
+  },
+  "historicalDiagnostics": [
+    {
+      "command": "npm run validate:launch-fixtures",
+      "exitCode": 1,
+      "requiredForBatch": false
+    },
+    {
+      "command": "npm run validate:product-data -- data/product-export/products.csv",
+      "exitCode": 1,
+      "requiredForBatch": false
+    }
+  ],
+  "historicalComparison": [
+    {
+      "name": "validate-launch-fixtures",
+      "findingCount": 2,
+      "unchanged": true
+    },
+    {
+      "name": "validate-product-data",
+      "findingCount": 103,
+      "unchanged": true
+    }
+  ],
+  "historicalDescriptionClaimMatches": {
+    "count": 37,
+    "status": "historical, suppressed, not approved"
+  },
+  "deferred": [
+    "006B: Epic E technical/measurement approval and value adapters, migration, fresh complete reconciliation, customer audience and F eligibility; separate activation authorization",
+    "007B: Epic E component/BOM approval including C-040 resolution, exact-GID quantities, migration, fresh reconciliation, customer visibility and F eligibility; separate activation authorization",
+    "004B approved live media activation",
+    "014B approved live media parity, contextual items, delivery/pickup, warranty/support, resources/downloads/video and later disclosure/details journeys",
+    "013/F-DEC-001 decision; payment terms unchanged",
+    "015B actual Shopify preview/release performance certification",
+    "Epic P routing/privacy/retention and intake activation",
+    "Inherited Epic E approvals/migrations/reconciliation; no questions reopened"
+  ],
+  "previewOnlyChecks": "not run; not authorized",
+  "adminOnlyChecks": "not run; not authorized",
+  "adminMutationOccurred": false,
+  "productMetafieldMetaobjectMutationOccurred": false,
+  "productTemplateAssignmentOccurred": false,
+  "themePushedOrPublished": false
+}

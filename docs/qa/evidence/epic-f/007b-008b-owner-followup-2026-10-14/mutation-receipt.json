@@ -1,0 +1,186 @@
+{
+  "startedAt": "2026-10-14T21:51:18.457Z",
+  "completedAt": "2026-10-14T21:51:19.376Z",
+  "query": "mutation OwnerBOMFollowup($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type jsonValue compareDigest definition{id}} userErrors{field message}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "included_products",
+        "type": "list.product_reference",
+        "value": "[\"gid://shopify/Product/8905778430149\",\"gid://shopify/Product/8905778331845\",\"gid://shopify/Product/8905778987205\",\"gid://shopify/Product/8905779118277\",\"gid://shopify/Product/8905778921669\",\"gid://shopify/Product/8905779052741\"]",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "included_quantities",
+        "type": "json",
+        "value": "{\"gid://shopify/Product/8905778430149\":1,\"gid://shopify/Product/8905778331845\":1,\"gid://shopify/Product/8905778987205\":1,\"gid://shopify/Product/8905779118277\":1,\"gid://shopify/Product/8905778921669\":1,\"gid://shopify/Product/8905779052741\":1}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "noncatalog_components",
+        "type": "json",
+        "value": "[{\"label\":\"Flexible-shaft packaged set (flexible shaft, 18-piece accessory set and 3 attachment heads)\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Silversmithing spindles\",\"quantity\":2,\"meaning\":\"included\"},{\"label\":\"Sanding/polishing wheels\",\"quantity\":3,\"meaning\":\"included\"},{\"label\":\"DIALUX Superfinishing Paste\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"DIALUX Polishing Paste\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Flat lap\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Magnetic felt pad\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Magnetic 80-grit disc\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Magnifying glass attachment\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Jointed light attachment\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Wrist rests\",\"quantity\":2,\"meaning\":\"included\"},{\"label\":\"Water pump\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Tank filtration system\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Right-side shield (loose included item)\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Moss Filtration Pads\",\"quantity\":2,\"meaning\":\"included\"},{\"label\":\"Brass spray nozzles\",\"quantity\":2,\"meaning\":\"included\"},{\"label\":\"Spoke wrench\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Hex key\",\"quantity\":1,\"meaning\":\"included\"},{\"label\":\"Crescent wrench\",\"quantity\":1,\"meaning\":\"included\"}]",
+        "compareDigest": "6b7f02b71e0e3c68ff1e93f6d18629e8d364201fcb75cbe0bc9a719189ca25cc"
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71556453335237",
+            "namespace": "rhino",
+            "key": "included_products",
+            "type": "list.product_reference",
+            "jsonValue": [
+              "gid://shopify/Product/8905778430149",
+              "gid://shopify/Product/8905778331845",
+              "gid://shopify/Product/8905778987205",
+              "gid://shopify/Product/8905779118277",
+              "gid://shopify/Product/8905778921669",
+              "gid://shopify/Product/8905779052741"
+            ],
+            "compareDigest": "109800ad8aed0e9d56fbda7e588da1495f8934c582978a3b6faeef4ad1743b49",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660364485"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71556453302469",
+            "namespace": "rhino",
+            "key": "included_quantities",
+            "type": "json",
+            "jsonValue": {
+              "gid://shopify/Product/8905778430149": 1,
+              "gid://shopify/Product/8905778331845": 1,
+              "gid://shopify/Product/8905778987205": 1,
+              "gid://shopify/Product/8905779118277": 1,
+              "gid://shopify/Product/8905778921669": 1,
+              "gid://shopify/Product/8905779052741": 1
+            },
+            "compareDigest": "b176eb7733f4c2b09461645ad340af1c4033074c82e596cb4bb93b4a1b62acd3",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660397253"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530344415429",
+            "namespace": "rhino",
+            "key": "noncatalog_components",
+            "type": "json",
+            "jsonValue": [
+              {
+                "label": "Flexible-shaft packaged set (flexible shaft, 18-piece accessory set and 3 attachment heads)",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Silversmithing spindles",
+                "quantity": 2,
+                "meaning": "included"
+              },
+              {
+                "label": "Sanding/polishing wheels",
+                "quantity": 3,
+                "meaning": "included"
+              },
+              {
+                "label": "DIALUX Superfinishing Paste",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "DIALUX Polishing Paste",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Flat lap",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Magnetic felt pad",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Magnetic 80-grit disc",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Magnifying glass attachment",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Jointed light attachment",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Wrist rests",
+                "quantity": 2,
+                "meaning": "included"
+              },
+              {
+                "label": "Water pump",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Tank filtration system",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Right-side shield (loose included item)",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Moss Filtration Pads",
+                "quantity": 2,
+                "meaning": "included"
+              },
+              {
+                "label": "Brass spray nozzles",
+                "quantity": 2,
+                "meaning": "included"
+              },
+              {
+                "label": "Spoke wrench",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Hex key",
+                "quantity": 1,
+                "meaning": "included"
+              },
+              {
+                "label": "Crescent wrench",
+                "quantity": 1,
+                "meaning": "included"
+              }
+            ],
+            "compareDigest": "ca81ae785f68bb124b36aca097583350c172fcf0aabb4662c06c218ec3b550f7",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660430021"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  },
+  "isError": false
+}

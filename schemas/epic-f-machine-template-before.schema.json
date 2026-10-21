@@ -1,0 +1,395 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "evidenceKind",
+    "environment",
+    "shop",
+    "observedAt",
+    "sourcePath",
+    "sourceSha256",
+    "theme",
+    "products",
+    "digest"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "evidenceKind": {
+      "enum": [
+        "historical_fixture",
+        "synthetic_contract_fixture",
+        "fresh_bounded_read"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shop": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observedAt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourcePath": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repositoryPath",
+        "sha256",
+        "adminThemeId",
+        "adminTemplateExists"
+      ],
+      "properties": {
+        "repositoryPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "adminThemeId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "adminTemplateExists": {
+          "type": "boolean"
+        }
+      }
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "status",
+          "publication",
+          "templateSuffix",
+          "classification",
+          "updatedAt",
+          "resourceVersion",
+          "protectedFieldDigests",
+          "fieldCoverageComplete"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+          },
+          "status": {
+            "enum": [
+              "ACTIVE",
+              "DRAFT",
+              "ARCHIVED"
+            ]
+          },
+          "publication": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "publishedAt",
+              "onlineStoreUrl",
+              "publicationsDigest",
+              "customerVisibility"
+            ],
+            "properties": {
+              "publishedAt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "onlineStoreUrl": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "publicationsDigest": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "customerVisibility": {
+                "enum": [
+                  "historical_published",
+                  "unpublished",
+                  "verified_visible"
+                ]
+              }
+            }
+          },
+          "templateSuffix": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "classification": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "repositoryValue",
+              "decisionId",
+              "liveValue",
+              "sourceDigest"
+            ],
+            "properties": {
+              "repositoryValue": {
+                "const": "machine"
+              },
+              "decisionId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "liveValue": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sourceDigest": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "updatedAt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "resourceVersion": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "protectedFieldDigests": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "descriptionHtml",
+              "variants",
+              "options",
+              "vendor",
+              "category",
+              "tags",
+              "metafields",
+              "media",
+              "seo",
+              "shippingProfile",
+              "publications",
+              "status",
+              "publishedAt",
+              "onlineStoreUrl"
+            ],
+            "properties": {
+              "title": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "descriptionHtml": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "variants": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "options": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "vendor": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "category": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "tags": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "metafields": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "media": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "seo": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "shippingProfile": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "publications": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "status": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "publishedAt": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "onlineStoreUrl": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          "fieldCoverageComplete": {
+            "type": "boolean"
+          }
+        }
+      },
+      "minItems": 11,
+      "maxItems": 11
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

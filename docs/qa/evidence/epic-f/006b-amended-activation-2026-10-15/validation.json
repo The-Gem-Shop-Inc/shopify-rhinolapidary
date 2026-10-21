@@ -1,0 +1,149 @@
+{
+  "completedAt": "2026-10-15T18:42:32.066Z",
+  "sourceBindingSha256": "e8e2e5adc08699e30306c4b37acb4d964a8343062a19e3d134f91b9a9378473a",
+  "finalCurrentChecksExitCode": 0,
+  "commands": [
+    {
+      "command": "Standalone readiness during receipt-code edit",
+      "exitCode": 1,
+      "evidence": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-readiness-concurrent-edit-attempt.json",
+      "supersededBy": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/complete-readiness-check.json"
+    },
+    {
+      "command": "Preview true zoom initial host attempt",
+      "exitCode": 1,
+      "evidence": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/preview-zoom-initial-host-attempt.json",
+      "supersededBy": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/preview-zoom-browser.json"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f8",
+      "exitCode": 1,
+      "reason": "Initial readiness snapshot retained; current F1-F7 passed and F8 was rebuilt/retested",
+      "evidence": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-aggregate-initial-attempt.json"
+    },
+    {
+      "command": "node scripts/finalize-epic-f-006b-local-validation.js",
+      "exitCode": 0,
+      "evidence": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-validation.json"
+    },
+    {
+      "command": "node scripts/test-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "proof": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/complete-readiness-check.json",
+      "reusedCompleteCheck": true
+    },
+    {
+      "command": "node scripts/build-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-build-epic-f-machine-page-readiness.log"
+    },
+    {
+      "command": "node scripts/validate-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-validate-epic-f-machine-page-readiness.log"
+    },
+    {
+      "command": "node scripts/validate-epic-e-owner-activation.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-validate-epic-e-owner-activation.log"
+    },
+    {
+      "command": "node scripts/test-epic-f-006b-amended.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-test-epic-f-006b-amended.log"
+    },
+    {
+      "command": "npm run theme:check",
+      "exitCode": 0,
+      "required": true,
+      "log": "test-results/epic-f/f8/theme-check.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/final-registers.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/final-diff.log"
+    },
+    {
+      "command": "node scripts/deploy-epic-f-006b-amended.js preview",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/deploy-epic-f-006b-amended.js preview --readback",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-006b-live-browser.js preview",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-006b-zoom.js preview",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/deploy-epic-f-006b-amended.js main",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/deploy-epic-f-006b-amended.js main --readback",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-006b-live-browser.js main",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-006b-zoom.js main",
+      "exitCode": 0
+    },
+    {
+      "command": "Credential scan",
+      "exitCode": 0,
+      "evidence": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/credential-scan.json"
+    },
+    {
+      "command": "Protected Product/Variant comparison",
+      "exitCode": 0,
+      "evidence": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/final-protected-comparison.json"
+    }
+  ],
+  "historical": [
+    {
+      "directory": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13",
+      "files": 93,
+      "unchanged": true
+    },
+    {
+      "directory": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14",
+      "files": 54,
+      "unchanged": true
+    },
+    {
+      "directory": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15",
+      "files": 87,
+      "unchanged": true
+    }
+  ],
+  "typedReceiptTests": 22,
+  "readinessTests": 66,
+  "ThemeCheck": {
+    "exitCode": 0,
+    "errors": 0,
+    "warnings": 0
+  },
+  "liveRouteCells": 32,
+  "trueZoomCells": 16,
+  "axeCritical": 0,
+  "axeSerious": 0,
+  "performanceSamples": 0,
+  "performanceRecorderChanges": 0,
+  "thresholdsChanged": false
+}

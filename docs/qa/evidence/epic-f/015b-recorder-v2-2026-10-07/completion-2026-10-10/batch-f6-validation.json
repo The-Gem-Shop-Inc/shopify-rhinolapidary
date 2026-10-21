@@ -1,0 +1,1752 @@
+{
+  "batch": "F6",
+  "assessedAt": "2026-10-07T18:08:17.343Z",
+  "exitCode": 0,
+  "scope": "repository and isolated synthetic local fixtures only",
+  "status": {
+    "F-PBI-010A": "complete repository/local-fixture scope",
+    "F-PBI-011A": "complete repository/local-fixture scope",
+    "F-PBI-010B": "open; not ready",
+    "F-PBI-011B": "open; not ready",
+    "F-PBI-013": "open; F-DEC-001 unresolved",
+    "F-PBI-014B": "open; support/resources local partial evidence only",
+    "F-PBI-015B": "deferred; not run",
+    "B3C-D03": "blocked",
+    "B3B-D06": "pending"
+  },
+  "results": [
+    {
+      "command": "npm run validate:epic-f-support-resources",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/validate-epic-f-support-resources.txt"
+    },
+    {
+      "command": "npm run test:epic-f-support-resources",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/test-epic-f-support-resources.txt"
+    },
+    {
+      "command": "npm run test:machine-support-resources",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/test-machine-support-resources.txt"
+    },
+    {
+      "command": "npm run test:machine-support-resources-performance",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/test-machine-support-resources-performance.txt"
+    },
+    {
+      "command": "npm run validate:hardcoded-strings",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/validate-hardcoded-strings.txt"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f5",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F1-F5 regression",
+      "log": "test-results/epic-f/f6/validate-epic-f-batch-f5.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "required": true
+    }
+  ],
+  "themeCheck": {
+    "command": "npm run theme:check",
+    "exitCode": 0,
+    "requiredForBatch": true,
+    "nestedPath": "F6 → F5 → F4 → F3 → F2 → F1"
+  },
+  "contracts": {
+    "results": [
+      {
+        "name": "zero facts and real grant count",
+        "pass": true
+      },
+      {
+        "name": "Product-specific policy/class/mapping, third-party roles and duration",
+        "pass": true
+      },
+      {
+        "name": "same entity requires separately evidenced roles",
+        "pass": true
+      },
+      {
+        "name": "no duration does not invent one",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects wrong Product",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects duplicate record",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects conflicting second mapping",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects mapping class mismatch",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects class policy mismatch",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects policy revision mismatch",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects approval mismatch",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects class approval mismatch",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects mapping approval mismatch",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects missing policy source authority",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects source content hash mismatch",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects missing issuer evidence",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects missing administrator evidence",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects missing repair evidence",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects stale policy",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects future effective policy",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects expired policy",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects expired authority",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects audience denied",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects proposed",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects conflicts",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects duration missing unit",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects duration missing value",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects duration zero",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects duration invalid unit",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects malformed trigger",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects invalid exclusion",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects invalid exception",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects unsafe brand",
+        "pass": true
+      },
+      {
+        "name": "warranty rejects stale upstream",
+        "pass": true
+      },
+      {
+        "name": "CTA only suppressed: 404",
+        "pass": true
+      },
+      {
+        "name": "CTA only suppressed: missing",
+        "pass": true
+      },
+      {
+        "name": "CTA only suppressed: redirect mismatch",
+        "pass": true
+      },
+      {
+        "name": "CTA only suppressed: external",
+        "pass": true
+      },
+      {
+        "name": "CTA only suppressed: wrong identity",
+        "pass": true
+      },
+      {
+        "name": "CTA only suppressed: stale",
+        "pass": true
+      },
+      {
+        "name": "CTA only suppressed: wrong purpose",
+        "pass": true
+      },
+      {
+        "name": "CTA only suppressed: absent historic warranty",
+        "pass": true
+      },
+      {
+        "name": "valid exact warranty destination",
+        "pass": true
+      },
+      {
+        "name": "warranty CTA cannot leak restricted source: internal",
+        "pass": true
+      },
+      {
+        "name": "warranty CTA cannot leak restricted source: support_only",
+        "pass": true
+      },
+      {
+        "name": "warranty CTA cannot leak restricted source: support_files",
+        "pass": true
+      },
+      {
+        "name": "warranty CTA cannot leak restricted source: evidence_only",
+        "pass": true
+      },
+      {
+        "name": "warranty CTA cannot leak restricted source: publication",
+        "pass": true
+      },
+      {
+        "name": "warranty CTA cannot leak restricted source: rights",
+        "pass": true
+      },
+      {
+        "name": "positive warranty passes E owner schema/validator with separate subject approvals",
+        "pass": true
+      },
+      {
+        "name": "upstream warranty rejects missing E owner approval",
+        "pass": true
+      },
+      {
+        "name": "upstream warranty rejects malformed E context",
+        "pass": true
+      },
+      {
+        "name": "upstream warranty rejects wrong E approval subject",
+        "pass": true
+      },
+      {
+        "name": "upstream warranty rejects wrong E approval kind",
+        "pass": true
+      },
+      {
+        "name": "upstream warranty rejects missing E owner role",
+        "pass": true
+      },
+      {
+        "name": "upstream warranty rejects stale E policy source",
+        "pass": true
+      },
+      {
+        "name": "upstream warranty rejects changed E source hash",
+        "pass": true
+      },
+      {
+        "name": "upstream warranty rejects unapproved equal roles",
+        "pass": true
+      },
+      {
+        "name": "unsafe route //evil.example",
+        "pass": true
+      },
+      {
+        "name": "unsafe route /\\evil.example",
+        "pass": true
+      },
+      {
+        "name": "unsafe route /%2e%2e/private",
+        "pass": true
+      },
+      {
+        "name": "unsafe route /a/../b",
+        "pass": true
+      },
+      {
+        "name": "unsafe route /a?redirect=x",
+        "pass": true
+      },
+      {
+        "name": "unsafe route javascript:alert(1)",
+        "pass": true
+      },
+      {
+        "name": "approved synthetic one",
+        "pass": true
+      },
+      {
+        "name": "approved synthetic downloads",
+        "pass": true
+      },
+      {
+        "name": "approved synthetic video",
+        "pass": true
+      },
+      {
+        "name": "approved synthetic combined",
+        "pass": true
+      },
+      {
+        "name": "resource rejects 404",
+        "pass": true
+      },
+      {
+        "name": "resource rejects wrong Product",
+        "pass": true
+      },
+      {
+        "name": "resource rejects missing applicability",
+        "pass": true
+      },
+      {
+        "name": "resource rejects duplicate resource ID",
+        "pass": true
+      },
+      {
+        "name": "resource rejects duplicate File identity",
+        "pass": true
+      },
+      {
+        "name": "resource rejects conflicting canonical version",
+        "pass": true
+      },
+      {
+        "name": "resource rejects exact File mismatch",
+        "pass": true
+      },
+      {
+        "name": "resource rejects candidate",
+        "pass": true
+      },
+      {
+        "name": "resource rejects obsolete",
+        "pass": true
+      },
+      {
+        "name": "resource rejects superseded",
+        "pass": true
+      },
+      {
+        "name": "resource rejects HTTP 200 obsolete",
+        "pass": true
+      },
+      {
+        "name": "resource rejects canonical false",
+        "pass": true
+      },
+      {
+        "name": "resource rejects owner missing",
+        "pass": true
+      },
+      {
+        "name": "resource rejects rights missing",
+        "pass": true
+      },
+      {
+        "name": "resource rejects publication missing",
+        "pass": true
+      },
+      {
+        "name": "resource rejects audience wrong",
+        "pass": true
+      },
+      {
+        "name": "resource rejects language missing",
+        "pass": true
+      },
+      {
+        "name": "resource rejects language wrong",
+        "pass": true
+      },
+      {
+        "name": "resource rejects language invalid",
+        "pass": true
+      },
+      {
+        "name": "resource rejects language unreviewed",
+        "pass": true
+      },
+      {
+        "name": "resource rejects version missing",
+        "pass": true
+      },
+      {
+        "name": "resource rejects version invalid",
+        "pass": true
+      },
+      {
+        "name": "resource rejects version unreviewed",
+        "pass": true
+      },
+      {
+        "name": "resource rejects wrong configuration",
+        "pass": true
+      },
+      {
+        "name": "resource rejects missing target",
+        "pass": true
+      },
+      {
+        "name": "resource rejects redirect wrong identity",
+        "pass": true
+      },
+      {
+        "name": "resource rejects wrong resource identity",
+        "pass": true
+      },
+      {
+        "name": "resource rejects unsafe external URL",
+        "pass": true
+      },
+      {
+        "name": "resource rejects stale route",
+        "pass": true
+      },
+      {
+        "name": "resource rejects internal",
+        "pass": true
+      },
+      {
+        "name": "resource rejects support only",
+        "pass": true
+      },
+      {
+        "name": "resource rejects evidence only",
+        "pass": true
+      },
+      {
+        "name": "resource rejects support current canonical reachable approved",
+        "pass": true
+      },
+      {
+        "name": "resource rejects support internal",
+        "pass": true
+      },
+      {
+        "name": "resource rejects support evidence",
+        "pass": true
+      },
+      {
+        "name": "resource rejects missing accessible name",
+        "pass": true
+      },
+      {
+        "name": "configuration scoped resource matches only explicit page scope",
+        "pass": true
+      },
+      {
+        "name": "canonical inference denied: filename",
+        "pass": true
+      },
+      {
+        "name": "canonical inference denied: uploadDate",
+        "pass": true
+      },
+      {
+        "name": "canonical inference denied: contentHash",
+        "pass": true
+      },
+      {
+        "name": "canonical inference denied: duplicateGroup",
+        "pass": true
+      },
+      {
+        "name": "canonical inference denied: candidateModelLabel",
+        "pass": true
+      },
+      {
+        "name": "canonical inference denied: pageTitle",
+        "pass": true
+      },
+      {
+        "name": "working legacy Page does not approve a canonical File",
+        "pass": true
+      },
+      {
+        "name": "seven broken manual signatures match unchanged E reconciliation",
+        "pass": true
+      },
+      {
+        "name": "working historical Page is not canonical: /pages/em-1-manual",
+        "pass": true
+      },
+      {
+        "name": "working historical Page is not canonical: /pages/shapemaster-manual",
+        "pass": true
+      },
+      {
+        "name": "working historical Page is not canonical: /pages/trimmaster-manual",
+        "pass": true
+      },
+      {
+        "name": "historic broken manual /pages/12-in-lapmaster-manual",
+        "pass": true
+      },
+      {
+        "name": "historic broken manual /pages/18-in-lapmaster-manual",
+        "pass": true
+      },
+      {
+        "name": "historic broken manual /pages/18-in-sawmaster-manual",
+        "pass": true
+      },
+      {
+        "name": "historic broken manual /pages/24-in-sawmaster-manual",
+        "pass": true
+      },
+      {
+        "name": "historic broken manual /pages/36-in-sawmaster-manual",
+        "pass": true
+      },
+      {
+        "name": "historic broken manual /pages/jademaster-manual",
+        "pass": true
+      },
+      {
+        "name": "historic broken manual /pages/beadmaster-manual",
+        "pass": true
+      },
+      {
+        "name": "video rejects homepage",
+        "pass": true
+      },
+      {
+        "name": "video rejects autoplay",
+        "pass": true
+      },
+      {
+        "name": "video rejects eager",
+        "pass": true
+      },
+      {
+        "name": "video rejects captions",
+        "pass": true
+      },
+      {
+        "name": "video rejects transcript",
+        "pass": true
+      },
+      {
+        "name": "video rejects poster",
+        "pass": true
+      },
+      {
+        "name": "video rejects dimensions",
+        "pass": true
+      },
+      {
+        "name": "forged fixture packet cannot populate a real context",
+        "pass": true
+      },
+      {
+        "name": "output schema forbids customer support type and nonfixture grants",
+        "pass": true
+      },
+      {
+        "name": "tampering after shared approval digest is rejected",
+        "pass": true
+      },
+      {
+        "name": "invalid Product GID returns empty diagnostic, not an exception",
+        "pass": true
+      },
+      {
+        "name": "release builder refuses fixture and stale contexts",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: vendor",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: title",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: description",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: tags",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: product_type",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: collections",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: refund_policy",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: return_policy",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: shipping_policy",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: terms",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: privacy_policy",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: contact",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: files",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: historical_one_year",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: historical_90_days",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: product_class",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: price",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: brand_group",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: manual_body",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: diagram_text",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: video_transcript",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: filename",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: page_title",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: resource_metadata",
+        "pass": true
+      },
+      {
+        "name": "incidental input cannot populate any module: custom_liquid",
+        "pass": true
+      },
+      {
+        "name": "zero modules preserve neutral Contact and no placeholder",
+        "pass": true
+      },
+      {
+        "name": "deployable nil projection cannot render fixture values",
+        "pass": true
+      },
+      {
+        "name": "resource body cannot populate specs/BOM/context/delivery/JSON-LD",
+        "pass": true
+      },
+      {
+        "name": "rendered approved modules hide internal IDs and keep meanings",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: vendor",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: title",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: description",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: tags",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: collections",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: product_type",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: media_captions",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: generic_policy",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: manual_text",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: upload_filename",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: upload_date",
+        "pass": true
+      },
+      {
+        "name": "Liquid incidental input cannot populate F6: custom_liquid",
+        "pass": true
+      },
+      {
+        "name": "approved resource projection supplies no facts to earlier modules or structured data",
+        "pass": true
+      }
+    ],
+    "passed": 177,
+    "failed": 0,
+    "brokenManualRoutes": [
+      "/pages/12-in-lapmaster-manual",
+      "/pages/18-in-lapmaster-manual",
+      "/pages/18-in-sawmaster-manual",
+      "/pages/24-in-sawmaster-manual",
+      "/pages/36-in-sawmaster-manual",
+      "/pages/jademaster-manual",
+      "/pages/beadmaster-manual"
+    ]
+  },
+  "browser": {
+    "startTime": "2026-10-07T17:57:20.430Z",
+    "duration": 78459.49200000001,
+    "expected": 29,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "regression": {
+    "f1": [
+      {
+        "command": "npm run validate:epic-f-consumer",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run test:epic-f-consumer",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:epic-f-claims",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run test:epic-f-claims",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:registers",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:product-templates",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:product-purchase",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:brand-claims",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run test:brand-claims-validator",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:metafields",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:epic-e-batch-2b1-registers",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:epic-e-batch-4a-contracts",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:theme-repository",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:theme-architecture",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:storefront-js",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:settings-data",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:fixtures",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run theme:check",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "node scripts/validate-social-metadata-contract.js",
+        "exitCode": 0,
+        "requiredForBatch": true
+      }
+    ],
+    "f2": [
+      {
+        "command": "npm run validate:epic-f-machine",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-1.txt"
+      },
+      {
+        "command": "npm run test:epic-f-contact-context",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-2.txt"
+      },
+      {
+        "command": "npm run test:machine-shell",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-3.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f1",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-4.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-5.txt"
+      },
+      {
+        "command": "F2 historical diagnostic comparison",
+        "exitCode": 0,
+        "required": true
+      }
+    ],
+    "f3": [
+      {
+        "command": "npm run validate:epic-f-gallery",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/validate-epic-f-gallery.txt"
+      },
+      {
+        "command": "npm run test:epic-f-media",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-epic-f-media.txt"
+      },
+      {
+        "command": "npm run test:epic-f-performance",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-epic-f-performance.txt"
+      },
+      {
+        "command": "npm run test:machine-gallery",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-machine-gallery.txt"
+      },
+      {
+        "command": "npm run test:machine-performance",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-machine-performance.txt"
+      },
+      {
+        "command": "npm run validate:brand-performance",
+        "exitCode": 0,
+        "category": "F1/F2 and existing performance regression",
+        "log": "test-results/epic-f/f3/validate-brand-performance.txt"
+      },
+      {
+        "command": "npm run validate:homepage-performance",
+        "exitCode": 0,
+        "category": "F1/F2 and existing performance regression",
+        "log": "test-results/epic-f/f3/validate-homepage-performance.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f2",
+        "exitCode": 0,
+        "category": "F1/F2 and existing performance regression",
+        "log": "test-results/epic-f/f3/validate-epic-f-batch-f2.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "category": "required F3 repository"
+      }
+    ],
+    "f4": [
+      {
+        "command": "npm run validate:epic-f-facts",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F4 repository",
+        "log": "test-results/epic-f/f4/validate-epic-f-facts.txt"
+      },
+      {
+        "command": "npm run test:epic-f-facts",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F4 repository",
+        "log": "test-results/epic-f/f4/test-epic-f-facts.txt"
+      },
+      {
+        "command": "npm run test:machine-facts",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F4 repository",
+        "log": "test-results/epic-f/f4/test-machine-facts.txt"
+      },
+      {
+        "command": "npm run test:machine-fact-performance",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F4 repository",
+        "log": "test-results/epic-f/f4/test-machine-fact-performance.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f3",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F1-F3 regression",
+        "log": "test-results/epic-f/f4/validate-epic-f-batch-f3.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "required": true
+      }
+    ],
+    "f5": [
+      {
+        "command": "npm run validate:epic-f-context-delivery",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F5 repository",
+        "log": "test-results/epic-f/f5/validate-epic-f-context-delivery.txt"
+      },
+      {
+        "command": "npm run test:epic-f-context-delivery",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F5 repository",
+        "log": "test-results/epic-f/f5/test-epic-f-context-delivery.txt"
+      },
+      {
+        "command": "npm run test:machine-context-delivery",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F5 repository",
+        "log": "test-results/epic-f/f5/test-machine-context-delivery.txt"
+      },
+      {
+        "command": "npm run test:machine-context-delivery-performance",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F5 repository",
+        "log": "test-results/epic-f/f5/test-machine-context-delivery-performance.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f4",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F1-F4 regression",
+        "log": "test-results/epic-f/f5/validate-epic-f-batch-f4.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "required": true
+      }
+    ]
+  },
+  "performance": {
+    "budgets": {
+      "mobile": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "desktop": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      }
+    },
+    "observations": [
+      {
+        "state": "zero",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 196
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 2
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 295982
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "zero",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 108
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 295982
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "support",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 92
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 297825
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "support",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 124
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 297825
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "downloads",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 80
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 297072
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "downloads",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 76
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 297072
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "video",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 68
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 296930
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "video",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 116
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 296930
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "combined",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 104
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 299623
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "combined",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 64
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 299623
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      }
+    ],
+    "record": "test-results/epic-f/f6/performance-runtime.json",
+    "fixtureOnly": true,
+    "releaseCertification": false
+  },
+  "thresholdChanges": false,
+  "factGrants": {
+    "before": 0,
+    "after": 0,
+    "newDomains": {
+      "warranty_service": {
+        "before": 0,
+        "after": 0
+      },
+      "manual": {
+        "before": 0,
+        "after": 0
+      },
+      "diagram_instruction": {
+        "before": 0,
+        "after": 0
+      },
+      "video": {
+        "before": 0,
+        "after": 0
+      },
+      "support_files_customer_forbidden": {
+        "before": 0,
+        "after": 0
+      }
+    }
+  },
+  "historicalDiagnostics": [
+    {
+      "command": "npm run validate:launch-fixtures",
+      "exitCode": 1,
+      "requiredForBatch": false
+    },
+    {
+      "command": "npm run validate:product-data -- data/product-export/products.csv",
+      "exitCode": 1,
+      "requiredForBatch": false
+    }
+  ],
+  "historicalComparison": [
+    {
+      "name": "validate-launch-fixtures",
+      "findingCount": 2,
+      "unchanged": true
+    },
+    {
+      "name": "validate-product-data",
+      "findingCount": 103,
+      "unchanged": true
+    }
+  ],
+  "historicalDescriptionClaimMatches": {
+    "count": 37,
+    "status": "historical, suppressed, not approved"
+  },
+  "brokenManualRoutes": {
+    "unchanged": true,
+    "source": "data/epic-e-resource-catalog.json; historical discovery",
+    "routes": [
+      "/pages/12-in-lapmaster-manual",
+      "/pages/18-in-lapmaster-manual",
+      "/pages/18-in-sawmaster-manual",
+      "/pages/24-in-sawmaster-manual",
+      "/pages/36-in-sawmaster-manual",
+      "/pages/jademaster-manual",
+      "/pages/beadmaster-manual"
+    ],
+    "liveRecheck": false
+  },
+  "deferred": [
+    "010B B3C-D03/E-PBI-016 policy, class, exact Product mapping, independently evidenced roles, customer scope/destination, applicable migration/reconciliation and separate activation",
+    "011B B3B-D06/E-PBI-018B exact Product/File and canonical version, language/rights/publication review, valid destinations, Product-surface video/media approval, migration/reconciliation and separate activation",
+    "004B/006B/007B/008B/009B unchanged and not ready",
+    "014B approved live media parity, actual Shopify-rendered integration/release parity and release-only journeys not proven locally",
+    "013/F-DEC-001 unresolved; native payment terms unchanged",
+    "015B actual Shopify preview/release certification",
+    "Epic P intake/privacy/retention ownership",
+    "Inherited Epic E approvals/migrations/reconciliation; no questions reopened",
+    "J/K operational corrections; L support/resource destination ownership"
+  ],
+  "previewOnlyChecks": "not run; not authorized",
+  "adminOnlyChecks": "not run; not authorized",
+  "adminMutationOccurred": false,
+  "pageFilePolicyMutationOccurred": false,
+  "productMetafieldMetaobjectMutationOccurred": false,
+  "productTemplateAssignmentOccurred": false,
+  "themePushedOrPublished": false
+}

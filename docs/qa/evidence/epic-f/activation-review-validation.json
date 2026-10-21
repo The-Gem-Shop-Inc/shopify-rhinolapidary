@@ -1,0 +1,110 @@
+{
+  "observedAt": "2026-09-30T17:41:35.225Z",
+  "exitCode": 0,
+  "scope": "read-only activation readiness review; no new batch/PBI",
+  "commands": [
+    {
+      "command": "node scripts/validate-epic-f-activation-readiness-review.js",
+      "exitCode": 0,
+      "includes": "existing F8 packet/source/runtime validation"
+    },
+    {
+      "command": "node scripts/test-epic-f-activation-readiness-review.js",
+      "exitCode": 0,
+      "falsePromotionsRejected": 29
+    },
+    {
+      "command": "node scripts/test-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "adversarialChecks": 66
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --no-index --check -- test-results/epic-f/activation-review-empty.txt <each added review artifact>",
+      "exitCode": 0
+    }
+  ],
+  "f8Boundary": {
+    "verifiedAfterHashes": 21,
+    "selfHashExclusionPreserved": true,
+    "manifestSha256": "e4c0d1096704055f38ebabe1234f61aad058eeea7b5353e500543b3c98b2e6aa",
+    "newBrowserFleetRun": false,
+    "newThemeCheckRun": false,
+    "inheritedEvidence": "docs/qa/evidence/epic-f/batch-f8-validation.json"
+  },
+  "files": [
+    {
+      "path": "data/epic-f-activation-readiness-review.json",
+      "change": "created",
+      "sha256": "87277c1cd2e10810a51269c38b304213a5de5afc389a78dcc696da73ca492853"
+    },
+    {
+      "path": "schemas/epic-f-activation-readiness-review.schema.json",
+      "change": "created",
+      "sha256": "5fdb90fb88d91dd1fa907ed99bc7c37baf6b064dbed779506417b2087ec8c970"
+    },
+    {
+      "path": "scripts/lib/epic-f-activation-readiness-review.js",
+      "change": "created",
+      "sha256": "0378e844080f0b708deb0d5ec67adfdb193fde914c51faae11855a67ebd47752"
+    },
+    {
+      "path": "scripts/validate-epic-f-activation-readiness-review.js",
+      "change": "created",
+      "sha256": "6e3ab89843ce6cb793ac89dfd032d133f9674fb0245a4f9451af8fe355928694"
+    },
+    {
+      "path": "scripts/test-epic-f-activation-readiness-review.js",
+      "change": "created",
+      "sha256": "6bc8f7f4d137f02f7c9437bfb29e1c4fecf32ce054815a5bb3138dedaf28c0d4"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/activation-review-admin-audit.json",
+      "change": "created",
+      "sha256": "871dbcea1f3f33f56955cae19c20025b87fcc044f93c23684a1a1e8c17ce208a"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/activation-review-adversarial-tests.json",
+      "change": "created",
+      "sha256": "9147281f5c5dc03f82f1039c4521f3ff9f45409a0acc2dba844abf8f0540013c"
+    },
+    {
+      "path": "docs/project/epic-f-activation-readiness-review.md",
+      "change": "created",
+      "sha256": "bd1defc6d1afd62468f49510e20fb94bdecb8230295ddbf885cb14ae65a28248"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/activation-review-validation.json",
+      "change": "created",
+      "note": "Self hash excluded to avoid circular hashing"
+    }
+  ],
+  "notes": [
+    "An initial ad hoc F8 hash verification incorrectly compared the manifest self entry to its intentionally absent self hash; corrected by preserving the established exclusion. No source drift was found.",
+    "All current reads are point-in-time observations; conservative 900-second boundaries expired before report generation.",
+    "No historical F8 artifact or PBI completion state was rewritten."
+  ],
+  "safety": {
+    "shopifyAdminMutation": false,
+    "productTemplateAssignment": false,
+    "productDataMutation": false,
+    "filePagePolicyMediaAltMutation": false,
+    "analyticsPixelConsentChange": false,
+    "shippingLocationChange": false,
+    "previewThemePush": false,
+    "productionThemePush": false,
+    "productionPublication": false,
+    "executed017B": false,
+    "executed018B": false,
+    "activatedBScope": false,
+    "runtimeThemeDelta": false,
+    "thresholdChanges": false
+  }
+}

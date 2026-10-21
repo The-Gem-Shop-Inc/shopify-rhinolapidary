@@ -1,0 +1,67 @@
+Applies JSON overrides to a theme and returns a preview URL.
+
+USAGE
+  $ shopify theme preview -t <value> --overrides <value> [--auth-alias
+    <value>] [--no-color] [--verbose] [--path <value>] [--password <value>] [-s
+    <value>] [-e <value>...] [--preview-id <value>] [--open] [--json]
+
+FLAGS
+  -e, --environment=<value>...
+      The environment to apply to the current command.
+      [env: SHOPIFY_FLAG_ENVIRONMENT]
+
+  -s, --store=<value>
+      Store URL. It can be the store prefix (example) or the full myshopify.com
+      URL (example.myshopify.com, https://example.myshopify.com).
+      [env: SHOPIFY_FLAG_STORE]
+
+  -t, --theme=<value>
+      (required) Theme ID or name of the remote theme.
+      [env: SHOPIFY_FLAG_THEME_ID]
+
+  --auth-alias=<value>
+      Alias of the Shopify account to use for authentication.
+      [env: SHOPIFY_FLAG_AUTH_ALIAS]
+
+  --json
+      Output the preview URL and identifier as JSON.
+      [env: SHOPIFY_FLAG_JSON]
+
+  --no-color
+      Disable color output.
+      [env: SHOPIFY_FLAG_NO_COLOR]
+
+  --open
+      Automatically launch the theme preview in your default web browser.
+      [env: SHOPIFY_FLAG_OPEN]
+
+  --overrides=<value>
+      (required) Path to a JSON overrides file.
+      [env: SHOPIFY_FLAG_OVERRIDES]
+
+  --password=<value>
+      Password generated from the Theme Access app or an Admin API token.
+      [env: SHOPIFY_CLI_THEME_TOKEN]
+
+  --path=<value>
+      The path where you want to run the command. Defaults to the current working
+      directory.
+      [env: SHOPIFY_FLAG_PATH]
+
+  --preview-id=<value>
+      An existing preview identifier to update instead of creating a new preview.
+      [env: SHOPIFY_FLAG_PREVIEW_ID]
+
+  --verbose
+      Increase the verbosity of the output. May include sensitive data.
+      [env: SHOPIFY_FLAG_VERBOSE]
+
+DESCRIPTION
+  Applies JSON overrides to a theme and returns a preview URL.
+
+  Applies a JSON overrides file to a theme and creates or updates a preview.
+  This lets you quickly preview changes.
+
+  The command returns a preview URL and a preview identifier. You can reuse the
+  preview identifier with `--preview-id` to update an existing preview instead
+  of creating a new one.

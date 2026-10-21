@@ -1,0 +1,1324 @@
+{
+  "batch": "F5",
+  "assessedAt": "2026-10-12T17:59:05.507Z",
+  "exitCode": 0,
+  "scope": "repository and isolated synthetic local fixtures only",
+  "status": {
+    "F-PBI-008A": "complete repository scope",
+    "F-PBI-009A": "complete repository scope",
+    "F-PBI-008B": "open; not ready",
+    "F-PBI-009B": "open; not ready",
+    "F-PBI-013": "open; F-DEC-001 unresolved",
+    "F-PBI-014B": "open; contextual/delivery fixture evidence only",
+    "F-PBI-015B": "deferred; not run"
+  },
+  "results": [
+    {
+      "command": "npm run validate:epic-f-context-delivery",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F5 repository",
+      "log": "test-results/epic-f/f5/validate-epic-f-context-delivery.txt"
+    },
+    {
+      "command": "npm run test:epic-f-context-delivery",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F5 repository",
+      "log": "test-results/epic-f/f5/test-epic-f-context-delivery.txt"
+    },
+    {
+      "command": "npm run test:machine-context-delivery",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F5 repository",
+      "log": "test-results/epic-f/f5/test-machine-context-delivery.txt"
+    },
+    {
+      "command": "npm run test:machine-context-delivery-performance",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F5 repository",
+      "log": "test-results/epic-f/f5/test-machine-context-delivery-performance.txt"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f4",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F1-F4 regression",
+      "log": "test-results/epic-f/f5/validate-epic-f-batch-f4.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "required": true
+    }
+  ],
+  "contracts": {
+    "fixtureOnly": true,
+    "checks": [
+      {
+        "name": "zero modules and live deployment remain empty",
+        "status": "passed"
+      },
+      {
+        "name": "accessory consumable compatibility are distinct",
+        "status": "passed"
+      },
+      {
+        "name": "small and large contextual sets",
+        "status": "passed"
+      },
+      {
+        "name": "duplicate edge",
+        "status": "passed"
+      },
+      {
+        "name": "duplicate target with distinct edge",
+        "status": "passed"
+      },
+      {
+        "name": "self reference",
+        "status": "passed"
+      },
+      {
+        "name": "wrong machine",
+        "status": "passed"
+      },
+      {
+        "name": "wrong dependent GID",
+        "status": "passed"
+      },
+      {
+        "name": "stale edge",
+        "status": "passed"
+      },
+      {
+        "name": "future edge",
+        "status": "passed"
+      },
+      {
+        "name": "proposed edge",
+        "status": "passed"
+      },
+      {
+        "name": "blocked edge",
+        "status": "passed"
+      },
+      {
+        "name": "conflict edge",
+        "status": "passed"
+      },
+      {
+        "name": "internal edge",
+        "status": "passed"
+      },
+      {
+        "name": "inactive edge",
+        "status": "passed"
+      },
+      {
+        "name": "missing source authority",
+        "status": "passed"
+      },
+      {
+        "name": "generic recommendation is not compatibility",
+        "status": "passed"
+      },
+      {
+        "name": "incompatible configuration",
+        "status": "passed"
+      },
+      {
+        "name": "unknown Variant",
+        "status": "passed"
+      },
+      {
+        "name": "missing target suppressed and diagnosed",
+        "status": "passed"
+      },
+      {
+        "name": "deleted target suppressed and diagnosed",
+        "status": "passed"
+      },
+      {
+        "name": "unpublished target suppressed and diagnosed",
+        "status": "passed"
+      },
+      {
+        "name": "draft target suppressed and diagnosed",
+        "status": "passed"
+      },
+      {
+        "name": "audience target suppressed and diagnosed",
+        "status": "passed"
+      },
+      {
+        "name": "stale target suppressed and diagnosed",
+        "status": "passed"
+      },
+      {
+        "name": "wrong class target suppressed and diagnosed",
+        "status": "passed"
+      },
+      {
+        "name": "wrong handle binding target suppressed and diagnosed",
+        "status": "passed"
+      },
+      {
+        "name": "tampered registered fixture cannot confer authority",
+        "status": "passed"
+      },
+      {
+        "name": "wrong approved positive source edge rejected",
+        "status": "passed"
+      },
+      {
+        "name": "compatibility requires consumer migration reconciliation",
+        "status": "passed"
+      },
+      {
+        "name": "scope preserves dependent Variant identity without selecting it",
+        "status": "passed"
+      },
+      {
+        "name": "configuration scope stays explicit",
+        "status": "passed"
+      },
+      {
+        "name": "contents precedence included",
+        "status": "passed"
+      },
+      {
+        "name": "contents precedence optional",
+        "status": "passed"
+      },
+      {
+        "name": "contents precedence recommended",
+        "status": "passed"
+      },
+      {
+        "name": "contents precedence not_included",
+        "status": "passed"
+      },
+      {
+        "name": "actual F4 contents deduplicated by exact GID",
+        "status": "passed"
+      },
+      {
+        "name": "equal title never deduplicates different GIDs",
+        "status": "passed"
+      },
+      {
+        "name": "historical SawMaster EDGE-001 stays blocked",
+        "status": "passed"
+      },
+      {
+        "name": "historical SawMaster EDGE-002 stays blocked",
+        "status": "passed"
+      },
+      {
+        "name": "historical SawMaster EDGE-005 stays blocked",
+        "status": "passed"
+      },
+      {
+        "name": "historical SawMaster EDGE-006 stays blocked",
+        "status": "passed"
+      },
+      {
+        "name": "live consumer cannot publish fixture projections",
+        "status": "passed"
+      },
+      {
+        "name": "approved region and fresh timing use existing E authority",
+        "status": "passed"
+      },
+      {
+        "name": "missing region authority",
+        "status": "passed"
+      },
+      {
+        "name": "expired timing",
+        "status": "passed"
+      },
+      {
+        "name": "missing timing",
+        "status": "passed"
+      },
+      {
+        "name": "malformed timing",
+        "status": "passed"
+      },
+      {
+        "name": "wrong timing unit",
+        "status": "passed"
+      },
+      {
+        "name": "wrong timing Product",
+        "status": "passed"
+      },
+      {
+        "name": "wrong timing configuration",
+        "status": "passed"
+      },
+      {
+        "name": "future timing observation",
+        "status": "passed"
+      },
+      {
+        "name": "unsupported timing event",
+        "status": "passed"
+      },
+      {
+        "name": "expired operational authority",
+        "status": "passed"
+      },
+      {
+        "name": "denied operational audience",
+        "status": "passed"
+      },
+      {
+        "name": "source update process missing",
+        "status": "passed"
+      },
+      {
+        "name": "wrong operational Product",
+        "status": "passed"
+      },
+      {
+        "name": "timing expires at consumption without rebuild",
+        "status": "passed"
+      },
+      {
+        "name": "policy route 404",
+        "status": "passed"
+      },
+      {
+        "name": "policy route redirect",
+        "status": "passed"
+      },
+      {
+        "name": "policy route wrong identity",
+        "status": "passed"
+      },
+      {
+        "name": "policy route external",
+        "status": "passed"
+      },
+      {
+        "name": "policy route expired",
+        "status": "passed"
+      },
+      {
+        "name": "policy route wrong environment",
+        "status": "passed"
+      },
+      {
+        "name": "valid neutral policy link is only a link",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from description",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from title",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from tags",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from collections",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from vendor",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from type",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from media",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from captions",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from manual",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from resources",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from custom_liquid",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from recommendations",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from shipping_profile",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from rate_name",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from inventory_quantity",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from inventory_policy",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from shipping_weight",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from available",
+        "status": "passed"
+      },
+      {
+        "name": "no fallback from policy_prose",
+        "status": "passed"
+      },
+      {
+        "name": "no contextual or operational JSON-LD additions",
+        "status": "passed"
+      },
+      {
+        "name": "generic recommendation traffic remains separately attributable",
+        "status": "passed"
+      },
+      {
+        "name": "oversized reverse request fails bounded interface",
+        "status": "passed"
+      },
+      {
+        "name": "customer projection cannot be forged from fixture output",
+        "status": "passed"
+      }
+    ]
+  },
+  "browser": {
+    "startTime": "2026-10-12T17:51:21.413Z",
+    "duration": 79263.71100000001,
+    "expected": 32,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "regression": {
+    "f1": [
+      {
+        "command": "npm run validate:epic-f-consumer",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run test:epic-f-consumer",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:epic-f-claims",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run test:epic-f-claims",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:registers",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:product-templates",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:product-purchase",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:brand-claims",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run test:brand-claims-validator",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:metafields",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:epic-e-batch-2b1-registers",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:epic-e-batch-4a-contracts",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:theme-repository",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:theme-architecture",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:storefront-js",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:settings-data",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run validate:fixtures",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "npm run theme:check",
+        "exitCode": 0,
+        "requiredForBatch": true
+      },
+      {
+        "command": "node scripts/validate-social-metadata-contract.js",
+        "exitCode": 0,
+        "requiredForBatch": true
+      }
+    ],
+    "f2": [
+      {
+        "command": "npm run validate:epic-f-machine",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-1.txt"
+      },
+      {
+        "command": "npm run test:epic-f-contact-context",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-2.txt"
+      },
+      {
+        "command": "npm run test:machine-shell",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-3.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f1",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-4.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f2/check-5.txt"
+      },
+      {
+        "command": "F2 historical diagnostic comparison",
+        "exitCode": 0,
+        "required": true
+      }
+    ],
+    "f3": [
+      {
+        "command": "npm run validate:epic-f-gallery",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/validate-epic-f-gallery.txt"
+      },
+      {
+        "command": "npm run test:epic-f-media",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-epic-f-media.txt"
+      },
+      {
+        "command": "npm run test:epic-f-performance",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-epic-f-performance.txt"
+      },
+      {
+        "command": "npm run test:machine-gallery",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-machine-gallery.txt"
+      },
+      {
+        "command": "npm run test:machine-performance",
+        "exitCode": 0,
+        "category": "required F3 repository",
+        "log": "test-results/epic-f/f3/test-machine-performance.txt"
+      },
+      {
+        "command": "npm run validate:brand-performance",
+        "exitCode": 0,
+        "category": "F1/F2 and existing performance regression",
+        "log": "test-results/epic-f/f3/validate-brand-performance.txt"
+      },
+      {
+        "command": "npm run validate:homepage-performance",
+        "exitCode": 0,
+        "category": "F1/F2 and existing performance regression",
+        "log": "test-results/epic-f/f3/validate-homepage-performance.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f2",
+        "exitCode": 0,
+        "category": "F1/F2 and existing performance regression",
+        "log": "test-results/epic-f/f3/validate-epic-f-batch-f2.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "category": "required F3 repository"
+      }
+    ],
+    "f4": [
+      {
+        "command": "npm run validate:epic-f-facts",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F4 repository",
+        "log": "test-results/epic-f/f4/validate-epic-f-facts.txt"
+      },
+      {
+        "command": "npm run test:epic-f-facts",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F4 repository",
+        "log": "test-results/epic-f/f4/test-epic-f-facts.txt"
+      },
+      {
+        "command": "npm run test:machine-facts",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F4 repository",
+        "log": "test-results/epic-f/f4/test-machine-facts.txt"
+      },
+      {
+        "command": "npm run test:machine-fact-performance",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F4 repository",
+        "log": "test-results/epic-f/f4/test-machine-fact-performance.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f3",
+        "exitCode": 0,
+        "required": true,
+        "scope": "F1-F3 regression",
+        "log": "test-results/epic-f/f4/validate-epic-f-batch-f3.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "required": true
+      }
+    ]
+  },
+  "performance": {
+    "budgets": {
+      "mobile": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "desktop": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      }
+    },
+    "observations": [
+      {
+        "state": "zero",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 236
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 19
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 295982
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "zero",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 72
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 295982
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "small",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 84
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 312698
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 21
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "small",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 72
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 312698
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 21
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "large",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 72
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 336672
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 21
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "large",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 64
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 336672
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 21
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "delivery",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 72
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 296840
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "delivery",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 84
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 296840
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 20
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "combined",
+        "profile": "mobile",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 72
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 317917
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 21
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      },
+      {
+        "state": "combined",
+        "profile": "desktop",
+        "metrics": {
+          "lcpMs": {
+            "status": "measured",
+            "value": 100
+          },
+          "cls": {
+            "status": "measured",
+            "value": 0
+          },
+          "tbtMs": {
+            "status": "measured",
+            "value": 0
+          },
+          "initialTransferBytes": {
+            "status": "measured",
+            "value": 317917
+          },
+          "imageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "maxImageBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "firstScreenMediaBytes": {
+            "status": "measured",
+            "value": 0
+          },
+          "requestCount": {
+            "status": "measured",
+            "value": 21
+          },
+          "immediateVideoIframeCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "autoplayMediaCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "thirdPartyScriptHostCount": {
+            "status": "measured",
+            "value": 0
+          },
+          "synchronousThirdPartyScriptCount": {
+            "status": "measured",
+            "value": 0
+          }
+        },
+        "violations": []
+      }
+    ],
+    "record": "test-results/epic-f/f5/performance-runtime.json",
+    "fixtureOnly": true,
+    "releaseCertification": false
+  },
+  "thresholdChanges": false,
+  "factGrants": {
+    "before": 0,
+    "after": 0,
+    "newDomains": {
+      "contextual_accessory": {
+        "before": 0,
+        "after": 0
+      },
+      "contextual_consumable": {
+        "before": 0,
+        "after": 0
+      },
+      "compatibility": {
+        "before": 0,
+        "after": 0
+      },
+      "handling": {
+        "before": 0,
+        "after": 0
+      },
+      "pickup_scope": {
+        "before": 0,
+        "after": 0
+      },
+      "region": {
+        "before": 0,
+        "after": 0
+      },
+      "timing": {
+        "before": 0,
+        "after": 0
+      }
+    }
+  },
+  "historicalDiagnostics": [
+    {
+      "command": "npm run validate:launch-fixtures",
+      "exitCode": 1,
+      "requiredForBatch": false
+    },
+    {
+      "command": "npm run validate:product-data -- data/product-export/products.csv",
+      "exitCode": 1,
+      "requiredForBatch": false
+    }
+  ],
+  "historicalComparison": [
+    {
+      "name": "validate-launch-fixtures",
+      "findingCount": 2,
+      "unchanged": true
+    },
+    {
+      "name": "validate-product-data",
+      "findingCount": 103,
+      "unchanged": true
+    }
+  ],
+  "historicalDescriptionClaimMatches": {
+    "count": 37,
+    "status": "historical, suppressed, not approved"
+  },
+  "deferred": [
+    "008B exact approved dependent-to-machine/context edges, customer scope/audience, current identities, migration/reconciliation, approved runtime reverse adapter and separate activation",
+    "009B E-PBI-015/017 owner/source/operational approvals, fresh evidence, applicable migration/reconciliation, routes, consumer eligibility and separate activation",
+    "004B approved live media activation",
+    "006B and 007B approved live fact activation",
+    "014B approved live media parity, warranty/support, resources/downloads/video and later disclosure/details journeys",
+    "013/F-DEC-001 decision; native payment terms unchanged",
+    "015B actual Shopify preview/release certification",
+    "Epic P intake/privacy/retention ownership",
+    "Inherited Epic E approvals/migrations/reconciliation; no questions reopened",
+    "J/K/Admin operational corrections"
+  ],
+  "previewOnlyChecks": "not run; not authorized",
+  "adminOnlyChecks": "not run; not authorized",
+  "adminMutationOccurred": false,
+  "shippingDeliveryPickupMutationOccurred": false,
+  "productMetafieldMetaobjectMutationOccurred": false,
+  "productTemplateAssignmentOccurred": false,
+  "themePushedOrPublished": false
+}

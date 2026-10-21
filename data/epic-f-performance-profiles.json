@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+  "profileAuthority": "Google Lighthouse mobile Slow 4G reference",
+  "approvalMode": "delegated_development_override",
+  "approvedAt": "2026-10-07",
+  "reference": { "rttMs": 150, "downloadMbps": 1.6, "uploadKbps": 750, "packetLoss": 0, "cpuSlowdownMultiplier": 4 },
+  "effective": { "requestLatencyMs": 562.5, "downloadThroughputKbps": 1474.56, "uploadThroughputKbps": 675, "cpuSlowdownMultiplier": 4, "packetLoss": 0 },
+  "conversion": { "convention": "decimal Kbps; bytes/sec = Kbps * 1000 / 8", "downloadBytesPerSecond": 184320, "uploadBytesPerSecond": 84375 },
+  "applicationMethod": ["Network.emulateNetworkConditionsByRule: global empty URL pattern, offline false, packetLoss 0", "Network.overrideNetworkState: same effective network values", "Emulation.setCPUThrottlingRate: rate 4"],
+  "viewportProfiles": { "mobile": { "width": 390, "height": 900, "deviceScaleFactor": 1 }, "desktop": { "width": 1440, "height": 900, "deviceScaleFactor": 1 } },
+  "sameThrottleForBothViewports": true,
+  "intendedPBIs": ["F-PBI-015B"],
+  "sourceReference": "https://github.com/GoogleChrome/lighthouse/blob/main/core/config/constants.js",
+  "protocolReference": "https://chromedevtools.github.io/devtools-protocol/tot/Network/#method-emulateNetworkConditionsByRule",
+  "referenceNote": "Numerical identity and effective values explicitly approved by Product Owner in the 2026-10-07 task. Actual request-level CDP emulation, not Lighthouse simulated throttling; 150ms reference RTT must not replace 562.5ms effective latency. Packet loss is zero; CDP exposes packetLoss as WebRTC loss emulation and no nonzero HTTP loss is asserted.",
+  "performanceBudgetsModified": false
+}

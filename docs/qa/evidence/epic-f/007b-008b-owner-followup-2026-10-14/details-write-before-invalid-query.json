@@ -1,0 +1,20 @@
+{
+  "completedAt": "2026-10-14T21:50:27.719Z",
+  "query": "query OwnerFollowupCatalog($ids:[ID!]!){shop{id myshopifyDomain} nodes(ids:$ids){...on Product{id title handle descriptionHtml vendor productType category{id fullName} tags status publishedAt templateSuffix updatedAt seo{title description} options{id name values linkedMetafield{namespace key}} media(first:50){nodes{id mediaContentType status alt ...on MediaImage{image{url width height}fileStatus updatedAt}}pageInfo{hasNextPage endCursor}}metafields(first:100){nodes{id namespace key type jsonValue compareDigest updatedAt definition{id}}pageInfo{hasNextPage endCursor}} resourcePublicationsV2(first:100){nodes{publication{id}publishDate isPublished}pageInfo{hasNextPage endCursor}} sellingPlanGroups(first:20){nodes{id name}pageInfo{hasNextPage endCursor}}variants(first:100){nodes{id title sku barcode price compareAtPrice taxable inventoryPolicy inventoryQuantity availableForSale requiresComponents selectedOptions{name value}updatedAt deliveryProfile{id name} inventoryItem{id sku tracked requiresShipping measurement{weight{value unit}}inventoryLevels(first:50){nodes{id location{id name isActive fulfillsOnlineOrders} quantities(names:[\"available\",\"on_hand\",\"committed\",\"reserved\",\"incoming\"]){name quantity}}pageInfo{hasNextPage endCursor}}}metafields(first:100){nodes{id namespace key type jsonValue compareDigest updatedAt}pageInfo{hasNextPage endCursor}} productVariantComponents(first:20){nodes{id quantity productVariant{id}}pageInfo{hasNextPage endCursor}}}pageInfo{hasNextPage endCursor}}}}}",
+  "response": {
+    "error": "invalid_request",
+    "error_description": "GraphQL errors occurred: Variable $ids of type [ID!]! was provided invalid value",
+    "graphql_errors": [
+      {
+        "message": "Variable $ids of type [ID!]! was provided invalid value",
+        "locations": [
+          {
+            "line": 1,
+            "column": 28
+          }
+        ]
+      }
+    ],
+    "error_code": "INVALID_ARGUMENT"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "query": "query F014LiveBinding($themeId:ID!,$paths:[String!]!,$ids:[ID!]!){shop{id myshopifyDomain} theme(id:$themeId){id name role updatedAt files(first:50,filenames:$paths){nodes{filename checksumMd5 updatedAt body{...on OnlineStoreThemeFileBodyText{content}}}pageInfo{hasNextPage endCursor}}} nodes(ids:$ids){...on Product{id title handle status templateSuffix updatedAt publishedAt metafields(first:100,namespace:\"rhino\"){nodes{id namespace key type value}pageInfo{hasNextPage endCursor}}variants(first:20){nodes{id title availableForSale inventoryQuantity selectedOptions{name value}}pageInfo{hasNextPage endCursor}}}}}\n",
+  "querySha256": "034267391955a1c0ca1c6e390a068138ab95de36a6569227228ef48f582ca66b",
+  "scope": "Read-only current Admin API; version not exposed by MCP response",
+  "before": "2026-10-06T19:14:13.622Z",
+  "final": "2026-10-06T19:42:20.584Z",
+  "secondaryFocusReadTimestampQualification": "admin-focus-before.startedAt was recorded after response and is only an observation timestamp, not a measured network start",
+  "paginationExhausted": true
+}

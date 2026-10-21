@@ -1,0 +1,170 @@
+{
+  "observedAt": "2026-10-13 20:25:15 UTC",
+  "query": "query OwnerFactCompare($ids:[ID!]!){shop{id myshopifyDomain}nodes(ids:$ids){...on Product{id metafields(first:30){nodes{id namespace key type jsonValue compareDigest definition{id}}pageInfo{hasNextPage endCursor}}}}}",
+  "variables": {
+    "ids": [
+      "gid://shopify/Product/8905780756677"
+    ]
+  },
+  "response": {
+    "data": {
+      "shop": {
+        "id": "gid://shopify/Shop/79279947973",
+        "myshopifyDomain": "sz5dnk-nf.myshopify.com"
+      },
+      "nodes": [
+        {
+          "id": "gid://shopify/Product/8905780756677",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185428021445",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530190143685",
+                "namespace": "rhino",
+                "key": "input_voltage",
+                "type": "voltage",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658267333"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337861829",
+                "namespace": "rhino",
+                "key": "wheel_speed_min",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 0,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "f84a80489302779274ed55207cad5099d2233e2a436015ab757ad78810d1dcbc",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658398405"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337894597",
+                "namespace": "rhino",
+                "key": "wheel_speed_max",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 3000,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658431173"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337927365",
+                "namespace": "rhino",
+                "key": "motor_power",
+                "type": "power",
+                "jsonValue": {
+                  "value": 1,
+                  "unit": "HORSEPOWER"
+                },
+                "compareDigest": "aee0727953f9e10f4eb08539d056f9782d139eac9796eabba38fd0287fe0dd9c",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658332869"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337960133",
+                "namespace": "rhino",
+                "key": "flex_shaft_speed_min",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 500,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "7d730f1d94cb8bb1dbe7e8be29519a7bbd14401c096bd8e8cfc2fe501c0776a2",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658463941"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337992901",
+                "namespace": "rhino",
+                "key": "flex_shaft_speed_max",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 5000,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "401f5638865ca00167aac4e09a8147672aca13d6b5a6dd7b2ba884ed9e7e24fb",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658496709"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530339074245",
+                "namespace": "rhino",
+                "key": "wheel_diameter",
+                "type": "dimension",
+                "jsonValue": {
+                  "value": 6,
+                  "unit": "INCHES"
+                },
+                "compareDigest": "03e291f8b982b791a100bac033bcc0f9b556ec899edf357bb753093d390b4ff5",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298659184837"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530339107013",
+                "namespace": "rhino",
+                "key": "wheel_arbor_diameter",
+                "type": "dimension",
+                "jsonValue": {
+                  "value": 1,
+                  "unit": "INCHES"
+                },
+                "compareDigest": "5e0a6687d87124bf366af5e764a5a86bcb9e90535133a88b57a325f4e64c3691",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298659250373"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530344415429",
+                "namespace": "rhino",
+                "key": "noncatalog_components",
+                "type": "json",
+                "jsonValue": [
+                  {
+                    "label": "Moss Filtration Pads",
+                    "quantity": 2,
+                    "meaning": "included"
+                  }
+                ],
+                "compareDigest": "6b7f02b71e0e3c68ff1e93f6d18629e8d364201fcb75cbe0bc9a719189ca25cc",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660430021"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0NDQxNTQyOSwibGFzdF92YWx1ZSI6IjcxNTMwMzQ0NDE1NDI5In0="
+            }
+          }
+        }
+      ]
+    }
+  }
+}

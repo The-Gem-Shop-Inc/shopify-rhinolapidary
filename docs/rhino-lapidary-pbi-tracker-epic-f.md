@@ -1,10 +1,10 @@
 # Rhino Lapidary Epic F PBI Handoff Package
 
-**Epic:** Epic F — Machine Product Pages  
-**Prepared:** 2026-09-10  
-**Status:** Discovery complete; all 18 PBIs below are Proposed / not implemented.  
-**Branch:** dev  
-**Authority:** Planning only. No implementation, preview push/publication or production/Admin mutation is authorized by this tracker.
+**Epic:** Epic F — Machine Product Pages
+**Prepared:** 2026-09-10
+**Status:** F1–F7 behavior retained. F8 completes F-PBI-018A repository/static/local-fixture readiness aggregation; F-PBI-018 is Partial and F-PBI-018B is Open/not ready. Epic F repository architecture is substantially complete; live activation/release is not complete or authorized. Zero real grants; stale Admin evidence; all activation blockers retained.
+**Branch:** dev
+**Authority:** F1 authorized 001/005; F2 authorized 002/003/012/014A. F3 authorized 004A/015A; the subsequent F4 request authorizes 006A/007A repository work only, superseding the original proposed batch grouping. This tracker grants no preview push/publication or production/Admin mutation. See [Batch F1 record](project/implementation-records/f-pbi-001-005-batch-f1.md).
 
 **Discovery:** [Machine Product-page discovery](architecture/epic-f-machine-product-page-discovery.md) · [Machine inventory/gap matrix](project/epic-f-machine-page-gap-matrix.md) · [Decision packet](project/epic-f-decision-packet.md) · [Machine-readable backlog](project/epic-f-proposed-backlog.json)
 
@@ -26,7 +26,7 @@ Planning and shell readiness are distinct from live fact readiness. No Product d
 8. G owns broader parts discovery; J/K operational checkout/delivery; L support directory; P Forms; U analytics. I/M/N comparison/content/reviews remain post-MVP.
 9. Preserve existing Product CSV failures and launch-fixture ownership findings until their own evidence changes.
 
-## Current discovery baseline
+## September 10 discovery baseline (historical)
 
 - 11 approved machine-class Products; eight published; JadeMaster active/unpublished; SawMaster 36 and TumbleMaster draft.
 - One default Product template, one Variant per machine, zero live Product metafields and zero current Product/metaobject definitions in the targeted read.
@@ -41,36 +41,63 @@ Planning and shell readiness are distinct from live fact readiness. No Product d
 
 | PBI | Title | Priority | Effort | Batch | Status |
 |---|---|---|---|---|---|
-| F-PBI-001 | Establish the machine consumer eligibility and fixture contract | P0 | L | F1 | Proposed |
-| F-PBI-002 | Extend one shared machine template and first-screen hierarchy | P0 | L | F2 | Proposed |
-| F-PBI-003 | Preserve native purchase and availability behavior across machine states | P0 | L | F2 | Proposed |
-| F-PBI-004 | Improve the machine gallery with approved useful media | P1 | L | F2 | Proposed |
-| F-PBI-005 | Contain unsupported machine claims across prose, media and structured data | P0 | L | F1 | Proposed |
-| F-PBI-006 | Render approved key specifications and workshop requirements from typed fields | P1 | L | F3 | Proposed |
-| F-PBI-007 | Present included and optional contents without merging meanings | P1 | L | F3 | Proposed |
-| F-PBI-008 | Add contextual machine items through exact approved references | P1 | L | F3 | Proposed |
-| F-PBI-009 | Handle delivery, pickup and timing as conditional native and approved states | P1 | L | F3 | Proposed |
-| F-PBI-010 | Provide neutral support and approved warranty information | P1 | M | F3 | Proposed |
-| F-PBI-011 | Expose only current approved manuals, diagrams and videos | P1 | L | F3 | Proposed |
-| F-PBI-012 | Reuse Contact and define the Product-context handoff to Forms | P1 | M | F2 | Proposed |
-| F-PBI-013 | Resolve existing native financing visibility without changing purchase policy | P1 | M | F1 | Proposed |
-| F-PBI-014 | Validate responsive, keyboard and accessible machine journeys | P0 | L | F4 | Proposed |
-| F-PBI-015 | Add machine-page performance measurement under the existing budget | P1 | L | F4 | Proposed |
-| F-PBI-016 | Define machine decision measurement in the existing analytics model | P1 | M | F4 | Proposed |
-| F-PBI-017 | Prepare and execute only separately authorized machine-template rollout | P0 | L | F5 | Proposed |
-| F-PBI-018 | Run aggregate machine-page QA and record shell versus fact readiness | P0 | L | F5 | Proposed |
+| F-PBI-001 | Establish the machine consumer eligibility and fixture contract | P0 | L | F1 | Complete (repository; activation blocked) |
+| F-PBI-002 | Extend one shared machine template and first-screen hierarchy | P0 | L | F2 | Complete (F2 repository) |
+| F-PBI-003 | Preserve native purchase and availability behavior across machine states | P0 | L | F2 | Complete (F2 repository) |
+| F-PBI-004 | Improve the machine gallery with approved useful media | P1 | L | F3/Later | Partial: 004A complete; 004B blocked |
+| F-PBI-004A | Governed gallery architecture and synthetic fixtures | P1 | L | F3 | Complete (repository/local fixtures) |
+| F-PBI-004B | Approved live media activation | P1 | L | Later | Blocked: F-DEC-002 and separate authorization |
+| F-PBI-005 | Contain unsupported machine claims across prose, media and structured data | P0 | L | F1 | Complete (repository; activation blocked) |
+| F-PBI-006 | Render approved key specifications and workshop requirements from typed fields | P1 | L | F4/Later | COMPLETE (governed current scope) |
+| F-PBI-006A | Typed machine specification renderer architecture | P1 | L | F4 | Complete (repository/local fixtures) |
+| F-PBI-006B | Approved live specification activation | P1 | L | Later | COMPLETE |
+| F-PBI-007 | Present included and optional contents without merging meanings | P1 | L | F4/Later | COMPLETE (governed current EM-1 BOM scope) |
+| F-PBI-007A | Included/optional contents renderer architecture | P1 | L | F4 | Complete (repository/local fixtures) |
+| F-PBI-007B | Approved live contents activation | P1 | L | Later | COMPLETE |
+| F-PBI-008 | Add contextual machine items through exact approved references | P1 | L | F5/Later | Partial: 008A complete; 008B not ready |
+| F-PBI-008A | Governed contextual/reverse projection architecture | P1 | L | F5 | Complete (repository/local fixtures) |
+| F-PBI-008B | Approved contextual and compatibility activation | P1 | L | Later | PARTIAL_APPROVED_COMPATIBILITY_ACTIVE |
+| F-PBI-009 | Handle delivery, pickup and timing as conditional native and approved states | P1 | L | F5/Later | Partial: 009A complete; 009B not ready |
+| F-PBI-009A | Supplemental delivery and operational projection architecture | P1 | L | F5 | Complete (repository/local fixtures) |
+| F-PBI-009B | Approved operational fact activation | P1 | L | Later | Open; not ready |
+| F-PBI-010 | Provide neutral support and approved warranty information | P1 | M | F6/Later | Partial: 010A complete; 010B not ready |
+| F-PBI-010A | Neutral support and warranty/service architecture | P1 | M | F6 | Complete (repository/local fixtures) |
+| F-PBI-010B | Approved live warranty/service activation | P1 | M | Later | Open; B3C-D03 blocked; not ready |
+| F-PBI-011 | Expose only current approved manuals, diagrams and videos | P1 | L | F6/Later | Partial: 011A complete; 011B not ready |
+| F-PBI-011A | Canonical Product resource presentation architecture | P1 | L | F6 | Complete (repository/local fixtures) |
+| F-PBI-011B | Approved live resource activation | P1 | L | Later | Open; B3B-D06 pending; not ready |
+| F-PBI-012 | Reuse Contact and define the Product-context handoff to Forms | P1 | M | F2 | Complete (F2 repository) |
+| F-PBI-013 | Resolve existing native financing visibility without changing purchase policy | P1 | M | Deferred | Open: F-DEC-001 unresolved |
+| F-PBI-014 | Validate responsive, keyboard and accessible machine journeys | P0 | L | F2/F4 | Partial: 014A complete locally; 014B open |
+| F-PBI-014A | Machine shell responsive/accessibility automation | P0 | L | F2 | Complete (local fixtures) |
+| F-PBI-014B | Later media and populated-module journeys | P0 | L | Later | Open; F6 support/resources fixture evidence added; live parity still required |
+| F-PBI-015 | Add machine-page performance measurement under the existing budget | P1 | L | F3/Later | Partial: 015A complete; 015B deferred |
+| F-PBI-015A | Machine performance contract and local regression | P1 | L | F3 | Complete (repository/local fixtures) |
+| F-PBI-015B | Authorized preview/release certification | P1 | L | Later | Deferred; not run |
+| F-PBI-016 | Define machine decision measurement in the existing analytics model | P1 | M | F7 | Complete repository contract; U ownership/consent blocks instrumentation |
+| F-PBI-017 | Prepare and execute only separately authorized machine-template rollout | P0 | L | F7/Later | Partial: 017A complete; 017B open/blocked |
+| F-PBI-017A | Rollout plan, dry run, rollback and authorization architecture | P0 | L | F7 | Complete repository planning scope |
+| F-PBI-017B | Separately authorized Product template assignment execution | P0 | L | Later | Open/blocked; not authorized |
+| F-PBI-018 | Run aggregate machine-page QA and record shell versus fact readiness | P0 | L | F8/Later | Partial: 018A complete; 018B open/not ready |
+| F-PBI-018A | Repository/static/local-fixture readiness aggregation | P0 | L | F8 | Complete repository scope |
+| F-PBI-018B | Current Admin + authorized preview/release signoff | P0 | L | Later | Open/not ready; not authorized in F8 |
 
 ## Dependency-first implementation batches
 
 | Batch | PBIs | Coherent scope | Readiness / boundary |
 |---|---|---|---|
 | F1 | 001,005,013 | Consumer/fixture boundary, claim containment and native-financing decision packet | Repository contracts and internal fixtures can proceed; human widget decision may remain deferred. |
-| F2 | 002,003,004,012 | Shared shell, native purchase, gallery and Contact boundary | Depends on F1 contracts; approved assets and P context enhancement activate independently. |
-| F3 | 006,007,008,009,010,011 | Conditional suitability, contents, contextual items, delivery/support and resources | Build against explicit fixtures; live facts remain blocked by applicable E approvals/migrations. |
-| F4 | 014,015,016 | Integrated accessibility/responsiveness, performance and measurement contract | Run continuously during F2/F3 and finalize on selected shell/module scope; U instrumentation stays independently gated. |
-| F5 | 017,018 | Authorized assignment rollout and aggregate handoff | Separate Product Owner/Admin GO, applicable E class migrations and current after-state evidence; no automatic production publication. |
+| F2 | 002,003,012,014A | Shared shell, native purchase, neutral Contact and local accessibility harness | Authorized repository scope complete; 004/media excluded; P context dormant. |
+| F3 | 004A,015A | Governed synthetic gallery fixtures and local performance harness | Repository scope only; real media, preview certification and conditional modules excluded. |
+| F4 | 006A,007A | Typed specification and contents renderer architecture | Synthetic local fixtures only; no live specification/BOM grants. 014B receives partial evidence; 015B stays deferred. |
+| Later (unassigned) | 014B,015B | Remaining journeys and release performance | Separately authorized scope; not completed by F7. |
+| F5 | 008A,009A | Contextual and delivery renderer architecture | Synthetic fixtures only; no live fact activation, assignment or publication. |
+| F6 | 010A,011A | Conditional support/warranty and canonical resources | Repository/local fixtures only; no live facts, destinations, Files or configuration changed. |
+| F7 | 016,017A | Measurement contract and deterministic rollout planning | Repository governance only; instrumentation and assignment execution blocked. |
+| F8 | 018A | Source-bound repository readiness aggregation | All 11 machines and domains; no execution or release grant. |
+| Later (unassigned) | 017B,018B | Assignment execution and current Admin/preview/release signoff | Separate authorization and current upstream evidence required. |
 
-These are proposed implementation batches, not authorization to execute them. The human-blocked parts of 013/media/P/U can stay deferred while unrelated shell and conditional rendering work proceeds. F3 value activation can occur per domain; there is no all-facts-populated prerequisite for shell QA. F5 live assignment and release decisions remain separately gated.
+The Batch F1 request narrowed its authorized scope to 001 and 005; 013 was not implemented. F2 separately authorizes 002/003/012/014A only; 004, 006–011, 013, 014B and 015 onward are not authorized by F2. The human-blocked parts of 013/media/P/U can stay deferred while unrelated shell and conditional rendering work proceeds. F3 authorized only 004A/015A; F4 separately authorizes 006A/007A. No real media or facts are activated; 004B/006B/007B/015B remain separately gated. The subsequent F5 request authorizes only 008A/009A, superseding the original proposed F5 rollout grouping. Live assignment and release decisions remain separately gated. F6 authorizes only 010A/011A, retaining the manual contract checkpoint. 010B/011B and 016–018 remain outside F6. The subsequent F7 request authorizes only 016 and 017A repository governance. It does not authorize instrumentation, 017B execution or 018.
 
 ## Cross-Epic handoffs
 
@@ -90,15 +117,15 @@ These are proposed implementation batches, not authorization to execute them. Th
 
 ## F-PBI-001 Establish the machine consumer eligibility and fixture contract
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Data consumption / QA  
-**Type:** Architecture  
-**Priority:** P0  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F1 — Machine Product Pages  
+**Status:** Complete for Batch F1 repository scope; activation blocked. [Implementation and validation](project/implementation-records/f-pbi-001-005-batch-f1.md)
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Data consumption / QA
+**Type:** Architecture
+**Priority:** P0
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F1 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p0`, `batch: f1`
 
 ### Problem or opportunity
@@ -170,22 +197,24 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-002 Extend one shared machine template and first-screen hierarchy
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Theme / information architecture  
-**Type:** Feature  
-**Priority:** P0  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F2 — Machine Product Pages  
+**F2 status:** Complete for F2 repository scope; live parity/assignment deferred. [F2 implementation record](project/implementation-records/f-pbi-002-003-012-014a-batch-f2.md)
+
+**Status:** Complete for F2 repository scope; live parity/assignment deferred.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Theme / information architecture
+**Type:** Feature
+**Priority:** P0
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F2 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p0`, `batch: f2`
 
 ### Problem or opportunity
 
 Every machine currently uses the generic template; mobile gallery and native messaging push the action to the first-screen boundary.
 
-### Evidence
+### Discovery evidence (before F2)
 
 Only product.json exists. Default order is main/disclosures/related; buttons begin at y=742–786 on mobile. ADR-0001 remains Proposed.
 
@@ -197,7 +226,7 @@ One maintainable product.machine template reuses Trade purchase/media and works 
 
 ### Scope
 
-Implement shared class template and conditional module ordering; retain one primary heading/native price/Variant form; prioritize compact useful media and action; document ADR adoption through existing architecture process.
+Implement shared class template and conditional module ordering; retain one primary heading/native price/Variant form; prioritize the no-media purchase/Contact shell in F2; media activation remains excluded; document ADR adoption through existing architecture process.
 
 ### Out of scope
 
@@ -205,11 +234,11 @@ Epic E fact decisions or migrations; shipping/payment configuration; production 
 
 ### Acceptance criteria
 
-- [ ] One shared machine JSON template serves current structures; no per-family/Product copies without a documented structural reason.
-- [ ] Default Product template remains functional and non-machine classes are unchanged.
-- [ ] Use native controls/snippets and existing Rhino section/token/locale conventions; no duplicate Product form/gallery JS.
-- [ ] Empty fact groups and links to absent groups are suppressed; no mandatory placeholder specs.
-- [ ] Mobile reading/focus order matches the visual hierarchy; no dense first-screen spec dump.
+- [x] One shared machine JSON template serves current structures; no per-family/Product copies without a documented structural reason.
+- [x] Default Product template remains functional and non-machine classes are unchanged.
+- [x] Use native controls/snippets and existing Rhino section/token/locale conventions; no duplicate Product form/gallery JS.
+- [x] Empty fact groups and links to absent groups are suppressed; no mandatory placeholder specs.
+- [x] Mobile reading/focus order matches the visual hierarchy; no dense first-screen spec dump.
 
 ### Implementation handoff
 
@@ -250,22 +279,24 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-003 Preserve native purchase and availability behavior across machine states
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Product purchase / J-K integration  
-**Type:** Improvement  
-**Priority:** P0  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F2 — Machine Product Pages  
+**F2 status:** Complete for F2 repository scope; live parity/assignment deferred. [F2 implementation record](project/implementation-records/f-pbi-002-003-012-014a-batch-f2.md)
+
+**Status:** Complete for F2 repository scope; live parity/assignment deferred.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Product purchase / J-K integration
+**Type:** Improvement
+**Priority:** P0
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F2 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p0`, `batch: f2`
 
 ### Problem or opportunity
 
 Aggregate Admin availability is not customer orderability; six published machines are sold out while two untracked LapMasters allow Add to cart.
 
-### Evidence
+### Discovery evidence (before F2)
 
 Current native preview controls and exact Variant IDs; all 11 Admin availableForSale flags true, including drafts; inventory/profile reads show location differences.
 
@@ -285,11 +316,11 @@ Epic E fact decisions or migrations; shipping/payment configuration; production 
 
 ### Acceptance criteria
 
-- [ ] Exact selected Variant is submitted once; quantity rules and no-JS/basic form behavior remain intact.
-- [ ] Enabled, sold-out, untracked and unavailable/draft scenarios are distinct; Admin aggregate stock never forcibly enables a disabled native button.
-- [ ] Price or machine size never selects quote/preorder/reserve behavior.
-- [ ] No timing, preorder or backorder copy appears without existing owner authority.
-- [ ] No mobile sticky purchase controller duplicates cart requests; adding sticky behavior requires measured need and focus coverage.
+- [x] Exact selected Variant is submitted once; quantity rules and no-JS/basic form behavior remain intact.
+- [x] Enabled, sold-out, untracked and unavailable/draft scenarios are distinct; Admin aggregate stock never forcibly enables a disabled native button.
+- [x] Price or machine size never selects quote/preorder/reserve behavior.
+- [x] No timing, preorder or backorder copy appears without existing owner authority.
+- [x] No mobile sticky purchase controller duplicates cart requests; adding sticky behavior requires measured need and focus coverage.
 
 ### Implementation handoff
 
@@ -331,15 +362,17 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-004 Improve the machine gallery with approved useful media
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Media / theme gallery  
-**Type:** Improvement  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F2 — Machine Product Pages  
+**Status:** Partial: 004A complete for repository/local fixtures; 004B blocked by F-DEC-002 and separate activation authorization.
+
+See [F3 implementation record](project/implementation-records/f-pbi-004a-015a-batch-f3.md) for completed A scope, executable gates and outstanding B requirements.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Media / theme gallery
+**Type:** Improvement
+**Priority:** P1
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F2 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f2`
 
 ### Problem or opportunity
@@ -412,15 +445,15 @@ F-DEC-002 exact-asset/rights/model review blocks live media activation; gallery 
 
 ## F-PBI-005 Contain unsupported machine claims across prose, media and structured data
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Content / legal claims / SEO  
-**Type:** Fix  
-**Priority:** P0  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F1 — Machine Product Pages  
+**Status:** Complete for Batch F1 repository scope; activation blocked. [Implementation and validation](project/implementation-records/f-pbi-001-005-batch-f1.md)
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Content / legal claims / SEO
+**Type:** Fix
+**Priority:** P0
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F1 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p0`, `batch: f1`
 
 ### Problem or opportunity
@@ -493,15 +526,17 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-006 Render approved key specifications and workshop requirements from typed fields
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Structured Product information  
-**Type:** Feature  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F3 — Machine Product Pages  
+**Status:** Complete for the governed current scope; final owner delta reconciled2026-10-15. Explicit unknowns remain suppressed; separate Variant/catalog work is excluded.
+
+See [F4 implementation record](project/implementation-records/f-pbi-006a-007a-batch-f4.md) for executable evidence and remaining activation gates.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Structured Product information
+**Type:** Feature
+**Priority:** P1
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F3 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f3`
 
 ### Problem or opportunity
@@ -528,11 +563,11 @@ Epic E fact decisions or migrations; shipping/payment configuration; production 
 
 ### Acceptance criteria
 
-- [ ] Only approved/current typed fields render; zero qualifying facts suppress the summary and group headings.
-- [ ] Key Specs is a small applicable subset; full details use semantic grouped definition lists or correctly headed tables when relationships require them.
-- [ ] Motor/wheel/flex speed, blade/wheel arbor and net/crate/shipping states cannot be conflated.
-- [ ] Range endpoints share units/source/configuration; horsepower/gallon ambiguity is blocked; no unsupported operating footprint or package count is fabricated.
-- [ ] Long values wrap at mobile/zoom; unknown does not become zero or N/A; native Variant shipping weight is never duplicated into a metafield.
+- [x] Only approved/current typed fields render; zero qualifying facts suppress the summary and group headings.
+- [x] Key Specs is a small applicable subset; full details use semantic grouped definition lists or correctly headed tables when relationships require them.
+- [x] Motor/wheel/flex speed, blade/wheel arbor and net/crate/shipping states cannot be conflated.
+- [x] Range endpoints share units/source/configuration; horsepower/gallon ambiguity is blocked; no unsupported operating footprint or package count is fabricated.
+- [x] Long values wrap at mobile/zoom; unknown does not become zero or N/A; native Variant shipping weight is never duplicated into a metafield.
 
 ### Implementation handoff
 
@@ -574,15 +609,17 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-007 Present included and optional contents without merging meanings
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Components / merchandising  
-**Type:** Feature  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F3 — Machine Product Pages  
+**Status:** Complete for the governed current scope; final owner delta reconciled2026-10-15. Explicit unknowns remain suppressed; separate Variant/catalog work is excluded.
+
+See [F4 implementation record](project/implementation-records/f-pbi-006a-007a-batch-f4.md) for executable evidence and remaining activation gates.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Components / merchandising
+**Type:** Feature
+**Priority:** P1
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F3 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f3`
 
 ### Problem or opportunity
@@ -609,11 +646,11 @@ Epic E fact decisions or migrations; shipping/payment configuration; production 
 
 ### Acceptance criteria
 
-- [ ] Included quantities use exact-GID positive-integer companion map; invalid/missing joins fail eligibility rather than default to one.
-- [ ] Included/not_included/optional/recommended labels remain distinct.
-- [ ] Unpublished/deleted targets are suppressed without substituting an inferred successor.
-- [ ] No descriptions/manuals/photos establish a BOM; C-040 remains blocked until its E decision closes.
-- [ ] Empty approved sets hide the module; useful shell tests still pass.
+- [x] Included quantities use exact-GID positive-integer companion map; invalid/missing joins fail eligibility rather than default to one.
+- [x] Included/not_included/optional/recommended labels remain distinct.
+- [x] Unpublished/deleted targets are suppressed without substituting an inferred successor.
+- [x] No descriptions/manuals/photos establish a BOM; C-040 remains blocked until its E decision closes.
+- [x] Empty approved sets hide the module; useful shell tests still pass.
 
 ### Implementation handoff
 
@@ -655,15 +692,17 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-008 Add contextual machine items through exact approved references
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Related Products / F-G boundary  
-**Type:** Feature  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F3 — Machine Product Pages  
+**F5 status:** Partial: 008A complete in repository/local fixtures; 008B open and not ready. See [F5 implementation record](project/implementation-records/f-pbi-008a-009a-batch-f5.md).
+
+**Status:** Partial: 008A complete repository/local-fixture scope; 008B open/not ready
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Related Products / F-G boundary
+**Type:** Feature
+**Priority:** P1
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F3 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f3`
 
 ### Problem or opportunity
@@ -737,15 +776,17 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-009 Handle delivery, pickup and timing as conditional native and approved states
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Product delivery / K integration  
-**Type:** Feature  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F3 — Machine Product Pages  
+**F5 status:** Partial: 009A complete in repository/local fixtures; 009B open and not ready. See [F5 implementation record](project/implementation-records/f-pbi-008a-009a-batch-f5.md).
+
+**Status:** Partial: 009A complete repository/local-fixture scope; 009B open/not ready
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Product delivery / K integration
+**Type:** Feature
+**Priority:** P1
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F3 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f3`
 
 ### Problem or opportunity
@@ -819,15 +860,15 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-010 Provide neutral support and approved warranty information
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Support / L integration  
-**Type:** Feature  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** M  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F3 — Machine Product Pages  
+**Status:** Partial: 010A complete in repository/local fixtures; 010B open and not ready. See [F6 implementation record](project/implementation-records/f-pbi-010a-011a-batch-f6.md).
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Support / L integration
+**Type:** Feature
+**Priority:** P1
+**Impact:** High
+**Effort:** M
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F3 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f3`
 
 ### Problem or opportunity
@@ -901,15 +942,15 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-011 Expose only current approved manuals, diagrams and videos
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Resources / L integration  
-**Type:** Feature  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F3 — Machine Product Pages  
+**Status:** Partial: 011A complete in repository/local fixtures; 011B open and not ready. See [F6 implementation record](project/implementation-records/f-pbi-010a-011a-batch-f6.md).
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Resources / L integration
+**Type:** Feature
+**Priority:** P1
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F3 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f3`
 
 ### Problem or opportunity
@@ -983,22 +1024,24 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-012 Reuse Contact and define the Product-context handoff to Forms
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Contact / P integration  
-**Type:** Feature  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** M  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F2 — Machine Product Pages  
+**F2 status:** Complete for F2 repository scope; live parity/assignment deferred. [F2 implementation record](project/implementation-records/f-pbi-002-003-012-014a-batch-f2.md)
+
+**Status:** Complete for F2 repository scope; live parity/assignment deferred.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Contact / P integration
+**Type:** Feature
+**Priority:** P1
+**Impact:** High
+**Effort:** M
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F2 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f2`
 
 ### Problem or opportunity
 
 The live native contact form has no Product/Variant context, and no owned quote process is evidenced.
 
-### Evidence
+### Discovery evidence (before F2)
 
 Contact route/form read; Name/Email/Phone/Comment only; D-PBI-025 and navigation quote route remain blocked.
 
@@ -1018,11 +1061,11 @@ Epic E fact decisions or migrations; shipping/payment configuration; production 
 
 ### Acceptance criteria
 
-- [ ] No competing quote form/app/backend or assumed reserve/preorder workflow is introduced.
-- [ ] Neutral Contact works without context enhancement and promises no response time.
-- [ ] Context parameters are validated/escaped, never establish price/fit/identity authority, and cannot redirect outside approved routes.
-- [ ] Native form is not assumed to consume query parameters until its handler exists and is tested.
-- [ ] No new customer-data submission/collection launches before existing P ownership requirements are satisfied.
+- [x] No competing quote form/app/backend or assumed reserve/preorder workflow is introduced.
+- [x] Neutral Contact works without context enhancement and promises no response time.
+- [x] Context parameters are validated/escaped, never establish price/fit/identity authority, and cannot redirect outside approved routes.
+- [x] Native form is not assumed to consume query parameters until its handler exists and is tested.
+- [x] No new customer-data submission/collection launches before existing P ownership requirements are satisfied.
 
 ### Implementation handoff
 
@@ -1065,15 +1108,15 @@ Existing P intake ownership blocks context enhancement; neutral Contact is alrea
 
 ## F-PBI-013 Resolve existing native financing visibility without changing purchase policy
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Commercial governance  
-**Type:** Decision  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** M  
-**Confidence:** Medium — owner decision pending  
-**Suggested milestone:** F1 — Machine Product Pages  
+**Status:** Open; F-DEC-001 unresolved. Native payment_terms preserved by F2.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Commercial governance
+**Type:** Decision
+**Priority:** P1
+**Impact:** High
+**Effort:** M
+**Confidence:** Medium — owner decision pending
+**Suggested milestone:** F1 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f1`
 
 ### Problem or opportunity
@@ -1145,15 +1188,17 @@ F-DEC-001 requires a real Business/Admin decision on native financing visibility
 
 ## F-PBI-014 Validate responsive, keyboard and accessible machine journeys
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** QA / accessibility / responsive  
-**Type:** Improvement  
-**Priority:** P0  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F4 — Machine Product Pages  
+**F2 status:** Partial: 014A complete for local shell fixtures; 014B open. [F2 implementation record](project/implementation-records/f-pbi-002-003-012-014a-batch-f2.md)
+
+**Status:** Partially complete: 014A local shell automation complete; 014B open.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** QA / accessibility / responsive
+**Type:** Improvement
+**Priority:** P0
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F4 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p0`, `batch: f4`
 
 ### Problem or opportunity
@@ -1172,6 +1217,12 @@ Executable checks cover the shared shell and conditional modules, with global-ch
 
 ### Scope
 
+F2 implements 014A only: shell states, seven widths, text enlargement, actual Chromium zoom, keyboard and axe. 014B remains open for approved media counts/modal focus, populated specifications/long values, contents, contextual items, delivery/pickup, warranty/support, resources/video/downloads and later disclosures/details. Global chrome remains Epic C.
+
+F6 adds support/resources semantics, keyboard/deferred-video behavior, four widths, 200% text enlargement, actual Chromium zoom and axe evidence. F5 contextual/delivery evidence is retained. Overall 014B remains open for approved live media parity, actual Shopify-rendered integration/release parity and any release-only journeys not proven by local fixtures. No local fixture is live certification.
+
+Historical F4 contribution: F4 adds partial 014B evidence for synthetic specification and contents fixtures: semantic relationships, quantities, keyboard order, narrow layouts, long text, 200% text enlargement, actual Chromium zoom and axe. Approved live media parity, contextual items, delivery/pickup, warranty/support, resources/downloads/video and later disclosure/details journeys remain open. See the [F4 implementation record](project/implementation-records/f-pbi-006a-007a-batch-f4.md).
+
 320/360/390/768/1024/1440/1920 representative coverage, actual browser zoom/reflow, mobile controls, long specs/resources, modal/details focus and touch targets; reuse existing Playwright/axe.
 
 ### Out of scope
@@ -1181,10 +1232,10 @@ Epic E fact decisions or migrations; shipping/payment configuration; production 
 ### Acceptance criteria
 
 - [ ] One logical heading/focus order and no inaccessible empty controls; detail/table semantics match the data.
-- [ ] Supported narrow widths and zoom do not require horizontal page scrolling for ordinary content.
+- [x] Supported narrow widths and zoom do not require horizontal page scrolling for ordinary content.
 - [ ] Modal Enter/Escape/focus return and disclosure keyboard behavior hold with one/multiple media and populated/empty modules.
 - [ ] Touch targets, visible focus and screen-reader labels cover purchase, resource and contextual links.
-- [ ] Preview toolbar/cross-origin limitations are recorded; root text simulation is not mislabeled as full zoom certification.
+- [x] Preview toolbar/cross-origin limitations are recorded; root text simulation is not mislabeled as full zoom certification.
 
 ### Implementation handoff
 
@@ -1224,15 +1275,17 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-015 Add machine-page performance measurement under the existing budget
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Performance / QA  
-**Type:** Improvement  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F4 — Machine Product Pages  
+**Status:** Partial: 015A complete for repository/local regression; 015B preview/release certification deferred.
+
+See [F3 implementation record](project/implementation-records/f-pbi-004a-015a-batch-f3.md) for completed A scope, executable gates and outstanding B requirements.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Performance / QA
+**Type:** Improvement
+**Priority:** P1
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F4 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f4`
 
 ### Problem or opportunity
@@ -1305,15 +1358,15 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 
 ## F-PBI-016 Define machine decision measurement in the existing analytics model
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Analytics / U integration  
-**Type:** Architecture  
-**Priority:** P1  
-**Impact:** High  
-**Effort:** M  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F4 — Machine Product Pages  
+**Status:** Complete repository measurement-contract scope; instrumentation blocked by unresolved U ownership/consent
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Analytics / U integration
+**Type:** Architecture
+**Priority:** P1
+**Impact:** High
+**Effort:** M
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F4 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p1`, `batch: f4`
 
 ### Problem or opportunity
@@ -1340,11 +1393,11 @@ Epic E fact decisions or migrations; shipping/payment configuration; production 
 
 ### Acceptance criteria
 
-- [ ] One owner for native view/add-to-cart/checkout/purchase; custom F code cannot duplicate them.
-- [ ] Optional event payload uses exact Product/Variant/module/resource IDs and relative destination; no PII/free-text inquiry data.
-- [ ] No tooling/pixel/consent configuration is invented or enabled before existing U decisions.
-- [ ] Track actions tied to customer decisions, not arbitrary per-section events; expansion alone is not success.
-- [ ] Baseline/review cadence and accountable role are defined without fabricated conversion targets.
+- [x] One reserved U/native owner slot per view/add-to-cart/checkout/purchase action; custom F code cannot duplicate them. Actual owner assignments remain unresolved in the U authorities; F does not appoint them.
+- [x] Optional event payload uses exact Product/Variant/module/resource IDs and relative destination; no PII/free-text inquiry data.
+- [x] No tooling/pixel/consent configuration is invented or enabled before existing U decisions.
+- [x] Track actions tied to customer decisions, not arbitrary per-section events; expansion alone is not success.
+- [x] Baseline/review cadence and accountable role are defined without fabricated conversion targets.
 
 ### Implementation handoff
 
@@ -1383,17 +1436,21 @@ F Product measurement; U analytics governance; J/P native purchase/contact event
 
 Existing U event-owner/consent decisions block instrumentation; contract preparation is independent.
 
+### F7 implementation evidence
+
+See [F7 implementation record](project/implementation-records/f-pbi-016-017a-batch-f7.md), [measurement contract](../data/epic-f-machine-measurement-contract.json), and [validation evidence](qa/evidence/epic-f/batch-f7-validation.json). The shared storefront event registry references this contract. Definition, emission, collection, storage, reporting and analysis remain separate. No browser listeners, beacons, pixels, consent changes or analytics requests were added.
+
 ## F-PBI-017 Prepare and execute only separately authorized machine-template rollout
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** Admin / release governance  
-**Type:** Migration  
-**Priority:** P0  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F5 — Machine Product Pages  
+**Status:** Partial — 017A complete repository planning scope; 017B open/blocked/not authorized
+**Epic:** Epic F — Machine Product Pages
+**Work area:** Admin / release governance
+**Type:** Migration
+**Priority:** P0
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F5 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p0`, `batch: f5`
 
 ### Problem or opportunity
@@ -1465,17 +1522,31 @@ F machine Product pages; G/J/K/L/O/P at the explicitly bounded interfaces in thi
 
 Current complete E audit, applicable class migration, validated shell and exact domain GO are unsatisfied. No rollout is authorized now.
 
+### F-PBI-017A — rollout plan, dry run, rollback and authorization architecture
+
+**Status:** Complete repository scope (F7).
+
+All 11 governed machine GIDs are assessed. Eight historical active/published machines are conditional future candidates; zero are eligible now. JadeMaster, SawMaster 36 and TumbleMaster remain explicitly excluded. The [deterministic plan](../data/epic-f-machine-template-rollout-plan.json) and [policy](../data/epic-f-machine-template-rollout-policy.json) preserve exact prior suffixes and restrict any future write to `templateSuffix`. Historical observations are fixtures, never a fresh execution read. Both human GO slots remain absent. Production theme publication is forbidden.
+
+### F-PBI-017B — separately authorized Product template assignment execution
+
+**Status:** Open / blocked / not authorized. No execution adapter is supplied by F7.
+
+Requires current complete E reconciliation, applicable definition and product_class migration, fresh exact identity/consumer eligibility, fresh complete bounded before-read, unchanged reviewed plan, exact Product Owner and Shopify Admin Owner GO, and later after-state comparison. Product assignment is store-level even with a preview theme. Actual execution and live after-verification acceptance criteria above remain unchecked. Later storefront smoke needs separate authorization; it cannot imply theme push/publication.
+
+See [F7 record](project/implementation-records/f-pbi-016-017a-batch-f7.md) for source authorities, deterministic drift gates, dry-run results and exact file manifest.
+
 ## F-PBI-018 Run aggregate machine-page QA and record shell versus fact readiness
 
-**Status:** Proposed / not implemented  
-**Epic:** Epic F — Machine Product Pages  
-**Work area:** QA / release handoff  
-**Type:** Validation  
-**Priority:** P0  
-**Impact:** High  
-**Effort:** L  
-**Confidence:** High for repository scope; live facts retain external gates  
-**Suggested milestone:** F5 — Machine Product Pages  
+**Status:** Partial: 018A complete for F8 repository/static/local-fixture aggregation; 018B open/not ready.
+**Epic:** Epic F — Machine Product Pages
+**Work area:** QA / release handoff
+**Type:** Validation
+**Priority:** P0
+**Impact:** High
+**Effort:** L
+**Confidence:** High for repository scope; live facts retain external gates
+**Suggested milestone:** F5 — Machine Product Pages
 **Suggested GitHub labels:** `epic: f`, `area: product-pages`, `priority: p0`, `batch: f5`
 
 ### Problem or opportunity
@@ -1484,7 +1555,7 @@ A single green Product-page result could conceal suppressed modules, stale Admin
 
 ### Evidence
 
-E aggregate separates architecture and execution; current CSV has 103 findings and launch fixtures have three ownership gaps; F modules are not implemented.
+F8 aggregates source-bound F1–F7 repository evidence. Historical CSV diagnostics retain 103 findings (95 missing alt, eight nonpositive prices); launch ownership retains only search and consumableProduct. Renderers exist, but grants remain zero, Admin evidence is stale and live release is not certified.
 
 See the [source-bound discovery](architecture/epic-f-machine-product-page-discovery.md) and [per-machine inventory](project/epic-f-machine-inventory.json) for exact paths/IDs and current observations.
 
@@ -1494,7 +1565,7 @@ A release packet reports every machine and domain honestly, with executable evid
 
 ### Scope
 
-Aggregate static/fixture/preview/accessibility/performance/claims/reference/route/assignment checks; update inventory/gap matrix; collect applicable human signoff without marking blocked facts complete.
+018A aggregates static/local-fixture evidence without live actions. 018B separately requires current relevant Admin evidence, concrete activated-domain approvals/migrations, applicable assignment, authorized Shopify-rendered parity, remaining 014B, 015B release performance and owner signoff.
 
 ### Out of scope
 
@@ -1549,3 +1620,108 @@ Applicable E value approval/migration and current evidence may remain blocked. B
 ## Discovery stopping point
 
 Only discovery evidence, inventory/matrices, decision packet and this proposed backlog were created. Targeted read-only Admin queries and unpublished-preview navigation occurred; no Epic F Product-page implementation, Product/Variant/definition/File change, template assignment, app/pixel/form installation, cart/contact submission, theme push or production mutation/publication occurred.
+
+F5 adds partial 014B evidence for contextual cards, relationship scope, exact-GID precedence, delivery/policy semantics, native pickup states, narrow reflow, text enlargement and actual browser zoom. 014B remains open for approved live media parity, warranty/support, resources/downloads/video and later disclosure journeys.
+
+## Batch F7 scope boundary
+
+F7 implements F-PBI-016 and F-PBI-017A only. The F7 regression runner is not the F-PBI-018 aggregate release packet. F-PBI-004B/006B/007B/008B/009B/010B/011B, 013/F-DEC-001 and remaining 014B stay open; 015B stays deferred; 017B stays blocked; 018 was not started in F7; F8 now completes only 018A, with 018B open/not ready. Measurement preparation is not accessibility evidence, rollout planning is not Shopify parity, and architecture passing does not grant activation. No performance thresholds changed. Search and consumableProduct fixture ownership gaps, 103 Product CSV findings, 37 description claim matches, seven broken Manuals destinations, B3C-D03 blocked, B3B-D06 pending and inherited B-scope activation blockers remain separately visible.
+
+
+## F-PBI-018A Repository/static/local-fixture readiness aggregation
+
+**Status:** Complete repository scope (F8). All 11 exact GIDs and 19 domains are source-bound. Independent dimensions preserve safe suppression, stale Admin, blocked reconciliation/activation and deferred release performance. See [F8 report](project/implementation-records/f-pbi-018a-batch-f8.md) and [packet](../data/epic-f-machine-page-readiness.json). This does not complete Epic E or Epic F live release.
+
+## F-PBI-018B Current Admin + authorized preview/release signoff
+
+**Status:** Open / not ready; not performed or authorized by F8.
+
+- [ ] Current complete relevant Admin evidence, with observation times, freshness boundaries and dataset coverage.
+- [ ] Applicable activation decisions, exact scope and migrations/reconciliation for selected release domains.
+- [ ] Separately authorized F-PBI-017B actual assignment if selected release scope requires it.
+- [ ] Authorized Shopify-rendered preview/live verification with actual theme/environment identity.
+- [ ] Remaining full F-PBI-014B approved live media/integration/release-only journeys.
+- [ ] F-PBI-015B representative release performance certification and owner exception review.
+- [ ] Owner signoffs for each concrete activated domain; U owner/consent/tooling decisions where instrumentation applies.
+- [ ] Explicit production go/no-go outside F8; publication never bundled with assignment/QA.
+
+All 004B/006B/007B/008B/009B/010B/011B remain open/not ready; 013/F-DEC-001 open; 014B open/partial; 015B deferred; 016 instrumentation blocked; 017B open/blocked/not authorized. Do not execute 017B or 018B from this packet.
+
+
+## Current operational update — live machine activation, 2026-10-05
+
+Explicit delegated development authority completed a bounded 28-file deployment to existing MAIN 158579622085 and F-PBI-017B suffix assignment for the eight historical F7 conditional candidates only. All eight now use `machine`; JadeMaster, SawMaster 36 and TumbleMaster remain null. Assigned normal-route validation passed 16/16; protected reconciliation found zero unrelated Product/Variant changes and zero factual grants. Preview remains unpublished and unchanged; no theme publication occurred.
+
+F-DEC-001 remains APPROVED_OPTION_A. F-PBI-017B is COMPLETE at the authorized live-development scope. F-PBI-014B remains PARTIAL: assigned parity advanced, remaining text/actual zoom/keyboard coverage and unavailable Variant/pickup-state disposition remain. F-PBI-015B is DEFERRED. F-PBI-018B is NOT BEGUN / NOT READY. Historical plan/readiness entries above remain historical evidence; this update does not rewrite them.
+
+See [live activation implementation record](project/epic-f-live-machine-template-activation.md) and [current Shopify readiness](../data/epic-f-current-shopify-eligibility.json). Native search ranking parity is qualified by one first-page result membership change; unchanged common-card presentation and full protected catalog checks passed. Known native Shop Pay CSP/403 noise is recorded separately.
+
+
+## Current operational update — 014B assigned-route disposition, 2026-10-06
+
+F-PBI-014B remains PARTIAL after actual assigned normal-route validation. The 32-cell core responsive matrix is source-bound (16 prior cells retained + 16 missing-width cells passed), plus six representative historical-width cells. Actual browser 200% zoom passed 10/10. Text geometry and measured 2× sizes passed 16/16, but complete text-enlarged accessibility passed only 8/16: all eight 390px cells reproduce the merchant sticky header obscuring footer Search and native payment-terms focus. Full keyboard cycles/order passed 24/24 with no skipped controls or unexpected traps; focus visibility failed eight current mobile text cells. Full-document axe counts remain zero in all 52 scans. This actual global-chrome failure is retained under Epic C ownership and is not excluded as provider noise.
+
+No alternate Variant or available pickup exists in the current eight-Product scope; these are accepted catalog coverage limitations, not fabricated tests or mandatory standalone blockers. The literal broad 014B media/modal and live resource/contextual-link criteria remain open until real approved activation exists. F-PBI-015B stays DEFERRED (no certification executed); its listed dependencies do not impose overall 014B Complete, but correcting the actual header defect before source-bound certification is recommended. F-PBI-017B remains COMPLETE; F-PBI-018B remains NOT_BEGUN / NOT_READY. Persistent Shopify mutations: 0.
+
+See [assigned-route accessibility disposition](project/epic-f-014b-assigned-route-accessibility-closure.md). Historical criteria and earlier evidence above remain unchanged.
+
+## Current operational update — global header focus correction, 2026-10-06
+
+Delegated development authority corrected only `sections/header.liquid`, first on unpublished Preview 158631198917 and then existing MAIN 158579622085. Below 750 CSS px the header now scrolls in document flow; enlarged text and navigation content remain unchanged. Desktop/tablet sticky behavior is retained. Exact readbacks show one updated file per theme and zero unplanned file changes. Products, all 122 classifications, eight assigned suffixes, three exclusions and zero factual grants remain unchanged; no publication occurred.
+
+The eight previously failing 390 px/200% text cells pass 8/8; the complete text-enlargement matrix passes 16/16. Six real Chromium 200% zoom cells cover mobile-effective and desktop-effective layouts. Thirty-eight machine keyboard cycles pass with zero skipped controls, traps or invisible/obscured focus. All 68 new live full-document axe scans have zero critical/serious/moderate/minor findings. Thirty non-machine/global comparative cells show no material regression. Raw Preview-toolbar findings and pre-existing non-machine focus observations remain recorded separately.
+
+**F014B-FOCUS-CURRENT is COMPLETE; current assigned shell accessibility is PASS. F-PBI-014B remains PARTIAL_FUTURE_LIVE_STATES_ONLY**, retaining F014B-MEDIA-MODULE-FUTURE and F014B-RESOURCE-CONTEXT-FUTURE without weakening the contract. **F-PBI-015B is READY_FOR_AUTHORIZED_CERTIFICATION**, not executed. F-PBI-017B remains COMPLETE; F-PBI-018B remains NOT_BEGUN / NOT_READY. F-DEC-001 stays approved Option A and E-MUT-020/021 remain reconciled.
+
+The additive corrected source binding is `GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06`, canonical SHA256 `7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37`. Future current-shell certification must bind to this corrected runtime, not historical activation hashes. See [header correction record](project/epic-f-global-header-focus-correction.md) and [source binding](qa/evidence/epic-f/header-focus-correction-2026-10-06/source-binding.json). Next action is separately authorized 015B certification; no performance certification or release signoff is performed here.
+
+## Current operational update — authorized 015B preflight, 2026-10-06
+
+F-PBI-015B certification is **BLOCKED_MISSING_APPROVED_THROTTLE_PROFILE**. Fresh read-only checks confirm all 29 corrected bound runtime files, MAIN identity, eight machine assignments, three exclusions, all 122 classifications and zero factual grants unchanged. The authoritative protocol specifies Slow 4G without approved numerical latency, download/upload throughput or CPU slowdown. The synthetic unit-test tuple is not an approved profile. Per the authorized task's mandatory stop condition, no live performance sample was attempted: 96 planned, 0 collected, no medians and no measured budget conclusion.
+
+F-PBI-015 remains Partial (contract complete, live certification not executed). F014B-FOCUS-CURRENT stays COMPLETE and current shell accessibility PASS; F-PBI-014B retains its two future populated-state criteria. F-PBI-017B remains COMPLETE; F-PBI-018B remains NOT_BEGUN / NOT_READY. F-DEC-001 remains approved Option A; E-MUT-020/021 remain reconciled. Persistent Shopify mutations and runtime changes are zero. The exact corrected source binding remains `7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37`.
+
+See [015B pre-sampling disposition](project/epic-f-015b-live-performance-certification.md) and [structured evidence](qa/evidence/epic-f/015b-live-2026-10-06/certification.json). Next action is approved numerical profile resolution and verified live cold/warm measurement tooling, followed by the unchanged 96-sample plan. Historical evidence and acceptance criteria above remain unchanged; no performance pass, optimization requirement or release signoff is asserted.
+
+## Current operational update — approved 015B profile and measurement integrity stop, 2026-10-07
+
+The approved environment is `RHINO_LIGHTHOUSE_SLOW_4G_2026_10`: reference 150ms RTT/1.6Mbps down/750Kbps up/CPU4, with actual CDP effective 562.5ms latency/184320 download bytes/sec/84375 upload bytes/sec/CPU4/zero packet loss, identical for both viewports. Configuration is resolved. Profile/cache/cutoff/beacon local checks pass 36/36; source binding `7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37` is unchanged.
+
+F-PBI-015B is **BLOCKED_MEASUREMENT_INTEGRITY**. The final frozen canonical-URL campaign attempted five samples: three complete BeadMaster mobile cold observations and two invalid warm attempts (one retry). A native unload telemetry beacon has HTTP200 but no complete transfer observation; totals remain null and the campaign stops. Earlier collector methodologies are invalidated and never pooled. The current cold triplet fails LCP/CLS/TBT/request budgets; it does not certify the full eight-route shell. The unchanged 96-sample plan remains incomplete.
+
+F-PBI-015 remains Partial with live certification incomplete. F-PBI-014B remains Partial future live states only, current focus Complete; F-PBI-017B stays Complete. F-PBI-018B stays Not begun/Not ready. All runtime, 122 Product/classification records, eight assignments, three exclusions and zero factual grants remain unchanged; Shopify persistent mutations are zero. See the additive [015B resumption record](project/epic-f-015b-live-performance-certification.md#authorized-resumption--2026-10-07) and [current summary](qa/evidence/epic-f/015b-live-2026-10-07-restart-3/summary.json). Next action is reviewed warm-beacon measurement correction followed by a fresh complete campaign; no runtime optimization or signoff is performed here.
+
+
+## Current operational update — Recorder V2 bounded canary integrity stop, 2026-10-07
+
+F-PBI-015B remains **BLOCKED_MEASUREMENT_INTEGRITY**. Recorder V2 implements separate priming and measured browser targets with a fixed 5000ms terminal drain. Local lifecycle/provenance 32/32, profile/cache 22/22 and schema 3/3 checks pass. The live first cold slot and its one allowed retry are invalid: protocol timing correlation duplicates requests under throttling, and inherited CDP blocking interferes with native checkout preload scripts. No new sample enters medians; the warm triplet is not attempted. Sampling stops under the explicit integrity boundary.
+
+The previous complete three-sample cold diagnostic remains unchanged. Neither a new performance failure decision nor an optimization packet is asserted from invalid V2 observations. Storefront runtime, throttle, budgets, all 122 protected Product records, assignments, classifications and zero factual grants remain unchanged; Shopify persistent mutations are zero. F014B current focus stays Complete / overall Partial future states only; F017B stays Complete; F018B stays Not begun/Not ready. See [Recorder V2 disposition](project/epic-f-015b-recorder-v2-integrity.md) and [structured evidence](qa/evidence/epic-f/015b-recorder-v2-2026-10-07/summary.json). Next work is QA protocol correlation/precise preload guard correction and a freshly frozen bounded canary; no full 96-sample campaign or runtime optimization.
+
+
+## Current operational update — Recorder V3, 2026-10-10
+
+F-PBI-015B: **BLOCKED_MEASUREMENT_INTEGRITY**. CDP-only authority replaces Playwright timing correlation; passive traffic is observed without harness blocking. One predeclared cold integrity probe; 1 total attempts, 0 valid, 1 invalid, 0 retries. F-PBI-015: PARTIAL_CONTRACT_COMPLETE_LIVE_CERTIFICATION_INCOMPLETE. F-PBI-018B: NOT_READY. Full96/remaining90 not run; source, budgets, F-DEC-001 Option A and Shopify persistent state unchanged. See [V3 disposition](project/epic-f-015b-recorder-v3-integrity.md).
+
+
+## Current operational update — bounded development media, 2026-10-12
+
+F-DEC-002-DEV: APPROVED_BOUNDED_DEVELOPMENT. F-PBI-004B: PARTIAL_DEVELOPMENT_MEDIA_ACTIVE; six current exact Product photos activated, EM-1 and SawMaster24 held for review. F-PBI-004 overall remains partial. Real one-image modal/keyboard/axe parity passes; multiple-image and populated-module future states remain unproven. F014B resource/context criterion unchanged. F-PBI-015B remains BLOCKED_MEASUREMENT_INTEGRITY, PARKED_RELEASE_GATE, permitting continued implementation while blocking final release. F-PBI-018B remains NOT_READY; no signoff or performance-recorder work. See [media activation](project/epic-f-004b-live-media-activation.md).
+
+
+### Owner-response activation — 2026-10-13
+
+Exact completed owner answers produced 70 reconciled Product metafields and 68 current customer grants. Eight assigned normal routes pass at 390/1440; source binding and evidence: `docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/summary.json`. Specifications, contents and compatibility are partial live activations. Current six photos/media decision stay unchanged. F-PBI-015B remains BLOCKED_MEASUREMENT_INTEGRITY / PARKED_RELEASE_GATE; F-PBI-018B remains NOT_READY. Remaining worksheet: `docs/project/epic-f-owner-response-remaining-worksheet.md`.
+
+
+### 007B / 008B completed worksheet follow-up — 2026-10-14
+
+EM-1 now has 25 exact customer contents lines from three reconciled E-MUT-035 metafields; two new moss-pad quantities remain unanswered. Customer fact grants: 70. LapMaster 12/18 new Variant intent is recorded without Variant creation or E-MUT-036 execution. PO-E-013 is DECIDED_PENDING_CATALOG_SPLIT, with additional technical differences unanswered and both Saw Vice fit edges blocked. Runtime delta and Preview/MAIN evidence: `docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/summary.json`. Media and unfinished technical/resource lanes unchanged; F-PBI-015B remains parked and F-PBI-018B NOT_READY.
+
+## 2026-10-15 amended 006B activation
+
+116 owning-plan rows reconciled; 113 writes and three no-ops. Customer grants 127, assigned detail specifications 78. Contents25, compatibility40 and photos6 preserved. F006B partial approved facts active; F007B/F008B partial states retained. F015B remains parked measurement blocker; F018B NOT_READY. [Evidence and remaining decisions](project/epic-f-006b-amended-activation.md).
+
+## Final 006B/EM-1 BOM delta — 2026-10-15
+
+F006B and F007B COMPLETE for the governed current scope:10 writes/11 reconciled rows,133 customer grants,83 assigned detail specifications,27/27 EM-1 contents. TumbleMaster motor fields are OWNER_UNKNOWN_SUPPRESSED, with no open human006B questions. No prior116 technical value changed. F008B remains partial for the Saw Vice split; F015B remains parked and F018B NOT_READY. [Literal criteria and evidence](project/epic-f-final-006b-bom-delta.md).

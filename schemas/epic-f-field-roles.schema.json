@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "upstream": {
+      "const": "data/epic-e-batch-3b-contracts.json"
+    },
+    "keyLimit": {
+      "const": 3
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "maxItems": 2
+          },
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelKey": {
+            "type": "string",
+            "minLength": 1
+          },
+          "keyRole": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "fields",
+          "domain",
+          "labelKey",
+          "keyRole"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "contents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "minLength": 1
+          },
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          },
+          "meaning": {
+            "enum": [
+              "included",
+              "optional",
+              "recommended"
+            ]
+          },
+          "quantityRequired": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "field",
+          "domain",
+          "meaning",
+          "quantityRequired"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "unsupported": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "conversions": {
+      "type": "array",
+      "maxItems": 0
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "upstream",
+    "keyLimit",
+    "fields",
+    "contents",
+    "unsupported",
+    "conversions"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,53 @@
+{
+  "completedAt": "2026-10-15T16:34:33.108Z",
+  "sourceBindingSha256": "b09c7305fbf1171c45f8f99c5a00ba8f80602e79dcadac6daa14d7d50d49f2c2",
+  "readOnlyValidationExitCode": 0,
+  "executionDisposition": "STOP_REQUIRED_BY_USER_SECTION_18",
+  "commands": [
+    {
+      "command": "node scripts/validate-epic-e-006b-completed-review.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/review.log"
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/registers.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/diff.log"
+    },
+    {
+      "command": "shopify theme check --fail-level warning",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0,
+      "log": "docs/qa/evidence/epic-f/006b-worksheet-review-2026-10-15/theme-check.log"
+    },
+    {
+      "command": "Prior 007B/008B sealed files unchanged",
+      "exitCode": 0,
+      "files": 153
+    },
+    {
+      "command": "Credential scan",
+      "exitCode": 0,
+      "hits": 0
+    }
+  ],
+  "dedicatedChecks": 21,
+  "PDFPagesReviewed": 15,
+  "responseCrops": 50,
+  "sourceOrThemeChanges": 0,
+  "ShopifyMutations": 0,
+  "nativeShippingWeightMutations": 0,
+  "protectedProducts": 122,
+  "protectedVariants": 125,
+  "definitions": 37,
+  "boundRuntimeFiles": 45,
+  "unexpectedChanges": 0,
+  "liveNewValueBrowserValidation": "NOT_RUN_NO_NEW_VALUES_OR_RUNTIME_CHANGE",
+  "currentF1F8Evidence": "Previous full suite remains exact in the preserved 007B/008B seal; no claim of a new runtime release"
+}

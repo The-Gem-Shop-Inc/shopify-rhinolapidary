@@ -1,0 +1,79 @@
+{
+  "startedAt": "2026-10-05T21:26:13.281Z",
+  "completedAt": "2026-10-05T21:26:50.650Z",
+  "remoteOperationsProduced": 0,
+  "commands": [
+    {
+      "label": "theme-check",
+      "command": [
+        "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+        "C:/Users/dajem/AppData/Local/JetBrains/WebStorm2026.2/acp-agents/.runtimes/node/24.13.0/node_modules/@shopify/cli/bin/run.js",
+        "theme",
+        "check",
+        "--path",
+        ".",
+        "--fail-level",
+        "warning",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "registers",
+      "command": [
+        "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+        "scripts/validate-json-registers.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "hardcoded-strings",
+      "command": [
+        "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+        "scripts/validate-hardcoded-strings.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "execution-contracts",
+      "command": [
+        "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+        "scripts/test-epic-f-live-machine-activation.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "git-diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "all32PriorRuntimeSourceHashesUnchanged": true,
+  "currentReadinessProvenanceValid": true,
+  "originalDeploymentPlanValidatedAtRecordedExecutionTime": "2026-10-05T20:44:08.649Z",
+  "currentTimeFreshnessStillRequiredForAnyNewWrite": true,
+  "secretSafety": {
+    "filesScanned": 64,
+    "parseableJson": true,
+    "passwordMatches": 0,
+    "signedPreviewHosts": 0,
+    "signedQueryValues": 0,
+    "ShopifyTokenMatches": 0
+  },
+  "executionContractTests": {
+    "passed": 33,
+    "failed": 0
+  },
+  "gitDiffCheckExit": 0,
+  "ThemeCheck": {
+    "errors": 0,
+    "warnings": 0,
+    "exit": 0
+  },
+  "hardcodedStringWarnings": "Five existing informational warnings; not Theme Check findings"
+}

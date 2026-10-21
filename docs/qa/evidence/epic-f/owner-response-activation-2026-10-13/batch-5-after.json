@@ -1,0 +1,522 @@
+{
+  "observedAt": "2026-10-13 20:25:10 UTC",
+  "query": "query OwnerFactCompare($ids:[ID!]!){shop{id myshopifyDomain}nodes(ids:$ids){...on Product{id metafields(first:30){nodes{id namespace key type jsonValue compareDigest definition{id}}pageInfo{hasNextPage endCursor}}}}}",
+  "variables": {
+    "ids": [
+      "gid://shopify/Product/8905783673029",
+      "gid://shopify/Product/8905783771333",
+      "gid://shopify/Product/8905783869637",
+      "gid://shopify/Product/8905783935173",
+      "gid://shopify/Product/8905784426693",
+      "gid://shopify/Product/8905784787141",
+      "gid://shopify/Product/8905785114821",
+      "gid://shopify/Product/8905785245893",
+      "gid://shopify/Product/8905785442501",
+      "gid://shopify/Product/8905785540805",
+      "gid://shopify/Product/8905785606341",
+      "gid://shopify/Product/8905785737413",
+      "gid://shopify/Product/8905785802949",
+      "gid://shopify/Product/8905785934021"
+    ]
+  },
+  "response": {
+    "data": {
+      "shop": {
+        "id": "gid://shopify/Shop/79279947973",
+        "myshopifyDomain": "sz5dnk-nf.myshopify.com"
+      },
+      "nodes": [
+        {
+          "id": "gid://shopify/Product/8905783673029",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185432084677",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "accessory",
+                "compareDigest": "5bb57750a255ee29f8cecf41575a35f5df0e2f1f4a1ff321894204258379c8d7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343301317",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905781477573"
+                ],
+                "compareDigest": "ae5e4849cb955c56d46ec0373d717c90d531549625f1fd5ac10e1f80b6b88a25",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzMwMTMxNywibGFzdF92YWx1ZSI6IjcxNTMwMzQzMzAxMzE3In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905783771333",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185432051909",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343268549",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905781477573"
+                ],
+                "compareDigest": "ae5e4849cb955c56d46ec0373d717c90d531549625f1fd5ac10e1f80b6b88a25",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzI2ODU0OSwibGFzdF92YWx1ZSI6IjcxNTMwMzQzMjY4NTQ5In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905783869637",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185432019141",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343235781",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905781477573"
+                ],
+                "compareDigest": "ae5e4849cb955c56d46ec0373d717c90d531549625f1fd5ac10e1f80b6b88a25",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzIzNTc4MSwibGFzdF92YWx1ZSI6IjcxNTMwMzQzMjM1NzgxIn0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905783935173",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185431986373",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343203013",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905781477573"
+                ],
+                "compareDigest": "ae5e4849cb955c56d46ec0373d717c90d531549625f1fd5ac10e1f80b6b88a25",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzIwMzAxMywibGFzdF92YWx1ZSI6IjcxNTMwMzQzMjAzMDEzIn0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905784426693",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185431724229",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343170245",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905781248197"
+                ],
+                "compareDigest": "ca0a61cbd230e5f40ec0f9da20e56e4cadd2f7487b6fdcadf06e437fb3fc22dc",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzE3MDI0NSwibGFzdF92YWx1ZSI6IjcxNTMwMzQzMTcwMjQ1In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905784787141",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185431527621",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "accessory",
+                "compareDigest": "5bb57750a255ee29f8cecf41575a35f5df0e2f1f4a1ff321894204258379c8d7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343137477",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905780756677"
+                ],
+                "compareDigest": "00092b58c1a673219586a273c6cc5153ba90293583ff4c15babeaa80cc9c99f7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzEzNzQ3NywibGFzdF92YWx1ZSI6IjcxNTMwMzQzMTM3NDc3In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905785114821",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185433886917",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343104709",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905781248197"
+                ],
+                "compareDigest": "ca0a61cbd230e5f40ec0f9da20e56e4cadd2f7487b6fdcadf06e437fb3fc22dc",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzEwNDcwOSwibGFzdF92YWx1ZSI6IjcxNTMwMzQzMTA0NzA5In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905785245893",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185433821381",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343071941",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905785344197"
+                ],
+                "compareDigest": "a1297db0ae59dacba6978d42e3405cde30935a7b592b14fceeee98417ef12094",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzA3MTk0MSwibGFzdF92YWx1ZSI6IjcxNTMwMzQzMDcxOTQxIn0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905785442501",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185433723077",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343039173",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905785344197"
+                ],
+                "compareDigest": "a1297db0ae59dacba6978d42e3405cde30935a7b592b14fceeee98417ef12094",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzAzOTE3MywibGFzdF92YWx1ZSI6IjcxNTMwMzQzMDM5MTczIn0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905785540805",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185433690309",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530343006405",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905785344197"
+                ],
+                "compareDigest": "a1297db0ae59dacba6978d42e3405cde30935a7b592b14fceeee98417ef12094",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MzAwNjQwNSwibGFzdF92YWx1ZSI6IjcxNTMwMzQzMDA2NDA1In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905785606341",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185433657541",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530342973637",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905785344197"
+                ],
+                "compareDigest": "a1297db0ae59dacba6978d42e3405cde30935a7b592b14fceeee98417ef12094",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0Mjk3MzYzNywibGFzdF92YWx1ZSI6IjcxNTMwMzQyOTczNjM3In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905785737413",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185433592005",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "replacement_part",
+                "compareDigest": "aefe92fa7d4535e60ae95d93ba8aca914144cc32e965d992331437ed76925e7f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530342940869",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905785344197"
+                ],
+                "compareDigest": "a1297db0ae59dacba6978d42e3405cde30935a7b592b14fceeee98417ef12094",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0Mjk0MDg2OSwibGFzdF92YWx1ZSI6IjcxNTMwMzQyOTQwODY5In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905785802949",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185433559237",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "accessory",
+                "compareDigest": "5bb57750a255ee29f8cecf41575a35f5df0e2f1f4a1ff321894204258379c8d7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530342908101",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905785344197"
+                ],
+                "compareDigest": "a1297db0ae59dacba6978d42e3405cde30935a7b592b14fceeee98417ef12094",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0MjkwODEwMSwibGFzdF92YWx1ZSI6IjcxNTMwMzQyOTA4MTAxIn0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905785934021",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185433493701",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "accessory",
+                "compareDigest": "5bb57750a255ee29f8cecf41575a35f5df0e2f1f4a1ff321894204258379c8d7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530342875333",
+                "namespace": "rhino",
+                "key": "compatible_machines",
+                "type": "list.product_reference",
+                "jsonValue": [
+                  "gid://shopify/Product/8905781248197"
+                ],
+                "compareDigest": "ca0a61cbd230e5f40ec0f9da20e56e4cadd2f7487b6fdcadf06e437fb3fc22dc",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298660331717"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDM0Mjg3NTMzMywibGFzdF92YWx1ZSI6IjcxNTMwMzQyODc1MzMzIn0="
+            }
+          }
+        }
+      ]
+    }
+  }
+}

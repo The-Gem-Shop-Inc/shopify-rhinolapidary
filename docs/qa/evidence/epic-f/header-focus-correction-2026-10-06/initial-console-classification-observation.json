@@ -1,0 +1,13 @@
+{
+  "command": "node scripts/finalize-epic-f-header-focus-correction.js",
+  "initialExitCode": 1,
+  "finding": "Initial finalization treated the observed invalid X-Frame-Options ALLOW-FROM response-header warning as unclassified console noise.",
+  "diagnosis": "The exact sanitized message already occurs in pre-fix-live-reproduction.json; associated inventories contain the existing native shop.app/pay/hop surface. It is not introduced by the CSS header correction.",
+  "resolution": "Retain every raw error, explicitly classify only the exact pre-fix response-header warning in addition to existing CSP/403 types, and require zero unexplained console types.",
+  "focusAlgorithmOrThresholdChanged": false,
+  "runtimeSourceChangedByDiagnosis": false,
+  "ProductMutation": false,
+  "rollbackInvoked": false,
+  "finalExitCode": 0,
+  "beforeEvidence": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/pre-fix-live-reproduction.json"
+}

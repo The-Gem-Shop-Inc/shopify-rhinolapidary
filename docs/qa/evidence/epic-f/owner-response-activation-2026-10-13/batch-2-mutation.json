@@ -1,0 +1,303 @@
+{
+  "completedAt": "2026-10-13 20:24:54 UTC",
+  "query": "mutation OwnerFactsSet($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type value jsonValue compareDigest owner{...on Product{id}}definition{id}}userErrors{field message code}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905779937477",
+        "namespace": "rhino",
+        "key": "motor_speed",
+        "type": "rotational_speed",
+        "value": "{\"value\":3000,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "flex_shaft_speed_max",
+        "type": "rotational_speed",
+        "value": "{\"value\":5000,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "flex_shaft_speed_min",
+        "type": "rotational_speed",
+        "value": "{\"value\":500,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "motor_power",
+        "type": "power",
+        "value": "{\"value\":1,\"unit\":\"horsepower\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "wheel_speed_max",
+        "type": "rotational_speed",
+        "value": "{\"value\":3000,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "wheel_speed_min",
+        "type": "rotational_speed",
+        "value": "{\"value\":0,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905781477573",
+        "namespace": "rhino",
+        "key": "motor_power",
+        "type": "power",
+        "value": "{\"value\":1,\"unit\":\"horsepower\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784131781",
+        "namespace": "rhino",
+        "key": "motor_speed",
+        "type": "rotational_speed",
+        "value": "{\"value\":1700,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784197317",
+        "namespace": "rhino",
+        "key": "motor_speed",
+        "type": "rotational_speed",
+        "value": "{\"value\":1700,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784328389",
+        "namespace": "rhino",
+        "key": "motor_speed",
+        "type": "rotational_speed",
+        "value": "{\"value\":3000,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905785344197",
+        "namespace": "rhino",
+        "key": "motor_speed",
+        "type": "rotational_speed",
+        "value": "{\"value\":3000,\"unit\":\"revolutions_per_minute\"}",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71530338025669",
+            "namespace": "rhino",
+            "key": "motor_speed",
+            "type": "rotational_speed",
+            "value": "{\"value\":3000.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+            "jsonValue": {
+              "value": 3000,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+            "owner": {
+              "id": "gid://shopify/Product/8905779937477"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658365637"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337992901",
+            "namespace": "rhino",
+            "key": "flex_shaft_speed_max",
+            "type": "rotational_speed",
+            "value": "{\"value\":5000.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+            "jsonValue": {
+              "value": 5000,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "401f5638865ca00167aac4e09a8147672aca13d6b5a6dd7b2ba884ed9e7e24fb",
+            "owner": {
+              "id": "gid://shopify/Product/8905780756677"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658496709"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337960133",
+            "namespace": "rhino",
+            "key": "flex_shaft_speed_min",
+            "type": "rotational_speed",
+            "value": "{\"value\":500.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+            "jsonValue": {
+              "value": 500,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "7d730f1d94cb8bb1dbe7e8be29519a7bbd14401c096bd8e8cfc2fe501c0776a2",
+            "owner": {
+              "id": "gid://shopify/Product/8905780756677"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658463941"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337927365",
+            "namespace": "rhino",
+            "key": "motor_power",
+            "type": "power",
+            "value": "{\"value\":1.0,\"unit\":\"HORSEPOWER\"}",
+            "jsonValue": {
+              "value": 1,
+              "unit": "HORSEPOWER"
+            },
+            "compareDigest": "aee0727953f9e10f4eb08539d056f9782d139eac9796eabba38fd0287fe0dd9c",
+            "owner": {
+              "id": "gid://shopify/Product/8905780756677"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658332869"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337894597",
+            "namespace": "rhino",
+            "key": "wheel_speed_max",
+            "type": "rotational_speed",
+            "value": "{\"value\":3000.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+            "jsonValue": {
+              "value": 3000,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+            "owner": {
+              "id": "gid://shopify/Product/8905780756677"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658431173"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337861829",
+            "namespace": "rhino",
+            "key": "wheel_speed_min",
+            "type": "rotational_speed",
+            "value": "{\"value\":0.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+            "jsonValue": {
+              "value": 0,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "f84a80489302779274ed55207cad5099d2233e2a436015ab757ad78810d1dcbc",
+            "owner": {
+              "id": "gid://shopify/Product/8905780756677"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658398405"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337829061",
+            "namespace": "rhino",
+            "key": "motor_power",
+            "type": "power",
+            "value": "{\"value\":1.0,\"unit\":\"HORSEPOWER\"}",
+            "jsonValue": {
+              "value": 1,
+              "unit": "HORSEPOWER"
+            },
+            "compareDigest": "aee0727953f9e10f4eb08539d056f9782d139eac9796eabba38fd0287fe0dd9c",
+            "owner": {
+              "id": "gid://shopify/Product/8905781477573"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658332869"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337796293",
+            "namespace": "rhino",
+            "key": "motor_speed",
+            "type": "rotational_speed",
+            "value": "{\"value\":1700.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+            "jsonValue": {
+              "value": 1700,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "e7d4b28f62a5ae781baa45d2360016795704a2b1947381c5bf2e3b7ae9d42ec8",
+            "owner": {
+              "id": "gid://shopify/Product/8905784131781"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658365637"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337763525",
+            "namespace": "rhino",
+            "key": "motor_speed",
+            "type": "rotational_speed",
+            "value": "{\"value\":1700.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+            "jsonValue": {
+              "value": 1700,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "e7d4b28f62a5ae781baa45d2360016795704a2b1947381c5bf2e3b7ae9d42ec8",
+            "owner": {
+              "id": "gid://shopify/Product/8905784197317"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658365637"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337730757",
+            "namespace": "rhino",
+            "key": "motor_speed",
+            "type": "rotational_speed",
+            "value": "{\"value\":3000.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+            "jsonValue": {
+              "value": 3000,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+            "owner": {
+              "id": "gid://shopify/Product/8905784328389"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658365637"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530337697989",
+            "namespace": "rhino",
+            "key": "motor_speed",
+            "type": "rotational_speed",
+            "value": "{\"value\":3000.0,\"unit\":\"REVOLUTIONS_PER_MINUTE\"}",
+            "jsonValue": {
+              "value": 3000,
+              "unit": "REVOLUTIONS_PER_MINUTE"
+            },
+            "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+            "owner": {
+              "id": "gid://shopify/Product/8905785344197"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658365637"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  }
+}

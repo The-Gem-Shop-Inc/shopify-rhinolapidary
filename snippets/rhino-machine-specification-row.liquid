@@ -1,0 +1,6 @@
+{%- if row.label_key != blank and row.display != blank -%}
+  <div class="rhino-machine-fact-row">
+    <dt>{{ row.label_key | t | escape }}</dt>
+    <dd>{{ row.display | escape }}{% if row.configuration != blank %}<span class="rhino-machine-fact-context">{{ 'products.product.machine_facts.configuration' | t: context: row.configuration | escape }}</span>{% endif %}</dd>
+  </div>
+{%- endif -%}

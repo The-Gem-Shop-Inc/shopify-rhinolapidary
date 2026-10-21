@@ -1,0 +1,104 @@
+{
+  "history": [
+    {
+      "directory": "docs/qa/evidence/epic-f/015b-live-2026-10-07",
+      "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+      "attempted": 2,
+      "collectorReportedValid": 0,
+      "invalid": 2,
+      "retries": 1,
+      "acceptedIntoCurrentCampaign": 0,
+      "invalidated": true,
+      "reason": "Superseded service-worker/drain methodology; no accepted observations"
+    },
+    {
+      "directory": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-1",
+      "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+      "attempted": 5,
+      "collectorReportedValid": 3,
+      "invalid": 2,
+      "retries": 1,
+      "acceptedIntoCurrentCampaign": 0,
+      "invalidated": true,
+      "reason": "Superseded recorder methodology and URL identity failure"
+    },
+    {
+      "directory": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-2",
+      "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+      "attempted": 5,
+      "collectorReportedValid": 3,
+      "invalid": 2,
+      "retries": 1,
+      "acceptedIntoCurrentCampaign": 0,
+      "invalidated": true,
+      "reason": "Alias URL identity failure and warm beacon integrity"
+    }
+  ],
+  "current": [
+    {
+      "attempt": 1,
+      "slot": 1,
+      "retry": false,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "cold",
+      "evidence": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3/attempt-001-beadmaster-mobile-cold.json",
+      "valid": true,
+      "integrity": []
+    },
+    {
+      "attempt": 2,
+      "slot": 2,
+      "retry": false,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "cold",
+      "evidence": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3/attempt-002-beadmaster-mobile-cold.json",
+      "valid": true,
+      "integrity": []
+    },
+    {
+      "attempt": 3,
+      "slot": 3,
+      "retry": false,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "cold",
+      "evidence": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3/attempt-003-beadmaster-mobile-cold.json",
+      "valid": true,
+      "integrity": []
+    },
+    {
+      "attempt": 4,
+      "slot": 1,
+      "retry": false,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "warm",
+      "evidence": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3/attempt-004-beadmaster-mobile-warm.json",
+      "valid": false,
+      "integrity": [
+        "Incomplete mandatory network totals"
+      ]
+    },
+    {
+      "attempt": 5,
+      "slot": 1,
+      "retry": true,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "warm",
+      "evidence": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3/attempt-005-beadmaster-mobile-warm.json",
+      "valid": false,
+      "integrity": [
+        "Incomplete mandatory network totals"
+      ]
+    }
+  ],
+  "earlierSamplesPooled": false
+}

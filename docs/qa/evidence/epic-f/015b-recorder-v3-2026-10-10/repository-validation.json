@@ -1,0 +1,62 @@
+{
+  "assessedAt": "2026-10-10T19:41:29.859Z",
+  "complete": true,
+  "commands": [
+    {
+      "command": "node scripts/test-epic-f-live-performance-v3-safety.js",
+      "startedAt": "2026-10-10T19:24:49.574Z",
+      "completedAt": "2026-10-10T19:24:50.631Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-1.txt"
+    },
+    {
+      "command": "node scripts/test-epic-f-performance.js",
+      "startedAt": "2026-10-10T19:24:50.632Z",
+      "completedAt": "2026-10-10T19:24:51.625Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-2.txt"
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "startedAt": "2026-10-10T19:24:51.626Z",
+      "completedAt": "2026-10-10T19:24:55.677Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-3.txt"
+    },
+    {
+      "command": "python scripts/validate-theme-repository.py",
+      "startedAt": "2026-10-10T19:24:55.684Z",
+      "completedAt": "2026-10-10T19:24:57.375Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-4.txt"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f8",
+      "startedAt": "2026-10-10T19:24:57.383Z",
+      "completedAt": "2026-10-10T19:41:28.887Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-5.txt"
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --check",
+      "startedAt": "2026-10-10T19:41:28.910Z",
+      "completedAt": "2026-10-10T19:41:29.774Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-6.txt"
+    }
+  ],
+  "aggregate": {
+    "exitCode": 0,
+    "evidence": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/f8-current-aggregate.json"
+  },
+  "localLedgerTests": {
+    "request-identity": 19,
+    "transfer-integrity": 13,
+    "guard": 40,
+    "decision": 3,
+    "cache": 10,
+    "real-chromium": 17
+  },
+  "approvedProfileCacheTests": 22,
+  "newLiveSamples": 0
+}

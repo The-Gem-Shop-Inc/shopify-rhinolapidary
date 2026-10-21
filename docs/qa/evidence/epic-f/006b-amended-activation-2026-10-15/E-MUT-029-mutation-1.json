@@ -1,0 +1,191 @@
+{
+  "startedAt": "2026-10-15T18:13:06.743Z",
+  "completedAt": "2026-10-15T18:13:07.813Z",
+  "query": "mutation AmendedTechnicalValues($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type jsonValue compareDigest definition{id}} userErrors{field message}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "water_system_type",
+        "type": "single_line_text_field",
+        "value": "recirculating_filtered",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905781248197",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_max",
+        "type": "volume",
+        "value": "{\"value\":8,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905781248197",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_min",
+        "type": "volume",
+        "value": "{\"value\":8,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784131781",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_max",
+        "type": "volume",
+        "value": "{\"value\":10,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784131781",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_min",
+        "type": "volume",
+        "value": "{\"value\":8,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784197317",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_max",
+        "type": "volume",
+        "value": "{\"value\":12,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784197317",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_min",
+        "type": "volume",
+        "value": "{\"value\":12,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784262853",
+        "namespace": "rhino",
+        "key": "water_reservoir_capacity",
+        "type": "volume",
+        "value": "{\"value\":27,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71576396824773",
+            "namespace": "rhino",
+            "key": "water_system_type",
+            "type": "single_line_text_field",
+            "jsonValue": "recirculating_filtered",
+            "compareDigest": "5788c6757f5e58bfc9fd214b72ea1d60fa7045ce827341f7ab42c8a097843531",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660069573"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576396792005",
+            "namespace": "rhino",
+            "key": "cutting_oil_fill_max",
+            "type": "volume",
+            "jsonValue": {
+              "value": 8,
+              "unit": "GALLONS"
+            },
+            "compareDigest": "30d45f51dc7e131f303957da26e414b84928c077e02a8055f3ab525922fbcee9",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659840197"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576396759237",
+            "namespace": "rhino",
+            "key": "cutting_oil_fill_min",
+            "type": "volume",
+            "jsonValue": {
+              "value": 8,
+              "unit": "GALLONS"
+            },
+            "compareDigest": "30d45f51dc7e131f303957da26e414b84928c077e02a8055f3ab525922fbcee9",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659610821"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576396726469",
+            "namespace": "rhino",
+            "key": "cutting_oil_fill_max",
+            "type": "volume",
+            "jsonValue": {
+              "value": 10,
+              "unit": "GALLONS"
+            },
+            "compareDigest": "6b9578329e733b2e71424e3e3e5a7942639909ac6cd6e8a045999668fc490ee9",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659840197"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576396693701",
+            "namespace": "rhino",
+            "key": "cutting_oil_fill_min",
+            "type": "volume",
+            "jsonValue": {
+              "value": 8,
+              "unit": "GALLONS"
+            },
+            "compareDigest": "30d45f51dc7e131f303957da26e414b84928c077e02a8055f3ab525922fbcee9",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659610821"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576396660933",
+            "namespace": "rhino",
+            "key": "cutting_oil_fill_max",
+            "type": "volume",
+            "jsonValue": {
+              "value": 12,
+              "unit": "GALLONS"
+            },
+            "compareDigest": "b2de12ac51ef6c78e662d9921c6a1c7effc96ded97b33a181869d30d8f7a146d",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659840197"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576396628165",
+            "namespace": "rhino",
+            "key": "cutting_oil_fill_min",
+            "type": "volume",
+            "jsonValue": {
+              "value": 12,
+              "unit": "GALLONS"
+            },
+            "compareDigest": "b2de12ac51ef6c78e662d9921c6a1c7effc96ded97b33a181869d30d8f7a146d",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659610821"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576396595397",
+            "namespace": "rhino",
+            "key": "water_reservoir_capacity",
+            "type": "volume",
+            "jsonValue": {
+              "value": 27,
+              "unit": "GALLONS"
+            },
+            "compareDigest": "3eb44a5bd6cd142dc8738a77a8d42c0f4a2137181634b4c2f3241ddc73f95ab2",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659381445"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  }
+}

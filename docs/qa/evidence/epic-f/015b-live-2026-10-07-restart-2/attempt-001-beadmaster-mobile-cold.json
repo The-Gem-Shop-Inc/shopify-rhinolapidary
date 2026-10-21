@@ -1,0 +1,3890 @@
+{
+  "sample": {
+    "timestamp": "2026-10-07T15:24:05.781Z",
+    "fixtureOnly": false,
+    "galleryState": "zero-governed-grants",
+    "environment": {
+      "kind": "production",
+      "theme": {
+        "id": "158579622085",
+        "name": "shopify-rhinolapidary/main",
+        "verified": true
+      },
+      "providerOutput": "Approved Option A; native payment_terms included",
+      "sourceBinding": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37"
+    },
+    "identity": {
+      "requestedUrl": "https://sz5dnk-nf.myshopify.com/products/beadmaster",
+      "resolvedUrl": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+      "requestedRoute": "/products/beadmaster",
+      "resolvedRoute": "/products/beadmaster",
+      "productGid": "gid://shopify/Product/8905779937477",
+      "template": "product.machine"
+    },
+    "navigation": {
+      "completed": true,
+      "status": 200,
+      "pageKind": "product",
+      "password": false,
+      "challenge": false
+    },
+    "viewport": {
+      "profile": "mobile",
+      "width": 390,
+      "height": 900,
+      "deviceScaleFactor": 1
+    },
+    "policy": {
+      "throttling": {
+        "id": "approved-mobile-profile",
+        "approvalRef": "data/epic-f-performance-profiles.json",
+        "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+        "latencyMs": 562.5,
+        "downloadBytesPerSecond": 184320,
+        "uploadBytesPerSecond": 84375,
+        "cpuSlowdown": 4,
+        "packetLoss": 0
+      },
+      "cache": "cold",
+      "settleMs": 1500,
+      "settlePolicy": "load + document.fonts.ready + governed 1500 ms; no user interaction"
+    },
+    "networkObservation": "missing",
+    "resources": [
+      {
+        "url": "https://sz5dnk-nf.myshopify.com/products/beadmaster",
+        "method": "GET",
+        "type": "Document",
+        "mimeType": "text/html; charset=utf-8",
+        "status": 301,
+        "completed": true,
+        "failed": false,
+        "bytes": 0,
+        "byteObservation": "measured",
+        "byteSource": "Playwright.Request.sizes (all frames)",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": false,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:05.785Z",
+        "attribution": "first-party"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+        "method": "GET",
+        "type": "Document",
+        "mimeType": "text/html; charset=utf-8",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 34260,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:06.425Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/storefront/storefronts.moderate.specrules-eb468f32.json",
+        "method": "GET",
+        "type": "Other",
+        "mimeType": "application/speculationrules+json; charset=utf-8",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1263,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.060Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/base.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 0,
+        "byteObservation": "measured",
+        "byteSource": "CDP cache hit; zero network transfer (loadingFinished may report cached body length)",
+        "cache": {
+          "servedFromCache": true,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.061Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/rhino-custom.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 0,
+        "byteObservation": "measured",
+        "byteSource": "CDP cache hit; zero network transfer (loadingFinished may report cached body length)",
+        "cache": {
+          "servedFromCache": true,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.061Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 0,
+        "byteObservation": "measured",
+        "byteSource": "CDP cache hit; zero network transfer (loadingFinished may report cached body length)",
+        "cache": {
+          "servedFromCache": true,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.061Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/constants.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 937,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.061Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/pubsub.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1028,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.062Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/global.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 9994,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.062Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/cart-disclosure-modal.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 2088,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.062Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/cart-disclosure-tooltip.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1249,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.062Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/details-disclosure.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1337,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.064Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/details-modal.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1330,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.064Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/search-form.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1182,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.064Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/standard-actions-override.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1837,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.064Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/rhino-storefront.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1457,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.064Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1090,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.064Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.payment-terms.en.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 864,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.064Z",
+        "attribution": "native-payment-provider"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/checkouts/internal/preloads.js?locale=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "",
+        "status": 0,
+        "completed": true,
+        "failed": true,
+        "bytes": 0,
+        "byteObservation": "measured",
+        "byteSource": "CDP failed-request observed response header + encoded data bytes; no synthetic response payload",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "inspector",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.108Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://shop.app/checkouts/internal/preloads.js?locale=[REDACTED]&shop_id=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "",
+        "status": 0,
+        "completed": true,
+        "failed": true,
+        "bytes": 0,
+        "byteObservation": "measured",
+        "byteSource": "CDP failed-request observed response header + encoded data bytes; no synthetic response payload",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "inspector",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.109Z",
+        "attribution": "third-party"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/storefront/load_feature-1bd60354.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 4046,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.109Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/shopify_pay/storefront-f0e26bdf.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 20658,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.110Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/storefront/assets/storefront/origin_trials-318ab40a.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1437,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.110Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/compiled_assets/scripts.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1733,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.110Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/storefront/standard-events.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 3277,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.111Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-cart-items.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 3180,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.160Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/fonts/dm_sans/dmsans_n4.ec80bd4dd7e1a334c969c265873491ae56018d72.woff2",
+        "method": "GET",
+        "type": "Font",
+        "mimeType": "font/woff2",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 26245,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.160Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/fonts/dm_sans/dmsans_n5.8a0f1984c77eb7186ceb87c4da2173ff65eb012e.woff2",
+        "method": "GET",
+        "type": "Font",
+        "mimeType": "font/woff2",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 26769,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.160Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-predictive-search.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1949,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.160Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "text/plain",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1141,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.161Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b87a86122w399bf3b8pd0403c97m2c07468cm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 82451,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.161Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "text/plain",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1140,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.161Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/s/trekkie.storefront.51e69540e15035ae012ec8cc42e8f9cd792233a0.min.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 36143,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.167Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/shop_events_listener-4e26a9ce.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 4231,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.168Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/perf-kit/shopify-perf-kit-3.9.6.min.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 26819,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.168Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-list-menu.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 997,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.168Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-search.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1216,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.169Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-menu-drawer.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 2000,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.185Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-cart-notification.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1573,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.185Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-price.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1306,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.185Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-mega-menu.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1384,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.185Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/cart-notification.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1662,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.186Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/section-main-product.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 5537,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.200Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-accordion.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1217,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.200Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-slider.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 2148,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.201Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-rating.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1231,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-deferred-media.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1382,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/product-info.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 4116,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/product-form.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 2419,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-pickup-availability.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1654,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/pickup-availability.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1713,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/section-footer.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 2312,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-newsletter.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1196,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-list-payment.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 942,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/component-list-social.css?v=[REDACTED]",
+        "method": "GET",
+        "type": "Stylesheet",
+        "mimeType": "text/css",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 994,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.shop-follow-button.en.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 967,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.202Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/shop/t/3/assets/predictive-search.js?v=[REDACTED]",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 2769,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.204Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/storefront/standard-actions.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 4792,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.204Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/client.init-shop-cart-sync_64GNEtZt.en.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 797,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.655Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.document_DMcRsBXN.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 326,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.655Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.init_CWFzmayU.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 430,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.655Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.register_Cxs_K5wz.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 14341,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.tslib-es6_CHHZATl5.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 638,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.networkErrorMessages_DIkDbO6W.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 273,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/client.shop-cart-sync_D5kttPpG.en.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 2797,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.defineInitFunction_CIjOjzsO.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 219,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.window_CAbVMZox.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 568,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.casing_U_9x-Om3.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 4718,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.utils_CY1J4tRu.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 3126,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.v4_D2VNBPfk.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 602,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.useUserRecognitionSignal_Dwelwsuo.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 432,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.storage_DQF5v-OM.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 312,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.hooks_CPbkKXUY.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 165,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.authorize_WtTR8Xbh.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 366,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.useEventListener_DTq8AI6V.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 754,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.validators_09U1U9sZ.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 557,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.657Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/client.payment-terms_DYWclUP2.en.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 21327,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.666Z",
+        "attribution": "native-payment-provider"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.hooks_B0z5wQcZ.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 655,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.666Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.css_BN2_Ob4B.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 9918,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.666Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.StyleProvider_CHQyjzq1.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 625,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.666Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.ShopAppIcon_bUYj1S4M.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1180,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.666Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.AuthorizeStateProvider_Ux5soiT2.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 10990,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.666Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.ShopIcon_B_zpnWjN.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1050,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.666Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.Button_DDaRhaNn.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 445,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.666Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.I18n_DmjW-5yp.en.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1488,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.666Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.colors_DaZ4JgHO.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1470,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.667Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.constructCheckoutLink_BAzA4WiE.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 535,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.667Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.context_IZTYG4gY.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 422,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.667Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.PortalProvider_C1jie1V0.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 473,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.667Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.debounce_C-IIq26m.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 235,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:07.667Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/cdn/fonts/dm_sans/dmsans_n7.97e21d81502002291ea1de8aefb79170c6946ce5.woff2",
+        "method": "GET",
+        "type": "Font",
+        "mimeType": "font/woff2",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 26685,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.062Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/client.shop-follow-button_dJq6Yu77.en.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 3600,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.154Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.useDispatchEvent_D5GEtPKY.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 415,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.155Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.useWindoidMessageHandler_CjnBwN1b.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 754,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.155Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.useAuthorizeUrl_CRxU1ibm.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 888,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.155Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.windoid_9toOZaoM.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 731,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.155Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.useStorefrontOrigin_DGcEbaxR.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 328,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.155Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.buildAuthorizeUrl_CQcgSJpC.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 536,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.155Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.buildUrlSearchParams_AG1B310F.esm.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1275,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.155Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://otlp-http-production.shopifysvc.com/v1/metrics",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "application/json",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 93,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.620Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://shop.app/pay/hop?analytics_trace_id=[REDACTED]&client_handle=[REDACTED]&target_origin=[REDACTED]",
+        "method": "GET",
+        "type": "Document",
+        "mimeType": "text/html",
+        "status": 403,
+        "completed": true,
+        "failed": true,
+        "bytes": 0,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "net::ERR_BLOCKED_BY_RESPONSE",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:09.630Z",
+        "attribution": "native-payment-provider"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/api/collect",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 204,
+        "completed": true,
+        "failed": true,
+        "bytes": 530,
+        "byteObservation": "measured",
+        "byteSource": "CDP failed-request observed response header + encoded data bytes; no synthetic response payload",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "net::ERR_ABORTED",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:10.422Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "text/plain",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1145,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:10.834Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/web-pixels@87a86122w399bf3b8pd0403c97m2c07468c/web-pixel-shopify-app-pixel@0530/sandbox/worker.modern.js",
+        "method": "GET",
+        "type": "Script",
+        "mimeType": "text/javascript; charset=utf-8",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1323,
+        "byteObservation": "measured",
+        "byteSource": "Playwright.Request.sizes (all frames)",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": false,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:11.584Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://otlp-http-production.shopifysvc.com/v1/metrics",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "application/json",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 36,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:11.628Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/web-pixels@87a86122w399bf3b8pd0403c97m2c07468c/custom/web-pixel-shopify-custom-pixel@0530/sandbox/modern/products/beadmaster",
+        "method": "GET",
+        "type": "Document",
+        "mimeType": "text/html; charset=utf-8",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 31011,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:11.634Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "text/plain",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1148,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:11.902Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "text/plain",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1135,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:11.902Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "text/plain",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1146,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:11.903Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "text/plain",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1150,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:11.939Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": true,
+        "bytes": 1176,
+        "byteObservation": "measured",
+        "byteSource": "CDP failed-request observed response header + encoded data bytes; no synthetic response payload",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "net::ERR_ABORTED",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:11.947Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shop-assets/static_uploads/shoplift/GTStandard-MSemibold.woff2",
+        "method": "GET",
+        "type": "Font",
+        "mimeType": "font/woff2",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 64506,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:12.607Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://cdn.shopify.com/shop-assets/static_uploads/shoplift/GTStandard-MRegular.woff2",
+        "method": "GET",
+        "type": "Font",
+        "mimeType": "font/woff2",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 63654,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "PASSIVE_NATIVE_OR_STOREFRONT_RESOURCE",
+          "passive": true,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:12.607Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://otlp-http-production.shopifysvc.com/v1/metrics",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "application/json",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 36,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:12.626Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://monorail-edge.shopifysvc.com/v1/produce",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 362,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:12.778Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://monorail-edge.shopifysvc.com/v1/produce",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 305,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:12.779Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://otlp-http-production.shopifysvc.com/v1/metrics",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "application/json",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 36,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.002Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/web-pixels/strict/app/web-pixel-shopify-app-pixel@0530.js",
+        "method": "GET",
+        "type": "Other",
+        "mimeType": "text/javascript; charset=utf-8",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1613,
+        "byteObservation": "measured",
+        "byteSource": "Playwright.Request.sizes (all frames)",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": false,
+        "CDPCompletionObserved": false,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.016Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://monorail-edge.shopifysvc.com/v1/produce",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1170,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.227Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": true,
+        "bytes": 1145,
+        "byteObservation": "measured",
+        "byteSource": "CDP failed-request observed response header + encoded data bytes; no synthetic response payload",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "net::ERR_ABORTED",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.301Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": true,
+        "bytes": 1143,
+        "byteObservation": "measured",
+        "byteSource": "CDP failed-request observed response header + encoded data bytes; no synthetic response payload",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "net::ERR_ABORTED",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.378Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://monorail-edge.shopifysvc.com/v1/produce",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1137,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.541Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://monorail-edge.shopifysvc.com/v1/produce",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 1128,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.564Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": true,
+        "bytes": 1140,
+        "byteObservation": "measured",
+        "byteSource": "CDP failed-request observed response header + encoded data bytes; no synthetic response payload",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "net::ERR_ABORTED",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.656Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://otlp-http-production.shopifysvc.com/v1/metrics",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "application/json",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 36,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.672Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "",
+        "status": 200,
+        "completed": true,
+        "failed": true,
+        "bytes": 1143,
+        "byteObservation": "measured",
+        "byteSource": "CDP failed-request observed response header + encoded data bytes; no synthetic response payload",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "net::ERR_ABORTED",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:13.739Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://otlp-http-production.shopifysvc.com/v1/metrics",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "application/json",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 36,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:14.096Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/fec/produce",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "application/json",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 772,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:14.474Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://otlp-http-production.shopifysvc.com/v1/metrics",
+        "method": "POST",
+        "type": "Other",
+        "mimeType": "application/json",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 36,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:14.484Z",
+        "attribution": "native-shopify"
+      },
+      {
+        "url": "https://otlp-http-production.shopifysvc.com/v1/metrics",
+        "method": "POST",
+        "type": "Fetch",
+        "mimeType": "application/json",
+        "status": 200,
+        "completed": true,
+        "failed": false,
+        "bytes": 36,
+        "byteObservation": "measured",
+        "byteSource": "CDP encodedDataLength",
+        "cache": {
+          "servedFromCache": false,
+          "serviceWorker": false
+        },
+        "appliedNetworkRule": null,
+        "cdpCorrelated": true,
+        "CDPCompletionObserved": true,
+        "failure": "",
+        "decision": {
+          "action": "ALLOW",
+          "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+          "passive": false,
+          "purpose": null
+        },
+        "startedAt": "2026-10-07T15:24:15.115Z",
+        "attribution": "native-shopify"
+      }
+    ],
+    "metrics": {
+      "lcpMs": {
+        "status": "measured",
+        "value": 3280
+      },
+      "cls": {
+        "status": "measured",
+        "value": 0.09337076477920228
+      },
+      "tbtMs": {
+        "status": "measured",
+        "value": 2689
+      },
+      "initialTransferBytes": {
+        "status": "measured",
+        "value": 637158
+      },
+      "imageBytes": {
+        "status": "measured",
+        "value": 0
+      },
+      "maxImageBytes": {
+        "status": "measured",
+        "value": 0
+      },
+      "firstScreenMediaBytes": {
+        "status": "measured",
+        "value": 0
+      },
+      "requestCount": {
+        "status": "measured",
+        "value": 121
+      },
+      "immediateVideoIframeCount": {
+        "status": "measured",
+        "value": 0
+      },
+      "autoplayMediaCount": {
+        "status": "measured",
+        "value": 0
+      },
+      "thirdPartyScriptHostCount": {
+        "status": "measured",
+        "value": 0
+      },
+      "synchronousThirdPartyScriptCount": {
+        "status": "measured",
+        "value": 0
+      }
+    },
+    "media": {
+      "dimensionsValid": true,
+      "secondaryLazy": true,
+      "firstScreenSources": []
+    },
+    "duplicateProductScripts": 0,
+    "blockingMetric": "sum of max(0,longtask.duration - 50); established TBT proxy, not field INP or Lighthouse TBT"
+  },
+  "integrity": [],
+  "cacheEvidence": {
+    "cache": "cold",
+    "contextId": "5fd9e0f2-73b8-4980-85ff-3d3668cf0eb1",
+    "independentFreshContext": true,
+    "targetRoute": "/products/beadmaster",
+    "measuredRoute": "/products/beadmaster",
+    "serviceWorkers": "fresh-context; CDP bypass; no inherited registrations",
+    "cacheDisabled": false,
+    "cacheClearedAt": "2026-10-07T15:24:05.770Z",
+    "cacheClearedAfterPrime": false,
+    "productNavigationsBeforeMeasurement": 0,
+    "prime": null,
+    "measuredAt": "2026-10-07T15:24:05.781Z",
+    "authentication": "Only in-memory cookies copied from separate unlock context; no authentication or Product navigation in measured context before cache initialization."
+  },
+  "appliedThrottle": {
+    "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+    "appliedAt": "2026-10-07T15:24:05.775Z",
+    "network": {
+      "offline": false,
+      "latency": 562.5,
+      "downloadThroughput": 184320,
+      "uploadThroughput": 84375
+    },
+    "cpu": {
+      "rate": 4
+    },
+    "packetLoss": 0,
+    "ruleId": "88B5F3A6BCD4D7ECC1493DA5F1B0194D",
+    "acknowledged": true,
+    "verificationMethod": "Exact CDP command acknowledgements plus per-request appliedNetworkConditionsId; local actual-network self-test. CDP exposes no numerical CPU getter."
+  },
+  "timings": {
+    "start": 1791386645781,
+    "loadedAt": 1791386653988,
+    "fontsReadyAt": 1791386654111,
+    "settledAt": 1791386655625,
+    "navigationLoadMs": 8207,
+    "actualSettleMs": 1514,
+    "postCutoffDrainMs": 2161,
+    "postCutoffPolicy": "No new requests included; LCP/CLS/TBT snapshot frozen at cutoff; only already captured requests allowed to finish, bounded 30000ms"
+  },
+  "LCP": [
+    {
+      "startTime": 1788,
+      "tag": "A",
+      "id": null,
+      "className": "header__heading-link link link--text focus-inset",
+      "text": "Rhino Lapidary",
+      "url": null
+    },
+    {
+      "startTime": 3280,
+      "tag": "H1",
+      "id": null,
+      "className": "",
+      "text": "BeadMaster 6\"",
+      "url": null
+    }
+  ],
+  "DOM": {
+    "theme": {
+      "name": "shopify-rhinolapidary/main",
+      "id": 158579622085,
+      "schema_name": "Trade",
+      "schema_version": "15.5.0",
+      "theme_store_id": null,
+      "role": "main",
+      "handle": "null",
+      "style": {
+        "id": null,
+        "handle": null
+      }
+    },
+    "productId": "8905779937477",
+    "shellCount": 1,
+    "contact": {
+      "text": "Contact",
+      "href": "/pages/contact",
+      "visible": true
+    },
+    "terms": {
+      "rendered": true,
+      "visible": true,
+      "variantId": "46484254032069",
+      "text": "",
+      "shadowText": "From $212.11/mo with Shop"
+    },
+    "purchase": {
+      "text": "Sold out",
+      "disabled": true,
+      "visible": true
+    },
+    "governedCounts": {
+      ".product__media-wrapper": 0,
+      "media-gallery": 0,
+      "product-modal": 0,
+      ".product__description": 0,
+      ".rhino-machine-facts": 0,
+      ".rhino-machine-resources": 0,
+      ".rhino-machine-support": 0,
+      "[id^=\"MachineSpecs-\"]": 0,
+      "[id^=\"MachineContents-\"]": 0,
+      "[id^=\"MachineContext-\"]": 0,
+      "[id^=\"MachineDelivery-\"]": 0,
+      "[id^=\"MachineSupport-\"]": 0,
+      "[id^=\"MachineResources-\"]": 0,
+      "[data-support-files]": 0,
+      "video": 0,
+      "model-viewer": 0
+    },
+    "previewToolbar": 0,
+    "reducedMotion": true
+  },
+  "log": {
+    "consoleErrors": [
+      "Framing '[URL_REDACTED]' violates the following Content Security Policy directive: \"frame-ancestors 'self' [URL_REDACTED] [URL_REDACTED]\". The request has been blocked.\n",
+      "Failed to load resource: the server responded with a status of 403 ()"
+    ],
+    "pageErrors": [],
+    "downloads": []
+  },
+  "wholePage": {
+    "requestCount": 130,
+    "transferBytes": 643435,
+    "failedAttempts": 9,
+    "incomplete": [],
+    "violations": [
+      "whole-page requestCount: budget 120 exceeded (130)"
+    ]
+  },
+  "cacheIndicators": {
+    "resourcesFromCache": 3,
+    "CDPCorrelated": 129,
+    "totalResources": 130
+  }
+}

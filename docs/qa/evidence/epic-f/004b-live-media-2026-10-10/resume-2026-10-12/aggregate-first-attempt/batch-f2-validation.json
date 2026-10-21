@@ -1,0 +1,580 @@
+{
+  "batch": "F2",
+  "assessedAt": "2026-10-12T17:59:04.877Z",
+  "exitCode": 0,
+  "scope": "repository and deterministic local Chromium only",
+  "status": {
+    "F-PBI-002": "complete repository scope",
+    "F-PBI-003": "complete fixture scope",
+    "F-PBI-012": "complete repository scope; adapter dormant",
+    "F-PBI-014A": "complete local shell scope",
+    "F-PBI-014B": "open",
+    "F-PBI-013": "open; F-DEC-001 unresolved"
+  },
+  "results": [
+    {
+      "command": "npm run validate:epic-f-machine",
+      "exitCode": 0,
+      "required": true,
+      "log": "test-results/epic-f/f2/check-1.txt"
+    },
+    {
+      "command": "npm run test:epic-f-contact-context",
+      "exitCode": 0,
+      "required": true,
+      "log": "test-results/epic-f/f2/check-2.txt"
+    },
+    {
+      "command": "npm run test:machine-shell",
+      "exitCode": 0,
+      "required": true,
+      "log": "test-results/epic-f/f2/check-3.txt"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f1",
+      "exitCode": 0,
+      "required": true,
+      "log": "test-results/epic-f/f2/check-4.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "required": true,
+      "log": "test-results/epic-f/f2/check-5.txt"
+    },
+    {
+      "command": "F2 historical diagnostic comparison",
+      "exitCode": 0,
+      "required": true
+    }
+  ],
+  "f1RequiredRegression": [
+    {
+      "command": "npm run validate:epic-f-consumer",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run test:epic-f-consumer",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:epic-f-claims",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run test:epic-f-claims",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:registers",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:product-templates",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:product-purchase",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:brand-claims",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run test:brand-claims-validator",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:metafields",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:epic-e-batch-2b1-registers",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:epic-e-batch-4a-contracts",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:theme-repository",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:theme-architecture",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:storefront-js",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:settings-data",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:fixtures",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run theme:check",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "node scripts/validate-social-metadata-contract.js",
+      "exitCode": 0,
+      "requiredForBatch": true
+    }
+  ],
+  "historicalDiagnostics": [
+    {
+      "command": "npm run validate:launch-fixtures",
+      "exitCode": 1,
+      "requiredForBatch": false
+    },
+    {
+      "command": "npm run validate:product-data -- data/product-export/products.csv",
+      "exitCode": 1,
+      "requiredForBatch": false
+    }
+  ],
+  "historicalComparison": [
+    {
+      "name": "validate-launch-fixtures",
+      "findingCount": 2,
+      "unchanged": true
+    },
+    {
+      "name": "validate-product-data",
+      "findingCount": 103,
+      "unchanged": true
+    }
+  ],
+  "browser": {
+    "startTime": "2026-10-12T17:56:23.761Z",
+    "duration": 107203.09899999999,
+    "expected": 58,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "browserTests": [
+    {
+      "name": "valid quantity submits exactly the selected Variant once through native product-form",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "native quantity controls and invalid-quantity response retain error semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "native Variant changes use section response state, including unavailable and recovery",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "draft route stays unavailable",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "unpublished route stays unavailable",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "no-JavaScript retains basic native form action, Variant ID and quantity",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px tracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px tracked-unavailable: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px zero-deny: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px untracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px invalid-variant: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "360px tracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "360px tracked-unavailable: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "360px zero-deny: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "360px untracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "360px invalid-variant: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "360px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px tracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px tracked-unavailable: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px zero-deny: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px untracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px invalid-variant: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px tracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px tracked-unavailable: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px zero-deny: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px untracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px invalid-variant: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1024px tracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1024px tracked-unavailable: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1024px zero-deny: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1024px untracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1024px invalid-variant: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1024px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px tracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px tracked-unavailable: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px zero-deny: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px untracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px invalid-variant: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1920px tracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1920px tracked-unavailable: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1920px zero-deny: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1920px untracked-available: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1920px invalid-variant: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1920px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px long content and 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "width": 320,
+            "method": "root-font 200% text enlargement; not browser zoom",
+            "before": 30,
+            "after": 60
+          }
+        }
+      ]
+    },
+    {
+      "name": "360px long content and 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "width": 360,
+            "method": "root-font 200% text enlargement; not browser zoom",
+            "before": 30,
+            "after": 60
+          }
+        }
+      ]
+    },
+    {
+      "name": "390px long content and 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "width": 390,
+            "method": "root-font 200% text enlargement; not browser zoom",
+            "before": 30,
+            "after": 60
+          }
+        }
+      ]
+    },
+    {
+      "name": "768px long content and 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "width": 768,
+            "method": "root-font 200% text enlargement; not browser zoom",
+            "before": 40,
+            "after": 80
+          }
+        }
+      ]
+    },
+    {
+      "name": "1024px long content and 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "width": 1024,
+            "method": "root-font 200% text enlargement; not browser zoom",
+            "before": 40,
+            "after": 80
+          }
+        }
+      ]
+    },
+    {
+      "name": "1440px long content and 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "width": 1440,
+            "method": "root-font 200% text enlargement; not browser zoom",
+            "before": 40,
+            "after": 80
+          }
+        }
+      ]
+    },
+    {
+      "name": "1920px long content and 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "width": 1920,
+            "method": "root-font 200% text enlargement; not browser zoom",
+            "before": 40,
+            "after": 80
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contact uses the approved route without context or intake enhancement",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "default Product template remains a native non-machine purchase page",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "Chromium actual browser zoom to 200% reflows the machine shell",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "actual-browser-zoom",
+          "data": {
+            "method": "chrome.tabs.setZoom",
+            "zoom": 2,
+            "before": {
+              "width": 1258,
+              "dpr": 1
+            },
+            "after": {
+              "width": 629,
+              "dpr": 2,
+              "scrollWidth": 629
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "deferredLiveChecks": [
+    "Shopify renderer parity",
+    "Preview snapshots",
+    "Live template assignment verification",
+    "Native payment provider output",
+    "Global header/footer Epic C reflow"
+  ],
+  "deferred014B": [
+    "zero/one/multiple approved media",
+    "media modal focus",
+    "populated specifications and long values",
+    "included/optional contents",
+    "contextual items",
+    "delivery/pickup",
+    "warranty/support",
+    "resources/downloads/video",
+    "later disclosure/details keyboard journeys"
+  ],
+  "adminMutationOccurred": false,
+  "productTemplateAssignmentOccurred": false,
+  "themePushedOrPublished": false
+}

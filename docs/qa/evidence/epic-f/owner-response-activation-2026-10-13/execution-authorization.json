@@ -1,0 +1,135 @@
+{
+  "authorizedAt": "2026-10-13T20:10:58.325Z",
+  "approvalMode": "delegated_development_override",
+  "authority": "User explicitly authorized bounded completed-owner-response ingestion, supported plan execution and exact Preview→MAIN activation",
+  "responseSource": {
+    "path": "docs/project/completed-worksheet-decisions-transcribed.md",
+    "sha256": "99dc261e78db99360d218ccab29a38d8ce9dd1818dd8386b7dc8a7d1737f3c8c"
+  },
+  "responseArtifact": {
+    "path": "data/epic-e-completed-owner-responses.json",
+    "sha256": "7f9beb003cb0e0cb50ca2ce6a9fb2b8f1f641aa8bda4e4ae0bb058434a3bd74f"
+  },
+  "parentSourceBindingSha256": "666ff15b4d98916426299eae85dbea783535321d88ea5d77035e57c0054216ac",
+  "plans": [
+    {
+      "planId": "E-MUT-026",
+      "domain": "electrical",
+      "approvedRows": 15,
+      "input": {
+        "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/E-MUT-026-approved-input.json",
+        "sha256": "128b4199cb1c04e84f02f4e41d29e1306f94821e92bd5c936ccd9c20792273a0"
+      }
+    },
+    {
+      "planId": "E-MUT-027",
+      "domain": "motor_speed",
+      "approvedRows": 11,
+      "input": {
+        "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/E-MUT-027-approved-input.json",
+        "sha256": "99afe2bb1b77d274f65b19b98dc0b9af94ac7701485200d2574a0cbb1ed67fb2"
+      }
+    },
+    {
+      "planId": "E-MUT-028",
+      "domain": "tool_mount",
+      "approvedRows": 4,
+      "input": {
+        "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/E-MUT-028-approved-input.json",
+        "sha256": "7a4419d4556eb65e6d9a9c005337474a25d30741fa8b782b2517db57400355e5"
+      }
+    },
+    {
+      "planId": "E-MUT-029",
+      "domain": "water_fluid",
+      "approvedRows": 0,
+      "input": {
+        "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/E-MUT-029-approved-input.json",
+        "sha256": "e537f95afef204fd99b7d8aaa979bea3463acf14c2052f9bb67c8147031b0bce"
+      }
+    },
+    {
+      "planId": "E-MUT-030",
+      "domain": "durable_measurements",
+      "approvedRows": 0,
+      "input": {
+        "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/E-MUT-030-approved-input.json",
+        "sha256": "719773f8f88bef48e931617db47342fbe7a7db006046e50912e643f8d09f03d2"
+      }
+    },
+    {
+      "planId": "E-MUT-031",
+      "domain": "crate_measurements",
+      "approvedRows": 0,
+      "input": {
+        "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/E-MUT-031-approved-input.json",
+        "sha256": "c886a99d34a05c38ae2299fc9cfe41a3d136184fc50aed4821a00a1039adef0e"
+      }
+    },
+    {
+      "planId": "E-MUT-034",
+      "domain": "compatibility",
+      "approvedRows": 39,
+      "input": {
+        "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/E-MUT-034-approved-input.json",
+        "sha256": "eaffbce6df6a264cf366a33cb532a78537d4c9da66594e39b2471b76a594f947"
+      }
+    },
+    {
+      "planId": "E-MUT-035",
+      "domain": "included_components",
+      "approvedRows": 1,
+      "input": {
+        "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/E-MUT-035-approved-input.json",
+        "sha256": "2b442352c906e245017711233ae3600c0257cbb01ebb1cbf62cdabd5959a5f86"
+      }
+    },
+    {
+      "planId": "E-MUT-036",
+      "domain": "optional_components",
+      "approvedRows": 0,
+      "input": {
+        "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/E-MUT-036-approved-input.json",
+        "sha256": "0e8274f0d3680e4f968b4beae105ec809467208fc96e79e1baa86237a08ae01a"
+      }
+    }
+  ],
+  "allowedMutation": "metafieldsSet",
+  "allowedNamespaces": [
+    "rhino"
+  ],
+  "maximumBatchSize": 25,
+  "compareBeforeWriteRequired": true,
+  "compareAndSetAbsentRequired": true,
+  "overwriteConflictingValues": false,
+  "nativeVariantWeight": false,
+  "mediaChanges": false,
+  "templateAssignments": false,
+  "FilesPublication": false,
+  "performanceWork": false,
+  "approvedRows": 70,
+  "approvedDirectedCompatibilityEdges": 40,
+  "sourcePDFLocated": false,
+  "sourceQualification": "The saved completed transcription and explicit current user decisions authorize exact supported facts; handwriting/contract-incomplete states remain held.",
+  "code": [
+    {
+      "path": "scripts/lib/epic-e-owner-response-adapter.js",
+      "sha256": "71e2d5033c67a287a6093998e895a5ed9a73d98075d8d25491c468eb08bde845"
+    },
+    {
+      "path": "scripts/lib/epic-e-readiness.js",
+      "sha256": "85d362c06c620745024ad0511dae00bbde98466cd55f69a8c600357d4e41cd85"
+    }
+  ],
+  "tests": {
+    "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/pre-execution-adapter-compiler-tests-v2.json",
+    "sha256": "759fb289ea2dccd2e032dbce6e346640328719559f59333b1f074f04642dd218"
+  },
+  "before": {
+    "path": "docs/qa/evidence/epic-f/owner-response-activation-2026-10-13/catalog-execution-before.json",
+    "sha256": "5ec479f23a705464406b59247de20d20647e8f61f9033f39133d9e96d721b5b8"
+  },
+  "revision": 3,
+  "previousAuthorizationSha256": "4b0ec229e9c2c435f6acede6ebf8b2e594455e5f43ed241d76da87003956ebd5",
+  "revisionReason": "Archive the exact pre-execution test proof; factual source, values, plan set and mutation code remain unchanged"
+}

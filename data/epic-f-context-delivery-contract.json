@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "scope": [
+    "F-PBI-008A",
+    "F-PBI-009A"
+  ],
+  "runtimeActivation": false,
+  "sourceDirection": "dependent-to-machine",
+  "maxEdgesPerMachine": 32,
+  "contentsPrecedence": [
+    "included",
+    "noncatalog",
+    "not_included",
+    "optional",
+    "recommended"
+  ],
+  "repeatRules": [],
+  "upstream": [
+    "data/epic-e-relationship-matrix.json",
+    "data/epic-e-batch-3c-owner-decisions.json",
+    "scripts/lib/epic-e-batch-3c-contract.js"
+  ],
+  "policyRoute": "/policies/shipping-policy",
+  "unsupportedCustomerAdapters": [
+    "handling",
+    "pickup_scope"
+  ],
+  "preservedHashes": {
+    "templates/product.json": "f2f448f176786562516f7f4819199109f609fe8ba0ac37198d2b532b91888446",
+    "templates/product.machine.json": "1527450e3324c0240a93618ea3a0a8371ec94dcbc0efb8d02719d0d290b652af",
+    "assets/pickup-availability.js": "99fa6de1e8b9b3d7b52ddb2bef68301a4b1938e208fdc172180be1007f085358",
+    "sections/pickup-availability.liquid": "37f660abdb2e523ba20e216ec301e5905cc4bc6ac0ae9c0e7db90b9b5ff6b4b5",
+    "snippets/buy-buttons.liquid": "3a8f658b979919a8d8552966cdbaaee87390f79f8e88c7384bcf392f73fdea82",
+    "assets/product-form.js": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+    "assets/product-info.js": "8432cb3ad3f356406155e8c62ed2a7d57b3ecfd2d8e2a5f8a71b9e2ae28a4207",
+    "data/brand-performance-budget.json": "6fc5f3faedee086f3429f85de3f46a17d87b981e3bd368a12a14339c51d0eb76",
+    "data/epic-f-consumer-release.json": "a8a4a6edb874d2f35504323b651329189773741ebb0849c22c111302e9a2e241"
+  }
+}

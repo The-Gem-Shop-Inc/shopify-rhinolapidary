@@ -1,0 +1,311 @@
+{
+  "assessedAt": "2026-10-12T17:54:07.265Z",
+  "adminReadCompletedAt": "2026-10-12T17:45:02.129Z",
+  "governedMachines": 11,
+  "currentMachineFactualValueCount": 0,
+  "rows": [
+    {
+      "pbi": "F-PBI-006B",
+      "domain": "specifications",
+      "architecture": "COMPLETE_EXISTING_ARCHITECTURE_NOT_REOPENED",
+      "upstream": [
+        {
+          "domain": "electrical",
+          "planId": "E-MUT-026",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D03"
+          ]
+        },
+        {
+          "domain": "motor_speed",
+          "planId": "E-MUT-027",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D03"
+          ]
+        },
+        {
+          "domain": "tool_mount",
+          "planId": "E-MUT-028",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D03"
+          ]
+        },
+        {
+          "domain": "water_fluid",
+          "planId": "E-MUT-029",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D03"
+          ]
+        },
+        {
+          "domain": "durable_measurements",
+          "planId": "E-MUT-030",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D05"
+          ]
+        },
+        {
+          "domain": "crate_measurements",
+          "planId": "E-MUT-031",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D05"
+          ]
+        }
+      ],
+      "requiredDecisionIds": [
+        "B3B-D03",
+        "B3B-D05"
+      ],
+      "decisionState": "VALUE_APPROVAL_REQUIRED",
+      "ownerRoles": [
+        "Operations",
+        "Technical"
+      ],
+      "currentValueCount": 0,
+      "migratedValueCount": 0,
+      "reconciliation": "NO_APPROVED_DOMAIN_VALUES_PRESENT; fresh Admin machine read confirms classification-only custom data",
+      "activationReadiness": "NOT_READY_VALUE_APPROVAL_AND_MIGRATION_REQUIRED",
+      "missingDependency": "Technical and Operations must approve exact Product/configuration electrical, motor/tool speed, mount/fluid values and net/assembled/crate states, axes and packing revision. Do not use photos or descriptions as facts.",
+      "KevinVejdiInput": "Yes: technical answers from Kevin/Vejdi or their designated technical authority; Operations also required for packed states.",
+      "nextExecutableAction": "Review the existing technical/measurement conflict packet with the domain owners, approve a bounded exact-GID value set, then prepare its existing migration plans."
+    },
+    {
+      "pbi": "F-PBI-007B",
+      "domain": "contents/BOM",
+      "architecture": "COMPLETE_EXISTING_ARCHITECTURE_NOT_REOPENED",
+      "upstream": [
+        {
+          "domain": "included_components",
+          "planId": "E-MUT-035",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D04"
+          ]
+        },
+        {
+          "domain": "optional_components",
+          "planId": "E-MUT-036",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D04"
+          ]
+        }
+      ],
+      "requiredDecisionIds": [
+        "B3B-D04",
+        "C-040"
+      ],
+      "decisionState": "VALUE_APPROVAL_REQUIRED",
+      "ownerRoles": [
+        "Technical",
+        "Product Owner"
+      ],
+      "currentValueCount": 0,
+      "migratedValueCount": 0,
+      "reconciliation": "NO_APPROVED_DOMAIN_VALUES_PRESENT; fresh Admin machine read confirms classification-only custom data",
+      "activationReadiness": "NOT_READY_VALUE_APPROVAL_AND_MIGRATION_REQUIRED",
+      "missingDependency": "Resolve EM-1 six-wheel versus five-line contents and60-versus80-grit C-040 conflict; approve exact catalog component IDs, quantities and included versus optional commercial contents.",
+      "KevinVejdiInput": "Yes: Kevin/Vejdi technical/commercial confirmation plus Product Owner contents approval.",
+      "nextExecutableAction": "Review C-040 and the existing22 component candidates; approve exact BOM/quantities before E-MUT-035/036 execution."
+    },
+    {
+      "pbi": "F-PBI-008B",
+      "domain": "contextual/compatibility",
+      "architecture": "COMPLETE_EXISTING_ARCHITECTURE_NOT_REOPENED",
+      "upstream": [
+        {
+          "domain": "compatibility",
+          "planId": "E-MUT-034",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "PO-E-012",
+            "PO-E-013",
+            "B3B-D02"
+          ]
+        },
+        {
+          "domain": "recommendations",
+          "planId": "E-MUT-037",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D04"
+          ]
+        }
+      ],
+      "requiredDecisionIds": [
+        "B3B-D02",
+        "PO-E-012",
+        "PO-E-013",
+        "B3B-D04"
+      ],
+      "decisionState": "VALUE_APPROVAL_REQUIRED",
+      "ownerRoles": [
+        "Technical",
+        "Product Owner"
+      ],
+      "currentValueCount": 0,
+      "migratedValueCount": 0,
+      "reconciliation": "NO_APPROVED_DOMAIN_VALUES_PRESENT; fresh Admin machine read confirms classification-only custom data",
+      "activationReadiness": "NOT_READY_VALUE_APPROVAL_AND_MIGRATION_REQUIRED",
+      "missingDependency": "Approve exact dependent-to-machine edges independently of optional/recommended commercial relationships. Resolve Automatic Feed Clamp and Saw Vice Plate Set size identity; four SawMaster edges remain blocked.",
+      "KevinVejdiInput": "Yes: Kevin/Vejdi fit/identity answers or designated technical authority; Product Owner recommendation approval separately.",
+      "nextExecutableAction": "Review38 proposed edges and four blocked edges; approve a bounded exact-GID subset and resolve the two dependent identities."
+    },
+    {
+      "pbi": "F-PBI-009B",
+      "domain": "operations/delivery",
+      "architecture": "COMPLETE_EXISTING_ARCHITECTURE_NOT_REOPENED",
+      "upstream": [
+        {
+          "domain": "fulfillment_class",
+          "planId": "E-MUT-033",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3C-D01"
+          ]
+        },
+        {
+          "domain": "pickup_region",
+          "planId": "E-MUT-041",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3C-D02"
+          ]
+        },
+        {
+          "domain": "availability_authority",
+          "planId": null,
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3C-D04"
+          ]
+        }
+      ],
+      "requiredDecisionIds": [
+        "B3C-D01",
+        "B3C-D02",
+        "B3C-D04"
+      ],
+      "decisionState": "VALUE_APPROVAL_REQUIRED",
+      "ownerRoles": [
+        "Operations",
+        "Product Owner",
+        "Admin/Engineering"
+      ],
+      "currentValueCount": 0,
+      "migratedValueCount": 0,
+      "reconciliation": "NO_APPROVED_DOMAIN_VALUES_PRESENT; fresh Admin machine read confirms classification-only custom data",
+      "activationReadiness": "NOT_READY_VALUE_APPROVAL_AND_MIGRATION_REQUIRED",
+      "missingDependency": "Approve exact handling assignments, current pickup permission/location/season process and regional restrictions. Choose native availability without timing promises or appoint an actual maintained timing source, semantics, SLA and expiry.",
+      "KevinVejdiInput": "Kevin/business Operations input required, or appointed owner; Vejdi input only where supplier/technical handling evidence is needed. Named assignments are not established by the repository role register.",
+      "nextExecutableAction": "Obtain Operations/Product Owner handling/pickup/availability decisions; then prepare E-MUT-033/041 and the governed timing adapter only if an approved source exists."
+    },
+    {
+      "pbi": "F-PBI-010B",
+      "domain": "warranty/support",
+      "architecture": "COMPLETE_EXISTING_ARCHITECTURE_NOT_REOPENED",
+      "upstream": [
+        {
+          "domain": "warranty_support",
+          "planId": "E-MUT-040",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3C-D03",
+            "B3B-D06"
+          ]
+        }
+      ],
+      "requiredDecisionIds": [
+        "B3C-D03",
+        "B3B-D06"
+      ],
+      "decisionState": "VALUE_APPROVAL_REQUIRED",
+      "ownerRoles": [
+        "Legal/Business",
+        "Support",
+        "Product Owner",
+        "Technical",
+        "Media"
+      ],
+      "currentValueCount": 0,
+      "migratedValueCount": 0,
+      "reconciliation": "NO_APPROVED_DOMAIN_VALUES_PRESENT; fresh Admin machine read confirms classification-only custom data",
+      "activationReadiness": "NOT_READY_VALUE_APPROVAL_AND_MIGRATION_REQUIRED",
+      "missingDependency": "Approve current policy revision, issuer/administrator/repair-provider roles, exact coverage mappings/exceptions and customer-safe destination. Historical policy prose is not approval.",
+      "KevinVejdiInput": "Kevin/business owner and Support/Legal input required, or appointed authorities; Vejdi where actual supplier/repair obligations require confirmation.",
+      "nextExecutableAction": "Review the four pre-extracted coverage buckets with Support/Legal/Product Owner and confirm exact current Product mappings before E-MUT-040."
+    },
+    {
+      "pbi": "F-PBI-011B",
+      "domain": "resources",
+      "architecture": "COMPLETE_EXISTING_ARCHITECTURE_NOT_REOPENED",
+      "upstream": [
+        {
+          "domain": "customer_manuals",
+          "planId": "E-MUT-038",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D06"
+          ]
+        },
+        {
+          "domain": "diagrams_instructions_videos",
+          "planId": "E-MUT-039",
+          "approvedValueCount": 0,
+          "valueReady": false,
+          "decisionIds": [
+            "B3B-D06"
+          ]
+        }
+      ],
+      "requiredDecisionIds": [
+        "B3B-D06"
+      ],
+      "decisionState": "VALUE_APPROVAL_REQUIRED",
+      "ownerRoles": [
+        "Support",
+        "Technical",
+        "Media",
+        "Legal/Business"
+      ],
+      "currentValueCount": 0,
+      "migratedValueCount": 0,
+      "reconciliation": "NO_APPROVED_DOMAIN_VALUES_PRESENT; fresh Admin machine read confirms classification-only custom data",
+      "activationReadiness": "NOT_READY_VALUE_APPROVAL_AND_MIGRATION_REQUIRED",
+      "missingDependency": "Approve canonical File/version per exact Product, resource type, language, rights/publication, lifecycle and destination; review duplicates. support_files remains forbidden. Development Product-photo grants do not approve manuals, videos or resource reuse.",
+      "KevinVejdiInput": "Yes where Kevin/Vejdi must confirm current manuals/version/exact model; Support/Media/Legal publication and rights approvals separately.",
+      "nextExecutableAction": "Review the existing110 indexed resource candidates and six duplicate groups; choose an approved canonical exact-GID subset before E-MUT-038/039."
+    }
+  ],
+  "adminAccess": "AVAILABLE_READ_ONLY; historical plan admin_inaccessible flags are not a current blocker",
+  "definitionsAndClassification": "E-MUT-020/021 completed and preserved; do not reopen their approvals",
+  "performance": {
+    "F_PBI_015B": "BLOCKED_MEASUREMENT_INTEGRITY",
+    "annotation": "PARKED_RELEASE_GATE",
+    "blocksImplementation": false,
+    "blocksF_PBI_018B": true,
+    "RecorderV4": false
+  },
+  "nextBatch": "Bounded owner/value decision preparation for006B technical/measurement values, with007B C-040 and008B exact-fit decisions in independent lanes; no activation before approved values and migration reconciliation"
+}

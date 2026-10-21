@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-12",
+  "decisions": [
+    {
+      "decisionId": "F-DEC-001",
+      "state": "APPROVED_OPTION_A",
+      "decision": "OPTION_A_RETAIN_NATIVE_PAYMENT_TERMS",
+      "approvalDate": "2026-10-05",
+      "authority": "Product Owner explicit instruction",
+      "implementation": "Retain existing native/provider-owned payment_terms unchanged",
+      "noRhinoFinancingCopy": true,
+      "noPaymentConfigurationMutation": true,
+      "evidence": [
+        "docs/qa/evidence/epic-f/nonpersistent-equivalent-css-browser-validation.json",
+        "docs/qa/evidence/epic-f/pre-persistent-release-gate-cleanup.json"
+      ],
+      "observations": [
+        "Native terms rendered for all eight Products",
+        "Current Variant synchronized",
+        "Responsive reflow passed",
+        "200% root/text enlargement passed",
+        "Actual Chromium 200% zoom passed",
+        "Provider parity verified after network guard correction"
+      ],
+      "historicalOpenRecordsPreserved": true
+    },
+    {
+      "schemaVersion": 1,
+      "decisionId": "F-DEC-002-DEV",
+      "state": "APPROVED_BOUNDED_DEVELOPMENT",
+      "approvalMode": "delegated_development_override",
+      "approvedAt": "2026-10-10T20:19:59.379Z",
+      "authority": "User explicit bounded development media activation instruction",
+      "audience": "customer-development",
+      "scope": {
+        "productGids": [
+          "gid://shopify/Product/8905779937477",
+          "gid://shopify/Product/8905780756677",
+          "gid://shopify/Product/8905781412037",
+          "gid://shopify/Product/8905781477573",
+          "gid://shopify/Product/8905784131781",
+          "gid://shopify/Product/8905784197317",
+          "gid://shopify/Product/8905784328389",
+          "gid://shopify/Product/8905785344197"
+        ],
+        "exactCurrentProductAssociationRequired": true,
+        "existingMediaOnly": true,
+        "newUploads": false,
+        "crossProductReuse": false,
+        "homeAdvertisingUse": false,
+        "specificationCompatibilityAuthority": false,
+        "finalLaunchRightsOrCompleteness": false
+      },
+      "conditions": [
+        "READY and accessible current media attached to the exact Product",
+        "Actual visual presentation review and safe descriptive alt",
+        "No facts inferred from filename, title, caption or visual appearance",
+        "Reversible exact grants; final launch rights/content quality independently reviewable"
+      ],
+      "F_DEC_002_finalLaunch": "UNRESOLVED",
+      "F_PBI_015B": "BLOCKED_MEASUREMENT_INTEGRITY",
+      "performanceAnnotation": "PARKED_RELEASE_GATE",
+      "evidence": [
+        "docs/qa/evidence/epic-f/004b-live-media-2026-10-10/visual-media-review.json",
+        "docs/qa/evidence/epic-f/004b-live-media-2026-10-10/source-binding.json",
+        "docs/qa/evidence/epic-f/004b-live-media-2026-10-10/resume-2026-10-12/source-binding.json",
+        "docs/qa/evidence/epic-f/004b-live-media-2026-10-10/resume-2026-10-12/source-binding-revision-2.json"
+      ],
+      "currentReconciliationAt": "2026-10-12T17:44:42.003Z",
+      "currentSourceBinding": "docs/qa/evidence/epic-f/004b-live-media-2026-10-10/resume-2026-10-12/source-binding-revision-2.json"
+    }
+  ],
+  "releaseAuthorized": false
+}

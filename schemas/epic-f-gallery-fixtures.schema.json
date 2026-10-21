@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Synthetic repository media review references; never a rights authority or live release",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fixtureOnly",
+    "productGid",
+    "productState",
+    "existingAssets",
+    "items"
+  ],
+  "properties": {
+    "fixtureOnly": {
+      "const": true
+    },
+    "productGid": {
+      "type": "string",
+      "pattern": "^gid://shopify/Product/[0-9]+$"
+    },
+    "productState": {
+      "enum": [
+        "published",
+        "draft",
+        "unpublished"
+      ]
+    },
+    "existingAssets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^urn:rhino:fixture:media:[a-z0-9-]+$"
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetIdentity",
+          "mediaId",
+          "productGid",
+          "modelProductGid",
+          "source",
+          "type",
+          "purpose",
+          "width",
+          "height",
+          "alt",
+          "exactModelUse",
+          "rightsUse",
+          "altApproval",
+          "embeddedClaims",
+          "publication",
+          "audience",
+          "lifecycle",
+          "expiresAt"
+        ],
+        "properties": {
+          "assetIdentity": {
+            "type": "string",
+            "pattern": "^urn:rhino:fixture:media:[a-z0-9-]+$"
+          },
+          "mediaId": {
+            "type": "string",
+            "pattern": "^fixture-[a-z0-9-]+$"
+          },
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "modelProductGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "source": {
+            "type": "string",
+            "pattern": "^/fixture-media/[a-z0-9-]+\\.svg$"
+          },
+          "type": {
+            "enum": [
+              "image",
+              "external_video"
+            ]
+          },
+          "purpose": {
+            "const": "product-inspection"
+          },
+          "width": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "alt": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "exactModelUse": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state",
+              "reference"
+            ],
+            "properties": {
+              "state": {
+                "enum": [
+                  "approved",
+                  "proposed",
+                  "blocked"
+                ]
+              },
+              "reference": {
+                "type": "string",
+                "pattern": "^fixture:[a-z0-9-]+$"
+              }
+            }
+          },
+          "rightsUse": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state",
+              "reference"
+            ],
+            "properties": {
+              "state": {
+                "enum": [
+                  "approved",
+                  "proposed",
+                  "blocked"
+                ]
+              },
+              "reference": {
+                "type": "string",
+                "pattern": "^fixture:[a-z0-9-]+$"
+              }
+            }
+          },
+          "altApproval": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state",
+              "reference"
+            ],
+            "properties": {
+              "state": {
+                "enum": [
+                  "approved",
+                  "proposed",
+                  "blocked"
+                ]
+              },
+              "reference": {
+                "type": "string",
+                "pattern": "^fixture:[a-z0-9-]+$"
+              }
+            }
+          },
+          "embeddedClaims": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state",
+              "reference"
+            ],
+            "properties": {
+              "state": {
+                "enum": [
+                  "approved",
+                  "proposed",
+                  "blocked"
+                ]
+              },
+              "reference": {
+                "type": "string",
+                "pattern": "^fixture:[a-z0-9-]+$"
+              }
+            }
+          },
+          "publication": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state",
+              "reference"
+            ],
+            "properties": {
+              "state": {
+                "enum": [
+                  "approved",
+                  "proposed",
+                  "blocked"
+                ]
+              },
+              "reference": {
+                "type": "string",
+                "pattern": "^fixture:[a-z0-9-]+$"
+              }
+            }
+          },
+          "audience": {
+            "enum": [
+              "customer",
+              "internal"
+            ]
+          },
+          "lifecycle": {
+            "enum": [
+              "current",
+              "deleted",
+              "superseded"
+            ]
+          },
+          "expiresAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observedProductGids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^gid://shopify/Product/[0-9]+$"
+            }
+          },
+          "sharedUse": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state",
+              "reference"
+            ],
+            "properties": {
+              "state": {
+                "enum": [
+                  "approved",
+                  "proposed",
+                  "blocked"
+                ]
+              },
+              "reference": {
+                "type": "string",
+                "pattern": "^fixture:[a-z0-9-]+$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

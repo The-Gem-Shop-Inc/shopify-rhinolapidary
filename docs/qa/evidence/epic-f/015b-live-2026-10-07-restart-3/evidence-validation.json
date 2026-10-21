@@ -1,0 +1,105 @@
+{
+  "assessedAt": "2026-10-07T15:45:27.012Z",
+  "schemaValidRecords": 1,
+  "existingPerformanceValidatorUnchanged": true,
+  "sourceProfileAndCollectorFreezePassed": true,
+  "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+  "plannedSamples": 96,
+  "currentMethodAttempted": 5,
+  "currentMethodValid": 3,
+  "currentMethodInvalid": 2,
+  "currentMethodRetries": 1,
+  "mobileMeasuredTriplets": 1,
+  "desktopMeasuredTriplets": 0,
+  "passedRecords": 0,
+  "individualViolations": [
+    {
+      "attempt": 1,
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "cold",
+      "errors": [
+        "missing or failed network observations",
+        "lcpMs: budget 2500 exceeded (2548)",
+        "cls: budget 0.1 exceeded (0.11253148652659069)",
+        "tbtMs: budget 200 exceeded (2106)",
+        "requestCount: budget 120 exceeded (124)",
+        "whole-page requestCount: budget 120 exceeded (133)"
+      ]
+    },
+    {
+      "attempt": 2,
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "cold",
+      "errors": [
+        "missing or failed network observations",
+        "lcpMs: budget 2500 exceeded (2540)",
+        "tbtMs: budget 200 exceeded (1943)",
+        "whole-page requestCount: budget 120 exceeded (126)"
+      ]
+    },
+    {
+      "attempt": 3,
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "cold",
+      "errors": [
+        "missing or failed network observations",
+        "tbtMs: budget 200 exceeded (1878)",
+        "requestCount: budget 120 exceeded (123)",
+        "whole-page requestCount: budget 120 exceeded (130)"
+      ]
+    }
+  ],
+  "invalidJournal": [
+    {
+      "attempt": 4,
+      "slot": 1,
+      "retry": false,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "warm",
+      "evidence": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3/attempt-004-beadmaster-mobile-warm.json",
+      "valid": false,
+      "integrity": [
+        "Incomplete mandatory network totals"
+      ]
+    },
+    {
+      "attempt": 5,
+      "slot": 1,
+      "retry": true,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "warm",
+      "evidence": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3/attempt-005-beadmaster-mobile-warm.json",
+      "valid": false,
+      "integrity": [
+        "Incomplete mandatory network totals"
+      ]
+    }
+  ],
+  "persistent": {
+    "checkedAt": "2026-10-07T15:45:27.010Z",
+    "beforeReadCompletedAt": "2026-10-07T15:30:40.774Z",
+    "afterReadCompletedAt": "2026-10-07T15:35:03.933Z",
+    "all29BoundSourcesUnchanged": true,
+    "localRuntimeUnchanged": true,
+    "MAINAndPreviewInventoriesAndBodiesUnchanged": true,
+    "productsCompared": 122,
+    "allQueriedProtectedProductVariantFieldsUnchanged": true,
+    "classificationsUnchanged": 122,
+    "machineSuffixesUnchanged": 8,
+    "exclusionsUnchanged": 3,
+    "factualGrants": 0,
+    "themeWrites": 0,
+    "ProductWrites": 0,
+    "assignments": 0,
+    "publication": 0,
+    "configurationChanges": 0,
+    "ShopifyPersistentMutations": 0
+  }
+}

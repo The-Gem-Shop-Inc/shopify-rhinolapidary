@@ -1,0 +1,45 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const core = require('./lib/epic-f-nonpersistent-preview');
+const { capture, parsePreview, stateHook } = require('./run-epic-f-nonpersistent-shopify-preview');
+(async () => {
+  const directory = path.resolve('test-results/epic-f/preview-runner-tests-' + Date.now()); fs.mkdirSync(directory, { recursive: true });
+  const redact = core.redactor(), mockUrl = 'https://example.invalid/?preview_key=synthetic-secret';
+  redact.register(mockUrl, 'synthetic-secret', 'example.invalid');
+  for (const value of [mockUrl, encodeURIComponent(mockUrl), 'synthetic-secret', encodeURIComponent('synthetic-secret'), 'https://other.invalid/path?token=synthetic-secret', 'example.invalid']) assert.ok(!redact.text(value).includes('synthetic-secret') && !redact.text(value).includes('example.invalid'));
+  const nested = JSON.stringify(redact.clean({ error: mockUrl, nodes: [{ html: `<a href="${mockUrl}">test</a>` }] }));
+  redact.assertClean(nested); assert.throws(() => redact.assertClean(mockUrl));
+  assert.ok(!redact.text('Bearer: synthetic-auth\nSet-Cookie: synthetic-cookie').includes('synthetic-cookie'));
+  const syntheticPreview = { url: 'https://synthetic.' + 'shopifypreview.com/', preview_identifier: 'synthetic-only-identifier' };
+  for (const raw of [JSON.stringify(syntheticPreview), JSON.stringify(syntheticPreview, null, 2), '\u001b[?25l' + JSON.stringify(syntheticPreview) + '\n__RHINO_PREVIEW_RESPONSE__{"status":200}']) {
+    const parsed = parsePreview(raw, core.redactor()); assert.equal(parsed.identifierHash, core.hash(syntheticPreview.preview_identifier));
+  }
+  const stderrSuccess = await capture(process.execPath, ['-e', 'process.stderr.write(JSON.stringify(' + JSON.stringify(syntheticPreview) + ')+"\\n");']);
+  assert.equal(stderrSuccess.stdout, ''); assert.equal(parsePreview(stderrSuccess.stdout + '\n' + stderrSuccess.stderr, core.redactor()).identifierHash, core.hash(syntheticPreview.preview_identifier));
+  const preload = await capture(process.execPath, ['--require', path.resolve('scripts/lib/epic-f-preview-response-observer.cjs'), '-e', 'process.stdout.write("OBSERVER_READY");'], { env: { ...process.env, NODE_OPTIONS: '' } });
+  assert.equal(preload.exit, 0); assert.equal(preload.stdout, 'OBSERVER_READY');
+  assert.equal(core.isTransactionRequest({ pathname: '/checkouts/internal/preloads.js', method: 'GET', resourceType: 'script' }), false);
+  assert.equal(core.isTransactionRequest({ pathname: '/checkouts/internal/preloads.js', method: 'GET', resourceType: 'document' }), true);
+  for (const [pathname, method, resourceType] of [['/checkout','GET','document'],['/checkouts/id','POST','fetch'],['/cart/add.js','POST','fetch'],['/cart/update.js','GET','fetch'],['/contact','POST','document'],['/orders','POST','fetch']]) assert.equal(core.isTransactionRequest({ pathname, method, resourceType }), true);
+  const routed = new URL(core.routeUrl(mockUrl + '&session_state=synthetic-state', core.PRODUCTS[0].route));
+  assert.equal(routed.searchParams.get('preview_key'), 'synthetic-secret'); assert.equal(routed.searchParams.get('session_state'), 'synthetic-state'); assert.equal(routed.searchParams.get('view'), 'machine');
+  assert.throws(() => core.routeUrl(mockUrl, '/products/jademaster'));
+  core.reserveSession(directory); assert.throws(() => core.reserveSession(directory));
+  const bindingPath = require('./lib/epic-f-release-cleanup-binding').bindingPath;
+  assert.throws(()=>core.prepare(directory), /Approved source drift/);
+  const prepared = core.prepare(directory,bindingPath);
+  assert.equal(prepared.proof.payloadSha256,core.read(bindingPath).payloadSha256);
+  assert.equal(prepared.proof.fileCount,32);
+  const sourceState = JSON.parse(fs.readFileSync('docs/qa/evidence/epic-f/nonpersistent-equivalent-css-preview.json')).persistentState.states.before;
+  assert.equal(core.assertState(sourceState).files, 409);
+  const drift = structuredClone(sourceState); drift.identity.response.data.preview.id = `gid://shopify/OnlineStoreTheme/${core.PRODUCTION}`; assert.throws(() => core.assertState(drift));
+  const fileDrift = structuredClone(sourceState); fileDrift.inventory.response.data.theme.files.nodes[0].checksumMd5 = 'changed'; assert.throws(() => core.assertState(fileDrift, sourceState));
+  const productDrift = structuredClone(sourceState); productDrift.products.response.data.nodes[0].templateSuffix = 'machine'; assert.throws(() => core.assertState(productDrift, sourceState));
+  const result = await capture(process.execPath, ['-e', 'process.stdout.write(JSON.stringify({mock:true})+"\\n");']); assert.equal(result.exit, 0); assert.equal(JSON.parse(result.stdout).mock, true);
+  const hook = stateHook(directory, 'synthetic', () => {});
+  setTimeout(() => { const snapshot = structuredClone(sourceState); for (const value of Object.values(snapshot)) { value.startedAt = new Date().toISOString(); value.completedAt = value.startedAt; } fs.writeFileSync(path.join(directory, 'state-synthetic.json'), JSON.stringify(snapshot)); }, 350);
+  assert.equal(core.assertState(await hook).products, 11);
+  console.log('Preview runner: redaction, nested errors, query preservation, one-session cap, target exclusion, persistence drift, exact payload and EOF-safe asynchronous lifecycle passed. No remote create.');
+})().catch(error => { console.error(core.redactor().text(error.message)); process.exitCode = 1; });

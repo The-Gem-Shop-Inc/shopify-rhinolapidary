@@ -1,0 +1,59 @@
+{
+  "scope": "68 corrected live validation cells",
+  "failed": [
+    {
+      "request": {
+        "origin": "https://shop.app",
+        "path": "/pay/hop",
+        "queryNames": [
+          "analytics_trace_id",
+          "target_origin",
+          "client_handle"
+        ],
+        "error": "net::ERR_BLOCKED_BY_RESPONSE"
+      },
+      "occurrences": 61,
+      "owner": "NATIVE_SHOP_PAY_PROVIDER",
+      "patchIntroduced": false
+    },
+    {
+      "request": {
+        "origin": "https://rhino-lapidary.myshopify.com",
+        "path": "/api/collect",
+        "queryNames": [],
+        "error": "net::ERR_ABORTED"
+      },
+      "occurrences": 137,
+      "owner": "EXISTING_NATIVE_SHOPIFY_TELEMETRY",
+      "patchIntroduced": false
+    },
+    {
+      "request": {
+        "origin": "https://rhino-lapidary.myshopify.com",
+        "path": "/.well-known/shopify/monorail/unstable/produce_batch",
+        "queryNames": [],
+        "error": "net::ERR_ABORTED"
+      },
+      "occurrences": 231,
+      "owner": "EXISTING_NATIVE_SHOPIFY_TELEMETRY",
+      "patchIntroduced": false
+    },
+    {
+      "request": {
+        "origin": "https://error-analytics-sessions-production.shopifysvc.com",
+        "path": "/observeonly",
+        "queryNames": [],
+        "error": "net::ERR_ABORTED"
+      },
+      "occurrences": 5,
+      "owner": "EXISTING_NATIVE_SHOPIFY_TELEMETRY",
+      "patchIntroduced": false
+    }
+  ],
+  "totalFailed": 434,
+  "http403": 61,
+  "guardBlocked": 0,
+  "downloads": 0,
+  "themeRuntimeJavaScriptChanged": false,
+  "newFAnalyticsInstrumentation": false
+}

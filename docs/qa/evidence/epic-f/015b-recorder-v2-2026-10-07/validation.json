@@ -1,0 +1,221 @@
+{
+  "completedAt": "2026-10-10T18:50:21.552Z",
+  "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+  "certificatePassed": false,
+  "scope": "Resume evidence finalization only; no new live samples, traces, or Admin reads",
+  "commands": [
+    {
+      "command": "node scripts/test-epic-f-performance.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/completion-2026-10-10/command-1.txt"
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/completion-2026-10-10/command-2.txt"
+    },
+    {
+      "command": "python scripts/validate-theme-repository.py",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/completion-2026-10-10/command-3.txt"
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --check",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/completion-2026-10-10/command-4.txt"
+    }
+  ],
+  "existingEvidenceValidator": {
+    "command": "validate() from scripts/validate-epic-f-live-performance-v2.js, derived writes redirected to completion folder",
+    "exitCode": 0
+  },
+  "savedLocalChecks": [
+    {
+      "path": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/lifecycle-provenance-tests.json",
+      "sha256": "97b88ca7e4afd2d8dfeb10b93e5a811cdb651fcfffe28c8a98466a0ed3bc47f1",
+      "bytes": 22083,
+      "passed": 32,
+      "failed": 0,
+      "reusedSavedEvidence": true
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/profile-cache-tests.json",
+      "sha256": "be595fb66b436eb672ef4acfe01dc206c14b29de514374ea2cdaf96abc40e7a9",
+      "bytes": 2791,
+      "passed": 22,
+      "failed": 0,
+      "reusedSavedEvidence": true
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/schema-evidence-tests.json",
+      "sha256": "0f82a867fef7c72de40713988341a1e312d1cac5f78c191b5922d0454ce88e2f",
+      "bytes": 225,
+      "passed": 3,
+      "failed": 0,
+      "reusedSavedEvidence": true
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/safety-tests.json",
+      "sha256": "7c55a8d8aa4c36add54f473179d44b633826103a668bf58ebda28084dd14e06c",
+      "bytes": 846,
+      "passed": 7,
+      "failed": 0,
+      "reusedSavedEvidence": true
+    }
+  ],
+  "savedRepositoryAggregate": {
+    "command": "npm run validate:epic-f-batch-f8",
+    "exitCode": 0,
+    "completedAt": "2026-10-07T18:09:09.040Z",
+    "evidence": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/completion-2026-10-10/repository-regression.json"
+  },
+  "savedCanary": {
+    "attempted": 2,
+    "valid": 0,
+    "invalid": 2,
+    "retries": 1,
+    "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+    "runnerDeclaredIntegrityStopCode": 3,
+    "actualProcessExitCode": null,
+    "note": "Previous process exit was not persisted; declared stop code is not presented as an observed exit."
+  },
+  "exactIncompleteLifecycle": [
+    {
+      "attempt": 1,
+      "cache": "cold",
+      "invalid": true,
+      "unresolvedCount": 0,
+      "missingBytes": [
+        {
+          "url": "https://rhino-lapidary.myshopify.com/checkouts/internal/preloads.js?locale=[REDACTED]",
+          "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+          "terminalEvent": "Playwright.requestfailed",
+          "failure": "inspector",
+          "provenance": {
+            "contextId": "4ff63633-0a0b-4664-95a9-3211721cc4ae",
+            "pageId": "092da607-537b-4f3a-9a3e-487aa7e5db54",
+            "targetId": "9905769E13EC648412DC5035B073E3A2",
+            "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": null,
+            "requestSequence": null,
+            "playwrightRequestOrdinal": 43,
+            "frameId": null,
+            "frameUrl": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+            "loaderId": null,
+            "timestamp": null,
+            "wallTime": null,
+            "playwrightStartTime": 0,
+            "correlation": "same-page Playwright request object (child-frame coverage)",
+            "initiator": null,
+            "responseTiming": null
+          }
+        },
+        {
+          "url": "https://shop.app/checkouts/internal/preloads.js?locale=[REDACTED]&shop_id=[REDACTED]",
+          "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+          "terminalEvent": "Playwright.requestfailed",
+          "failure": "inspector",
+          "provenance": {
+            "contextId": "4ff63633-0a0b-4664-95a9-3211721cc4ae",
+            "pageId": "092da607-537b-4f3a-9a3e-487aa7e5db54",
+            "targetId": "9905769E13EC648412DC5035B073E3A2",
+            "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": null,
+            "requestSequence": null,
+            "playwrightRequestOrdinal": 44,
+            "frameId": null,
+            "frameUrl": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+            "loaderId": null,
+            "timestamp": null,
+            "wallTime": null,
+            "playwrightStartTime": 0,
+            "correlation": "same-page Playwright request object (child-frame coverage)",
+            "initiator": null,
+            "responseTiming": null
+          }
+        }
+      ],
+      "ambiguities": [],
+      "actualDrainMs": 5013,
+      "invalidInventorySize": 208
+    },
+    {
+      "attempt": 2,
+      "cache": "cold",
+      "invalid": true,
+      "unresolvedCount": 0,
+      "missingBytes": [
+        {
+          "url": "https://rhino-lapidary.myshopify.com/checkouts/internal/preloads.js?locale=[REDACTED]",
+          "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+          "terminalEvent": "Playwright.requestfailed",
+          "failure": "inspector",
+          "provenance": {
+            "contextId": "5888e46c-7fa3-4050-bfa6-30b8650a9289",
+            "pageId": "e271174b-f151-4258-bd1c-afc708cc6b49",
+            "targetId": "4444C55BD2EC0B04677BC60ACA01A2C1",
+            "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": null,
+            "requestSequence": null,
+            "playwrightRequestOrdinal": 21,
+            "frameId": null,
+            "frameUrl": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+            "loaderId": null,
+            "timestamp": null,
+            "wallTime": null,
+            "playwrightStartTime": 0,
+            "correlation": "same-page Playwright request object (child-frame coverage)",
+            "initiator": null,
+            "responseTiming": null
+          }
+        },
+        {
+          "url": "https://shop.app/checkouts/internal/preloads.js?locale=[REDACTED]&shop_id=[REDACTED]",
+          "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+          "terminalEvent": "Playwright.requestfailed",
+          "failure": "inspector",
+          "provenance": {
+            "contextId": "5888e46c-7fa3-4050-bfa6-30b8650a9289",
+            "pageId": "e271174b-f151-4258-bd1c-afc708cc6b49",
+            "targetId": "4444C55BD2EC0B04677BC60ACA01A2C1",
+            "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+            "membership": "MEASUREMENT_WINDOW",
+            "requestId": null,
+            "requestSequence": null,
+            "playwrightRequestOrdinal": 22,
+            "frameId": null,
+            "frameUrl": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+            "loaderId": null,
+            "timestamp": null,
+            "wallTime": null,
+            "playwrightStartTime": 0,
+            "correlation": "same-page Playwright request object (child-frame coverage)",
+            "initiator": null,
+            "responseTiming": null
+          }
+        }
+      ],
+      "ambiguities": [
+        {
+          "pageId": "e271174b-f151-4258-bd1c-afc708cc6b49",
+          "requestOrdinal": 118,
+          "reason": "Ambiguous target/time/method correlation"
+        }
+      ],
+      "actualDrainMs": 5019,
+      "invalidInventorySize": 239
+    }
+  ],
+  "historicalFilesUnchanged": 73,
+  "stoppedV2ArtifactsUnchanged": 21,
+  "newLiveSamples": 0,
+  "freshAdminReadOnResume": false,
+  "persistentComparisonReadCompletedAt": "2026-10-07T17:54:03.360Z",
+  "budgetsChanged": false,
+  "throttleChanged": false,
+  "runtimeChanged": false,
+  "ShopifyPersistentMutations": 0
+}

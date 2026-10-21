@@ -1,0 +1,692 @@
+{
+  "scope": "F6 continuation, not restart",
+  "manualCheckpoint": {
+    "hashes": {
+      "data/epic-f-support-resources-contract.json": "3df8514cb7e13d1694d2cd980e5059706a81149e7b8a9dd3b3f1d9bb76e28f1c",
+      "schemas/epic-f-support-resources-contract.schema.json": "b5f71eadb8f2c06d0b33c2e8659267b46441266ab74be787fb4faaf971c1eaa4",
+      "schemas/epic-f-support-resources.schema.json": "a3a10affeeac0a9ff27b13df3d311750b59778606ee6dbc7094cfc6f283b6016",
+      "schemas/epic-f-support-resources-projection.schema.json": "24f2b87898e6b68fbd5e3a9ea8d4553f3e6c2b2bd90df6ed8c8c2d5a76984a5c",
+      "scripts/validate-epic-f-support-resources.js": "0ab13f472618d4bb210928613ac602dcd02b993f14e2f2223e887e67e57ee813",
+      "scripts/lib/epic-f-support-resources.js": "70bd60fa6803e8a9c4394df56d38071076a5f1699e79ea8be4211a82d904268b",
+      "package.json": "d75f453820bfd022e876a2533adb10dc53fc3aac098ba21c101e4421d93f882f"
+    },
+    "commands": [
+      {
+        "command": "npm run validate:epic-f-support-resources",
+        "exitCode": 0
+      },
+      {
+        "command": "node -e \"require('./scripts/lib/epic-f-support-resources'); console.log('F6 projector loaded')\"",
+        "exitCode": 0
+      }
+    ],
+    "files": [
+      {
+        "path": "data/epic-f-support-resources-contract.json",
+        "beforeSha256": "3df8514cb7e13d1694d2cd980e5059706a81149e7b8a9dd3b3f1d9bb76e28f1c",
+        "afterSha256": "3df8514cb7e13d1694d2cd980e5059706a81149e7b8a9dd3b3f1d9bb76e28f1c",
+        "unchanged": true,
+        "delta": ""
+      },
+      {
+        "path": "schemas/epic-f-support-resources-contract.schema.json",
+        "beforeSha256": "b5f71eadb8f2c06d0b33c2e8659267b46441266ab74be787fb4faaf971c1eaa4",
+        "afterSha256": "b5f71eadb8f2c06d0b33c2e8659267b46441266ab74be787fb4faaf971c1eaa4",
+        "unchanged": true,
+        "delta": ""
+      },
+      {
+        "path": "schemas/epic-f-support-resources.schema.json",
+        "beforeSha256": "a3a10affeeac0a9ff27b13df3d311750b59778606ee6dbc7094cfc6f283b6016",
+        "afterSha256": "08ae0e7aba0e6eea0fd9c3a30a1af65a65aa7157f4ffc801084020b83cd80732",
+        "unchanged": false,
+        "delta": "diff --git a/test-results/epic-f/f6/manual-checkpoint/schemas__epic-f-support-resources.schema.json b/schemas/epic-f-support-resources.schema.json\nindex f38c0f2..92ed377 100644\n--- a/test-results/epic-f/f6/manual-checkpoint/schemas__epic-f-support-resources.schema.json\n+++ b/schemas/epic-f-support-resources.schema.json\n@@ -144,11 +144,11 @@\n       \"properties\": {\n         \"requestedRoute\": {\n           \"type\": \"string\",\n-          \"pattern\": \"^/[^?#]*$\"\n+          \"minLength\": 1\n         },\n         \"resolvedRoute\": {\n           \"type\": \"string\",\n-          \"pattern\": \"^/[^?#]*$\"\n+          \"minLength\": 1\n         },\n         \"status\": {\n           \"type\": \"integer\",\n@@ -163,7 +163,8 @@\n           \"const\": \"local-fixture\"\n         },\n         \"purpose\": {\n-          \"const\": \"warranty\"\n+          \"type\": \"string\",\n+          \"minLength\": 1\n         },\n         \"observedAt\": {\n           \"type\": \"string\",\n@@ -452,7 +453,8 @@\n         \"identity\",\n         \"environment\",\n         \"observedAt\",\n-        \"expiresAt\"\n+        \"expiresAt\",\n+        \"fileIdentity\"\n       ],\n       \"properties\": {\n         \"requestedRoute\": {\n@@ -481,6 +483,10 @@\n         \"expiresAt\": {\n           \"type\": \"string\",\n           \"minLength\": 1\n+        },\n+        \"fileIdentity\": {\n+          \"type\": \"string\",\n+          \"minLength\": 1\n         }\n       }\n     },\n@@ -493,7 +499,11 @@\n         \"eagerProvider\",\n         \"posterIdentity\",\n         \"posterApproved\",\n-        \"captionsReviewed\"\n+        \"captionsReviewed\",\n+        \"width\",\n+        \"height\",\n+        \"embedUrl\",\n+        \"transcriptReviewed\"\n       ],\n       \"properties\": {\n         \"productSurfaceApproved\": {\n@@ -520,6 +530,23 @@\n         },\n         \"captionsReviewed\": {\n           \"type\": \"boolean\"\n+        },\n+        \"width\": {\n+          \"type\": \"integer\",\n+          \"minimum\": 1,\n+          \"maximum\": 4096\n+        },\n+        \"height\": {\n+          \"type\": \"integer\",\n+          \"minimum\": 1,\n+          \"maximum\": 4096\n+        },\n+        \"transcriptReviewed\": {\n+          \"type\": \"boolean\"\n+        },\n+        \"embedUrl\": {\n+          \"type\": \"string\",\n+          \"pattern\": \"^http://video\\\\.fixture\\\\.invalid/embed/[A-Za-z0-9-]+\\\\?autoplay=0$\"\n         }\n       }\n     },\n@@ -557,7 +584,12 @@\n             \"sourceIds\",\n             \"effectiveAt\",\n             \"expiresAt\",\n-            \"conflictIds\"\n+            \"conflictIds\",\n+            \"languageReviewed\",\n+            \"versionReviewed\",\n+            \"configurationId\",\n+            \"canonicalIdentity\",\n+            \"sourceRole\"\n           ],\n           \"properties\": {\n             \"recordId\": {\n@@ -649,10 +681,35 @@\n             \"sourceIds\": {},\n             \"effectiveAt\": {},\n             \"expiresAt\": {},\n-            \"conflictIds\": {}\n+            \"conflictIds\": {},\n+            \"languageReviewed\": {\n+              \"type\": \"boolean\"\n+            },\n+            \"versionReviewed\": {\n+              \"type\": \"boolean\"\n+            },\n+            \"configurationId\": {\n+              \"anyOf\": [\n+                {\n+                  \"$ref\": \"#/$defs/fixtureId\"\n+                },\n+                {\n+                  \"type\": \"null\"\n+                }\n+              ]\n+            },\n+            \"canonicalIdentity\": {\n+              \"$ref\": \"#/$defs/fixtureId\"\n+            },\n+            \"sourceRole\": {\n+              \"enum\": [\n+                \"customer_resource\",\n+                \"evidence_only\"\n+              ]\n+            }\n           }\n         }\n       ]\n     }\n   }\n-}\n\\ No newline at end of file\n+}\n"
+      },
+      {
+        "path": "schemas/epic-f-support-resources-projection.schema.json",
+        "beforeSha256": "24f2b87898e6b68fbd5e3a9ea8d4553f3e6c2b2bd90df6ed8c8c2d5a76984a5c",
+        "afterSha256": "3efd4b3ce438358a87d8e376c5ff5ac4c69212386b3423753a75041f35bc6e05",
+        "unchanged": false,
+        "delta": "diff --git a/test-results/epic-f/f6/manual-checkpoint/schemas__epic-f-support-resources-projection.schema.json b/schemas/epic-f-support-resources-projection.schema.json\nindex 390971f..e2a6926 100644\n--- a/test-results/epic-f/f6/manual-checkpoint/schemas__epic-f-support-resources-projection.schema.json\n+++ b/schemas/epic-f-support-resources-projection.schema.json\n@@ -71,7 +71,11 @@\n         \"exceptions\",\n         \"destination\",\n         \"approval_decision_id\",\n-        \"source_ids\"\n+        \"source_ids\",\n+        \"class_id\",\n+        \"policy_approval_decision_id\",\n+        \"class_approval_decision_id\",\n+        \"mapping_approval_decision_id\"\n       ],\n       \"properties\": {\n         \"record_id\": {\n@@ -177,6 +181,22 @@\n             \"type\": \"string\",\n             \"minLength\": 1\n           }\n+        },\n+        \"class_id\": {\n+          \"type\": \"string\",\n+          \"minLength\": 1\n+        },\n+        \"policy_approval_decision_id\": {\n+          \"type\": \"string\",\n+          \"minLength\": 1\n+        },\n+        \"class_approval_decision_id\": {\n+          \"type\": \"string\",\n+          \"minLength\": 1\n+        },\n+        \"mapping_approval_decision_id\": {\n+          \"type\": \"string\",\n+          \"minLength\": 1\n         }\n       }\n     },\n@@ -235,14 +255,29 @@\n               \"additionalProperties\": false,\n               \"required\": [\n                 \"poster_identity\",\n-                \"captions_reviewed\"\n+                \"captions_reviewed\",\n+                \"width\",\n+                \"height\",\n+                \"embed_url\"\n               ],\n               \"properties\": {\n                 \"poster_identity\": {\n-                  \"$ref\": \"#/$defs/nullableText\"\n+                  \"type\": \"null\"\n                 },\n                 \"captions_reviewed\": {\n                   \"const\": true\n+                },\n+                \"width\": {\n+                  \"type\": \"integer\",\n+                  \"minimum\": 1\n+                },\n+                \"height\": {\n+                  \"type\": \"integer\",\n+                  \"minimum\": 1\n+                },\n+                \"embed_url\": {\n+                  \"type\": \"string\",\n+                  \"pattern\": \"^http://video\\\\.fixture\\\\.invalid/embed/[A-Za-z0-9-]+\\\\?autoplay=0$\"\n                 }\n               }\n             },\n@@ -284,5 +319,26 @@\n         }\n       }\n     }\n-  }\n-}\n\\ No newline at end of file\n+  },\n+  \"allOf\": [\n+    {\n+      \"if\": {\n+        \"properties\": {\n+          \"fixture_only\": {\n+            \"const\": false\n+          }\n+        }\n+      },\n+      \"then\": {\n+        \"properties\": {\n+          \"warranty\": {\n+            \"maxItems\": 0\n+          },\n+          \"resources\": {\n+            \"maxItems\": 0\n+          }\n+        }\n+      }\n+    }\n+  ]\n+}\n"
+      },
+      {
+        "path": "scripts/validate-epic-f-support-resources.js",
+        "beforeSha256": "0ab13f472618d4bb210928613ac602dcd02b993f14e2f2223e887e67e57ee813",
+        "afterSha256": "6d5414cd4107c5ffab4126281b1b03afeeecb64610c49310e29aa51509acbf16",
+        "unchanged": false,
+        "delta": "diff --git a/test-results/epic-f/f6/manual-checkpoint/scripts__validate-epic-f-support-resources.js b/scripts/validate-epic-f-support-resources.js\nindex 8d02f4a..f6f7d83 100644\n--- a/test-results/epic-f/f6/manual-checkpoint/scripts__validate-epic-f-support-resources.js\n+++ b/scripts/validate-epic-f-support-resources.js\n@@ -65,7 +65,6 @@ for (const path of Object.values(contract.upstream)) {\n /*\n  * Warranty / service ownership\n  */\n-\n const warrantyDecision = batch3cDecisions.decisions.find(\n     decision => decision.id === contract.warranty.decisionId\n );\n@@ -264,6 +263,26 @@ if (\n     fail('F6 A scope cannot authorize live mutation or theme push');\n }\n \n+// Architecture enforcement supplements (and does not replace) the manual checkpoint.\n+const crypto = require('node:crypto');\n+const consumer = require('./lib/epic-f-consumer');\n+for (const [path, hash] of Object.entries(require('../tests/fixtures/epic-f-support-resources-baseline.json'))) {\n+    if (crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex') !== hash) fail('F6 changed preserved surface: ' + path);\n+}\n+if (require('../data/epic-f-consumer-release.json').grants.length !== 0) fail('Unexpected real grants: stop; activation is not authorized');\n+if (fs.readFileSync('snippets/rhino-product-support-resources-projection.liquid', 'utf8').replaceAll('\\r\\n', '\\n') !== consumer.buildSupportResourcesProjection()) fail('F6 generated projection is stale');\n+const main = fs.readFileSync('sections/main-product.liquid', 'utf8');\n+if ((main.match(/render 'rhino-product-support-resources-projection'/g) || []).length !== 1) fail('F6 must integrate exactly once');\n+if (!/if rhino_consumer_route == 'machine'[\\s\\S]*?rhino-product-fact-projection[\\s\\S]*?rhino-product-context-delivery-projection[\\s\\S]*?rhino-product-support-resources-projection/.test(main)) fail('F6 must follow existing machine-only projections');\n+for (const name of ['support', 'resources']) {\n+    const text = fs.readFileSync('snippets/rhino-machine-' + name + '.liquid', 'utf8');\n+    if (!text.includes(\"request.host == 'machine.local' and projection.fixture_only\")) fail('F6 fixture rendering must remain isolated');\n+    if (/product\\.(?:description|metafields|vendor|tags)|shop\\.|support_files|<script|all_products|autoplay[=\\s]/.test(text)) fail('Forbidden F6 authority/controller: ' + name);\n+}\n+const resources = fs.readFileSync('snippets/rhino-machine-resources.liquid', 'utf8');\n+if (!/<deferred-media[\\s\\S]*?<template>\\s*<iframe[\\s\\S]*?<\\/template>/.test(resources)) fail('Use native deferred video and inert template');\n+if (projectionSchema.$defs.resourceProjection.properties.type.enum.includes('support')) fail('support_files must be structurally customer-ineligible');\n+\n if (errors.length) {\n     console.error('Epic F support/resources validation failed:');\n     for (const error of errors) {\n@@ -275,4 +294,4 @@ if (errors.length) {\n         'Epic F support/resources contract validation passed. ' +\n         'F-PBI-010A/011A architecture only; live grants remain zero.'\n     );\n-}\n\\ No newline at end of file\n+}\n"
+      },
+      {
+        "path": "scripts/lib/epic-f-support-resources.js",
+        "beforeSha256": "70bd60fa6803e8a9c4394df56d38071076a5f1699e79ea8be4211a82d904268b",
+        "afterSha256": "6c7babb6b98697e24926cf90f8c9b9640f24954bf3ad4b95c2460a21e4646098",
+        "unchanged": false,
+        "delta": "diff --git a/test-results/epic-f/f6/manual-checkpoint/scripts__lib__epic-f-support-resources.js b/scripts/lib/epic-f-support-resources.js\nindex 9c1d66c..eb5c80c 100644\n--- a/test-results/epic-f/f6/manual-checkpoint/scripts__lib__epic-f-support-resources.js\n+++ b/scripts/lib/epic-f-support-resources.js\n@@ -8,6 +8,10 @@ const {\n } = require('./epic-f-consumer');\n \n const { safeText } = require('./epic-f-facts');\n+const { validateOwnerInputs } = require('./epic-e-batch-3c');\n+const validateOwnerPacket = new Ajv({ strict: false, allErrors: true }).compile(\n+    require('../../schemas/epic-e-batch-3c-owner-decisions.schema.json')\n+);\n \n const validatePacket = new Ajv({\n     strict: false,\n@@ -40,15 +44,12 @@ function validTimeRange(start, end, asOf) {\n function safeRelativeRoute(value) {\n     return (\n         typeof value === 'string' &&\n-        value.startsWith('/') &&\n-        !value.startsWith('//') &&\n-        !value.includes('?') &&\n-        !value.includes('#') &&\n-        !/[\\u0000-\\u001f<>]/.test(value)\n+        /^\\/[A-Za-z0-9/_-]+(?:\\.[A-Za-z0-9]+)?$/.test(value) &&\n+        !value.includes('//')\n     );\n }\n \n-function routeDestination(destination, expectedIdentity, asOf) {\n+function routeDestination(destination, expectedIdentity, asOf, purpose = null) {\n     if (!destination) return null;\n \n     if (\n@@ -56,6 +57,7 @@ function routeDestination(destination, expectedIdentity, asOf) {\n         destination.status !== 200 ||\n         destination.requestedRoute !== destination.resolvedRoute ||\n         destination.identity !== expectedIdentity ||\n+        (purpose !== null && destination.purpose !== purpose) ||\n         !safeRelativeRoute(destination.requestedRoute) ||\n         !validTimeRange(destination.observedAt, destination.expiresAt, asOf)\n     ) {\n@@ -94,14 +96,6 @@ function warrantyCoherent(record, asOf) {\n         return false;\n     }\n \n-    if (\n-        record.approvalDecisionId !== policy.approvalDecisionId ||\n-        record.approvalDecisionId !== warrantyClass.approvalDecisionId ||\n-        record.approvalDecisionId !== mapping.approvalDecisionId\n-    ) {\n-        return false;\n-    }\n-\n     if (\n         policy.lifecycle !== 'current' ||\n         !Number.isFinite(Date.parse(policy.effectiveFrom)) ||\n@@ -136,6 +130,8 @@ function warrantyCoherent(record, asOf) {\n         return false;\n     }\n \n+    if (record.marketedBrand !== null && !safeText(record.marketedBrand)) return false;\n+\n     if (\n         record.manufacturer !== null &&\n         !safeText(record.manufacturer)\n@@ -175,7 +171,35 @@ function warrantyCoherent(record, asOf) {\n     return true;\n }\n \n-function resourceCoherent(record) {\n+// Policy, class and mapping approvals have distinct E subject/kind identities.\n+// This consumes the same owner input/context used by F5, not an F approval register.\n+function warrantyUpstreamEligible(context, record, asOf) {\n+    const input = context.operationalInput;\n+    const upstream = context.operationalContext;\n+    if (!input || !upstream || !validateOwnerPacket(input)) return false;\n+    try {\n+        if (validateOwnerInputs(input, upstream, asOf).length) return false;\n+    } catch {\n+        return false;\n+    }\n+    const policy = input.policyVersions.find(p => p.policyId === record.policy.policyId);\n+    const warrantyClass = input.warrantyClasses.find(c => c.classId === record.class.classId);\n+    const mapping = input.warrantyMappings.find(m => m.productGid === record.productGid);\n+    if (!policy || !warrantyClass || !mapping) return false;\n+    const same = (source, projected, keys) => keys.every(key => JSON.stringify(source[key]) === JSON.stringify(projected[key]));\n+    if (!same(policy, record.policy, ['policyId', 'revision', 'effectiveFrom', 'effectiveTo', 'lifecycle', 'sourceIds', 'sourceSha256', 'resourceId', 'nativePolicyGid', 'issuer', 'administrator', 'repairProvider', 'approvalDecisionId'])) return false;\n+    if (!same(warrantyClass, record.class, ['classId', 'policyId', 'policyRevision', 'trigger', 'exclusions', 'approvalDecisionId'])) return false;\n+    // Omission is not an assertion of unlimited/no-duration coverage. E's source\n+    // duration remains unchanged; only a supplied display duration must match it.\n+    if (record.class.durationValue !== null && !same(warrantyClass, record.class, ['durationValue', 'durationUnit'])) return false;\n+    if (!same(mapping, record.mapping, ['productGid', 'classId', 'exceptions', 'approvalDecisionId'])) return false;\n+    if (!record.policy.roleEvidence.every(e => e.sourceIds.every(id => upstream.evidenceIds.has(id)))) return false;\n+    return [['issuer', 'warrantyIssuer'], ['administrator', 'warrantyAdministrator'], ['repairProvider', 'repairProvider']].every(([key, role]) =>\n+        JSON.stringify(policy.roleEvidence[key]) === JSON.stringify(record.policy.roleEvidence.find(e => e.role === role)?.sourceIds)\n+    );\n+}\n+\n+function resourceCoherent(record, page = { language: 'en', configurationId: null }) {\n     if (\n         record.resourceType === 'support' ||\n         record.status !== 'current' ||\n@@ -184,6 +208,13 @@ function resourceCoherent(record) {\n         record.ownerApproved !== true ||\n         record.rightsApproved !== true ||\n         record.publicationApproved !== true ||\n+        record.languageReviewed !== true ||\n+        record.versionReviewed !== true ||\n+        record.sourceRole !== 'customer_resource' ||\n+        record.language !== page.language ||\n+        !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(record.language) ||\n+        (record.configurationId !== null && record.configurationId !== page.configurationId) ||\n+        record.destination.fileIdentity !== record.fileIdentity ||\n         !record.applicableProductGids.includes(record.productGid) ||\n         !safeText(record.title) ||\n         !safeText(record.language) ||\n@@ -198,14 +229,14 @@ function resourceCoherent(record) {\n              record.video.productSurfaceApproved !== true ||\n              record.video.autoplay !== false ||\n              record.video.eagerProvider !== false ||\n-             record.video.captionsReviewed !== true\n+             record.video.captionsReviewed !== true ||\n+             record.video.transcriptReviewed !== true\n          ) {\n              return false;\n          }\n \n          if (\n-             record.video.posterIdentity !== null &&\n-             record.video.posterApproved !== true\n+             record.video.posterIdentity !== null\n          ) {\n              return false;\n          }\n@@ -216,15 +247,24 @@ function resourceCoherent(record) {\n      return true;\n }\n \n+function customerWarrantyDestination(context, record) {\n+    const target = context.operationalContext?.resources?.resources?.find(r => r.resourceId === record.policy.resourceId);\n+    // Evidence may authorize a structured fact without authorizing its File for customers.\n+    // Native generic legal policies are not warranty destinations in this adapter.\n+    return !!(target && target.visibility === 'customer' && target.publicationApproved === true &&\n+        target.rights === 'approved' && target.resourceType !== 'support' && target.sourceRole === 'customer_resource');\n+}\n+\n function projectSupportResources(\n     context,\n     packet,\n-    asOf = new Date().toISOString()\n+    asOf = new Date().toISOString(),\n+    page = { language: 'en', configurationId: null }\n ) {\n     const out = {\n         fixture_only: context?.fixtureOnly === true,\n         product_gid:\n-        typeof packet?.machineProductGid === 'string'\n+        /^gid:\\/\\/shopify\\/Product\\/[0-9]+$/.test(packet?.machineProductGid)\n             ? packet.machineProductGid\n             : null,\n         warranty: [],\n@@ -277,8 +317,10 @@ function projectSupportResources(\n      * Warranty/service projection\n      */\n     const warrantyRecordIds = new Map();\n+    const warrantyProductCounts = new Map();\n \n     for (const record of packet.warranty) {\n+        warrantyProductCounts.set(record.productGid, (warrantyProductCounts.get(record.productGid) || 0) + 1);\n         warrantyRecordIds.set(\n             record.recordId,\n             (warrantyRecordIds.get(record.recordId) || 0) + 1\n@@ -286,7 +328,7 @@ function projectSupportResources(\n     }\n \n     for (const record of packet.warranty) {\n-        if (warrantyRecordIds.get(record.recordId) !== 1) {\n+        if (warrantyRecordIds.get(record.recordId) !== 1 || warrantyProductCounts.get(record.productGid) !== 1) {\n             suppress('duplicate_warranty_record', record);\n             continue;\n         }\n@@ -301,7 +343,7 @@ function projectSupportResources(\n             continue;\n         }\n \n-        if (!warrantyCoherent(record, asOf)) {\n+        if (!warrantyCoherent(record, asOf) || !warrantyUpstreamEligible(context, record, asOf)) {\n             suppress('incoherent_warranty_mapping', record);\n             continue;\n         }\n@@ -313,13 +355,14 @@ function projectSupportResources(\n         let destination = null;\n \n         if (record.destination !== null) {\n-            if (!expectedDestinationIdentity) {\n+            if (!expectedDestinationIdentity || !customerWarrantyDestination(context, record)) {\n                 suppress('warranty_destination_without_authority', record);\n             } else {\n                 destination = routeDestination(\n                     record.destination,\n                     expectedDestinationIdentity,\n-                    asOf\n+                    asOf,\n+                    'warranty'\n                 );\n \n                 if (!destination) {\n@@ -331,6 +374,10 @@ function projectSupportResources(\n         out.warranty.push({\n             record_id: record.recordId,\n             policy_id: record.policy.policyId,\n+            class_id: record.class.classId,\n+            policy_approval_decision_id: record.policy.approvalDecisionId,\n+            class_approval_decision_id: record.class.approvalDecisionId,\n+            mapping_approval_decision_id: record.mapping.approvalDecisionId,\n             revision: record.policy.revision,\n             roles: {\n                 marketed_brand: record.marketedBrand,\n@@ -360,8 +407,11 @@ function projectSupportResources(\n      */\n     const resourceIdCounts = new Map();\n     const fileIdentityCounts = new Map();\n+    const canonicalCounts = new Map();\n \n     for (const record of packet.resources) {\n+        const canonicalKey = `${record.productGid}|${record.configurationId}|${record.language}|${record.canonicalIdentity}`;\n+        canonicalCounts.set(canonicalKey, (canonicalCounts.get(canonicalKey) || 0) + 1);\n         resourceIdCounts.set(\n             record.resourceId,\n             (resourceIdCounts.get(record.resourceId) || 0) + 1\n@@ -376,7 +426,8 @@ function projectSupportResources(\n     for (const record of packet.resources) {\n         if (\n             resourceIdCounts.get(record.resourceId) !== 1 ||\n-            fileIdentityCounts.get(record.fileIdentity) !== 1\n+            fileIdentityCounts.get(record.fileIdentity) !== 1 ||\n+            canonicalCounts.get(`${record.productGid}|${record.configurationId}|${record.language}|${record.canonicalIdentity}`) !== 1\n         ) {\n             suppress('duplicate_resource_identity', record);\n             continue;\n@@ -395,7 +446,7 @@ function projectSupportResources(\n             continue;\n         }\n \n-        if (!resourceCoherent(record)) {\n+        if (!resourceCoherent(record, page)) {\n             suppress(\n                 record.resourceType === 'support'\n                     ? 'support_resource_customer_forbidden'\n@@ -428,7 +479,10 @@ function projectSupportResources(\n                 record.resourceType === 'video'\n                     ? {\n                         poster_identity: record.video.posterIdentity,\n-                        captions_reviewed: true\n+                        captions_reviewed: true,\n+                        width: record.video.width,\n+                        height: record.video.height,\n+                        embed_url: record.video.embedUrl\n                     }\n                     : null,\n             approval_decision_id: record.approvalDecisionId,\n@@ -449,6 +503,7 @@ function projectSupportResources(\n module.exports = {\n     projectSupportResources,\n     warrantyCoherent,\n+    warrantyUpstreamEligible,\n     resourceCoherent,\n     routeDestination,\n     roleEvidenceMatches,\n@@ -456,4 +511,4 @@ module.exports = {\n     validTimeRange,\n     validatePacket,\n     validateProjection\n-};\n\\ No newline at end of file\n+};\n"
+      },
+      {
+        "path": "package.json",
+        "beforeSha256": "d75f453820bfd022e876a2533adb10dc53fc3aac098ba21c101e4421d93f882f",
+        "afterSha256": "e67d693083007ce8d78e9ccad388041cf4fb28ca2c20dd59b0b29a9a8906fc69",
+        "unchanged": false,
+        "delta": "diff --git a/test-results/epic-f/f6/manual-checkpoint/package.json b/package.json\nindex 542c7fe..71d4d8a 100644\n--- a/test-results/epic-f/f6/manual-checkpoint/package.json\n+++ b/package.json\n@@ -176,7 +176,12 @@\n     \"test:machine-context-delivery\": \"playwright test --config=playwright.machine-context-delivery.config.js\",\n     \"test:machine-context-delivery-performance\": \"node scripts/run-epic-f-context-delivery-performance.js\",\n     \"validate:epic-f-batch-f5\": \"node scripts/run-epic-f-batch-f5.js\",\n-    \"validate:epic-f-support-resources\": \"node scripts/validate-epic-f-support-resources.js\"\n+    \"validate:epic-f-support-resources\": \"node scripts/validate-epic-f-support-resources.js\",\n+    \"build:epic-f-support-resources\": \"node scripts/build-epic-f-support-resources.js\",\n+    \"test:epic-f-support-resources\": \"node scripts/test-epic-f-support-resources.js\",\n+    \"test:machine-support-resources\": \"playwright test --config=playwright.machine-support-resources.config.js\",\n+    \"test:machine-support-resources-performance\": \"node scripts/run-epic-f-support-resources-performance.js\",\n+    \"validate:epic-f-batch-f6\": \"node scripts/run-epic-f-batch-f6.js\"\n   },\n   \"repository\": {\n     \"type\": \"git\",\n"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "command": "npm run validate:epic-f-support-resources",
+      "exitCode": 0
+    },
+    {
+      "command": "node -e \"require('./scripts/lib/epic-f-support-resources'); console.log('F6 projector loaded')\"",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/test-epic-f-support-resources.js",
+      "exitCode": 0,
+      "note": "137 initial contract cases before presentation"
+    },
+    {
+      "command": "npm run build:epic-f-support-resources",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:epic-f-support-resources",
+      "exitCode": 0,
+      "note": "159-case final targeted rerun after historical route assertions were added during nested regression"
+    },
+    {
+      "command": "npm run validate:epic-f-support-resources",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 1,
+      "note": "Development check found two new tracker lines with trailing whitespace; corrected immediately"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "note": "After correcting the two tracker lines"
+    },
+    {
+      "command": "node C:/Users/dajem/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-liquid/scripts/validate.mjs --theme-path C:/Users/dajem/WebstormProjects/shopify-rhinolapidary --files snippets/rhino-machine-support.liquid,snippets/rhino-machine-resources.liquid,snippets/rhino-product-support-resources-projection.liquid,sections/main-product.liquid,assets/rhino-custom.css --model gpt-6 --client-name codex --client-version 1 --artifact-id epic-f-batch-f6 --revision 1",
+      "exitCode": 1,
+      "required": false,
+      "note": "OPT_OUT_INSTRUMENTATION=true; known installed wrapper dependency @shopify/theme-check-common missing. Required repository CLI Theme Check passes."
+    },
+    {
+      "command": "npm run test:epic-f-support-resources",
+      "exitCode": 0,
+      "note": "177 cases after correcting E approval joins, retaining distinct provenance and enforcing public-only warranty destinations"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f6",
+      "exitCode": 1,
+      "note": "First aggregate: all functional/Theme Check gates passed; nested git diff --check returned 2 for the two tracker trailing spaces. Fixed and full aggregate rerun."
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f6",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run validate:epic-f-support-resources",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:epic-f-support-resources",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:machine-support-resources",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:machine-support-resources-performance",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:hardcoded-strings",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f5",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run theme:check",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-f-consumer",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:epic-f-consumer",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-f-claims",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:epic-f-claims",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:registers",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:product-templates",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:product-purchase",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:brand-claims",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:brand-claims-validator",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:metafields",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-e-batch-2b1-registers",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-e-batch-4a-contracts",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:theme-repository",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:theme-architecture",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:storefront-js",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:settings-data",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:fixtures",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run theme:check",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "node scripts/validate-social-metadata-contract.js",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-f-machine",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:epic-f-contact-context",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:machine-shell",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f1",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "F2 historical diagnostic comparison",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-f-gallery",
+      "exitCode": 0,
+      "required": false
+    },
+    {
+      "command": "npm run test:epic-f-media",
+      "exitCode": 0,
+      "required": false
+    },
+    {
+      "command": "npm run test:epic-f-performance",
+      "exitCode": 0,
+      "required": false
+    },
+    {
+      "command": "npm run test:machine-gallery",
+      "exitCode": 0,
+      "required": false
+    },
+    {
+      "command": "npm run test:machine-performance",
+      "exitCode": 0,
+      "required": false
+    },
+    {
+      "command": "npm run validate:brand-performance",
+      "exitCode": 0,
+      "required": false
+    },
+    {
+      "command": "npm run validate:homepage-performance",
+      "exitCode": 0,
+      "required": false
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f2",
+      "exitCode": 0,
+      "required": false
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "required": false
+    },
+    {
+      "command": "npm run validate:epic-f-facts",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:epic-f-facts",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:machine-facts",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:machine-fact-performance",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f3",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-f-context-delivery",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:epic-f-context-delivery",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:machine-context-delivery",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run test:machine-context-delivery-performance",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f4",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "required": true
+    },
+    {
+      "command": "npm run validate:launch-fixtures",
+      "exitCode": 1,
+      "required": false
+    },
+    {
+      "command": "npm run validate:product-data -- data/product-export/products.csv",
+      "exitCode": 1,
+      "required": false
+    }
+  ],
+  "interruptedRun": {
+    "command": "npm run validate:epic-f-batch-f6",
+    "date": "2026-09-19",
+    "exitCode": null,
+    "status": "Interrupted before a completed result; validation resumed September 21 and final validation resumed September 22 after the last interruption"
+  },
+  "firstAggregateResults": [
+    {
+      "command": "npm run validate:epic-f-support-resources",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/validate-epic-f-support-resources.txt"
+    },
+    {
+      "command": "npm run test:epic-f-support-resources",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/test-epic-f-support-resources.txt"
+    },
+    {
+      "command": "npm run test:machine-support-resources",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/test-machine-support-resources.txt"
+    },
+    {
+      "command": "npm run test:machine-support-resources-performance",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/test-machine-support-resources-performance.txt"
+    },
+    {
+      "command": "npm run validate:hardcoded-strings",
+      "exitCode": 0,
+      "required": true,
+      "scope": "F6 repository",
+      "log": "test-results/epic-f/f6/validate-hardcoded-strings.txt"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f5",
+      "exitCode": 1,
+      "required": true,
+      "scope": "F1-F5 regression",
+      "log": "test-results/epic-f/f6/validate-epic-f-batch-f5.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 2,
+      "required": true
+    }
+  ],
+  "regressionExitCodes": {
+    "f1": 0,
+    "f2": 0,
+    "f3": 0,
+    "f4": 0,
+    "f5": 0
+  },
+  "browserEvidence": [
+    {
+      "name": "320px zero: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px support: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px downloads: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px video: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px long: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px zero: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px support: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px downloads: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px video: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "390px long: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px zero: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px support: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px downloads: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px video: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "768px long: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px zero: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px support: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px downloads: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px video: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "1440px long: support and resources semantics",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "keyboard order, visible focus and neutral Contact distinction",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "missing destination preserves facts without an empty CTA",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "suppressed support resources leave no focus shells",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "native deferred video: keyboard activation, provider only on interaction, focus, no autoplay",
+      "status": "expected",
+      "evidence": []
+    },
+    {
+      "name": "320px 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "method": "root font 62.5% to 125%; not browser zoom",
+            "width": 320
+          }
+        }
+      ]
+    },
+    {
+      "name": "390px 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "method": "root font 62.5% to 125%; not browser zoom",
+            "width": 390
+          }
+        }
+      ]
+    },
+    {
+      "name": "768px 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "method": "root font 62.5% to 125%; not browser zoom",
+            "width": 768
+          }
+        }
+      ]
+    },
+    {
+      "name": "1440px 200% text enlargement",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "text-enlargement",
+          "data": {
+            "method": "root font 62.5% to 125%; not browser zoom",
+            "width": 1440
+          }
+        }
+      ]
+    },
+    {
+      "name": "actual Chromium 200% browser zoom reflows support and resources",
+      "status": "expected",
+      "evidence": [
+        {
+          "name": "actual-browser-zoom",
+          "data": {
+            "method": "chrome.tabs.setZoom",
+            "zoom": 2,
+            "before": {
+              "width": 1258,
+              "dpr": 1
+            },
+            "after": {
+              "width": 629,
+              "dpr": 2
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "preservedHashes": {
+    "templates/product.json": "f2f448f176786562516f7f4819199109f609fe8ba0ac37198d2b532b91888446",
+    "templates/product.machine.json": "1527450e3324c0240a93618ea3a0a8371ec94dcbc0efb8d02719d0d290b652af",
+    "data/epic-f-consumer-release.json": "a8a4a6edb874d2f35504323b651329189773741ebb0849c22c111302e9a2e241",
+    "data/brand-performance-budget.json": "6fc5f3faedee086f3429f85de3f46a17d87b981e3bd368a12a14339c51d0eb76",
+    "snippets/rhino-product-fact-projection.liquid": "502dbe69a03afa1a248b5eb033d2502855670d22975bc9aa4acccf4949c34431",
+    "snippets/rhino-product-context-delivery-projection.liquid": "273479d996cb7f3dd3112a575734781750964c6e0bce936e4decf816170cf915",
+    "snippets/rhino-product-media-eligibility.liquid": "4cd2ad166af64c8083b27a5531c52d63eb9a418bba435731e94fd868dec16056",
+    "snippets/buy-buttons.liquid": "3a8f658b979919a8d8552966cdbaaee87390f79f8e88c7384bcf392f73fdea82",
+    "snippets/rhino-product-structured-data.liquid": "2ea5c3cc0f467b4ca9e14a4802622adb035b782b4c9a4e2fbc723e8864dcad5c",
+    "assets/product-form.js": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+    "assets/product-info.js": "8432cb3ad3f356406155e8c62ed2a7d57b3ecfd2d8e2a5f8a71b9e2ae28a4207",
+    "assets/pickup-availability.js": "99fa6de1e8b9b3d7b52ddb2bef68301a4b1938e208fdc172180be1007f085358",
+    "assets/global.js": "702de473e25f4ae6cb7223f6073d418920c82267bb3b841c4502bad48a3fbd40",
+    "sections/pickup-availability.liquid": "37f660abdb2e523ba20e216ec301e5905cc4bc6ac0ae9c0e7db90b9b5ff6b4b5",
+    "data/epic-e-resource-catalog.json": "d58c45bbb208ddf42fed12c72ad80af7b615b12fa8b423181f293d655beece66",
+    "data/epic-e-batch-3b-decision-packet.json": "c9d2cf7186785d959517fecc90bbcb77a2ee2f54358128ff66a9b259371d2a7f",
+    "data/epic-e-batch-3c-decision-packet.json": "f520c0fa4b763576634bb7b1369017906a64d95e32721cdf147854470e35ed1b"
+  },
+  "optionalSkillValidatorLog": "node:internal/modules/package_json_reader:316\r\n  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\r\n        ^\r\n\r\nError [ERR_MODULE_NOT_FOUND]: Cannot find package '@shopify/theme-check-common' imported from C:\\Users\\dajem\\.codex\\plugins\\cache\\openai-curated-remote\\shopify\\4.0.1\\skills\\shopify-liquid\\scripts\\validate.mjs\r\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:316:9)\r\n    at packageResolve (node:internal/modules/esm/resolve:768:81)\r\n    at moduleResolve (node:internal/modules/esm/resolve:858:18)\r\n    at defaultResolve (node:internal/modules/esm/resolve:990:11)\r\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:718:20)\r\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:735:38)\r\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:764:52)\r\n    at #resolve (node:internal/modules/esm/loader:700:17)\r\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:620:35)\r\n    at ModuleJob.syncLink (node:internal/modules/esm/module_job:143:33) {\r\n  code: 'ERR_MODULE_NOT_FOUND'\r\n}\r\n\r\nNode.js v24.13.0\r\n",
+  "thresholdChanges": false,
+  "translations": "English parity fallbacks only; not reviewed translations"
+}

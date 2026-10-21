@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "planId": "E-MUT-035",
+  "domain": "included_components",
+  "rows": [
+    {
+      "rowId": "TEAM:8905780756677:noncatalog_components",
+      "kind": "value",
+      "targetGid": "gid://shopify/Product/8905780756677",
+      "domain": "included_components",
+      "planId": "E-MUT-035",
+      "field": "PRODUCT.metafields.rhino.noncatalog_components",
+      "type": "json",
+      "desired": [
+        {
+          "label": "Moss Filtration Pads",
+          "quantity": 2,
+          "meaning": "included"
+        }
+      ],
+      "valueState": "approved",
+      "approvalDecisionId": "TEAM-WORKSHEET:99dc261e78db99360d218ccab29a38d8ce9dd1818dd8386b7dc8a7d1737f3c8c",
+      "conflictIds": [],
+      "resolvedConflictIds": [],
+      "ownerDecisionId": "B3B-D04",
+      "sourceExcerpt": "Moss filtration pads explicitly annotated quantity 2.",
+      "provenance": {
+        "sourceId": "completed-team-worksheet-transcription",
+        "sourceValue": [
+          {
+            "label": "Moss Filtration Pads",
+            "quantity": 2,
+            "meaning": "included"
+          }
+        ],
+        "sourceUnit": null,
+        "physicalState": null,
+        "configurationId": "CURRENT_PRODUCT:gid://shopify/Product/8905780756677",
+        "configurationLabel": "Current Product configuration",
+        "conversionRuleId": null
+      },
+      "before": {
+        "metafieldGid": null,
+        "type": null,
+        "jsonValue": null
+      }
+    }
+  ],
+  "rollback": [
+    {
+      "rowId": "TEAM:8905780756677:noncatalog_components",
+      "restore": {
+        "metafieldGid": null,
+        "type": null,
+        "jsonValue": null
+      }
+    }
+  ],
+  "preconditions": [
+    {
+      "id": "fresh_exact_Product_and_definition_read",
+      "satisfied": true
+    },
+    {
+      "id": "exact_owner_response_binding",
+      "satisfied": true
+    },
+    {
+      "id": "delegated_development_authorization",
+      "satisfied": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "data/epic-e-completed-owner-responses.json",
+      "sha256": "7f9beb003cb0e0cb50ca2ce6a9fb2b8f1f641aa8bda4e4ae0bb058434a3bd74f"
+    },
+    {
+      "path": "docs/project/completed-worksheet-decisions-transcribed.md",
+      "sha256": "99dc261e78db99360d218ccab29a38d8ce9dd1818dd8386b7dc8a7d1737f3c8c"
+    }
+  ],
+  "scope": "BOUNDED_CURRENT_PRODUCT_METAFIELD_ROWS",
+  "executable": true,
+  "maximumBatchSize": 25,
+  "compareAndSetAbsentRequired": true,
+  "otherDomainCompletenessRequired": false
+}

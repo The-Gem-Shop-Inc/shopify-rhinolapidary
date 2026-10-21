@@ -1,0 +1,1856 @@
+{
+  "startedAt": "2026-10-13 15:33:47 UTC",
+  "completedAt": "2026-10-13 15:33:56 UTC",
+  "query": "query MediaActivationRead($ids:[ID!]!){nodes(ids:$ids){... on Product{id title handle status publishedAt onlineStoreUrl templateSuffix updatedAt resourcePublicationsV2(first:10){nodes{publication{id} publishDate isPublished}pageInfo{hasNextPage endCursor}} media(first:50){nodes{id mediaContentType status alt ...on MediaImage{fileStatus createdAt updatedAt image{id url width height altText}} ...on Video{fileStatus createdAt updatedAt} ...on ExternalVideo{fileStatus createdAt updatedAt originUrl}}pageInfo{hasNextPage endCursor}}variants(first:5){nodes{id title updatedAt media(first:10){nodes{id}pageInfo{hasNextPage endCursor}}}pageInfo{hasNextPage endCursor}}}}}",
+  "pages": [
+    {
+      "variables": {
+        "ids": [
+          "gid://shopify/Product/8905779937477",
+          "gid://shopify/Product/8905780756677",
+          "gid://shopify/Product/8905781248197"
+        ]
+      },
+      "response": {
+        "data": {
+          "nodes": [
+            {
+              "id": "gid://shopify/Product/8905779937477",
+              "title": "BeadMaster 6\"",
+              "handle": "beadmaster",
+              "status": "ACTIVE",
+              "publishedAt": "2026-07-02T16:54:05Z",
+              "onlineStoreUrl": null,
+              "templateSuffix": "machine",
+              "updatedAt": "2026-10-10T20:21:53Z",
+              "resourcePublicationsV2": {
+                "nodes": [
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345582277"
+                    },
+                    "publishDate": "2026-07-02T16:54:05Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345615045"
+                    },
+                    "publishDate": "2026-07-02T16:54:06Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345647813"
+                    },
+                    "publishDate": "2026-07-02T16:54:06Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/213331837125"
+                    },
+                    "publishDate": "2026-08-18T17:18:05Z",
+                    "isPublished": true
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMTA4MjY5MywibGFzdF92YWx1ZSI6MjY0MTIwMzEwODI2OTN9"
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451099455685",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "Rhino Lapidary BeadMaster machine, front view",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:54:05Z",
+                    "updatedAt": "2026-10-10T20:21:52Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451099455685",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p78_i10_w1440.jpg?v=1783011248",
+                      "width": 1440,
+                      "height": 1440,
+                      "altText": "Rhino Lapidary BeadMaster machine, front view"
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTA5OTQ1NTY4NSwibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484254032069",
+                    "title": "Default Title",
+                    "updatedAt": "2026-08-31T19:55:47Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NDAzMjA2OSwibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/Product/8905780756677",
+              "title": "EM-1 Machine",
+              "handle": "em-1",
+              "status": "ACTIVE",
+              "publishedAt": "2026-07-02T16:54:18Z",
+              "onlineStoreUrl": null,
+              "templateSuffix": "machine",
+              "updatedAt": "2026-10-05T21:03:40Z",
+              "resourcePublicationsV2": {
+                "nodes": [
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345582277"
+                    },
+                    "publishDate": "2026-07-02T16:54:18Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345615045"
+                    },
+                    "publishDate": "2026-07-02T16:54:18Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345647813"
+                    },
+                    "publishDate": "2026-07-02T16:54:18Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/213331837125"
+                    },
+                    "publishDate": "2026-08-18T17:18:07Z",
+                    "isPublished": true
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMTcwNTI4NSwibGFzdF92YWx1ZSI6MjY0MTIwMzE3MDUyODV9"
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451101683909",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:54:18Z",
+                    "updatedAt": "2026-08-20T18:10:42Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451101683909",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p1_i9_w2489.jpg?v=1783011260",
+                      "width": 2489,
+                      "height": 2189,
+                      "altText": ""
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwMTY4MzkwOSwibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484254949573",
+                    "title": "Default Title",
+                    "updatedAt": "2026-08-31T19:45:46Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NDk0OTU3MywibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/Product/8905781248197",
+              "title": "JadeMaster, 14\"",
+              "handle": "jademaster",
+              "status": "ACTIVE",
+              "publishedAt": null,
+              "onlineStoreUrl": null,
+              "templateSuffix": null,
+              "updatedAt": "2026-10-05T19:59:41Z",
+              "resourcePublicationsV2": {
+                "nodes": [
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345615045"
+                    },
+                    "publishDate": "2026-08-31T19:44:35Z",
+                    "isPublished": true
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyNTQ5ODE5MzY1ODA1MywibGFzdF92YWx1ZSI6MjU0OTgxOTM2NTgwNTN9"
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451104075973",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:54:27Z",
+                    "updatedAt": "2026-08-20T18:10:42Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451104075973",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p86_i1_w1440.jpg?v=1783011269",
+                      "width": 1440,
+                      "height": 1440,
+                      "altText": ""
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDA3NTk3MywibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484255473861",
+                    "title": "Default Title",
+                    "updatedAt": "2026-09-01T21:53:46Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTQ3Mzg2MSwibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variables": {
+        "ids": [
+          "gid://shopify/Product/8905781412037",
+          "gid://shopify/Product/8905781477573",
+          "gid://shopify/Product/8905784131781"
+        ]
+      },
+      "response": {
+        "data": {
+          "nodes": [
+            {
+              "id": "gid://shopify/Product/8905781412037",
+              "title": "LapMaster 12\"",
+              "handle": "lapmaster-12",
+              "status": "ACTIVE",
+              "publishedAt": "2026-07-02T16:54:30Z",
+              "onlineStoreUrl": null,
+              "templateSuffix": "machine",
+              "updatedAt": "2026-10-10T20:21:53Z",
+              "resourcePublicationsV2": {
+                "nodes": [
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345582277"
+                    },
+                    "publishDate": "2026-07-02T16:54:30Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345615045"
+                    },
+                    "publishDate": "2026-07-02T16:54:31Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345647813"
+                    },
+                    "publishDate": "2026-07-02T16:54:31Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/213331837125"
+                    },
+                    "publishDate": "2026-08-18T17:18:09Z",
+                    "isPublished": true
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMjM5MzQxMywibGFzdF92YWx1ZSI6MjY0MTIwMzIzOTM0MTN9"
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451104895173",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "Rhino Lapidary LapMaster machine, view from above",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:54:30Z",
+                    "updatedAt": "2026-10-10T20:21:52Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451104895173",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p81_i5_w1440.jpg?v=1783011273",
+                      "width": 1440,
+                      "height": 1440,
+                      "altText": "Rhino Lapidary LapMaster machine, view from above"
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDg5NTE3MywibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484255637701",
+                    "title": "Default Title",
+                    "updatedAt": "2026-07-02T16:54:30Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTYzNzcwMSwibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/Product/8905781477573",
+              "title": "LapMaster 18\"",
+              "handle": "lapmaster-18",
+              "status": "ACTIVE",
+              "publishedAt": "2026-07-02T16:54:31Z",
+              "onlineStoreUrl": null,
+              "templateSuffix": "machine",
+              "updatedAt": "2026-10-10T20:21:53Z",
+              "resourcePublicationsV2": {
+                "nodes": [
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345582277"
+                    },
+                    "publishDate": "2026-07-02T16:54:31Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345615045"
+                    },
+                    "publishDate": "2026-07-02T16:54:32Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345647813"
+                    },
+                    "publishDate": "2026-07-02T16:54:32Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/213331837125"
+                    },
+                    "publishDate": "2026-08-18T17:18:09Z",
+                    "isPublished": true
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMjQyNjE4MSwibGFzdF92YWx1ZSI6MjY0MTIwMzI0MjYxODF9"
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451105255621",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "Rhino Lapidary LapMaster machine, angled view",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:54:31Z",
+                    "updatedAt": "2026-10-10T20:21:52Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451105255621",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p82_i2_w1440.jpg?v=1783011274",
+                      "width": 1440,
+                      "height": 1440,
+                      "altText": "Rhino Lapidary LapMaster machine, angled view"
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNTI1NTYyMSwibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484255703237",
+                    "title": "Default Title",
+                    "updatedAt": "2026-07-02T16:54:31Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTcwMzIzNywibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/Product/8905784131781",
+              "title": "SawMaster 18\"",
+              "handle": "sawmaster-18",
+              "status": "ACTIVE",
+              "publishedAt": "2026-07-02T16:55:19Z",
+              "onlineStoreUrl": null,
+              "templateSuffix": "machine",
+              "updatedAt": "2026-10-10T20:21:53Z",
+              "resourcePublicationsV2": {
+                "nodes": [
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345582277"
+                    },
+                    "publishDate": "2026-07-02T16:55:19Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345615045"
+                    },
+                    "publishDate": "2026-07-02T16:55:20Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345647813"
+                    },
+                    "publishDate": "2026-07-02T16:55:20Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/213331837125"
+                    },
+                    "publishDate": "2026-08-18T17:18:17Z",
+                    "isPublished": true
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNDk4MjA4NSwibGFzdF92YWx1ZSI6MjY0MTIwMzQ5ODIwODV9"
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451117576389",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "Rhino Lapidary SawMaster machine with the lid open, angled view",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:55:19Z",
+                    "updatedAt": "2026-10-10T20:21:52Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451117576389",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p83_i6_w1440.jpg?v=1783011322",
+                      "width": 1440,
+                      "height": 1440,
+                      "altText": "Rhino Lapidary SawMaster machine with the lid open, angled view"
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzU3NjM4OSwibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484258914501",
+                    "title": "Default Title",
+                    "updatedAt": "2026-08-31T19:42:07Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1ODkxNDUwMSwibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variables": {
+        "ids": [
+          "gid://shopify/Product/8905784197317",
+          "gid://shopify/Product/8905784262853",
+          "gid://shopify/Product/8905784328389"
+        ]
+      },
+      "response": {
+        "data": {
+          "nodes": [
+            {
+              "id": "gid://shopify/Product/8905784197317",
+              "title": "SawMaster 24\"",
+              "handle": "sawmaster-24",
+              "status": "ACTIVE",
+              "publishedAt": "2026-07-02T16:55:20Z",
+              "onlineStoreUrl": null,
+              "templateSuffix": "machine",
+              "updatedAt": "2026-10-05T21:04:08Z",
+              "resourcePublicationsV2": {
+                "nodes": [
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345582277"
+                    },
+                    "publishDate": "2026-07-02T16:55:20Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345615045"
+                    },
+                    "publishDate": "2026-07-02T16:55:21Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345647813"
+                    },
+                    "publishDate": "2026-07-02T16:55:21Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/213331837125"
+                    },
+                    "publishDate": "2026-08-18T17:18:17Z",
+                    "isPublished": true
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNTAxNDg1MywibGFzdF92YWx1ZSI6MjY0MTIwMzUwMTQ4NTN9"
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451117871301",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:55:21Z",
+                    "updatedAt": "2026-08-21T20:11:01Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451117871301",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+                      "width": 1440,
+                      "height": 1440,
+                      "altText": ""
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484258980037",
+                    "title": "Default Title",
+                    "updatedAt": "2026-08-31T19:39:21Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1ODk4MDAzNywibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/Product/8905784262853",
+              "title": "SawMaster, 36\"",
+              "handle": "sawmaster-36",
+              "status": "DRAFT",
+              "publishedAt": null,
+              "onlineStoreUrl": null,
+              "templateSuffix": null,
+              "updatedAt": "2026-10-05T19:59:51Z",
+              "resourcePublicationsV2": {
+                "nodes": [],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": null
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451117871301",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:55:21Z",
+                    "updatedAt": "2026-08-21T20:11:01Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451117871301",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+                      "width": 1440,
+                      "height": 1440,
+                      "altText": ""
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484259045573",
+                    "title": "Default Title",
+                    "updatedAt": "2026-07-02T16:55:22Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1OTA0NTU3MywibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/Product/8905784328389",
+              "title": "ShapeMaster 6\"",
+              "handle": "shapemaster",
+              "status": "ACTIVE",
+              "publishedAt": "2026-07-02T16:55:23Z",
+              "onlineStoreUrl": null,
+              "templateSuffix": "machine",
+              "updatedAt": "2026-10-10T20:21:53Z",
+              "resourcePublicationsV2": {
+                "nodes": [
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345582277"
+                    },
+                    "publishDate": "2026-07-02T16:55:23Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345615045"
+                    },
+                    "publishDate": "2026-07-02T16:55:24Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345647813"
+                    },
+                    "publishDate": "2026-07-02T16:55:24Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/213331837125"
+                    },
+                    "publishDate": "2026-08-18T17:18:17Z",
+                    "isPublished": true
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNTExMzE1NywibGFzdF92YWx1ZSI6MjY0MTIwMzUxMTMxNTd9"
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451118428357",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "Rhino Lapidary ShapeMaster machine, angled front view",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:55:23Z",
+                    "updatedAt": "2026-10-10T20:21:52Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451118428357",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p79_i14_w1440.jpg?v=1783011325",
+                      "width": 1440,
+                      "height": 1440,
+                      "altText": "Rhino Lapidary ShapeMaster machine, angled front view"
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExODQyODM1NywibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484259111109",
+                    "title": "Default Title",
+                    "updatedAt": "2026-08-31T19:46:59Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1OTExMTEwOSwibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variables": {
+        "ids": [
+          "gid://shopify/Product/8905785344197",
+          "gid://shopify/Product/8905785868485"
+        ]
+      },
+      "response": {
+        "data": {
+          "nodes": [
+            {
+              "id": "gid://shopify/Product/8905785344197",
+              "title": "TrimMaster",
+              "handle": "trimmaster",
+              "status": "ACTIVE",
+              "publishedAt": "2026-07-02T16:55:43Z",
+              "onlineStoreUrl": null,
+              "templateSuffix": "machine",
+              "updatedAt": "2026-10-10T20:21:53Z",
+              "resourcePublicationsV2": {
+                "nodes": [
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345582277"
+                    },
+                    "publishDate": "2026-07-02T16:55:43Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345615045"
+                    },
+                    "publishDate": "2026-07-02T16:55:44Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/207345647813"
+                    },
+                    "publishDate": "2026-07-02T16:55:44Z",
+                    "isPublished": true
+                  },
+                  {
+                    "publication": {
+                      "id": "gid://shopify/Publication/213331837125"
+                    },
+                    "publishDate": "2026-08-18T17:18:20Z",
+                    "isPublished": true
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNjAzMDY2MSwibGFzdF92YWx1ZSI6MjY0MTIwMzYwMzA2NjF9"
+                }
+              },
+              "media": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/MediaImage/33451123409093",
+                    "mediaContentType": "IMAGE",
+                    "status": "READY",
+                    "alt": "Rhino Lapidary TrimMaster machine, angled front view",
+                    "fileStatus": "READY",
+                    "createdAt": "2026-07-02T16:55:43Z",
+                    "updatedAt": "2026-10-10T20:21:52Z",
+                    "image": {
+                      "id": "gid://shopify/ImageSource/33451123409093",
+                      "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p80_i20_w1440.jpg?v=1783011345",
+                      "width": 1440,
+                      "height": 1440,
+                      "altText": "Rhino Lapidary TrimMaster machine, angled front view"
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEyMzQwOTA5MywibGFzdF92YWx1ZSI6IjEifQ=="
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484260290757",
+                    "title": "Default Title",
+                    "updatedAt": "2026-08-31T19:55:26Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI2MDI5MDc1NywibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/Product/8905785868485",
+              "title": "TumbleMaster",
+              "handle": "tumblemaster",
+              "status": "DRAFT",
+              "publishedAt": null,
+              "onlineStoreUrl": null,
+              "templateSuffix": null,
+              "updatedAt": "2026-10-05T19:59:56Z",
+              "resourcePublicationsV2": {
+                "nodes": [],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": null
+                }
+              },
+              "media": {
+                "nodes": [],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": null
+                }
+              },
+              "variants": {
+                "nodes": [
+                  {
+                    "id": "gid://shopify/ProductVariant/46484260913349",
+                    "title": "Default Title",
+                    "updatedAt": "2026-07-02T16:55:52Z",
+                    "media": {
+                      "nodes": [],
+                      "pageInfo": {
+                        "hasNextPage": false,
+                        "endCursor": null
+                      }
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI2MDkxMzM0OSwibGFzdF92YWx1ZSI6MX0="
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "gid://shopify/Product/8905779937477",
+      "title": "BeadMaster 6\"",
+      "handle": "beadmaster",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:05Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": "machine",
+      "updatedAt": "2026-10-10T20:21:53Z",
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:54:05Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:54:06Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:54:06Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:05Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMTA4MjY5MywibGFzdF92YWx1ZSI6MjY0MTIwMzEwODI2OTN9"
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451099455685",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "Rhino Lapidary BeadMaster machine, front view",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:54:05Z",
+            "updatedAt": "2026-10-10T20:21:52Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451099455685",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p78_i10_w1440.jpg?v=1783011248",
+              "width": 1440,
+              "height": 1440,
+              "altText": "Rhino Lapidary BeadMaster machine, front view"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTA5OTQ1NTY4NSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484254032069",
+            "title": "Default Title",
+            "updatedAt": "2026-08-31T19:55:47Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NDAzMjA2OSwibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905780756677",
+      "title": "EM-1 Machine",
+      "handle": "em-1",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:18Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": "machine",
+      "updatedAt": "2026-10-05T21:03:40Z",
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:54:18Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:54:18Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:54:18Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:07Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMTcwNTI4NSwibGFzdF92YWx1ZSI6MjY0MTIwMzE3MDUyODV9"
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451101683909",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:54:18Z",
+            "updatedAt": "2026-08-20T18:10:42Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451101683909",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p1_i9_w2489.jpg?v=1783011260",
+              "width": 2489,
+              "height": 2189,
+              "altText": ""
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwMTY4MzkwOSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484254949573",
+            "title": "Default Title",
+            "updatedAt": "2026-08-31T19:45:46Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NDk0OTU3MywibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905781248197",
+      "title": "JadeMaster, 14\"",
+      "handle": "jademaster",
+      "status": "ACTIVE",
+      "publishedAt": null,
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:41Z",
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-08-31T19:44:35Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNTQ5ODE5MzY1ODA1MywibGFzdF92YWx1ZSI6MjU0OTgxOTM2NTgwNTN9"
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451104075973",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:54:27Z",
+            "updatedAt": "2026-08-20T18:10:42Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451104075973",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p86_i1_w1440.jpg?v=1783011269",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDA3NTk3MywibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484255473861",
+            "title": "Default Title",
+            "updatedAt": "2026-09-01T21:53:46Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTQ3Mzg2MSwibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905781412037",
+      "title": "LapMaster 12\"",
+      "handle": "lapmaster-12",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:30Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": "machine",
+      "updatedAt": "2026-10-10T20:21:53Z",
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:54:30Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:54:31Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:54:31Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:09Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMjM5MzQxMywibGFzdF92YWx1ZSI6MjY0MTIwMzIzOTM0MTN9"
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451104895173",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "Rhino Lapidary LapMaster machine, view from above",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:54:30Z",
+            "updatedAt": "2026-10-10T20:21:52Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451104895173",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p81_i5_w1440.jpg?v=1783011273",
+              "width": 1440,
+              "height": 1440,
+              "altText": "Rhino Lapidary LapMaster machine, view from above"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDg5NTE3MywibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484255637701",
+            "title": "Default Title",
+            "updatedAt": "2026-07-02T16:54:30Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTYzNzcwMSwibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905781477573",
+      "title": "LapMaster 18\"",
+      "handle": "lapmaster-18",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:31Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": "machine",
+      "updatedAt": "2026-10-10T20:21:53Z",
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:54:31Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:54:32Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:54:32Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:09Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMjQyNjE4MSwibGFzdF92YWx1ZSI6MjY0MTIwMzI0MjYxODF9"
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451105255621",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "Rhino Lapidary LapMaster machine, angled view",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:54:31Z",
+            "updatedAt": "2026-10-10T20:21:52Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451105255621",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p82_i2_w1440.jpg?v=1783011274",
+              "width": 1440,
+              "height": 1440,
+              "altText": "Rhino Lapidary LapMaster machine, angled view"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNTI1NTYyMSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484255703237",
+            "title": "Default Title",
+            "updatedAt": "2026-07-02T16:54:31Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1NTcwMzIzNywibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905784131781",
+      "title": "SawMaster 18\"",
+      "handle": "sawmaster-18",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:19Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": "machine",
+      "updatedAt": "2026-10-10T20:21:53Z",
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:55:19Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:55:20Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:55:20Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:17Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNDk4MjA4NSwibGFzdF92YWx1ZSI6MjY0MTIwMzQ5ODIwODV9"
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451117576389",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "Rhino Lapidary SawMaster machine with the lid open, angled view",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:55:19Z",
+            "updatedAt": "2026-10-10T20:21:52Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451117576389",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p83_i6_w1440.jpg?v=1783011322",
+              "width": 1440,
+              "height": 1440,
+              "altText": "Rhino Lapidary SawMaster machine with the lid open, angled view"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzU3NjM4OSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484258914501",
+            "title": "Default Title",
+            "updatedAt": "2026-08-31T19:42:07Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1ODkxNDUwMSwibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905784197317",
+      "title": "SawMaster 24\"",
+      "handle": "sawmaster-24",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:20Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": "machine",
+      "updatedAt": "2026-10-05T21:04:08Z",
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:55:20Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:55:21Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:55:21Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:17Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNTAxNDg1MywibGFzdF92YWx1ZSI6MjY0MTIwMzUwMTQ4NTN9"
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451117871301",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:55:21Z",
+            "updatedAt": "2026-08-21T20:11:01Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451117871301",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484258980037",
+            "title": "Default Title",
+            "updatedAt": "2026-08-31T19:39:21Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1ODk4MDAzNywibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905784262853",
+      "title": "SawMaster, 36\"",
+      "handle": "sawmaster-36",
+      "status": "DRAFT",
+      "publishedAt": null,
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:51Z",
+      "resourcePublicationsV2": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451117871301",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:55:21Z",
+            "updatedAt": "2026-08-21T20:11:01Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451117871301",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p84_i7_w1440.jpg?v=1783011323",
+              "width": 1440,
+              "height": 1440,
+              "altText": ""
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484259045573",
+            "title": "Default Title",
+            "updatedAt": "2026-07-02T16:55:22Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1OTA0NTU3MywibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905784328389",
+      "title": "ShapeMaster 6\"",
+      "handle": "shapemaster",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:23Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": "machine",
+      "updatedAt": "2026-10-10T20:21:53Z",
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:55:23Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:55:24Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:55:24Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:17Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNTExMzE1NywibGFzdF92YWx1ZSI6MjY0MTIwMzUxMTMxNTd9"
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451118428357",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "Rhino Lapidary ShapeMaster machine, angled front view",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:55:23Z",
+            "updatedAt": "2026-10-10T20:21:52Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451118428357",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p79_i14_w1440.jpg?v=1783011325",
+              "width": 1440,
+              "height": 1440,
+              "altText": "Rhino Lapidary ShapeMaster machine, angled front view"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExODQyODM1NywibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484259111109",
+            "title": "Default Title",
+            "updatedAt": "2026-08-31T19:46:59Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI1OTExMTEwOSwibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905785344197",
+      "title": "TrimMaster",
+      "handle": "trimmaster",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:43Z",
+      "onlineStoreUrl": null,
+      "templateSuffix": "machine",
+      "updatedAt": "2026-10-10T20:21:53Z",
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:55:43Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:55:44Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:55:44Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:20Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNjAzMDY2MSwibGFzdF92YWx1ZSI6MjY0MTIwMzYwMzA2NjF9"
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451123409093",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": "Rhino Lapidary TrimMaster machine, angled front view",
+            "fileStatus": "READY",
+            "createdAt": "2026-07-02T16:55:43Z",
+            "updatedAt": "2026-10-10T20:21:52Z",
+            "image": {
+              "id": "gid://shopify/ImageSource/33451123409093",
+              "url": "https://cdn.shopify.com/s/files/1/0792/7994/7973/files/s886176631913542175_p80_i20_w1440.jpg?v=1783011345",
+              "width": 1440,
+              "height": 1440,
+              "altText": "Rhino Lapidary TrimMaster machine, angled front view"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEyMzQwOTA5MywibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484260290757",
+            "title": "Default Title",
+            "updatedAt": "2026-08-31T19:55:26Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI2MDI5MDc1NywibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905785868485",
+      "title": "TumbleMaster",
+      "handle": "tumblemaster",
+      "status": "DRAFT",
+      "publishedAt": null,
+      "onlineStoreUrl": null,
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:56Z",
+      "resourcePublicationsV2": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      },
+      "media": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      },
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/46484260913349",
+            "title": "Default Title",
+            "updatedAt": "2026-07-02T16:55:52Z",
+            "media": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NjQ4NDI2MDkxMzM0OSwibGFzdF92YWx1ZSI6MX0="
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1466 @@
+{
+  "approvalMode": "delegated_development_override",
+  "planId": "F-PBI-017B",
+  "executionScope": "2026-10-05_bounded_live_development_activation",
+  "executionDate": "2026-10-05",
+  "recordedAt": "2026-10-05T20:57:43.978Z",
+  "authority": "Explicit Product Owner authorization in the current task; eight suffix-only writes after validated MAIN deployment. Historical two-owner approval slots remain immutable.",
+  "historicalF7PlanId": "F-017A-machine-template-v1",
+  "historicalF7PlanHash": "e69138cf06cdab34f7560058d156dfe0f4f042cc94d395582dd55fde1cfd7146",
+  "historicalF7PlanFileSha256": "f49f60e57303fa6e227aea66744e2510529e51930fd894ccdec0e87e95d0a2d8",
+  "liveThemeId": "158579622085",
+  "liveThemeRole": "MAIN",
+  "liveMachineTemplateVerified": true,
+  "liveDeploymentPlanSha256": "54b2acd1a0b3cc911066c05e58657ca77c2ff2fb4809bb20c70d78a9000ecf42",
+  "liveDeploymentSourceFiles": [
+    {
+      "path": "assets/rhino-custom.css",
+      "sha256": "32f44d332f5b1d51b95213292c54d6e5c17751ebf4e79878eba4e2c17ce5f961"
+    },
+    {
+      "path": "layout/theme.liquid",
+      "sha256": "87086adef642d447d2cba82186641e93460d815549375bf608da035534cec5af"
+    },
+    {
+      "path": "locales/en.default.json",
+      "sha256": "1c9b35a463badc81f9b84c0e690b70c644c80f974338138875df761b281e792f"
+    },
+    {
+      "path": "locales/en.default.schema.json",
+      "sha256": "8009bbec50222d4d8e9bb160f03e53ca00fd15e8be5b938070f1a8c52f7bfdd9"
+    },
+    {
+      "path": "sections/cart-notification-product.liquid",
+      "sha256": "7e775b942acae3ea9b6f76dce09fd7881dcf687271c8e365aece510fb41e652f"
+    },
+    {
+      "path": "sections/main-cart-items.liquid",
+      "sha256": "d043f0d8ddc3148076866e19bae02efd52db7dbf7ee1ca7f19ea2cf832850cc6"
+    },
+    {
+      "path": "sections/main-product.liquid",
+      "sha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3"
+    },
+    {
+      "path": "sections/predictive-search.liquid",
+      "sha256": "1f05232069cb26cdc28b4736ac6e681b863865f30c97740503231be030658575"
+    },
+    {
+      "path": "snippets/card-product.liquid",
+      "sha256": "f2f0fe4c960d6f19c9de87767614fede2b745450f90e9fc6624685f29b61d877"
+    },
+    {
+      "path": "snippets/cart-drawer.liquid",
+      "sha256": "c1091354befbffa1bc0ed114d978377c436b8dc47e8e9eb348a843845d619c9a"
+    },
+    {
+      "path": "snippets/meta-tags.liquid",
+      "sha256": "ebe74785f747771721b4ab7678f78a1a6e45be3a6c5f600bf04612c01cc2ca52"
+    },
+    {
+      "path": "snippets/product-media-modal.liquid",
+      "sha256": "97744048cb27bb56e323eaeee7307901331cb9f90c145d24cf2cc3861c3565ef"
+    },
+    {
+      "path": "snippets/rhino-machine-contents.liquid",
+      "sha256": "daefb3ad5757bf38cbaa0a372a42e8ef0b2283c716387f286c9a9f831d0802fd"
+    },
+    {
+      "path": "snippets/rhino-machine-contextual.liquid",
+      "sha256": "da07184dd3b1b621d2980b50c2e2aed9d40ce6ec75414d31eb48d0566437fe0b"
+    },
+    {
+      "path": "snippets/rhino-machine-delivery.liquid",
+      "sha256": "1703a28753259ec81943fabafe89d883cf9ef975f12db9c337f66bc926a18ff9"
+    },
+    {
+      "path": "snippets/rhino-machine-resources.liquid",
+      "sha256": "0726da0a37eb47db309a4d3f376554b1c3ddf120091393933f1ab244960c7018"
+    },
+    {
+      "path": "snippets/rhino-machine-specifications.liquid",
+      "sha256": "39ed3f9e1968db38d373ebf56c6c96b0ba2c1cefc2a16128a41dcbb0a42f4e74"
+    },
+    {
+      "path": "snippets/rhino-machine-support.liquid",
+      "sha256": "9226eeee5163438988478d985782a25d6facc8354b4cc67a376009989fe24b1f"
+    },
+    {
+      "path": "snippets/rhino-product-consumer-route.liquid",
+      "sha256": "62fbf208573b7800de0b30046940eaa1e7a445acb77aa42b32c7e558ee7c9bbd"
+    },
+    {
+      "path": "snippets/rhino-product-context-delivery-projection.liquid",
+      "sha256": "273479d996cb7f3dd3112a575734781750964c6e0bce936e4decf816170cf915"
+    },
+    {
+      "path": "snippets/rhino-product-description.liquid",
+      "sha256": "fd7af1f35621fd0c393f528cc40eb1c7ff16cfe81517525c2446363ef21b7d0c"
+    },
+    {
+      "path": "snippets/rhino-product-fact-projection.liquid",
+      "sha256": "502dbe69a03afa1a248b5eb033d2502855670d22975bc9aa4acccf4949c34431"
+    },
+    {
+      "path": "snippets/rhino-product-media-eligibility.liquid",
+      "sha256": "4cd2ad166af64c8083b27a5531c52d63eb9a418bba435731e94fd868dec16056"
+    },
+    {
+      "path": "snippets/rhino-product-structured-data.liquid",
+      "sha256": "2ea5c3cc0f467b4ca9e14a4802622adb035b782b4c9a4e2fbc723e8864dcad5c"
+    },
+    {
+      "path": "snippets/rhino-product-support-resources-projection.liquid",
+      "sha256": "70c7226c5376af3693dadc3bb5b377a7096764e201aa0a7d5f44aa3ea8658b25"
+    },
+    {
+      "path": "templates/product.machine.json",
+      "sha256": "1527450e3324c0240a93618ea3a0a8371ec94dcbc0efb8d02719d0d290b652af"
+    },
+    {
+      "path": "snippets/product-inventory.liquid",
+      "sha256": "36de2da4743a045416f800f2638879b1d41c007ed9f825d55530e0a6a61d8fb9"
+    },
+    {
+      "path": "snippets/card-product-placeholder.liquid",
+      "sha256": "b36b75fb04a96ee49d4304e7c834a0b666004729f84aa2080b503f4a5a0fef56"
+    }
+  ],
+  "beforeReadCompletedAt": "2026-10-05T20:54:07.460Z",
+  "protectedBeforePath": "docs/qa/evidence/epic-f/live-activation-2026-10-05/f7-current-protected-contract-before.json",
+  "protectedBeforeSha256": "184d987528f7dd8bf563b88d10b8bc9ec193c692f39a40572ea51e906b7876e5",
+  "protectedBeforeDigest": "ff6f1f45bfe95bfaa16e19b30f70bf51d0f99f140eaa3972ea96641f0cf3895e",
+  "targetProducts": [
+    "gid://shopify/Product/8905779937477",
+    "gid://shopify/Product/8905780756677",
+    "gid://shopify/Product/8905781412037",
+    "gid://shopify/Product/8905781477573",
+    "gid://shopify/Product/8905784131781",
+    "gid://shopify/Product/8905784197317",
+    "gid://shopify/Product/8905784328389",
+    "gid://shopify/Product/8905785344197"
+  ],
+  "excludedProducts": [
+    "gid://shopify/Product/8905781248197",
+    "gid://shopify/Product/8905784262853",
+    "gid://shopify/Product/8905785868485"
+  ],
+  "products": [
+    {
+      "id": "gid://shopify/Product/8905779937477",
+      "title": "BeadMaster 6\"",
+      "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>?It's very easy and quick to make calibrated exact beads in seconds with the new Beadmaster from Rhino Lapidary.</p> \n\n\n\n<p>SUPER FAST! This machine creates a perfect sphere from a preform in only 8 seconds!</p>\n\n\n\n<p>The machine use 6” diameter, 1/2\" thick wheels.</p>\n\n<p>Bead sizes are 4-6-8-10-12 mm</p>\n\n<p>Electricity: 110V 60Hz</p>\n\n<p>Motor: 0.55 kW monophase 3000rpm</p>\n\n<p>Special sensor for bead rolling wheel</p>\n\n<p>Cooling: circulating tap water</p>\n\n\n\n<p>Wheels: 6” diameter, 1” arbor hole diameter</p>\n\n<p>Dimensions: 20” x 24” x 16”</p>\n\n<p>Weight: 70 Lb.</p>\n\n<p>Packed safely in a wooden pallet box</p>",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "beadmaster",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:05Z",
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Shaping"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:36Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178812211397",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:54:05Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:54:06Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:54:06Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:05Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMTA4MjY5MywibGFzdF92YWx1ZSI6MjY0MTIwMzEwODI2OTN9"
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020596933",
+            "handle": "shaping",
+            "title": "Shaping Machines"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1OTY5MzMsImxhc3RfdmFsdWUiOjM2NDAyMDU5NjkzM30="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451099455685",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTA5OTQ1NTY4NSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185426317509",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:34Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQyNjMxNzUwOSwibGFzdF92YWx1ZSI6IjcxMTg1NDI2MzE3NTA5In0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905780756677",
+      "title": "EM-1 Machine",
+      "descriptionHtml": "<p>The Everything machine is FOUR machines in 1. The EM-1 can be used for grinding, sanding, and polishing stones. It has a 6\" trim saw for cutting. It features attachments for metalsmiths to create jewelry, and a flexible shaft suitable for both carving and fine metal work. The arbor and motor sits on a waterproofed veneer stand with an accessory drawer.</p>\n\n\n\n<p>Additional special features include:</p>\n\n<p>Moveable Sprayers</p>\n\n<p>Undermount Water Filtration System</p>\n\n<p>Adjustable Magnifying Lens &amp; Light</p>\n\n<p>Patented Variable Speed Motor (1 Horsepower Variable Speed with 100% Torque)</p>\n\n\n\n<p>Included with purchase:</p>\n\n<p>6\" Bonded Diamond Wheel 60 grit</p>\n\n<p>6\" Bonded Diamond Wheel 220 grit</p>\n\n<p>6\" Resin Bond Diamond Wheel 280 grit</p>\n\n<p>6\" Resin Bond Diamond Wheel 600 grit</p>\n\n<p>6\" Resin Bond Diamond Wheel 1200 grit</p>\n\n<p>6\" Resin Bond Diamond Wheel 3000 grit</p>\n\n<p>Flex Shaft w/ 18pc accessory set and 3pc attachment heads</p>\n\n<p>x2 Silversmithing spindles w/ x3 sanding and polishing wheels</p>\n\n<p>DIALUX Superfinishing paste</p>\n\n<p>DIALUX Polishing paste</p>\n\n<p>Flat Lap w/ 6\" magnetic felt pad and 6\" magnetic 80 grit disc</p>\n\n<p>Magnifying Glass Attachment</p>\n\n<p>Jointed Light Attachment</p>\n\n<p>x2 Detachable Wrist rests</p>\n\n<p>Water Pump w/ tank filtration system</p>\n\n<p>Splash guards</p>\n\n<p>Moss Filtration Pads</p>\n\n<p>x2 Brass Spray Nozzles</p>\n\n<p>Spoke Wrench</p>\n\n<p>Allen Wrench/Hex key</p>\n\n<p>Crescent Wrench</p>",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "em-1",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:18Z",
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Saw",
+        "Shaping"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:42Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178813063365",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:54:18Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:54:18Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:54:18Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:07Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMTcwNTI4NSwibGFzdF92YWx1ZSI6MjY0MTIwMzE3MDUyODV9"
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020531397",
+            "handle": "saws",
+            "title": "Saws"
+          },
+          {
+            "id": "gid://shopify/Collection/364020596933",
+            "handle": "shaping",
+            "title": "Shaping Machines"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1OTY5MzMsImxhc3RfdmFsdWUiOjM2NDAyMDU5NjkzM30="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451101683909",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwMTY4MzkwOSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185428021445",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:39Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQyODAyMTQ0NSwibGFzdF92YWx1ZSI6IjcxMTg1NDI4MDIxNDQ1In0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905781412037",
+      "title": "LapMaster 12\"",
+      "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>This LAPMASTER is constructed from high quality steel, providing top-of-the-line stability to eliminate vibration, for smooth and excellent results.</p> \n\n\n\n<p>12” main lap compatible with magnetic grinding laps.</p>\n\n\n\n<p>Can add Variable Speed: if you would like the ability to change the speed for different stones, you may add the Variable Speed Motor, adjustable from 500rpm up to 1500 rpm.</p>\n\n\n\n<p>Motor: 0.75 kW monophase 1400 rpm</p>\n\n<p>Variable Speed Motor: 500rpm - 1500rpm</p>\n\n\n\n<p>Electricity: 110V 60Hz</p>\n\n<p>Cooling: water container</p>\n\n<p>Laps Diameter: 12” diameter</p>\n\n<p>Dimensions: 18” x 24” x 20”</p>\n\n<p>Weight: 90 Lbs.</p>\n\n<p>Packed safely in a wooden pallet box</p>",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "lapmaster-12",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:30Z",
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Flat Lap"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:41Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178813751493",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:54:30Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:54:31Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:54:31Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:09Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMjM5MzQxMywibGFzdF92YWx1ZSI6MjY0MTIwMzIzOTM0MTN9"
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020564165",
+            "handle": "flat-laps",
+            "title": "Flat Laps"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1NjQxNjUsImxhc3RfdmFsdWUiOjM2NDAyMDU2NDE2NX0="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451104895173",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDg5NTE3MywibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185427660997",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:39Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQyNzY2MDk5NywibGFzdF92YWx1ZSI6IjcxMTg1NDI3NjYwOTk3In0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905781477573",
+      "title": "LapMaster 18\"",
+      "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>?This LAPMASTER is constructed from high quality steel, providing top-of-the-line stability to eliminate vibration, for smooth and excellent results.</p> \n\n\n\n<p>18” main lap compatible with magnetic grinding laps.</p>\n\n\n\n<p>Can add Variable Speed: if you would like the ability to change the speed for different stones, you may add the Variable Speed Motor, adjustable from 500rpm to 1500 rpm.</p>\n\n\n\n<p>Motor: 0.75 kW monophase 1400 rpm</p>\n\n<p>Variable Speed Motor: 500rpm - 1500rpm</p>\n\n\n\n<p>Electricity: 110V 60Hz</p>\n\n<p>Cooling: water container</p>\n\n<p>Lap Diameter: 18” diameter</p>\n\n<p>Dimensions: 18” x 24” x 20”</p>\n\n<p>Weight: 90 Lb</p>\n\n<p>Packed safely in a wooden box</p>",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "lapmaster-18",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:54:31Z",
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Flat Lap"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:41Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178813817029",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:54:31Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:54:32Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:54:32Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:09Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzMjQyNjE4MSwibGFzdF92YWx1ZSI6MjY0MTIwMzI0MjYxODF9"
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020564165",
+            "handle": "flat-laps",
+            "title": "Flat Laps"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1NjQxNjUsImxhc3RfdmFsdWUiOjM2NDAyMDU2NDE2NX0="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451105255621",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNTI1NTYyMSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185427628229",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:39Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQyNzYyODIyOSwibGFzdF92YWx1ZSI6IjcxMTg1NDI3NjI4MjI5In0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905784131781",
+      "title": "SawMaster 18\"",
+      "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>Our SAWMASTER 18’’ Large Cutting machine from Rhino Lapidary</p> \n\n<p>is designed for cutting all kinds of materials such as gemstones, marble, ceramics, glass and granite in a fast, safe and standard way in the desired thickness. Thanks to the high technology and durable materials used in our machine, you can cut without any problems for years.</p> \n\n\n\n<p>A key feature in this machine are patented longitudinal, anti-vibration, sealed bearings which provide a wiggle-free vice. This makes your cut less prone to breaking and extensive saw-marks, even at a thickness of 1.5mm.</p>\n\n\n\n<p>Cutting speed is 8mm/min (1 inch in 3 minutes). In addition, with the Auto-Feed system, patented by Rhino Lapidary, when the saw gets tired or cannot cut for any reason, the vice advancement system automatically slows down and reduces the load of the saw. This extends the life of your saw. It prevents damages such as jamming and breaking caused by user errors. It also protects the motor by slowing down the cutting when necessary and prevents it from heating and burning.</p>\n\n\n\n<p>In addition, the machine has an automatic stop feature in place for when the cutting is finished or if the cover is opened while it is working. All parts are CE and TSEK certified.</p> \n\n\n\n<p>Fits up to 18\" Saw</p>\n\n<p>Blade not included</p>\n\n\n\n<p>Electricity: 110V 60HZ</p>\n\n<p>Cutting Height: 6 1/2\"</p>\n\n<p>Cutting Length: 9 7/8\"</p>\n\n<p>Cutting Speed: 7/8’’/min</p>\n\n<p>Motor: 1.8KW 1700rpm with crossfeed</p>\n\n\n\n<p>Machine Dimensions: 105cm width x 130cm length x 130cm height</p>\n\n<p>Machine Weight: 287lbs</p>\n\n\n\n<p>Blade not included</p>\n\n<p>All parts are CE and TSEK certified</p>",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "sawmaster-18",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:19Z",
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Saw"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:52Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178816635077",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:55:19Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:55:20Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:55:20Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:17Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNDk4MjA4NSwibGFzdF92YWx1ZSI6MjY0MTIwMzQ5ODIwODV9"
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020531397",
+            "handle": "saws",
+            "title": "Saws"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1MzEzOTcsImxhc3RfdmFsdWUiOjM2NDAyMDUzMTM5N30="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451117576389",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzU3NjM4OSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185431855301",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:47Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQzMTg1NTMwMSwibGFzdF92YWx1ZSI6IjcxMTg1NDMxODU1MzAxIn0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905784197317",
+      "title": "SawMaster 24\"",
+      "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>?Our SAWMASTER 24’’ Large Cutting machine from Rhino Lapidary</p> \n\n<p>is designed for cutting all kinds of materials such as gemstones, marble, ceramics, glass and granite in a fast, safe and standard way in the desired thickness. Thanks to the high technology and durable materials used in our machine, you can cut without any problems for years.</p> \n\n\n\n<p>A key feature in this machine are patented longitudinal, anti-vibration, sealed bearings which provide a wiggle-free vice. This makes your cut less prone to breaking and extensive saw-marks, even at a thickness of 1.5mm.</p>\n\n\n\n<p>Cutting speed is 8mm/min (1 inch in 3 minutes). In addition, with the Auto-Feed system patented by Rhino Lapidary, when the saw gets tired or cannot cut for any reason, the vice advancement system automatically slows down and reduces the load of the saw. This extends the life of your saw. It prevents damages such as jamming and breaking caused by user errors. It also protects the motor by slowing down the cutting when necessary and prevents it from heating and burning.</p>\n\n\n\n<p>In addition, the machine has an automatic stop feature for when the cutting is finished or if the cover is opened while it is working.</p>\n\n\n\n<p>Fits up to a 24’’ Saw</p>\n\n<p>Blade not included</p>\n\n\n\n<p>Electricity: 110V 60HZ</p>\n\n<p>Cutting Height: 7’’</p>\n\n<p>Cutting Length: 11’’</p>\n\n<p>Cutting Speed: 7/8’’/min</p>\n\n<p>Motor: 1.8KW 1700rpm with crossfeed</p>\n\n<p>Machine Dimensions: 105cm width x 140cm length x 140cm height</p>\n\n<p>Machine Weight: 340lbs</p>\n\n\n\n<p>Blade not included</p>\n\n<p>All parts are CE and TSEK certified</p>",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "sawmaster-24",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:20Z",
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Saw"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:48Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178816700613",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:55:20Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:55:21Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:55:21Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:17Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNTAxNDg1MywibGFzdF92YWx1ZSI6MjY0MTIwMzUwMTQ4NTN9"
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020531397",
+            "handle": "saws",
+            "title": "Saws"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1MzEzOTcsImxhc3RfdmFsdWUiOjM2NDAyMDUzMTM5N30="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451117871301",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185431822533",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:47Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQzMTgyMjUzMywibGFzdF92YWx1ZSI6IjcxMTg1NDMxODIyNTMzIn0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905784328389",
+      "title": "ShapeMaster 6\"",
+      "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n<p>With the new SHAPEMASTER from Rhino Lapidary, it's very easy and quick to make calibrated, exact shapes, even with little to no experience. Shaping a heart, oval, round, barrel, marquise, and many more are all possible just by gently turning the control wheel. You can also make shapes in larger or smaller sizes without changing the master shape.</p>\n<p>29 trendy metal master shapes come included with the machine free.</p>\n<p>The machine uses 6” diameter 1/2\" wheels for 3D shapes and 1/4\" wheels for cabs.</p>\n<p>Electricity: 110V 60Hz</p>\n<p>Motor: 0.55 kW monophase 3000 rpm</p>\n<p>Cooling: circulating tap water</p>\n<p>Wheels: 6” diameter, 1” hole diameter</p>\n<p>1/2 R: 4, 6, 8, 10, 12 mm</p>\n<p>1/4 R: 4, 6, 8, 10, 12 mm</p>\n<p>Dimensions: 20” x 24” x 16”</p>\n<p>Weight: 100 Lb.</p>\n<p>Packed safely in a wooden pallet box</p>",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "shapemaster",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:23Z",
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Shaping"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:48Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178816831685",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:55:23Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:55:24Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:55:24Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:17Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNTExMzE1NywibGFzdF92YWx1ZSI6MjY0MTIwMzUxMTMxNTd9"
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020596933",
+            "handle": "shaping",
+            "title": "Shaping Machines"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1OTY5MzMsImxhc3RfdmFsdWUiOjM2NDAyMDU5NjkzM30="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451118428357",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExODQyODM1NywibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185431756997",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:47Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQzMTc1Njk5NywibGFzdF92YWx1ZSI6IjcxMTg1NDMxNzU2OTk3In0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905785344197",
+      "title": "TrimMaster",
+      "descriptionHtml": "<p>AVAILABLE FOR SHIPPING, OR PICKUP IN: Wisconsin year-round, Arizona Jan/Feb</p>\n\n\n\n<p>?Sawing slabs and stones for years in comfort is possible with the new TRIMMASTER trim saw!</p>\n\n\n\n<p>You will never have a rusted cutting platform of your machine again, thanks to the Plexiglass surface that easily lifts away. The plexiglass has 4 drainage holes to keep water/oil in the lower reservoir, and adjustable feet let you ensure the tilt is correct for the drainage, even if you are not on a perfectly level surface.</p>\n\n\n\n<p>The Trimmaster also comes with spacers for the plexiglass cover that allow you to raise it over the edge of the cutting platform for cutting larger material. There is also a removable, straight-edge guide included for consistent and accurate cutting.</p> \n\n\n\n<p>Electricity: 110V 60Hz</p>\n\n<p>Motor: Monophase, 0.37 kw, &gt;3000 rpm</p>\n\n<p>Cooling: self circulating water/oil</p>\n\n<p>Cutting Length: 5\"</p>\n\n<p>Cutting Height: 2\"</p>\n\n<p>Dimensions: W14” x L22” x H14”</p>\n\n<p>Weight: 50 Lb.</p>\n\n<p>Packed safely in a wooden pallet box</p>\n\n\n\n<p>Blade not included</p>\n\n<p>compatible with 6” or 8” diameter, 1” hole diameter</p>",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "trimmaster",
+      "status": "ACTIVE",
+      "publishedAt": "2026-07-02T16:55:43Z",
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Saw"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:57Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178817913029",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345582277"
+            },
+            "publishDate": "2026-07-02T16:55:43Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-07-02T16:55:44Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345647813"
+            },
+            "publishDate": "2026-07-02T16:55:44Z",
+            "isPublished": true
+          },
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/213331837125"
+            },
+            "publishDate": "2026-08-18T17:18:20Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjQxMjAzNjAzMDY2MSwibGFzdF92YWx1ZSI6MjY0MTIwMzYwMzA2NjF9"
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020531397",
+            "handle": "saws",
+            "title": "Saws"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1MzEzOTcsImxhc3RfdmFsdWUiOjM2NDAyMDUzMTM5N30="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451123409093",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEyMzQwOTA5MywibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185433755845",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:51Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQzMzc1NTg0NSwibGFzdF92YWx1ZSI6IjcxMTg1NDMzNzU1ODQ1In0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905781248197",
+      "title": "JadeMaster, 14\"",
+      "descriptionHtml": "",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "jademaster",
+      "status": "ACTIVE",
+      "publishedAt": null,
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Saw"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:41Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178813587653",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "publication": {
+              "id": "gid://shopify/Publication/207345615045"
+            },
+            "publishDate": "2026-08-31T19:44:35Z",
+            "isPublished": true
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNTQ5ODE5MzY1ODA1MywibGFzdF92YWx1ZSI6MjU0OTgxOTM2NTgwNTN9"
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020531397",
+            "handle": "saws",
+            "title": "Saws"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1MzEzOTcsImxhc3RfdmFsdWUiOjM2NDAyMDUzMTM5N30="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451104075973",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTEwNDA3NTk3MywibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185427759301",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:39Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQyNzc1OTMwMSwibGFzdF92YWx1ZSI6IjcxMTg1NDI3NzU5MzAxIn0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905784262853",
+      "title": "SawMaster, 36\"",
+      "descriptionHtml": "",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "sawmaster-36",
+      "status": "DRAFT",
+      "publishedAt": null,
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Saw"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:51Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178816766149",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020531397",
+            "handle": "saws",
+            "title": "Saws"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1MzEzOTcsImxhc3RfdmFsdWUiOjM2NDAyMDUzMTM5N30="
+        }
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/33451117871301",
+            "mediaContentType": "IMAGE",
+            "status": "READY",
+            "alt": ""
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozMzQ1MTExNzg3MTMwMSwibGFzdF92YWx1ZSI6IjEifQ=="
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185431789765",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:47Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQzMTc4OTc2NSwibGFzdF92YWx1ZSI6IjcxMTg1NDMxNzg5NzY1In0="
+        }
+      }
+    },
+    {
+      "id": "gid://shopify/Product/8905785868485",
+      "title": "TumbleMaster",
+      "descriptionHtml": "",
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "onlineStoreUrl": null,
+      "handle": "tumblemaster",
+      "status": "DRAFT",
+      "publishedAt": null,
+      "vendor": "Rhino Lapidary",
+      "productType": "",
+      "category": {
+        "id": "gid://shopify/TaxonomyCategory/na",
+        "fullName": "Uncategorized"
+      },
+      "tags": [
+        "Shaping"
+      ],
+      "templateSuffix": null,
+      "updatedAt": "2026-10-05T19:59:56Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11178818470085",
+          "name": "Title",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "resourcePublicationsV2": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      },
+      "collections": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Collection/355080962245",
+            "handle": "machines",
+            "title": "Machines"
+          },
+          {
+            "id": "gid://shopify/Collection/364020596933",
+            "handle": "shaping",
+            "title": "Shaping Machines"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjozNjQwMjA1OTY5MzMsImxhc3RfdmFsdWUiOjM2NDAyMDU5NjkzM30="
+        }
+      },
+      "media": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      },
+      "metafields": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Metafield/71185433526469",
+            "namespace": "rhino",
+            "key": "product_class",
+            "type": "single_line_text_field",
+            "value": "machine",
+            "jsonValue": "machine",
+            "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+            "updatedAt": "2026-10-05T19:59:51Z",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3MTE4NTQzMzUyNjQ2OSwibGFzdF92YWx1ZSI6IjcxMTg1NDMzNTI2NDY5In0="
+        }
+      }
+    }
+  ],
+  "allowedWrite": {
+    "ownerType": "Product",
+    "field": "templateSuffix",
+    "value": "machine"
+  },
+  "prohibitedWrites": [
+    "all other Product fields",
+    "all Variant fields",
+    "all metafield/metaobject values and definitions",
+    "excluded Products",
+    "other Products",
+    "publication or payment/password/analytics configuration"
+  ],
+  "rollback": [
+    {
+      "productGid": "gid://shopify/Product/8905779937477",
+      "previousSuffix": null
+    },
+    {
+      "productGid": "gid://shopify/Product/8905780756677",
+      "previousSuffix": null
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781412037",
+      "previousSuffix": null
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781477573",
+      "previousSuffix": null
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784131781",
+      "previousSuffix": null
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784197317",
+      "previousSuffix": null
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784328389",
+      "previousSuffix": null
+    },
+    {
+      "productGid": "gid://shopify/Product/8905785344197",
+      "previousSuffix": null
+    }
+  ],
+  "separateHumanApprovalOverride": "Plan-specific delegated development authority; ordinary independent approvals remain required outside this exact execution.",
+  "productVisibilityBasis": "Fresh ACTIVE status, publishedAt and complete resourcePublicationsV2 plus actual normal-route HTTP 200/Product identity/native purchase display for all eight candidates. onlineStoreUrl remains null under storefront password protection; no value is fabricated.",
+  "visibilityEvidence": {
+    "path": "docs/qa/evidence/epic-f/live-activation-2026-10-05/browser-pre-assignment-normal.json",
+    "sha256": "a1b25abb2a27b0cd40e3434bee796ac8cf6ff167422ef8efe5b2afcfe5e2f586"
+  },
+  "authorizationSha256": "6373ff69839c2531a1495abbfc36a13aedae65e952fd64d70c26db18a513e363"
+}

@@ -1,0 +1,180 @@
+{
+  "completedAt": "2026-10-15T18:34:53.978Z",
+  "sourceBindingSha256": "e8e2e5adc08699e30306c4b37acb4d964a8343062a19e3d134f91b9a9378473a",
+  "exitCode": 0,
+  "scope": "Current F1-F8 under amended reconciled owner binding; completed F1-F7 reused and current readiness rebuilt",
+  "regression": [
+    {
+      "batch": "F1",
+      "path": "test-results/epic-f/batch-f1-validation.json",
+      "sha256": "016d3962b7c127b41a022d05444a4c86c9a7269957f94590c752aa0a988af40e",
+      "assessedAt": "2026-10-15T18:29:16.250Z",
+      "exitCode": 0
+    },
+    {
+      "batch": "F2",
+      "path": "test-results/epic-f/f2/batch-f2-validation.json",
+      "sha256": "04b882272f37e26c42af9d5bf7d87c58ed41432be70166ccc0df01ab6dc2b38f",
+      "assessedAt": "2026-10-15T18:29:16.637Z",
+      "exitCode": 0
+    },
+    {
+      "batch": "F3",
+      "path": "test-results/epic-f/f3/batch-f3-validation.json",
+      "sha256": "cadb55ef22abe42d40909f5d5fa97137992fc9a8791dda47377de963884b3bc1",
+      "assessedAt": "2026-10-15T18:29:16.890Z",
+      "exitCode": 0
+    },
+    {
+      "batch": "F4",
+      "path": "test-results/epic-f/f4/batch-f4-validation.json",
+      "sha256": "5ea6b8a964ab5f1e17471e4f44b87f75b5e15c7abd6acb264f7a484c0a8f58fd",
+      "assessedAt": "2026-10-15T18:29:17.173Z",
+      "exitCode": 0
+    },
+    {
+      "batch": "F5",
+      "path": "test-results/epic-f/f5/batch-f5-validation.json",
+      "sha256": "2204a964313073035e3eb840e8d1b8f72415916dd67427a54501104169e53d78",
+      "assessedAt": "2026-10-15T18:29:17.465Z",
+      "exitCode": 0
+    },
+    {
+      "batch": "F6",
+      "path": "test-results/epic-f/f6/batch-f6-validation.json",
+      "sha256": "c677ae753044ab10bfe4bf57add7cd4d3835febb79e765009665b10c1a139969",
+      "assessedAt": "2026-10-15T18:29:17.734Z",
+      "exitCode": 0
+    },
+    {
+      "batch": "F7",
+      "path": "test-results/epic-f/f7/batch-f7-validation.json",
+      "sha256": "5ec5f2139909e3849a91556c66008a6384d3cd0295c455b973183624a7755bfc",
+      "assessedAt": "2026-10-15T18:29:52.076Z",
+      "exitCode": 0
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts/test-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "proof": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/complete-readiness-check.json",
+      "reusedCompleteCheck": true
+    },
+    {
+      "command": "node scripts/build-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-build-epic-f-machine-page-readiness.log"
+    },
+    {
+      "command": "node scripts/validate-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-validate-epic-f-machine-page-readiness.log"
+    },
+    {
+      "command": "node scripts/validate-epic-e-owner-activation.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-validate-epic-e-owner-activation.log"
+    },
+    {
+      "command": "node scripts/test-epic-f-006b-amended.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-test-epic-f-006b-amended.log"
+    },
+    {
+      "command": "npm run theme:check",
+      "exitCode": 0,
+      "required": true,
+      "log": "test-results/epic-f/f8/theme-check.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "readinessTests": {
+    "cases": [
+      "source-bound safe suppression packet passes with stale Admin and blocked release",
+      "missing machine",
+      "duplicate machine",
+      "unknown Product GID",
+      "only published machines sampled",
+      "draft machine omitted",
+      "renderer complete does not approve fact",
+      "fixture approval cannot activate customer facts",
+      "suppression does not imply fact readiness",
+      "repository test green cannot make Admin current",
+      "old snapshot present cannot make Admin current",
+      "snapshot expiry cannot be extended by generation time",
+      "zero media grants changed to one",
+      "unapproved extra specifications grant",
+      "unapproved extra contents grant",
+      "unapproved extra contextual grant",
+      "unapproved extra delivery grant",
+      "unapproved extra warranty grant",
+      "unapproved extra manuals grant",
+      "unapproved extra diagrams_instructions grant",
+      "unapproved extra videos grant",
+      "unapproved extra support_files grant",
+      "unknown nonzero grant fails closed with exact source",
+      "suppressed module presented as active",
+      "proposed classification cannot be live migrated",
+      "004B incorrectly complete",
+      "006B incorrectly complete",
+      "007B incorrectly complete",
+      "008B incorrectly complete",
+      "009B incorrectly complete",
+      "010B incorrectly complete",
+      "011B incorrectly complete",
+      "014B incorrectly complete",
+      "015B incorrectly complete",
+      "018B incorrectly complete",
+      "017B incorrectly authorized",
+      "018 overall incorrectly complete",
+      "rollout plan ready cannot authorize assignment",
+      "conditional future candidate cannot become executable",
+      "conditional future candidate cannot become eligible",
+      "exclusion silently removed",
+      "only Product Owner GO cannot authorize",
+      "only Shopify Admin Owner GO cannot authorize",
+      "both GO roles cannot be invented in F8",
+      "instrumentation falsely active from complete contract",
+      "analytics events cannot be emitted",
+      "manual URL working cannot make canonical resource",
+      "policy route existing cannot approve warranty",
+      "native pickup cannot approve seasonal pickup",
+      "native payment terms cannot resolve F-DEC-001",
+      "local performance pass cannot certify release",
+      "single local observations cannot become release median",
+      "accessibility fixtures cannot verify Shopify parity",
+      "historical diagnostic signature drift",
+      "Product CSV total changed without owned evidence",
+      "Product CSV 95/8 categories changed",
+      "37 historical claims disappeared",
+      "seven broken manual destinations disappeared",
+      "stale upstream hash",
+      "missing evidence source",
+      "nonexistent evidence source",
+      "JSON-LD blocked fallback incorrectly retained",
+      "global ready boolean forbidden",
+      "releaseReady inferred from repository pass forbidden",
+      "production publication authorization forbidden",
+      "runtime changes outside F8 scope forbidden"
+    ],
+    "passed": 66,
+    "failed": 0,
+    "mutations": 0,
+    "emittedEvents": 0
+  },
+  "ThemeCheck": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "initialAggregate": {
+    "path": "docs/qa/evidence/epic-f/006b-amended-activation-2026-10-15/local-aggregate-initial-attempt.json",
+    "sha256": "c4df7d487d57a091266c1e2bfff8be9c713aa93484ef6b0ff591931a24ad2394",
+    "exitCode": 1
+  },
+  "thresholdsChanged": false,
+  "performanceCertification": false
+}

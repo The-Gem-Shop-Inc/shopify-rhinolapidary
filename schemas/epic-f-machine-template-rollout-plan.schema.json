@@ -1,0 +1,303 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "planId",
+    "policyDigest",
+    "beforeDigest",
+    "templateSha256",
+    "assessments",
+    "futureCandidateGids",
+    "eligibleTargetGids",
+    "proposedWriteSet",
+    "rollback",
+    "mutationsProduced",
+    "productionThemePublicationAuthorized",
+    "executionAuthorized",
+    "approvalState",
+    "evidenceState",
+    "planHash"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "planId": {
+      "const": "F-017A-machine-template-v1"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "beforeDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "templateSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "label",
+          "assessed",
+          "observedTemplateSuffix",
+          "intendedTemplateSuffix",
+          "status",
+          "publication",
+          "classificationReadiness",
+          "eligibility",
+          "futureCandidate",
+          "reasons",
+          "mutationWouldBeRequiredIfAuthorized",
+          "allowedChange",
+          "rollbackValue"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "assessed": {
+            "const": true
+          },
+          "observedTemplateSuffix": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "intendedTemplateSuffix": {
+            "const": "machine"
+          },
+          "status": {
+            "type": "string",
+            "minLength": 1
+          },
+          "publication": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "publishedAt",
+              "onlineStoreUrl",
+              "publicationsDigest",
+              "customerVisibility"
+            ],
+            "properties": {
+              "publishedAt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "onlineStoreUrl": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "publicationsDigest": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "customerVisibility": {
+                "enum": [
+                  "historical_published",
+                  "unpublished",
+                  "verified_visible"
+                ]
+              }
+            }
+          },
+          "classificationReadiness": {
+            "const": "blocked"
+          },
+          "eligibility": {
+            "enum": [
+              "excluded",
+              "blocked"
+            ]
+          },
+          "futureCandidate": {
+            "type": "boolean"
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "mutationWouldBeRequiredIfAuthorized": {
+            "type": "boolean"
+          },
+          "allowedChange": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "productGid",
+                  "field",
+                  "before",
+                  "after"
+                ],
+                "properties": {
+                  "productGid": {
+                    "type": "string",
+                    "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+                  },
+                  "field": {
+                    "const": "templateSuffix"
+                  },
+                  "before": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "after": {
+                    "const": "machine"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rollbackValue": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "minItems": 11,
+      "maxItems": 11
+    },
+    "futureCandidateGids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+      },
+      "uniqueItems": true,
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "eligibleTargetGids": {
+      "const": []
+    },
+    "proposedWriteSet": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "field",
+          "before",
+          "after"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+          },
+          "field": {
+            "const": "templateSuffix"
+          },
+          "before": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "after": {
+            "const": "machine"
+          }
+        }
+      },
+      "minItems": 0,
+      "maxItems": 8
+    },
+    "rollback": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "field",
+          "expectedAssignedValue",
+          "restore"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+          },
+          "field": {
+            "const": "templateSuffix"
+          },
+          "expectedAssignedValue": {
+            "const": "machine"
+          },
+          "restore": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "minItems": 0,
+      "maxItems": 8
+    },
+    "mutationsProduced": {
+      "const": 0
+    },
+    "productionThemePublicationAuthorized": {
+      "const": false
+    },
+    "executionAuthorized": {
+      "const": false
+    },
+    "approvalState": {
+      "const": "both_absent_not_granted"
+    },
+    "evidenceState": {
+      "const": "historical_incomplete_not_execution_evidence"
+    },
+    "planHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

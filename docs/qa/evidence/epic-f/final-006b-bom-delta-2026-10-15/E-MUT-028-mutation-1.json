@@ -1,0 +1,63 @@
+{
+  "startedAt": "2026-10-15T20:24:56.078Z",
+  "completedAt": "2026-10-15T20:24:56.842Z",
+  "query": "mutation AmendedTechnicalValues($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type jsonValue compareDigest definition{id}} userErrors{field message}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "blade_diameter_min",
+        "type": "dimension",
+        "value": "{\"value\":6,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905781248197",
+        "namespace": "rhino",
+        "key": "blade_arbor_diameter",
+        "type": "dimension",
+        "value": "{\"value\":1,\"unit\":\"inches\"}",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71579116634309",
+            "namespace": "rhino",
+            "key": "blade_diameter_min",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 6,
+              "unit": "INCHES"
+            },
+            "compareDigest": "03e291f8b982b791a100bac033bcc0f9b556ec899edf357bb753093d390b4ff5",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659119301"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71579116601541",
+            "namespace": "rhino",
+            "key": "blade_arbor_diameter",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 1,
+              "unit": "INCHES"
+            },
+            "compareDigest": "5e0a6687d87124bf366af5e764a5a86bcb9e90535133a88b57a325f4e64c3691",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659217605"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  },
+  "isError": false
+}

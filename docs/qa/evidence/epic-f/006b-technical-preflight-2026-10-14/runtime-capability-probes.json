@@ -1,0 +1,66 @@
+{
+  "readOnly": true,
+  "codeChanged": false,
+  "command": "node scripts/preflight-epic-f-006b-technical-intake.js",
+  "probes": [
+    {
+      "field": "rhino.input_voltage",
+      "type": "voltage",
+      "desired": {
+        "value": 110,
+        "unit": "volts"
+      },
+      "supported": true,
+      "error": null
+    },
+    {
+      "field": "rhino.motor_power",
+      "type": "power",
+      "desired": {
+        "value": 2,
+        "unit": "horsepower"
+      },
+      "supported": true,
+      "error": null
+    },
+    {
+      "field": "rhino.assembled_length",
+      "type": "dimension",
+      "desired": {
+        "value": 14.5,
+        "unit": "inches"
+      },
+      "supported": true,
+      "error": null
+    },
+    {
+      "field": "rhino.net_weight",
+      "type": "weight",
+      "desired": {
+        "value": 60,
+        "unit": "pounds"
+      },
+      "supported": false,
+      "error": "Unobserved Liquid unit weight/pounds"
+    },
+    {
+      "field": "rhino.water_reservoir_capacity",
+      "type": "volume",
+      "desired": {
+        "value": 3.5,
+        "unit": "us_gallons"
+      },
+      "supported": false,
+      "error": "Unobserved Liquid unit volume/us_gallons"
+    },
+    {
+      "field": "rhino.water_system_type",
+      "type": "single_line_text_field",
+      "desired": "recirculating_filtered",
+      "supported": false,
+      "error": "Unobserved Liquid unit single_line_text_field/undefined"
+    }
+  ],
+  "existingScalarChecksPass": 3,
+  "missingCapabilitiesConfirmed": 3
+}

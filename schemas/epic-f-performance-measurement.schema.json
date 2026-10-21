@@ -1,0 +1,1769 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Observation record; schema validity alone is never a performance pass. Apply evaluateRun.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "stage",
+    "requestedRuns",
+    "samples",
+    "medians",
+    "aggregationLabel"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "stage": {
+      "enum": [
+        "fixture-regression",
+        "preview-diagnostic",
+        "release-certification"
+      ]
+    },
+    "requestedRuns": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "samples": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "timestamp",
+          "fixtureOnly",
+          "galleryState",
+          "environment",
+          "identity",
+          "navigation",
+          "viewport",
+          "policy",
+          "networkObservation",
+          "resources",
+          "metrics",
+          "media",
+          "duplicateProductScripts",
+          "blockingMetric"
+        ],
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fixtureOnly": {
+            "type": "boolean"
+          },
+          "galleryState": {
+            "type": "string",
+            "minLength": 1
+          },
+          "environment": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "kind",
+              "theme"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "local-fixture",
+                  "preview",
+                  "production"
+                ]
+              },
+              "theme": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "name",
+                  "verified"
+                ],
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "verified": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "identity": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "requestedUrl",
+              "resolvedUrl",
+              "requestedRoute",
+              "resolvedRoute",
+              "productGid",
+              "template"
+            ],
+            "properties": {
+              "requestedUrl": {
+                "type": "string",
+                "minLength": 1
+              },
+              "resolvedUrl": {
+                "type": "string",
+                "minLength": 1
+              },
+              "requestedRoute": {
+                "type": "string",
+                "minLength": 1
+              },
+              "resolvedRoute": {
+                "type": "string",
+                "minLength": 1
+              },
+              "productGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "template": {
+                "const": "product.machine"
+              }
+            }
+          },
+          "navigation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "completed",
+              "status",
+              "pageKind",
+              "password",
+              "challenge"
+            ],
+            "properties": {
+              "completed": {
+                "type": "boolean"
+              },
+              "status": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "pageKind": {
+                "enum": [
+                  "product",
+                  "error",
+                  "password",
+                  "challenge",
+                  "non-product"
+                ]
+              },
+              "password": {
+                "type": "boolean"
+              },
+              "challenge": {
+                "type": "boolean"
+              }
+            }
+          },
+          "viewport": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "profile",
+              "width",
+              "height",
+              "deviceScaleFactor"
+            ],
+            "properties": {
+              "profile": {
+                "enum": [
+                  "mobile",
+                  "desktop"
+                ]
+              },
+              "width": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "deviceScaleFactor": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          },
+          "policy": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "throttling",
+              "cache",
+              "settleMs",
+              "settlePolicy"
+            ],
+            "properties": {
+              "throttling": {
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "cache": {
+                "type": "string",
+                "minLength": 1
+              },
+              "settleMs": {
+                "type": "number",
+                "minimum": 0
+              },
+              "settlePolicy": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "networkObservation": {
+            "enum": [
+              "complete",
+              "missing",
+              "unsupported"
+            ]
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "required": [
+                "url",
+                "type",
+                "bytes",
+                "status",
+                "completed",
+                "attribution"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "bytes": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "status": {
+                  "type": "number"
+                },
+                "completed": {
+                  "type": "boolean"
+                },
+                "attribution": {
+                  "enum": [
+                    "native-payment-provider",
+                    "preview-tooling",
+                    "rhino-theme",
+                    "native-trade-theme",
+                    "synthetic-fixture-media",
+                    "first-party",
+                    "synthetic-video-provider",
+                    "native-shopify",
+                    "third-party",
+                    "native-recommendations"
+                  ]
+                }
+              }
+            }
+          },
+          "metrics": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "lcpMs",
+              "cls",
+              "tbtMs",
+              "initialTransferBytes",
+              "imageBytes",
+              "maxImageBytes",
+              "firstScreenMediaBytes",
+              "requestCount",
+              "immediateVideoIframeCount",
+              "autoplayMediaCount",
+              "thirdPartyScriptHostCount",
+              "synchronousThirdPartyScriptCount"
+            ],
+            "properties": {
+              "lcpMs": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "cls": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "tbtMs": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "initialTransferBytes": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "imageBytes": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "maxImageBytes": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "firstScreenMediaBytes": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "requestCount": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "immediateVideoIframeCount": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "autoplayMediaCount": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "thirdPartyScriptHostCount": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              },
+              "synchronousThirdPartyScriptCount": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "measured"
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "media": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dimensionsValid",
+              "secondaryLazy",
+              "firstScreenSources"
+            ],
+            "properties": {
+              "dimensionsValid": {
+                "type": "boolean"
+              },
+              "secondaryLazy": {
+                "type": "boolean"
+              },
+              "firstScreenSources": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "duplicateProductScripts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "blockingMetric": {
+            "type": "string",
+            "minLength": 1
+          },
+          "secondaryInspection": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "phase",
+              "observation",
+              "resources",
+              "maxImageBytes"
+            ],
+            "properties": {
+              "phase": {
+                "type": "string",
+                "minLength": 1
+              },
+              "observation": {
+                "enum": [
+                  "complete",
+                  "missing"
+                ]
+              },
+              "resources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "required": [
+                    "url",
+                    "type",
+                    "bytes",
+                    "status",
+                    "completed",
+                    "attribution"
+                  ],
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "type": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "bytes": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "status": {
+                      "type": "number"
+                    },
+                    "completed": {
+                      "type": "boolean"
+                    },
+                    "attribution": {
+                      "enum": [
+                        "native-payment-provider",
+                        "preview-tooling",
+                        "rhino-theme",
+                        "native-trade-theme",
+                        "synthetic-fixture-media",
+                        "first-party",
+                        "synthetic-video-provider",
+                        "native-shopify",
+                        "third-party",
+                        "native-recommendations"
+                      ]
+                    }
+                  }
+                }
+              },
+              "maxImageBytes": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "medians": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "lcpMs",
+            "cls",
+            "tbtMs",
+            "initialTransferBytes",
+            "imageBytes",
+            "maxImageBytes",
+            "firstScreenMediaBytes",
+            "requestCount",
+            "immediateVideoIframeCount",
+            "autoplayMediaCount",
+            "thirdPartyScriptHostCount",
+            "synchronousThirdPartyScriptCount"
+          ],
+          "properties": {
+            "lcpMs": {
+              "type": "number",
+              "minimum": 0
+            },
+            "cls": {
+              "type": "number",
+              "minimum": 0
+            },
+            "tbtMs": {
+              "type": "number",
+              "minimum": 0
+            },
+            "initialTransferBytes": {
+              "type": "number",
+              "minimum": 0
+            },
+            "imageBytes": {
+              "type": "number",
+              "minimum": 0
+            },
+            "maxImageBytes": {
+              "type": "number",
+              "minimum": 0
+            },
+            "firstScreenMediaBytes": {
+              "type": "number",
+              "minimum": 0
+            },
+            "requestCount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "immediateVideoIframeCount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "autoplayMediaCount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "thirdPartyScriptHostCount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "synchronousThirdPartyScriptCount": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "aggregationLabel": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authorizationRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "widgetDecisionRef": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "certificationPreflight": {
+      "title": "Pre-sample stop metadata; never a measurement record or certification pass",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "kind",
+        "decision",
+        "authorization",
+        "sourceBinding",
+        "environment",
+        "profiles",
+        "throttling",
+        "missingConfiguration",
+        "policy",
+        "plan",
+        "records",
+        "metrics",
+        "approvedComparableBaseline",
+        "beforeGate",
+        "persistentAfter",
+        "validation",
+        "statusConsequences"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "kind": {
+          "const": "F_PBI_015B_CERTIFICATION_PREFLIGHT"
+        },
+        "decision": {
+          "const": "BLOCKED_CONFIGURATION_NOT_SAMPLED"
+        },
+        "authorization": {
+          "type": "object"
+        },
+        "sourceBinding": {
+          "type": "object"
+        },
+        "environment": {
+          "type": "object"
+        },
+        "profiles": {
+          "type": "object"
+        },
+        "throttling": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "mobile",
+            "desktop"
+          ],
+          "properties": {
+            "status": {
+              "const": "UNRESOLVED_NO_APPROVED_CONCRETE_PROFILE"
+            },
+            "mobile": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "latencyMs",
+                "downloadBytesPerSecond",
+                "uploadBytesPerSecond",
+                "cpuSlowdown"
+              ],
+              "properties": {
+                "latencyMs": {
+                  "type": "null"
+                },
+                "downloadBytesPerSecond": {
+                  "type": "null"
+                },
+                "uploadBytesPerSecond": {
+                  "type": "null"
+                },
+                "cpuSlowdown": {
+                  "type": "null"
+                }
+              }
+            },
+            "desktop": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "latencyMs",
+                "downloadBytesPerSecond",
+                "uploadBytesPerSecond",
+                "cpuSlowdown"
+              ],
+              "properties": {
+                "latencyMs": {
+                  "type": "null"
+                },
+                "downloadBytesPerSecond": {
+                  "type": "null"
+                },
+                "uploadBytesPerSecond": {
+                  "type": "null"
+                },
+                "cpuSlowdown": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        },
+        "missingConfiguration": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "policy": {
+          "type": "object"
+        },
+        "plan": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "routes",
+            "profiles",
+            "cacheStates",
+            "samplesPerRecord",
+            "plannedRecords",
+            "plannedSamples",
+            "attemptedSamples",
+            "validSamples",
+            "invalidSamples",
+            "retriedSamples"
+          ],
+          "properties": {
+            "routes": {
+              "const": 8
+            },
+            "profiles": {
+              "const": 2
+            },
+            "cacheStates": {
+              "const": 2
+            },
+            "samplesPerRecord": {
+              "const": 3
+            },
+            "plannedRecords": {
+              "const": 32
+            },
+            "plannedSamples": {
+              "const": 96
+            },
+            "attemptedSamples": {
+              "const": 0
+            },
+            "validSamples": {
+              "const": 0
+            },
+            "invalidSamples": {
+              "const": 0
+            },
+            "retriedSamples": {
+              "const": 0
+            }
+          }
+        },
+        "records": {
+          "type": "array",
+          "minItems": 32,
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "route",
+              "productGid",
+              "profile",
+              "cache",
+              "classification",
+              "state",
+              "requestedRuns",
+              "samples",
+              "medians",
+              "metrics",
+              "thresholds",
+              "violations",
+              "identityVerification",
+              "resourceAttribution",
+              "providerState"
+            ],
+            "properties": {
+              "route": {
+                "type": "string",
+                "minLength": 1
+              },
+              "productGid": {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              "profile": {
+                "enum": [
+                  "mobile",
+                  "desktop"
+                ]
+              },
+              "cache": {
+                "enum": [
+                  "cold",
+                  "warm"
+                ]
+              },
+              "classification": {
+                "enum": [
+                  "RELEASE_CERTIFICATION",
+                  "SUPPORTING_RELEASE_COMPARISON"
+                ]
+              },
+              "state": {
+                "const": "NOT_SAMPLED_PRECONDITION_BLOCKED"
+              },
+              "requestedRuns": {
+                "const": 3
+              },
+              "samples": {
+                "type": "array",
+                "maxItems": 0
+              },
+              "medians": {
+                "type": "null"
+              },
+              "metrics": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "lcpMs",
+                  "cls",
+                  "tbtMs",
+                  "initialTransferBytes",
+                  "imageBytes",
+                  "maxImageBytes",
+                  "firstScreenMediaBytes",
+                  "requestCount",
+                  "immediateVideoIframeCount",
+                  "autoplayMediaCount",
+                  "thirdPartyScriptHostCount",
+                  "synchronousThirdPartyScriptCount"
+                ],
+                "properties": {
+                  "lcpMs": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "cls": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "tbtMs": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "initialTransferBytes": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "imageBytes": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "maxImageBytes": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "firstScreenMediaBytes": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "requestCount": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "immediateVideoIframeCount": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "autoplayMediaCount": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "thirdPartyScriptHostCount": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "synchronousThirdPartyScriptCount": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "value"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "missing",
+                          "unsupported"
+                        ]
+                      },
+                      "value": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              },
+              "thresholds": {
+                "type": "object"
+              },
+              "violations": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "identityVerification": {
+                "type": "object"
+              },
+              "resourceAttribution": {
+                "type": "null"
+              },
+              "providerState": {
+                "const": "NOT_MEASURED"
+              }
+            }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "lcpMs",
+            "cls",
+            "tbtMs",
+            "initialTransferBytes",
+            "imageBytes",
+            "maxImageBytes",
+            "firstScreenMediaBytes",
+            "requestCount",
+            "immediateVideoIframeCount",
+            "autoplayMediaCount",
+            "thirdPartyScriptHostCount",
+            "synchronousThirdPartyScriptCount"
+          ],
+          "properties": {
+            "lcpMs": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "cls": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "tbtMs": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "initialTransferBytes": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "imageBytes": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "maxImageBytes": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "firstScreenMediaBytes": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "requestCount": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "immediateVideoIframeCount": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "autoplayMediaCount": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "thirdPartyScriptHostCount": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            },
+            "synchronousThirdPartyScriptCount": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "missing",
+                    "unsupported"
+                  ]
+                },
+                "value": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        },
+        "approvedComparableBaseline": {
+          "const": "NONE_AVAILABLE"
+        },
+        "beforeGate": {
+          "type": "object"
+        },
+        "persistentAfter": {
+          "type": "object"
+        },
+        "validation": {
+          "type": "object"
+        },
+        "statusConsequences": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

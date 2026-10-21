@@ -1,0 +1,82 @@
+{
+  "planId": "E-MUT-029",
+  "source": {
+    "path": "data/epic-e-final-006b-bom-approved-delta.json",
+    "sha256": "a8d7e909bc8d385bbc817f848da639734d45d5723564233960d545b5fb0a00d4"
+  },
+  "before": {
+    "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-029-before.json",
+    "sha256": "455a26cd5fa92517e1575b2787e017cd00058a6e3f71f101876f42cacff638bc"
+  },
+  "items": [
+    {
+      "row": {
+        "rowId": "FINALDELTA:8905780756677:water_reservoir_capacity",
+        "kind": "value",
+        "targetGid": "gid://shopify/Product/8905780756677",
+        "field": "PRODUCT.metafields.rhino.water_reservoir_capacity",
+        "domain": "water_fluid",
+        "planId": "E-MUT-029",
+        "type": "volume",
+        "desired": {
+          "value": 3.5,
+          "unit": "us_gallons"
+        },
+        "valueState": "approved",
+        "approvalDecisionId": "FINAL_OWNER_2026_10_15:52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31",
+        "ownerDecisionId": "B3B-D03",
+        "reviewerRole": "PRODUCT_OWNER_AUTHORIZED_PROJECT_OWNER",
+        "reviewDate": "2026-10-15",
+        "conflictIds": [],
+        "provenance": {
+          "sourceId": "FINAL_OWNER_2026_10_15:52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31",
+          "sourceValue": "3.5",
+          "sourceUnit": "us_gallons",
+          "physicalState": "technical_configuration",
+          "configurationId": "CURRENT_PRODUCT:gid://shopify/Product/8905780756677",
+          "configurationLabel": "Current Product configuration",
+          "conversionRuleId": null,
+          "ownerResponse": {
+            "productGid": "gid://shopify/Product/8905780756677",
+            "field": "water_reservoir_capacity",
+            "value": 3.5,
+            "unit": "us_gallons",
+            "meaning": "Explicit final U.S.-gallon approval, water reservoir only"
+          }
+        }
+      },
+      "before": {
+        "state": "ABSENT",
+        "metafield": null
+      },
+      "classification": "ABSENT",
+      "mutation": {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "water_reservoir_capacity",
+        "type": "volume",
+        "value": "{\"value\":3.5,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      }
+    }
+  ],
+  "batches": [
+    [
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "water_reservoir_capacity",
+        "type": "volume",
+        "value": "{\"value\":3.5,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      }
+    ]
+  ],
+  "rollback": [
+    {
+      "targetGid": "gid://shopify/Product/8905780756677",
+      "field": "PRODUCT.metafields.rhino.water_reservoir_capacity",
+      "restore": null
+    }
+  ]
+}

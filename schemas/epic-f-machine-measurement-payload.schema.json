@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "productGid",
+        "module",
+        "eventId",
+        "destinationRoute"
+      ],
+      "properties": {
+        "productGid": {
+          "type": "string",
+          "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+        },
+        "module": {
+          "const": "contact"
+        },
+        "eventId": {
+          "const": "rhino:machine:contact-activate"
+        },
+        "destinationRoute": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "$anchor": "contact"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "productGid",
+        "module",
+        "eventId",
+        "destinationRoute",
+        "resourceId"
+      ],
+      "properties": {
+        "productGid": {
+          "type": "string",
+          "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+        },
+        "module": {
+          "const": "resources"
+        },
+        "eventId": {
+          "const": "rhino:machine:resource-activate"
+        },
+        "destinationRoute": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "variantGid": {
+          "type": "string",
+          "pattern": "^gid://shopify/ProductVariant/[1-9][0-9]*$"
+        }
+      },
+      "$anchor": "resources"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "productGid",
+        "module",
+        "eventId",
+        "destinationRoute",
+        "targetProductGid",
+        "relationshipId"
+      ],
+      "properties": {
+        "productGid": {
+          "type": "string",
+          "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+        },
+        "module": {
+          "const": "contextual"
+        },
+        "eventId": {
+          "const": "rhino:machine:context-navigate"
+        },
+        "destinationRoute": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetProductGid": {
+          "type": "string",
+          "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+        },
+        "relationshipId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "$anchor": "contextual"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "productGid",
+        "module",
+        "eventId",
+        "destinationRoute"
+      ],
+      "properties": {
+        "productGid": {
+          "type": "string",
+          "pattern": "^gid://shopify/Product/[1-9][0-9]*$"
+        },
+        "module": {
+          "const": "delivery"
+        },
+        "eventId": {
+          "const": "rhino:machine:delivery-navigate"
+        },
+        "destinationRoute": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "$anchor": "delivery"
+    }
+  ]
+}

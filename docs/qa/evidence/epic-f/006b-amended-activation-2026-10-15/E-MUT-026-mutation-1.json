@@ -1,0 +1,134 @@
+{
+  "startedAt": "2026-10-15T18:11:38.412Z",
+  "completedAt": "2026-10-15T18:11:39.364Z",
+  "query": "mutation AmendedTechnicalValues($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type jsonValue compareDigest definition{id}} userErrors{field message}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "input_frequencies",
+        "type": "list.frequency",
+        "value": "[{\"value\":60,\"unit\":\"hertz\"}]",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784262853",
+        "namespace": "rhino",
+        "key": "input_frequencies",
+        "type": "list.frequency",
+        "value": "[{\"value\":60,\"unit\":\"hertz\"}]",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784262853",
+        "namespace": "rhino",
+        "key": "input_voltage",
+        "type": "voltage",
+        "value": "{\"value\":110,\"unit\":\"volts\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905785868485",
+        "namespace": "rhino",
+        "key": "input_frequencies",
+        "type": "list.frequency",
+        "value": "[{\"value\":60,\"unit\":\"hertz\"}]",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905785868485",
+        "namespace": "rhino",
+        "key": "input_voltage",
+        "type": "voltage",
+        "value": "{\"value\":110,\"unit\":\"volts\"}",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71576379490501",
+            "namespace": "rhino",
+            "key": "input_frequencies",
+            "type": "list.frequency",
+            "jsonValue": [
+              {
+                "value": 60,
+                "unit": "hertz"
+              }
+            ],
+            "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658300101"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576379457733",
+            "namespace": "rhino",
+            "key": "input_frequencies",
+            "type": "list.frequency",
+            "jsonValue": [
+              {
+                "value": 60,
+                "unit": "hertz"
+              }
+            ],
+            "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658300101"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576379424965",
+            "namespace": "rhino",
+            "key": "input_voltage",
+            "type": "voltage",
+            "jsonValue": {
+              "value": 110,
+              "unit": "VOLTS"
+            },
+            "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658267333"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576379392197",
+            "namespace": "rhino",
+            "key": "input_frequencies",
+            "type": "list.frequency",
+            "jsonValue": [
+              {
+                "value": 60,
+                "unit": "hertz"
+              }
+            ],
+            "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658300101"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576379359429",
+            "namespace": "rhino",
+            "key": "input_voltage",
+            "type": "voltage",
+            "jsonValue": {
+              "value": 110,
+              "unit": "VOLTS"
+            },
+            "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298658267333"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  }
+}

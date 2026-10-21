@@ -1,0 +1,25 @@
+{%- if request.host == 'machine.local' and projection.fixture_only -%}
+  {%- if projection.delivery.size > 0 or projection.policy -%}
+    <section class="rhino-machine-facts rhino-machine-delivery" aria-labelledby="MachineDelivery-{{ section.id }}">
+      <h2 id="MachineDelivery-{{ section.id }}">{{ 'products.product.machine_delivery.heading' | t }}</h2>
+      {% if projection.delivery.size > 0 %}<dl>
+        {% for item in projection.delivery %}
+          <div class="rhino-machine-fact-row">
+            <dt>{% assign label_key = 'products.product.machine_delivery.' | append: item.kind %}{{ label_key | t }}</dt>
+            <dd>{% if item.kind == 'timing' %}
+              {% assign event_key = 'products.product.machine_delivery.' | append: item.value.event %}
+              {% assign unit_key = 'products.product.machine_delivery.' | append: item.value.unit %}
+              {{ event_key | t }}: {{ item.value.min | escape }}–{{ item.value.max | escape }} {{ unit_key | t }}
+            {% else %}
+              {% assign permission_key = 'products.product.machine_delivery.' | append: item.value.permission %}
+              {% assign kind_key = 'products.product.machine_delivery.' | append: item.value.kind %}
+              {% if item.value.kind == 'policy' %}{% assign kind_key = 'products.product.machine_delivery.policy_region' %}{% endif %}
+              {{ kind_key | t }} — {{ permission_key | t }}: {{ item.value.country | escape }}{% if item.value.subdivision %} / {{ item.value.subdivision | escape }}{% endif %}
+            {% endif %}<span class="rhino-machine-fact-context">{{ item.scope | escape }}</span></dd>
+          </div>
+        {% endfor %}
+      </dl>{% endif %}
+      {% if projection.policy %}<a class="link underlined-link" href="{{ projection.policy | escape }}">{{ 'products.product.machine_delivery.policy' | t }}</a>{% endif %}
+    </section>
+  {%- endif -%}
+{%- endif -%}

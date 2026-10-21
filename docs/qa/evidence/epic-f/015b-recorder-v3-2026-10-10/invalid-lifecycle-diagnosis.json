@@ -1,0 +1,909 @@
+{
+  "recordedAt": "2026-10-10T19:56:55.329Z",
+  "methodIdentity": "EPIC_F_015B_LIVE_RECORDER_V3",
+  "evidence": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/attempt-001-beadmaster-mobile-cold.json",
+  "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+  "performanceDecision": "INVALID_NOT_GRADED",
+  "admittedRequests": 136,
+  "duplicateAuthoritativeRows": 0,
+  "ambiguousAuthoritativeRows": 0,
+  "requiredPlaywrightTimingMatches": 0,
+  "prohibitedObservations": [],
+  "unresolvedCount": 0,
+  "failedWithoutAuthoritativeBytes": 6,
+  "harnessInspectorBlocks": 0,
+  "wholePageTransferBytes": null,
+  "window": {
+    "start": 1791661796895,
+    "close": 1791661805045,
+    "closeTimestamp": 6593.678068,
+    "admittedCount": 136,
+    "metricsExtendedDuringDrain": false,
+    "maximumDrainMs": 5000,
+    "actualDrainMs": 1177
+  },
+  "knownTerminalFailures": [
+    {
+      "url": "https://rhino-lapidary.myshopify.com/api/collect",
+      "method": "POST",
+      "resourceType": "fetch",
+      "type": "Fetch",
+      "id": "6784.161",
+      "leg": 0,
+      "resourceKey": "root:6784.161:0",
+      "status": 204,
+      "mimeType": "",
+      "bytes": null,
+      "byteSource": null,
+      "terminalObserved": true,
+      "terminalEvent": "Network.loadingFailed",
+      "terminalTimestamp": 6591.626234,
+      "failed": true,
+      "failure": "net::ERR_ABORTED",
+      "blockedReason": null,
+      "decision": {
+        "action": "ALLOW",
+        "classification": "PASSIVE_RESOURCE",
+        "reason": "Existing non-commerce native/telemetry request",
+        "resourceType": "fetch",
+        "method": "POST",
+        "bodyPresent": true,
+        "navigation": false
+      },
+      "bodyPresent": true,
+      "encodedDataReceived": 0,
+      "dataEvents": [],
+      "cache": {
+        "servedFromCache": false,
+        "fromDiskCache": false,
+        "fromPrefetchCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": null,
+      "provenance": {
+        "contextId": "5c5da59b-18eb-4da0-bff6-fa929a3abbae",
+        "pageId": "b14444f2-269d-48d6-9f4a-6f23423398ca",
+        "targetId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+        "sessionId": "root",
+        "parentTargetId": null,
+        "targetType": "page",
+        "membership": "MEASUREMENT_WINDOW",
+        "requestId": "6784.161",
+        "redirectOrdinal": 0,
+        "requestSequence": 0,
+        "frameId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "loaderId": "FB8EE1301963A308A2E04F7AE2293293",
+        "documentURL": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+        "timestamp": 6589.720397,
+        "wallTime": 1791661801.085446,
+        "initiator": {
+          "type": "script",
+          "url": null,
+          "lineNumber": null,
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "window2.fetch",
+                "scriptId": "102",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/shop_events_listener-4e26a9ce.js",
+                "lineNumber": 0,
+                "columnNumber": 7378
+              },
+              {
+                "functionName": "sendBeacon",
+                "scriptId": "98",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/perf-kit/shopify-perf-kit-3.10.1.min.js",
+                "lineNumber": 0,
+                "columnNumber": 54083
+              },
+              {
+                "functionName": "checkAndSendSignals",
+                "scriptId": "98",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/perf-kit/shopify-perf-kit-3.10.1.min.js",
+                "lineNumber": 0,
+                "columnNumber": 56846
+              },
+              {
+                "functionName": "processAndSendSignals",
+                "scriptId": "98",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/perf-kit/shopify-perf-kit-3.10.1.min.js",
+                "lineNumber": 0,
+                "columnNumber": 50210
+              },
+              {
+                "functionName": "",
+                "scriptId": "98",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/perf-kit/shopify-perf-kit-3.10.1.min.js",
+                "lineNumber": 0,
+                "columnNumber": 45420
+              }
+            ]
+          }
+        },
+        "authority": "CDP_REQUEST_ID_ONLY"
+      },
+      "startedAt": "2026-10-10T19:50:01.088Z",
+      "responseExtraInfoStatus": 204,
+      "responseTiming": {
+        "requestTime": 6589.72257,
+        "proxyStart": 0.138,
+        "proxyEnd": 0.566,
+        "dnsStart": -1,
+        "dnsEnd": -1,
+        "connectStart": -1,
+        "connectEnd": -1,
+        "sslStart": -1,
+        "sslEnd": -1,
+        "workerStart": -1,
+        "workerReady": -1,
+        "workerFetchStart": -1,
+        "workerRespondWithSettled": -1,
+        "sendStart": 0.647,
+        "sendEnd": 13.572,
+        "pushStart": 0,
+        "pushEnd": 0,
+        "receiveHeadersStart": 95.246,
+        "receiveHeadersEnd": 604.446
+      },
+      "completed": true,
+      "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+      "byteObservation": "missing",
+      "CDPCompletionObserved": true,
+      "attribution": "first-party"
+    },
+    {
+      "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+      "method": "POST",
+      "resourceType": "fetch",
+      "type": "Fetch",
+      "id": "6784.171",
+      "leg": 0,
+      "resourceKey": "root:6784.171:0",
+      "status": 200,
+      "mimeType": "",
+      "bytes": null,
+      "byteSource": null,
+      "terminalObserved": true,
+      "terminalEvent": "Network.loadingFailed",
+      "terminalTimestamp": 6592.104204,
+      "failed": true,
+      "failure": "net::ERR_ABORTED",
+      "blockedReason": null,
+      "decision": {
+        "action": "ALLOW",
+        "classification": "PASSIVE_RESOURCE",
+        "reason": "Existing non-commerce native/telemetry request",
+        "resourceType": "fetch",
+        "method": "POST",
+        "bodyPresent": true,
+        "navigation": false
+      },
+      "bodyPresent": true,
+      "encodedDataReceived": 0,
+      "dataEvents": [],
+      "cache": {
+        "servedFromCache": false,
+        "fromDiskCache": false,
+        "fromPrefetchCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": "06C317EE996491C93B8707111939F4F5",
+      "provenance": {
+        "contextId": "5c5da59b-18eb-4da0-bff6-fa929a3abbae",
+        "pageId": "b14444f2-269d-48d6-9f4a-6f23423398ca",
+        "targetId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+        "sessionId": "root",
+        "parentTargetId": null,
+        "targetType": "page",
+        "membership": "MEASUREMENT_WINDOW",
+        "requestId": "6784.171",
+        "redirectOrdinal": 0,
+        "requestSequence": 0,
+        "frameId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "loaderId": "FB8EE1301963A308A2E04F7AE2293293",
+        "documentURL": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+        "timestamp": 6591.151969,
+        "wallTime": 1791661802.51685,
+        "initiator": {
+          "type": "script",
+          "url": null,
+          "lineNumber": null,
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "window2.fetch",
+                "scriptId": "102",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/shop_events_listener-4e26a9ce.js",
+                "lineNumber": 0,
+                "columnNumber": 7378
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151660
+              },
+              {
+                "functionName": "Fi",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151642
+              },
+              {
+                "functionName": "send",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151461
+              },
+              {
+                "functionName": "Ai",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149442
+              },
+              {
+                "functionName": "Ti",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149221
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 148861
+              }
+            ]
+          }
+        },
+        "authority": "CDP_REQUEST_ID_ONLY"
+      },
+      "startedAt": "2026-10-10T19:50:02.519Z",
+      "responseExtraInfoStatus": 200,
+      "responseTiming": {
+        "requestTime": 6591.154316,
+        "proxyStart": 0.067,
+        "proxyEnd": 0.416,
+        "dnsStart": 0.467,
+        "dnsEnd": 0.489,
+        "connectStart": 1.024,
+        "connectEnd": 25.389,
+        "sslStart": 1.024,
+        "sslEnd": 25.389,
+        "workerStart": -1,
+        "workerReady": -1,
+        "workerFetchStart": -1,
+        "workerRespondWithSettled": -1,
+        "sendStart": 25.871,
+        "sendEnd": 52.371,
+        "pushStart": 0,
+        "pushEnd": 0,
+        "receiveHeadersStart": 152.965,
+        "receiveHeadersEnd": 632.835
+      },
+      "completed": true,
+      "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+      "byteObservation": "missing",
+      "CDPCompletionObserved": true,
+      "attribution": "first-party"
+    },
+    {
+      "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+      "method": "POST",
+      "resourceType": "fetch",
+      "type": "Fetch",
+      "id": "6784.180",
+      "leg": 0,
+      "resourceKey": "root:6784.180:0",
+      "status": 200,
+      "mimeType": "",
+      "bytes": null,
+      "byteSource": null,
+      "terminalObserved": true,
+      "terminalEvent": "Network.loadingFailed",
+      "terminalTimestamp": 6592.812336,
+      "failed": true,
+      "failure": "net::ERR_ABORTED",
+      "blockedReason": null,
+      "decision": {
+        "action": "ALLOW",
+        "classification": "PASSIVE_RESOURCE",
+        "reason": "Existing non-commerce native/telemetry request",
+        "resourceType": "fetch",
+        "method": "POST",
+        "bodyPresent": true,
+        "navigation": false
+      },
+      "bodyPresent": true,
+      "encodedDataReceived": 0,
+      "dataEvents": [],
+      "cache": {
+        "servedFromCache": false,
+        "fromDiskCache": false,
+        "fromPrefetchCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": null,
+      "provenance": {
+        "contextId": "5c5da59b-18eb-4da0-bff6-fa929a3abbae",
+        "pageId": "b14444f2-269d-48d6-9f4a-6f23423398ca",
+        "targetId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+        "sessionId": "root",
+        "parentTargetId": null,
+        "targetType": "page",
+        "membership": "MEASUREMENT_WINDOW",
+        "requestId": "6784.180",
+        "redirectOrdinal": 0,
+        "requestSequence": 0,
+        "frameId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "loaderId": "FB8EE1301963A308A2E04F7AE2293293",
+        "documentURL": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+        "timestamp": 6592.198505,
+        "wallTime": 1791661803.56503,
+        "initiator": {
+          "type": "script",
+          "url": null,
+          "lineNumber": null,
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "window2.fetch",
+                "scriptId": "102",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/shop_events_listener-4e26a9ce.js",
+                "lineNumber": 0,
+                "columnNumber": 7378
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151660
+              },
+              {
+                "functionName": "Fi",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151642
+              },
+              {
+                "functionName": "send",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151461
+              },
+              {
+                "functionName": "Ai",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149442
+              },
+              {
+                "functionName": "Ti",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149221
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 148861
+              }
+            ]
+          }
+        },
+        "authority": "CDP_REQUEST_ID_ONLY"
+      },
+      "startedAt": "2026-10-10T19:50:03.569Z",
+      "responseExtraInfoStatus": 200,
+      "responseTiming": {
+        "requestTime": 6592.204457,
+        "proxyStart": 0.068,
+        "proxyEnd": 0.564,
+        "dnsStart": -1,
+        "dnsEnd": -1,
+        "connectStart": -1,
+        "connectEnd": -1,
+        "sslStart": -1,
+        "sslEnd": -1,
+        "workerStart": -1,
+        "workerReady": -1,
+        "workerFetchStart": -1,
+        "workerRespondWithSettled": -1,
+        "sendStart": 0.67,
+        "sendEnd": 15.391,
+        "pushStart": 0,
+        "pushEnd": 0,
+        "receiveHeadersStart": 106.496,
+        "receiveHeadersEnd": 599.245
+      },
+      "completed": true,
+      "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+      "byteObservation": "missing",
+      "CDPCompletionObserved": true,
+      "attribution": "first-party"
+    },
+    {
+      "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+      "method": "POST",
+      "resourceType": "fetch",
+      "type": "Fetch",
+      "id": "6784.181",
+      "leg": 0,
+      "resourceKey": "root:6784.181:0",
+      "status": 200,
+      "mimeType": "",
+      "bytes": null,
+      "byteSource": null,
+      "terminalObserved": true,
+      "terminalEvent": "Network.loadingFailed",
+      "terminalTimestamp": 6592.877823,
+      "failed": true,
+      "failure": "net::ERR_ABORTED",
+      "blockedReason": null,
+      "decision": {
+        "action": "ALLOW",
+        "classification": "PASSIVE_RESOURCE",
+        "reason": "Existing non-commerce native/telemetry request",
+        "resourceType": "fetch",
+        "method": "POST",
+        "bodyPresent": true,
+        "navigation": false
+      },
+      "bodyPresent": true,
+      "encodedDataReceived": 0,
+      "dataEvents": [],
+      "cache": {
+        "servedFromCache": false,
+        "fromDiskCache": false,
+        "fromPrefetchCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": null,
+      "provenance": {
+        "contextId": "5c5da59b-18eb-4da0-bff6-fa929a3abbae",
+        "pageId": "b14444f2-269d-48d6-9f4a-6f23423398ca",
+        "targetId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+        "sessionId": "root",
+        "parentTargetId": null,
+        "targetType": "page",
+        "membership": "MEASUREMENT_WINDOW",
+        "requestId": "6784.181",
+        "redirectOrdinal": 0,
+        "requestSequence": 0,
+        "frameId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "loaderId": "FB8EE1301963A308A2E04F7AE2293293",
+        "documentURL": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+        "timestamp": 6592.266826,
+        "wallTime": 1791661803.632043,
+        "initiator": {
+          "type": "script",
+          "url": null,
+          "lineNumber": null,
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "window2.fetch",
+                "scriptId": "102",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/shop_events_listener-4e26a9ce.js",
+                "lineNumber": 0,
+                "columnNumber": 7378
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151660
+              },
+              {
+                "functionName": "Fi",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151642
+              },
+              {
+                "functionName": "send",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151461
+              },
+              {
+                "functionName": "Ai",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149442
+              },
+              {
+                "functionName": "Ti",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149221
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 148861
+              }
+            ]
+          }
+        },
+        "authority": "CDP_REQUEST_ID_ONLY"
+      },
+      "startedAt": "2026-10-10T19:50:03.635Z",
+      "responseExtraInfoStatus": 200,
+      "responseTiming": {
+        "requestTime": 6592.270149,
+        "proxyStart": 0.062,
+        "proxyEnd": 0.412,
+        "dnsStart": -1,
+        "dnsEnd": -1,
+        "connectStart": -1,
+        "connectEnd": -1,
+        "sslStart": -1,
+        "sslEnd": -1,
+        "workerStart": -1,
+        "workerReady": -1,
+        "workerFetchStart": -1,
+        "workerRespondWithSettled": -1,
+        "sendStart": 0.559,
+        "sendEnd": 13.675,
+        "pushStart": 0,
+        "pushEnd": 0,
+        "receiveHeadersStart": 113.793,
+        "receiveHeadersEnd": 597.521
+      },
+      "completed": true,
+      "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+      "byteObservation": "missing",
+      "CDPCompletionObserved": true,
+      "attribution": "first-party"
+    },
+    {
+      "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+      "method": "POST",
+      "resourceType": "fetch",
+      "type": "Fetch",
+      "id": "6784.184",
+      "leg": 0,
+      "resourceKey": "root:6784.184:0",
+      "status": 200,
+      "mimeType": "",
+      "bytes": null,
+      "byteSource": null,
+      "terminalObserved": true,
+      "terminalEvent": "Network.loadingFailed",
+      "terminalTimestamp": 6593.110427,
+      "failed": true,
+      "failure": "net::ERR_ABORTED",
+      "blockedReason": null,
+      "decision": {
+        "action": "ALLOW",
+        "classification": "PASSIVE_RESOURCE",
+        "reason": "Existing non-commerce native/telemetry request",
+        "resourceType": "fetch",
+        "method": "POST",
+        "bodyPresent": true,
+        "navigation": false
+      },
+      "bodyPresent": true,
+      "encodedDataReceived": 0,
+      "dataEvents": [],
+      "cache": {
+        "servedFromCache": false,
+        "fromDiskCache": false,
+        "fromPrefetchCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": null,
+      "provenance": {
+        "contextId": "5c5da59b-18eb-4da0-bff6-fa929a3abbae",
+        "pageId": "b14444f2-269d-48d6-9f4a-6f23423398ca",
+        "targetId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+        "sessionId": "root",
+        "parentTargetId": null,
+        "targetType": "page",
+        "membership": "MEASUREMENT_WINDOW",
+        "requestId": "6784.184",
+        "redirectOrdinal": 0,
+        "requestSequence": 0,
+        "frameId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "loaderId": "FB8EE1301963A308A2E04F7AE2293293",
+        "documentURL": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+        "timestamp": 6592.483912,
+        "wallTime": 1791661803.848757,
+        "initiator": {
+          "type": "script",
+          "url": null,
+          "lineNumber": null,
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "window2.fetch",
+                "scriptId": "102",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/shop_events_listener-4e26a9ce.js",
+                "lineNumber": 0,
+                "columnNumber": 7378
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151660
+              },
+              {
+                "functionName": "Fi",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151642
+              },
+              {
+                "functionName": "send",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151461
+              },
+              {
+                "functionName": "Ai",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149442
+              },
+              {
+                "functionName": "Ti",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149221
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 148861
+              }
+            ]
+          }
+        },
+        "authority": "CDP_REQUEST_ID_ONLY"
+      },
+      "startedAt": "2026-10-10T19:50:03.851Z",
+      "responseExtraInfoStatus": 200,
+      "responseTiming": {
+        "requestTime": 6592.485778,
+        "proxyStart": 0.061,
+        "proxyEnd": 0.532,
+        "dnsStart": -1,
+        "dnsEnd": -1,
+        "connectStart": -1,
+        "connectEnd": -1,
+        "sslStart": -1,
+        "sslEnd": -1,
+        "workerStart": -1,
+        "workerReady": -1,
+        "workerFetchStart": -1,
+        "workerRespondWithSettled": -1,
+        "sendStart": 0.684,
+        "sendEnd": 21.369,
+        "pushStart": 0,
+        "pushEnd": 0,
+        "receiveHeadersStart": 86.163,
+        "receiveHeadersEnd": 614.716
+      },
+      "completed": true,
+      "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+      "byteObservation": "missing",
+      "CDPCompletionObserved": true,
+      "attribution": "first-party"
+    },
+    {
+      "url": "https://rhino-lapidary.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",
+      "method": "POST",
+      "resourceType": "fetch",
+      "type": "Fetch",
+      "id": "6784.185",
+      "leg": 0,
+      "resourceKey": "root:6784.185:0",
+      "status": 200,
+      "mimeType": "",
+      "bytes": null,
+      "byteSource": null,
+      "terminalObserved": true,
+      "terminalEvent": "Network.loadingFailed",
+      "terminalTimestamp": 6593.171868,
+      "failed": true,
+      "failure": "net::ERR_ABORTED",
+      "blockedReason": null,
+      "decision": {
+        "action": "ALLOW",
+        "classification": "PASSIVE_RESOURCE",
+        "reason": "Existing non-commerce native/telemetry request",
+        "resourceType": "fetch",
+        "method": "POST",
+        "bodyPresent": true,
+        "navigation": false
+      },
+      "bodyPresent": true,
+      "encodedDataReceived": 0,
+      "dataEvents": [],
+      "cache": {
+        "servedFromCache": false,
+        "fromDiskCache": false,
+        "fromPrefetchCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": "06C317EE996491C93B8707111939F4F5",
+      "provenance": {
+        "contextId": "5c5da59b-18eb-4da0-bff6-fa929a3abbae",
+        "pageId": "b14444f2-269d-48d6-9f4a-6f23423398ca",
+        "targetId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "lifecycle": "MEASURED_NAVIGATION_LIFECYCLE",
+        "sessionId": "root",
+        "parentTargetId": null,
+        "targetType": "page",
+        "membership": "MEASUREMENT_WINDOW",
+        "requestId": "6784.185",
+        "redirectOrdinal": 0,
+        "requestSequence": 0,
+        "frameId": "EA6E46DEF444FD4CBE73E9296F94A8E5",
+        "loaderId": "FB8EE1301963A308A2E04F7AE2293293",
+        "documentURL": "https://rhino-lapidary.myshopify.com/products/beadmaster",
+        "timestamp": 6592.584285,
+        "wallTime": 1791661803.948746,
+        "initiator": {
+          "type": "script",
+          "url": null,
+          "lineNumber": null,
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "window2.fetch",
+                "scriptId": "102",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/shopifycloud/storefront/assets/shop_events_listener-4e26a9ce.js",
+                "lineNumber": 0,
+                "columnNumber": 7378
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151660
+              },
+              {
+                "functionName": "Fi",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151642
+              },
+              {
+                "functionName": "send",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 151461
+              },
+              {
+                "functionName": "Ai",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149442
+              },
+              {
+                "functionName": "Ti",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 149221
+              },
+              {
+                "functionName": "",
+                "scriptId": "94",
+                "url": "https://rhino-lapidary.myshopify.com/cdn/wpm/b7ec887c8w14f9f074p854094e1m1370c602m.js",
+                "lineNumber": 0,
+                "columnNumber": 148861
+              }
+            ]
+          }
+        },
+        "authority": "CDP_REQUEST_ID_ONLY"
+      },
+      "startedAt": "2026-10-10T19:50:03.950Z",
+      "responseExtraInfoStatus": 200,
+      "responseTiming": {
+        "requestTime": 6592.5857,
+        "proxyStart": 0.059,
+        "proxyEnd": 0.384,
+        "dnsStart": -1,
+        "dnsEnd": -1,
+        "connectStart": -1,
+        "connectEnd": -1,
+        "sslStart": -1,
+        "sslEnd": -1,
+        "workerStart": -1,
+        "workerReady": -1,
+        "workerFetchStart": -1,
+        "workerRespondWithSettled": -1,
+        "sendStart": 0.499,
+        "sendEnd": 9.426,
+        "pushStart": 0,
+        "pushEnd": 0,
+        "receiveHeadersStart": 101.421,
+        "receiveHeadersEnd": 581.349
+      },
+      "completed": true,
+      "terminalState": "FAILED_WITH_CLASSIFIED_REASON",
+      "byteObservation": "missing",
+      "CDPCompletionObserved": true,
+      "attribution": "first-party"
+    }
+  ],
+  "passivePreloads": [
+    {
+      "url": "https://rhino-lapidary.myshopify.com/checkouts/internal/preloads.js?locale=[REDACTED]",
+      "method": "GET",
+      "resourceType": "script",
+      "status": 200,
+      "requestId": "6784.26",
+      "bytes": 3692,
+      "terminalEvent": "Network.loadingFinished",
+      "classification": "PASSIVE_RESOURCE"
+    },
+    {
+      "url": "https://shop.app/checkouts/internal/preloads.js?locale=[REDACTED]&shop_id=[REDACTED]",
+      "method": "GET",
+      "resourceType": "script",
+      "status": 200,
+      "requestId": "6784.27",
+      "bytes": 482,
+      "terminalEvent": "Network.loadingFinished",
+      "classification": "PASSIVE_RESOURCE"
+    }
+  ],
+  "otherHTTPFailuresWithMeasuredBytes": [
+    {
+      "url": "https://shop.app/pay/hop?analytics_trace_id=[REDACTED]&client_handle=[REDACTED]&target_origin=[REDACTED]",
+      "status": 403,
+      "requestId": "B2CB98B6968E1FDAE9DFA1247DAB95DC",
+      "bytes": 0,
+      "terminalEvent": "Network.loadingFinished"
+    }
+  ],
+  "observedBeforeMeasuredContextDisposal": true,
+  "abortCause": "Not established by the retained CDP evidence; no inference from timing or HTTP status",
+  "rawMetricsExcludedFromCertification": true,
+  "retries": 0,
+  "warmAttempts": 0,
+  "canaryContinuation": false,
+  "optimizationPacket": false
+}

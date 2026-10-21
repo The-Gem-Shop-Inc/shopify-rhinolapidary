@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "identity": "EPIC_F_015B_LIVE_RECORDER_V2",
+  "approvalMode": "delegated_development_override",
+  "approvedAt": "2026-10-07",
+  "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+  "storeSourceBindingIdentity": "GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06",
+  "storeSourceBindingSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+  "window": {
+    "start": "Immediately before measured PAGE B Product navigation",
+    "close": "load -> document.fonts.ready -> 1500 ms settle",
+    "requestAdmission": "Only this page and its child frames while window is open; frozen at cutoff",
+    "metrics": "LCP, CLS, established long-task TBT proxy snapshot at cutoff; drain does not extend observation"
+  },
+  "terminalDrain": {
+    "maximumMs": 5000,
+    "scope": "Only already-admitted request identities",
+    "states": ["COMPLETED_WITH_BYTES", "FAILED_WITH_CLASSIFIED_REASON", "UNRESOLVED"],
+    "unresolvedInvalidates": true,
+    "missingByteEvidence": null,
+    "postWindowRequests": "Retained diagnostically; not admitted"
+  },
+  "cache": {
+    "context": "Fresh independent BrowserContext for each measured sample; only memory authentication cookies copied",
+    "cold": "HTTP cache cleared before first Product navigation; no Product prime; bypass service workers",
+    "warm": "PAGE A same-route prime under approved throttle, load/fonts/1500ms, separate recorder drain, close A; PAGE B new target in SAME BrowserContext, cache retained, same throttle, first B navigation measured",
+    "primeTraffic": "PRIMING_LIFECYCLE target provenance, including close/unload diagnostics; never excluded by URL",
+    "measuredTelemetry": "Counts normally if initiated by PAGE B within measurement window"
+  },
+  "provenance": {
+    "scope": "Page-specific CDP session and Playwright Page events, including child frames",
+    "retained": ["contextId", "pageId", "targetId", "frameId", "loaderId", "requestId", "requestSequence", "timestamp", "wallTime", "initiator", "membership"],
+    "correlation": "Unique same-target wall time within 2ms, method and URL; Playwright request object for all-frame lifecycle; ambiguity invalidates"
+  },
+  "interRunDelayMs": 2500,
+  "invalidRetryMaximumPerSlot": 1,
+  "canary": {"route": "/products/beadmaster", "productGid": "gid://shopify/Product/8905779937477", "profile": "mobile", "width": 390, "height": 900, "dpr": 1, "coldSamples": 3, "warmSamples": 3},
+  "decision": {"failure": "One mandatory valid triplet failure suffices; remaining 90 not needed to prove failure", "success": "Canary pass is not certification; 90 additional valid samples still required"},
+  "budgetsChanged": false,
+  "runtimeChangesAuthorized": false,
+  "ShopifyWritesAuthorized": false
+}

@@ -1,0 +1,734 @@
+{
+  "schemaVersion": 1,
+  "lane": "007B",
+  "mutationAuthorized": false,
+  "decisionId": "B3B-D04",
+  "source": {
+    "path": "data/epic-e-component-evidence.json",
+    "sha256": "fd57bd816138397a03bb6ff7daa10b4d67225fbf1b6df97504a5cdb28a06ceb1"
+  },
+  "c040Questions": [
+    {
+      "id": "C040-COUNT",
+      "question": "Six current arbor wheels or the five enumerated sales-list lines?",
+      "response": null
+    },
+    {
+      "id": "C040-GRIT",
+      "question": "60 or 80 grit? Exact catalog identity or explicitly noncatalog?",
+      "response": null
+    },
+    {
+      "id": "C040-280",
+      "question": "Is the 280-grit line currently included or absent?",
+      "response": null
+    }
+  ],
+  "rows": [
+    {
+      "lineId": "EM1-01",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "6\" Bonded Diamond Wheel 60 grit",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Catalog BOM says 60 grit, while the current catalog Product is 80 grit. Do not substitute it; resolve C-040 against the manual and sales list.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-01",
+      "identityState": "UNRESOLVED_60_VS_80",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-02",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": "gid://shopify/Product/8905778331845",
+      "label": "6\" Bonded Diamond Wheel 220 grit",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": null,
+      "identityState": "EXACT_CATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-03",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": "gid://shopify/Product/8905778987205",
+      "label": "6\" Resin Bond Diamond Wheel 280 grit",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": null,
+      "identityState": "EXACT_CATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-04",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": "gid://shopify/Product/8905779118277",
+      "label": "6\" Resin Bond Diamond Wheel 600 grit",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": null,
+      "identityState": "EXACT_CATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-05",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": "gid://shopify/Product/8905778921669",
+      "label": "6\" Resin Bond Diamond Wheel 1200 grit",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": null,
+      "identityState": "EXACT_CATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-06",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": "gid://shopify/Product/8905779052741",
+      "label": "6\" Resin Bond Diamond Wheel 3000 grit",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": null,
+      "identityState": "EXACT_CATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-07",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Flex Shaft w/ 18pc accessory set and 3pc attachment heads",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-07",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-08",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "x2 Silversmithing spindles w/ x3 sanding and polishing wheels",
+      "quantity": 2,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-08",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-09",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "DIALUX Superfinishing paste",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-09",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-10",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "DIALUX Polishing paste",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-10",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-11",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Flat Lap w/ 6\" magnetic felt pad and 6\" magnetic 80 grit disc",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-11",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-12",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Magnifying Glass Attachment",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-12",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-13",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Jointed Light Attachment",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-13",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-14",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "x2 Detachable Wrist rests",
+      "quantity": 2,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-14",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-15",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Water Pump w/ tank filtration system",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-15",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-16",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Splash guards",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-16",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-17",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Moss Filtration Pads",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-17",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-18",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "x2 Brass Spray Nozzles",
+      "quantity": 2,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-18",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-19",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Spoke Wrench",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-19",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-20",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Allen Wrench/Hex key",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-20",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "EM1-21",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "componentProductGid": null,
+      "label": "Crescent Wrench",
+      "quantity": null,
+      "meaning": "included",
+      "state": "conflicting",
+      "sourceId": "catalog-description",
+      "location": "em-1 Body (HTML): Included with purchase",
+      "conflictIds": [
+        "C-040"
+      ],
+      "approvalDecisionId": null,
+      "blocker": "Candidate BOM line; exact catalog identity, quantity and current manual/sales-list discrepancy require approval.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905780756677:EM1-21",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    },
+    {
+      "lineId": "BATTERY-EXCLUSION",
+      "productGid": "gid://shopify/Product/8905782165701",
+      "componentProductGid": null,
+      "label": "Batteries",
+      "quantity": null,
+      "meaning": "not_included",
+      "state": "proposed",
+      "sourceId": "catalog-description",
+      "location": "magnifying-glass-arm Body (HTML): Batteries not included",
+      "conflictIds": [],
+      "approvalDecisionId": null,
+      "blocker": "Explicit noncatalog exclusion; quantity unspecified, never fabricate a component Product.",
+      "noncatalogIdentity": "product-local:gid://shopify/Product/8905782165701:BATTERY-EXCLUSION",
+      "identityState": "EXPLICIT_NONCATALOG_CANDIDATE",
+      "decisionState": "PENDING_OWNER",
+      "reviewerResponse": {
+        "meaning": null,
+        "quantity": null,
+        "componentProductGid": null,
+        "noncatalogLabel": null,
+        "reviewer": null,
+        "reviewerRole": null,
+        "reviewedAt": null,
+        "evidenceRef": null
+      }
+    }
+  ],
+  "optionalConfigurationDecisions": [
+    {
+      "conflictId": "C-018",
+      "entity": "LapMaster 12",
+      "subject": "Optional variable speed",
+      "normalizedFamilies": [
+        "lapmaster-12"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "decisionState": "PENDING_OWNER",
+      "response": null,
+      "productGid": "gid://shopify/Product/8905781412037"
+    },
+    {
+      "conflictId": "C-022",
+      "entity": "LapMaster 18",
+      "subject": "Optional variable speed",
+      "normalizedFamilies": [
+        "lapmaster-18"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "decisionState": "PENDING_OWNER",
+      "response": null,
+      "productGid": "gid://shopify/Product/8905781477573"
+    }
+  ],
+  "recommendations": {
+    "planId": "E-MUT-037",
+    "candidateCount": 0,
+    "state": "NO_GOVERNED_CANDIDATES",
+    "response": null
+  },
+  "otherRetainedObservations": [
+    {
+      "conflictId": "C-019",
+      "entity": "LapMaster 18",
+      "subject": "Motor power",
+      "normalizedFamilies": [
+        "lapmaster-18"
+      ],
+      "domain": "motor",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "disposition": "RETAINED_FOR_OWNING_TECHNICAL_OR_CLAIM_DOMAIN_NOT_OPTIONAL_APPROVAL"
+    },
+    {
+      "conflictId": "C-027",
+      "entity": "SawMaster 18",
+      "subject": "Unsupported claim language",
+      "normalizedFamilies": [
+        "sawmaster-18"
+      ],
+      "domain": "other",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "disposition": "RETAINED_FOR_OWNING_TECHNICAL_OR_CLAIM_DOMAIN_NOT_OPTIONAL_APPROVAL"
+    },
+    {
+      "conflictId": "C-032",
+      "entity": "SawMaster 24",
+      "subject": "Unsupported claim language",
+      "normalizedFamilies": [
+        "sawmaster-24"
+      ],
+      "domain": "other",
+      "source": "docs/product/rhino-machine-specification-resolution-register.md",
+      "disposition": "RETAINED_FOR_OWNING_TECHNICAL_OR_CLAIM_DOMAIN_NOT_OPTIONAL_APPROVAL"
+    }
+  ]
+}

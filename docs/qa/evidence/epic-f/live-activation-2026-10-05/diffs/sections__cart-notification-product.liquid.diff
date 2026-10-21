@@ -1,0 +1,17 @@
+diff --git a/test-results/epic-f-live-activation/remote/sections/cart-notification-product.liquid b/sections/cart-notification-product.liquid
+index 5262f29..73eb97a 100644
+--- a/test-results/epic-f-live-activation/remote/sections/cart-notification-product.liquid
++++ b/sections/cart-notification-product.liquid
+@@ -1,7 +1,11 @@
+ {%- if cart != empty -%}
+   {%- for item in cart.items -%}
++{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: item.product -%}{%- endcapture -%}
++{%- assign rhino_legacy_content = false -%}
++{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}{%- assign rhino_legacy_content = true -%}{%- endif -%}
++
+     <div id="cart-notification-product-{{ item.key }}" class="cart-item">
+-      {%- if item.image -%}
++      {%- if rhino_legacy_content and item.image -%}
+         <div class="cart-notification-product__image global-media-settings">
+           <img
+             src="{{ item.image | image_url: width: 140 }}"

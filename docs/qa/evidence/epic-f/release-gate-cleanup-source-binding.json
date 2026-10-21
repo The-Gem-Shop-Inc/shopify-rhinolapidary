@@ -1,0 +1,88 @@
+{
+  "kind": "APPROVED_COMPLEXITY_EXTRACTION_SOURCE_REBIND",
+  "reviewedAt": "2026-10-02T20:51:35.784Z",
+  "priorPayloadSha256": "e7596e5e04423ca3b535a1d4fda123aa32be53859384a03fccb475bc62370d80",
+  "payloadSha256": "1ea68738c4277ac6724bccd44c95ec1926325827cbe9eb35c45abd1529954757",
+  "fileCount": 32,
+  "extractions": [
+    {
+      "path": "sections/main-product.liquid",
+      "oldSha256": "49af6088a45eba18dcf25d0fd0cccc79bbab4d64ee7a4c1e2e2d80f6d867fa3d",
+      "newSha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3",
+      "snippet": "snippets/product-inventory.liquid",
+      "bodySha256": "e40e598d373f431282d8b96f2305297bd8c86dcbb69064260810e2719d903a5e",
+      "snippetSha256": "36de2da4743a045416f800f2638879b1d41c007ed9f825d55530e0a6a61d8fb9",
+      "prefix": "{% comment %}\r\n  Existing native inventory block. Inputs: product, block, section.\r\n{%- endcomment -%}",
+      "replacement": "\r\n                  {%- render 'product-inventory', product: product, block: block, section: section -%}",
+      "reason": "Extract existing cohesive presentation without changing its Liquid body",
+      "exactReverseExpansion": true
+    },
+    {
+      "path": "snippets/card-product.liquid",
+      "oldSha256": "f2e5707b95ed27dca38bda8e94c01280efd860e2681ed1b094529be47ee954e9",
+      "newSha256": "f2f0fe4c960d6f19c9de87767614fede2b745450f90e9fc6624685f29b61d877",
+      "snippet": "snippets/card-product-placeholder.liquid",
+      "bodySha256": "1ac2a263757904586e70323680635bddd5a16078d1d34709c976ec27e51bd73b",
+      "snippetSha256": "b36b75fb04a96ee49d4304e7c834a0b666004729f84aa2080b503f4a5a0fef56",
+      "prefix": "{% comment %}\r\n  Existing placeholder card. Inputs: ratio, extend_height, image_shape, placeholder_image, show_vendor, placeholder. Global: settings.\r\n{%- endcomment -%}",
+      "replacement": "\r\n  {% render 'card-product-placeholder', ratio: ratio, extend_height: extend_height, image_shape: image_shape, placeholder_image: placeholder_image, show_vendor: show_vendor, placeholder: placeholder %}",
+      "reason": "Extract existing cohesive presentation without changing its Liquid body",
+      "exactReverseExpansion": true
+    },
+    {
+      "path": "snippets/facets.liquid",
+      "oldSha256": "10ca3c8b139b5d1b39b00ded57a3b42e00368356a0865f13f7f82d85e97a1de9",
+      "newSha256": "e17207ee60dcf8331ce74e60d7ec8f89380cb9a10c7537a650b8b66f5e0d8cb6",
+      "snippet": "snippets/facets-mobile.liquid",
+      "bodySha256": "e512109cc179917814a0a16785c3f0bd20765e7a587d3280cb45d2d3aee697ec",
+      "snippetSha256": "ce85b03c129e186c02ea39ca2aefc814ed7a4dd6677fd7cc4e1554e986be7c44",
+      "prefix": "{% comment %}\r\n  Existing mobile facets drawer. Inputs: results, enable_filtering, enable_sorting, filter_type, sort_by, results_url, default_presentation, section.\r\n{% endcomment %}",
+      "replacement": "\n  {% render 'facets-mobile', results: results, enable_filtering: enable_filtering, enable_sorting: enable_sorting, filter_type: filter_type, sort_by: sort_by, results_url: results_url, default_presentation: default_presentation, section: section %}",
+      "reason": "Extract existing cohesive presentation without changing its Liquid body",
+      "exactReverseExpansion": true
+    }
+  ],
+  "additionalPreviewSources": [
+    {
+      "path": "snippets/product-inventory.liquid",
+      "sha256": "36de2da4743a045416f800f2638879b1d41c007ed9f825d55530e0a6a61d8fb9"
+    },
+    {
+      "path": "snippets/card-product-placeholder.liquid",
+      "sha256": "b36b75fb04a96ee49d4304e7c834a0b666004729f84aa2080b503f4a5a0fef56"
+    },
+    {
+      "path": "snippets/facets-mobile.liquid",
+      "sha256": "ce85b03c129e186c02ea39ca2aefc814ed7a4dd6677fd7cc4e1554e986be7c44"
+    },
+    {
+      "path": "snippets/facets.liquid",
+      "sha256": "e17207ee60dcf8331ce74e60d7ec8f89380cb9a10c7537a650b8b66f5e0d8cb6"
+    }
+  ],
+  "complexity": [
+    {
+      "path": "sections/main-product.liquid",
+      "before": 129,
+      "after": 120,
+      "snippetComplexity": 10,
+      "threshold": 120
+    },
+    {
+      "path": "snippets/card-product.liquid",
+      "before": 122,
+      "after": 112,
+      "snippetComplexity": 11,
+      "threshold": 120
+    },
+    {
+      "path": "snippets/facets.liquid",
+      "before": 136,
+      "after": 94,
+      "snippetComplexity": 43,
+      "threshold": 120
+    }
+  ],
+  "thresholdChanged": false,
+  "factualAuthorityChanged": false
+}

@@ -1,0 +1,127 @@
+{
+  "completedAt": "2026-10-10T19:59:43.052Z",
+  "proof": {
+    "passed": true,
+    "methodIdentity": "EPIC_F_015B_LIVE_RECORDER_V3",
+    "methodSha256": "03611c152c662bcec5e1fee98435e3f6d92919b65a1a3daaefea87c3c63eb892",
+    "sourceBindingSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+    "historyFilesUnchanged": 122,
+    "beforeCatalogReadCompletedAt": "2026-10-10T19:48:41.294Z",
+    "afterCatalogReadCompletedAt": "2026-10-10T19:56:47.635Z",
+    "themesAnd29BoundSourcesUnchanged": true,
+    "protectedProductsUnchanged": 122,
+    "assignmentsUnchanged": 8,
+    "exclusionsUnchanged": 3,
+    "factualGrants": 0,
+    "ShopifyPersistentMutations": 0,
+    "runtimeChanged": false,
+    "budgetsChanged": false,
+    "throttleChanged": false
+  },
+  "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+  "certificatePassed": false,
+  "commands": [
+    {
+      "command": "node scripts/test-epic-f-live-performance-v3-safety.js",
+      "startedAt": "2026-10-10T19:24:49.574Z",
+      "completedAt": "2026-10-10T19:24:50.631Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-1.txt"
+    },
+    {
+      "command": "node scripts/test-epic-f-performance.js",
+      "startedAt": "2026-10-10T19:24:50.632Z",
+      "completedAt": "2026-10-10T19:24:51.625Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-2.txt"
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "startedAt": "2026-10-10T19:24:51.626Z",
+      "completedAt": "2026-10-10T19:24:55.677Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-3.txt"
+    },
+    {
+      "command": "python scripts/validate-theme-repository.py",
+      "startedAt": "2026-10-10T19:24:55.684Z",
+      "completedAt": "2026-10-10T19:24:57.375Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-4.txt"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f8",
+      "startedAt": "2026-10-10T19:24:57.383Z",
+      "completedAt": "2026-10-10T19:41:28.887Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-5.txt"
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --check",
+      "startedAt": "2026-10-10T19:41:28.910Z",
+      "completedAt": "2026-10-10T19:41:29.774Z",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/validation-command-6.txt"
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exitCode": 0,
+      "name": "json-registers",
+      "output": "Epic F machine-page repository readiness: valid\nepic-f-machine-measurement-contract: valid\nepic-f-machine-template-rollout-policy: valid\nepic-f-machine-template-rollout-plan: valid\nF7 historical before-read fixture: valid\nEpic F contextual/delivery architecture contract: valid\nEpic F support/resources architecture contract: valid\nEpic F specification/contents presentation roles: valid\nEpic F suppressed media release: valid\nEpic F synthetic gallery fixtures: valid\nEpic F future content cleanup: valid\nEpic F consumer release: valid\nEpic F consumer fixtures: valid\nepic-e-batch-3b-contracts: valid\nepic-e-relationship-matrix: valid\nepic-e-measurement-evidence: valid\nepic-e-component-evidence: valid\nepic-e-resource-catalog: valid\nepic-e-technical-field-evidence: valid\nepic-e-batch-3b-decision-packet: valid\nepic-e-batch-3b-extracted-evidence: valid\nadmin dependency register: valid\nstorefront fixtures: valid\nproduct data rules: valid\ncollection filter spec: valid\nsearch discovery desired state: valid\nmetafield and metaobject definitions: valid\nnavigation spec: valid\nhomepage section outcomes: valid\nhomepage content claims map: valid\nglobal navigation IA: valid\nfooter support resources: valid\nlocalization market decision: valid\nEpic C navigation measurement plan: valid\nEpic D homepage measurement plan: valid\nEpic D homepage NFR readiness: valid\ndesign token inventory: valid\nstorefront event contracts: valid\nstock asset ledger: valid\nmedia manifest: valid\nstock Trade remnants: valid\nhardcoded string allowlist: valid\ntheme environments: valid\nlaunch fixture ownership: valid\nrelease risk register: valid\nEpic E source governance: valid\nEpic E technical source index: valid\nEpic E gap and conflict register: valid\nEpic E Admin mutation-plan template: valid\nEpic E product classification: valid\nEpic E product identity: valid\nRhino commerce SKU registry: valid\nEpic E commercial configuration candidates: valid\nEpic E Product Owner decisions: valid\nEpic E conflict reference index: valid\nEpic E Vendor semantic audit: valid\nEpic E variant architecture: valid\nEpic E custom-data definition diff: valid\n"
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --check",
+      "exitCode": 0,
+      "name": "diff-check",
+      "output": ""
+    },
+    {
+      "command": "node scripts/test-epic-f-current-shopify-eligibility.js",
+      "exitCode": 0,
+      "name": "eligibility",
+      "output": "{\"passed\":68,\"failed\":0,\"scope\":\"Current live Shopify classification receipts, eight candidates, three exclusions, zero factual/assignment activation\"}\n"
+    },
+    {
+      "command": "node scripts/finalize-epic-f-live-performance-v3.js --validate",
+      "exitCode": 0,
+      "name": "evidence-finalizer",
+      "output": "{\"passed\":true,\"methodIdentity\":\"EPIC_F_015B_LIVE_RECORDER_V3\",\"methodSha256\":\"03611c152c662bcec5e1fee98435e3f6d92919b65a1a3daaefea87c3c63eb892\",\"sourceBindingSha256\":\"7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37\",\"historyFilesUnchanged\":122,\"beforeCatalogReadCompletedAt\":\"2026-10-10T19:48:41.294Z\",\"afterCatalogReadCompletedAt\":\"2026-10-10T19:56:47.635Z\",\"themesAnd29BoundSourcesUnchanged\":true,\"protectedProductsUnchanged\":122,\"assignmentsUnchanged\":8,\"exclusionsUnchanged\":3,\"factualGrants\":0,\"ShopifyPersistentMutations\":0,\"runtimeChanged\":false,\"budgetsChanged\":false,\"throttleChanged\":false}\n"
+    },
+    {
+      "command": "node scripts/test-epic-f-live-performance-v3.js",
+      "exitCode": 0,
+      "passed": 103
+    },
+    {
+      "command": "node scripts/test-epic-f-live-performance-profile-v3.js",
+      "exitCode": 0,
+      "passed": 22
+    },
+    {
+      "command": "node scripts/run-epic-f-live-performance-canary-v3.js --freeze",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/run-epic-f-live-performance-canary-v3.js",
+      "exitCode": 3,
+      "evidence": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/live-command-exit.json"
+    },
+    {
+      "command": "node scripts/finalize-epic-f-live-performance-v3.js",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/record-epic-f-live-performance-v3-blocker.js",
+      "exitCode": 0
+    },
+    {
+      "command": "credential scan",
+      "exitCode": 0,
+      "evidence": "docs/qa/evidence/epic-f/015b-recorder-v3-2026-10-10/credential-scan.json"
+    }
+  ],
+  "repositoryScope": "Current F1–F8 static/local aggregate; not live certification",
+  "budgetsChanged": false,
+  "runtimeChanged": false,
+  "ShopifyPersistentMutations": 0
+}

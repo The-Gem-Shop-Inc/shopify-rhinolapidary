@@ -1,0 +1,110 @@
+{
+  "completedAt": "2026-10-15T20:39:56.838Z",
+  "sourceBindingSha256": "b90bf2089788e77c04fbdd5bd1766bc4d03cfb9e358179884a47b74095be949b",
+  "finalRequiredChecksExitCode": 0,
+  "commands": [
+    {
+      "command": "node scripts/test-epic-f-final-owner-delta.js",
+      "exitCode": 0,
+      "tests": 13
+    },
+    {
+      "command": "node scripts/test-epic-f-final-owner-release.js",
+      "exitCode": 0,
+      "tests": 9
+    },
+    {
+      "command": "node scripts/test-epic-f-facts.js",
+      "exitCode": 0,
+      "tests": 67
+    },
+    {
+      "command": "node scripts/test-epic-f-consumer.js",
+      "exitCode": 0,
+      "tests": 22
+    },
+    {
+      "command": "npm run theme:check",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0,
+      "log": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/theme-check.log"
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/local-registers.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/local-diff.log"
+    },
+    {
+      "command": "node scripts/deploy-epic-f-final-owner-delta.js preview",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-final-owner-live-browser.js preview",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-final-owner-zoom.js preview",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/deploy-epic-f-final-owner-delta.js main",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-final-owner-live-browser.js main",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-final-owner-zoom.js main",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/final-registers.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/final-diff.log"
+    },
+    {
+      "command": "Credential scan",
+      "exitCode": 0,
+      "hits": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-final-owner-protected.js",
+      "exitCode": 0
+    }
+  ],
+  "tests": {
+    "delta": 13,
+    "currentRelease": 9,
+    "specificationContents": 67,
+    "consumer": 22
+  },
+  "toolkitHelper": {
+    "exitCode": 1,
+    "reason": "Bundled validator dependency missing",
+    "evidence": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/toolkit-liquid-validation.log",
+    "independentRequiredThemeCheckExitCode": 0
+  },
+  "historicalEvidenceFilesUnchanged": 101,
+  "formatterUnchanged": true,
+  "typeGuardsUnchanged": true,
+  "sourceIngestionRerun": false,
+  "prior116MigrationRerun": false,
+  "liveCells": 32,
+  "trueZoomCells": 6,
+  "axeCritical": 0,
+  "axeSerious": 0,
+  "performanceSamples": 0,
+  "finalEpicFSignoff": false
+}

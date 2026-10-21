@@ -1,0 +1,121 @@
+{
+  "completedAt": "2026-10-14T22:12:14.139Z",
+  "sourceBindingSha256": "b09c7305fbf1171c45f8f99c5a00ba8f80602e79dcadac6daa14d7d50d49f2c2",
+  "finalCurrentChecksExitCode": 0,
+  "commands": [
+    {
+      "command": "npm run validate:epic-f-batch-f8",
+      "exitCode": 1,
+      "reason": "Preserved initial stale-readiness snapshot; current complete F1–F7 regression passed",
+      "evidence": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-aggregate-stale-readiness-attempt.json"
+    },
+    {
+      "command": "node scripts/finalize-epic-f-bom-local-validation.js",
+      "exitCode": 0,
+      "evidence": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-validation.json"
+    },
+    {
+      "command": "node scripts/build-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-build-epic-f-machine-page-readiness.log"
+    },
+    {
+      "command": "node scripts/validate-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-validate-epic-f-machine-page-readiness.log"
+    },
+    {
+      "command": "node scripts/test-epic-f-machine-page-readiness.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-test-epic-f-machine-page-readiness.log"
+    },
+    {
+      "command": "node scripts/validate-epic-e-owner-activation.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-validate-epic-e-owner-activation.log"
+    },
+    {
+      "command": "node scripts/test-epic-e-owner-response-adapter.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-test-epic-e-owner-response-adapter.log"
+    },
+    {
+      "command": "node scripts/test-epic-e-bom-owner-followup.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-test-epic-e-bom-owner-followup.log"
+    },
+    {
+      "command": "node scripts/test-epic-f-bom-contents-compiler.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-test-epic-f-bom-contents-compiler.log"
+    },
+    {
+      "command": "shopify theme check",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/local-theme-check.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/final-registers.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "log": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/final-diff.log"
+    },
+    {
+      "command": "node scripts/deploy-epic-f-bom-followup.js preview",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/deploy-epic-f-bom-followup.js preview --readback",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-bom-live-browser.js preview",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/deploy-epic-f-bom-followup.js main",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/deploy-epic-f-bom-followup.js main --readback",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-epic-f-bom-live-browser.js main",
+      "exitCode": 0
+    },
+    {
+      "command": "Credential scan",
+      "exitCode": 0,
+      "evidence": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/credential-scan.json"
+    },
+    {
+      "command": "Final protected Product/Variant comparison",
+      "exitCode": 0,
+      "evidence": "docs/qa/evidence/epic-f/007b-008b-owner-followup-2026-10-14/final-protected-comparison.json"
+    }
+  ],
+  "initialFailurePreserved": true,
+  "adapterTests": 15,
+  "compilerTests": 13,
+  "historicalAdapterTests": 32,
+  "readinessTests": 66,
+  "ThemeCheck": {
+    "exitCode": 0,
+    "errors": 0,
+    "warnings": 0
+  },
+  "liveRouteCells": 32,
+  "livePerformanceSamples": 0,
+  "performanceRecorderChanges": 0
+}

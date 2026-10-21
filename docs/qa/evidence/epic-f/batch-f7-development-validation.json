@@ -1,0 +1,770 @@
+{
+  "scope": "F7 repository development diagnostics; does not replace final aggregate evidence",
+  "initialAttempt": {
+    "batch": "F7",
+    "assessedAt": "2026-09-29T15:02:56.551Z",
+    "scope": "repository governance and unit fixtures only; not F-PBI-018",
+    "exitCode": 1,
+    "results": [
+      {
+        "command": "npm run validate:epic-f-machine-measurement",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f7/validate-epic-f-machine-measurement.txt"
+      },
+      {
+        "command": "npm run test:epic-f-machine-measurement",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f7/test-epic-f-machine-measurement.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-machine-template-rollout",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f7/validate-epic-f-machine-template-rollout.txt"
+      },
+      {
+        "command": "npm run test:epic-f-machine-template-rollout",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f7/test-epic-f-machine-template-rollout.txt"
+      },
+      {
+        "command": "npm run validate:hardcoded-strings",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f7/validate-hardcoded-strings.txt"
+      },
+      {
+        "command": "npm run validate:registers",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f7/validate-registers.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f6",
+        "exitCode": 1,
+        "required": true,
+        "log": "test-results/epic-f/f7/validate-epic-f-batch-f6.txt"
+      },
+      {
+        "command": "npm run theme:check",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f7/theme-check.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f7/git-diff-check.txt"
+      }
+    ],
+    "regression": {
+      "F1": {
+        "command": "npm run validate:epic-f-batch-f1",
+        "exitCode": 0,
+        "evidence": "test-results/epic-f/batch-f1-validation.json",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-consumer",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run test:epic-f-consumer",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:epic-f-claims",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run test:epic-f-claims",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:registers",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:product-templates",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:product-purchase",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:brand-claims",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run test:brand-claims-validator",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:metafields",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:epic-e-batch-2b1-registers",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:epic-e-batch-4a-contracts",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:theme-repository",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:theme-architecture",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:storefront-js",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:settings-data",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:fixtures",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run theme:check",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:launch-fixtures",
+            "exitCode": 1,
+            "requiredForBatch": false
+          },
+          {
+            "command": "npm run validate:product-data -- data/product-export/products.csv",
+            "exitCode": 1,
+            "requiredForBatch": false
+          },
+          {
+            "command": "node scripts/validate-social-metadata-contract.js",
+            "exitCode": 0,
+            "requiredForBatch": true
+          }
+        ]
+      },
+      "F2": {
+        "exitCode": 1,
+        "error": "Error: ENOENT: no such file or directory, open 'C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\test-results\\epic-f\\batch-f2-validation.json'"
+      },
+      "F3": {
+        "command": "npm run validate:epic-f-batch-f3",
+        "exitCode": 0,
+        "evidence": "test-results/epic-f/f3/batch-f3-validation.json",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-gallery",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/validate-epic-f-gallery.txt"
+          },
+          {
+            "command": "npm run test:epic-f-media",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/test-epic-f-media.txt"
+          },
+          {
+            "command": "npm run test:epic-f-performance",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/test-epic-f-performance.txt"
+          },
+          {
+            "command": "npm run test:machine-gallery",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/test-machine-gallery.txt"
+          },
+          {
+            "command": "npm run test:machine-performance",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/test-machine-performance.txt"
+          },
+          {
+            "command": "npm run validate:brand-performance",
+            "exitCode": 0,
+            "category": "F1/F2 and existing performance regression",
+            "log": "test-results/epic-f/f3/validate-brand-performance.txt"
+          },
+          {
+            "command": "npm run validate:homepage-performance",
+            "exitCode": 0,
+            "category": "F1/F2 and existing performance regression",
+            "log": "test-results/epic-f/f3/validate-homepage-performance.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f2",
+            "exitCode": 0,
+            "category": "F1/F2 and existing performance regression",
+            "log": "test-results/epic-f/f3/validate-epic-f-batch-f2.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "category": "required F3 repository"
+          }
+        ]
+      },
+      "F4": {
+        "command": "npm run validate:epic-f-batch-f4",
+        "exitCode": 0,
+        "evidence": "test-results/epic-f/f4/batch-f4-validation.json",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-facts",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F4 repository",
+            "log": "test-results/epic-f/f4/validate-epic-f-facts.txt"
+          },
+          {
+            "command": "npm run test:epic-f-facts",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F4 repository",
+            "log": "test-results/epic-f/f4/test-epic-f-facts.txt"
+          },
+          {
+            "command": "npm run test:machine-facts",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F4 repository",
+            "log": "test-results/epic-f/f4/test-machine-facts.txt"
+          },
+          {
+            "command": "npm run test:machine-fact-performance",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F4 repository",
+            "log": "test-results/epic-f/f4/test-machine-fact-performance.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f3",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F1-F3 regression",
+            "log": "test-results/epic-f/f4/validate-epic-f-batch-f3.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "required": true
+          }
+        ]
+      },
+      "F5": {
+        "command": "npm run validate:epic-f-batch-f5",
+        "exitCode": 1,
+        "evidence": "test-results/epic-f/f5/batch-f5-validation.json",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-context-delivery",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F5 repository",
+            "log": "test-results/epic-f/f5/validate-epic-f-context-delivery.txt"
+          },
+          {
+            "command": "npm run test:epic-f-context-delivery",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F5 repository",
+            "log": "test-results/epic-f/f5/test-epic-f-context-delivery.txt"
+          },
+          {
+            "command": "npm run test:machine-context-delivery",
+            "exitCode": 1,
+            "required": true,
+            "scope": "F5 repository",
+            "log": "test-results/epic-f/f5/test-machine-context-delivery.txt"
+          },
+          {
+            "command": "npm run test:machine-context-delivery-performance",
+            "exitCode": 1,
+            "required": true,
+            "scope": "F5 repository",
+            "log": "test-results/epic-f/f5/test-machine-context-delivery-performance.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f4",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F1-F4 regression",
+            "log": "test-results/epic-f/f5/validate-epic-f-batch-f4.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "required": true
+          }
+        ]
+      },
+      "F6": {
+        "command": "npm run validate:epic-f-batch-f6",
+        "exitCode": 1,
+        "evidence": "test-results/epic-f/f6/batch-f6-validation.json",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-support-resources",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/validate-epic-f-support-resources.txt"
+          },
+          {
+            "command": "npm run test:epic-f-support-resources",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/test-epic-f-support-resources.txt"
+          },
+          {
+            "command": "npm run test:machine-support-resources",
+            "exitCode": 1,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/test-machine-support-resources.txt"
+          },
+          {
+            "command": "npm run test:machine-support-resources-performance",
+            "exitCode": 1,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/test-machine-support-resources-performance.txt"
+          },
+          {
+            "command": "npm run validate:hardcoded-strings",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/validate-hardcoded-strings.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f5",
+            "exitCode": 1,
+            "required": true,
+            "scope": "F1-F5 regression",
+            "log": "test-results/epic-f/f6/validate-epic-f-batch-f5.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "required": true
+          }
+        ]
+      }
+    },
+    "status": {
+      "F-PBI-016": "checks failed",
+      "F-PBI-017": "partial",
+      "F-PBI-017A": "checks failed",
+      "F-PBI-017B": "open/blocked/not authorized",
+      "F-PBI-014B": "open/partial",
+      "F-PBI-015B": "deferred",
+      "F-PBI-018": "not started"
+    },
+    "measurement": {
+      "nativeOwnerSlots": 4,
+      "assignedNativeOwners": 0,
+      "ownerAuthority": "U / Analytics Owner; assignment unresolved",
+      "optionalQuestions": 4,
+      "instrumentation": "blocked",
+      "emittedEvents": 0
+    },
+    "rollout": {
+      "planHash": "e69138cf06cdab34f7560058d156dfe0f4f042cc94d395582dd55fde1cfd7146",
+      "assessed": 11,
+      "futureCandidateGids": [
+        "gid://shopify/Product/8905779937477",
+        "gid://shopify/Product/8905780756677",
+        "gid://shopify/Product/8905781412037",
+        "gid://shopify/Product/8905781477573",
+        "gid://shopify/Product/8905784131781",
+        "gid://shopify/Product/8905784197317",
+        "gid://shopify/Product/8905784328389",
+        "gid://shopify/Product/8905785344197"
+      ],
+      "eligibleTargetGids": [],
+      "exclusions": [
+        {
+          "productGid": "gid://shopify/Product/8905781248197",
+          "label": "JadeMaster, 14\"",
+          "assessed": true,
+          "observedTemplateSuffix": null,
+          "intendedTemplateSuffix": "machine",
+          "status": "ACTIVE",
+          "publication": {
+            "publishedAt": null,
+            "onlineStoreUrl": null,
+            "publicationsDigest": null,
+            "customerVisibility": "unpublished"
+          },
+          "classificationReadiness": "blocked",
+          "eligibility": "excluded",
+          "futureCandidate": false,
+          "reasons": [
+            "JadeMaster: explicit F-PBI-017 exclusion; historically unpublished; separate authorization required",
+            "draft or unpublished; do not change status/publication",
+            "completeCurrentEReconciliation",
+            "definitionMigrationVerified",
+            "productClassMigrationVerified",
+            "currentExactIdentityVerified",
+            "consumerEligibilityVerified",
+            "fresh complete bounded before-read required",
+            "Product Owner GO absent",
+            "Shopify Admin Owner GO absent",
+            "F7 execution not authorized"
+          ],
+          "mutationWouldBeRequiredIfAuthorized": false,
+          "allowedChange": null,
+          "rollbackValue": null
+        },
+        {
+          "productGid": "gid://shopify/Product/8905784262853",
+          "label": "SawMaster, 36\"",
+          "assessed": true,
+          "observedTemplateSuffix": null,
+          "intendedTemplateSuffix": "machine",
+          "status": "DRAFT",
+          "publication": {
+            "publishedAt": null,
+            "onlineStoreUrl": null,
+            "publicationsDigest": null,
+            "customerVisibility": "unpublished"
+          },
+          "classificationReadiness": "blocked",
+          "eligibility": "excluded",
+          "futureCandidate": false,
+          "reasons": [
+            "SawMaster 36: explicit F-PBI-017 exclusion; historically draft/unpublished; separate authorization required",
+            "draft or unpublished; do not change status/publication",
+            "completeCurrentEReconciliation",
+            "definitionMigrationVerified",
+            "productClassMigrationVerified",
+            "currentExactIdentityVerified",
+            "consumerEligibilityVerified",
+            "fresh complete bounded before-read required",
+            "Product Owner GO absent",
+            "Shopify Admin Owner GO absent",
+            "F7 execution not authorized"
+          ],
+          "mutationWouldBeRequiredIfAuthorized": false,
+          "allowedChange": null,
+          "rollbackValue": null
+        },
+        {
+          "productGid": "gid://shopify/Product/8905785868485",
+          "label": "TumbleMaster",
+          "assessed": true,
+          "observedTemplateSuffix": null,
+          "intendedTemplateSuffix": "machine",
+          "status": "DRAFT",
+          "publication": {
+            "publishedAt": null,
+            "onlineStoreUrl": null,
+            "publicationsDigest": null,
+            "customerVisibility": "unpublished"
+          },
+          "classificationReadiness": "blocked",
+          "eligibility": "excluded",
+          "futureCandidate": false,
+          "reasons": [
+            "TumbleMaster: explicit F-PBI-017 exclusion; historically draft/unpublished; separate authorization required",
+            "draft or unpublished; do not change status/publication",
+            "completeCurrentEReconciliation",
+            "definitionMigrationVerified",
+            "productClassMigrationVerified",
+            "currentExactIdentityVerified",
+            "consumerEligibilityVerified",
+            "fresh complete bounded before-read required",
+            "Product Owner GO absent",
+            "Shopify Admin Owner GO absent",
+            "F7 execution not authorized"
+          ],
+          "mutationWouldBeRequiredIfAuthorized": false,
+          "allowedChange": null,
+          "rollbackValue": null
+        }
+      ],
+      "mutations": 0,
+      "GO": "both absent/not granted",
+      "AdminEvidence": "historical/incomplete/stale for execution"
+    },
+    "contractTests": {
+      "measurement": {
+        "cases": [
+          "contract with unresolved consent is valid but blocked",
+          "one native owner slot per action, no fabricated owner",
+          "valid exact contact decision fixture",
+          "valid exact resource decision fixture",
+          "valid exact contextual decision fixture",
+          "valid exact delivery decision fixture",
+          "duplicate native owner",
+          "same-size duplicate native owner displaces an action",
+          "F claims existing native owner",
+          "duplicate native event emission",
+          "native event renamed to duplicate custom alias",
+          "optional owner slot claimed by F",
+          "deduplication strategy cannot be weakened",
+          "native marked custom",
+          "optional duplicate native alias",
+          "missing question",
+          "missing reporting owner",
+          "unresolved consent cannot be ready",
+          "section expansion is not optional success",
+          "shared registry duplicate native alias rejected",
+          "invalid Product GID",
+          "unknown exact Product GID",
+          "wrong Variant/Product pair",
+          "invalid contextual target",
+          "invalid contextual relationship",
+          "invalid resource identity",
+          "unsafe/unapproved route: /pages/contact?email=private",
+          "unsafe/unapproved route: /pages/contact#private",
+          "unsafe/unapproved route: https://example.com/pages/contact",
+          "unsafe/unapproved route: //example.com/path",
+          "unsafe/unapproved route: /pages/%2e%2e/private",
+          "unsafe/unapproved route: /pages/%252e%252e/private",
+          "unsafe/unapproved route: /pages/../private",
+          "unsafe/unapproved route: /account/1234",
+          "unsafe/unapproved route: /pages/token-secret",
+          "unsafe/unapproved route: /pages/user@example.com",
+          "unbounded or private field: email",
+          "unbounded or private field: customerName",
+          "unbounded or private field: phone",
+          "unbounded or private field: address",
+          "unbounded or private field: accountId",
+          "unbounded or private field: orderNotes",
+          "unbounded or private field: formContents",
+          "unbounded or private field: inquiryText",
+          "unbounded or private field: searchText",
+          "unbounded or private field: description",
+          "unbounded or private field: domText",
+          "unbounded or private field: referrer",
+          "unbounded or private field: arbitrary",
+          "suppressed module event",
+          "section expansion action",
+          "fixture-only release instrumentation",
+          "no storefront code/config/budget changes"
+        ],
+        "passed": 53,
+        "failed": 0,
+        "emittedEvents": 0,
+        "mutations": 0
+      },
+      "rollout": {
+        "cases": [
+          "valid repository plan",
+          "identical inputs produce identical semantic and byte output",
+          "valid historical before is usable for construction only",
+          "exact 11 assessed, eight conditional future candidates, zero eligible, zero writes executed",
+          "already intended suffix creates no proposed write or rollback",
+          "target selected by title instead of GID",
+          "non-machine Product",
+          "missing Product",
+          "duplicate Product",
+          "unexpected Product added",
+          "wrong shop",
+          "stale read blocks freshness without relying on other errors",
+          "changed template suffix",
+          "changed Product status",
+          "changed publication",
+          "changed classification",
+          "changed classification evidence",
+          "missing machine template",
+          "changed template bytes",
+          "invalid intended suffix",
+          "draft Product accidentally eligible",
+          "JadeMaster accidentally eligible",
+          "SawMaster 36 accidentally eligible",
+          "TumbleMaster accidentally eligible",
+          "write-set identity excludes gid://shopify/Product/8905781248197",
+          "write-set identity excludes gid://shopify/Product/8905784262853",
+          "write-set identity excludes gid://shopify/Product/8905785868485",
+          "exclusion state changed requires review",
+          "all prerequisite slots true passes pure prerequisite shape check, does not authorize",
+          "missing prerequisite: completeCurrentEReconciliation",
+          "missing prerequisite: definitionMigrationVerified",
+          "missing prerequisite: productClassMigrationVerified",
+          "missing prerequisite: currentExactIdentityVerified",
+          "missing prerequisite: consumerEligibilityVerified",
+          "incomplete E reconciliation remains blocked",
+          "missing before-state",
+          "missing rollback value",
+          "rollback incorrectly assumes product.json",
+          "rollback preserves custom prior suffix",
+          "rollback distinguishes null from empty suffix",
+          "write set rejects price",
+          "write set rejects sku",
+          "write set rejects vendor",
+          "write set rejects metafield",
+          "write set rejects status",
+          "write set rejects publication",
+          "write set rejects incidental extra property",
+          "GO absent",
+          "only Product Owner GO present cannot authorize",
+          "only Shopify Admin Owner GO present cannot authorize",
+          "GO plan hash mismatch",
+          "plan hash mismatch",
+          "before hash mismatch",
+          "valid exact after comparison fixture",
+          "after unrelated title change rejected",
+          "after unrelated variants change rejected",
+          "after unrelated vendor change rejected",
+          "after unrelated metafields change rejected",
+          "after unrelated publications change rejected",
+          "after unrelated shippingProfile change rejected",
+          "after status change rejected",
+          "after suffix mismatch rejected",
+          "historical incomplete coverage cannot prove after state",
+          "production publication authorization forbidden",
+          "production publish bundled into plan",
+          "production publish bundled into dry run",
+          "F7 always blocks execution independently of green architecture"
+        ],
+        "passed": 67,
+        "failed": 0,
+        "emittedEvents": 0,
+        "mutations": 0
+      }
+    },
+    "unchanged": {
+      "storefrontRuntime": true,
+      "externalRequests": true,
+      "performanceThresholds": true,
+      "factGrantsZero": true,
+      "supportResourcesCustomerOutput": 0
+    },
+    "historicalDiagnostics": [
+      {
+        "command": "npm run validate:launch-fixtures",
+        "exitCode": 1,
+        "requiredForBatch": false
+      },
+      {
+        "command": "npm run validate:product-data -- data/product-export/products.csv",
+        "exitCode": 1,
+        "requiredForBatch": false
+      }
+    ],
+    "historicalComparison": [
+      {
+        "name": "validate-launch-fixtures",
+        "findingCount": 2,
+        "unchanged": true
+      },
+      {
+        "name": "validate-product-data",
+        "findingCount": 103,
+        "unchanged": true
+      }
+    ],
+    "historicalDescriptionClaimMatches": {
+      "count": 37,
+      "status": "historical, suppressed, not approved"
+    },
+    "brokenManualRoutes": {
+      "unchanged": true,
+      "source": "data/epic-e-resource-catalog.json; historical discovery",
+      "routes": [
+        "/pages/12-in-lapmaster-manual",
+        "/pages/18-in-lapmaster-manual",
+        "/pages/18-in-sawmaster-manual",
+        "/pages/24-in-sawmaster-manual",
+        "/pages/36-in-sawmaster-manual",
+        "/pages/jademaster-manual",
+        "/pages/beadmaster-manual"
+      ],
+      "liveRecheck": false
+    },
+    "deferred": [
+      "004B",
+      "006B",
+      "007B",
+      "008B",
+      "009B",
+      "010B",
+      "011B",
+      "013/F-DEC-001",
+      "remaining 014B",
+      "015B",
+      "017B",
+      "018",
+      "B3C-D03 blocked",
+      "B3B-D06 pending",
+      "010B B3C-D03/E-PBI-016 policy, class, exact Product mapping, independently evidenced roles, customer scope/destination, applicable migration/reconciliation and separate activation",
+      "011B B3B-D06/E-PBI-018B exact Product/File and canonical version, language/rights/publication review, valid destinations, Product-surface video/media approval, migration/reconciliation and separate activation",
+      "004B/006B/007B/008B/009B unchanged and not ready",
+      "014B approved live media parity, actual Shopify-rendered integration/release parity and release-only journeys not proven locally",
+      "013/F-DEC-001 unresolved; native payment terms unchanged",
+      "015B actual Shopify preview/release certification",
+      "Epic P intake/privacy/retention ownership",
+      "Inherited Epic E approvals/migrations/reconciliation; no questions reopened",
+      "J/K operational corrections; L support/resource destination ownership"
+    ],
+    "adminMutationOccurred": false,
+    "productTemplateAssignmentOccurred": false,
+    "productDataMutationOccurred": false,
+    "analyticsPixelConsentConfigurationChanged": false,
+    "previewOrProductionThemePushedOrPublished": false,
+    "productionThemePublicationAuthorized": false,
+    "releasePerformanceCertificationRun": false
+  },
+  "environmentRepair": {
+    "command": "npx playwright install chromium",
+    "exitCode": 0,
+    "reason": "Playwright expected revision 1228; only earlier browser revisions were present",
+    "repositoryDependencyChanges": false
+  },
+  "runnerCorrection": "F2 evidence is at test-results/epic-f/f2/batch-f2-validation.json; corrected new F7 reporting lookup before final rerun",
+  "finalAttempt": "docs/qa/evidence/epic-f/batch-f7-validation.json",
+  "deterministicBuilderVerification": {
+    "commands": [
+      {
+        "command": "npm run build:epic-f-machine-template-rollout",
+        "exitCode": 0
+      },
+      {
+        "command": "npm run build:epic-f-machine-template-rollout",
+        "exitCode": 0
+      }
+    ],
+    "fileSha256": "f49f60e57303fa6e227aea66744e2510529e51930fd894ccdec0e87e95d0a2d8",
+    "unchangedAcrossBothRuns": true,
+    "semanticPlanHash": "e69138cf06cdab34f7560058d156dfe0f4f042cc94d395582dd55fde1cfd7146",
+    "mutations": 0
+  }
+}

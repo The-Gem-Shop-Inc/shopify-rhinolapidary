@@ -1,0 +1,87 @@
+{
+  "assessedAt": "2026-10-07T15:49:43.505Z",
+  "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+  "certificatePassed": false,
+  "commands": [
+    {
+      "command": "node scripts/test-epic-f-live-performance-profile.js",
+      "exitCode": 0,
+      "passed": 22
+    },
+    {
+      "command": "node scripts/test-epic-f-live-performance-recorder.js",
+      "exitCode": 0,
+      "passed": 5
+    },
+    {
+      "command": "node scripts/test-epic-f-live-performance-cutoff.js",
+      "exitCode": 0,
+      "passed": 4
+    },
+    {
+      "command": "node scripts/test-epic-f-live-performance-beacon.js",
+      "exitCode": 0,
+      "passed": 5
+    },
+    {
+      "command": "node scripts/test-epic-f-performance.js",
+      "exitCode": 0,
+      "passed": 34
+    },
+    {
+      "command": "node scripts/test-epic-f-015b-certification-preflight.js",
+      "exitCode": 0,
+      "passed": 17
+    },
+    {
+      "command": "node scripts/run-epic-f-live-performance-certification.js",
+      "observedPowerShellExitCode": 1,
+      "declaredNodeStopCode": 3,
+      "result": "BLOCKED_MEASUREMENT_INTEGRITY; no passing certificate"
+    },
+    {
+      "command": "node scripts/validate-epic-f-live-performance-certification.js",
+      "exitCode": 0,
+      "result": "Evidence/schema/source/cache/throttle/median/persistence validation; not certification pass"
+    },
+    {
+      "command": "node scripts/finalize-epic-f-live-performance-certification.js",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f8",
+      "exitCode": 0,
+      "bindingEnvironment": {
+        "RHINO_EPIC_F_CLEANUP_BINDING": "docs/qa/evidence/epic-f/release-gate-cleanup-source-binding.json",
+        "RHINO_EPIC_F_HEADER_FOCUS_BINDING": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/source-binding.json"
+      }
+    },
+    {
+      "cliVersion": "4.8.3",
+      "command": "Shopify CLI 4.8.3 theme check --path . --fail-level warning --output json",
+      "exitCode": 0,
+      "findings": [],
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "nonRequiredHistoricalDiagnostics": [
+    {
+      "command": "npm run validate:launch-fixtures",
+      "exitCode": 1,
+      "requiredForBatch": false
+    },
+    {
+      "command": "npm run validate:product-data -- data/product-export/products.csv",
+      "exitCode": 1,
+      "requiredForBatch": false
+    }
+  ],
+  "budgetsChanged": false,
+  "runtimeChanged": false,
+  "ShopifyPersistentMutations": 0
+}

@@ -1,0 +1,2 @@
+'use strict';
+const fs=require('node:fs'),A=require('./lib/epic-e-final-owner-delta'),F=require('./lib/epic-f-customer-release');const s=A.loadCurrent(),out=F.compile(s);fs.writeFileSync(F.RELEASE,JSON.stringify(out.release,null,2)+'\n');fs.writeFileSync(F.FACT,out.facts);fs.writeFileSync(F.CONTEXT,out.context);for(const [p,b]of Object.entries(out.shards))fs.writeFileSync(p,b);F.verifyRelease();console.log(JSON.stringify({grants:out.release.grants.length,rows:out.projection.pages.reduce((n,p)=>n+p.specs.length,0),pages:out.release.pageSummary}));

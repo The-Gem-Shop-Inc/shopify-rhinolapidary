@@ -1,0 +1,121 @@
+{
+  "completedAt": "2026-10-13 20:24:59 UTC",
+  "query": "mutation OwnerFactsSet($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type value jsonValue compareDigest owner{...on Product{id}}definition{id}}userErrors{field message code}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "wheel_arbor_diameter",
+        "type": "dimension",
+        "value": "{\"value\":1,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "wheel_diameter",
+        "type": "dimension",
+        "value": "{\"value\":6,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784131781",
+        "namespace": "rhino",
+        "key": "blade_diameter_max",
+        "type": "dimension",
+        "value": "{\"value\":18,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784197317",
+        "namespace": "rhino",
+        "key": "blade_diameter_max",
+        "type": "dimension",
+        "value": "{\"value\":24,\"unit\":\"inches\"}",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71530339107013",
+            "namespace": "rhino",
+            "key": "wheel_arbor_diameter",
+            "type": "dimension",
+            "value": "{\"value\":1.0,\"unit\":\"INCHES\"}",
+            "jsonValue": {
+              "value": 1,
+              "unit": "INCHES"
+            },
+            "compareDigest": "5e0a6687d87124bf366af5e764a5a86bcb9e90535133a88b57a325f4e64c3691",
+            "owner": {
+              "id": "gid://shopify/Product/8905780756677"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659250373"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530339074245",
+            "namespace": "rhino",
+            "key": "wheel_diameter",
+            "type": "dimension",
+            "value": "{\"value\":6.0,\"unit\":\"INCHES\"}",
+            "jsonValue": {
+              "value": 6,
+              "unit": "INCHES"
+            },
+            "compareDigest": "03e291f8b982b791a100bac033bcc0f9b556ec899edf357bb753093d390b4ff5",
+            "owner": {
+              "id": "gid://shopify/Product/8905780756677"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659184837"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530339041477",
+            "namespace": "rhino",
+            "key": "blade_diameter_max",
+            "type": "dimension",
+            "value": "{\"value\":18.0,\"unit\":\"INCHES\"}",
+            "jsonValue": {
+              "value": 18,
+              "unit": "INCHES"
+            },
+            "compareDigest": "8d4f5a3e3c4d5bd9fc13b1d4a1ae3ac1353ad9c9e184cb4af2d5f4b266987009",
+            "owner": {
+              "id": "gid://shopify/Product/8905784131781"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659152069"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71530339008709",
+            "namespace": "rhino",
+            "key": "blade_diameter_max",
+            "type": "dimension",
+            "value": "{\"value\":24.0,\"unit\":\"INCHES\"}",
+            "jsonValue": {
+              "value": 24,
+              "unit": "INCHES"
+            },
+            "compareDigest": "490262fd71ead2f65fc32fea70a38c2b2018f7f2b9005acc171cb370d9e7b4d8",
+            "owner": {
+              "id": "gid://shopify/Product/8905784197317"
+            },
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659152069"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "completedAt": "2026-10-15T18:15:01.614Z",
+  "query": "mutation AmendedTechnicalValues($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type jsonValue compareDigest definition{id}} userErrors{field message}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905784328389",
+        "namespace": "rhino",
+        "key": "crate_length",
+        "type": "dimension",
+        "value": "{\"value\":29.5,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905784328389",
+        "namespace": "rhino",
+        "key": "crate_width",
+        "type": "dimension",
+        "value": "{\"value\":23.5,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905785344197",
+        "namespace": "rhino",
+        "key": "crate_height",
+        "type": "dimension",
+        "value": "{\"value\":21.5,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905785344197",
+        "namespace": "rhino",
+        "key": "crate_length",
+        "type": "dimension",
+        "value": "{\"value\":28.75,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905785344197",
+        "namespace": "rhino",
+        "key": "crate_width",
+        "type": "dimension",
+        "value": "{\"value\":33.5,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905785868485",
+        "namespace": "rhino",
+        "key": "crate_height",
+        "type": "dimension",
+        "value": "{\"value\":56,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905785868485",
+        "namespace": "rhino",
+        "key": "crate_length",
+        "type": "dimension",
+        "value": "{\"value\":41,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905785868485",
+        "namespace": "rhino",
+        "key": "crate_width",
+        "type": "dimension",
+        "value": "{\"value\":33,\"unit\":\"inches\"}",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71576429560005",
+            "namespace": "rhino",
+            "key": "crate_length",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 29.5,
+              "unit": "INCHES"
+            },
+            "compareDigest": "cded512eb4e99d56faa1b1d22f470ee23a9af1da5c81683c8b1e65bc6d8093c6",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660233413"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576429527237",
+            "namespace": "rhino",
+            "key": "crate_width",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 23.5,
+              "unit": "INCHES"
+            },
+            "compareDigest": "bca03d3d8ef4b942ca69c9df9a139cfa689ed69d1bfe6a470b789a9da7c7e0f9",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660266181"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576429494469",
+            "namespace": "rhino",
+            "key": "crate_height",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 21.5,
+              "unit": "INCHES"
+            },
+            "compareDigest": "bd33a45147452c2db3a580cc978553e5e6fc1d350a8b78616bbfd48f5508e378",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660298949"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576429461701",
+            "namespace": "rhino",
+            "key": "crate_length",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 28.75,
+              "unit": "INCHES"
+            },
+            "compareDigest": "87b8c25742d1fe4d0f93d8c07f339d444009aa96500080ff253dde88c2ead6a8",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660233413"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576429428933",
+            "namespace": "rhino",
+            "key": "crate_width",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 33.5,
+              "unit": "INCHES"
+            },
+            "compareDigest": "ef77d5d5324514d135045645ba4ec7ba56b9816121c02e41837c09aa5c94f662",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660266181"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576429396165",
+            "namespace": "rhino",
+            "key": "crate_height",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 56,
+              "unit": "INCHES"
+            },
+            "compareDigest": "83420abb8f0b42837687942b46c4a892a8d872ab9dcbb935be1fb4d7934c7657",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660298949"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576429363397",
+            "namespace": "rhino",
+            "key": "crate_length",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 41,
+              "unit": "INCHES"
+            },
+            "compareDigest": "165628b00e34b1cdb6002a639b191ba7ab9a2fb76622a4ef9e79e2d3e39c2044",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660233413"
+            }
+          },
+          {
+            "id": "gid://shopify/Metafield/71576429330629",
+            "namespace": "rhino",
+            "key": "crate_width",
+            "type": "dimension",
+            "jsonValue": {
+              "value": 33,
+              "unit": "INCHES"
+            },
+            "compareDigest": "da54052c7e4b60a8d426fb2f58006253a9e757782a05b0b20d4857970ae774ab",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298660266181"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  }
+}

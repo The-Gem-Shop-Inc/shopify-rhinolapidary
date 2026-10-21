@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "fixtureOnly", "machineProductGid", "futureTemplate", "customerNarratives", "cases"],
+  "properties": {
+    "schemaVersion": {"const": 1}, "fixtureOnly": {"const": true},
+    "machineProductGid": {"type": "string", "pattern": "^gid://shopify/Product/[0-9]+$"},
+    "futureTemplate": {"const": "product.machine"},
+    "customerNarratives": {"type": "array", "maxItems": 0},
+    "cases": {"type": "array", "minItems": 18, "uniqueItems": true, "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,11 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict'),M=require('./lib/epic-f-live-media-activation');
+assert.equal(M.read(M.DIR+'/resume-reconciliation.json').passed,true);assert.ok(!fs.existsSync(M.BINDING),'Resume binding already exists');
+const snapshot=M.read(M.DIR+'/media-current.json'),old=M.read(M.BASE+'/source-binding.json');
+fs.copyFileSync(M.DIR+'/media-current.json',M.DIR+'/media-after-alt.json');
+const release=M.read(M.RELEASE);release.observedAt=snapshot.completedAt;for(const grant of release.grants)grant.observedAt=snapshot.completedAt;
+assert.deepEqual(M.validateRelease(release,snapshot),[]);assert.equal(fs.readFileSync(M.FILE,'utf8'),M.compile(release),'Refresh must not change reviewed runtime candidate');fs.writeFileSync(M.RELEASE,JSON.stringify(release,null,2)+'\n');
+const paths=[M.RELEASE,M.BASE+'/development-decision.json',M.BASE+'/visual-media-review.json',M.BASE+'/media-before.json',M.DIR+'/media-after-alt.json',M.DIR+'/catalog-before.json',M.BASE+'/alt-mutation-result.json',M.BASE+'/alt-change-plan.json',M.DIR+'/resume-reconciliation.json','scripts/lib/epic-f-live-media-activation.js'];
+const body={...old,identity:'EPIC_F_CURRENT_PRODUCT_MEDIA_DEVELOPMENT_2026_10_12',createdAt:new Date().toISOString(),supersedesUndeployedCandidate:{path:M.BASE+'/source-binding.json',sha256:old.bindingSha256,historicalRecordUnchanged:true},freshness:snapshot.completedAt,provenance:paths.map(path=>({path,sha256:M.hash(fs.readFileSync(path))}))};delete body.bindingSha256;body.bindingSha256=M.hash(JSON.stringify(body));M.write('source-binding.json',body);M.verifyBinding();
+const p='data/epic-f-current-decisions.json',decisions=M.read(p),d=decisions.decisions.find(d=>d.decisionId==='F-DEC-002-DEV');assert.ok(d);d.evidence.push(M.BINDING);d.currentReconciliationAt=snapshot.completedAt;decisions.asOf='2026-10-12';fs.writeFileSync(p,JSON.stringify(decisions,null,2)+'\n');
+console.log(JSON.stringify({bindingSha256:body.bindingSha256,grants:6,runtimeCandidateUnchanged:true,newShopifyWrites:0}));

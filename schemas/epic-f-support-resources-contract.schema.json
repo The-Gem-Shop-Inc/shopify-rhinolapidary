@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-f-support-resources-contract.schema.json",
+  "title": "Epic F support and resources contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "scope",
+    "runtimeActivation",
+    "upstream",
+    "warranty",
+    "resources",
+    "release"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "scope": {
+      "const": [
+        "F-PBI-010A",
+        "F-PBI-011A"
+      ]
+    },
+    "runtimeActivation": {
+      "const": false
+    },
+    "upstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "warrantyContract",
+        "warrantyDecisionPacket",
+        "resourceContract",
+        "resourceDecisionPacket",
+        "resourceCatalog"
+      ],
+      "properties": {
+        "warrantyContract": {
+          "const": "scripts/lib/epic-e-batch-3c-contract.js"
+        },
+        "warrantyDecisionPacket": {
+          "const": "data/epic-e-batch-3c-decision-packet.json"
+        },
+        "resourceContract": {
+          "const": "data/epic-e-batch-3b-contracts.json"
+        },
+        "resourceDecisionPacket": {
+          "const": "data/epic-e-batch-3b-decision-packet.json"
+        },
+        "resourceCatalog": {
+          "const": "data/epic-e-resource-catalog.json"
+        }
+      }
+    },
+    "warranty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourcePbi",
+        "decisionId",
+        "requiredDecisionStateForActivation",
+        "currentExpectedDecisionState",
+        "newShopifyDefinitionAllowed",
+        "newWarrantyMetaobjectAllowed",
+        "roles",
+        "requiredModels",
+        "forbiddenAuthorities",
+        "neutralContactRoute",
+        "neutralContactPurpose",
+        "warrantyDestinationFallbackAllowed",
+        "supportFilesCustomerVisible"
+      ],
+      "properties": {
+        "sourcePbi": {
+          "const": "E-PBI-016"
+        },
+        "decisionId": {
+          "const": "B3C-D03"
+        },
+        "requiredDecisionStateForActivation": {
+          "const": "approved"
+        },
+        "currentExpectedDecisionState": {
+          "enum": [
+            "blocked",
+            "approved"
+          ]
+        },
+        "newShopifyDefinitionAllowed": {
+          "const": false
+        },
+        "newWarrantyMetaobjectAllowed": {
+          "const": false
+        },
+        "roles": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "marketedBrand",
+              "manufacturer",
+              "warrantyIssuer",
+              "warrantyAdministrator",
+              "repairProvider"
+            ]
+          }
+        },
+        "requiredModels": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "policy",
+              "class",
+              "mapping"
+            ]
+          }
+        },
+        "forbiddenAuthorities": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "neutralContactRoute": {
+          "const": "/pages/contact"
+        },
+        "neutralContactPurpose": {
+          "const": "contact"
+        },
+        "warrantyDestinationFallbackAllowed": {
+          "const": false
+        },
+        "supportFilesCustomerVisible": {
+          "const": false
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourcePbi",
+        "decisionId",
+        "requiredDecisionStateForActivation",
+        "currentExpectedDecisionState",
+        "types",
+        "states",
+        "visibility",
+        "requiredCustomerVisibility",
+        "resourceFields",
+        "supportFieldCustomerVisible",
+        "requiredEligibility",
+        "forbiddenCanonicalHeuristics",
+        "forbiddenFactSources",
+        "video"
+      ],
+      "properties": {
+        "sourcePbi": {
+          "const": "E-PBI-018B"
+        },
+        "decisionId": {
+          "const": "B3B-D06"
+        },
+        "requiredDecisionStateForActivation": {
+          "const": "approved"
+        },
+        "currentExpectedDecisionState": {
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        },
+        "types": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "manual",
+              "diagram",
+              "instruction",
+              "video",
+              "support"
+            ]
+          }
+        },
+        "states": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "candidate",
+              "current",
+              "obsolete",
+              "superseded"
+            ]
+          }
+        },
+        "visibility": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "customer",
+              "support_only",
+              "internal"
+            ]
+          }
+        },
+        "requiredCustomerVisibility": {
+          "const": "customer"
+        },
+        "resourceFields": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "manual",
+            "diagram",
+            "instruction",
+            "video",
+            "support"
+          ],
+          "properties": {
+            "manual": {
+              "const": "manual_files"
+            },
+            "diagram": {
+              "const": "diagram_files"
+            },
+            "instruction": {
+              "const": "instruction_files"
+            },
+            "video": {
+              "const": "video_files"
+            },
+            "support": {
+              "const": "support_files"
+            }
+          }
+        },
+        "supportFieldCustomerVisible": {
+          "const": false
+        },
+        "requiredEligibility": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbiddenCanonicalHeuristics": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbiddenFactSources": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "video": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "autoplayAllowed",
+            "eagerProviderAllowed",
+            "productSurfaceApprovalRequired",
+            "unapprovedPosterAllowed"
+          ],
+          "properties": {
+            "autoplayAllowed": {
+              "const": false
+            },
+            "eagerProviderAllowed": {
+              "const": false
+            },
+            "productSurfaceApprovalRequired": {
+              "const": true
+            },
+            "unapprovedPosterAllowed": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "realWarrantyGrantCount",
+        "realResourceGrantCount",
+        "fixtureApprovalsMayShip",
+        "adminMutationAuthorized",
+        "productMutationAuthorized",
+        "fileMutationAuthorized",
+        "pageMutationAuthorized",
+        "themePushAuthorized"
+      ],
+      "properties": {
+        "realWarrantyGrantCount": {
+          "const": 0
+        },
+        "realResourceGrantCount": {
+          "const": 0
+        },
+        "fixtureApprovalsMayShip": {
+          "const": false
+        },
+        "adminMutationAuthorized": {
+          "const": false
+        },
+        "productMutationAuthorized": {
+          "const": false
+        },
+        "fileMutationAuthorized": {
+          "const": false
+        },
+        "pageMutationAuthorized": {
+          "const": false
+        },
+        "themePushAuthorized": {
+          "const": false
+        }
+      }
+    }
+  }
+}

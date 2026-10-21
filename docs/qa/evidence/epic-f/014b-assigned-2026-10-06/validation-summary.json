@@ -1,0 +1,74 @@
+{
+  "completedAt": "2026-10-06T19:51:54.064Z",
+  "F_PBI_014B": "PARTIAL",
+  "browserCommands": [
+    {
+      "command": "node scripts/run-epic-f-014b-assigned-accessibility.js",
+      "exit": 1,
+      "qualification": "Initial focus inventory/paint harness observations retained; responsive 22 and actual zoom 10 passed"
+    },
+    {
+      "command": "node scripts/run-epic-f-014b-focus-confirmation.js",
+      "initialExit": 1,
+      "finalExit": 1,
+      "result": "Final corrected keyboard validation retains eight genuine mobile text failures; 16 other cells passed"
+    }
+  ],
+  "localCommands": [
+    {
+      "command": [
+        "node",
+        "scripts/test-epic-f-014b-assigned-accessibility.js"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/test-epic-f-preview-accessibility-ownership.js"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/test-epic-f-claims.js"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/validate-json-registers.js"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0
+    }
+  ],
+  "contractTests": 25,
+  "ThemeCheck": {
+    "exit": 0,
+    "errors": 0,
+    "warnings": 0
+  },
+  "liveFilesMatched": 28,
+  "all32RepositoryRuntimeSourcesUnchanged": true,
+  "currentReadinessProvenanceValidated": true,
+  "secretSafety": {
+    "textArtifactsScanned": 12,
+    "passwordMatches": 0,
+    "signedPreviewHosts": 0,
+    "ShopifyTokens": 0,
+    "cookiesAndStorageStatePersisted": false,
+    "authenticatedZoomContextsInMemory": true
+  },
+  "ShopifyPersistentMutations": 0,
+  "acceptanceCriteriaUnchanged": true
+}

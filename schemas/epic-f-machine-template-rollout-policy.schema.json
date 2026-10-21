@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "planId",
+    "targetPbi",
+    "selector",
+    "shop",
+    "intendedSuffix",
+    "repositoryTemplate",
+    "targetGids",
+    "exclusions",
+    "prerequisites",
+    "prerequisiteAuthorities",
+    "beforeRead",
+    "fieldAllowlist",
+    "forbiddenChanges",
+    "productionThemePublicationAuthorized",
+    "executionAuthorized",
+    "bundledActions",
+    "approvals",
+    "afterVerification",
+    "rolloutExecutionState",
+    "planningState",
+    "sourceAuthorities"
+  ],
+  "properties": {
+    "planId": {
+      "const": "F-017A-machine-template-v1"
+    },
+    "targetPbi": {
+      "const": "F-PBI-017B"
+    },
+    "selector": {
+      "const": "exact_product_gid"
+    },
+    "shop": {
+      "const": "sz5dnk-nf.myshopify.com"
+    },
+    "intendedSuffix": {
+      "const": "machine"
+    },
+    "repositoryTemplate": {
+      "const": "templates/product.machine.json"
+    },
+    "targetGids": {
+      "const": [
+        "gid://shopify/Product/8905779937477",
+        "gid://shopify/Product/8905780756677",
+        "gid://shopify/Product/8905781248197",
+        "gid://shopify/Product/8905781412037",
+        "gid://shopify/Product/8905781477573",
+        "gid://shopify/Product/8905784131781",
+        "gid://shopify/Product/8905784197317",
+        "gid://shopify/Product/8905784262853",
+        "gid://shopify/Product/8905784328389",
+        "gid://shopify/Product/8905785344197",
+        "gid://shopify/Product/8905785868485"
+      ]
+    },
+    "exclusions": {
+      "const": [
+        {
+          "productGid": "gid://shopify/Product/8905781248197",
+          "reason": "JadeMaster: explicit F-PBI-017 exclusion; historically unpublished; separate authorization required"
+        },
+        {
+          "productGid": "gid://shopify/Product/8905784262853",
+          "reason": "SawMaster 36: explicit F-PBI-017 exclusion; historically draft/unpublished; separate authorization required"
+        },
+        {
+          "productGid": "gid://shopify/Product/8905785868485",
+          "reason": "TumbleMaster: explicit F-PBI-017 exclusion; historically draft/unpublished; separate authorization required"
+        }
+      ]
+    },
+    "prerequisites": {
+      "const": {
+        "completeCurrentEReconciliation": false,
+        "definitionMigrationVerified": false,
+        "productClassMigrationVerified": false,
+        "currentExactIdentityVerified": false,
+        "consumerEligibilityVerified": false
+      }
+    },
+    "prerequisiteAuthorities": {
+      "const": [
+        "data/epic-e-admin-readiness.json",
+        "data/epic-e-downstream-readiness.json",
+        "data/epic-f-consumer-release.json"
+      ]
+    },
+    "beforeRead": {
+      "const": {
+        "maxAgeSeconds": 900,
+        "timing": "Immediately before execution; any drift requires re-review and new bounded GO",
+        "requiredFields": [
+          "Product GID",
+          "status",
+          "all publications and customer visibility",
+          "templateSuffix (null distinct from empty string)",
+          "classification identity and live value",
+          "theme ID and template existence",
+          "updatedAt/resource version when available",
+          "shop/environment",
+          "observedAt",
+          "complete protected-field digests",
+          "source digest"
+        ],
+        "historicalEvidenceAuthorizesExecution": false
+      }
+    },
+    "fieldAllowlist": {
+      "const": [
+        "templateSuffix"
+      ]
+    },
+    "forbiddenChanges": {
+      "const": [
+        "title",
+        "description",
+        "price",
+        "compareAtPrice",
+        "SKU",
+        "barcode",
+        "inventory",
+        "inventoryPolicy",
+        "availability",
+        "publication",
+        "status",
+        "Vendor",
+        "Category",
+        "tags",
+        "metafields",
+        "metaobjects",
+        "media",
+        "SEO",
+        "shippingProfile",
+        "weight",
+        "Variant configuration"
+      ]
+    },
+    "productionThemePublicationAuthorized": {
+      "const": false
+    },
+    "executionAuthorized": {
+      "const": false
+    },
+    "bundledActions": {
+      "const": []
+    },
+    "approvals": {
+      "const": [
+        {
+          "role": "Product Owner",
+          "granted": false,
+          "recordedAt": null,
+          "planHash": null,
+          "targetGids": [],
+          "beforeDigest": null,
+          "evidence": null
+        },
+        {
+          "role": "Shopify Admin Owner",
+          "granted": false,
+          "recordedAt": null,
+          "planHash": null,
+          "targetGids": [],
+          "beforeDigest": null,
+          "evidence": null
+        }
+      ]
+    },
+    "afterVerification": {
+      "const": {
+        "compare": "Exact GID and intended suffix; identical status/publication/classification and all protected-field digests; complete before/after read coverage required",
+        "resourceVersions": "Read updatedAt/resource version after mutation; value may advance; unrelated data must remain identical",
+        "smoke": "Later preview/storefront smoke requires separate authorization",
+        "themePublicationIncluded": false
+      }
+    },
+    "rolloutExecutionState": {
+      "const": "blocked_not_authorized"
+    },
+    "planningState": {
+      "const": "contract_ready"
+    },
+    "sourceAuthorities": {
+      "const": {
+        "data/epic-e-product-classification.json": "84de9b93b7a068f8138ea76aa0d88cf5a6761cd1d0571424ed99641f114c0b62",
+        "data/epic-e-product-identity.json": "7917c9348c885067098ded87a416058d32505627df97398c5e048ce18d30d6e2",
+        "data/epic-e-admin-readiness.json": "dc558df8c7437c4769a2b8a93fc51a273e428bd2b0030eec9d041c02536d7489",
+        "data/epic-e-downstream-readiness.json": "85e9d2bbcdb64f393afd6406e417256f120e9f101f410411401e2d0ab98740c5",
+        "data/epic-f-consumer-release.json": "a8a4a6edb874d2f35504323b651329189773741ebb0849c22c111302e9a2e241",
+        "docs/project/epic-f-machine-inventory.json": "d4ca54a090e0a94f9422754a027a98fd6ac683bcdf64f9c0744ab59ff76973b6"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict'),{Liquid}=require('liquidjs'),E=require('./lib/epic-e-owner-response-adapter'),N=require('./lib/epic-e-bom-owner-followup'),F=require('./lib/epic-f-customer-release'),B=require('./lib/epic-f-bom-contents-compiler');
+const s=N.loadCurrent(),out=F.compile(s),page=out.projection.pages.find(p=>p.productGid===N.EM),source=out.shards[B.PATH],engine=new Liquid({strictFilters:false,strictVariables:false}),results=[];
+engine.registerFilter('t',x=>x);engine.registerFilter('asset_url',x=>x);engine.registerFilter('stylesheet_tag',()=>'<style></style>');engine.registerTag('render',{parse(){},render(){return '<div>Native Product card</div>';}});
+function context(){const p=s.products.find(p=>p.id===N.EM),mf=Object.fromEntries(p.metafields.nodes.map(m=>[m.key,{type:m.type,value:structuredClone(m.jsonValue)}])),all={};mf.included_products.value=mf.included_products.value.map(g=>({id:Number(g.split('/').pop())}));for(const g of s.input.rows.find(r=>r.field.endsWith('.included_products')).desired){const p=s.products.find(p=>p.id===g);all[p.handle]={id:Number(g.split('/').pop()),metafields:{rhino:{product_class:{value:p.metafields.nodes.find(m=>m.key==='product_class').jsonValue}}}};}return {template:{suffix:'machine'},product:{id:Number(N.EM.split('/').pop()),published_at:'2020-01-01',metafields:{rhino:mf}},section:{id:'fixture'},all_products:all};}
+const run=c=>engine.parseAndRenderSync(source.replace(/\{% doc %\}[\s\S]*?\{% enddoc %\}/g,''),c),test=(name,fn)=>{fn();results.push({name,status:'PASS'});};
+test('25 contents lines and 70 actual grants',()=>{assert.equal(page.contents.length,25);assert.equal(out.release.grants.length,70);assert.equal(out.release.grants.filter(r=>r.domain==='included_components').length,3);});
+test('native Liquid renders all 25 approved lines',()=>assert.equal((run(context()).match(/data-rhino-owner-content=/g)||[]).length,25));
+test('package children no separate lines',()=>{const h=run(context());assert.equal((h.match(/data-rhino-owner-content="Flexible-shaft/g)||[]).length,1);assert(!h.includes('data-rhino-owner-content="Attachment heads'));});
+test('two unanswered pads suppressed',()=>{const h=run(context());assert(!h.includes('Left Moss Pad'));assert(!h.includes('Right Moss Pad'));});
+test('changed catalog membership suppresses whole contents',()=>{const c=context();c.product.metafields.rhino.included_products.value.pop();assert(!run(c).includes('data-rhino-owner-content'));});
+test('missing quantity companion suppresses whole contents',()=>{const c=context();c.product.metafields.rhino.included_quantities.value={};assert(!run(c).includes('data-rhino-owner-content'));});
+test('extra quantity key suppresses whole contents',()=>{const c=context();c.product.metafields.rhino.included_quantities.value.extra=1;assert(!run(c).includes('data-rhino-owner-content'));});
+test('changed noncatalog count suppresses whole contents',()=>{const c=context();c.product.metafields.rhino.noncatalog_components.value[0].quantity=2;assert(!run(c).includes('data-rhino-owner-content'));});
+test('changed identity label suppresses whole contents',()=>{const c=context();c.product.metafields.rhino.noncatalog_components.value[0].label='Unexpected';assert(!run(c).includes('data-rhino-owner-content'));});
+test('wrong Product cannot receive contents',()=>{const c=context();c.product.id=1;assert(!run(c).includes('data-rhino-owner-content'));});
+test('wrong template cannot receive contents',()=>{const c=context();c.template.suffix=null;assert(!run(c).includes('data-rhino-owner-content'));});
+test('all_products per-page budget maintained',()=>assert(page.cards.length+6<=20));
+test('protected media and all non-BOM fields unchanged',()=>assert.equal(N.proof(E.read(N.DIR+'/catalog-write-before.json'),E.read(N.DIR+'/catalog-after.json')).unexpectedProtectedChanges,0));
+fs.writeFileSync(N.DIR+'/compiler-tests.json',JSON.stringify({tests:results,passed:results.length,failed:0},null,2)+'\n');console.log(JSON.stringify({passed:results.length,failed:0}));

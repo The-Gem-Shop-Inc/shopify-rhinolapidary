@@ -1,0 +1,70 @@
+# Epic F 006B completed worksheet: transcription and bounded execution gate
+
+Reviewed all 15 pages of `docs/product/006B-remaining-machine-specs-and-measurements.pdf`, SHA256 `f9bcb9844847da134bfcd9429ee337e6a434387d6118251b5b1d5da82b6a09e1`. The file now exists without the requested (1) suffix; the October 14 missing-PDF preflight remains unchanged as historical evidence. The document-availability blocker is resolved.
+
+Fresh starting source binding: `b09c7305fbf1171c45f8f99c5a00ba8f80602e79dcadac6daa14d7d50d49f2c2`. Current release contains 72 reconciled native values, 70 customer grants, 25 EM-1 contents lines and 40 directed compatibility edges. All 122 Products/125 Variants, both theme inventories/45 bound runtime bodies and 37 Product definitions match the completed 007B/008B task. No newer changes were reverted.
+
+## Transcription and exact owning plans
+
+50 response groups have page numbers, normalized crop coordinates and SHA256-sealed crop evidence. 48 groups are fully legible; the shared gallon group is partially legible and the JadeMaster arrow remains under review. The unclear phrase is not factual authority. Reviewer/date lines are blank; no personal signature or date is invented. Green page-heading review ticks are recorded independently and do not approve every printed candidate.
+
+Mixed / depends on machine and Shopify = US are legible. Explicit new current Shopify gallon answers use US gallons. Historical/source semantics remain mixed or unknown. No legacy amount is converted or silently reinterpreted. EM-1 printed prior 3.5 gal therefore remains held pending direct current-US-amount confirmation.
+
+| Existing owning plan | Contract-determinate rows | Contract-held rows | Already exact within determinate rows | Executed | Reconciled |
+|---|---:|---:|---:|---:|---:|
+| E-MUT-026 | 3 | 2 | 0 | 0 | 0 |
+| E-MUT-027 | 12 | 0 | 1 | 0 | 0 |
+| E-MUT-028 | 14 | 0 | 2 | 0 | 0 |
+| E-MUT-029 | 4 | 1 | 0 | 0 | 0 |
+| E-MUT-030 | 21 | 7 | 0 | 0 | 0 |
+| E-MUT-031 | 0 | 27 | 0 | 0 | 0 |
+
+91 typed field assertions yield 54 contract-determinate rows, including three exact-value no-ops. If the execution/runtime gate is separately cleared, the current projection would require 51 value changes, including the explicit EM-1 lower-endpoint replacement from 500 to 3000 rpm. No write payload was executed. Owning-plan preview files include exact GID, field/type/unit, fresh live value/digest, old approved value, response/crop provenance, overwrite classification and rollback observations. A new fresh compare-before-write is mandatory after gate closure.
+
+Motor power belongs to E-MUT-027 in the existing domain allowlist. This report follows the actual owning contract rather than moving power into E-MUT-026 based on a prompt grouping label. No approved definition or migration ownership is changed.
+
+## Required stop before runtime/source modification
+
+User section 18 says: **If an actual runtime capability is missing: stop and report it before modifying source.** The current liveChecks implementation accepts the existing voltage/hp/inch/rpm paths but throws on volume/us_gallons, weight/pounds and the water-system string enum. Four contract-determinate fluid fields need the missing volume/enum guards; NET weight remains contract-held independently. The current E/F successor adapter and combined receipt must also be extended to admit the verified new row set while preserving the current 007B/008B receipt chain.
+
+I have stopped at that explicit gate. No existing compiler/renderer, owner authority, live grant, binding or current status was modified. All owning-plan executed/reconciled counts are zero. This is not a claim that unclear fields block independent approved fields: 54 exact supported-contract rows are ready as a bounded future subset once the live execution capability gate is cleared. Crate and NET holds remain independent.
+
+The read-only synthetic owner-row projection would take assigned-page specification details from 26 to 66 while retaining 25 contents lines and 31 contextual cards. This is planning evidence only: actual grants remain 70 and actual specification rows remain 26. No synthetic value is granted or rendered. Excluded machines have no normal assigned route in the projection.
+
+## Machine outcomes: current store versus verified worksheet
+
+| Machine | Current live/stored state, unchanged | Verified worksheet / held semantics |
+|---|---|---|
+| BeadMaster 6 | 110 V; 60 Hz; 3000 rpm | 6 in wheel; 1 in wheel arbor. 0.55 kW is owner-confirmed but cannot be converted into the canonical horsepower field. Machine 90 lb requires NET/fluid/accessory-state clarification; 120 lb boxed remains packing evidence. No printed dimension approval. |
+| EM-1 | 110 V; 1 hp; wheel 0–3000 rpm; flex 500–5000 rpm; wheel 6 in; wheel arbor 1 in | 60 Hz; explicit flex correction 3000–5000 rpm; blade maximum 6 in (mark visually verified, min absent); blade arbor N/A; recirculating_filtered approved. Assembled L/W/H 14.5/33.5/18 in. NET 60 lb lacks required fluid/accessory conditions. Crate 48/24/44 in lacks revision. Legacy printed reservoir 3.5 gal is not automatically reinterpreted as US gallons. Primary motor wording provides no exact scalar. |
+| LapMaster 12 | 110 V; 60 Hz | 1 hp; 1400 rpm. Printed assembled H/L/W 26.375/20/16.5 remaps to canonical L/W/H 20/16.5/26.375 in. Package count remains unknown. Crate mapping is candidate-only and lacks revision. NET 122 versus 90 lb remains unselected. |
+| LapMaster 18 | 110 V; 60 Hz; 1 hp | 1400 rpm applies to current/base configuration; Variable speed variant needed remains a future task. Printed assembled H/L/W 33.5/25.5/21.5 remaps to L/W/H 25.5/21.5/33.5 in. Crate 37.5/29/29 in is explicitly L/W/H, revision missing. Preserve reported NET 105 lb, assembled 90 lb, crate 180 lb and historical shipping 200 lb as distinct states; NET conditions remain incomplete and none is a native shipping mutation. |
+| SawMaster 18 | 110 V; 60 Hz; 1700 rpm; 18 in blade max stored but hidden without min | Blade range 12–18 in; arbor 1 in; oil fill 8–10 US gal. Printed assembled 55/37.5/41.25 in approved by Yes/current + LWH mark. Crate 58.6/41.25/47.25 in remains revision-held. Physical-state Yes does not choose between printed NET 426 and 287 lb. Prior 1.8 kW is preserved without hp conversion. |
+| SawMaster 24 | 110 V; 60 Hz; 1700 rpm; 24 in blade max stored but hidden without min; power absent | Explicit 2 hp correction verified; current live power field is absent, so this is a proposed create rather than replacement of live 1.8 kW. Blade 16–24 in; arbor 1 in; assembled 52/39/42 in. Exact 12 US gal operating fill needs a scalar/range contract decision; no fabricated endpoints. Crate 61/42/47 in lacks revision. No approval of old 454/340 lb NET candidates. |
+| ShapeMaster 6 | 110 V; 60 Hz; 3000 rpm | 1 hp correction; wheel 6 in; wheel arbor 1 in. Fully assembled 29.5/20/21 in. Rejected grouped packing block does not approve printed NET 135/100 lb or crate dimensions. |
+| TrimMaster 8 | 110 V; 60 Hz; 3000 rpm | 1 hp correction; blade 6–8 in; blade arbor 1 in. Assembled 24.75/15/13 in approved by Yes/current + LWH mark. Crate 28.75/33.5/21.5 in remains revision-held. Printed NET 71/50 lb alternatives are unselected. |
+| JadeMaster 14 | No technical/measurement values; excluded template remains null | 3/4 hp = exact numeric 0.75 hp, no unit conversion; 1725 rpm. Arbor 1 in lacks blade-versus-wheel meaning; 8 gal lacks reservoir-versus-oil meaning. Both remain SEMANTIC_MAPPING_REQUIRED. No voltage/frequency answer. Crate 48/29/32 in revision-held. Printed NET/assembled rejected; curved arrow under transcription review. |
+| SawMaster 36 | No technical/measurement values; excluded template remains null | 3 hp; 110 V; 60 Hz; 1760 rpm; newly written reservoir 27 gal binds to US gallons under the shared current-Shopify policy. Crate 81/51/56 in revision-held. Prior 72-in single-axis correction does not approve untouched full assembled triple or 662-lb NET candidate. No automatic F7 activation. |
+| TumbleMaster | DRAFT; generic title; no description/media/capacity identifier; blank SKU/barcode; one default Variant at 0.00; excluded template null | Owner distinguishes current 14-gal tumbler from separate future 40-gal TumbleMaster, but current catalog/identity aliases do not prove which physical machine exact existing GID 8905785868485 represents. Hold 110 V, 60 Hz, NET 180 lb, assembled 23/32/31 in and crate 41/33/56 in. Future Product plan has null values and zero executable mutations. |
+
+## Remaining factual decisions
+
+1. Technical: confirm whether the old EM-1 3.5-gal figure is the current US-gallon capacity; supply an exact primary motor scalar only if one exists (adjustable speed motor is not a number). Blade max 6 in is visually confirmed, but no minimum is invented.
+2. Technical: provide canonical hp for BeadMaster/SawMaster 18 or separately approve an owning unit-contract change; no kW conversion is invented. SawMaster 24 2 hp is already clear and needs no repeated value question.
+3. Technical: identify whether JadeMaster 1-in arbor is blade or wheel, and whether its 8 gal is a water reservoir or oil fill. No field mapping from model appearance/title.
+4. Operations/Technical: supply NET fluid/accessory conditions and resolve printed competing NET candidates only where a NET value is wanted. Assembled 90 lb, packed 120/180 lb and historical shipping 200 lb are not NET/native shipping replacements.
+5. Operations: approve packing revisions for the nine crate triples. LapMaster 12 crate-axis scope also needs confirmation; its assembled remap is already exact. Package count remains unknown on LapMaster 12.
+6. Technical: confirm an explicit supported min/max range or owning scalar contract for SawMaster 24 exact 12-US-gal fill; no duplicated range endpoints are invented.
+7. Product Owner/Technical: explicitly map existing TumbleMaster GID to the current 14-gal physical machine or identify its correct Product. Future 40-gal catalog fields remain null. No Product or Variant creation.
+
+## Current states and validation
+
+- F-PBI-006B: PARTIAL_APPROVED_SPECIFICATIONS_ACTIVE; this follow-up is transcribed/validated but unexecuted at the runtime gate.
+- F-PBI-007B: PARTIAL_APPROVED_BOM_ACTIVE; 25 EM-1 contents lines remain exact.
+- F-PBI-008B: PARTIAL_APPROVED_COMPATIBILITY_ACTIVE; 40 edges remain exact; both Saw Vice edges stay blocked.
+- F-PBI-015B: BLOCKED_MEASUREMENT_INTEGRITY / PARKED_RELEASE_GATE. No recorder or performance sampling.
+- F-PBI-018B: NOT_READY. No final signoff.
+
+21 dedicated validation checks pass: source/crops, schema, exact Product/field/unit/plan, explicit corrections, H/L/W mappings, Yes/No semantics, held crates and physical states, Tumble identity, immutable prior release and synthetic suppression. Source-bound current F1–F8 results remain preserved; no broad aggregate rerun is needed to claim a new runtime release because none occurred. Live 390/1440/axe validation of new values is NOT_RUN; no new values were activated. Current source has its previously sealed 16-cell Preview and MAIN passes. Fresh Theme Check/register/diff/credential results and all hashes are in this task evidence set.
+
+Next executable work: address the reported volume/weight/enum live guard gaps and versioned combined E/F receipt adapter in a bounded source task; then fresh read → compare-before-write → execute only the supported approved subset → after-read/reconcile → customer release → Preview/MAIN validation. The missing capability is reported before any source modification, as requested.

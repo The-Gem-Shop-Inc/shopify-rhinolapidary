@@ -1,0 +1,25 @@
+'use strict';
+const assert = require('node:assert/strict');
+const V = require('./validate-epic-f-015b-certification-preflight');
+const original = V.read(V.DIR + '/certification.json');
+const cases = [];
+function reject(name, mutation) { const r = structuredClone(original); mutation(r); assert.throws(() => V.validateEvidence(r), undefined, name); cases.push({ name, passed: true }); }
+assert.equal(V.validateEvidence(original).actualSamples, 0); cases.push({ name: 'Schema-valid blocked metadata is never an evaluated certification pass', passed: true });
+reject('Cannot claim a pass', r => r.decision = 'PASSED');
+reject('Cannot invent an observed sample', r => r.records[0].samples = [{}]);
+reject('Cannot fabricate median zero', r => r.records[0].medians = { lcpMs: 0 });
+reject('Cannot fabricate missing metric zero', r => r.metrics.lcpMs.value = 0);
+reject('Cannot adopt guessed throttle values', r => r.throttling.mobile.latencyMs = 150);
+reject('Cannot reduce 96-sample plan', r => r.plan.plannedSamples = 32);
+reject('Cannot reduce triplets', r => r.plan.samplesPerRecord = 1);
+reject('Cannot claim a valid sample count', r => r.plan.validSamples = 1);
+reject('Cannot duplicate/pool route records', r => r.records[1] = structuredClone(r.records[0]));
+reject('Cannot classify desktop as mobile certification', r => r.records.find(x => x.profile === 'desktop').classification = 'RELEASE_CERTIFICATION');
+reject('Cannot expand exact eight routes', r => r.records[0].route = '/products/jademaster');
+reject('Cannot change a budget', r => r.records[0].thresholds.requestCount = 999);
+reject('Cannot change corrected binding', r => r.sourceBinding.canonicalSha256 = '0'.repeat(64));
+reject('Cannot change approved viewport', r => r.profiles.mobile.width = 320);
+reject('Cannot shorten governed settle', r => r.policy.settleMs = 500);
+reject('Cannot use generic approval bypass', r => r.authorization.approvalMode = 'skipApprovals');
+V.write('preflight-contract-tests.json', { cases, passed: cases.length, failed: 0, ShopifyMutations: 0, livePerformanceSamples: 0 });
+console.log(JSON.stringify({ passed: cases.length, failed: 0, livePerformanceSamples: 0 }));

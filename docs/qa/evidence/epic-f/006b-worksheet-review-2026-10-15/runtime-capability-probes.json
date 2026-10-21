@@ -1,0 +1,42 @@
+{
+  "sourceUnchanged": true,
+  "probes": [
+    {
+      "key": "input_voltage",
+      "type": "voltage",
+      "supported": true,
+      "error": null
+    },
+    {
+      "key": "motor_power",
+      "type": "power",
+      "supported": true,
+      "error": null
+    },
+    {
+      "key": "assembled_length",
+      "type": "dimension",
+      "supported": true,
+      "error": null
+    },
+    {
+      "key": "net_weight",
+      "type": "weight",
+      "supported": false,
+      "error": "Unobserved Liquid unit weight/pounds"
+    },
+    {
+      "key": "water_reservoir_capacity",
+      "type": "volume",
+      "supported": false,
+      "error": "Unobserved Liquid unit volume/us_gallons"
+    },
+    {
+      "key": "water_system_type",
+      "type": "single_line_text_field",
+      "supported": false,
+      "error": "Unobserved Liquid unit single_line_text_field/undefined"
+    }
+  ],
+  "stopRule": "User section 18: stop and report missing capability before modifying source"
+}

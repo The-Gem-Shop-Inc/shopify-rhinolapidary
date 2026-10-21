@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "valueState",
+    "architectureSupported",
+    "sourceValuePresent",
+    "approved",
+    "migratedReconciled",
+    "current",
+    "audiencePermitted",
+    "activationAuthorized",
+    "fixtureOnly",
+    "eligible",
+    "suppressed",
+    "reasons"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "valueState": {
+      "enum": [
+        "approved",
+        "proposed",
+        "conflicting",
+        "blocked",
+        "observed",
+        "deprecated",
+        "superseded",
+        "missing",
+        "unauthorized_live"
+      ]
+    },
+    "architectureSupported": {
+      "type": "boolean"
+    },
+    "sourceValuePresent": {
+      "type": "boolean"
+    },
+    "approved": {
+      "type": "boolean"
+    },
+    "migratedReconciled": {
+      "type": "boolean"
+    },
+    "current": {
+      "type": "boolean"
+    },
+    "audiencePermitted": {
+      "type": "boolean"
+    },
+    "activationAuthorized": {
+      "type": "boolean"
+    },
+    "fixtureOnly": {
+      "type": "boolean"
+    },
+    "eligible": {
+      "type": "boolean"
+    },
+    "suppressed": {
+      "type": "boolean"
+    },
+    "reasons": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "wrong_product_or_class",
+          "wrong_field_or_domain",
+          "missing_value",
+          "missing_approval",
+          "audience_denied",
+          "stale_eligibility",
+          "migration_unverified",
+          "activation_unauthorized",
+          "fixture_only"
+        ]
+      }
+    }
+  }
+}

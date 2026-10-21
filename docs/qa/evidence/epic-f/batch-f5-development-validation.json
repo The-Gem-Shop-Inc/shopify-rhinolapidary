@@ -1,0 +1,55 @@
+{
+  "batch": "F5",
+  "scope": "Supplemental development attempts; final required commands in batch-f5-validation.json",
+  "commands": [
+    {
+      "command": "node scripts/build-epic-f-context-delivery.js",
+      "exitCode": 0,
+      "result": "Generated nil deployment projection; no live grants."
+    },
+    {
+      "command": "npm run validate:epic-f-context-delivery",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:epic-f-context-delivery",
+      "exitCode": 0,
+      "result": "Final 88 checks; includes direct bounded reverse-interface and forged customer projection negatives."
+    },
+    {
+      "command": "npm run test:machine-context-delivery",
+      "exitCode": 1,
+      "stage": "initial development",
+      "result": "31 passed; one focus assertion inspected only link styling. Trade draws its native card focus indicator on ::after. Assertion corrected to inspect both without changing native styles."
+    },
+    {
+      "command": "npm run test:machine-context-delivery",
+      "exitCode": 0,
+      "stage": "corrected assertion",
+      "result": "32 passed."
+    },
+    {
+      "command": "npm run test:machine-context-delivery-performance",
+      "exitCode": 0,
+      "result": "10 local observations; final aggregate measurements are retained separately."
+    },
+    {
+      "command": "node C:/Users/dajem/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-liquid/scripts/search_docs.mjs \"Liquid render product card pickup availability section product references\" --model gpt-6 --client-name codex --client-version 1",
+      "exitCode": 0
+    },
+    {
+      "command": "$snippet = Get-Content snippets/rhino-machine-contextual.liquid -Raw; node C:/Users/dajem/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-liquid/scripts/validate.mjs --code $snippet --model gpt-6 --client-name codex --client-version 1 --artifact-id epic-f-f5-contextual --revision 1",
+      "exitCode": 1,
+      "result": "Installed skill dependency missing: @shopify/theme-check-common. Repository Theme Check is the required executed fallback; no package/configuration changes."
+    },
+    {
+      "command": "node C:/Users/dajem/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-liquid/scripts/search_docs.mjs \"Theme Check ERR_MODULE_NOT_FOUND @shopify/theme-check-common validation CLI\" --model gpt-6 --client-name codex --client-version 1",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f5",
+      "exitCode": 0,
+      "assessedAt": "2026-09-19T15:52:43.465Z"
+    }
+  ]
+}

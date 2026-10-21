@@ -1,0 +1,620 @@
+{
+  "completedAt": "2026-10-05T21:26:50.651Z",
+  "allRequiredCommandsPassed": true,
+  "finalCommands": [
+    {
+      "label": "theme-check",
+      "command": [
+        "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+        "C:/Users/dajem/AppData/Local/JetBrains/WebStorm2026.2/acp-agents/.runtimes/node/24.13.0/node_modules/@shopify/cli/bin/run.js",
+        "theme",
+        "check",
+        "--path",
+        ".",
+        "--fail-level",
+        "warning",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "registers",
+      "command": [
+        "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+        "scripts/validate-json-registers.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "hardcoded-strings",
+      "command": [
+        "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+        "scripts/validate-hardcoded-strings.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "execution-contracts",
+      "command": [
+        "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+        "scripts/test-epic-f-live-machine-activation.js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "label": "git-diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "F1_F8": {
+    "command": "RHINO_EPIC_F_CLEANUP_BINDING=docs/qa/evidence/epic-f/release-gate-cleanup-source-binding.json npm run validate:epic-f-batch-f8",
+    "completedAt": "2026-10-05T20:36:05.782Z",
+    "exitCode": 0,
+    "scope": "F-PBI-018A repository/static/local-fixture only",
+    "results": [
+      {
+        "command": "npm run validate:epic-f-machine-page-readiness",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f8/validate-epic-f-machine-page-readiness.txt"
+      },
+      {
+        "command": "npm run test:epic-f-machine-page-readiness",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f8/test-epic-f-machine-page-readiness.txt"
+      },
+      {
+        "command": "npm run validate:epic-f-batch-f7",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f8/validate-epic-f-batch-f7.txt"
+      },
+      {
+        "command": "npm run theme:check",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f8/theme-check.txt"
+      },
+      {
+        "command": "git diff --check",
+        "exitCode": 0,
+        "required": true,
+        "log": "test-results/epic-f/f8/git-diff-check.txt"
+      }
+    ],
+    "regressions": {
+      "F1": {
+        "command": "npm run validate:epic-f-batch-f1",
+        "exitCode": 0,
+        "assessedAt": "2026-10-05T20:35:26.275Z",
+        "evidence": "test-results/epic-f/batch-f1-validation.json",
+        "sha256": "abc37de33ea5e9f2e8ce72cd7a8baf8a2b3ab3739b3a2ebd953f24a83a098323",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-consumer",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run test:epic-f-consumer",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:epic-f-claims",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run test:epic-f-claims",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:registers",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:product-templates",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:product-purchase",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:brand-claims",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run test:brand-claims-validator",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:metafields",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:epic-e-batch-2b1-registers",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:epic-e-batch-4a-contracts",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:theme-repository",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:theme-architecture",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:storefront-js",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:settings-data",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:fixtures",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run theme:check",
+            "exitCode": 0,
+            "requiredForBatch": true
+          },
+          {
+            "command": "npm run validate:launch-fixtures",
+            "exitCode": 1,
+            "requiredForBatch": false
+          },
+          {
+            "command": "npm run validate:product-data -- data/product-export/products.csv",
+            "exitCode": 1,
+            "requiredForBatch": false
+          },
+          {
+            "command": "node scripts/validate-social-metadata-contract.js",
+            "exitCode": 0,
+            "requiredForBatch": true
+          }
+        ]
+      },
+      "F2": {
+        "command": "npm run validate:epic-f-batch-f2",
+        "exitCode": 0,
+        "assessedAt": "2026-10-05T20:35:26.551Z",
+        "evidence": "test-results/epic-f/f2/batch-f2-validation.json",
+        "sha256": "77df8d4254220a62a7b9cea88434094a154a6addf51849ea77ef8fc70b87f555",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-machine",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f2/check-1.txt"
+          },
+          {
+            "command": "npm run test:epic-f-contact-context",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f2/check-2.txt"
+          },
+          {
+            "command": "npm run test:machine-shell",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f2/check-3.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f1",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f2/check-4.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f2/check-5.txt"
+          },
+          {
+            "command": "F2 historical diagnostic comparison",
+            "exitCode": 0,
+            "required": true
+          }
+        ]
+      },
+      "F3": {
+        "command": "npm run validate:epic-f-batch-f3",
+        "exitCode": 0,
+        "assessedAt": "2026-10-05T20:35:26.769Z",
+        "evidence": "test-results/epic-f/f3/batch-f3-validation.json",
+        "sha256": "c44fc5d8f1c08cd1bc27e28864a81186f906c62c79741e15f07903121f1de29e",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-gallery",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/validate-epic-f-gallery.txt"
+          },
+          {
+            "command": "npm run test:epic-f-media",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/test-epic-f-media.txt"
+          },
+          {
+            "command": "npm run test:epic-f-performance",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/test-epic-f-performance.txt"
+          },
+          {
+            "command": "npm run test:machine-gallery",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/test-machine-gallery.txt"
+          },
+          {
+            "command": "npm run test:machine-performance",
+            "exitCode": 0,
+            "category": "required F3 repository",
+            "log": "test-results/epic-f/f3/test-machine-performance.txt"
+          },
+          {
+            "command": "npm run validate:brand-performance",
+            "exitCode": 0,
+            "category": "F1/F2 and existing performance regression",
+            "log": "test-results/epic-f/f3/validate-brand-performance.txt"
+          },
+          {
+            "command": "npm run validate:homepage-performance",
+            "exitCode": 0,
+            "category": "F1/F2 and existing performance regression",
+            "log": "test-results/epic-f/f3/validate-homepage-performance.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f2",
+            "exitCode": 0,
+            "category": "F1/F2 and existing performance regression",
+            "log": "test-results/epic-f/f3/validate-epic-f-batch-f2.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "category": "required F3 repository"
+          }
+        ]
+      },
+      "F4": {
+        "command": "npm run validate:epic-f-batch-f4",
+        "exitCode": 0,
+        "assessedAt": "2026-10-05T20:35:27.039Z",
+        "evidence": "test-results/epic-f/f4/batch-f4-validation.json",
+        "sha256": "d99989ea06a8a254f655041fdb4410f6e9f0098b1fb627fb9a907a0570ce4c1b",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-facts",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F4 repository",
+            "log": "test-results/epic-f/f4/validate-epic-f-facts.txt"
+          },
+          {
+            "command": "npm run test:epic-f-facts",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F4 repository",
+            "log": "test-results/epic-f/f4/test-epic-f-facts.txt"
+          },
+          {
+            "command": "npm run test:machine-facts",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F4 repository",
+            "log": "test-results/epic-f/f4/test-machine-facts.txt"
+          },
+          {
+            "command": "npm run test:machine-fact-performance",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F4 repository",
+            "log": "test-results/epic-f/f4/test-machine-fact-performance.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f3",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F1-F3 regression",
+            "log": "test-results/epic-f/f4/validate-epic-f-batch-f3.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "required": true
+          }
+        ]
+      },
+      "F5": {
+        "command": "npm run validate:epic-f-batch-f5",
+        "exitCode": 0,
+        "assessedAt": "2026-10-05T20:35:27.313Z",
+        "evidence": "test-results/epic-f/f5/batch-f5-validation.json",
+        "sha256": "9d08eaea006840b721d06e9c1a01f32c2be1017186d7f5670939f713dbc6befd",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-context-delivery",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F5 repository",
+            "log": "test-results/epic-f/f5/validate-epic-f-context-delivery.txt"
+          },
+          {
+            "command": "npm run test:epic-f-context-delivery",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F5 repository",
+            "log": "test-results/epic-f/f5/test-epic-f-context-delivery.txt"
+          },
+          {
+            "command": "npm run test:machine-context-delivery",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F5 repository",
+            "log": "test-results/epic-f/f5/test-machine-context-delivery.txt"
+          },
+          {
+            "command": "npm run test:machine-context-delivery-performance",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F5 repository",
+            "log": "test-results/epic-f/f5/test-machine-context-delivery-performance.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f4",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F1-F4 regression",
+            "log": "test-results/epic-f/f5/validate-epic-f-batch-f4.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "required": true
+          }
+        ]
+      },
+      "F6": {
+        "command": "npm run validate:epic-f-batch-f6",
+        "exitCode": 0,
+        "assessedAt": "2026-10-05T20:35:27.589Z",
+        "evidence": "test-results/epic-f/f6/batch-f6-validation.json",
+        "sha256": "609848684d174fe181048698dbf66bb658c298b29827ed481573520bd78ea961",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-support-resources",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/validate-epic-f-support-resources.txt"
+          },
+          {
+            "command": "npm run test:epic-f-support-resources",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/test-epic-f-support-resources.txt"
+          },
+          {
+            "command": "npm run test:machine-support-resources",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/test-machine-support-resources.txt"
+          },
+          {
+            "command": "npm run test:machine-support-resources-performance",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/test-machine-support-resources-performance.txt"
+          },
+          {
+            "command": "npm run validate:hardcoded-strings",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F6 repository",
+            "log": "test-results/epic-f/f6/validate-hardcoded-strings.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f5",
+            "exitCode": 0,
+            "required": true,
+            "scope": "F1-F5 regression",
+            "log": "test-results/epic-f/f6/validate-epic-f-batch-f5.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "required": true
+          }
+        ]
+      },
+      "F7": {
+        "command": "npm run validate:epic-f-batch-f7",
+        "exitCode": 0,
+        "assessedAt": "2026-10-05T20:35:45.557Z",
+        "evidence": "test-results/epic-f/f7/batch-f7-validation.json",
+        "sha256": "9c169728c7ba77002415e9308707fcab55cb03027a2488c5439b3fdf870f6c2a",
+        "results": [
+          {
+            "command": "npm run validate:epic-f-machine-measurement",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f7/validate-epic-f-machine-measurement.txt"
+          },
+          {
+            "command": "npm run test:epic-f-machine-measurement",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f7/test-epic-f-machine-measurement.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-machine-template-rollout",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f7/validate-epic-f-machine-template-rollout.txt"
+          },
+          {
+            "command": "npm run test:epic-f-machine-template-rollout",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f7/test-epic-f-machine-template-rollout.txt"
+          },
+          {
+            "command": "npm run validate:hardcoded-strings",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f7/validate-hardcoded-strings.txt"
+          },
+          {
+            "command": "npm run validate:registers",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f7/validate-registers.txt"
+          },
+          {
+            "command": "npm run validate:epic-f-batch-f6",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f7/validate-epic-f-batch-f6.txt"
+          },
+          {
+            "command": "npm run theme:check",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f7/theme-check.txt"
+          },
+          {
+            "command": "git diff --check",
+            "exitCode": 0,
+            "required": true,
+            "log": "test-results/epic-f/f7/git-diff-check.txt"
+          }
+        ]
+      }
+    }
+  },
+  "additionalChecks": [
+    {
+      "command": "node scripts/test-epic-f-preview-network-guard.js",
+      "exitCode": 0,
+      "passed": 43,
+      "allow": 18,
+      "block": 25
+    },
+    {
+      "command": "node scripts/test-epic-f-release-cleanup-extractions.js",
+      "exitCode": 0,
+      "renderedComparisons": 264,
+      "negativeDriftCases": 12
+    },
+    {
+      "command": "node scripts/test-epic-f-cleanup-facets-browser.js",
+      "exitCode": 0,
+      "cells": 6
+    },
+    {
+      "command": "node scripts/validate-product-purchase-architecture.js",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-cart-config.js",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/validate-search-discovery-state.js",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/test-epic-f-current-shopify-eligibility.js",
+      "exitCode": 0,
+      "passed": 68,
+      "scope": "Historical E-MUT-021 eligibility pure-builder contracts; current assigned state independently validated"
+    },
+    {
+      "command": "node scripts/validate-epic-f-live-source-readback.js",
+      "exitCode": 0,
+      "files": 28
+    },
+    {
+      "command": "node scripts/reconcile-epic-f-live-machine-activation.js",
+      "exitCode": 0,
+      "Products": 122,
+      "Variants": 125,
+      "fulfillmentRecords": 125
+    }
+  ],
+  "browser": [
+    {
+      "mode": "alternate",
+      "exitCode": 0,
+      "passed": 4
+    },
+    {
+      "mode": "canary confirmation",
+      "exitCode": 0,
+      "passed": 2,
+      "initialObservation": "Cached mobile prior-template observation preserved before seven further writes"
+    },
+    {
+      "mode": "assigned normal live URLs",
+      "exitCode": 0,
+      "passed": 16
+    },
+    {
+      "mode": "baseline/post-push/post-assignment",
+      "exitCode": 0,
+      "passedPerMode": 12,
+      "qualification": "Native search ranking first-page membership differs; common non-machine cards and native controls unchanged"
+    },
+    {
+      "mode": "excluded normal URLs",
+      "exitCode": 0,
+      "passed": 6,
+      "expected404": true
+    }
+  ],
+  "initialHarnessObservations": [
+    "JSON quote redaction corrected and roundtrip tested; initial sanitized TXT retained",
+    "Raw/LF Shopify storage serialization corrected; exact intended stored checksum plus source/JSON equivalence proved",
+    "Native CDN minification changes raw/CSSOM serialization; actual computed standard properties match exact source",
+    "Canary mobile assignment propagation cache confirmed read-only before remaining assignments"
+  ],
+  "noRuntimeSourcesChangedAfterAggregate": true,
+  "finalLocalAudit": "final-local-audit.json"
+}

@@ -1,0 +1,3468 @@
+{
+  "scope": "local fixture only; no 015B certification",
+  "assessedAt": "2026-09-19T14:53:52.177Z",
+  "thresholdChanges": false,
+  "budgets": {
+    "mobile": {
+      "lcpMs": 2500,
+      "cls": 0.1,
+      "tbtMs": 200,
+      "initialTransferBytes": 2097152,
+      "imageBytes": 512000,
+      "maxImageBytes": 358400,
+      "firstScreenMediaBytes": 358400,
+      "requestCount": 120,
+      "immediateVideoIframeCount": 0,
+      "autoplayMediaCount": 0,
+      "thirdPartyScriptHostCount": 0,
+      "synchronousThirdPartyScriptCount": 0
+    },
+    "desktop": {
+      "lcpMs": 2500,
+      "cls": 0.1,
+      "tbtMs": 200,
+      "initialTransferBytes": 2097152,
+      "imageBytes": 921600,
+      "maxImageBytes": 512000,
+      "firstScreenMediaBytes": 512000,
+      "requestCount": 130,
+      "immediateVideoIframeCount": 0,
+      "autoplayMediaCount": 0,
+      "thirdPartyScriptHostCount": 0,
+      "synchronousThirdPartyScriptCount": 0
+    }
+  },
+  "results": [
+    {
+      "state": "zero",
+      "profile": "mobile",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:34.101Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-zero",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:64731/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:64731/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "mobile",
+              "width": 390,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:64731/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 22600,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64731/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 68
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 295212
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 20
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 68,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 295212,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 20,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    },
+    {
+      "state": "zero",
+      "profile": "desktop",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:35.778Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-zero",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:60376/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:60376/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "desktop",
+              "width": 1440,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:60376/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 22600,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:60376/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 52
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 295212
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 20
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 52,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 295212,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 20,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    },
+    {
+      "state": "specifications",
+      "profile": "mobile",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:38.044Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-specifications",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:63482/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:63482/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "mobile",
+              "width": 390,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:63482/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 27683,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:63482/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 80
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 300295
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 20
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 80,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 300295,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 20,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    },
+    {
+      "state": "specifications",
+      "profile": "desktop",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:40.212Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-specifications",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:51805/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:51805/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "desktop",
+              "width": 1440,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:51805/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 27683,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:51805/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 72
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 300295
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 20
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 72,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 300295,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 20,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    },
+    {
+      "state": "long",
+      "profile": "mobile",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:42.463Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-long",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:58546/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:58546/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "mobile",
+              "width": 390,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:58546/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 58183,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-card.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 14242,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:58546/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 76
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 347021
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 22
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 76,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 347021,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 22,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    },
+    {
+      "state": "long",
+      "profile": "desktop",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:44.603Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-long",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:53923/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:53923/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "desktop",
+              "width": 1440,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:53923/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 58183,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-card.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 14242,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:53923/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 68
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 347021
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 22
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 68,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 347021,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 22,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    },
+    {
+      "state": "contents",
+      "profile": "mobile",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:46.453Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-contents",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:56959/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:56959/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "mobile",
+              "width": 390,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:56959/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 33878,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-card.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 14242,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:56959/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 60
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 322716
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 22
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 60,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 322716,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 22,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    },
+    {
+      "state": "contents",
+      "profile": "desktop",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:48.254Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-contents",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:52984/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:52984/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "desktop",
+              "width": 1440,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:52984/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 33878,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-card.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 14242,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:52984/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 76
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 322716
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 22
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 76,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 322716,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 22,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    },
+    {
+      "state": "large-contents",
+      "profile": "mobile",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:50.226Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-large-contents",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:61269/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:61269/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "mobile",
+              "width": 390,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:61269/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 56118,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-card.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 14242,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:61269/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 64
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 344956
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 22
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 64,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 344956,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 22,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    },
+    {
+      "state": "large-contents",
+      "profile": "desktop",
+      "violations": [],
+      "record": {
+        "schemaVersion": 1,
+        "stage": "fixture-regression",
+        "requestedRuns": 1,
+        "samples": [
+          {
+            "timestamp": "2026-09-19T14:53:52.116Z",
+            "fixtureOnly": true,
+            "galleryState": "f4-large-contents",
+            "environment": {
+              "kind": "local-fixture",
+              "theme": {
+                "id": null,
+                "name": null,
+                "verified": false
+              },
+              "providerOutput": "not available in local Liquid adapter; native payment_terms unchanged"
+            },
+            "identity": {
+              "requestedUrl": "http://127.0.0.1:64600/products/beadmaster",
+              "resolvedUrl": "http://127.0.0.1:64600/products/beadmaster",
+              "requestedRoute": "/products/beadmaster",
+              "resolvedRoute": "/products/beadmaster",
+              "productGid": "gid://shopify/Product/8905779937477",
+              "template": "product.machine"
+            },
+            "navigation": {
+              "completed": true,
+              "status": 200,
+              "pageKind": "product",
+              "password": false,
+              "challenge": false
+            },
+            "viewport": {
+              "profile": "desktop",
+              "width": 1440,
+              "height": 900,
+              "deviceScaleFactor": 1
+            },
+            "policy": {
+              "throttling": {
+                "id": "none-local-fixture",
+                "cpuSlowdown": 1
+              },
+              "cache": "cold-no-store",
+              "settleMs": 1500,
+              "settlePolicy": "load + document.fonts.ready + governed settle interval; no user interaction"
+            },
+            "networkObservation": "complete",
+            "resources": [
+              {
+                "url": "http://127.0.0.1:64600/products/beadmaster",
+                "type": "Document",
+                "mimeType": "text/html",
+                "status": 200,
+                "bytes": 56118,
+                "completed": true,
+                "failed": false,
+                "attribution": "first-party"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/base.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 80770,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/rhino-custom.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 45410,
+                "completed": true,
+                "failed": false,
+                "attribution": "rhino-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/constants.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 445,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/pubsub.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 785,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/global.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 51441,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/details-disclosure.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 1803,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/section-main-product.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 32502,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-accordion.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1319,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-slider.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 9580,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-rating.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1370,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-deferred-media.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 2733,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-product-variant-picker.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 4793,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-swatch-input.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3258,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-swatch.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 951,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/product-info.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 17657,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/product-form.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 7740,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-pickup-availability.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 3685,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/pickup-availability.js",
+                "type": "Script",
+                "mimeType": "application/javascript",
+                "status": 200,
+                "bytes": 4386,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-card.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 14242,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              },
+              {
+                "url": "http://127.0.0.1:64600/assets/component-price.css",
+                "type": "Stylesheet",
+                "mimeType": "text/css",
+                "status": 200,
+                "bytes": 1984,
+                "completed": true,
+                "failed": false,
+                "attribution": "native-trade-theme"
+              }
+            ],
+            "metrics": {
+              "lcpMs": {
+                "status": "measured",
+                "value": 76
+              },
+              "cls": {
+                "status": "measured",
+                "value": 0
+              },
+              "tbtMs": {
+                "status": "measured",
+                "value": 0
+              },
+              "initialTransferBytes": {
+                "status": "measured",
+                "value": 344956
+              },
+              "imageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "maxImageBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "firstScreenMediaBytes": {
+                "status": "measured",
+                "value": 0
+              },
+              "requestCount": {
+                "status": "measured",
+                "value": 22
+              },
+              "immediateVideoIframeCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "autoplayMediaCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "thirdPartyScriptHostCount": {
+                "status": "measured",
+                "value": 0
+              },
+              "synchronousThirdPartyScriptCount": {
+                "status": "measured",
+                "value": 0
+              }
+            },
+            "media": {
+              "dimensionsValid": true,
+              "secondaryLazy": true,
+              "firstScreenSources": []
+            },
+            "duplicateProductScripts": 0,
+            "blockingMetric": "sum of max(0,longtask.duration - 50) over observation window; established TBT proxy, not Lighthouse TBT"
+          }
+        ],
+        "medians": {
+          "lcpMs": 76,
+          "cls": 0,
+          "tbtMs": 0,
+          "initialTransferBytes": 344956,
+          "imageBytes": 0,
+          "maxImageBytes": 0,
+          "firstScreenMediaBytes": 0,
+          "requestCount": 22,
+          "immediateVideoIframeCount": 0,
+          "autoplayMediaCount": 0,
+          "thirdPartyScriptHostCount": 0,
+          "synchronousThirdPartyScriptCount": 0
+        },
+        "aggregationLabel": "single local F4 observation; not a release median"
+      }
+    }
+  ],
+  "exitCode": 0
+}

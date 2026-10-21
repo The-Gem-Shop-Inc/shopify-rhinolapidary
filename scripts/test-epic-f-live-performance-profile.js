@@ -1,0 +1,51 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const http = require('node:http');
+const { chromium } = require('@playwright/test');
+const P = require('./lib/epic-f-live-performance-profile');
+const DIR = 'docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3';
+async function main() {
+  fs.mkdirSync(DIR, { recursive: true });
+  const tests = [];
+  const check = (name, fn) => { fn(); tests.push({ name, passed: true }); };
+  check('exact downstream decimal conversion', () => assert.equal(P.kbpsToBytes(1474.56), 184320));
+  check('exact upstream decimal conversion', () => assert.equal(P.kbpsToBytes(675), 84375));
+  const calls = [];
+  const applied = await P.apply({ send: async (method, params) => { calls.push({method,params}); return method.includes('ByRule') ? { ruleIds: ['mock-rule'] } : {}; } });
+  check('effective request latency 562.5; not reference RTT', () => assert.equal(calls[0].params.matchedNetworkConditions[0].latency,562.5));
+  check('downstream supplied 184320 bytes/sec', () => assert.equal(calls[0].params.matchedNetworkConditions[0].downloadThroughput,184320));
+  check('upstream supplied 84375 bytes/sec', () => assert.equal(calls[0].params.matchedNetworkConditions[0].uploadThroughput,84375));
+  check('CPU command rate 4', () => assert.deepEqual(calls[2], { method:'Emulation.setCPUThrottlingRate',params:{rate:4} }));
+  check('online zero loss global rule', () => { assert.equal(calls[0].params.offline,false); assert.equal(calls[0].params.matchedNetworkConditions[0].packetLoss,0); assert.equal(calls[0].params.matchedNetworkConditions[0].urlPattern,''); });
+  check('navigator same effective settings', () => assert.deepEqual(calls[1].params,P.parameters().network));
+  await assert.rejects(P.apply({send:async()=>{throw Error('unsupported');}})); tests.push({name:'unsupported protocol fails closed',passed:true});
+  await assert.rejects(P.apply({send:async()=>({})})); tests.push({name:'no acknowledged rule cannot fall back',passed:true});
+  check('profile drift rejected',()=>assert.throws(()=>P.parameters({...P.frozen,effective:{...P.frozen.effective,requestLatencyMs:150}})));
+  const cold={cache:'cold',contextId:'fresh-1',independentFreshContext:true,targetRoute:'/products/beadmaster',measuredRoute:'/products/beadmaster',serviceWorkers:'fresh-context; CDP bypass; no inherited registrations',cacheDisabled:false,cacheClearedAt:'2026-10-07T10:00:00Z',measuredAt:'2026-10-07T10:00:03Z',productNavigationsBeforeMeasurement:0,prime:null,cacheClearedAfterPrime:false};
+  const warm={...cold,cache:'warm',contextId:'fresh-2',productNavigationsBeforeMeasurement:1,prime:{route:cold.targetRoute,startedAt:'2026-10-07T10:00:01Z',completedAt:'2026-10-07T10:00:02Z',completed:true}};
+  check('valid independent cold',()=>P.cacheProof(cold)); check('valid same-route warm',()=>P.cacheProof(warm));
+  for(const [name,patch] of [['no warm prime',{prime:null}],['different prime route',{prime:{...warm.prime,route:'/products/em-1'}}],['clear after prime',{cacheClearedAfterPrime:true}],['missing cache state',{cache:undefined}],['CDN cache alone cannot make warm',{prime:null,productNavigationsBeforeMeasurement:0}],['warm cache disabled',{cacheDisabled:true}]])check('reject '+name,()=>assert.throws(()=>P.cacheProof({...warm,...patch})));
+  check('reject previously navigated cold',()=>assert.throws(()=>P.cacheProof({...cold,productNavigationsBeforeMeasurement:1})));
+  check('reject reused context',()=>assert.throws(()=>P.cacheProof(cold,new Set([cold.contextId]))));
+  let assetRequests=0;
+  const server=http.createServer((req,res)=>{if(req.url==='/asset'){assetRequests++;res.writeHead(200,{'Content-Type':'image/svg+xml','Cache-Control':'public,max-age=3600'});res.end('<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="20" height="20"/></svg>');}else{res.writeHead(200,{'Content-Type':'text/html','Cache-Control':'no-store'});res.end('<h1>Throttle and cache self-test</h1><img src="/asset" width="20" height="20">');}});
+  await new Promise(r=>server.listen(0,'127.0.0.1',r));
+  const browser=await chromium.launch();
+  let actual;
+  try{
+    const context=await browser.newContext({serviceWorkers:'block'}),page=await context.newPage(),session=await context.newCDPSession(page);
+    await session.send('Network.enable');await session.send('Network.clearBrowserCache');await session.send('Network.setCacheDisabled',{cacheDisabled:false});
+    const proof=await P.apply(session),ruleIds=[],cacheEvents=[];
+    session.on('Network.requestWillBeSentExtraInfo',e=>{if(e.appliedNetworkConditionsId)ruleIds.push(e.appliedNetworkConditionsId);});
+    session.on('Network.requestServedFromCache',e=>cacheEvents.push(e.requestId));
+    const url='http://127.0.0.1:'+server.address().port+'/';const start=Date.now();await page.goto(url,{waitUntil:'load'});const coldElapsedMs=Date.now()-start;const firstAssets=assetRequests;
+    await page.goto(url,{waitUntil:'load'});
+    assert.ok(coldElapsedMs>=500,'Actual latency was not applied');assert.ok(ruleIds.includes(proof.ruleId),'Actual requests not associated with approved rule');assert.equal(assetRequests,firstAssets,'Second navigation failed warm HTTP cache reuse');assert.ok(cacheEvents.length>0);
+    actual={browser:browser.version(),applied:proof,coldElapsedMs,ruleIdObserved:true,assetRequestsCold:firstAssets,assetRequestsAfterWarm:assetRequests,cacheEvents:cacheEvents.length,PlaywrightRoutingUsed:false};
+    tests.push({name:'actual Chromium rule, latency, and retained HTTP warm cache',passed:true});await context.close();
+  }finally{await browser.close();await new Promise(r=>server.close(r));}
+  fs.writeFileSync(DIR+'/profile-cache-tests.json',JSON.stringify({assessedAt:new Date().toISOString(),passed:tests.length,failed:0,tests,actualChromiumSelfTest:actual,ShopifyPerformanceSamples:0},null,2)+'\n');
+  console.log(JSON.stringify({passed:tests.length,failed:0,actualChromiumSelfTest:actual}));
+}
+if(require.main===module)main().catch(e=>{console.error(e.message);process.exitCode=1;});

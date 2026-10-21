@@ -1,0 +1,375 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "status",
+    "instrumentationState",
+    "authorities",
+    "businessQuestions",
+    "nativeEvents",
+    "optionalEvents",
+    "layers",
+    "interpretationCautions",
+    "omittedDomains",
+    "releaseInstrumentationAuthorized"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "status": {
+      "const": "contract_ready"
+    },
+    "instrumentationState": {
+      "const": "instrumentation_blocked"
+    },
+    "authorities": {
+      "const": [
+        "data/storefront-event-contracts.json",
+        "docs/analytics/analytics-migration-verification-plan.md",
+        "docs/privacy/third-party-script-and-pixel-register.md",
+        "data/epic-d-homepage-measurement-plan.json",
+        "data/epic-c-navigation-measurement-plan.json"
+      ]
+    },
+    "businessQuestions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "question",
+          "consumer"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "consumer": {
+            "const": "Product Owner"
+          }
+        }
+      },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "nativeEvents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "owner",
+          "ownerAuthority",
+          "ownerAssignment",
+          "consumer",
+          "sourceSurface",
+          "instrumentationState",
+          "consentDependency",
+          "consentResolved",
+          "payloadSchemaVersion",
+          "reportingOwner",
+          "baselineOwner",
+          "baselinePeriod",
+          "reviewCadence",
+          "lifecycle",
+          "eventId",
+          "name",
+          "ownerSlot",
+          "native",
+          "businessQuestionId",
+          "source",
+          "deduplication",
+          "payloadSchema",
+          "emissionByF"
+        ],
+        "properties": {
+          "owner": {
+            "const": null
+          },
+          "ownerAuthority": {
+            "const": "U / Analytics Owner"
+          },
+          "ownerAssignment": {
+            "const": "unresolved"
+          },
+          "consumer": {
+            "const": "F / Product Owner"
+          },
+          "sourceSurface": {
+            "enum": [
+              "templates/product.machine.json",
+              "Shopify native checkout transition (J/U-owned)",
+              "Shopify native checkout completion (J/U-owned)"
+            ]
+          },
+          "instrumentationState": {
+            "const": "instrumentation_blocked"
+          },
+          "consentDependency": {
+            "const": "U / Analytics Owner and Privacy Owner; decision absent"
+          },
+          "consentResolved": {
+            "const": false
+          },
+          "payloadSchemaVersion": {
+            "const": 1
+          },
+          "reportingOwner": {
+            "const": "Analytics Owner"
+          },
+          "baselineOwner": {
+            "const": "Analytics Owner"
+          },
+          "baselinePeriod": {
+            "const": "First 28 days after separately approved collection; no historical values"
+          },
+          "reviewCadence": {
+            "const": "Monthly after baseline; review with Product Owner"
+          },
+          "lifecycle": {
+            "const": "contract_ready"
+          },
+          "eventId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ownerSlot": {
+            "type": "string",
+            "minLength": 1
+          },
+          "native": {
+            "type": "boolean"
+          },
+          "businessQuestionId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "deduplication": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "responsibility",
+              "strategy"
+            ],
+            "properties": {
+              "responsibility": {
+                "const": "U / Analytics Owner"
+              },
+              "strategy": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "payloadSchema": {
+            "type": "string",
+            "minLength": 1
+          },
+          "emissionByF": {
+            "const": false
+          },
+          "module": {
+            "type": "string",
+            "minLength": 1
+          },
+          "decisionBoundary": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "optionalEvents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "owner",
+          "ownerAuthority",
+          "ownerAssignment",
+          "consumer",
+          "sourceSurface",
+          "instrumentationState",
+          "consentDependency",
+          "consentResolved",
+          "payloadSchemaVersion",
+          "reportingOwner",
+          "baselineOwner",
+          "baselinePeriod",
+          "reviewCadence",
+          "lifecycle",
+          "eventId",
+          "name",
+          "ownerSlot",
+          "native",
+          "businessQuestionId",
+          "source",
+          "deduplication",
+          "payloadSchema",
+          "emissionByF",
+          "module",
+          "decisionBoundary"
+        ],
+        "properties": {
+          "owner": {
+            "const": null
+          },
+          "ownerAuthority": {
+            "const": "U / Analytics Owner"
+          },
+          "ownerAssignment": {
+            "const": "unresolved"
+          },
+          "consumer": {
+            "const": "F / Product Owner"
+          },
+          "sourceSurface": {
+            "enum": [
+              "templates/product.machine.json",
+              "Shopify native checkout transition (J/U-owned)",
+              "Shopify native checkout completion (J/U-owned)"
+            ]
+          },
+          "instrumentationState": {
+            "const": "instrumentation_blocked"
+          },
+          "consentDependency": {
+            "const": "U / Analytics Owner and Privacy Owner; decision absent"
+          },
+          "consentResolved": {
+            "const": false
+          },
+          "payloadSchemaVersion": {
+            "const": 1
+          },
+          "reportingOwner": {
+            "const": "Analytics Owner"
+          },
+          "baselineOwner": {
+            "const": "Analytics Owner"
+          },
+          "baselinePeriod": {
+            "const": "First 28 days after separately approved collection; no historical values"
+          },
+          "reviewCadence": {
+            "const": "Monthly after baseline; review with Product Owner"
+          },
+          "lifecycle": {
+            "const": "contract_ready"
+          },
+          "eventId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ownerSlot": {
+            "type": "string",
+            "minLength": 1
+          },
+          "native": {
+            "type": "boolean"
+          },
+          "businessQuestionId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "deduplication": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "responsibility",
+              "strategy"
+            ],
+            "properties": {
+              "responsibility": {
+                "const": "U / Analytics Owner"
+              },
+              "strategy": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "payloadSchema": {
+            "type": "string",
+            "minLength": 1
+          },
+          "emissionByF": {
+            "const": false
+          },
+          "module": {
+            "type": "string",
+            "minLength": 1
+          },
+          "decisionBoundary": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "layers": {
+      "const": {
+        "definition": "F repository contract",
+        "emission": "Blocked pending U owner, consent and collector decision; none in F7",
+        "collection": "U decision unresolved; no tool enabled",
+        "storage": "U decision unresolved; no store created",
+        "reporting": "Analytics Owner; existing native Shopify aggregate reporting where available",
+        "analysis": "Analytics Owner with Product Owner; 28-day post-approval baseline then monthly; no numeric targets"
+      }
+    },
+    "interpretationCautions": {
+      "const": [
+        "Contact activation is not an inquiry or a purchase attribution claim",
+        "Native aggregate reporting cannot establish placement attribution",
+        "Consent/collection coverage and suppressed modules constrain denominators",
+        "Resources/contextual output currently zero; fixture activations are not customer evidence"
+      ]
+    },
+    "omittedDomains": {
+      "const": [
+        "video: no active approved Product video",
+        "warranty: B3C-D03 blocked",
+        "specifications: no distinct customer decision boundary",
+        "section impressions, scrolling, expansion, rendering, fixture presence: not decision success"
+      ]
+    },
+    "releaseInstrumentationAuthorized": {
+      "const": false
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

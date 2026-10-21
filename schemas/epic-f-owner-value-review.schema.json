@@ -1,0 +1,683 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Epic F 006B exact owner-value review; no mutation authority",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "mode": {
+      "const": "DECISION_PREPARATION_ONLY"
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "approvalMode": {
+      "const": "delegated_development_override"
+    },
+    "observedAt": {
+      "type": "string"
+    },
+    "sourceBindingSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "path",
+          "sha256"
+        ]
+      }
+    },
+    "machines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "label": {
+            "type": "string"
+          },
+          "handle": {
+            "type": "string"
+          },
+          "assigned": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "productGid",
+          "label",
+          "handle",
+          "assigned"
+        ]
+      },
+      "minItems": 11,
+      "maxItems": 11
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sourceId",
+          "label"
+        ],
+        "properties": {
+          "sourceId": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rowId": {
+            "type": "string"
+          },
+          "decisionId": {
+            "enum": [
+              "B3B-D03",
+              "B3B-D05"
+            ]
+          },
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "productDiagnosticLabel": {
+            "type": "string"
+          },
+          "domain": {
+            "enum": [
+              "electrical",
+              "motor_speed",
+              "tool_mount",
+              "water_fluid",
+              "durable_measurements",
+              "crate_measurements"
+            ]
+          },
+          "planId": {
+            "type": "string",
+            "pattern": "^E-MUT-0(2[6-9]|3[01])$"
+          },
+          "fieldKey": {
+            "type": "string"
+          },
+          "fieldLabel": {
+            "type": "string"
+          },
+          "canonicalType": {
+            "type": "string"
+          },
+          "canonicalUnit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "humanUnit": {
+            "type": "string"
+          },
+          "physicalState": {
+            "type": "string"
+          },
+          "customerReadable": {
+            "type": "boolean"
+          },
+          "applicability": {
+            "enum": [
+              "APPLICABLE",
+              "CONDITIONAL_UNCONFIRMED",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "candidateValues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "candidateId": {
+                  "type": "string"
+                },
+                "rawValue": {
+                  "type": "string"
+                },
+                "sourceUnit": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "sourceId": {
+                  "type": "string"
+                },
+                "sourceLocation": {
+                  "type": "string"
+                },
+                "canonicalValue": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "value": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "unit": {
+                          "type": "string",
+                          "enum": [
+                            "volts",
+                            "hertz",
+                            "horsepower",
+                            "revolutions_per_minute",
+                            "inches",
+                            "pounds",
+                            "us_gallons"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "value",
+                        "unit"
+                      ]
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "number",
+                            "exclusiveMinimum": 0
+                          },
+                          "unit": {
+                            "const": "hertz"
+                          }
+                        },
+                        "required": [
+                          "value",
+                          "unit"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "candidateId",
+                "rawValue",
+                "sourceUnit",
+                "sourceId",
+                "sourceLocation",
+                "canonicalValue"
+              ]
+            }
+          },
+          "sourceIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "conflictIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^C-[0-9]{3}$"
+            }
+          },
+          "sourceState": {
+            "enum": [
+              "SINGLE_CONSISTENT_CANDIDATE",
+              "MULTIPLE_CONSISTENT_SOURCES",
+              "CONFLICT",
+              "MISSING",
+              "NOT_APPLICABLE",
+              "OWNER_CONFIRMED"
+            ]
+          },
+          "currentOwnerDecision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "decisionState": {
+            "enum": [
+              "PENDING_OWNER",
+              "OWNER_CONFIRMED",
+              "NOT_APPLICABLE",
+              "UNKNOWN_DEFER"
+            ]
+          },
+          "reviewedAt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reviewerRole": {
+            "anyOf": [
+              {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "decisionOptions": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "APPROVE_CANDIDATE",
+                "SELECT_CANDIDATE",
+                "CORRECT_VALUE",
+                "NOT_APPLICABLE",
+                "UNKNOWN_DEFER"
+              ]
+            }
+          },
+          "reviewerResponse": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  null,
+                  "APPROVE_CANDIDATE",
+                  "SELECT_CANDIDATE",
+                  "CORRECT_VALUE",
+                  "NOT_APPLICABLE",
+                  "UNKNOWN_DEFER"
+                ]
+              },
+              "candidateId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "canonicalValue": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "unit": {
+                        "type": "string",
+                        "enum": [
+                          "volts",
+                          "hertz",
+                          "horsepower",
+                          "revolutions_per_minute",
+                          "inches",
+                          "pounds",
+                          "us_gallons"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "value",
+                      "unit"
+                    ]
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "value": {
+                          "type": "number",
+                          "exclusiveMinimum": 0
+                        },
+                        "unit": {
+                          "const": "hertz"
+                        }
+                      },
+                      "required": [
+                        "value",
+                        "unit"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "applicabilityConfirmed": {
+                "type": "boolean"
+              },
+              "reviewer": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "reviewerRole": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "enum": [
+                        "Technical",
+                        "Operations",
+                        "Product Owner"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "reviewedAt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "evidenceRef": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sourceId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "configurationId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "configurationLabel": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "unitQualification": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "physicalStateConfirmed": {
+                "type": "boolean"
+              },
+              "conflictsResolved": {
+                "type": "boolean"
+              },
+              "axisMapping": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "length": {
+                        "type": "string"
+                      },
+                      "width": {
+                        "type": "string"
+                      },
+                      "height": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "length",
+                      "width",
+                      "height"
+                    ]
+                  }
+                ]
+              },
+              "includedAssemblies": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "fluidState": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "packingRevision": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "candidateId",
+              "canonicalValue",
+              "applicabilityConfirmed",
+              "reviewer",
+              "reviewerRole",
+              "reviewedAt",
+              "evidenceRef",
+              "sourceId",
+              "configurationId",
+              "configurationLabel",
+              "unitQualification",
+              "physicalStateConfirmed",
+              "conflictsResolved",
+              "axisMapping",
+              "includedAssemblies",
+              "fluidState",
+              "packingRevision"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "rowId",
+          "decisionId",
+          "productGid",
+          "productDiagnosticLabel",
+          "domain",
+          "planId",
+          "fieldKey",
+          "fieldLabel",
+          "canonicalType",
+          "canonicalUnit",
+          "humanUnit",
+          "physicalState",
+          "customerReadable",
+          "applicability",
+          "candidateValues",
+          "sourceIds",
+          "conflictIds",
+          "sourceState",
+          "currentOwnerDecision",
+          "decisionState",
+          "reviewedAt",
+          "reviewerRole",
+          "decisionOptions",
+          "reviewerResponse",
+          "notes"
+        ]
+      }
+    },
+    "conditionalNotRequested": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "fieldKey": {
+            "type": "string"
+          },
+          "applicability": {
+            "const": "CONDITIONAL_NOT_ESTABLISHED"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "decisionState": {
+            "const": "UNKNOWN_DEFER"
+          },
+          "customerActivation": {
+            "const": false
+          }
+        },
+        "required": [
+          "productGid",
+          "fieldKey",
+          "applicability",
+          "reason",
+          "decisionState",
+          "customerActivation"
+        ]
+      }
+    },
+    "conflictSummaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "conflictId": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "sourceObservations": {
+            "type": "string"
+          },
+          "sourceReferences": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "conflictId",
+          "model",
+          "subject",
+          "sourceObservations",
+          "sourceReferences"
+        ]
+      }
+    },
+    "questionsRequired": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "ownerConfirmedRows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "mode",
+    "mutationAuthorized",
+    "approvalMode",
+    "observedAt",
+    "sourceBindingSha256",
+    "inputs",
+    "machines",
+    "sources",
+    "rows",
+    "conditionalNotRequested",
+    "conflictSummaries",
+    "questionsRequired",
+    "ownerConfirmedRows",
+    "notes"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "fixtureOnly": true,
+  "widths": [320, 360, 390, 768, 1024, 1440, 1920],
+  "states": [
+    { "id": "tracked-available", "available": true, "management": "shopify", "stock": 4, "policy": "deny", "button": "Add to cart" },
+    { "id": "tracked-unavailable", "available": false, "management": "shopify", "stock": 4, "policy": "deny", "button": "Sold out" },
+    { "id": "zero-deny", "available": false, "management": "shopify", "stock": 0, "policy": "deny", "button": "Sold out" },
+    { "id": "untracked-available", "available": true, "management": null, "stock": 0, "policy": "deny", "button": "Add to cart" },
+    { "id": "invalid-variant", "variantMissing": true, "button": "Unavailable" },
+    { "id": "quantity-rule-soldout", "available": true, "management": "shopify", "stock": 0, "policy": "deny", "button": "Sold out" },
+    { "id": "draft", "routeStatus": 404 },
+    { "id": "unpublished", "routeStatus": 404 }
+  ]
+}

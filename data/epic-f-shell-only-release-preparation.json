@@ -1,0 +1,3148 @@
+{
+  "schemaVersion": 1,
+  "kind": "read_only_execution_handoff_projection_not_an_approval_input",
+  "preparedAt": "2026-09-30T19:06:49.489Z",
+  "authority": {
+    "path": "data/epic-f-activation-readiness-review.json",
+    "sha256": "87277c1cd2e10810a51269c38b304213a5de5afc389a78dcc696da73ca492853"
+  },
+  "adminObservation": {
+    "path": "docs/qa/evidence/epic-f/activation-review-admin-audit.json",
+    "sha256": "871dbcea1f3f33f56955cae19c20025b87fcc044f93c23684a1a1e8c17ce208a"
+  },
+  "sourceObservationExpired": true,
+  "expectedShopId": "gid://shopify/Shop/79279947973",
+  "shopDomain": "sz5dnk-nf.myshopify.com",
+  "proposedScope": [
+    {
+      "productGid": "gid://shopify/Product/8905779937477",
+      "label": "BeadMaster 6\"",
+      "route": "/products/beadmaster",
+      "currentSuffixObservation": null,
+      "approvedClassRowId": "product_class:gid://shopify/Product/8905779937477",
+      "approvedClassValue": "machine"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905780756677",
+      "label": "EM-1 Machine",
+      "route": "/products/em-1",
+      "currentSuffixObservation": null,
+      "approvedClassRowId": "product_class:gid://shopify/Product/8905780756677",
+      "approvedClassValue": "machine"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781412037",
+      "label": "LapMaster 12\"",
+      "route": "/products/lapmaster-12",
+      "currentSuffixObservation": null,
+      "approvedClassRowId": "product_class:gid://shopify/Product/8905781412037",
+      "approvedClassValue": "machine"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905781477573",
+      "label": "LapMaster 18\"",
+      "route": "/products/lapmaster-18",
+      "currentSuffixObservation": null,
+      "approvedClassRowId": "product_class:gid://shopify/Product/8905781477573",
+      "approvedClassValue": "machine"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784131781",
+      "label": "SawMaster 18\"",
+      "route": "/products/sawmaster-18",
+      "currentSuffixObservation": null,
+      "approvedClassRowId": "product_class:gid://shopify/Product/8905784131781",
+      "approvedClassValue": "machine"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784197317",
+      "label": "SawMaster 24\"",
+      "route": "/products/sawmaster-24",
+      "currentSuffixObservation": null,
+      "approvedClassRowId": "product_class:gid://shopify/Product/8905784197317",
+      "approvedClassValue": "machine"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784328389",
+      "label": "ShapeMaster 6\"",
+      "route": "/products/shapemaster",
+      "currentSuffixObservation": null,
+      "approvedClassRowId": "product_class:gid://shopify/Product/8905784328389",
+      "approvedClassValue": "machine"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905785344197",
+      "label": "TrimMaster",
+      "route": "/products/trimmaster",
+      "currentSuffixObservation": null,
+      "approvedClassRowId": "product_class:gid://shopify/Product/8905785344197",
+      "approvedClassValue": "machine"
+    }
+  ],
+  "exclusions": [
+    {
+      "productGid": "gid://shopify/Product/8905781248197",
+      "reason": "JadeMaster: explicit F-PBI-017 exclusion; historically unpublished; separate authorization required"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905784262853",
+      "reason": "SawMaster 36: explicit F-PBI-017 exclusion; historically draft/unpublished; separate authorization required"
+    },
+    {
+      "productGid": "gid://shopify/Product/8905785868485",
+      "reason": "TumbleMaster: explicit F-PBI-017 exclusion; historically draft/unpublished; separate authorization required"
+    }
+  ],
+  "currentEligibleTargetCount": 0,
+  "currentExecutableTargetCount": 0,
+  "zeroGrants": {
+    "media": 0,
+    "specifications": 0,
+    "contents": 0,
+    "contextual": 0,
+    "delivery": 0,
+    "warranty": 0,
+    "manuals": 0,
+    "diagrams_instructions": 0,
+    "videos": 0,
+    "support_files": 0
+  },
+  "machineFamily": {
+    "classification": "required_before_shell_assignment_via_full_E_MUT_020_receipt",
+    "runtimeReadsFamily": false,
+    "familyValueMigrationRequired": false,
+    "source": "scripts/lib/epic-e-readiness.js#verifyAfterPlan; scripts/build-epic-e-batch-4a.js#sortedDefinitions"
+  },
+  "definitions": [
+    {
+      "rowId": "CD-MO-001",
+      "ownerType": "METAOBJECT",
+      "namespace": null,
+      "key": "machine_family",
+      "type": "machine_family",
+      "dependencies": []
+    },
+    {
+      "rowId": "CD-MF-001",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "product_class",
+      "type": "single_line_text_field",
+      "dependencies": []
+    },
+    {
+      "rowId": "CD-MF-002",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "machine_family",
+      "type": "metaobject_reference",
+      "dependencies": [
+        "CD-MO-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-010",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "input_voltage",
+      "type": "voltage",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-011",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "input_frequencies",
+      "type": "list.frequency",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-012",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "motor_power",
+      "type": "power",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-013",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "motor_speed",
+      "type": "rotational_speed",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-014",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_speed_min",
+      "type": "rotational_speed",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-015",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_speed_max",
+      "type": "rotational_speed",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-016",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "flex_shaft_speed_min",
+      "type": "rotational_speed",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-017",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "flex_shaft_speed_max",
+      "type": "rotational_speed",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-018",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "blade_diameter_min",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-019",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "blade_diameter_max",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-020",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_diameter",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-021",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "blade_arbor_diameter",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-022",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "wheel_arbor_diameter",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-023",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "water_reservoir_capacity",
+      "type": "volume",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-024",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "cutting_oil_fill_min",
+      "type": "volume",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-025",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "cutting_oil_fill_max",
+      "type": "volume",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-026",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "water_system_type",
+      "type": "single_line_text_field",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-027",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "net_weight",
+      "type": "weight",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-028",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "assembled_length",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-029",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "assembled_width",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-030",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "assembled_height",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-031",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "crate_length",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-032",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "crate_width",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-033",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "crate_height",
+      "type": "dimension",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-034",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "compatible_machines",
+      "type": "list.product_reference",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-035",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "included_products",
+      "type": "list.product_reference",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-036",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "included_quantities",
+      "type": "json",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-037",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "noncatalog_components",
+      "type": "json",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-039",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "optional_products",
+      "type": "list.product_reference",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-040",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "recommended_products",
+      "type": "list.product_reference",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-041",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "manual_files",
+      "type": "list.file_reference",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-042",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "diagram_files",
+      "type": "list.file_reference",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-043",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "instruction_files",
+      "type": "list.file_reference",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-044",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "video_files",
+      "type": "list.file_reference",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    },
+    {
+      "rowId": "CD-MF-045",
+      "ownerType": "PRODUCT",
+      "namespace": "rhino",
+      "key": "support_files",
+      "type": "list.file_reference",
+      "dependencies": [
+        "CD-MF-001"
+      ]
+    }
+  ],
+  "classScope": {
+    "catalogWide": true,
+    "rowCount": 122,
+    "approvedRows": [
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778331845",
+        "productGid": "gid://shopify/Product/8905778331845",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778430149",
+        "productGid": "gid://shopify/Product/8905778430149",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778495685",
+        "productGid": "gid://shopify/Product/8905778495685",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778561221",
+        "productGid": "gid://shopify/Product/8905778561221",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778659525",
+        "productGid": "gid://shopify/Product/8905778659525",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778757829",
+        "productGid": "gid://shopify/Product/8905778757829",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778823365",
+        "productGid": "gid://shopify/Product/8905778823365",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778888901",
+        "productGid": "gid://shopify/Product/8905778888901",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778921669",
+        "productGid": "gid://shopify/Product/8905778921669",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905778987205",
+        "productGid": "gid://shopify/Product/8905778987205",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779052741",
+        "productGid": "gid://shopify/Product/8905779052741",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779118277",
+        "productGid": "gid://shopify/Product/8905779118277",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779249349",
+        "productGid": "gid://shopify/Product/8905779249349",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779282117",
+        "productGid": "gid://shopify/Product/8905779282117",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779347653",
+        "productGid": "gid://shopify/Product/8905779347653",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779413189",
+        "productGid": "gid://shopify/Product/8905779413189",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779478725",
+        "productGid": "gid://shopify/Product/8905779478725",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779511493",
+        "productGid": "gid://shopify/Product/8905779511493",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779577029",
+        "productGid": "gid://shopify/Product/8905779577029",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779642565",
+        "productGid": "gid://shopify/Product/8905779642565",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779740869",
+        "productGid": "gid://shopify/Product/8905779740869",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779839173",
+        "productGid": "gid://shopify/Product/8905779839173",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779871941",
+        "productGid": "gid://shopify/Product/8905779871941",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905779937477",
+        "productGid": "gid://shopify/Product/8905779937477",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780003013",
+        "productGid": "gid://shopify/Product/8905780003013",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780068549",
+        "productGid": "gid://shopify/Product/8905780068549",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780134085",
+        "productGid": "gid://shopify/Product/8905780134085",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780199621",
+        "productGid": "gid://shopify/Product/8905780199621",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780363461",
+        "productGid": "gid://shopify/Product/8905780363461",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780428997",
+        "productGid": "gid://shopify/Product/8905780428997",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780527301",
+        "productGid": "gid://shopify/Product/8905780527301",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780560069",
+        "productGid": "gid://shopify/Product/8905780560069",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780625605",
+        "productGid": "gid://shopify/Product/8905780625605",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780691141",
+        "productGid": "gid://shopify/Product/8905780691141",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780756677",
+        "productGid": "gid://shopify/Product/8905780756677",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780789445",
+        "productGid": "gid://shopify/Product/8905780789445",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780854981",
+        "productGid": "gid://shopify/Product/8905780854981",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905780920517",
+        "productGid": "gid://shopify/Product/8905780920517",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781018821",
+        "productGid": "gid://shopify/Product/8905781018821",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781084357",
+        "productGid": "gid://shopify/Product/8905781084357",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781149893",
+        "productGid": "gid://shopify/Product/8905781149893",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781182661",
+        "productGid": "gid://shopify/Product/8905781182661",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781248197",
+        "productGid": "gid://shopify/Product/8905781248197",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781313733",
+        "productGid": "gid://shopify/Product/8905781313733",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781379269",
+        "productGid": "gid://shopify/Product/8905781379269",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781412037",
+        "productGid": "gid://shopify/Product/8905781412037",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781477573",
+        "productGid": "gid://shopify/Product/8905781477573",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781575877",
+        "productGid": "gid://shopify/Product/8905781575877",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781641413",
+        "productGid": "gid://shopify/Product/8905781641413",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781674181",
+        "productGid": "gid://shopify/Product/8905781674181",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781739717",
+        "productGid": "gid://shopify/Product/8905781739717",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781805253",
+        "productGid": "gid://shopify/Product/8905781805253",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781838021",
+        "productGid": "gid://shopify/Product/8905781838021",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781903557",
+        "productGid": "gid://shopify/Product/8905781903557",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905781969093",
+        "productGid": "gid://shopify/Product/8905781969093",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782034629",
+        "productGid": "gid://shopify/Product/8905782034629",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782067397",
+        "productGid": "gid://shopify/Product/8905782067397",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782165701",
+        "productGid": "gid://shopify/Product/8905782165701",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782231237",
+        "productGid": "gid://shopify/Product/8905782231237",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782329541",
+        "productGid": "gid://shopify/Product/8905782329541",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782395077",
+        "productGid": "gid://shopify/Product/8905782395077",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782427845",
+        "productGid": "gid://shopify/Product/8905782427845",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782493381",
+        "productGid": "gid://shopify/Product/8905782493381",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782558917",
+        "productGid": "gid://shopify/Product/8905782558917",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782624453",
+        "productGid": "gid://shopify/Product/8905782624453",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782689989",
+        "productGid": "gid://shopify/Product/8905782689989",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782788293",
+        "productGid": "gid://shopify/Product/8905782788293",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782853829",
+        "productGid": "gid://shopify/Product/8905782853829",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782919365",
+        "productGid": "gid://shopify/Product/8905782919365",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905782984901",
+        "productGid": "gid://shopify/Product/8905782984901",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783050437",
+        "productGid": "gid://shopify/Product/8905783050437",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783083205",
+        "productGid": "gid://shopify/Product/8905783083205",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783115973",
+        "productGid": "gid://shopify/Product/8905783115973",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783181509",
+        "productGid": "gid://shopify/Product/8905783181509",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783312581",
+        "productGid": "gid://shopify/Product/8905783312581",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783345349",
+        "productGid": "gid://shopify/Product/8905783345349",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-039"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783410885",
+        "productGid": "gid://shopify/Product/8905783410885",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783443653",
+        "productGid": "gid://shopify/Product/8905783443653",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783509189",
+        "productGid": "gid://shopify/Product/8905783509189",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783574725",
+        "productGid": "gid://shopify/Product/8905783574725",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783640261",
+        "productGid": "gid://shopify/Product/8905783640261",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783673029",
+        "productGid": "gid://shopify/Product/8905783673029",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783771333",
+        "productGid": "gid://shopify/Product/8905783771333",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783869637",
+        "productGid": "gid://shopify/Product/8905783869637",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783935173",
+        "productGid": "gid://shopify/Product/8905783935173",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905783967941",
+        "productGid": "gid://shopify/Product/8905783967941",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784033477",
+        "productGid": "gid://shopify/Product/8905784033477",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784099013",
+        "productGid": "gid://shopify/Product/8905784099013",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784131781",
+        "productGid": "gid://shopify/Product/8905784131781",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784197317",
+        "productGid": "gid://shopify/Product/8905784197317",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784262853",
+        "productGid": "gid://shopify/Product/8905784262853",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784328389",
+        "productGid": "gid://shopify/Product/8905784328389",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784426693",
+        "productGid": "gid://shopify/Product/8905784426693",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784459461",
+        "productGid": "gid://shopify/Product/8905784459461",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784524997",
+        "productGid": "gid://shopify/Product/8905784524997",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784590533",
+        "productGid": "gid://shopify/Product/8905784590533",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784656069",
+        "productGid": "gid://shopify/Product/8905784656069",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784721605",
+        "productGid": "gid://shopify/Product/8905784721605",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784787141",
+        "productGid": "gid://shopify/Product/8905784787141",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784852677",
+        "productGid": "gid://shopify/Product/8905784852677",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905784950981",
+        "productGid": "gid://shopify/Product/8905784950981",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785016517",
+        "productGid": "gid://shopify/Product/8905785016517",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785082053",
+        "productGid": "gid://shopify/Product/8905785082053",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785114821",
+        "productGid": "gid://shopify/Product/8905785114821",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785180357",
+        "productGid": "gid://shopify/Product/8905785180357",
+        "value": "consumable",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785245893",
+        "productGid": "gid://shopify/Product/8905785245893",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785311429",
+        "productGid": "gid://shopify/Product/8905785311429",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-002"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785344197",
+        "productGid": "gid://shopify/Product/8905785344197",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785442501",
+        "productGid": "gid://shopify/Product/8905785442501",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785540805",
+        "productGid": "gid://shopify/Product/8905785540805",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785606341",
+        "productGid": "gid://shopify/Product/8905785606341",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785671877",
+        "productGid": "gid://shopify/Product/8905785671877",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785737413",
+        "productGid": "gid://shopify/Product/8905785737413",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785802949",
+        "productGid": "gid://shopify/Product/8905785802949",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785868485",
+        "productGid": "gid://shopify/Product/8905785868485",
+        "value": "machine",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905785934021",
+        "productGid": "gid://shopify/Product/8905785934021",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905786065093",
+        "productGid": "gid://shopify/Product/8905786065093",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905786130629",
+        "productGid": "gid://shopify/Product/8905786130629",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905786196165",
+        "productGid": "gid://shopify/Product/8905786196165",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905786228933",
+        "productGid": "gid://shopify/Product/8905786228933",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905786294469",
+        "productGid": "gid://shopify/Product/8905786294469",
+        "value": "accessory",
+        "approvalDecisionId": "PO-E-001"
+      },
+      {
+        "rowId": "product_class:gid://shopify/Product/8905786360005",
+        "productGid": "gid://shopify/Product/8905786360005",
+        "value": "replacement_part",
+        "approvalDecisionId": "PO-E-003"
+      }
+    ],
+    "subsetExecutorAvailable": false,
+    "atomicTransactionRequired": false
+  },
+  "definitionEnvelope": {
+    "planId": "E-MUT-020",
+    "plan": {
+      "path": "data/epic-e-migration-plans/E-MUT-020-definitions.json",
+      "sha256": "191445f8511123ba64903ae514d24e3043a5da2d5345cc6c57b1f73b3d866551"
+    },
+    "input": {
+      "path": "data/epic-e-migration-plans/E-MUT-020-definitions-input.json",
+      "sha256": "c211f7c6258eedea6eed7d0ce64bb9272c70160f91d11b08e770474f2cd43edb"
+    },
+    "scope": "full_existing_domain_input",
+    "rowCount": 38,
+    "rowSetSha256": "58b12665893d123d4089d49882dac28e4b0f66ef42ffb7f2ce05aa27ef4541ba",
+    "rowsSource": "data/epic-e-migration-plans/E-MUT-020-definitions-input.json#/rows",
+    "approvalSlotsSource": "data/epic-e-migration-plans/E-MUT-020-definitions.json#/approvals",
+    "preconditionsSource": "data/epic-e-migration-plans/E-MUT-020-definitions-input.json#/preconditions",
+    "rollbackSource": "data/epic-e-migration-plans/E-MUT-020-definitions-input.json#/rollback",
+    "writeAllowlist": [
+      "metafieldDefinition",
+      "metaobjectDefinition"
+    ],
+    "expectedShopId": "gid://shopify/Shop/79279947973",
+    "authorization": false,
+    "afterSnapshot": "docs/qa/evidence/epic-e/E-MUT-020-after-admin-snapshot.json",
+    "reconciliationArtifact": "docs/qa/evidence/epic-e/E-MUT-020-after-drift.json"
+  },
+  "classEnvelope": {
+    "planId": "E-MUT-021",
+    "plan": {
+      "path": "data/epic-e-migration-plans/E-MUT-021-product_class.json",
+      "sha256": "4ca2e89b2497268977ca8015b9b5353fc1757f252e78b7247ebb0c29c9a16f9d"
+    },
+    "input": {
+      "path": "data/epic-e-migration-plans/E-MUT-021-product_class-input.json",
+      "sha256": "d1aa54a482f1ac786f8e616eede866c790ebe123f8d557dfb6b2c0de076614e1"
+    },
+    "scope": "full_existing_domain_input",
+    "rowCount": 122,
+    "rowSetSha256": "7c1e466b886dc72bbd02cbddb73f7162bf45f6df9bc27f60d23d309d222993bf",
+    "rowsSource": "data/epic-e-migration-plans/E-MUT-021-product_class-input.json#/rows",
+    "approvalSlotsSource": "data/epic-e-migration-plans/E-MUT-021-product_class.json#/approvals",
+    "preconditionsSource": "data/epic-e-migration-plans/E-MUT-021-product_class-input.json#/preconditions",
+    "rollbackSource": "data/epic-e-migration-plans/E-MUT-021-product_class-input.json#/rollback",
+    "writeAllowlist": [
+      "PRODUCT.metafields.rhino.product_class"
+    ],
+    "expectedShopId": "gid://shopify/Shop/79279947973",
+    "authorization": false,
+    "afterSnapshot": "docs/qa/evidence/epic-e/E-MUT-021-after-admin-snapshot.json",
+    "reconciliationArtifact": "docs/qa/evidence/epic-e/E-MUT-021-after-drift.json"
+  },
+  "previewEnvelope": {
+    "themeId": "gid://shopify/OnlineStoreTheme/158631198917",
+    "themeNumericId": "158631198917",
+    "name": "Rhino Lapidary - Preview",
+    "role": "UNPUBLISHED",
+    "observedUpdatedAt": "2026-08-27T18:04:28Z",
+    "machineTemplateObservedPresent": false,
+    "currentWholeThemeHash": null,
+    "productionThemeExcluded": "gid://shopify/OnlineStoreTheme/158579622085",
+    "isolation": "theme_isolated",
+    "authorization": false,
+    "bundledProductMutation": false,
+    "localeScope": "en; preserve all existing target locale/settings files outside this allowlist",
+    "deploymentFiles": [
+      {
+        "path": "assets/rhino-custom.css",
+        "sha256": "32f44d332f5b1d51b95213292c54d6e5c17751ebf4e79878eba4e2c17ce5f961"
+      },
+      {
+        "path": "layout/theme.liquid",
+        "sha256": "87086adef642d447d2cba82186641e93460d815549375bf608da035534cec5af"
+      },
+      {
+        "path": "locales/en.default.json",
+        "sha256": "1c9b35a463badc81f9b84c0e690b70c644c80f974338138875df761b281e792f"
+      },
+      {
+        "path": "locales/en.default.schema.json",
+        "sha256": "8009bbec50222d4d8e9bb160f03e53ca00fd15e8be5b938070f1a8c52f7bfdd9"
+      },
+      {
+        "path": "sections/cart-notification-product.liquid",
+        "sha256": "7e775b942acae3ea9b6f76dce09fd7881dcf687271c8e365aece510fb41e652f"
+      },
+      {
+        "path": "sections/main-cart-items.liquid",
+        "sha256": "d043f0d8ddc3148076866e19bae02efd52db7dbf7ee1ca7f19ea2cf832850cc6"
+      },
+      {
+        "path": "sections/main-product.liquid",
+        "sha256": "49af6088a45eba18dcf25d0fd0cccc79bbab4d64ee7a4c1e2e2d80f6d867fa3d"
+      },
+      {
+        "path": "sections/predictive-search.liquid",
+        "sha256": "1f05232069cb26cdc28b4736ac6e681b863865f30c97740503231be030658575"
+      },
+      {
+        "path": "snippets/card-product.liquid",
+        "sha256": "f2e5707b95ed27dca38bda8e94c01280efd860e2681ed1b094529be47ee954e9"
+      },
+      {
+        "path": "snippets/cart-disclosure-indicator.liquid",
+        "sha256": "1357a59febcedf2423275ff4543edbd87611b3644521022aeccc638e9e0ca7c4"
+      },
+      {
+        "path": "snippets/cart-drawer.liquid",
+        "sha256": "c1091354befbffa1bc0ed114d978377c436b8dc47e8e9eb348a843845d619c9a"
+      },
+      {
+        "path": "snippets/meta-tags.liquid",
+        "sha256": "ebe74785f747771721b4ab7678f78a1a6e45be3a6c5f600bf04612c01cc2ca52"
+      },
+      {
+        "path": "snippets/product-disclosures.liquid",
+        "sha256": "1ae664f2a75d0e40600be154582ed1b39caaa6b8b94d1c735edb0d1edaf40a5e"
+      },
+      {
+        "path": "snippets/product-media-modal.liquid",
+        "sha256": "97744048cb27bb56e323eaeee7307901331cb9f90c145d24cf2cc3861c3565ef"
+      },
+      {
+        "path": "snippets/rhino-machine-contents.liquid",
+        "sha256": "daefb3ad5757bf38cbaa0a372a42e8ef0b2283c716387f286c9a9f831d0802fd"
+      },
+      {
+        "path": "snippets/rhino-machine-contextual.liquid",
+        "sha256": "da07184dd3b1b621d2980b50c2e2aed9d40ce6ec75414d31eb48d0566437fe0b"
+      },
+      {
+        "path": "snippets/rhino-machine-delivery.liquid",
+        "sha256": "1703a28753259ec81943fabafe89d883cf9ef975f12db9c337f66bc926a18ff9"
+      },
+      {
+        "path": "snippets/rhino-machine-resources.liquid",
+        "sha256": "0726da0a37eb47db309a4d3f376554b1c3ddf120091393933f1ab244960c7018"
+      },
+      {
+        "path": "snippets/rhino-machine-specifications.liquid",
+        "sha256": "39ed3f9e1968db38d373ebf56c6c96b0ba2c1cefc2a16128a41dcbb0a42f4e74"
+      },
+      {
+        "path": "snippets/rhino-machine-support.liquid",
+        "sha256": "9226eeee5163438988478d985782a25d6facc8354b4cc67a376009989fe24b1f"
+      },
+      {
+        "path": "snippets/rhino-product-consumer-route.liquid",
+        "sha256": "62fbf208573b7800de0b30046940eaa1e7a445acb77aa42b32c7e558ee7c9bbd"
+      },
+      {
+        "path": "snippets/rhino-product-context-delivery-projection.liquid",
+        "sha256": "273479d996cb7f3dd3112a575734781750964c6e0bce936e4decf816170cf915"
+      },
+      {
+        "path": "snippets/rhino-product-description.liquid",
+        "sha256": "fd7af1f35621fd0c393f528cc40eb1c7ff16cfe81517525c2446363ef21b7d0c"
+      },
+      {
+        "path": "snippets/rhino-product-fact-projection.liquid",
+        "sha256": "502dbe69a03afa1a248b5eb033d2502855670d22975bc9aa4acccf4949c34431"
+      },
+      {
+        "path": "snippets/rhino-product-media-eligibility.liquid",
+        "sha256": "4cd2ad166af64c8083b27a5531c52d63eb9a418bba435731e94fd868dec16056"
+      },
+      {
+        "path": "snippets/rhino-product-structured-data.liquid",
+        "sha256": "2ea5c3cc0f467b4ca9e14a4802622adb035b782b4c9a4e2fbc723e8864dcad5c"
+      },
+      {
+        "path": "snippets/rhino-product-support-resources-projection.liquid",
+        "sha256": "70c7226c5376af3693dadc3bb5b377a7096764e201aa0a7d5f44aa3ea8658b25"
+      },
+      {
+        "path": "templates/product.machine.json",
+        "sha256": "1527450e3324c0240a93618ea3a0a8371ec94dcbc0efb8d02719d0d290b652af"
+      }
+    ],
+    "postRefreshGeneratedProjectionHashesMustBeRebound": true,
+    "nativeDependencyVerification": [
+      {
+        "path": "assets/animations.js",
+        "sha256": "cdd6c6d72eb809fc5e3844acd790ac04fd3d7c866f6add13da09de1a62794487"
+      },
+      {
+        "path": "assets/base.css",
+        "sha256": "1e07ad2e9d4544ed79f793d35929d8e9df6b362e91e47e804819040c5d3ee4d6"
+      },
+      {
+        "path": "assets/cart-disclosure-modal.js",
+        "sha256": "33409fbc2af141af05524faa34557ce02f9bcf071cbdd2de4d249461efbf7443"
+      },
+      {
+        "path": "assets/cart-disclosure-tooltip.js",
+        "sha256": "67f48ff9066ec3ef67a1fb446e954f7e25b03579610d6fcf545aca1caa774184"
+      },
+      {
+        "path": "assets/cart-drawer.js",
+        "sha256": "45f2e925b2287433fe714e79373f7142368f10ee765ed203d33dd8ebc08eb49c"
+      },
+      {
+        "path": "assets/cart-notification.js",
+        "sha256": "5d93ef45af09bfab3c04fe79e700e93b9ffaa9d18e8748a2c88d6aa3fa478ada"
+      },
+      {
+        "path": "assets/cart.js",
+        "sha256": "c9f251d2ce008ed44eb1a3e23f232eea4cf0024f358b547673795ab72d4b628b"
+      },
+      {
+        "path": "assets/component-accordion.css",
+        "sha256": "ca8a977b231800ae3b23a4c3a645829452a0fe4f79cd90bca755f9b8c45590b3"
+      },
+      {
+        "path": "assets/component-card.css",
+        "sha256": "024f5628fb870bfdf69f924fcd6848ea6b662ba930fff34bedcc34cd8022845d"
+      },
+      {
+        "path": "assets/component-cart-drawer.css",
+        "sha256": "ee2c9e2d9d4a128fcb4c14c832ef84ee018774b9e9eaf6004711e25ec76b1ed5"
+      },
+      {
+        "path": "assets/component-cart-items.css",
+        "sha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a"
+      },
+      {
+        "path": "assets/component-cart-notification.css",
+        "sha256": "9870b3293384105e6be9b605e606e3ff9dc2d05da0ab87c5f5dc4eecaf1dcdc9"
+      },
+      {
+        "path": "assets/component-cart.css",
+        "sha256": "5cf8c80610ccc060c35b4e5f7cdebd04d34ee5a91509a17d0d25dee0e84d4de6"
+      },
+      {
+        "path": "assets/component-complementary-products.css",
+        "sha256": "98d92d45ddc2cd617b98175ce32078999f0aced273f5572968c2b7ea172506cf"
+      },
+      {
+        "path": "assets/component-deferred-media.css",
+        "sha256": "5b6009f2f030a807ae08f5ce1dd8aec1979ca91e3dc204eb82fbb04e2c905bec"
+      },
+      {
+        "path": "assets/component-disclosures.css",
+        "sha256": "15b36ebb1a3996da9e05540fde127282c51f49562a4b1ad16753998f5d82c418"
+      },
+      {
+        "path": "assets/component-discounts.css",
+        "sha256": "0d54fab6fa16827ce3aaebaef3f6862550eefd8f8452eecc53c43596ce6323bd"
+      },
+      {
+        "path": "assets/component-list-menu.css",
+        "sha256": "7e5d9009e86a53f67e2eb846cc835fcea43bcef8afd1db9d65bd3053239d703c"
+      },
+      {
+        "path": "assets/component-list-payment.css",
+        "sha256": "91c2889dda4223a062da9cc8e6dd536f0e043735d45d769f105ba1b2babe6e07"
+      },
+      {
+        "path": "assets/component-list-social.css",
+        "sha256": "675a875df8c636dfea5bbcfc39cacc0d8c5167183ddd6d41ab3799ccb5cfd3ee"
+      },
+      {
+        "path": "assets/component-localization-form.css",
+        "sha256": "84ef8e017f84bc2f047e0fb4e781263fb7b12f08ac15e6f1bf525531b5806c44"
+      },
+      {
+        "path": "assets/component-mega-menu.css",
+        "sha256": "fc0710147faa437b5a38929d84eccb79f3afcd970d62322747237d2ec52e1045"
+      },
+      {
+        "path": "assets/component-menu-drawer.css",
+        "sha256": "606cb24ee96d7e0f50e0843a0aaa2863d6e390eb183361f057179672fce53987"
+      },
+      {
+        "path": "assets/component-newsletter.css",
+        "sha256": "581fec040196273f0b49b636114717bdee6c028cfcda526afa71665bfe97fc08"
+      },
+      {
+        "path": "assets/component-pickup-availability.css",
+        "sha256": "25947c6559095b860f4cb3774c5127a7c6b738cd0e46f1798dc660fd88aba2c3"
+      },
+      {
+        "path": "assets/component-predictive-search.css",
+        "sha256": "40156c952b8765a3ccb12f19d1dba08ec81b7c3b28e11ae7abf7dc61a1d51579"
+      },
+      {
+        "path": "assets/component-price.css",
+        "sha256": "a5ac79e4f4611127e6b05c6b3203386252c4145e6a0a226e416851cb778874f6"
+      },
+      {
+        "path": "assets/component-product-variant-picker.css",
+        "sha256": "0368adc04b1fb6d6f2fb8468359a52f371b45d790f25c7a4c61c04fd6c00a834"
+      },
+      {
+        "path": "assets/component-rating.css",
+        "sha256": "928e560457cf7f7465a63b1a23234b6cec83cfa97e6928c5ed1a516c2b41755f"
+      },
+      {
+        "path": "assets/component-search.css",
+        "sha256": "0e833cb82a4d4c771335b324d4fe72cc80e9f7574cd2a51ed4f631133aae8c2c"
+      },
+      {
+        "path": "assets/component-slider.css",
+        "sha256": "5845101e358b504546abffed8438de42b1e6e5d4a0cc8b5a284fb1f2a87b59ef"
+      },
+      {
+        "path": "assets/component-swatch-input.css",
+        "sha256": "eeeb54ebc11675bde12fc283d7ad7dbc406853fd039bc383973387aba6d81d8c"
+      },
+      {
+        "path": "assets/component-swatch.css",
+        "sha256": "516f48ddb6fa5a2a3abefbb170a5e3e8c792936651cfe758b661df3282174260"
+      },
+      {
+        "path": "assets/component-totals.css",
+        "sha256": "1a375781789a6e80daef702773116ebfc53d50b4234ef2edce5ab0d714789635"
+      },
+      {
+        "path": "assets/component-volume-pricing.css",
+        "sha256": "2b03725dae0ca952399680dbb03b97deedd9eefe75f2779db52d0927f71c7e0b"
+      },
+      {
+        "path": "assets/constants.js",
+        "sha256": "1f2914e91511472e6b5626c3c856ced06ac6ce23101c4cc9c0b99c67363cf1ce"
+      },
+      {
+        "path": "assets/details-disclosure.js",
+        "sha256": "d5506e26deb4bfd8070ae2c7315fd98c107d02f3fd523a726cc74604b2900a5d"
+      },
+      {
+        "path": "assets/details-modal.js",
+        "sha256": "f854c4f1da125b3a5e05b8c03af1823a906ad431120ae8a03aecb3c676543ebb"
+      },
+      {
+        "path": "assets/disclosures.js",
+        "sha256": "6976471678ffeb40d7e4fbbe4697d57bf82f8228ce285b49a69d61fe8034ba72"
+      },
+      {
+        "path": "assets/global.js",
+        "sha256": "702de473e25f4ae6cb7223f6073d418920c82267bb3b841c4502bad48a3fbd40"
+      },
+      {
+        "path": "assets/icon-account.svg",
+        "sha256": "1b0caf8ed4bd6e16905de4158dfc996bef15bb0ce6afd9321727128992c87ea3"
+      },
+      {
+        "path": "assets/icon-arrow.svg",
+        "sha256": "43851735ba2fbd5649a89ae06e7c760c5910adfc59aa04a5e1f5cec346dfa11d"
+      },
+      {
+        "path": "assets/icon-caret.svg",
+        "sha256": "32b9db43712c694a7450d3d4223c634f409b6acdaee5b9ced7557ef933e260f3"
+      },
+      {
+        "path": "assets/icon-cart-empty.svg",
+        "sha256": "edae432689ea152aaab8ff2a12b9b3bcac9f117978e43c77bc956b55c5265328"
+      },
+      {
+        "path": "assets/icon-cart.svg",
+        "sha256": "2cef6309bc712781b3da9c99ab45246ab71ea6dfe0f1c8a343173439e870abe8"
+      },
+      {
+        "path": "assets/icon-checkmark.svg",
+        "sha256": "8f23f3a3206f11914130c68fbfb90317af0fbf77f3319277b0a78450b050e907"
+      },
+      {
+        "path": "assets/icon-close.svg",
+        "sha256": "41cbae8e8b3a4753790e26e68b8eec1081fb8825aa6cce8f586a8524bd30eba8"
+      },
+      {
+        "path": "assets/icon-copy.svg",
+        "sha256": "11a4d83d6ce208799a1c1c42877fcea412a075fb354d46f895aef661e9cedb12"
+      },
+      {
+        "path": "assets/icon-discount.svg",
+        "sha256": "5e97325226e04600fd639b6a7a4cc1ec2cac8f4ffa22dd78cf45d2ac57f7d141"
+      },
+      {
+        "path": "assets/icon-error.svg",
+        "sha256": "5ce80d81d59a8993110e34b0c2479e525fa375dff6104b89faae96dff981e778"
+      },
+      {
+        "path": "assets/icon-facebook.svg",
+        "sha256": "f409d752030f3487632c88204fa258ebb31b5978af97defede44c5554c14f8d3"
+      },
+      {
+        "path": "assets/icon-hamburger.svg",
+        "sha256": "d134e628cb71b934795f1a29ecff60aec6528bc8155009b95709f2c73e1c496a"
+      },
+      {
+        "path": "assets/icon-info.svg",
+        "sha256": "d619acfd060c0860ae87693d3f928fffac9d67e3017b6431fde02066328d1f0e"
+      },
+      {
+        "path": "assets/icon-instagram.svg",
+        "sha256": "7b2e9358a34b583d832fa57b6ae426d63e470e7fda3a06dec7bdae972553b137"
+      },
+      {
+        "path": "assets/icon-inventory-status.svg",
+        "sha256": "257e72bd1c84a622c447ddb819232a90447b1b30ffde731e0ace3e7eb72feaea"
+      },
+      {
+        "path": "assets/icon-minus.svg",
+        "sha256": "77cddbd96a96a17f95110793dcbf3d491949a84c2b64961d9b007703ea50b144"
+      },
+      {
+        "path": "assets/icon-pinterest.svg",
+        "sha256": "53ee6e2704e23e18521da15c675d3f9a834616f675f09a493d3a6ca697afa111"
+      },
+      {
+        "path": "assets/icon-plus.svg",
+        "sha256": "65e2ce1ca2cb380f3218f5862360694c0f53dc0962ba80dd665a46ffc4d5592a"
+      },
+      {
+        "path": "assets/icon-remove.svg",
+        "sha256": "ab33e2d04c603736c3c58455dfb3ed719a40ab0f65381843a5f7c3da723a997b"
+      },
+      {
+        "path": "assets/icon-reset.svg",
+        "sha256": "0da6c3ed397c2998144d42e43488be168d034ed145346d0ddb00c7f11c81bca5"
+      },
+      {
+        "path": "assets/icon-search.svg",
+        "sha256": "09ded013fb49d1a41622356347aa2c566ab3f22227d1445c5778ab923195f443"
+      },
+      {
+        "path": "assets/icon-share.svg",
+        "sha256": "a9784a4717bc30a4c82ea77c3d545734776091b32f95e1ff4e716ad382b81b12"
+      },
+      {
+        "path": "assets/icon-snapchat.svg",
+        "sha256": "215facf56f898d08b731e446145ce0dc3c04d373fc984089ba93839183f4bcc7"
+      },
+      {
+        "path": "assets/icon-success.svg",
+        "sha256": "82e8b7ffb28c3a20d6d97333297ef2efe6e095d5236fae6e0f883cc8db7779d5"
+      },
+      {
+        "path": "assets/icon-tiktok.svg",
+        "sha256": "08640c5b4343cebac770668e773b97c1bfc6ea8b7242b3c783a7a872ba831724"
+      },
+      {
+        "path": "assets/icon-tumblr.svg",
+        "sha256": "e6a66e11c66f5a7f20cf2ee75516a0bacc3e980fff92173c9bb3ddb905ee9a7e"
+      },
+      {
+        "path": "assets/icon-twitter.svg",
+        "sha256": "759e7a3445c92ebc83321433f1cb5c5090d94b6c0a71d14417be317e04baf37f"
+      },
+      {
+        "path": "assets/icon-unavailable.svg",
+        "sha256": "570d188b005e62cc18c30175723eba7bab5647ce1e6014835a5a684276f60798"
+      },
+      {
+        "path": "assets/icon-vimeo.svg",
+        "sha256": "cd33eada59dda15c8771345b4e159239502d9f766e011e1070391eee88de011c"
+      },
+      {
+        "path": "assets/icon-warning.svg",
+        "sha256": "46d1b2552d1673822ed02589d8f4f9cbb0f905f3b723946fb6e6958d396b8509"
+      },
+      {
+        "path": "assets/icon-youtube.svg",
+        "sha256": "27aa0147c5a448b1208d1420fb7df21504e2059e289c1e129c53c092ca904379"
+      },
+      {
+        "path": "assets/loading-spinner.svg",
+        "sha256": "298cfa7e0ba2dd8d003185da366d51365af57b5c5d43be41902a280b6b27551f"
+      },
+      {
+        "path": "assets/localization-form.js",
+        "sha256": "945fa15b627fd48b3c397f60de4148cf32acc33982e0761c0757108357c55686"
+      },
+      {
+        "path": "assets/pickup-availability.js",
+        "sha256": "99fa6de1e8b9b3d7b52ddb2bef68301a4b1938e208fdc172180be1007f085358"
+      },
+      {
+        "path": "assets/predictive-search.js",
+        "sha256": "e03ac283495aa3f9deb304f11ae5111d9603e62709f307b39562cd09fdd4cef0"
+      },
+      {
+        "path": "assets/price-per-item.js",
+        "sha256": "5868f07a006a4f88540808d6d3cdff8f97a8f87f91c2688e6050dacab25f9b0a"
+      },
+      {
+        "path": "assets/product-form.js",
+        "sha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f"
+      },
+      {
+        "path": "assets/product-info.js",
+        "sha256": "8432cb3ad3f356406155e8c62ed2a7d57b3ecfd2d8e2a5f8a71b9e2ae28a4207"
+      },
+      {
+        "path": "assets/pubsub.js",
+        "sha256": "b2a481f5dea48e04d6d2e9c562f338a2d0ef3b96bea2a4396203ac20b97d24a3"
+      },
+      {
+        "path": "assets/quantity-popover.css",
+        "sha256": "f049a0e1602ddb96f862a58b9988082494780c492d0764284aef45356601cf01"
+      },
+      {
+        "path": "assets/quantity-popover.js",
+        "sha256": "406e3bb4beb2226c7afd9896eb32d8a5d3b53d84705e8f8de29c8d36455c6669"
+      },
+      {
+        "path": "assets/quick-add.css",
+        "sha256": "bc94504316d2c235c162863ab000ce994ba6b89518685a00c296bd0f10a5e613"
+      },
+      {
+        "path": "assets/quick-add.js",
+        "sha256": "1607ebb943dcf91391535f7a173e462573de74183d0cbdf89a629588f6dff098"
+      },
+      {
+        "path": "assets/quick-order-list.css",
+        "sha256": "b3a0a0ffcad6f3b38add36ed8b3039da814fe71d452cc5869afab1dceb768456"
+      },
+      {
+        "path": "assets/recipient-form.js",
+        "sha256": "791e56ea26b07b95e7b0e93aca983676c7680a89c58082dcb93c3d2c4e8db1e7"
+      },
+      {
+        "path": "assets/rhino-apple-touch-icon.png",
+        "sha256": "e48daf55d21579d478c118bc2c91db8215089cf683eba135bf79b37f3a7a70b0"
+      },
+      {
+        "path": "assets/rhino-og-default.jpg",
+        "sha256": "92a61be02d9f2fb7bb4a24df38d500986c2d3a9aaff024bfabc94df661567c68"
+      },
+      {
+        "path": "assets/rhino-pinned-tab.svg",
+        "sha256": "e546cce6cadeb61ce94b1403bb55a763511191aa7de045d5fa371ed0b3c0c4c3"
+      },
+      {
+        "path": "assets/rhino-storefront.js",
+        "sha256": "f4b187b74e258ae01db5142eac3d8d5a3adf7b8755f82f9fe4dee94a96b91486"
+      },
+      {
+        "path": "assets/search-form.js",
+        "sha256": "a00dd0a7cd4b3880d3823d9fa2a56c23665ed8c989a6d4da373651a934b28262"
+      },
+      {
+        "path": "assets/section-footer.css",
+        "sha256": "d2537428dfc35b52b63ebd772ccdf16763f9840022d3c85ff10d59fd8b37437b"
+      },
+      {
+        "path": "assets/section-main-product.css",
+        "sha256": "24b45eae48e5f259539799bbb709ff403c0912199ebfe677e1f26d31bcb89751"
+      },
+      {
+        "path": "assets/share.js",
+        "sha256": "2ec4bce83aaf6921149b24575939ba6f8d4d22b53df04b9092886954d4287556"
+      },
+      {
+        "path": "assets/show-more.js",
+        "sha256": "1313b4590daf28e14a5c02bc4ce6763d1ee7359da5f236c963f5c9ce13cb7f34"
+      },
+      {
+        "path": "assets/sparkle.gif",
+        "sha256": "5b10a67c4a265e0309ead94d6453a174196a3cb1ac4a7327164a94d9fef29053"
+      },
+      {
+        "path": "assets/square.svg",
+        "sha256": "d6a140b5bbc33daaf8d60ac85e3106a65e57d91f5c22b411783671410d42648d"
+      },
+      {
+        "path": "assets/standard-actions-override.js",
+        "sha256": "fc609eacabb0eeefd34a8521d9b92d00d61eb6ab5c14d7d643803e6ecc4e738d"
+      },
+      {
+        "path": "assets/theme-editor.js",
+        "sha256": "b091416974953706606b105feaf2140e70237a947fb85a1e86f31658253c0c33"
+      },
+      {
+        "path": "sections/footer-group.json",
+        "sha256": "6658154ebf40579c8567214cadb3fbd1adcaba74a005b34f957abf799a7a98c7"
+      },
+      {
+        "path": "sections/footer.liquid",
+        "sha256": "3bc81bd947ab4e5d691b8126444dc7b374ebdfc6018c03f6d7a4f704faaa5fe1"
+      },
+      {
+        "path": "sections/header-group.json",
+        "sha256": "bc1d50577728a3bb8dbab59a442509d1be4b238c7725fcc41730342f4b476663"
+      },
+      {
+        "path": "sections/header.liquid",
+        "sha256": "3ea5ea10e95cd75766d6d52470fe4fdde93913f0d94838aed6745938d632d572"
+      },
+      {
+        "path": "snippets/buy-buttons.liquid",
+        "sha256": "3a8f658b979919a8d8552966cdbaaee87390f79f8e88c7384bcf392f73fdea82"
+      },
+      {
+        "path": "snippets/card-collection.liquid",
+        "sha256": "8d3b2e8819c097246fddd188a744d367f39f35a1136a413676378b6d74ab76a4"
+      },
+      {
+        "path": "snippets/cart-notification.liquid",
+        "sha256": "5a33b101fbb0fb988d731ffc8e1a26268c57b40404560709fc1bb164f8a4f96f"
+      },
+      {
+        "path": "snippets/country-localization.liquid",
+        "sha256": "5f7db4094a08f2e7bdf8f2810482e071561ff22356477bfcc10e8f3f9639496f"
+      },
+      {
+        "path": "snippets/gift-card-recipient-form.liquid",
+        "sha256": "8df7a73b8f54354b2fe922362355b02ef225199bb6062494015bbb66eebb2641"
+      },
+      {
+        "path": "snippets/header-drawer.liquid",
+        "sha256": "0e2a5fa26dd6bb17a271b50420ed8b4b9dc2f69899a99e99cb6a72d808e90dc3"
+      },
+      {
+        "path": "snippets/header-dropdown-menu.liquid",
+        "sha256": "3eb6746bd9ebb71096f73c95a034005853d6b89f01415d411c6fee556b82c498"
+      },
+      {
+        "path": "snippets/header-mega-menu.liquid",
+        "sha256": "66a494edf4b5254d325956e2573cb0dd0c8f38a1a4b8c5fa1b1f9e86312e4e76"
+      },
+      {
+        "path": "snippets/header-search.liquid",
+        "sha256": "9c0e4e907d0fbc9d5798adfc3770c2c677cd71faa20e3413512ead8922e89d58"
+      },
+      {
+        "path": "snippets/icon-accordion.liquid",
+        "sha256": "f327cfeb939b23a57a79c8855a9325cd6989caeafdda5bf22bfb3fb71b6a877a"
+      },
+      {
+        "path": "snippets/icon-with-text.liquid",
+        "sha256": "70d91e390339d00219268a9392228cf9eaea324db4b58699dda6b37aa1182cce"
+      },
+      {
+        "path": "snippets/language-localization.liquid",
+        "sha256": "ee6a46245c4087595ad1a70cd0a743050225cbce27998ce3f08ece7e1fe67f9a"
+      },
+      {
+        "path": "snippets/loading-spinner.liquid",
+        "sha256": "87989b7995ce93e8d1bbbabcf6e34345ce957ae235aa95746a1a8d1139f2b716"
+      },
+      {
+        "path": "snippets/price.liquid",
+        "sha256": "b989ae6324a3ace1abf0ff6a15c33c8ee0cf268df86b187807bd1c68249b1579"
+      },
+      {
+        "path": "snippets/product-variant-options.liquid",
+        "sha256": "c6bdbe6d9f67c014cc93f08ef399176786ee0138571456178ca1d2d67018f3e8"
+      },
+      {
+        "path": "snippets/product-variant-picker.liquid",
+        "sha256": "13cd5c4c71ecbaa26deaa19abe3ec5f06e6965ee797c3a6be26298b0e53e107d"
+      },
+      {
+        "path": "snippets/progress-bar.liquid",
+        "sha256": "44f143bc888c8d30a053915f63a511de12e151b6205a7c2e0e6b69b78cbffae8"
+      },
+      {
+        "path": "snippets/quantity-input.liquid",
+        "sha256": "5237f724af8dc24f893ceeeb107490c6bab2c81f1d195d5403224bda7c0ae31d"
+      },
+      {
+        "path": "snippets/rhino-breadcrumbs.liquid",
+        "sha256": "790b6df077d81f86b039dd32726c2db7714c0e0083a2f678320cdc6a732908eb"
+      },
+      {
+        "path": "snippets/rhino-browser-assets.liquid",
+        "sha256": "0d08313c7f056441afcd1945cb854a68dfb96ad6d985872da8eedbba2f064c17"
+      },
+      {
+        "path": "snippets/share-button.liquid",
+        "sha256": "7d39bd7b653fdd2d23d93a8e4e121664b7304c1bd825858c1fd20f2d332771a9"
+      },
+      {
+        "path": "snippets/social-icons.liquid",
+        "sha256": "b2d68e2b2f6c83b9c35510552799136e512c1b49374cae1ebc4cabcccbdcbf9d"
+      },
+      {
+        "path": "snippets/swatch-input.liquid",
+        "sha256": "990a55e6d5bb15c0a4f031e00c333255b6cf9b1e0b838a3abae9412547f9e22e"
+      },
+      {
+        "path": "snippets/swatch.liquid",
+        "sha256": "ea02ff90b6f83bf986ffb39cebea0771f71b75a91bac9636612475a7b4c3503b"
+      },
+      {
+        "path": "snippets/unit-price.liquid",
+        "sha256": "e765f7830169e0a00955d0eed7ae1088a1ece27c723f0ea5bf909febc9c32f1e"
+      }
+    ],
+    "notRequiredForZeroGrantMachinePath": [
+      {
+        "path": "snippets/rhino-machine-specification-row.liquid",
+        "sha256": "1f4b3843137a28d9c4450ca7913d09f941c579e8d560df206430fd0a4839d9a8"
+      },
+      {
+        "path": "snippets/product-media-gallery.liquid",
+        "sha256": "f12b0b189d0fce43e0b196bc68a944667875ab79fc73eece8713521acd378246"
+      },
+      {
+        "path": "snippets/product-media.liquid",
+        "sha256": "ca883fe0f72b29d327ecda2d5d57baa06ddb3f21b4b04bde639d8c97e98dcfe7"
+      },
+      {
+        "path": "snippets/product-thumbnail.liquid",
+        "sha256": "57abe94abdb652d22f48de7629698195113bee3d0c8638953c1f36e8525b1b3f"
+      },
+      {
+        "path": "assets/product-modal.js",
+        "sha256": "1d8434eb38018bdb716781f6aed9d3dc96c618ada05a25c771ae5c68d015fe80"
+      },
+      {
+        "path": "assets/media-gallery.js",
+        "sha256": "2acc6b1af15e49326b34bd4cef600c0da1494e103d90bc21fcef527969eeea16"
+      },
+      {
+        "path": "assets/product-model.js",
+        "sha256": "05d8c88b24ea3603a2f8e8a2d62b774dff4d5b1275c4c662f2c07c164ed47c28"
+      },
+      {
+        "path": "assets/component-product-model.css",
+        "sha256": "9d87cd90c8dbf46a243e494b93631f6bb4ae990a574cd748209608490a3d09e5"
+      },
+      {
+        "path": "assets/component-model-viewer-ui.css",
+        "sha256": "c7c93d177fe2b29051d2e0def063587676290a44864eb9c791730daa8dedad9c"
+      },
+      {
+        "path": "assets/magnify.js",
+        "sha256": "e53cacdc44232f4aaad8f39436ce59603804e212826bdb24ab0591eb8fa95ccf"
+      },
+      {
+        "path": "assets/icon-3d-model.svg",
+        "sha256": "c9c96acbea52339338150214343cfdf9f7c1c2b2fc5905d86c8e0cb4bb3068fd"
+      },
+      {
+        "path": "assets/icon-play.svg",
+        "sha256": "00de7ff48c6394f33f1a71d1af5787bfaa594e16487f030f5438b2dedc7d0f38"
+      },
+      {
+        "path": "assets/icon-zoom.svg",
+        "sha256": "483697687adce6459bb6f5546a9ff2792ccbf4a10dc1a238fd9cc586e8ef674f"
+      }
+    ],
+    "dependencyTraceRoots": [
+      "layout/theme.liquid",
+      "sections/main-product.liquid",
+      "sections/main-cart-items.liquid",
+      "sections/predictive-search.liquid",
+      "sections/cart-notification-product.liquid"
+    ],
+    "dependencyEdges": [
+      {
+        "path": "layout/theme.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "snippets/rhino-browser-assets.liquid",
+          "snippets/meta-tags.liquid",
+          "snippets/cart-drawer.liquid",
+          "snippets/rhino-breadcrumbs.liquid",
+          "assets/constants.js",
+          "assets/pubsub.js",
+          "assets/global.js",
+          "assets/cart-disclosure-modal.js",
+          "assets/cart-disclosure-tooltip.js",
+          "assets/details-disclosure.js",
+          "assets/details-modal.js",
+          "assets/search-form.js",
+          "assets/standard-actions-override.js",
+          "assets/rhino-storefront.js",
+          "assets/animations.js",
+          "assets/base.css",
+          "assets/rhino-custom.css",
+          "assets/component-cart-items.css",
+          "assets/component-cart-drawer.css",
+          "assets/component-cart.css",
+          "assets/component-totals.css",
+          "assets/component-price.css",
+          "assets/component-discounts.css",
+          "assets/component-localization-form.css",
+          "assets/localization-form.js",
+          "assets/component-predictive-search.css",
+          "assets/predictive-search.js",
+          "assets/cart-drawer.js",
+          "sections/header-group.json",
+          "sections/footer-group.json"
+        ]
+      },
+      {
+        "path": "sections/main-product.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "snippets/rhino-product-media-eligibility.liquid",
+          "snippets/product-media-gallery.liquid",
+          "snippets/price.liquid",
+          "snippets/rhino-product-description.liquid",
+          "snippets/icon-accordion.liquid",
+          "snippets/loading-spinner.liquid",
+          "snippets/share-button.liquid",
+          "snippets/product-disclosures.liquid",
+          "snippets/product-variant-picker.liquid",
+          "snippets/buy-buttons.liquid",
+          "snippets/card-product.liquid",
+          "snippets/icon-with-text.liquid",
+          "snippets/rhino-product-fact-projection.liquid",
+          "snippets/rhino-product-context-delivery-projection.liquid",
+          "snippets/rhino-product-support-resources-projection.liquid",
+          "snippets/product-media-modal.liquid",
+          "snippets/rhino-product-structured-data.liquid",
+          "assets/section-main-product.css",
+          "assets/component-accordion.css",
+          "assets/component-price.css",
+          "assets/component-slider.css",
+          "assets/component-rating.css",
+          "assets/component-deferred-media.css",
+          "assets/component-product-variant-picker.css",
+          "assets/component-swatch-input.css",
+          "assets/component-swatch.css",
+          "assets/component-volume-pricing.css",
+          "assets/product-info.js",
+          "assets/product-form.js",
+          "assets/show-more.js",
+          "assets/price-per-item.js",
+          "assets/magnify.js",
+          "assets/theme-editor.js",
+          "assets/component-product-model.css",
+          "assets/component-model-viewer-ui.css",
+          "assets/icon-inventory-status.svg",
+          "assets/icon-caret.svg",
+          "assets/icon-minus.svg",
+          "assets/icon-plus.svg",
+          "assets/component-card.css",
+          "assets/component-complementary-products.css",
+          "assets/quick-add.css",
+          "assets/quick-add.js",
+          "assets/icon-arrow.svg",
+          "assets/icon-close.svg",
+          "assets/product-modal.js",
+          "assets/media-gallery.js",
+          "assets/product-model.js"
+        ]
+      },
+      {
+        "path": "sections/main-cart-items.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "snippets/cart-disclosure-indicator.liquid",
+          "snippets/loading-spinner.liquid",
+          "snippets/unit-price.liquid",
+          "assets/component-cart.css",
+          "assets/component-cart-items.css",
+          "assets/component-totals.css",
+          "assets/component-price.css",
+          "assets/component-discounts.css",
+          "assets/quantity-popover.css",
+          "assets/cart.js",
+          "assets/quantity-popover.js",
+          "assets/icon-discount.svg",
+          "assets/icon-info.svg",
+          "assets/icon-minus.svg",
+          "assets/icon-plus.svg",
+          "assets/icon-remove.svg",
+          "assets/icon-close.svg",
+          "assets/icon-error.svg"
+        ]
+      },
+      {
+        "path": "sections/predictive-search.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "snippets/price.liquid",
+          "snippets/loading-spinner.liquid",
+          "assets/icon-arrow.svg"
+        ]
+      },
+      {
+        "path": "sections/cart-notification-product.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "snippets/cart-disclosure-indicator.liquid"
+        ]
+      },
+      {
+        "path": "snippets/rhino-product-consumer-route.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/rhino-browser-assets.liquid",
+        "dependencies": [
+          "assets/rhino-apple-touch-icon.png",
+          "assets/rhino-pinned-tab.svg"
+        ]
+      },
+      {
+        "path": "snippets/meta-tags.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "assets/rhino-og-default.jpg"
+        ]
+      },
+      {
+        "path": "snippets/cart-drawer.liquid",
+        "dependencies": [
+          "snippets/card-collection.liquid",
+          "snippets/rhino-product-consumer-route.liquid",
+          "snippets/cart-disclosure-indicator.liquid",
+          "snippets/loading-spinner.liquid",
+          "snippets/unit-price.liquid",
+          "assets/quantity-popover.css",
+          "assets/component-card.css",
+          "assets/cart.js",
+          "assets/quantity-popover.js",
+          "assets/icon-close.svg",
+          "assets/icon-discount.svg",
+          "assets/icon-minus.svg",
+          "assets/icon-plus.svg",
+          "assets/icon-remove.svg",
+          "assets/icon-info.svg",
+          "assets/icon-error.svg",
+          "assets/icon-caret.svg"
+        ]
+      },
+      {
+        "path": "snippets/rhino-breadcrumbs.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "assets/constants.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/pubsub.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/global.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/cart-disclosure-modal.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/cart-disclosure-tooltip.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/details-disclosure.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/details-modal.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/search-form.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/standard-actions-override.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/rhino-storefront.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/animations.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/base.css",
+        "dependencies": [
+          "assets/sparkle.gif"
+        ]
+      },
+      {
+        "path": "assets/rhino-custom.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-cart-items.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-cart-drawer.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-cart.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-totals.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-price.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-discounts.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-localization-form.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/localization-form.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-predictive-search.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/predictive-search.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/cart-drawer.js",
+        "dependencies": []
+      },
+      {
+        "path": "sections/header-group.json",
+        "dependencies": [
+          "sections/header.liquid"
+        ]
+      },
+      {
+        "path": "sections/footer-group.json",
+        "dependencies": [
+          "sections/footer.liquid"
+        ]
+      },
+      {
+        "path": "snippets/rhino-product-media-eligibility.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/product-media-gallery.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "snippets/rhino-product-media-eligibility.liquid",
+          "snippets/product-thumbnail.liquid",
+          "assets/icon-caret.svg",
+          "assets/icon-3d-model.svg",
+          "assets/icon-play.svg"
+        ]
+      },
+      {
+        "path": "snippets/price.liquid",
+        "dependencies": [
+          "snippets/unit-price.liquid"
+        ]
+      },
+      {
+        "path": "snippets/rhino-product-description.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid"
+        ]
+      },
+      {
+        "path": "snippets/icon-accordion.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/loading-spinner.liquid",
+        "dependencies": [
+          "assets/loading-spinner.svg"
+        ]
+      },
+      {
+        "path": "snippets/share-button.liquid",
+        "dependencies": [
+          "assets/share.js",
+          "assets/icon-share.svg",
+          "assets/icon-close.svg",
+          "assets/icon-copy.svg"
+        ]
+      },
+      {
+        "path": "snippets/product-disclosures.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "assets/component-disclosures.css",
+          "assets/icon-caret.svg",
+          "assets/disclosures.js"
+        ]
+      },
+      {
+        "path": "snippets/product-variant-picker.liquid",
+        "dependencies": [
+          "snippets/product-variant-options.liquid",
+          "snippets/swatch.liquid",
+          "assets/icon-caret.svg"
+        ]
+      },
+      {
+        "path": "snippets/buy-buttons.liquid",
+        "dependencies": [
+          "snippets/gift-card-recipient-form.liquid",
+          "snippets/loading-spinner.liquid",
+          "assets/icon-error.svg",
+          "assets/component-pickup-availability.css",
+          "assets/icon-unavailable.svg",
+          "assets/pickup-availability.js"
+        ]
+      },
+      {
+        "path": "snippets/card-product.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "snippets/price.liquid",
+          "snippets/loading-spinner.liquid",
+          "snippets/quantity-input.liquid",
+          "assets/component-rating.css",
+          "assets/component-volume-pricing.css",
+          "assets/component-price.css",
+          "assets/quick-order-list.css",
+          "assets/quantity-popover.css",
+          "assets/icon-close.svg",
+          "assets/icon-arrow.svg",
+          "assets/icon-plus.svg"
+        ]
+      },
+      {
+        "path": "snippets/icon-with-text.liquid",
+        "dependencies": [
+          "snippets/icon-accordion.liquid"
+        ]
+      },
+      {
+        "path": "snippets/rhino-product-fact-projection.liquid",
+        "dependencies": [
+          "snippets/rhino-machine-specifications.liquid",
+          "snippets/rhino-machine-contents.liquid"
+        ]
+      },
+      {
+        "path": "snippets/rhino-product-context-delivery-projection.liquid",
+        "dependencies": [
+          "snippets/rhino-machine-contextual.liquid",
+          "snippets/rhino-machine-delivery.liquid"
+        ]
+      },
+      {
+        "path": "snippets/rhino-product-support-resources-projection.liquid",
+        "dependencies": [
+          "snippets/rhino-machine-support.liquid",
+          "snippets/rhino-machine-resources.liquid"
+        ]
+      },
+      {
+        "path": "snippets/product-media-modal.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "snippets/rhino-product-media-eligibility.liquid",
+          "snippets/product-media.liquid",
+          "assets/icon-close.svg"
+        ]
+      },
+      {
+        "path": "snippets/rhino-product-structured-data.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid"
+        ]
+      },
+      {
+        "path": "assets/section-main-product.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-accordion.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-slider.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-rating.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-deferred-media.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-product-variant-picker.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-swatch-input.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-swatch.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-volume-pricing.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/product-info.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/product-form.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/show-more.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/price-per-item.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/magnify.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/theme-editor.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-product-model.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-model-viewer-ui.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-inventory-status.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-caret.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-minus.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-plus.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-card.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-complementary-products.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/quick-add.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/quick-add.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-arrow.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-close.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/product-modal.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/media-gallery.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/product-model.js",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/cart-disclosure-indicator.liquid",
+        "dependencies": [
+          "snippets/rhino-product-consumer-route.liquid",
+          "assets/icon-warning.svg",
+          "assets/icon-close.svg"
+        ]
+      },
+      {
+        "path": "snippets/unit-price.liquid",
+        "dependencies": [
+          "snippets/unit-price.liquid"
+        ]
+      },
+      {
+        "path": "assets/quantity-popover.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/cart.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/quantity-popover.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-discount.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-info.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-remove.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-error.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/rhino-apple-touch-icon.png",
+        "dependencies": []
+      },
+      {
+        "path": "assets/rhino-pinned-tab.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/rhino-og-default.jpg",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/card-collection.liquid",
+        "dependencies": [
+          "assets/icon-arrow.svg"
+        ]
+      },
+      {
+        "path": "assets/sparkle.gif",
+        "dependencies": []
+      },
+      {
+        "path": "sections/header.liquid",
+        "dependencies": [
+          "snippets/header-drawer.liquid",
+          "snippets/header-search.liquid",
+          "snippets/header-dropdown-menu.liquid",
+          "snippets/header-mega-menu.liquid",
+          "snippets/country-localization.liquid",
+          "snippets/language-localization.liquid",
+          "snippets/cart-notification.liquid",
+          "assets/component-list-menu.css",
+          "assets/component-search.css",
+          "assets/component-menu-drawer.css",
+          "assets/component-cart-notification.css",
+          "assets/component-price.css",
+          "assets/component-mega-menu.css",
+          "assets/cart-notification.js",
+          "assets/icon-account.svg",
+          "assets/icon-cart-empty.svg",
+          "assets/icon-cart.svg"
+        ]
+      },
+      {
+        "path": "sections/footer.liquid",
+        "dependencies": [
+          "snippets/social-icons.liquid",
+          "snippets/country-localization.liquid",
+          "snippets/language-localization.liquid",
+          "assets/section-footer.css",
+          "assets/component-newsletter.css",
+          "assets/component-list-menu.css",
+          "assets/component-list-payment.css",
+          "assets/component-list-social.css",
+          "assets/icon-arrow.svg",
+          "assets/icon-error.svg",
+          "assets/icon-success.svg"
+        ]
+      },
+      {
+        "path": "snippets/product-thumbnail.liquid",
+        "dependencies": [
+          "snippets/loading-spinner.liquid",
+          "assets/icon-play.svg",
+          "assets/icon-3d-model.svg",
+          "assets/icon-zoom.svg"
+        ]
+      },
+      {
+        "path": "assets/icon-3d-model.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-play.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/loading-spinner.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/share.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-share.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-copy.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-disclosures.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/disclosures.js",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/product-variant-options.liquid",
+        "dependencies": [
+          "snippets/swatch-input.liquid"
+        ]
+      },
+      {
+        "path": "snippets/swatch.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/gift-card-recipient-form.liquid",
+        "dependencies": [
+          "assets/recipient-form.js",
+          "assets/square.svg",
+          "assets/icon-checkmark.svg",
+          "assets/icon-error.svg"
+        ]
+      },
+      {
+        "path": "assets/component-pickup-availability.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-unavailable.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/pickup-availability.js",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/quantity-input.liquid",
+        "dependencies": [
+          "snippets/progress-bar.liquid",
+          "assets/icon-minus.svg",
+          "assets/icon-plus.svg"
+        ]
+      },
+      {
+        "path": "assets/quick-order-list.css",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/rhino-machine-specifications.liquid",
+        "dependencies": [
+          "snippets/rhino-machine-specification-row.liquid"
+        ]
+      },
+      {
+        "path": "snippets/rhino-machine-contents.liquid",
+        "dependencies": [
+          "snippets/card-product.liquid",
+          "assets/component-card.css",
+          "assets/component-price.css"
+        ]
+      },
+      {
+        "path": "snippets/rhino-machine-contextual.liquid",
+        "dependencies": [
+          "snippets/card-product.liquid",
+          "assets/component-card.css"
+        ]
+      },
+      {
+        "path": "snippets/rhino-machine-delivery.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/rhino-machine-support.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/rhino-machine-resources.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/product-media.liquid",
+        "dependencies": [
+          "assets/icon-play.svg"
+        ]
+      },
+      {
+        "path": "assets/icon-warning.svg",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/header-drawer.liquid",
+        "dependencies": [
+          "snippets/country-localization.liquid",
+          "snippets/language-localization.liquid",
+          "assets/icon-hamburger.svg",
+          "assets/icon-close.svg",
+          "assets/icon-arrow.svg",
+          "assets/icon-caret.svg",
+          "assets/icon-account.svg",
+          "assets/icon-twitter.svg",
+          "assets/icon-facebook.svg",
+          "assets/icon-pinterest.svg",
+          "assets/icon-instagram.svg",
+          "assets/icon-tiktok.svg",
+          "assets/icon-tumblr.svg",
+          "assets/icon-snapchat.svg",
+          "assets/icon-youtube.svg",
+          "assets/icon-vimeo.svg"
+        ]
+      },
+      {
+        "path": "snippets/header-search.liquid",
+        "dependencies": [
+          "snippets/loading-spinner.liquid",
+          "assets/icon-search.svg",
+          "assets/icon-close.svg",
+          "assets/icon-reset.svg"
+        ]
+      },
+      {
+        "path": "snippets/header-dropdown-menu.liquid",
+        "dependencies": [
+          "assets/icon-caret.svg"
+        ]
+      },
+      {
+        "path": "snippets/header-mega-menu.liquid",
+        "dependencies": [
+          "assets/icon-caret.svg"
+        ]
+      },
+      {
+        "path": "snippets/country-localization.liquid",
+        "dependencies": [
+          "assets/icon-caret.svg",
+          "assets/icon-reset.svg",
+          "assets/icon-search.svg",
+          "assets/icon-close.svg",
+          "assets/icon-checkmark.svg"
+        ]
+      },
+      {
+        "path": "snippets/language-localization.liquid",
+        "dependencies": [
+          "assets/icon-caret.svg",
+          "assets/icon-checkmark.svg"
+        ]
+      },
+      {
+        "path": "snippets/cart-notification.liquid",
+        "dependencies": [
+          "assets/icon-checkmark.svg",
+          "assets/icon-close.svg"
+        ]
+      },
+      {
+        "path": "assets/component-list-menu.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-search.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-menu-drawer.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-cart-notification.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-mega-menu.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/cart-notification.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-account.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-cart-empty.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-cart.svg",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/social-icons.liquid",
+        "dependencies": [
+          "assets/icon-facebook.svg",
+          "assets/icon-instagram.svg",
+          "assets/icon-youtube.svg",
+          "assets/icon-tiktok.svg",
+          "assets/icon-twitter.svg",
+          "assets/icon-pinterest.svg",
+          "assets/icon-snapchat.svg",
+          "assets/icon-tumblr.svg",
+          "assets/icon-vimeo.svg"
+        ]
+      },
+      {
+        "path": "assets/section-footer.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-newsletter.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-list-payment.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/component-list-social.css",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-success.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-zoom.svg",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/swatch-input.liquid",
+        "dependencies": [
+          "snippets/swatch.liquid"
+        ]
+      },
+      {
+        "path": "assets/recipient-form.js",
+        "dependencies": []
+      },
+      {
+        "path": "assets/square.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-checkmark.svg",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/progress-bar.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "snippets/rhino-machine-specification-row.liquid",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-hamburger.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-twitter.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-facebook.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-pinterest.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-instagram.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-tiktok.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-tumblr.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-snapchat.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-youtube.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-vimeo.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-search.svg",
+        "dependencies": []
+      },
+      {
+        "path": "assets/icon-reset.svg",
+        "dependencies": []
+      }
+    ],
+    "settingsVerificationOnly": [
+      "config/settings_schema.json",
+      "config/settings_data.json",
+      "sections/header-group.json",
+      "sections/footer-group.json"
+    ],
+    "beforeThemeBackupRequired": true
+  },
+  "assignmentEnvelope": {
+    "plan": {
+      "path": "data/epic-f-machine-template-rollout-plan.json",
+      "sha256": "f49f60e57303fa6e227aea66744e2510529e51930fd894ccdec0e87e95d0a2d8"
+    },
+    "policy": {
+      "path": "data/epic-f-machine-template-rollout-policy.json",
+      "sha256": "84a7ce3a123af49988f2552b886aaa832c08ad0be2d53c1a6682e5e7654071f9"
+    },
+    "planId": "F-017A-machine-template-v1",
+    "planHash": "e69138cf06cdab34f7560058d156dfe0f4f042cc94d395582dd55fde1cfd7146",
+    "targetGids": [
+      "gid://shopify/Product/8905779937477",
+      "gid://shopify/Product/8905780756677",
+      "gid://shopify/Product/8905781412037",
+      "gid://shopify/Product/8905781477573",
+      "gid://shopify/Product/8905784131781",
+      "gid://shopify/Product/8905784197317",
+      "gid://shopify/Product/8905784328389",
+      "gid://shopify/Product/8905785344197"
+    ],
+    "intendedSuffix": "machine",
+    "exclusions": [
+      {
+        "productGid": "gid://shopify/Product/8905781248197",
+        "reason": "JadeMaster: explicit F-PBI-017 exclusion; historically unpublished; separate authorization required"
+      },
+      {
+        "productGid": "gid://shopify/Product/8905784262853",
+        "reason": "SawMaster 36: explicit F-PBI-017 exclusion; historically draft/unpublished; separate authorization required"
+      },
+      {
+        "productGid": "gid://shopify/Product/8905785868485",
+        "reason": "TumbleMaster: explicit F-PBI-017 exclusion; historically draft/unpublished; separate authorization required"
+      }
+    ],
+    "writeAllowlist": [
+      "templateSuffix"
+    ],
+    "isolation": "store_level_Product_mutation_NOT_theme_isolated",
+    "approvalSlotsSource": "data/epic-f-machine-template-rollout-policy.json#/approvals",
+    "freshBeforeReadPolicy": {
+      "maxAgeSeconds": 900,
+      "timing": "Immediately before execution; any drift requires re-review and new bounded GO",
+      "requiredFields": [
+        "Product GID",
+        "status",
+        "all publications and customer visibility",
+        "templateSuffix (null distinct from empty string)",
+        "classification identity and live value",
+        "theme ID and template existence",
+        "updatedAt/resource version when available",
+        "shop/environment",
+        "observedAt",
+        "complete protected-field digests",
+        "source digest"
+      ],
+      "historicalEvidenceAuthorizesExecution": false
+    },
+    "protectedFields": [
+      "title",
+      "descriptionHtml",
+      "variants",
+      "options",
+      "vendor",
+      "category",
+      "tags",
+      "metafields",
+      "media",
+      "seo",
+      "shippingProfile",
+      "publications",
+      "status",
+      "publishedAt",
+      "onlineStoreUrl"
+    ],
+    "rollbackSource": "data/epic-f-machine-template-rollout-plan.json#/rollback",
+    "priorSuffixObserved": null,
+    "futurePriorSuffixMustComeFromFreshRead": true,
+    "authorization": false,
+    "existingF7ExecutionAdapterAvailable": false,
+    "assignmentMethodValidation": "unresolved_Admin_UI_live_theme_template_constraint_API_execution_behavior_unverified",
+    "productionFallbackValidation": "required_before_GO_not_proven_by_preview_deployment"
+  },
+  "paymentDecision": {
+    "id": "F-DEC-001",
+    "state": "open",
+    "choice": null,
+    "choices": [
+      "retain_native_provider_owned_payment_terms",
+      "suppress_native_payment_terms_on_machine_pages"
+    ],
+    "suppressionToggleExists": false,
+    "futureCodeChangeForSuppressionRequired": true,
+    "customFinancingCopyAllowed": false
+  },
+  "performance": {
+    "executionAuthorized": false,
+    "routes": [
+      "/products/beadmaster",
+      "/products/em-1",
+      "/products/lapmaster-12",
+      "/products/lapmaster-18",
+      "/products/sawmaster-18",
+      "/products/sawmaster-24",
+      "/products/shapemaster",
+      "/products/trimmaster"
+    ],
+    "profiles": [
+      {
+        "name": "mobile",
+        "width": 390,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      }
+    ],
+    "runsPerRouteProfileCache": 3,
+    "cacheStates": [
+      "cold",
+      "warm"
+    ],
+    "mobileStage": "release-certification",
+    "desktopStage": "preview-diagnostic",
+    "desktopReleaseValidatorLimitation": "evaluateRun requires three mobile samples per release record and identical per-sample viewport; desktop supporting observations cannot alone satisfy that stage",
+    "sampleCountPlanned": 96,
+    "throttlePolicy": "slow-4g; exact positive network/latency/CPU parameters recorded and frozen before approval; no parameter values fabricated",
+    "settleMs": 1500,
+    "interRunDelayMs": 2500,
+    "aggregation": "separate route/profile/cache medians; every sample must also pass",
+    "budget": {
+      "path": "data/brand-performance-budget.json",
+      "sha256": "6fc5f3faedee086f3429f85de3f46a17d87b981e3bd368a12a14339c51d0eb76"
+    },
+    "protocol": {
+      "path": "docs/qa/rhino-brand-media-performance-budget.md",
+      "sha256": "42db3e3537d6b73d4996eeb1c4b4acaed7728eb159351aa8519c748aed75de2d"
+    },
+    "liveRunnerAvailableInF3": false
+  },
+  "authorizations": {
+    "paymentDecisionApproved": false,
+    "definitionsExecution": false,
+    "classExecution": false,
+    "previewThemePush": false,
+    "productTemplateAssignment": false,
+    "factualActivation": false,
+    "releaseSignoff018B": false,
+    "productionPublication": false
+  },
+  "actionsPerformed": {
+    "shopifyAdminMutation": false,
+    "productTemplateAssignment": false,
+    "previewThemePush": false,
+    "productionThemePush": false,
+    "productionPublication": false,
+    "releaseSignoff018B": false,
+    "runtimeThemeChange": false
+  },
+  "platformReferences": [
+    {
+      "url": "https://help.shopify.com/en/manual/online-store/themes/theme-structure/templates",
+      "supports": "Admin dropdown uses live-theme templates; editor alternate-template inspection does not change assignment"
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/input-objects/ProductUpdateInput",
+      "supports": "templateSuffix input exists; preview-only assignment feasibility not established"
+    }
+  ]
+}

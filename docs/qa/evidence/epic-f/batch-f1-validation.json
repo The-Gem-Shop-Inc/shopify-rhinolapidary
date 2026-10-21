@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "assessedAt": "2026-09-11T22:09:47.942Z",
+  "batch": "F1",
+  "architectureComplete": true,
+  "activationReady": false,
+  "adminMutationOccurred": false,
+  "themePushedOrPublished": false,
+  "results": [
+    {
+      "command": "npm run validate:epic-f-consumer",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run test:epic-f-consumer",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:epic-f-claims",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run test:epic-f-claims",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:registers",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:product-templates",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:product-purchase",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:brand-claims",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run test:brand-claims-validator",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:metafields",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:epic-e-batch-2b1-registers",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:epic-e-batch-4a-contracts",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:theme-repository",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:theme-architecture",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:storefront-js",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:settings-data",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:fixtures",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run theme:check",
+      "exitCode": 0,
+      "requiredForBatch": true
+    },
+    {
+      "command": "npm run validate:launch-fixtures",
+      "exitCode": 1,
+      "requiredForBatch": false
+    },
+    {
+      "command": "npm run validate:product-data -- data/product-export/products.csv",
+      "exitCode": 1,
+      "requiredForBatch": false
+    },
+    {
+      "command": "node scripts/validate-social-metadata-contract.js",
+      "exitCode": 0,
+      "requiredForBatch": true
+    }
+  ],
+  "exitCode": 0,
+  "supplementalCommands": [
+    {
+      "command": "npm run build:epic-f-consumer",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build:epic-f-cleanup",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --exit-code -- data/legal-claims-register.json data/product-name-normalization-proposal.json data/epic-e-product-classification.json data/epic-e-product-identity.json data/metafield-metaobject-definitions.json templates/product.json",
+      "exitCode": 0
+    },
+    {
+      "command": "npm audit --json",
+      "exitCode": 1,
+      "disposition": "Existing fast-uri and sharp advisories, unchanged dependencies; outside F1."
+    }
+  ],
+  "aggregateCommand": "npm run validate:epic-f-batch-f1",
+  "limitations": [
+    "Local LiquidJS/Chromium rendering; Shopify-only platform filters emulated. No preview source parity certified.",
+    "Historical Product source findings retained; no Admin/SEO cleanup executed.",
+    "Full production readiness command not executed because configured preview checks can write carts."
+  ]
+}

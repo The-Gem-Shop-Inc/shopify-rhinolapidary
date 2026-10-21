@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-07T17:46:13.418Z",
+  "approvalMode": "delegated_development_override",
+  "methodIdentity": "EPIC_F_015B_LIVE_RECORDER_V2",
+  "methodSha256": "4f12de62602cad40a0dd2e13e6cb4d2ffa33c531ce5ecbc25529c7a8885ef3c7",
+  "sourceBinding": {
+    "passed": true,
+    "checkedAt": "2026-10-07T17:46:00.872Z",
+    "themeIdentity": {
+      "id": "158579622085",
+      "name": "shopify-rhinolapidary/main",
+      "role": "MAIN"
+    },
+    "boundRuntimeFiles": 29,
+    "sourceBindingIdentity": "GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06",
+    "sourceBindingSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+    "headerSha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339",
+    "catalogCount": 122,
+    "distribution": {
+      "consumable": 39,
+      "accessory": 18,
+      "replacement_part": 54,
+      "machine": 11
+    },
+    "machineAssignments": 8,
+    "exclusions": 3,
+    "factualGrants": 0,
+    "beforeReadCompletedAt": "2026-10-07T17:45:27.511Z"
+  },
+  "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+  "environment": {
+    "browser": "149.0.7827.55",
+    "Playwright": "1.61.1",
+    "Node": "v24.13.0",
+    "OS": "Windows_NT 10.0.26300 x64"
+  },
+  "plannedSamples": 6,
+  "fullCertificationSamples": 96,
+  "attempted": 2,
+  "valid": 0,
+  "invalid": 2,
+  "retries": 1,
+  "records": [],
+  "attemptJournal": [
+    {
+      "attempt": 1,
+      "slot": 1,
+      "retry": false,
+      "cache": "cold",
+      "evidence": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/attempt-001-beadmaster-mobile-cold.json",
+      "valid": false,
+      "integrity": [
+        "Incomplete mandatory network totals or ambiguous request provenance",
+        "Forbidden request attempted"
+      ]
+    },
+    {
+      "attempt": 2,
+      "slot": 1,
+      "retry": true,
+      "cache": "cold",
+      "evidence": "docs/qa/evidence/epic-f/015b-recorder-v2-2026-10-07/attempt-002-beadmaster-mobile-cold.json",
+      "valid": false,
+      "integrity": [
+        "Incomplete mandatory network totals or ambiguous request provenance",
+        "Forbidden request attempted"
+      ]
+    }
+  ],
+  "interRunDelays": [
+    {
+      "beforeAttempt": 2,
+      "actualMs": 2538,
+      "requestedMs": 2500
+    }
+  ],
+  "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+  "persistentShopifyMutations": 0,
+  "error": "Repeated invalid canary slot; terminal request/provenance failure; no further samples authorized",
+  "completedAt": "2026-10-07T17:47:01.675Z",
+  "secretDisposal": {
+    "cookiesPersisted": false,
+    "browserClosed": true,
+    "rawTracesPersisted": false
+  }
+}

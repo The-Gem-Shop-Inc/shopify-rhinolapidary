@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "fixture_only": {
+      "type": "boolean"
+    },
+    "product_gid": {
+      "type": "string",
+      "pattern": "^gid://shopify/Product/[0-9]+$"
+    },
+    "key_specs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "display": {
+            "type": "string",
+            "minLength": 1
+          },
+          "configuration": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "domain": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "productGid": {
+                  "type": "string",
+                  "pattern": "^gid://shopify/Product/[0-9]+$"
+                },
+                "rowId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "approvalDecisionId": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "field",
+                "productGid",
+                "rowId",
+                "approvalDecisionId"
+              ],
+              "additionalProperties": true
+            }
+          }
+        },
+        "required": [
+          "label_key",
+          "display",
+          "configuration",
+          "source"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 3
+    },
+    "spec_groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label_key": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "display": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "configuration": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "field": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "domain": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "productGid": {
+                        "type": "string",
+                        "pattern": "^gid://shopify/Product/[0-9]+$"
+                      },
+                      "rowId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "approvalDecisionId": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "field",
+                      "productGid",
+                      "rowId",
+                      "approvalDecisionId"
+                    ],
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "required": [
+                "label_key",
+                "display",
+                "configuration",
+                "source"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "label_key",
+          "rows"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "contents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "meaning": {
+            "enum": [
+              "included",
+              "noncatalog",
+              "not_included",
+              "optional",
+              "recommended"
+            ]
+          },
+          "label_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "product": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[0-9]+$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "url": {
+                      "type": "string",
+                      "pattern": "^/products/[a-z0-9-]+$"
+                    },
+                    "featured_media": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "url",
+                    "featured_media"
+                  ],
+                  "additionalProperties": false
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "quantity": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 1
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "field": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "domain": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "productGid": {
+                      "type": "string",
+                      "pattern": "^gid://shopify/Product/[0-9]+$"
+                    },
+                    "rowId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "approvalDecisionId": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "field",
+                    "productGid",
+                    "rowId",
+                    "approvalDecisionId"
+                  ],
+                  "additionalProperties": true
+                }
+              },
+              "required": [
+                "source",
+                "quantity"
+              ],
+              "additionalProperties": false,
+              "oneOf": [
+                {
+                  "required": [
+                    "product"
+                  ],
+                  "not": {
+                    "required": [
+                      "label"
+                    ]
+                  }
+                },
+                {
+                  "required": [
+                    "label"
+                  ],
+                  "not": {
+                    "required": [
+                      "product"
+                    ]
+                  }
+                }
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "meaning",
+          "label_key",
+          "items"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "suppressed": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "fixture_only",
+    "product_gid",
+    "key_specs",
+    "spec_groups",
+    "contents",
+    "suppressed"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "fixture_only": {
+            "const": false
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "key_specs": {
+            "maxItems": 0
+          },
+          "spec_groups": {
+            "maxItems": 0
+          },
+          "contents": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ]
+}

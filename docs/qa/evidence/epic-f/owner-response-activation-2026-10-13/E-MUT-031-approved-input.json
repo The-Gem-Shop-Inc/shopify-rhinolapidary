@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "planId": "E-MUT-031",
+  "domain": "crate_measurements",
+  "rows": [],
+  "rollback": [],
+  "preconditions": [
+    {
+      "id": "fresh_exact_Product_and_definition_read",
+      "satisfied": true
+    },
+    {
+      "id": "exact_owner_response_binding",
+      "satisfied": true
+    },
+    {
+      "id": "delegated_development_authorization",
+      "satisfied": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "data/epic-e-completed-owner-responses.json",
+      "sha256": "7f9beb003cb0e0cb50ca2ce6a9fb2b8f1f641aa8bda4e4ae0bb058434a3bd74f"
+    },
+    {
+      "path": "docs/project/completed-worksheet-decisions-transcribed.md",
+      "sha256": "99dc261e78db99360d218ccab29a38d8ce9dd1818dd8386b7dc8a7d1737f3c8c"
+    }
+  ],
+  "scope": "BOUNDED_CURRENT_PRODUCT_METAFIELD_ROWS",
+  "executable": false,
+  "maximumBatchSize": 25,
+  "compareAndSetAbsentRequired": true,
+  "otherDomainCompletenessRequired": false
+}

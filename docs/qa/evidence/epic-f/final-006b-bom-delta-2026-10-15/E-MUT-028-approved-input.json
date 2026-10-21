@@ -1,0 +1,221 @@
+{
+  "planId": "E-MUT-028",
+  "source": {
+    "path": "data/epic-e-final-006b-bom-approved-delta.json",
+    "sha256": "a8d7e909bc8d385bbc817f848da639734d45d5723564233960d545b5fb0a00d4"
+  },
+  "before": {
+    "path": "docs/qa/evidence/epic-f/final-006b-bom-delta-2026-10-15/E-MUT-028-before.json",
+    "sha256": "9be59d27880bc5df4cf80aa82adf921d9562c0821bd03bc121b6ad7239ba059a"
+  },
+  "items": [
+    {
+      "row": {
+        "rowId": "FINALDELTA:8905780756677:blade_diameter_max",
+        "kind": "value",
+        "targetGid": "gid://shopify/Product/8905780756677",
+        "field": "PRODUCT.metafields.rhino.blade_diameter_max",
+        "domain": "tool_mount",
+        "planId": "E-MUT-028",
+        "type": "dimension",
+        "desired": {
+          "value": 6,
+          "unit": "inches"
+        },
+        "valueState": "approved",
+        "approvalDecisionId": "FINAL_OWNER_2026_10_15:52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31",
+        "ownerDecisionId": "B3B-D03",
+        "reviewerRole": "PRODUCT_OWNER_AUTHORIZED_PROJECT_OWNER",
+        "reviewDate": "2026-10-15",
+        "conflictIds": [],
+        "provenance": {
+          "sourceId": "FINAL_OWNER_2026_10_15:52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31",
+          "sourceValue": "6",
+          "sourceUnit": "inches",
+          "physicalState": "technical_configuration",
+          "configurationId": "CURRENT_PRODUCT:gid://shopify/Product/8905780756677",
+          "configurationLabel": "Current Product configuration",
+          "conversionRuleId": null,
+          "ownerResponse": {
+            "productGid": "gid://shopify/Product/8905780756677",
+            "field": "blade_diameter_max",
+            "value": 6,
+            "unit": "inches",
+            "meaning": "Same final size authority as minimum; existing value may be a no-op"
+          }
+        }
+      },
+      "before": {
+        "state": "EXACT",
+        "metafield": {
+          "id": "gid://shopify/Metafield/71576395710661",
+          "namespace": "rhino",
+          "key": "blade_diameter_max",
+          "type": "dimension",
+          "jsonValue": {
+            "value": 6,
+            "unit": "INCHES"
+          },
+          "compareDigest": "03e291f8b982b791a100bac033bcc0f9b556ec899edf357bb753093d390b4ff5",
+          "updatedAt": "2026-10-15T18:13:00Z",
+          "definition": {
+            "id": "gid://shopify/MetafieldDefinition/298659152069"
+          }
+        }
+      },
+      "classification": "EXACT_MATCH",
+      "mutation": null
+    },
+    {
+      "row": {
+        "rowId": "FINALDELTA:8905780756677:blade_diameter_min",
+        "kind": "value",
+        "targetGid": "gid://shopify/Product/8905780756677",
+        "field": "PRODUCT.metafields.rhino.blade_diameter_min",
+        "domain": "tool_mount",
+        "planId": "E-MUT-028",
+        "type": "dimension",
+        "desired": {
+          "value": 6,
+          "unit": "inches"
+        },
+        "valueState": "approved",
+        "approvalDecisionId": "FINAL_OWNER_2026_10_15:52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31",
+        "ownerDecisionId": "B3B-D03",
+        "reviewerRole": "PRODUCT_OWNER_AUTHORIZED_PROJECT_OWNER",
+        "reviewDate": "2026-10-15",
+        "conflictIds": [],
+        "provenance": {
+          "sourceId": "FINAL_OWNER_2026_10_15:52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31",
+          "sourceValue": "6",
+          "sourceUnit": "inches",
+          "physicalState": "technical_configuration",
+          "configurationId": "CURRENT_PRODUCT:gid://shopify/Product/8905780756677",
+          "configurationLabel": "Current Product configuration",
+          "conversionRuleId": null,
+          "ownerResponse": {
+            "productGid": "gid://shopify/Product/8905780756677",
+            "field": "blade_diameter_min",
+            "value": 6,
+            "unit": "inches",
+            "meaning": "Exact supported blade attachment size, equal endpoints"
+          }
+        }
+      },
+      "before": {
+        "state": "ABSENT",
+        "metafield": null
+      },
+      "classification": "ABSENT",
+      "mutation": {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "blade_diameter_min",
+        "type": "dimension",
+        "value": "{\"value\":6,\"unit\":\"inches\"}",
+        "compareDigest": null
+      }
+    },
+    {
+      "row": {
+        "rowId": "FINALDELTA:8905781248197:blade_arbor_diameter",
+        "kind": "value",
+        "targetGid": "gid://shopify/Product/8905781248197",
+        "field": "PRODUCT.metafields.rhino.blade_arbor_diameter",
+        "domain": "tool_mount",
+        "planId": "E-MUT-028",
+        "type": "dimension",
+        "desired": {
+          "value": 1,
+          "unit": "inches"
+        },
+        "valueState": "approved",
+        "approvalDecisionId": "FINAL_OWNER_2026_10_15:52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31",
+        "ownerDecisionId": "B3B-D03",
+        "reviewerRole": "PRODUCT_OWNER_AUTHORIZED_PROJECT_OWNER",
+        "reviewDate": "2026-10-15",
+        "conflictIds": [],
+        "provenance": {
+          "sourceId": "FINAL_OWNER_2026_10_15:52dafdb26228bb5b59c18c8c837a2767a51703a8a374aa670258c6320a18ad31",
+          "sourceValue": "1",
+          "sourceUnit": "inches",
+          "physicalState": "technical_configuration",
+          "configurationId": "CURRENT_PRODUCT:gid://shopify/Product/8905781248197",
+          "configurationLabel": "Current Product configuration",
+          "conversionRuleId": null,
+          "ownerResponse": {
+            "productGid": "gid://shopify/Product/8905781248197",
+            "field": "blade_arbor_diameter",
+            "value": 1,
+            "unit": "inches",
+            "meaning": "Blade arbor only; wheel arbor not approved"
+          }
+        }
+      },
+      "before": {
+        "state": "ABSENT",
+        "metafield": null
+      },
+      "classification": "ABSENT",
+      "mutation": {
+        "ownerId": "gid://shopify/Product/8905781248197",
+        "namespace": "rhino",
+        "key": "blade_arbor_diameter",
+        "type": "dimension",
+        "value": "{\"value\":1,\"unit\":\"inches\"}",
+        "compareDigest": null
+      }
+    }
+  ],
+  "batches": [
+    [
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "blade_diameter_min",
+        "type": "dimension",
+        "value": "{\"value\":6,\"unit\":\"inches\"}",
+        "compareDigest": null
+      },
+      {
+        "ownerId": "gid://shopify/Product/8905781248197",
+        "namespace": "rhino",
+        "key": "blade_arbor_diameter",
+        "type": "dimension",
+        "value": "{\"value\":1,\"unit\":\"inches\"}",
+        "compareDigest": null
+      }
+    ]
+  ],
+  "rollback": [
+    {
+      "targetGid": "gid://shopify/Product/8905780756677",
+      "field": "PRODUCT.metafields.rhino.blade_diameter_max",
+      "restore": {
+        "id": "gid://shopify/Metafield/71576395710661",
+        "namespace": "rhino",
+        "key": "blade_diameter_max",
+        "type": "dimension",
+        "jsonValue": {
+          "value": 6,
+          "unit": "INCHES"
+        },
+        "compareDigest": "03e291f8b982b791a100bac033bcc0f9b556ec899edf357bb753093d390b4ff5",
+        "updatedAt": "2026-10-15T18:13:00Z",
+        "definition": {
+          "id": "gid://shopify/MetafieldDefinition/298659152069"
+        }
+      }
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905780756677",
+      "field": "PRODUCT.metafields.rhino.blade_diameter_min",
+      "restore": null
+    },
+    {
+      "targetGid": "gid://shopify/Product/8905781248197",
+      "field": "PRODUCT.metafields.rhino.blade_arbor_diameter",
+      "restore": null
+    }
+  ]
+}

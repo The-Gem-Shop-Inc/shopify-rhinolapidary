@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "scope": [
+    "F-PBI-010A",
+    "F-PBI-011A"
+  ],
+  "runtimeActivation": false,
+  "upstream": {
+    "warrantyContract": "scripts/lib/epic-e-batch-3c-contract.js",
+    "warrantyDecisionPacket": "data/epic-e-batch-3c-decision-packet.json",
+    "resourceContract": "data/epic-e-batch-3b-contracts.json",
+    "resourceDecisionPacket": "data/epic-e-batch-3b-decision-packet.json",
+    "resourceCatalog": "data/epic-e-resource-catalog.json"
+  },
+  "warranty": {
+    "sourcePbi": "E-PBI-016",
+    "decisionId": "B3C-D03",
+    "requiredDecisionStateForActivation": "approved",
+    "currentExpectedDecisionState": "blocked",
+    "newShopifyDefinitionAllowed": false,
+    "newWarrantyMetaobjectAllowed": false,
+    "roles": [
+      "marketedBrand",
+      "manufacturer",
+      "warrantyIssuer",
+      "warrantyAdministrator",
+      "repairProvider"
+    ],
+    "requiredModels": [
+      "policy",
+      "class",
+      "mapping"
+    ],
+    "forbiddenAuthorities": [
+      "shopify_vendor",
+      "product_title",
+      "product_description",
+      "product_tags",
+      "product_type",
+      "collection",
+      "return_policy",
+      "refund_policy",
+      "shipping_policy",
+      "terms_of_service",
+      "privacy_policy",
+      "contact_route",
+      "resource_presence"
+    ],
+    "neutralContactRoute": "/pages/contact",
+    "neutralContactPurpose": "contact",
+    "warrantyDestinationFallbackAllowed": false,
+    "supportFilesCustomerVisible": false
+  },
+  "resources": {
+    "sourcePbi": "E-PBI-018B",
+    "decisionId": "B3B-D06",
+    "requiredDecisionStateForActivation": "approved",
+    "currentExpectedDecisionState": "pending",
+    "types": [
+      "manual",
+      "diagram",
+      "instruction",
+      "video",
+      "support"
+    ],
+    "states": [
+      "candidate",
+      "current",
+      "obsolete",
+      "superseded"
+    ],
+    "visibility": [
+      "customer",
+      "support_only",
+      "internal"
+    ],
+    "requiredCustomerVisibility": "customer",
+    "resourceFields": {
+      "manual": "manual_files",
+      "diagram": "diagram_files",
+      "instruction": "instruction_files",
+      "video": "video_files",
+      "support": "support_files"
+    },
+    "supportFieldCustomerVisible": false,
+    "requiredEligibility": [
+      "exact_product",
+      "exact_resource_identity",
+      "canonical",
+      "current",
+      "customer_visibility",
+      "owner_approval",
+      "rights_approval",
+      "publication_approval",
+      "language_review",
+      "version_review"
+    ],
+    "forbiddenCanonicalHeuristics": [
+      "filename",
+      "upload_date",
+      "content_hash",
+      "duplicate_group",
+      "candidate_model_label",
+      "route_http_200"
+    ],
+    "forbiddenFactSources": [
+      "resource_body",
+      "manual_text",
+      "diagram_text",
+      "video_transcript",
+      "filename",
+      "page_title"
+    ],
+    "video": {
+      "autoplayAllowed": false,
+      "eagerProviderAllowed": false,
+      "productSurfaceApprovalRequired": true,
+      "unapprovedPosterAllowed": false
+    }
+  },
+  "release": {
+    "realWarrantyGrantCount": 0,
+    "realResourceGrantCount": 0,
+    "fixtureApprovalsMayShip": false,
+    "adminMutationAuthorized": false,
+    "productMutationAuthorized": false,
+    "fileMutationAuthorized": false,
+    "pageMutationAuthorized": false,
+    "themePushAuthorized": false
+  }
+}

@@ -1,0 +1,1164 @@
+{
+  "assessedAt": "2026-10-06T21:07:25.733Z",
+  "approvalMode": "delegated_development_override",
+  "F_PBI_014B": "PARTIAL",
+  "disposition": "PARTIAL_FUTURE_LIVE_STATES_ONLY",
+  "assignedShellCurrentState": "PASS",
+  "sourceBinding": {
+    "path": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/source-binding.json",
+    "sha256": "1aa307627d17e011a5e253026ab718e2f54872dc153b05570ea5d3e7324d35a3"
+  },
+  "bindingIdentity": "GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06",
+  "bindingSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+  "runtimeFilesChanged": [
+    "sections/header.liquid"
+  ],
+  "sourceChanges": [
+    {
+      "path": "sections/header.liquid",
+      "oldSha256": "3ea5ea10e95cd75766d6d52470fe4fdde93913f0d94838aed6745938d632d572",
+      "sha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339",
+      "changed": true
+    }
+  ],
+  "sourceExactTransformCount": 1,
+  "textEnlargementSemanticsChanged": false,
+  "focusAlgorithmUnchanged": true,
+  "thresholdsChanged": false,
+  "stickyBehavior": {
+    "below750CSSpx": "NORMAL_DOCUMENT_FLOW_POSITION_RELATIVE",
+    "atOrAbove750CSSpx": "EXISTING_STICKY_BEHAVIOR_UNCHANGED"
+  },
+  "localPreFix": "FAIL_REPRODUCED_BOTH_PAINTED_TARGETS",
+  "localCorrection": "PASS_6_OF_6",
+  "localActualStorefrontRegression": "PASS_40_OF_40",
+  "preview": {
+    "cells": 34,
+    "passed": 34,
+    "axe": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "console": {
+      "knownProviderOccurrences": 61,
+      "distinct": [
+        "Framing '[URL_REDACTED]' violates the following Content Security Policy directive: \"frame-ancestors 'self' [URL_REDACTED] [URL_REDACTED]\". The request has been blocked.\n",
+        "Failed to load resource: the server responded with a status of 403 ()",
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "exactPreFixHeaderWarnings": [
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "preFixEvidence": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/pre-fix-live-reproduction.json",
+      "classification": "Known native Shop Pay CSP/403 noise plus exact pre-existing response-header warning. All actual errors retained; no theme/page/Liquid failure observed.",
+      "unexpected": 0,
+      "pageErrors": 0,
+      "LiquidErrors": 0,
+      "blockedRequests": 0,
+      "downloads": 0,
+      "failedRequests": 243,
+      "httpErrors": 27
+    },
+    "fullDocumentAxe": {
+      "critical": 10,
+      "serious": 58,
+      "moderate": 10,
+      "minor": 0
+    },
+    "merchantScopeAxe": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "fullDocumentQualification": "SHOPIFY_PREVIEW_TOOLBAR_FINDINGS_RETAINED",
+    "exactOwnership": "iframe#PBarNextFrame with https://cdn.shopify.com/shopifycloud/preview-bar/index.html structural source signature; no merchant/provider/rule exclusions",
+    "beforeAfterComparison": "Same Preview DOM, exact seven-line header CSS rule removed/restored in CSSOM, ordered representation restored; original deep painted-focus algorithm unchanged"
+  },
+  "formerlyFailingCells": [
+    {
+      "route": "/products/beadmaster",
+      "width": 390,
+      "state": "TEXT_200_PERCENT",
+      "passed": true,
+      "footerSearch": {
+        "key": "A@13",
+        "tag": "A",
+        "category": "footer",
+        "providerOwned": false,
+        "name": "Search",
+        "outline": "solid",
+        "outlineWidth": "6px",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 6px, rgba(17, 17, 17, 0.3) 0px 0px 10px 8px",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "A",
+            "hitId": "",
+            "point": {
+              "x": 127.1171875,
+              "y": 499.78125
+            },
+            "textBox": {
+              "left": 80,
+              "right": 174.234375,
+              "top": 481.28125,
+              "bottom": 518.28125
+            }
+          }
+        ],
+        "rect": {
+          "left": 80,
+          "right": 310,
+          "top": 455.28125,
+          "bottom": 545.671875
+        },
+        "hrefPath": "/search",
+        "merchantFocusable": true
+      },
+      "paymentTermsFocus": {
+        "key": "#shopify-installments-cta@8",
+        "tag": "BUTTON",
+        "category": "provider_terms",
+        "providerOwned": true,
+        "name": "View sample plans",
+        "outline": "auto",
+        "outlineWidth": "1px",
+        "boxShadow": "none",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "BUTTON",
+            "hitId": "shopify-installments-cta",
+            "point": {
+              "x": 195,
+              "y": 499.6875
+            },
+            "textBox": {
+              "left": 182.5,
+              "right": 207.5,
+              "top": 477.6875,
+              "bottom": 521.6875
+            }
+          }
+        ],
+        "rect": {
+          "left": 182.5,
+          "right": 207.5,
+          "top": 477.6875,
+          "bottom": 521.6875
+        },
+        "merchantFocusable": true
+      }
+    },
+    {
+      "route": "/products/em-1",
+      "width": 390,
+      "state": "TEXT_200_PERCENT",
+      "passed": true,
+      "footerSearch": {
+        "key": "A@13",
+        "tag": "A",
+        "category": "footer",
+        "providerOwned": false,
+        "name": "Search",
+        "outline": "solid",
+        "outlineWidth": "6px",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 6px, rgba(17, 17, 17, 0.3) 0px 0px 10px 8px",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "A",
+            "hitId": "",
+            "point": {
+              "x": 127.1171875,
+              "y": 499.78125
+            },
+            "textBox": {
+              "left": 80,
+              "right": 174.234375,
+              "top": 481.28125,
+              "bottom": 518.28125
+            }
+          }
+        ],
+        "rect": {
+          "left": 80,
+          "right": 310,
+          "top": 455.28125,
+          "bottom": 545.671875
+        },
+        "hrefPath": "/search",
+        "merchantFocusable": true
+      },
+      "paymentTermsFocus": {
+        "key": "#shopify-installments-cta@8",
+        "tag": "BUTTON",
+        "category": "provider_terms",
+        "providerOwned": true,
+        "name": "View sample plans",
+        "outline": "auto",
+        "outlineWidth": "1px",
+        "boxShadow": "none",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "BUTTON",
+            "hitId": "shopify-installments-cta",
+            "point": {
+              "x": 212,
+              "y": 499.6875
+            },
+            "textBox": {
+              "left": 199.5,
+              "right": 224.5,
+              "top": 477.6875,
+              "bottom": 521.6875
+            }
+          }
+        ],
+        "rect": {
+          "left": 199.5,
+          "right": 224.5,
+          "top": 477.6875,
+          "bottom": 521.6875
+        },
+        "merchantFocusable": true
+      }
+    },
+    {
+      "route": "/products/lapmaster-12",
+      "width": 390,
+      "state": "TEXT_200_PERCENT",
+      "passed": true,
+      "footerSearch": {
+        "key": "A@14",
+        "tag": "A",
+        "category": "footer",
+        "providerOwned": false,
+        "name": "Search",
+        "outline": "solid",
+        "outlineWidth": "6px",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 6px, rgba(17, 17, 17, 0.3) 0px 0px 10px 8px",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "A",
+            "hitId": "",
+            "point": {
+              "x": 127.1171875,
+              "y": 499.78125
+            },
+            "textBox": {
+              "left": 80,
+              "right": 174.234375,
+              "top": 481.28125,
+              "bottom": 518.28125
+            }
+          }
+        ],
+        "rect": {
+          "left": 80,
+          "right": 310,
+          "top": 455.28125,
+          "bottom": 545.671875
+        },
+        "hrefPath": "/search",
+        "merchantFocusable": true
+      },
+      "paymentTermsFocus": {
+        "key": "#shopify-installments-cta@8",
+        "tag": "BUTTON",
+        "category": "provider_terms",
+        "providerOwned": true,
+        "name": "View sample plans",
+        "outline": "auto",
+        "outlineWidth": "1px",
+        "boxShadow": "none",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "BUTTON",
+            "hitId": "shopify-installments-cta",
+            "point": {
+              "x": 212,
+              "y": 499.6875
+            },
+            "textBox": {
+              "left": 199.5,
+              "right": 224.5,
+              "top": 477.6875,
+              "bottom": 521.6875
+            }
+          }
+        ],
+        "rect": {
+          "left": 199.5,
+          "right": 224.5,
+          "top": 477.6875,
+          "bottom": 521.6875
+        },
+        "merchantFocusable": true
+      }
+    },
+    {
+      "route": "/products/lapmaster-18",
+      "width": 390,
+      "state": "TEXT_200_PERCENT",
+      "passed": true,
+      "footerSearch": {
+        "key": "A@14",
+        "tag": "A",
+        "category": "footer",
+        "providerOwned": false,
+        "name": "Search",
+        "outline": "solid",
+        "outlineWidth": "6px",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 6px, rgba(17, 17, 17, 0.3) 0px 0px 10px 8px",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "A",
+            "hitId": "",
+            "point": {
+              "x": 127.1171875,
+              "y": 499.78125
+            },
+            "textBox": {
+              "left": 80,
+              "right": 174.234375,
+              "top": 481.28125,
+              "bottom": 518.28125
+            }
+          }
+        ],
+        "rect": {
+          "left": 80,
+          "right": 310,
+          "top": 455.28125,
+          "bottom": 545.671875
+        },
+        "hrefPath": "/search",
+        "merchantFocusable": true
+      },
+      "paymentTermsFocus": {
+        "key": "#shopify-installments-cta@8",
+        "tag": "BUTTON",
+        "category": "provider_terms",
+        "providerOwned": true,
+        "name": "View sample plans",
+        "outline": "auto",
+        "outlineWidth": "1px",
+        "boxShadow": "none",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "BUTTON",
+            "hitId": "shopify-installments-cta",
+            "point": {
+              "x": 212,
+              "y": 499.6875
+            },
+            "textBox": {
+              "left": 199.5,
+              "right": 224.5,
+              "top": 477.6875,
+              "bottom": 521.6875
+            }
+          }
+        ],
+        "rect": {
+          "left": 199.5,
+          "right": 224.5,
+          "top": 477.6875,
+          "bottom": 521.6875
+        },
+        "merchantFocusable": true
+      }
+    },
+    {
+      "route": "/products/sawmaster-18",
+      "width": 390,
+      "state": "TEXT_200_PERCENT",
+      "passed": true,
+      "footerSearch": {
+        "key": "A@13",
+        "tag": "A",
+        "category": "footer",
+        "providerOwned": false,
+        "name": "Search",
+        "outline": "solid",
+        "outlineWidth": "6px",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 6px, rgba(17, 17, 17, 0.3) 0px 0px 10px 8px",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "A",
+            "hitId": "",
+            "point": {
+              "x": 127.1171875,
+              "y": 499.78125
+            },
+            "textBox": {
+              "left": 80,
+              "right": 174.234375,
+              "top": 481.28125,
+              "bottom": 518.28125
+            }
+          }
+        ],
+        "rect": {
+          "left": 80,
+          "right": 310,
+          "top": 455.28125,
+          "bottom": 545.671875
+        },
+        "hrefPath": "/search",
+        "merchantFocusable": true
+      },
+      "paymentTermsFocus": {
+        "key": "#shopify-installments-cta@8",
+        "tag": "BUTTON",
+        "category": "provider_terms",
+        "providerOwned": true,
+        "name": "View sample plans",
+        "outline": "auto",
+        "outlineWidth": "1px",
+        "boxShadow": "none",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "BUTTON",
+            "hitId": "shopify-installments-cta",
+            "point": {
+              "x": 212,
+              "y": 499.6875
+            },
+            "textBox": {
+              "left": 199.5,
+              "right": 224.5,
+              "top": 477.6875,
+              "bottom": 521.6875
+            }
+          }
+        ],
+        "rect": {
+          "left": 199.5,
+          "right": 224.5,
+          "top": 477.6875,
+          "bottom": 521.6875
+        },
+        "merchantFocusable": true
+      }
+    },
+    {
+      "route": "/products/sawmaster-24",
+      "width": 390,
+      "state": "TEXT_200_PERCENT",
+      "passed": true,
+      "footerSearch": {
+        "key": "A@13",
+        "tag": "A",
+        "category": "footer",
+        "providerOwned": false,
+        "name": "Search",
+        "outline": "solid",
+        "outlineWidth": "6px",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 6px, rgba(17, 17, 17, 0.3) 0px 0px 10px 8px",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "A",
+            "hitId": "",
+            "point": {
+              "x": 127.1171875,
+              "y": 499.78125
+            },
+            "textBox": {
+              "left": 80,
+              "right": 174.234375,
+              "top": 481.28125,
+              "bottom": 518.28125
+            }
+          }
+        ],
+        "rect": {
+          "left": 80,
+          "right": 310,
+          "top": 455.28125,
+          "bottom": 545.671875
+        },
+        "hrefPath": "/search",
+        "merchantFocusable": true
+      },
+      "paymentTermsFocus": {
+        "key": "#shopify-installments-cta@8",
+        "tag": "BUTTON",
+        "category": "provider_terms",
+        "providerOwned": true,
+        "name": "View sample plans",
+        "outline": "auto",
+        "outlineWidth": "1px",
+        "boxShadow": "none",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "BUTTON",
+            "hitId": "shopify-installments-cta",
+            "point": {
+              "x": 212,
+              "y": 499.6875
+            },
+            "textBox": {
+              "left": 199.5,
+              "right": 224.5,
+              "top": 477.6875,
+              "bottom": 521.6875
+            }
+          }
+        ],
+        "rect": {
+          "left": 199.5,
+          "right": 224.5,
+          "top": 477.6875,
+          "bottom": 521.6875
+        },
+        "merchantFocusable": true
+      }
+    },
+    {
+      "route": "/products/shapemaster",
+      "width": 390,
+      "state": "TEXT_200_PERCENT",
+      "passed": true,
+      "footerSearch": {
+        "key": "A@13",
+        "tag": "A",
+        "category": "footer",
+        "providerOwned": false,
+        "name": "Search",
+        "outline": "solid",
+        "outlineWidth": "6px",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 6px, rgba(17, 17, 17, 0.3) 0px 0px 10px 8px",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "A",
+            "hitId": "",
+            "point": {
+              "x": 127.1171875,
+              "y": 499.78125
+            },
+            "textBox": {
+              "left": 80,
+              "right": 174.234375,
+              "top": 481.28125,
+              "bottom": 518.28125
+            }
+          }
+        ],
+        "rect": {
+          "left": 80,
+          "right": 310,
+          "top": 455.28125,
+          "bottom": 545.671875
+        },
+        "hrefPath": "/search",
+        "merchantFocusable": true
+      },
+      "paymentTermsFocus": {
+        "key": "#shopify-installments-cta@8",
+        "tag": "BUTTON",
+        "category": "provider_terms",
+        "providerOwned": true,
+        "name": "View sample plans",
+        "outline": "auto",
+        "outlineWidth": "1px",
+        "boxShadow": "none",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "BUTTON",
+            "hitId": "shopify-installments-cta",
+            "point": {
+              "x": 212,
+              "y": 499.6875
+            },
+            "textBox": {
+              "left": 199.5,
+              "right": 224.5,
+              "top": 477.6875,
+              "bottom": 521.6875
+            }
+          }
+        ],
+        "rect": {
+          "left": 199.5,
+          "right": 224.5,
+          "top": 477.6875,
+          "bottom": 521.6875
+        },
+        "merchantFocusable": true
+      }
+    },
+    {
+      "route": "/products/trimmaster",
+      "width": 390,
+      "state": "TEXT_200_PERCENT",
+      "passed": true,
+      "footerSearch": {
+        "key": "A@13",
+        "tag": "A",
+        "category": "footer",
+        "providerOwned": false,
+        "name": "Search",
+        "outline": "solid",
+        "outlineWidth": "6px",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 6px, rgba(17, 17, 17, 0.3) 0px 0px 10px 8px",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "A",
+            "hitId": "",
+            "point": {
+              "x": 127.1171875,
+              "y": 499.78125
+            },
+            "textBox": {
+              "left": 80,
+              "right": 174.234375,
+              "top": 481.28125,
+              "bottom": 518.28125
+            }
+          }
+        ],
+        "rect": {
+          "left": 80,
+          "right": 310,
+          "top": 455.28125,
+          "bottom": 545.671875
+        },
+        "hrefPath": "/search",
+        "merchantFocusable": true
+      },
+      "paymentTermsFocus": {
+        "key": "#shopify-installments-cta@8",
+        "tag": "BUTTON",
+        "category": "provider_terms",
+        "providerOwned": true,
+        "name": "View sample plans",
+        "outline": "auto",
+        "outlineWidth": "1px",
+        "boxShadow": "none",
+        "indicatorVisible": true,
+        "focusVisible": true,
+        "clipped": false,
+        "occluded": false,
+        "paintedTextHitTests": [
+          {
+            "owned": true,
+            "hitTag": "BUTTON",
+            "hitId": "shopify-installments-cta",
+            "point": {
+              "x": 212,
+              "y": 499.6875
+            },
+            "textBox": {
+              "left": 199.5,
+              "right": 224.5,
+              "top": 477.6875,
+              "bottom": 521.6875
+            }
+          }
+        ],
+        "rect": {
+          "left": 199.5,
+          "right": 224.5,
+          "top": 477.6875,
+          "bottom": 521.6875
+        },
+        "merchantFocusable": true
+      }
+    }
+  ],
+  "text": {
+    "cells": 16,
+    "passed": 16,
+    "axe": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "console": {
+      "knownProviderOccurrences": 31,
+      "distinct": [
+        "Framing '[URL_REDACTED]' violates the following Content Security Policy directive: \"frame-ancestors 'self' [URL_REDACTED] [URL_REDACTED]\". The request has been blocked.\n",
+        "Failed to load resource: the server responded with a status of 403 ()",
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "exactPreFixHeaderWarnings": [
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "preFixEvidence": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/pre-fix-live-reproduction.json",
+      "classification": "Known native Shop Pay CSP/403 noise plus exact pre-existing response-header warning. All actual errors retained; no theme/page/Liquid failure observed.",
+      "unexpected": 0,
+      "pageErrors": 0,
+      "LiquidErrors": 0,
+      "blockedRequests": 0,
+      "downloads": 0,
+      "failedRequests": 106,
+      "httpErrors": 15
+    },
+    "widths": [
+      390,
+      1440
+    ],
+    "rootPx": [
+      10,
+      20
+    ],
+    "bodyPx": [
+      16,
+      32
+    ],
+    "mobileTitlePx": [
+      30,
+      60
+    ],
+    "desktopTitlePx": [
+      40,
+      80
+    ],
+    "providerFixedPxQualification": "The native fixed-pixel shadow button remains 13 CSS px under root-font simulation. Real Chromium browser zoom doubles physical display size; no provider markup or configuration was changed."
+  },
+  "browserZoom": {
+    "cells": 6,
+    "passed": 6,
+    "axe": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "console": {
+      "knownProviderOccurrences": 5,
+      "distinct": [
+        "Framing '[URL_REDACTED]' violates the following Content Security Policy directive: \"frame-ancestors 'self' [URL_REDACTED] [URL_REDACTED]\". The request has been blocked.\n",
+        "Failed to load resource: the server responded with a status of 403 ()",
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "exactPreFixHeaderWarnings": [
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "preFixEvidence": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/pre-fix-live-reproduction.json",
+      "classification": "Known native Shop Pay CSP/403 noise plus exact pre-existing response-header warning. All actual errors retained; no theme/page/Liquid failure observed.",
+      "unexpected": 0,
+      "pageErrors": 0,
+      "LiquidErrors": 0,
+      "blockedRequests": 0,
+      "downloads": 0,
+      "failedRequests": 34,
+      "httpErrors": 2
+    },
+    "factor": 2,
+    "method": "chrome.tabs.setZoom; per-origin inherited into authenticated in-memory context",
+    "evidence": [
+      {
+        "route": "/products/beadmaster",
+        "physicalWidth": 1280,
+        "beforeWidth": 1258,
+        "effectiveWidth": 629,
+        "beforeDpr": 1,
+        "afterDpr": 2,
+        "factor": 2,
+        "visualViewportScale": 1,
+        "rootFontUnchanged": true
+      },
+      {
+        "route": "/products/lapmaster-12",
+        "physicalWidth": 1280,
+        "beforeWidth": 1258,
+        "effectiveWidth": 629,
+        "beforeDpr": 1,
+        "afterDpr": 2,
+        "factor": 2,
+        "visualViewportScale": 1,
+        "rootFontUnchanged": true
+      },
+      {
+        "route": "/products/beadmaster",
+        "physicalWidth": 780,
+        "beforeWidth": 758,
+        "effectiveWidth": 379,
+        "beforeDpr": 1,
+        "afterDpr": 2,
+        "factor": 2,
+        "visualViewportScale": 1,
+        "rootFontUnchanged": true
+      },
+      {
+        "route": "/products/lapmaster-12",
+        "physicalWidth": 780,
+        "beforeWidth": 758,
+        "effectiveWidth": 379,
+        "beforeDpr": 1,
+        "afterDpr": 2,
+        "factor": 2,
+        "visualViewportScale": 1,
+        "rootFontUnchanged": true
+      },
+      {
+        "route": "/products/beadmaster",
+        "physicalWidth": 2880,
+        "beforeWidth": 2858,
+        "effectiveWidth": 1429,
+        "beforeDpr": 1,
+        "afterDpr": 2,
+        "factor": 2,
+        "visualViewportScale": 1,
+        "rootFontUnchanged": true
+      },
+      {
+        "route": "/products/lapmaster-12",
+        "physicalWidth": 2880,
+        "beforeWidth": 2858,
+        "effectiveWidth": 1429,
+        "beforeDpr": 1,
+        "afterDpr": 2,
+        "factor": 2,
+        "visualViewportScale": 1,
+        "rootFontUnchanged": true
+      }
+    ],
+    "secretDisposal": [
+      {
+        "authenticatedContext": "IN_MEMORY_INCOGNITO",
+        "anonymousProfileCookieCount": 0,
+        "controllerRequestsFulfilledLocally": 1,
+        "anonymousProfileRemoved": true
+      },
+      {
+        "authenticatedContext": "IN_MEMORY_INCOGNITO",
+        "anonymousProfileCookieCount": 0,
+        "controllerRequestsFulfilledLocally": 1,
+        "anonymousProfileRemoved": true
+      },
+      {
+        "authenticatedContext": "IN_MEMORY_INCOGNITO",
+        "anonymousProfileCookieCount": 0,
+        "controllerRequestsFulfilledLocally": 1,
+        "anonymousProfileRemoved": true
+      }
+    ]
+  },
+  "keyboard": {
+    "currentMachineCells": 38,
+    "fullCycles": 38,
+    "skippedControls": 0,
+    "unexpectedTraps": 0,
+    "focusVisibleFailures": 0,
+    "merchantFocusOcclusions": 0,
+    "providerFocusOcclusions": 0,
+    "globalEnterEscapeFocusReturn": "PASS"
+  },
+  "baseResponsive": {
+    "cells": 8,
+    "passed": 8,
+    "axe": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "console": {
+      "knownProviderOccurrences": 16,
+      "distinct": [
+        "Framing '[URL_REDACTED]' violates the following Content Security Policy directive: \"frame-ancestors 'self' [URL_REDACTED] [URL_REDACTED]\". The request has been blocked.\n",
+        "Failed to load resource: the server responded with a status of 403 ()"
+      ],
+      "exactPreFixHeaderWarnings": [
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "preFixEvidence": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/pre-fix-live-reproduction.json",
+      "classification": "Known native Shop Pay CSP/403 noise plus exact pre-existing response-header warning. All actual errors retained; no theme/page/Liquid failure observed.",
+      "unexpected": 0,
+      "pageErrors": 0,
+      "LiquidErrors": 0,
+      "blockedRequests": 0,
+      "downloads": 0,
+      "failedRequests": 51,
+      "httpErrors": 8
+    }
+  },
+  "nonMachine": {
+    "cells": 30,
+    "passed": 30,
+    "axe": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "console": {
+      "knownProviderOccurrences": 59,
+      "distinct": [
+        "Framing '[URL_REDACTED]' violates the following Content Security Policy directive: \"frame-ancestors 'self' [URL_REDACTED] [URL_REDACTED]\". The request has been blocked.\n",
+        "Failed to load resource: the server responded with a status of 403 ()",
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "exactPreFixHeaderWarnings": [
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "preFixEvidence": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/pre-fix-live-reproduction.json",
+      "classification": "Known native Shop Pay CSP/403 noise plus exact pre-existing response-header warning. All actual errors retained; no theme/page/Liquid failure observed.",
+      "unexpected": 0,
+      "pageErrors": 0,
+      "LiquidErrors": 0,
+      "blockedRequests": 0,
+      "downloads": 0,
+      "failedRequests": 190,
+      "httpErrors": 29
+    },
+    "scope": "Replacement part, consumable, accessory, collection, search, cart; normal 320/390/768/1440 and 200% text 390",
+    "comparativeResult": "NO_MATERIAL_REGRESSION",
+    "rawPreExistingObservationsRetained": true
+  },
+  "live": {
+    "cells": 68,
+    "passed": 68,
+    "axe": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "console": {
+      "knownProviderOccurrences": 126,
+      "distinct": [
+        "Framing '[URL_REDACTED]' violates the following Content Security Policy directive: \"frame-ancestors 'self' [URL_REDACTED] [URL_REDACTED]\". The request has been blocked.\n",
+        "Failed to load resource: the server responded with a status of 403 ()",
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "exactPreFixHeaderWarnings": [
+        "Invalid 'X-Frame-Options' header encountered when loading '[URL_REDACTED]': 'ALLOW-FROM [URL_REDACTED]' is not a recognized directive. The header will be ignored."
+      ],
+      "preFixEvidence": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/pre-fix-live-reproduction.json",
+      "classification": "Known native Shop Pay CSP/403 noise plus exact pre-existing response-header warning. All actual errors retained; no theme/page/Liquid failure observed.",
+      "unexpected": 0,
+      "pageErrors": 0,
+      "LiquidErrors": 0,
+      "blockedRequests": 0,
+      "downloads": 0,
+      "failedRequests": 434,
+      "httpErrors": 61
+    }
+  },
+  "purchaseStates": {
+    "purchasableProducts": [
+      "LapMaster 12\"",
+      "LapMaster 18\""
+    ],
+    "soldOutProducts": 6,
+    "enabledPurchaseFocusVerified": true,
+    "disabledSoldOutPreserved": true,
+    "quantityArrowKeysRestored": true,
+    "transactionsSubmitted": 0
+  },
+  "Contact": {
+    "href": "/pages/contact",
+    "visibleFocus": "PASS",
+    "submitted": false
+  },
+  "paymentTerms": {
+    "F_DEC_001": "APPROVED_OPTION_A",
+    "currentVariantAssociation": "PASS",
+    "focus": "PASS",
+    "copyAndConfigurationChanged": false
+  },
+  "governedFactualGrants": 0,
+  "claimsContainment": "PASS_ALL_OBSERVED_MACHINE_STATES",
+  "ProductMutations": 0,
+  "catalogProtectedComparison": {
+    "path": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/catalog-protected-comparison.json",
+    "sha256": "46cc9b0af08a9f8c38328a5cd0cc403088a6ad7801798d68bdfa4f74fd85f0e2"
+  },
+  "themeChanges": {
+    "previewFilesUpdated": 1,
+    "mainFilesUpdated": 1,
+    "created": 0,
+    "unplanned": 0,
+    "publicationActions": 0,
+    "finalReadback": {
+      "target": "main",
+      "checkedAt": "2026-10-06T21:07:25.516Z",
+      "changedFiles": [
+        {
+          "path": "sections/header.liquid",
+          "beforeMd5": "e2b410892413b434c1a6ea66623ddeb3",
+          "afterMd5": "9bfb0e55ef5a6bcd4befc5369b98d4d8"
+        }
+      ],
+      "unplannedFileChanges": 0,
+      "themes": [
+        {
+          "name": "main",
+          "id": "gid://shopify/OnlineStoreTheme/158579622085",
+          "role": "MAIN",
+          "inventoryCount": 422,
+          "changedFiles": [
+            {
+              "path": "sections/header.liquid",
+              "beforeMd5": "e2b410892413b434c1a6ea66623ddeb3",
+              "afterMd5": "9bfb0e55ef5a6bcd4befc5369b98d4d8"
+            }
+          ],
+          "headerSha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339",
+          "exactBodyMatch": true
+        },
+        {
+          "name": "preview",
+          "id": "gid://shopify/OnlineStoreTheme/158631198917",
+          "role": "UNPUBLISHED",
+          "inventoryCount": 426,
+          "changedFiles": [
+            {
+              "path": "sections/header.liquid",
+              "beforeMd5": "e2b410892413b434c1a6ea66623ddeb3",
+              "afterMd5": "9bfb0e55ef5a6bcd4befc5369b98d4d8"
+            }
+          ],
+          "headerSha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339",
+          "exactBodyMatch": true
+        }
+      ]
+    }
+  },
+  "rollbackInvoked": false,
+  "contract": {
+    "file": "docs/rhino-lapidary-pbi-tracker-epic-f.md",
+    "sectionSha256": "95def1133c1b473ac95a5a4e6c08d80c1beffb9d279ee8fda8a70b21a7559f1f",
+    "criteriaUnchanged": true,
+    "closedCriteria": [
+      {
+        "id": "F014B-FOCUS-CURRENT",
+        "state": "COMPLETE",
+        "assignedCurrentShell": "PASS",
+        "firstFailingCells": 8,
+        "firstFailingCellsPassed": 8,
+        "fullTextCells": 16,
+        "fullTextCellsPassed": 16,
+        "evidence": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/acceptance-decision.json"
+      }
+    ],
+    "openCriteria": [
+      {
+        "id": "F014B-MEDIA-MODULE-FUTURE",
+        "criterion": "Modal Enter/Escape/focus return and disclosure keyboard behavior hold with one/multiple media and populated/empty modules.",
+        "missingRealState": "Approved real one/multiple machine media, modal and populated module journeys",
+        "reason": "All eight have zero governed factual/media/resource grants. Modal and populated module DOM are correctly absent. Fixtures cannot establish live assigned-route parity.",
+        "futureEventRequired": "Future owner-approved Epic E values/resources/media and corresponding explicit F grants activated within an authorized release scope; then test the actual live journeys."
+      },
+      {
+        "id": "F014B-RESOURCE-CONTEXT-FUTURE",
+        "criterion": "Touch targets, visible focus and screen-reader labels cover purchase, resource and contextual links.",
+        "missingRealState": "Approved live resource and contextual links",
+        "reason": "Resource/contextual projections are suppressed with zero grants; no real links exist to keyboard-test.",
+        "futureEventRequired": "Future approved migration and activation of real resource/contextual links, followed by keyboard/labels/touch-target/axe testing."
+      }
+    ]
+  },
+  "alternateVariant": {
+    "state": "NOT_AVAILABLE_IN_CURRENT_F7_PRODUCT_SCOPE",
+    "acceptedCurrentCatalogCoverageLimitation": true,
+    "syntheticStateCreated": false,
+    "mandatoryRealStateInCurrentContract": false,
+    "doesNotProveFutureAvailableState": true
+  },
+  "availablePickup": {
+    "state": "NOT_AVAILABLE_IN_CURRENT_F7_PRODUCT_SCOPE",
+    "acceptedCurrentCatalogCoverageLimitation": true,
+    "syntheticStateCreated": false,
+    "mandatoryRealStateInCurrentContract": false,
+    "doesNotProveFutureAvailableState": true
+  },
+  "F_PBI_015B": {
+    "state": "READY_FOR_AUTHORIZED_CERTIFICATION",
+    "executed": false,
+    "contractHas014BCompletePrerequisite": false,
+    "actualDependencies": [
+      "F-PBI-002–012 applicable modules",
+      "F-PBI-013 widget outcome",
+      "B-030 performance governance"
+    ],
+    "unavailableVariantOrPickupBlocksCurrentShellMeasurement": false,
+    "currentShellMeasurementMayBeSeparatelyAuthorized": true,
+    "recommendation": "Authorize current assigned-shell performance certification bound to the corrected source binding. Retained future populated-state accessibility criteria do not prohibit measuring this current shell."
+  },
+  "F_PBI_017B": "COMPLETE",
+  "F_PBI_018B": "NOT_BEGUN",
+  "releaseReadiness": "NOT_READY",
+  "nextAction": "Separately authorize F-PBI-015B against the corrected source. No performance certification or final signoff performed."
+}

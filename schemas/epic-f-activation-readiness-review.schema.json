@@ -1,0 +1,2629 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-f-activation-readiness-review.schema.json",
+  "title": "Epic F read-only activation readiness review",
+  "description": "Independent source-bound dependency dimensions; no global readiness or authorization inferred from repository/fixture evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "assessedAt",
+    "generatedAt",
+    "scope",
+    "baseline",
+    "evidence",
+    "admin",
+    "machines",
+    "epicE",
+    "rows",
+    "realGrants",
+    "media",
+    "specifications",
+    "contents",
+    "relationships",
+    "operations",
+    "warranty",
+    "resources",
+    "payment",
+    "accessibility",
+    "performance",
+    "measurement",
+    "rollout",
+    "containment",
+    "unresolvedDecisions",
+    "historicalDiagnostics",
+    "shellOnly",
+    "dependencyOrder",
+    "independentLanes",
+    "safety"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "number"
+    },
+    "assessedAt": {
+      "type": "string"
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "packet",
+        "repositoryAggregatePassed",
+        "pbiStates",
+        "liveReleaseState"
+      ],
+      "properties": {
+        "packet": {
+          "type": "string"
+        },
+        "repositoryAggregatePassed": {
+          "type": "boolean"
+        },
+        "pbiStates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "F-PBI-018",
+            "F-PBI-018A",
+            "F-PBI-018B",
+            "F-PBI-013",
+            "F-DEC-001",
+            "F-PBI-014B",
+            "F-PBI-015B",
+            "F-PBI-016",
+            "F-PBI-017A",
+            "F-PBI-017B",
+            "F-PBI-004B",
+            "F-PBI-006B",
+            "F-PBI-007B",
+            "F-PBI-008B",
+            "F-PBI-009B",
+            "F-PBI-010B",
+            "F-PBI-011B"
+          ],
+          "properties": {
+            "F-PBI-018": {
+              "type": "string"
+            },
+            "F-PBI-018A": {
+              "type": "string"
+            },
+            "F-PBI-018B": {
+              "type": "string"
+            },
+            "F-PBI-013": {
+              "type": "string"
+            },
+            "F-DEC-001": {
+              "type": "string"
+            },
+            "F-PBI-014B": {
+              "type": "string"
+            },
+            "F-PBI-015B": {
+              "type": "string"
+            },
+            "F-PBI-016": {
+              "type": "string"
+            },
+            "F-PBI-017A": {
+              "type": "string"
+            },
+            "F-PBI-017B": {
+              "type": "string"
+            },
+            "F-PBI-004B": {
+              "type": "string"
+            },
+            "F-PBI-006B": {
+              "type": "string"
+            },
+            "F-PBI-007B": {
+              "type": "string"
+            },
+            "F-PBI-008B": {
+              "type": "string"
+            },
+            "F-PBI-009B": {
+              "type": "string"
+            },
+            "F-PBI-010B": {
+              "type": "string"
+            },
+            "F-PBI-011B": {
+              "type": "string"
+            }
+          }
+        },
+        "liveReleaseState": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "sourceObservedAt"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "sourceObservedAt": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "admin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adminCurrentRead",
+        "observedAt",
+        "shop",
+        "api",
+        "apiVersion",
+        "evidence",
+        "completeMachineCoverage",
+        "productDefinitionCount",
+        "machineFamilyDefinition",
+        "freshness",
+        "freshnessAtGeneration",
+        "executionBeforeReadComplete",
+        "scopeLimitations",
+        "historicalAdminState"
+      ],
+      "properties": {
+        "adminCurrentRead": {
+          "type": "string"
+        },
+        "observedAt": {
+          "type": "string"
+        },
+        "shop": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "name",
+            "myshopifyDomain",
+            "primaryDomain"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "myshopifyDomain": {
+              "type": "string"
+            },
+            "primaryDomain": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "url"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "api": {
+          "type": "string"
+        },
+        "apiVersion": {
+          "type": "null"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "completeMachineCoverage": {
+          "type": "boolean"
+        },
+        "productDefinitionCount": {
+          "type": "number"
+        },
+        "machineFamilyDefinition": {
+          "type": "null"
+        },
+        "freshness": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dataset",
+              "observedAt",
+              "expiresAt",
+              "stateAtAssessment"
+            ],
+            "properties": {
+              "dataset": {
+                "type": "string"
+              },
+              "observedAt": {
+                "type": "string"
+              },
+              "expiresAt": {
+                "type": "string"
+              },
+              "stateAtAssessment": {
+                "enum": [
+                  "current",
+                  "stale",
+                  "unavailable"
+                ]
+              }
+            }
+          }
+        },
+        "freshnessAtGeneration": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dataset",
+              "state"
+            ],
+            "properties": {
+              "dataset": {
+                "type": "string"
+              },
+              "state": {
+                "enum": [
+                  "current",
+                  "stale",
+                  "unavailable"
+                ]
+              }
+            }
+          }
+        },
+        "executionBeforeReadComplete": {
+          "type": "boolean"
+        },
+        "scopeLimitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "historicalAdminState": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "state",
+            "assessedAt",
+            "snapshots",
+            "currentAudit",
+            "dependentDomains",
+            "note"
+          ],
+          "properties": {
+            "state": {
+              "type": "string"
+            },
+            "assessedAt": {
+              "type": "string"
+            },
+            "snapshots": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path",
+                  "observedAt",
+                  "expiresAt",
+                  "freshnessRule",
+                  "coverage",
+                  "state"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "observedAt": {
+                    "type": "string"
+                  },
+                  "expiresAt": {
+                    "type": "string"
+                  },
+                  "freshnessRule": {
+                    "type": "string"
+                  },
+                  "coverage": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "currentAudit": {
+              "type": "null"
+            },
+            "dependentDomains": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "machines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "productGid",
+          "displayLabel",
+          "currentIdentity",
+          "status",
+          "updatedAt",
+          "resourceVersion",
+          "currentSuffix",
+          "intendedSuffix",
+          "historicalSuffix",
+          "templateDrift",
+          "publication",
+          "productClass",
+          "rhinoMetafields",
+          "nativeVariants",
+          "observedAt",
+          "historicalObservedAt",
+          "futureCandidate",
+          "exclusion",
+          "mutationWouldBeNecessaryIfIncluded",
+          "currentEligible",
+          "executable",
+          "executionPrerequisitesSatisfied",
+          "blockers"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string"
+          },
+          "displayLabel": {
+            "type": "string"
+          },
+          "currentIdentity": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "handle"
+            ],
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "handle": {
+                "type": "string"
+              }
+            }
+          },
+          "status": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "resourceVersion": {
+            "type": "null"
+          },
+          "currentSuffix": {
+            "type": "null"
+          },
+          "intendedSuffix": {
+            "type": "string"
+          },
+          "historicalSuffix": {
+            "type": "null"
+          },
+          "templateDrift": {
+            "type": "string"
+          },
+          "publication": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "publishedAt",
+              "onlineStoreUrl",
+              "channels",
+              "customerPresentationVerified",
+              "note"
+            ],
+            "properties": {
+              "publishedAt": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "onlineStoreUrl": {
+                "type": "null"
+              },
+              "channels": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "publication",
+                    "publishDate",
+                    "isPublished"
+                  ],
+                  "properties": {
+                    "publication": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "publishDate": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "isPublished": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              },
+              "customerPresentationVerified": {
+                "type": "boolean"
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          },
+          "productClass": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "approvedValue",
+              "approvalDecisionId",
+              "approvalState",
+              "currentValue",
+              "migration",
+              "reconciliation"
+            ],
+            "properties": {
+              "approvedValue": {
+                "type": "string"
+              },
+              "approvalDecisionId": {
+                "type": "string"
+              },
+              "approvalState": {
+                "type": "string"
+              },
+              "currentValue": {
+                "type": "null"
+              },
+              "migration": {
+                "type": "string"
+              },
+              "reconciliation": {
+                "type": "string"
+              }
+            }
+          },
+          "rhinoMetafields": {
+            "type": "array",
+            "items": {}
+          },
+          "nativeVariants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "availableForSale",
+                "inventoryPolicy",
+                "updatedAt"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "availableForSale": {
+                  "type": "boolean"
+                },
+                "inventoryPolicy": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "observedAt": {
+            "type": "string"
+          },
+          "historicalObservedAt": {
+            "type": "string"
+          },
+          "futureCandidate": {
+            "type": "boolean"
+          },
+          "exclusion": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "productGid",
+                  "reason"
+                ],
+                "properties": {
+                  "productGid": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          },
+          "mutationWouldBeNecessaryIfIncluded": {
+            "type": "boolean"
+          },
+          "currentEligible": {
+            "type": "boolean"
+          },
+          "executable": {
+            "type": "boolean"
+          },
+          "executionPrerequisitesSatisfied": {
+            "type": "boolean"
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "minItems": 11,
+      "maxItems": 11
+    },
+    "epicE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "domain",
+          "planId",
+          "architectureReady",
+          "definitionState",
+          "approvedValueExists",
+          "approvedRows",
+          "valueState",
+          "valueMigrated",
+          "afterStateReconciled",
+          "consumerEligibilityCurrent",
+          "activationAuthorization",
+          "requiredDecisionIds",
+          "historicalExecutionBlockers",
+          "currentBlockers",
+          "evidence"
+        ],
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "planId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "architectureReady": {
+            "type": "boolean"
+          },
+          "definitionState": {
+            "type": "string"
+          },
+          "approvedValueExists": {
+            "type": "boolean"
+          },
+          "approvedRows": {
+            "type": "number"
+          },
+          "valueState": {
+            "type": "string"
+          },
+          "valueMigrated": {
+            "type": "boolean"
+          },
+          "afterStateReconciled": {
+            "type": "boolean"
+          },
+          "consumerEligibilityCurrent": {
+            "type": "boolean"
+          },
+          "activationAuthorization": {
+            "type": "string"
+          },
+          "requiredDecisionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "historicalExecutionBlockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "currentBlockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pbi",
+          "currentStatus",
+          "repositoryArchitectureReady",
+          "currentAdminEvidence",
+          "requiredDecisionIds",
+          "conditionalRequiredDecisionIds",
+          "upstreamDomains",
+          "classification",
+          "valueApprovalReady",
+          "migrationReady",
+          "reconciliationReady",
+          "activationAuthorization",
+          "previewParity",
+          "releaseCertification",
+          "humanGoRequired",
+          "technicallyReadyExceptHumanGo",
+          "nextSafeAction",
+          "blockers",
+          "evidence"
+        ],
+        "properties": {
+          "pbi": {
+            "type": "string"
+          },
+          "currentStatus": {
+            "type": "string"
+          },
+          "repositoryArchitectureReady": {
+            "type": "boolean"
+          },
+          "currentAdminEvidence": {
+            "type": "string"
+          },
+          "requiredDecisionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "conditionalRequiredDecisionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "upstreamDomains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "classification": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "TECHNICALLY READY, HUMAN GO REQUIRED",
+                "HUMAN DECISION REQUIRED",
+                "VALUE APPROVAL REQUIRED",
+                "MIGRATION REQUIRED",
+                "RECONCILIATION REQUIRED",
+                "CURRENT ADMIN READ REQUIRED",
+                "LIVE/PREVIEW VALIDATION REQUIRED",
+                "RELEASE CERTIFICATION REQUIRED",
+                "DEPENDENCY BLOCKED",
+                "INTENTIONALLY DEFERRED"
+              ]
+            }
+          },
+          "valueApprovalReady": {
+            "type": "boolean"
+          },
+          "migrationReady": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "reconciliationReady": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "activationAuthorization": {
+            "enum": [
+              "not_granted",
+              "granted",
+              "not_applicable"
+            ]
+          },
+          "previewParity": {
+            "enum": [
+              "not_applicable",
+              "unverified",
+              "partial",
+              "verified"
+            ]
+          },
+          "releaseCertification": {
+            "enum": [
+              "not_applicable",
+              "deferred",
+              "blocked",
+              "complete"
+            ]
+          },
+          "humanGoRequired": {
+            "type": "boolean"
+          },
+          "technicallyReadyExceptHumanGo": {
+            "type": "boolean"
+          },
+          "nextSafeAction": {
+            "type": "string"
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "minItems": 13,
+      "maxItems": 13
+    },
+    "realGrants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "counts",
+        "consumerTotalBefore",
+        "consumerTotalCurrent",
+        "unexpectedGrants",
+        "scope"
+      ],
+      "properties": {
+        "counts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "domain",
+              "before",
+              "current",
+              "source"
+            ],
+            "properties": {
+              "domain": {
+                "type": "string"
+              },
+              "before": {
+                "type": "number"
+              },
+              "current": {
+                "type": "number"
+              },
+              "source": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "consumerTotalBefore": {
+          "type": "number"
+        },
+        "consumerTotalCurrent": {
+          "type": "number"
+        },
+        "unexpectedGrants": {
+          "type": "array",
+          "items": {}
+        },
+        "scope": {
+          "type": "string"
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eligibleLiveMediaGrants",
+        "candidates",
+        "missingMediaProductGids"
+      ],
+      "properties": {
+        "eligibleLiveMediaGrants": {
+          "type": "number"
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "productGid",
+              "mediaGid",
+              "asset",
+              "intendedUse",
+              "eligibility",
+              "rightsUseApproval",
+              "factualAltApproval",
+              "lifecycleApproval",
+              "applicableDecisionId",
+              "historicalIdentityMatched",
+              "embeddedClaimReview",
+              "blockers"
+            ],
+            "properties": {
+              "productGid": {
+                "type": "string"
+              },
+              "mediaGid": {
+                "type": "string"
+              },
+              "asset": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "mediaContentType",
+                  "status",
+                  "alt",
+                  "updatedAt",
+                  "image"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "mediaContentType": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "alt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "url",
+                      "width",
+                      "height",
+                      "altText"
+                    ],
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "width": {
+                        "type": "number"
+                      },
+                      "height": {
+                        "type": "number"
+                      },
+                      "altText": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "intendedUse": {
+                "type": "string"
+              },
+              "eligibility": {
+                "type": "string"
+              },
+              "rightsUseApproval": {
+                "type": "null"
+              },
+              "factualAltApproval": {
+                "type": "null"
+              },
+              "lifecycleApproval": {
+                "type": "null"
+              },
+              "applicableDecisionId": {
+                "type": "string"
+              },
+              "historicalIdentityMatched": {
+                "type": "boolean"
+              },
+              "embeddedClaimReview": {
+                "type": "string"
+              },
+              "blockers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "missingMediaProductGids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "specifications": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eligibleLiveSpecificationGrants",
+        "exactApprovedMigratedReconciledValues",
+        "requiredDecisionIds"
+      ],
+      "properties": {
+        "eligibleLiveSpecificationGrants": {
+          "type": "number"
+        },
+        "exactApprovedMigratedReconciledValues": {
+          "type": "array",
+          "items": {}
+        },
+        "requiredDecisionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "contents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eligibleLiveContentsGrants",
+        "statistics",
+        "decision",
+        "compatibilityEstablishesInclusion",
+        "recommendationsEstablishInclusion"
+      ],
+      "properties": {
+        "eligibleLiveContentsGrants": {
+          "type": "number"
+        },
+        "statistics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "candidateLines",
+            "approved",
+            "conflicting",
+            "recommendations"
+          ],
+          "properties": {
+            "candidateLines": {
+              "type": "number"
+            },
+            "approved": {
+              "type": "number"
+            },
+            "conflicting": {
+              "type": "number"
+            },
+            "recommendations": {
+              "type": "number"
+            }
+          }
+        },
+        "decision": {
+          "type": "string"
+        },
+        "compatibilityEstablishesInclusion": {
+          "type": "boolean"
+        },
+        "recommendationsEstablishInclusion": {
+          "type": "boolean"
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statistics",
+        "edges",
+        "approvedCurrentEdges",
+        "migratedReconciled",
+        "customerVisibleTargetEligibility",
+        "activationAuthorization"
+      ],
+      "properties": {
+        "statistics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dependentProducts",
+            "productsWithCandidates",
+            "productsWithoutCandidates",
+            "edges",
+            "byState"
+          ],
+          "properties": {
+            "dependentProducts": {
+              "type": "number"
+            },
+            "productsWithCandidates": {
+              "type": "number"
+            },
+            "productsWithoutCandidates": {
+              "type": "number"
+            },
+            "edges": {
+              "type": "number"
+            },
+            "byState": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "approved",
+                "proposed",
+                "conflicting",
+                "blocked",
+                "not_compatible",
+                "deprecated",
+                "superseded"
+              ],
+              "properties": {
+                "approved": {
+                  "type": "number"
+                },
+                "proposed": {
+                  "type": "number"
+                },
+                "conflicting": {
+                  "type": "number"
+                },
+                "blocked": {
+                  "type": "number"
+                },
+                "not_compatible": {
+                  "type": "number"
+                },
+                "deprecated": {
+                  "type": "number"
+                },
+                "superseded": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "edgeId",
+              "dependentProductGid",
+              "targetMachineProductGid",
+              "targetModel",
+              "scope",
+              "variantGid",
+              "state",
+              "evidence",
+              "confidence",
+              "decisionOwner",
+              "approvalDecisionId",
+              "conflictIds",
+              "blocker",
+              "supersededByEdgeId",
+              "reviewReadiness",
+              "targetAvailability"
+            ],
+            "properties": {
+              "edgeId": {
+                "type": "string"
+              },
+              "dependentProductGid": {
+                "type": "string"
+              },
+              "targetMachineProductGid": {
+                "type": "string"
+              },
+              "targetModel": {
+                "type": "string"
+              },
+              "scope": {
+                "type": "string"
+              },
+              "variantGid": {
+                "type": "null"
+              },
+              "state": {
+                "type": "string"
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "location",
+                    "revision",
+                    "excerpt",
+                    "legacyIdentifier",
+                    "identityDecisionId"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "revision": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "excerpt": {
+                      "type": "string"
+                    },
+                    "legacyIdentifier": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "identityDecisionId": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              "confidence": {
+                "type": "string"
+              },
+              "decisionOwner": {
+                "type": "string"
+              },
+              "approvalDecisionId": {
+                "type": "null"
+              },
+              "conflictIds": {
+                "type": "array",
+                "items": {}
+              },
+              "blocker": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "supersededByEdgeId": {
+                "type": "null"
+              },
+              "reviewReadiness": {
+                "type": "string"
+              },
+              "targetAvailability": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "status",
+                  "published",
+                  "customerEligible"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "published": {
+                    "type": "boolean"
+                  },
+                  "customerEligible": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "approvedCurrentEdges": {
+          "type": "array",
+          "items": {}
+        },
+        "migratedReconciled": {
+          "type": "boolean"
+        },
+        "customerVisibleTargetEligibility": {
+          "type": "string"
+        },
+        "activationAuthorization": {
+          "type": "string"
+        }
+      }
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "domain",
+          "decisionId",
+          "state",
+          "owner",
+          "approvedValue",
+          "migratedReconciled",
+          "nativeBehaviorIsBusinessApproval",
+          "evidence"
+        ],
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "decisionId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "approvedValue": {
+            "type": "null"
+          },
+          "migratedReconciled": {
+            "type": "boolean"
+          },
+          "nativeBehaviorIsBusinessApproval": {
+            "type": "boolean"
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "warranty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decisionId",
+        "state",
+        "issuer",
+        "administrator",
+        "repairProvider",
+        "manufacturer",
+        "policyRevision",
+        "coverage",
+        "productMappings",
+        "productExceptions",
+        "customerSafeDestination",
+        "vendorIsAuthority",
+        "historicalOneYear90DayWordingApproved"
+      ],
+      "properties": {
+        "decisionId": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "null"
+        },
+        "administrator": {
+          "type": "null"
+        },
+        "repairProvider": {
+          "type": "null"
+        },
+        "manufacturer": {
+          "type": "null"
+        },
+        "policyRevision": {
+          "type": "null"
+        },
+        "coverage": {
+          "type": "null"
+        },
+        "productMappings": {
+          "type": "array",
+          "items": {}
+        },
+        "productExceptions": {
+          "type": "array",
+          "items": {}
+        },
+        "customerSafeDestination": {
+          "type": "null"
+        },
+        "vendorIsAuthority": {
+          "type": "boolean"
+        },
+        "historicalOneYear90DayWordingApproved": {
+          "type": "boolean"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statistics",
+        "canonicalApproved",
+        "resourceIds",
+        "workingPageIsCanonicalFile",
+        "newestUploadOrFilenameIsAuthority",
+        "supportFilesCustomerAllowed",
+        "liveFilePageVerification",
+        "requiredDecisionIds"
+      ],
+      "properties": {
+        "statistics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "indexed",
+            "existingFileIdentities",
+            "contentAssociatedCandidates",
+            "canonicalApproved",
+            "duplicateGroups",
+            "hashDuplicateGroups"
+          ],
+          "properties": {
+            "indexed": {
+              "type": "number"
+            },
+            "existingFileIdentities": {
+              "type": "number"
+            },
+            "contentAssociatedCandidates": {
+              "type": "number"
+            },
+            "canonicalApproved": {
+              "type": "number"
+            },
+            "duplicateGroups": {
+              "type": "number"
+            },
+            "hashDuplicateGroups": {
+              "type": "number"
+            }
+          }
+        },
+        "canonicalApproved": {
+          "type": "number"
+        },
+        "resourceIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "workingPageIsCanonicalFile": {
+          "type": "boolean"
+        },
+        "newestUploadOrFilenameIsAuthority": {
+          "type": "boolean"
+        },
+        "supportFilesCustomerAllowed": {
+          "type": "boolean"
+        },
+        "liveFilePageVerification": {
+          "type": "string"
+        },
+        "requiredDecisionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pbi",
+        "decisionId",
+        "state",
+        "nativeTermsAreDecisionApproval",
+        "humanChoices",
+        "businessAdminDecisionPresent"
+      ],
+      "properties": {
+        "pbi": {
+          "type": "string"
+        },
+        "decisionId": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "nativeTermsAreDecisionApproval": {
+          "type": "boolean"
+        },
+        "humanChoices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "businessAdminDecisionPresent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "implementation",
+        "localRegression",
+        "shopifyParity",
+        "releaseCertification",
+        "coverage",
+        "remaining014B",
+        "currentShopifyMachineParity",
+        "requiredScenarios"
+      ],
+      "properties": {
+        "implementation": {
+          "type": "string"
+        },
+        "localRegression": {
+          "type": "string"
+        },
+        "shopifyParity": {
+          "type": "string"
+        },
+        "releaseCertification": {
+          "type": "string"
+        },
+        "coverage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "domain",
+              "widths",
+              "source",
+              "textEnlargement",
+              "actualChromiumZoom",
+              "keyboardFocus",
+              "axeSeriousCriticalFindings",
+              "scope"
+            ],
+            "properties": {
+              "domain": {
+                "type": "string"
+              },
+              "widths": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "source": {
+                "type": "string"
+              },
+              "textEnlargement": {
+                "type": "string"
+              },
+              "actualChromiumZoom": {
+                "type": "string"
+              },
+              "keyboardFocus": {
+                "type": "string"
+              },
+              "axeSeriousCriticalFindings": {
+                "type": "number"
+              },
+              "scope": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "remaining014B": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "currentShopifyMachineParity": {
+          "type": "string"
+        },
+        "requiredScenarios": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "harness",
+        "localRegression",
+        "releaseCertification",
+        "observations",
+        "budgetEvidence",
+        "source",
+        "releaseMedian",
+        "thresholdChanges",
+        "prerequisites"
+      ],
+      "properties": {
+        "harness": {
+          "type": "string"
+        },
+        "localRegression": {
+          "type": "string"
+        },
+        "releaseCertification": {
+          "type": "string"
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "batch",
+              "path",
+              "observedAt",
+              "exitCode",
+              "scope",
+              "budgets",
+              "thresholdChanges",
+              "states",
+              "requestedRuns",
+              "everyExpectedResultMatched"
+            ],
+            "properties": {
+              "batch": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "observedAt": {
+                "type": "string"
+              },
+              "exitCode": {
+                "type": "number"
+              },
+              "scope": {
+                "type": "string"
+              },
+              "budgets": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "mobile",
+                  "desktop"
+                ],
+                "properties": {
+                  "mobile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "lcpMs",
+                      "cls",
+                      "tbtMs",
+                      "initialTransferBytes",
+                      "imageBytes",
+                      "maxImageBytes",
+                      "firstScreenMediaBytes",
+                      "requestCount",
+                      "immediateVideoIframeCount",
+                      "autoplayMediaCount",
+                      "thirdPartyScriptHostCount",
+                      "synchronousThirdPartyScriptCount"
+                    ],
+                    "properties": {
+                      "lcpMs": {
+                        "type": "number"
+                      },
+                      "cls": {
+                        "type": "number"
+                      },
+                      "tbtMs": {
+                        "type": "number"
+                      },
+                      "initialTransferBytes": {
+                        "type": "number"
+                      },
+                      "imageBytes": {
+                        "type": "number"
+                      },
+                      "maxImageBytes": {
+                        "type": "number"
+                      },
+                      "firstScreenMediaBytes": {
+                        "type": "number"
+                      },
+                      "requestCount": {
+                        "type": "number"
+                      },
+                      "immediateVideoIframeCount": {
+                        "type": "number"
+                      },
+                      "autoplayMediaCount": {
+                        "type": "number"
+                      },
+                      "thirdPartyScriptHostCount": {
+                        "type": "number"
+                      },
+                      "synchronousThirdPartyScriptCount": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "desktop": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "lcpMs",
+                      "cls",
+                      "tbtMs",
+                      "initialTransferBytes",
+                      "imageBytes",
+                      "maxImageBytes",
+                      "firstScreenMediaBytes",
+                      "requestCount",
+                      "immediateVideoIframeCount",
+                      "autoplayMediaCount",
+                      "thirdPartyScriptHostCount",
+                      "synchronousThirdPartyScriptCount"
+                    ],
+                    "properties": {
+                      "lcpMs": {
+                        "type": "number"
+                      },
+                      "cls": {
+                        "type": "number"
+                      },
+                      "tbtMs": {
+                        "type": "number"
+                      },
+                      "initialTransferBytes": {
+                        "type": "number"
+                      },
+                      "imageBytes": {
+                        "type": "number"
+                      },
+                      "maxImageBytes": {
+                        "type": "number"
+                      },
+                      "firstScreenMediaBytes": {
+                        "type": "number"
+                      },
+                      "requestCount": {
+                        "type": "number"
+                      },
+                      "immediateVideoIframeCount": {
+                        "type": "number"
+                      },
+                      "autoplayMediaCount": {
+                        "type": "number"
+                      },
+                      "thirdPartyScriptHostCount": {
+                        "type": "number"
+                      },
+                      "synchronousThirdPartyScriptCount": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              },
+              "thresholdChanges": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "boolean"
+                  }
+                ]
+              },
+              "states": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "requestedRuns": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "everyExpectedResultMatched": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "budgetEvidence": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "releaseMedian": {
+          "type": "null"
+        },
+        "thresholdChanges": {
+          "type": "boolean"
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contractImplementation",
+        "instrumentation",
+        "active",
+        "emittedEvents",
+        "nativeOwnerSlots",
+        "assignedNativeOwners",
+        "ownerConsentTooling",
+        "source",
+        "instrumentationReady",
+        "owner",
+        "consent",
+        "collector",
+        "deduplicationIdentity",
+        "authorities"
+      ],
+      "properties": {
+        "contractImplementation": {
+          "type": "string"
+        },
+        "instrumentation": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "emittedEvents": {
+          "type": "number"
+        },
+        "nativeOwnerSlots": {
+          "type": "number"
+        },
+        "assignedNativeOwners": {
+          "type": "number"
+        },
+        "ownerConsentTooling": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "instrumentationReady": {
+          "type": "boolean"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "consent": {
+          "type": "string"
+        },
+        "collector": {
+          "type": "string"
+        },
+        "deduplicationIdentity": {
+          "type": "string"
+        },
+        "authorities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rollout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "planImplementation",
+        "execution",
+        "planHash",
+        "planFileSha256",
+        "intendedSuffix",
+        "assessedCount",
+        "conditionalFutureCandidateGids",
+        "exclusions",
+        "eligibleCurrentTargetGids",
+        "executableTargetGids",
+        "GO",
+        "beforeRead",
+        "writeAllowlist",
+        "rollback",
+        "productionThemePublicationAuthorized",
+        "mutations",
+        "currentExactIdentityReadSucceeded",
+        "completeExecutionBeforeRead",
+        "currentTemplateDriftCount",
+        "deployedThemes",
+        "templatePresentThemeCount"
+      ],
+      "properties": {
+        "planImplementation": {
+          "type": "string"
+        },
+        "execution": {
+          "type": "string"
+        },
+        "planHash": {
+          "type": "string"
+        },
+        "planFileSha256": {
+          "type": "string"
+        },
+        "intendedSuffix": {
+          "type": "string"
+        },
+        "assessedCount": {
+          "type": "number"
+        },
+        "conditionalFutureCandidateGids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "productGid",
+              "reason"
+            ],
+            "properties": {
+              "productGid": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "eligibleCurrentTargetGids": {
+          "type": "array",
+          "items": {}
+        },
+        "executableTargetGids": {
+          "type": "array",
+          "items": {}
+        },
+        "GO": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "role",
+              "granted"
+            ],
+            "properties": {
+              "role": {
+                "type": "string"
+              },
+              "granted": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "beforeRead": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "maxAgeSeconds",
+            "timing",
+            "requiredFields",
+            "historicalEvidenceAuthorizesExecution"
+          ],
+          "properties": {
+            "maxAgeSeconds": {
+              "type": "number"
+            },
+            "timing": {
+              "type": "string"
+            },
+            "requiredFields": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "historicalEvidenceAuthorizesExecution": {
+              "type": "boolean"
+            }
+          }
+        },
+        "writeAllowlist": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rollback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "planning",
+            "values",
+            "executionReadiness"
+          ],
+          "properties": {
+            "planning": {
+              "type": "string"
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "productGid",
+                  "field",
+                  "expectedAssignedValue",
+                  "restore"
+                ],
+                "properties": {
+                  "productGid": {
+                    "type": "string"
+                  },
+                  "field": {
+                    "type": "string"
+                  },
+                  "expectedAssignedValue": {
+                    "type": "string"
+                  },
+                  "restore": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            "executionReadiness": {
+              "type": "string"
+            }
+          }
+        },
+        "productionThemePublicationAuthorized": {
+          "type": "boolean"
+        },
+        "mutations": {
+          "type": "number"
+        },
+        "currentExactIdentityReadSucceeded": {
+          "type": "boolean"
+        },
+        "completeExecutionBeforeRead": {
+          "type": "boolean"
+        },
+        "currentTemplateDriftCount": {
+          "type": "number"
+        },
+        "deployedThemes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name",
+              "role",
+              "updatedAt",
+              "files"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
+              "files": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "nodes",
+                  "pageInfo"
+                ],
+                "properties": {
+                  "nodes": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "pageInfo": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "hasNextPage",
+                      "endCursor"
+                    ],
+                    "properties": {
+                      "hasNextPage": {
+                        "type": "boolean"
+                      },
+                      "endCursor": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "templatePresentThemeCount": {
+          "type": "number"
+        }
+      }
+    },
+    "containment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claims",
+        "jsonLd",
+        "currentDeployedCustomerContainment"
+      ],
+      "properties": {
+        "claims": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "repositoryContainment",
+            "liveContainment",
+            "source",
+            "surfaces",
+            "blockedDomains",
+            "renderedCoverage",
+            "limitation"
+          ],
+          "properties": {
+            "repositoryContainment": {
+              "type": "string"
+            },
+            "liveContainment": {
+              "type": "string"
+            },
+            "source": {
+              "type": "string"
+            },
+            "surfaces": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "blockedDomains": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "renderedCoverage": {
+              "type": "string"
+            },
+            "limitation": {
+              "type": "string"
+            }
+          }
+        },
+        "jsonLd": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "repositoryContainment",
+            "baseNativeProductIdentityAndOffers",
+            "governedTechnicalRelationshipSupportFacts",
+            "governedDescriptionAndMediaFallback",
+            "source",
+            "liveParity"
+          ],
+          "properties": {
+            "repositoryContainment": {
+              "type": "string"
+            },
+            "baseNativeProductIdentityAndOffers": {
+              "type": "string"
+            },
+            "governedTechnicalRelationshipSupportFacts": {
+              "type": "string"
+            },
+            "governedDescriptionAndMediaFallback": {
+              "type": "string"
+            },
+            "source": {
+              "type": "string"
+            },
+            "liveParity": {
+              "type": "string"
+            }
+          }
+        },
+        "currentDeployedCustomerContainment": {
+          "type": "string"
+        }
+      }
+    },
+    "unresolvedDecisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "decisionId",
+          "sourceDecisionIds",
+          "currentState",
+          "sourceState",
+          "ownerRoles",
+          "question",
+          "domains",
+          "evidenceArtifact",
+          "unblocksPlans"
+        ],
+        "properties": {
+          "decisionId": {
+            "type": "string"
+          },
+          "sourceDecisionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "currentState": {
+            "type": "string"
+          },
+          "sourceState": {
+            "type": "string"
+          },
+          "ownerRoles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "question": {
+            "type": "string"
+          },
+          "domains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidenceArtifact": {
+            "type": "string"
+          },
+          "unblocksPlans": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "historicalDiagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ownership",
+        "productCsv",
+        "descriptionClaims",
+        "manuals",
+        "scope"
+      ],
+      "properties": {
+        "ownership": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sourceCommand",
+            "exitCode",
+            "findingCount",
+            "sha256",
+            "findings",
+            "scope"
+          ],
+          "properties": {
+            "sourceCommand": {
+              "type": "string"
+            },
+            "exitCode": {
+              "type": "number"
+            },
+            "findingCount": {
+              "type": "number"
+            },
+            "sha256": {
+              "type": "string"
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "scope": {
+              "type": "string"
+            }
+          }
+        },
+        "productCsv": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sourceCommand",
+            "exitCode",
+            "findingCount",
+            "sha256",
+            "findings",
+            "scope"
+          ],
+          "properties": {
+            "sourceCommand": {
+              "type": "string"
+            },
+            "exitCode": {
+              "type": "number"
+            },
+            "findingCount": {
+              "type": "number"
+            },
+            "sha256": {
+              "type": "string"
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "scope": {
+              "type": "string"
+            }
+          }
+        },
+        "descriptionClaims": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "count",
+            "status"
+          ],
+          "properties": {
+            "count": {
+              "type": "number"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "manuals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unchanged",
+            "source",
+            "routes",
+            "liveRecheck"
+          ],
+          "properties": {
+            "unchanged": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "routes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "liveRecheck": {
+              "type": "boolean"
+            }
+          }
+        },
+        "scope": {
+          "type": "string"
+        }
+      }
+    },
+    "shellOnly": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "technicallyConceivable",
+        "authorized",
+        "factualGrantsRequired",
+        "requirements",
+        "smallestSafeNextAction"
+      ],
+      "properties": {
+        "technicallyConceivable": {
+          "type": "boolean"
+        },
+        "authorized": {
+          "type": "boolean"
+        },
+        "factualGrantsRequired": {
+          "type": "boolean"
+        },
+        "requirements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "smallestSafeNextAction": {
+          "type": "string"
+        }
+      }
+    },
+    "dependencyOrder": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "independentLanes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "shopifyAdminMutation",
+        "productTemplateAssignment",
+        "productDataMutation",
+        "filePagePolicyMediaAltMutation",
+        "analyticsPixelConsentChange",
+        "shippingLocationChange",
+        "previewThemePush",
+        "productionThemePush",
+        "productionPublication",
+        "executed017B",
+        "executed018B",
+        "activatedBScope",
+        "runtimeThemeDelta",
+        "thresholdChanges"
+      ],
+      "properties": {
+        "shopifyAdminMutation": {
+          "type": "boolean"
+        },
+        "productTemplateAssignment": {
+          "type": "boolean"
+        },
+        "productDataMutation": {
+          "type": "boolean"
+        },
+        "filePagePolicyMediaAltMutation": {
+          "type": "boolean"
+        },
+        "analyticsPixelConsentChange": {
+          "type": "boolean"
+        },
+        "shippingLocationChange": {
+          "type": "boolean"
+        },
+        "previewThemePush": {
+          "type": "boolean"
+        },
+        "productionThemePush": {
+          "type": "boolean"
+        },
+        "productionPublication": {
+          "type": "boolean"
+        },
+        "executed017B": {
+          "type": "boolean"
+        },
+        "executed018B": {
+          "type": "boolean"
+        },
+        "activatedBScope": {
+          "type": "boolean"
+        },
+        "runtimeThemeDelta": {
+          "type": "boolean"
+        },
+        "thresholdChanges": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

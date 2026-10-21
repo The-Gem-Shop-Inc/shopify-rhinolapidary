@@ -1,0 +1,70 @@
+{
+  "scope": "development attempts, not final acceptance",
+  "commands": [
+    {
+      "command": "npx playwright test --config=playwright.machine-gallery.config.js -g \"390px multiple|native thumbnails|video provider\"",
+      "exitCode": 0,
+      "phase": "targeted gallery verification"
+    },
+    {
+      "command": "npx playwright test --config=playwright.machine-gallery.config.js",
+      "exitCode": 0,
+      "phase": "initial full gallery run; 32 passed"
+    },
+    {
+      "command": "node scripts/run-epic-f-machine-performance.js --smoke",
+      "exitCode": 0,
+      "phase": "corrected smoke; initial run exposed nonexistent fixture cart-performance.js request; removed because native global.js already supplies CartPerformance"
+    },
+    {
+      "command": "node scripts/run-epic-f-machine-performance.js",
+      "exitCode": 0,
+      "phase": "initial 18-case local performance run"
+    },
+    {
+      "command": "node scripts/validate-epic-f-machine.js",
+      "exitCode": 0,
+      "phase": "F2 static regression"
+    },
+    {
+      "command": "node scripts/validate-epic-f-gallery.js",
+      "exitCode": 0,
+      "phase": "initial gallery architecture gate"
+    },
+    {
+      "command": "node scripts/test-epic-f-media.js",
+      "exitCode": 1,
+      "phase": "initial negative tests; corrected SawMaster 36 title lookup to exact registered handle"
+    },
+    {
+      "command": "node scripts/test-epic-f-media.js",
+      "exitCode": 0,
+      "phase": "corrected 38 contract cases"
+    },
+    {
+      "command": "node scripts/test-epic-f-performance.js",
+      "exitCode": 0,
+      "phase": "34 performance contract cases"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f2",
+      "exitCode": 1,
+      "phase": "initial integration: seven missing translation keys introduced in gallery; restored native keys; no validator weakened"
+    },
+    {
+      "command": "npm run validate:epic-f-batch-f3",
+      "exitCode": 1,
+      "phase": "initial aggregate: all functional tests and Theme Check passed, git diff --check exit 2 for two added documentation trailing spaces; fixed"
+    },
+    {
+      "command": "node C:/Users/dajem/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-liquid/scripts/search_docs.mjs \"product media image_tag loading external_video_url autoplay\" --model gpt-6 --client-name codex --client-version 1",
+      "exitCode": 0,
+      "phase": "official Liquid documentation lookup; OPT_OUT_INSTRUMENTATION=true"
+    },
+    {
+      "command": "$galleryCode = Get-Content snippets/product-media-gallery.liquid -Raw; node C:/Users/dajem/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-liquid/scripts/validate.mjs --code $galleryCode --model gpt-6 --client-name codex --client-version 1 --artifact-id epic-f-f3-native-gallery --revision 1",
+      "exitCode": 1,
+      "phase": "optional skill wrapper unavailable: missing @shopify/theme-check-common; repository Shopify CLI Theme Check is the successful required validation"
+    }
+  ]
+}

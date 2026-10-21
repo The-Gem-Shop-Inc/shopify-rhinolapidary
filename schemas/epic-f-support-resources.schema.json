@@ -1,0 +1,715 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-f-support-resources.schema.json",
+  "title": "Epic F support and resources fixture packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "machineProductGid",
+    "warranty",
+    "resources"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "machineProductGid": {
+      "$ref": "#/$defs/productGid"
+    },
+    "warranty": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "$ref": "#/$defs/warrantyRecord"
+      }
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "$ref": "#/$defs/resourceRecord"
+      }
+    }
+  },
+  "$defs": {
+    "productGid": {
+      "type": "string",
+      "pattern": "^gid://shopify/Product/[0-9]+$"
+    },
+    "fixtureId": {
+      "type": "string",
+      "pattern": "^fixture:[A-Za-z0-9._:-]+$"
+    },
+    "safeText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "fixtureAuthority": {
+      "type": "object",
+      "required": [
+        "approvalDecisionId",
+        "state",
+        "audience",
+        "lifecycle",
+        "activation",
+        "sourceIds",
+        "effectiveAt",
+        "expiresAt",
+        "conflictIds"
+      ],
+      "properties": {
+        "approvalDecisionId": {
+          "$ref": "#/$defs/fixtureId"
+        },
+        "state": {
+          "const": "approved"
+        },
+        "audience": {
+          "const": "customer"
+        },
+        "lifecycle": {
+          "const": "current"
+        },
+        "activation": {
+          "const": "fixture-only"
+        },
+        "sourceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/fixtureId"
+          }
+        },
+        "effectiveAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expiresAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "conflictIds": {
+          "type": "array",
+          "maxItems": 0
+        }
+      }
+    },
+    "roleEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "entity",
+        "sourceIds"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "marketedBrand",
+            "manufacturer",
+            "warrantyIssuer",
+            "warrantyAdministrator",
+            "repairProvider"
+          ]
+        },
+        "entity": {
+          "$ref": "#/$defs/safeText"
+        },
+        "sourceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/fixtureId"
+          }
+        }
+      }
+    },
+    "warrantyDestination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requestedRoute",
+        "resolvedRoute",
+        "status",
+        "identity",
+        "environment",
+        "purpose",
+        "observedAt",
+        "expiresAt"
+      ],
+      "properties": {
+        "requestedRoute": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolvedRoute": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 599
+        },
+        "identity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "environment": {
+          "const": "local-fixture"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observedAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expiresAt": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "warrantyRecord": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fixtureAuthority"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId",
+            "productGid",
+            "marketedBrand",
+            "manufacturer",
+            "policy",
+            "class",
+            "mapping",
+            "destination",
+            "approvalDecisionId",
+            "state",
+            "audience",
+            "lifecycle",
+            "activation",
+            "sourceIds",
+            "effectiveAt",
+            "expiresAt",
+            "conflictIds"
+          ],
+          "properties": {
+            "recordId": {
+              "$ref": "#/$defs/fixtureId"
+            },
+            "productGid": {
+              "$ref": "#/$defs/productGid"
+            },
+            "marketedBrand": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/safeText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "manufacturer": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/safeText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "policy": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "policyId",
+                "revision",
+                "effectiveFrom",
+                "effectiveTo",
+                "lifecycle",
+                "sourceIds",
+                "sourceSha256",
+                "resourceId",
+                "nativePolicyGid",
+                "issuer",
+                "administrator",
+                "repairProvider",
+                "roleEvidence",
+                "approvalDecisionId"
+              ],
+              "properties": {
+                "policyId": {
+                  "$ref": "#/$defs/fixtureId"
+                },
+                "revision": {
+                  "$ref": "#/$defs/safeText"
+                },
+                "effectiveFrom": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "effectiveTo": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "lifecycle": {
+                  "const": "current"
+                },
+                "sourceIds": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "$ref": "#/$defs/fixtureId"
+                  }
+                },
+                "sourceSha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "resourceId": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/fixtureId"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "nativePolicyGid": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^gid://shopify/ShopPolicy/[0-9]+$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "issuer": {
+                  "$ref": "#/$defs/safeText"
+                },
+                "administrator": {
+                  "$ref": "#/$defs/safeText"
+                },
+                "repairProvider": {
+                  "$ref": "#/$defs/safeText"
+                },
+                "roleEvidence": {
+                  "type": "array",
+                  "minItems": 3,
+                  "maxItems": 5,
+                  "items": {
+                    "$ref": "#/$defs/roleEvidence"
+                  }
+                },
+                "approvalDecisionId": {
+                  "$ref": "#/$defs/fixtureId"
+                }
+              }
+            },
+            "class": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "classId",
+                "policyId",
+                "policyRevision",
+                "durationValue",
+                "durationUnit",
+                "trigger",
+                "exclusions",
+                "approvalDecisionId"
+              ],
+              "properties": {
+                "classId": {
+                  "$ref": "#/$defs/fixtureId"
+                },
+                "policyId": {
+                  "$ref": "#/$defs/fixtureId"
+                },
+                "policyRevision": {
+                  "$ref": "#/$defs/safeText"
+                },
+                "durationValue": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "durationUnit": {
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "days",
+                        "months",
+                        "years"
+                      ]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "trigger": {
+                  "$ref": "#/$defs/safeText"
+                },
+                "exclusions": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "$ref": "#/$defs/safeText"
+                  }
+                },
+                "approvalDecisionId": {
+                  "$ref": "#/$defs/fixtureId"
+                }
+              }
+            },
+            "mapping": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "productGid",
+                "classId",
+                "exceptions",
+                "approvalDecisionId"
+              ],
+              "properties": {
+                "productGid": {
+                  "$ref": "#/$defs/productGid"
+                },
+                "classId": {
+                  "$ref": "#/$defs/fixtureId"
+                },
+                "exceptions": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "$ref": "#/$defs/safeText"
+                  }
+                },
+                "approvalDecisionId": {
+                  "$ref": "#/$defs/fixtureId"
+                }
+              }
+            },
+            "destination": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/warrantyDestination"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "approvalDecisionId": {},
+            "state": {},
+            "audience": {},
+            "lifecycle": {},
+            "activation": {},
+            "sourceIds": {},
+            "effectiveAt": {},
+            "expiresAt": {},
+            "conflictIds": {}
+          }
+        }
+      ]
+    },
+    "resourceDestination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requestedRoute",
+        "resolvedRoute",
+        "status",
+        "identity",
+        "environment",
+        "observedAt",
+        "expiresAt",
+        "fileIdentity"
+      ],
+      "properties": {
+        "requestedRoute": {
+          "type": "string",
+          "pattern": "^/[^?#]*$"
+        },
+        "resolvedRoute": {
+          "type": "string",
+          "pattern": "^/[^?#]*$"
+        },
+        "status": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 599
+        },
+        "identity": {
+          "$ref": "#/$defs/fixtureId"
+        },
+        "environment": {
+          "const": "local-fixture"
+        },
+        "observedAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expiresAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fileIdentity": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "videoState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "productSurfaceApproved",
+        "autoplay",
+        "eagerProvider",
+        "posterIdentity",
+        "posterApproved",
+        "captionsReviewed",
+        "width",
+        "height",
+        "embedUrl",
+        "transcriptReviewed"
+      ],
+      "properties": {
+        "productSurfaceApproved": {
+          "type": "boolean"
+        },
+        "autoplay": {
+          "type": "boolean"
+        },
+        "eagerProvider": {
+          "type": "boolean"
+        },
+        "posterIdentity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/fixtureId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "posterApproved": {
+          "type": "boolean"
+        },
+        "captionsReviewed": {
+          "type": "boolean"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "transcriptReviewed": {
+          "type": "boolean"
+        },
+        "embedUrl": {
+          "type": "string",
+          "pattern": "^http://video\\.fixture\\.invalid/embed/[A-Za-z0-9-]+\\?autoplay=0$"
+        }
+      }
+    },
+    "resourceRecord": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fixtureAuthority"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId",
+            "productGid",
+            "resourceId",
+            "fileIdentity",
+            "resourceType",
+            "status",
+            "visibility",
+            "canonical",
+            "ownerApproved",
+            "rightsApproved",
+            "publicationApproved",
+            "language",
+            "version",
+            "applicableProductGids",
+            "title",
+            "destination",
+            "video",
+            "approvalDecisionId",
+            "state",
+            "audience",
+            "lifecycle",
+            "activation",
+            "sourceIds",
+            "effectiveAt",
+            "expiresAt",
+            "conflictIds",
+            "languageReviewed",
+            "versionReviewed",
+            "configurationId",
+            "canonicalIdentity",
+            "sourceRole"
+          ],
+          "properties": {
+            "recordId": {
+              "$ref": "#/$defs/fixtureId"
+            },
+            "productGid": {
+              "$ref": "#/$defs/productGid"
+            },
+            "resourceId": {
+              "$ref": "#/$defs/fixtureId"
+            },
+            "fileIdentity": {
+              "type": "string",
+              "pattern": "^fixture:file:[A-Za-z0-9._:-]+$"
+            },
+            "resourceType": {
+              "enum": [
+                "manual",
+                "diagram",
+                "instruction",
+                "video",
+                "support"
+              ]
+            },
+            "status": {
+              "enum": [
+                "candidate",
+                "current",
+                "obsolete",
+                "superseded"
+              ]
+            },
+            "visibility": {
+              "enum": [
+                "customer",
+                "support_only",
+                "internal"
+              ]
+            },
+            "canonical": {
+              "type": "boolean"
+            },
+            "ownerApproved": {
+              "type": "boolean"
+            },
+            "rightsApproved": {
+              "type": "boolean"
+            },
+            "publicationApproved": {
+              "type": "boolean"
+            },
+            "language": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 35
+            },
+            "version": {
+              "$ref": "#/$defs/safeText"
+            },
+            "applicableProductGids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/productGid"
+              }
+            },
+            "title": {
+              "$ref": "#/$defs/safeText"
+            },
+            "destination": {
+              "$ref": "#/$defs/resourceDestination"
+            },
+            "video": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/videoState"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "approvalDecisionId": {},
+            "state": {},
+            "audience": {},
+            "lifecycle": {},
+            "activation": {},
+            "sourceIds": {},
+            "effectiveAt": {},
+            "expiresAt": {},
+            "conflictIds": {},
+            "languageReviewed": {
+              "type": "boolean"
+            },
+            "versionReviewed": {
+              "type": "boolean"
+            },
+            "configurationId": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/fixtureId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "canonicalIdentity": {
+              "$ref": "#/$defs/fixtureId"
+            },
+            "sourceRole": {
+              "enum": [
+                "customer_resource",
+                "evidence_only"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

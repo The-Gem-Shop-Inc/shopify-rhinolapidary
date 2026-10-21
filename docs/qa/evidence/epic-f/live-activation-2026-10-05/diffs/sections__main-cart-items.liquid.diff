@@ -1,0 +1,24 @@
+diff --git a/test-results/epic-f-live-activation/remote/sections/main-cart-items.liquid b/sections/main-cart-items.liquid
+index c2f7c5e..afe0ce1 100644
+--- a/test-results/epic-f-live-activation/remote/sections/main-cart-items.liquid
++++ b/sections/main-cart-items.liquid
+@@ -82,6 +82,10 @@
+ 
+               <tbody>
+                 {%- for item in cart.items -%}
++{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: item.product -%}{%- endcapture -%}
++{%- assign rhino_legacy_content = false -%}
++{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}{%- assign rhino_legacy_content = true -%}{%- endif -%}
++
+                   <tr
+                     class="cart-item {% if item.parent_relationship.parent != null %}cart-item__nested-line{% endif %}"
+                     id="CartItem-{{ item.index | plus: 1 }}"
+@@ -90,7 +94,7 @@
+                     {% endif %}
+                   >
+                     <td class="cart-item__media">
+-                      {% if item.image %}
++                      {% if rhino_legacy_content and item.image %}
+                         {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
+                         <a href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
+                         <div class="cart-item__image-container gradient {% if item.parent_relationship.parent == null %}global-media-settings{% endif %}">

@@ -1,0 +1,122 @@
+{
+  "assessedAt": "2026-10-07T15:29:33.879Z",
+  "passed": 22,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "exact downstream decimal conversion",
+      "passed": true
+    },
+    {
+      "name": "exact upstream decimal conversion",
+      "passed": true
+    },
+    {
+      "name": "effective request latency 562.5; not reference RTT",
+      "passed": true
+    },
+    {
+      "name": "downstream supplied 184320 bytes/sec",
+      "passed": true
+    },
+    {
+      "name": "upstream supplied 84375 bytes/sec",
+      "passed": true
+    },
+    {
+      "name": "CPU command rate 4",
+      "passed": true
+    },
+    {
+      "name": "online zero loss global rule",
+      "passed": true
+    },
+    {
+      "name": "navigator same effective settings",
+      "passed": true
+    },
+    {
+      "name": "unsupported protocol fails closed",
+      "passed": true
+    },
+    {
+      "name": "no acknowledged rule cannot fall back",
+      "passed": true
+    },
+    {
+      "name": "profile drift rejected",
+      "passed": true
+    },
+    {
+      "name": "valid independent cold",
+      "passed": true
+    },
+    {
+      "name": "valid same-route warm",
+      "passed": true
+    },
+    {
+      "name": "reject no warm prime",
+      "passed": true
+    },
+    {
+      "name": "reject different prime route",
+      "passed": true
+    },
+    {
+      "name": "reject clear after prime",
+      "passed": true
+    },
+    {
+      "name": "reject missing cache state",
+      "passed": true
+    },
+    {
+      "name": "reject CDN cache alone cannot make warm",
+      "passed": true
+    },
+    {
+      "name": "reject warm cache disabled",
+      "passed": true
+    },
+    {
+      "name": "reject previously navigated cold",
+      "passed": true
+    },
+    {
+      "name": "reject reused context",
+      "passed": true
+    },
+    {
+      "name": "actual Chromium rule, latency, and retained HTTP warm cache",
+      "passed": true
+    }
+  ],
+  "actualChromiumSelfTest": {
+    "browser": "149.0.7827.55",
+    "applied": {
+      "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+      "appliedAt": "2026-10-07T15:29:32.001Z",
+      "network": {
+        "offline": false,
+        "latency": 562.5,
+        "downloadThroughput": 184320,
+        "uploadThroughput": 84375
+      },
+      "cpu": {
+        "rate": 4
+      },
+      "packetLoss": 0,
+      "ruleId": "6F32A8181FC989C8D84F685E1D0AC24A",
+      "acknowledged": true,
+      "verificationMethod": "Exact CDP command acknowledgements plus per-request appliedNetworkConditionsId; local actual-network self-test. CDP exposes no numerical CPU getter."
+    },
+    "coldElapsedMs": 1222,
+    "ruleIdObserved": true,
+    "assetRequestsCold": 1,
+    "assetRequestsAfterWarm": 1,
+    "cacheEvents": 1,
+    "PlaywrightRoutingUsed": false
+  },
+  "ShopifyPerformanceSamples": 0
+}

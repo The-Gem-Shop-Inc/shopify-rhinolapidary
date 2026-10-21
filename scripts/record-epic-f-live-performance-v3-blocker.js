@@ -1,0 +1,14 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const G=require('./lib/epic-f-live-performance-campaign-v3');
+const o=G.read(G.DIR+'/attempt-001-beadmaster-mobile-cold.json'),rows=o.sample.resources;
+const missing=rows.filter(r=>r.bytes===null),unresolved=rows.filter(r=>r.terminalState==='UNRESOLVED');
+assert.equal(missing.length,6);assert.equal(unresolved.length,0);
+assert.equal(o.networkLifecycle.duplicateKeys,0);assert.equal(o.networkLifecycle.ambiguity.length,0);
+assert.ok(missing.every(r=>r.terminalEvent==='Network.loadingFailed'&&r.failure==='net::ERR_ABORTED'&&r.blockedReason===null));
+const preloads=rows.filter(r=>new URL(r.url).pathname==='/checkouts/internal/preloads.js');
+assert.equal(preloads.length,2);assert.ok(preloads.every(r=>r.terminalEvent==='Network.loadingFinished'&&Number.isFinite(r.bytes)&&r.decision.classification==='PASSIVE_RESOURCE'));
+const output={recordedAt:new Date().toISOString(),methodIdentity:o.methodIdentity,evidence:G.DIR+'/attempt-001-beadmaster-mobile-cold.json',decision:'BLOCKED_MEASUREMENT_INTEGRITY',performanceDecision:'INVALID_NOT_GRADED',admittedRequests:rows.length,duplicateAuthoritativeRows:0,ambiguousAuthoritativeRows:0,requiredPlaywrightTimingMatches:0,prohibitedObservations:o.safety,unresolvedCount:unresolved.length,failedWithoutAuthoritativeBytes:missing.length,harnessInspectorBlocks:rows.filter(r=>r.blockedReason==='inspector').length,wholePageTransferBytes:o.wholePage.transferBytes,window:o.networkLifecycle.window,knownTerminalFailures:missing,passivePreloads:preloads.map(r=>({url:r.url,method:r.method,resourceType:r.resourceType,status:r.status,requestId:r.id,bytes:r.bytes,terminalEvent:r.terminalEvent,classification:r.decision.classification})),otherHTTPFailuresWithMeasuredBytes:rows.filter(r=>r.status>=400&&r.bytes!==null).map(r=>({url:r.url,status:r.status,requestId:r.id,bytes:r.bytes,terminalEvent:r.terminalEvent})),observedBeforeMeasuredContextDisposal:true,abortCause:'Not established by the retained CDP evidence; no inference from timing or HTTP status',rawMetricsExcludedFromCertification:true,retries:0,warmAttempts:0,canaryContinuation:false,optimizationPacket:false};
+assert.ok(!fs.existsSync(G.DIR+'/invalid-lifecycle-diagnosis.json'),'Already recorded');
+G.write('invalid-lifecycle-diagnosis.json',output);
+console.log(JSON.stringify({failedWithoutBytes:missing.length,unresolved:unresolved.length,preloads:preloads.length,duplicates:0,ambiguity:0}));

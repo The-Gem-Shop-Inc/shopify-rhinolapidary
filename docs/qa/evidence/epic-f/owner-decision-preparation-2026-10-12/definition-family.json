@@ -1,0 +1,35 @@
+{
+  "observedAt": "2026-10-12 19:44:05 UTC",
+  "query": "query OwnerReviewFamilyDefinition { metaobjectDefinitionByType(type:\"machine_family\") { id type name access { admin storefront } fieldDefinitions { key name required type { name } } } }",
+  "response": {
+    "data": {
+      "metaobjectDefinitionByType": {
+        "id": "gid://shopify/MetaobjectDefinition/25406406853",
+        "type": "machine_family",
+        "name": "Machine family",
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ"
+        },
+        "fieldDefinitions": [
+          {
+            "key": "name",
+            "name": "Name",
+            "required": true,
+            "type": {
+              "name": "single_line_text_field"
+            }
+          },
+          {
+            "key": "description",
+            "name": "Description",
+            "required": false,
+            "type": {
+              "name": "multi_line_text_field"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

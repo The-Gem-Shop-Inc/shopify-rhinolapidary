@@ -1,0 +1,112 @@
+{
+  "historicalCampaign": "docs/qa/evidence/epic-f/015b-live-2026-10-07-restart-3/campaign.json",
+  "sha256": "d801424e34263128e286d34cb15042416eee54bd7c4b4af99b1ecde50ed10ee3",
+  "historicalBinding": {
+    "passed": true,
+    "checkedAt": "2026-10-07T15:30:56.745Z",
+    "themeIdentity": {
+      "id": "158579622085",
+      "name": "shopify-rhinolapidary/main",
+      "role": "MAIN"
+    },
+    "boundRuntimeFiles": 29,
+    "sourceBindingIdentity": "GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06",
+    "sourceBindingSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+    "headerSha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339",
+    "catalogCount": 122,
+    "distribution": {
+      "consumable": 39,
+      "accessory": 18,
+      "replacement_part": 54,
+      "machine": 11
+    },
+    "machineAssignments": 8,
+    "exclusions": 3,
+    "factualGrants": 0,
+    "beforeReadCompletedAt": "2026-10-07T15:30:40.774Z"
+  },
+  "acceptedIntoV2": 0,
+  "immutableHistoricalEvidence": true,
+  "scope": "Prior complete valid BeadMaster mobile-cold triplet remains diagnostic evidence; not pooled with invalid V2 attempts",
+  "samples": [
+    {
+      "sample": 1,
+      "LCP": 2548,
+      "CLS": 0.11253148652659069,
+      "TBT": 2106,
+      "wholePage": {
+        "requestCount": 133,
+        "transferBytes": 645132,
+        "failedAttempts": 9,
+        "incomplete": [],
+        "violations": [
+          "whole-page requestCount: budget 120 exceeded (133)"
+        ]
+      }
+    },
+    {
+      "sample": 2,
+      "LCP": 2540,
+      "CLS": 0.05610997803893637,
+      "TBT": 1943,
+      "wholePage": {
+        "requestCount": 126,
+        "transferBytes": 641618,
+        "failedAttempts": 7,
+        "incomplete": [],
+        "violations": [
+          "whole-page requestCount: budget 120 exceeded (126)"
+        ]
+      }
+    },
+    {
+      "sample": 3,
+      "LCP": 2492,
+      "CLS": 0.05610997803893637,
+      "TBT": 1878,
+      "wholePage": {
+        "requestCount": 130,
+        "transferBytes": 638055,
+        "failedAttempts": 7,
+        "incomplete": [],
+        "violations": [
+          "whole-page requestCount: budget 120 exceeded (130)"
+        ]
+      }
+    }
+  ],
+  "medians": {
+    "lcpMs": 2540,
+    "cls": 0.05610997803893637,
+    "tbtMs": 1943,
+    "initialTransferBytes": 637619,
+    "imageBytes": 0,
+    "maxImageBytes": 0,
+    "firstScreenMediaBytes": 0,
+    "requestCount": 123,
+    "immediateVideoIframeCount": 0,
+    "autoplayMediaCount": 0,
+    "thirdPartyScriptHostCount": 0,
+    "synchronousThirdPartyScriptCount": 0
+  },
+  "wholePageMedians": {
+    "requestCount": 130,
+    "transferBytes": 641618
+  },
+  "violations": [
+    "missing or failed network observations",
+    "lcpMs: budget 2500 exceeded (2548)",
+    "cls: budget 0.1 exceeded (0.11253148652659069)",
+    "tbtMs: budget 200 exceeded (2106)",
+    "requestCount: budget 120 exceeded (124)",
+    "missing or failed network observations",
+    "lcpMs: budget 2500 exceeded (2540)",
+    "tbtMs: budget 200 exceeded (1943)",
+    "missing or failed network observations",
+    "tbtMs: budget 200 exceeded (1878)",
+    "requestCount: budget 120 exceeded (123)",
+    "whole-page requestCount: budget 120 exceeded (133)",
+    "whole-page requestCount: budget 120 exceeded (126)",
+    "whole-page requestCount: budget 120 exceeded (130)"
+  ]
+}

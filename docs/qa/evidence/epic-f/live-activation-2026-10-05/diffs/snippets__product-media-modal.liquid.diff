@@ -1,0 +1,69 @@
+diff --git a/test-results/epic-f-live-activation/remote/snippets/product-media-modal.liquid b/snippets/product-media-modal.liquid
+index d6be5fb..0316b91 100644
+--- a/test-results/epic-f-live-activation/remote/snippets/product-media-modal.liquid
++++ b/snippets/product-media-modal.liquid
+@@ -1,3 +1,30 @@
++{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: product -%}{%- endcapture -%}
++{%- assign rhino_legacy_content = false -%}
++{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}{%- assign rhino_legacy_content = true -%}{%- endif -%}
++{%- assign rhino_media = product.media -%}
++{%- unless rhino_legacy_content -%}
++  {%- assign rhino_media = product.media | where: 'id', '' -%}
++  {%- assign rhino_seen_media = '|' -%}
++  {%- for media in product.media -%}
++    {%- capture rhino_media_eligibility -%}{%- render 'rhino-product-media-eligibility', product: product, media: media -%}{%- endcapture -%}
++    {%- assign rhino_media_key = media.id | prepend: '|' | append: '|' -%}
++    {%- if rhino_consumer_route == 'machine' and rhino_media_eligibility == 'eligible' -%}
++      {%- unless rhino_seen_media contains rhino_media_key -%}
++        {%- assign rhino_media_match = product.media | where: 'id', media.id | slice: 0, 1 -%}
++        {%- assign rhino_media = rhino_media | concat: rhino_media_match -%}
++        {%- assign rhino_seen_media = rhino_seen_media | append: media.id | append: '|' -%}
++      {%- endunless -%}
++    {%- endif -%}
++  {%- endfor -%}
++{%- endunless -%}
++{%- assign rhino_featured_media = product.selected_or_first_available_variant.featured_media -%}
++{%- assign rhino_machine_media = false -%}
++{%- unless rhino_legacy_content -%}
++  {%- assign rhino_machine_media = true -%}
++  {%- assign rhino_featured_media = rhino_media | where: 'id', rhino_featured_media.id | first -%}
++  {%- assign rhino_featured_media = rhino_featured_media | default: rhino_media.first -%}
++{%- endunless -%}
++{%- if rhino_legacy_content or rhino_media.size > 0 -%}
+ {% comment %}
+   Renders a product media modal. Also see 'product-media-gallery'
+ 
+@@ -33,13 +60,13 @@
+       tabindex="0"
+     >
+       {%- liquid
+-        if product.selected_or_first_available_variant.featured_media != null
+-          assign media = product.selected_or_first_available_variant.featured_media
+-          render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
++        if rhino_featured_media != null
++          assign media = rhino_featured_media
++          render 'product-media', media: media, rhino_machine_media: rhino_machine_media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
+         endif
+       -%}
+ 
+-      {%- for media in product.media -%}
++      {%- for media in rhino_media -%}
+         {%- liquid
+           if section.settings.hide_variants and variant_images contains media.src or variant_images contains media.id
+             assign variant_image = true
+@@ -47,11 +74,13 @@
+             assign variant_image = false
+           endif
+ 
+-          unless media.id == product.selected_or_first_available_variant.featured_media.id
+-            render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
++          unless media.id == rhino_featured_media.id
++            render 'product-media', media: media, rhino_machine_media: rhino_machine_media, loop: section.settings.enable_video_looping, variant_image: variant_image
+           endunless
+         -%}
+       {%- endfor -%}
+     </div>
+   </div>
+ </product-modal>
++
++{%- endif -%}

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "scope",
+    "runtimeActivation",
+    "sourceDirection",
+    "maxEdgesPerMachine",
+    "contentsPrecedence",
+    "repeatRules",
+    "upstream",
+    "policyRoute",
+    "unsupportedCustomerAdapters",
+    "preservedHashes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "scope": {
+      "const": [
+        "F-PBI-008A",
+        "F-PBI-009A"
+      ]
+    },
+    "runtimeActivation": {
+      "const": false
+    },
+    "sourceDirection": {
+      "const": "dependent-to-machine"
+    },
+    "maxEdgesPerMachine": {
+      "const": 32
+    },
+    "contentsPrecedence": {
+      "const": [
+        "included",
+        "noncatalog",
+        "not_included",
+        "optional",
+        "recommended"
+      ]
+    },
+    "repeatRules": {
+      "const": []
+    },
+    "upstream": {
+      "const": [
+        "data/epic-e-relationship-matrix.json",
+        "data/epic-e-batch-3c-owner-decisions.json",
+        "scripts/lib/epic-e-batch-3c-contract.js"
+      ]
+    },
+    "policyRoute": {
+      "const": "/policies/shipping-policy"
+    },
+    "unsupportedCustomerAdapters": {
+      "const": [
+        "handling",
+        "pickup_scope"
+      ]
+    },
+    "preservedHashes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "required": [
+        "templates/product.json",
+        "templates/product.machine.json",
+        "assets/pickup-availability.js",
+        "sections/pickup-availability.liquid",
+        "snippets/buy-buttons.liquid",
+        "assets/product-form.js",
+        "assets/product-info.js",
+        "data/brand-performance-budget.json",
+        "data/epic-f-consumer-release.json"
+      ]
+    }
+  }
+}

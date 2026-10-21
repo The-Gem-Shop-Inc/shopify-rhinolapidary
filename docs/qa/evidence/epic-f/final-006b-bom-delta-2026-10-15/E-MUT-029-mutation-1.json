@@ -1,0 +1,41 @@
+{
+  "startedAt": "2026-10-15T20:25:04.406Z",
+  "completedAt": "2026-10-15T20:25:05.187Z",
+  "query": "mutation AmendedTechnicalValues($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){metafields{id namespace key type jsonValue compareDigest definition{id}} userErrors{field message}}}",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Product/8905780756677",
+        "namespace": "rhino",
+        "key": "water_reservoir_capacity",
+        "type": "volume",
+        "value": "{\"value\":3.5,\"unit\":\"us_gallons\"}",
+        "compareDigest": null
+      }
+    ]
+  },
+  "response": {
+    "data": {
+      "metafieldsSet": {
+        "metafields": [
+          {
+            "id": "gid://shopify/Metafield/71579120435397",
+            "namespace": "rhino",
+            "key": "water_reservoir_capacity",
+            "type": "volume",
+            "jsonValue": {
+              "value": 3.5,
+              "unit": "GALLONS"
+            },
+            "compareDigest": "04aa78ce487c4dbd4cd8e1316618ac2d3d9ad25e27eca0bd08c6b21e5e929ba3",
+            "definition": {
+              "id": "gid://shopify/MetafieldDefinition/298659381445"
+            }
+          }
+        ],
+        "userErrors": []
+      }
+    }
+  },
+  "isError": false
+}

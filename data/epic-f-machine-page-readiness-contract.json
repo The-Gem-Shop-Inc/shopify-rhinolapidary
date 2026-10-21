@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "scope": "F-PBI-018A repository/static/local-fixture aggregation only",
+  "dimensions": {
+    "implementation": [
+      "not_started",
+      "partial",
+      "complete"
+    ],
+    "valueState": [
+      "not_applicable",
+      "missing",
+      "proposed",
+      "blocked",
+      "approved"
+    ],
+    "adminEvidence": [
+      "not_applicable",
+      "unavailable",
+      "stale",
+      "current"
+    ],
+    "migrationReconciliation": [
+      "not_applicable",
+      "not_started",
+      "blocked",
+      "unreconciled",
+      "reconciled"
+    ],
+    "activationAuthorization": [
+      "not_applicable",
+      "not_granted",
+      "granted"
+    ],
+    "customerPresentation": [
+      "not_applicable",
+      "suppressed",
+      "active"
+    ],
+    "shopifyParity": [
+      "not_applicable",
+      "unverified",
+      "partial",
+      "verified"
+    ],
+    "releaseCertification": [
+      "not_applicable",
+      "deferred",
+      "blocked",
+      "complete"
+    ]
+  },
+  "domains": [
+    {
+      "id": "machine_shell",
+      "owningPbis": [
+        "F-PBI-002"
+      ],
+      "implementation": "complete",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": []
+    },
+    {
+      "id": "native_purchase",
+      "owningPbis": [
+        "F-PBI-003"
+      ],
+      "implementation": "complete",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": []
+    },
+    {
+      "id": "contact",
+      "owningPbis": [
+        "F-PBI-012"
+      ],
+      "implementation": "complete",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": []
+    },
+    {
+      "id": "media",
+      "owningPbis": [
+        "F-PBI-004A",
+        "F-PBI-004B"
+      ],
+      "implementation": "complete",
+      "governedFact": true,
+      "epicEDomains": [],
+      "decisionIds": [
+        "F-DEC-002"
+      ]
+    },
+    {
+      "id": "specifications",
+      "owningPbis": [
+        "F-PBI-006A",
+        "F-PBI-006B"
+      ],
+      "implementation": "complete",
+      "governedFact": true,
+      "epicEDomains": [
+        "electrical",
+        "motor_speed",
+        "tool_mount",
+        "water_fluid",
+        "durable_measurements",
+        "crate_measurements"
+      ],
+      "decisionIds": []
+    },
+    {
+      "id": "contents",
+      "owningPbis": [
+        "F-PBI-007A",
+        "F-PBI-007B"
+      ],
+      "implementation": "complete",
+      "governedFact": true,
+      "epicEDomains": [
+        "included_components",
+        "optional_components"
+      ],
+      "decisionIds": []
+    },
+    {
+      "id": "contextual",
+      "owningPbis": [
+        "F-PBI-008A",
+        "F-PBI-008B"
+      ],
+      "implementation": "complete",
+      "governedFact": true,
+      "epicEDomains": [
+        "compatibility",
+        "recommendations"
+      ],
+      "decisionIds": []
+    },
+    {
+      "id": "delivery",
+      "owningPbis": [
+        "F-PBI-009A",
+        "F-PBI-009B"
+      ],
+      "implementation": "complete",
+      "governedFact": true,
+      "epicEDomains": [
+        "fulfillment_class",
+        "pickup_region",
+        "availability_authority"
+      ],
+      "decisionIds": []
+    },
+    {
+      "id": "warranty",
+      "owningPbis": [
+        "F-PBI-010A",
+        "F-PBI-010B"
+      ],
+      "implementation": "complete",
+      "governedFact": true,
+      "epicEDomains": [
+        "warranty_support"
+      ],
+      "decisionIds": []
+    },
+    {
+      "id": "resources",
+      "owningPbis": [
+        "F-PBI-011A",
+        "F-PBI-011B"
+      ],
+      "implementation": "complete",
+      "governedFact": true,
+      "epicEDomains": [
+        "customer_manuals",
+        "diagrams_instructions_videos"
+      ],
+      "decisionIds": []
+    },
+    {
+      "id": "payment_decision",
+      "owningPbis": [
+        "F-PBI-013"
+      ],
+      "implementation": "partial",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": [
+        "F-DEC-001"
+      ]
+    },
+    {
+      "id": "accessibility",
+      "owningPbis": [
+        "F-PBI-014A",
+        "F-PBI-014B"
+      ],
+      "implementation": "partial",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": []
+    },
+    {
+      "id": "performance",
+      "owningPbis": [
+        "F-PBI-015A",
+        "F-PBI-015B"
+      ],
+      "implementation": "complete",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": []
+    },
+    {
+      "id": "measurement_contract",
+      "owningPbis": [
+        "F-PBI-016"
+      ],
+      "implementation": "complete",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": []
+    },
+    {
+      "id": "measurement_instrumentation",
+      "owningPbis": [
+        "F-PBI-016"
+      ],
+      "implementation": "not_started",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": [
+        "U-owner-consent-tooling"
+      ]
+    },
+    {
+      "id": "rollout_plan",
+      "owningPbis": [
+        "F-PBI-017A"
+      ],
+      "implementation": "complete",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": []
+    },
+    {
+      "id": "rollout_execution",
+      "owningPbis": [
+        "F-PBI-017B"
+      ],
+      "implementation": "not_started",
+      "governedFact": false,
+      "epicEDomains": [
+        "definitions",
+        "product_class"
+      ],
+      "decisionIds": [
+        "Product Owner GO",
+        "Shopify Admin Owner GO"
+      ]
+    },
+    {
+      "id": "claim_containment",
+      "owningPbis": [
+        "F-PBI-005"
+      ],
+      "implementation": "complete",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": []
+    },
+    {
+      "id": "product_json_ld",
+      "owningPbis": [
+        "F-PBI-005"
+      ],
+      "implementation": "complete",
+      "governedFact": false,
+      "epicEDomains": [],
+      "decisionIds": []
+    }
+  ],
+  "sourcePins": {
+    "data/brand-performance-budget.json": "6fc5f3faedee086f3429f85de3f46a17d87b981e3bd368a12a14339c51d0eb76",
+    "data/epic-e-admin-readiness.json": "dc558df8c7437c4769a2b8a93fc51a273e428bd2b0030eec9d041c02536d7489",
+    "data/epic-e-deferred-decision-handoff.json": "ee60a7a78ba915ec3804a827e3f61d7a4f7b32e1924281614f6420b08671f044",
+    "data/epic-e-downstream-readiness.json": "85e9d2bbcdb64f393afd6406e417256f120e9f101f410411401e2d0ab98740c5",
+    "data/epic-e-product-classification.json": "84de9b93b7a068f8138ea76aa0d88cf5a6761cd1d0571424ed99641f114c0b62",
+    "data/epic-e-resource-catalog.json": "d58c45bbb208ddf42fed12c72ad80af7b615b12fa8b423181f293d655beece66",
+    "data/epic-f-consumer-release.json": "a8a4a6edb874d2f35504323b651329189773741ebb0849c22c111302e9a2e241",
+    "data/epic-f-content-cleanup-plan.json": "50847d2f92827c693a56ce0cb2183e753eecf7834e186bccb37aed3453d4444b",
+    "data/epic-f-context-delivery-contract.json": "b218be497814b45ce4fa322d760406a618098fd123ba54d5e85036fd56deaae9",
+    "data/epic-f-field-roles.json": "ad6c1fadb1cb94130fdf6084fff7c2b1149b04cf3b4cca98f959f3b95c00b0f3",
+    "data/epic-f-machine-measurement-contract.json": "f628979900f3b7b6b2dc1008095649a81c013007fc1fd114d22ff0349853f218",
+    "data/epic-f-machine-template-rollout-plan.json": "f49f60e57303fa6e227aea66744e2510529e51930fd894ccdec0e87e95d0a2d8",
+    "data/epic-f-machine-template-rollout-policy.json": "84a7ce3a123af49988f2552b886aaa832c08ad0be2d53c1a6682e5e7654071f9",
+    "data/epic-f-media-release.json": "a49f0fa699280aa16ab7d2c288e39e9ca3ad533d08fd93964c9b00573eb32691",
+    "data/epic-f-support-resources-contract.json": "3df8514cb7e13d1694d2cd980e5059706a81149e7b8a9dd3b3f1d9bb76e28f1c",
+    "data/launch-fixture-ownership.json": "ac9a10567e32fb4029de6ed9644ee140c1d584f4dc3baa216c088335042b761d",
+    "data/product-export/products.csv": "7f00f23f59a3a6d54f71fd95861f57b3aa9026c042a90d9c542f39a5fb684d77",
+    "docs/project/epic-f-machine-inventory.json": "d4ca54a090e0a94f9422754a027a98fd6ac683bcdf64f9c0744ab59ff76973b6",
+    "docs/project/implementation-records/f-pbi-002-003-012-014a-batch-f2.md": "1115dc20757a0ce606f7fa6d1f5e2e403a3ee907be951341886a6d52a7766995",
+    "docs/project/implementation-records/f-pbi-004a-015a-batch-f3.md": "7b427e68983e6f1db5d49cfc9c85e17db080374f053f1133675b9320b540322d",
+    "docs/project/implementation-records/f-pbi-006a-007a-batch-f4.md": "0e452ff6c7e7662d62874d0b1c32b753c45d2b318fc85e4c10cd13d6d153ced2",
+    "docs/project/implementation-records/f-pbi-008a-009a-batch-f5.md": "750f61383669fbd33f3a7f1acb0678cef280e9cb900033764a4d0268b0defd67",
+    "docs/project/implementation-records/f-pbi-010a-011a-batch-f6.md": "76191622ce842bb170b37ebf885c5fc469ddb6a1e1e7bed02d569fb73a44fefb",
+    "docs/qa/evidence/epic-e/2026-09-03-epic-e-admin-snapshot.json": "d2daa618337640c42878f3ed0aa398b2c0cda198229731ca21e248e3f22c6985",
+    "docs/qa/evidence/epic-f/2026-09-10-machine-admin-read.json": "ed8646ec21792efd3f5074a14f45d18f4a7cd15cb3c66643851e979682f766f1",
+    "docs/qa/evidence/epic-f/batch-f1-validation.json": "c665a4a6de84aac3d005ac094cd8e132c8bdc165e0b18d4e5e6f26ce9d7a2aa5",
+    "docs/qa/evidence/epic-f/batch-f2-validation.json": "edff56f45deca31739b0972276c753be2aba7161ef0c89b9454e636cff797cb8",
+    "docs/qa/evidence/epic-f/batch-f3-performance-runtime.json": "da6d0508291b0564f99a79297dfbd5cda641c1e76156446da390cf6a3daa4e47",
+    "docs/qa/evidence/epic-f/batch-f3-validation.json": "0e061667caefa2bee5adabbf687d66f3f6becc0fb55923f2f1e80c7db091544c",
+    "docs/qa/evidence/epic-f/batch-f4-performance-runtime.json": "a340538e135d5433aa50c8cdbd65c11c0bd9f4067b6ba063b69bd066b7720a7e",
+    "docs/qa/evidence/epic-f/batch-f4-validation.json": "89b582442d6a98e0f1a8a21c86d876fa1164ee47d91400f4959bb1942080cb9c",
+    "docs/qa/evidence/epic-f/batch-f5-performance-runtime.json": "cd4ef4ff27a4f2f8cdc900c3b3fb90472b37bd33d7e7ce660c32c74fbc73aa5b",
+    "docs/qa/evidence/epic-f/batch-f5-validation.json": "f585bd0e72ca5085c071ab3414f6d126e5bc7b02dc14f82a992656f17749399c",
+    "docs/qa/evidence/epic-f/batch-f6-performance-runtime.json": "fa18d9c6e8b709fc7a2c11223d6f1f55c522e8178ea49b38315a87e90cb02bbf",
+    "docs/qa/evidence/epic-f/batch-f6-validation.json": "4f0256c664d5502e806e03b086c387e970202eb2f004193503207850768d7a5c",
+    "docs/qa/evidence/epic-f/batch-f7-validation.json": "0fe56099102d41f3f6fe3450a73fcf6c8f49d34e378c7e548d42911de868c132",
+    "docs/qa/evidence/epic-f/batch-f8-historical-diagnostics.json": "de4995f6db464ffa67605ebb52e3ec8e4900b146b4050d57381342cab93ee45f",
+    "scripts/lib/epic-f-performance.js": "09e9d4ce0179970712285f58eb03fbb2836d1de1e4b656e536d47f15f8fb6d90",
+    "scripts/test-epic-f-claims.js": "e2860503b22841d3df86ab5d4845497ff70d25c6e86d9369aae1299272e27295",
+    "scripts/validate-epic-f-claims.js": "73d9aec1db475115fd87d1e2b21b3d4140d694d1e52a99500f79ba00e99840fc",
+    "tests/epic-f-context-delivery.spec.js": "00ba711d0ecb776877a8f27b42669d7d0d46fa29964e9aa5ca66a43fb5007ac0",
+    "tests/epic-f-facts.spec.js": "635533d859bb3d4271c10aa09eea4cb4c7792752571417e21f80d70e456e8602",
+    "tests/epic-f-gallery.spec.js": "9bfdbeba80b56a1db752c9c8d4a84ba090be756232024ef10aa40572210b9b7b",
+    "tests/epic-f-support-resources.spec.js": "d9c20c7e7fe56e8754bf81afd8432d3670cd8d6333a71218aae09e783d446b85",
+    "tests/fixtures/epic-f-f7-runtime-baseline.json": "f6174644efe3397fd503913aa929ce1d842465f27eb4fa65696eb306e10e7e64",
+    "tests/fixtures/epic-f-f8-governance-baseline.json": "468f4497187111b650fef5af1fa1248000625f66357b3eb0521d3a751402e073",
+    "tests/fixtures/epic-f-historical-diagnostics.json": "a3b018cb7ec186441deea6895b15e70293fc9178c6c5238064f44ee0322da23c",
+    "tests/fixtures/epic-f-machine-template-before.json": "59f5a193011f6c26704c225601575f88eb1f0cddde8c171762b56e4dac487957",
+    "tests/fixtures/storefront-fixtures.json": "48265dff45f91dbf14132d6a54a6cae6e53e74db79b8639530a36bff826edb24",
+    "tests/machine-purchase.spec.js": "6d6c3763a966aff557f5b8fe4952027c3106c690c69495dc73c595a00b18481b",
+    "tests/machine-shell.spec.js": "2ecc152007cc0d8f551820606ccc0771b508e9a9011572b86be72085c864d9af",
+    "tests/machine-zoom.spec.js": "07c3c3fd4e455d7514fbbf8b78780be8aa343c1b9aa8b182bcc27d55a9730f81"
+  },
+  "presentationScope": "Repository release projection; current Shopify customer presentation unverified",
+  "forbiddenInference": "Repository or fixture success never grants fact approval, migration, activation, Admin currentness or release certification",
+  "releaseBlockers": [
+    "Current complete relevant Admin evidence",
+    "Applicable owner decisions and migrations/reconciliation for concrete selected release scope",
+    "Separately authorized F-PBI-017B assignment if selected scope requires it",
+    "Authorized Shopify-rendered preview/live verification",
+    "Remaining F-PBI-014B parity evidence",
+    "F-PBI-015B release performance certification",
+    "Owner signoffs for concrete activated domains",
+    "Explicit production go/no-go outside F8"
+  ],
+  "authorizations": {
+    "shopifyAdminMutation": false,
+    "productTemplateAssignment": false,
+    "productDataMutation": false,
+    "filePagePolicyMutation": false,
+    "analyticsPixelConsentChange": false,
+    "shippingLocationChange": false,
+    "previewThemePush": false,
+    "productionThemePush": false,
+    "productionPublication": false,
+    "productPublication": false,
+    "checkoutOrderContactSubmission": false
+  }
+}

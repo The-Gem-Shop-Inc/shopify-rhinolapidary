@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Epic F 008B pending independent owner review",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "lane",
+    "mutationAuthorized",
+    "source",
+    "rows"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "lane": {
+      "const": "008B"
+    },
+    "mutationAuthorized": {
+      "const": false
+    },
+    "decisionId": {
+      "enum": [
+        "B3B-D02",
+        "PO-E-012",
+        "PO-E-013"
+      ]
+    },
+    "decisionIds": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "B3B-D02",
+          "PO-E-012",
+          "PO-E-013"
+        ]
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ]
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "edgeId",
+          "dependentProductGid",
+          "targetMachineProductGid",
+          "decisionState",
+          "reviewerResponse"
+        ],
+        "properties": {
+          "productGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "dependentProductGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "targetMachineProductGid": {
+            "type": "string",
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "componentProductGid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^gid://shopify/Product/[0-9]+$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decisionState": {
+            "const": "PENDING_OWNER"
+          },
+          "reviewerResponse": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

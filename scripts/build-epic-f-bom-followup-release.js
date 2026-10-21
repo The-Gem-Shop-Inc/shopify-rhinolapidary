@@ -1,0 +1,3 @@
+'use strict';
+const fs=require('node:fs'),E=require('./lib/epic-e-owner-response-adapter'),N=require('./lib/epic-e-bom-owner-followup'),F=require('./lib/epic-f-customer-release');
+const output=F.compile(N.loadCurrent());fs.writeFileSync(F.RELEASE,JSON.stringify(output.release,null,2)+'\n');fs.writeFileSync(F.FACT,output.facts);fs.writeFileSync(F.CONTEXT,output.context);for(const [path,body]of Object.entries(output.shards))fs.writeFileSync(path,body);F.verifyRelease();console.log(JSON.stringify({grants:output.release.grants.length,contentsLines:output.projection.pages.find(p=>p.productGid===N.EM).contents.length,expiresAt:output.release.expiresAt}));

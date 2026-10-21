@@ -1,0 +1,66 @@
+{
+  "passed": 4,
+  "failed": 0,
+  "tests": [
+    "cutoff excludes later requests",
+    "captured pending requests drain to completion",
+    "all retained byte observations complete",
+    "drain does not change capture cutoff"
+  ],
+  "networkRows": [
+    {
+      "url": "http://127.0.0.1:56091/",
+      "method": "GET",
+      "type": "Document",
+      "mimeType": "text/html",
+      "status": 200,
+      "completed": true,
+      "failed": false,
+      "bytes": 230,
+      "byteObservation": "measured",
+      "byteSource": "CDP encodedDataLength",
+      "cache": {
+        "servedFromCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": null,
+      "cdpCorrelated": true,
+      "CDPCompletionObserved": true,
+      "failure": "",
+      "decision": {
+        "action": "ALLOW",
+        "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+        "passive": false,
+        "purpose": null
+      },
+      "startedAt": "2026-10-07T15:29:40.093Z"
+    },
+    {
+      "url": "http://127.0.0.1:56091/slow",
+      "method": "GET",
+      "type": "Fetch",
+      "mimeType": "",
+      "status": 200,
+      "completed": true,
+      "failed": false,
+      "bytes": 162,
+      "byteObservation": "measured",
+      "byteSource": "CDP encodedDataLength",
+      "cache": {
+        "servedFromCache": false,
+        "serviceWorker": false
+      },
+      "appliedNetworkRule": null,
+      "cdpCorrelated": true,
+      "CDPCompletionObserved": true,
+      "failure": "",
+      "decision": {
+        "action": "ALLOW",
+        "reason": "READ_ONLY_OR_EXISTING_NATIVE_SURFACE",
+        "passive": false,
+        "purpose": null
+      },
+      "startedAt": "2026-10-07T15:29:40.104Z"
+    }
+  ]
+}

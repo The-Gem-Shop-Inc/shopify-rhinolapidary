@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-07T15:10:31.447Z",
+  "approvalMode": "delegated_development_override",
+  "sourceBinding": {
+    "passed": true,
+    "checkedAt": "2026-10-07T15:10:31.204Z",
+    "themeIdentity": {
+      "id": "158579622085",
+      "name": "shopify-rhinolapidary/main",
+      "role": "MAIN"
+    },
+    "boundRuntimeFiles": 29,
+    "sourceBindingIdentity": "GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06",
+    "sourceBindingSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+    "headerSha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339",
+    "catalogCount": 122,
+    "distribution": {
+      "consumable": 39,
+      "accessory": 18,
+      "replacement_part": 54,
+      "machine": 11
+    },
+    "machineAssignments": 8,
+    "exclusions": 3,
+    "factualGrants": 0,
+    "beforeReadCompletedAt": "2026-10-07T15:04:55.481Z"
+  },
+  "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+  "profileSha256": "4412365d44a02c819fb4af0fb5981a011a5a9a055a1ce844b3dde35fd84d55ce",
+  "environment": {
+    "browser": "Chromium",
+    "version": "149.0.7827.55",
+    "Playwright": "1.61.1",
+    "Node": "v24.13.0",
+    "OS": "Windows_NT 10.0.26300 x64"
+  },
+  "plannedSamples": 96,
+  "plannedRecords": 32,
+  "attempted": 2,
+  "valid": 0,
+  "invalid": 2,
+  "retries": 1,
+  "records": [],
+  "attemptJournal": [
+    {
+      "attempt": 1,
+      "slot": 1,
+      "retry": false,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "cold",
+      "evidence": "docs/qa/evidence/epic-f/015b-live-2026-10-07/attempt-001-beadmaster-mobile-cold.json",
+      "valid": false,
+      "integrity": [
+        "Page/Liquid/download error",
+        "Incomplete mandatory network totals"
+      ]
+    },
+    {
+      "attempt": 2,
+      "slot": 1,
+      "retry": true,
+      "productGid": "gid://shopify/Product/8905779937477",
+      "route": "/products/beadmaster",
+      "profile": "mobile",
+      "cache": "cold",
+      "evidence": "docs/qa/evidence/epic-f/015b-live-2026-10-07/attempt-002-beadmaster-mobile-cold.json",
+      "valid": false,
+      "integrity": [
+        "Page/Liquid/download error",
+        "Incomplete mandatory network totals"
+      ]
+    }
+  ],
+  "interRunDelays": [
+    {
+      "beforeAttempt": 2,
+      "requestedMs": 2500,
+      "actualMs": 2544
+    }
+  ],
+  "decision": "BLOCKED_MEASUREMENT_INTEGRITY",
+  "persistentShopifyMutations": 0,
+  "error": "Repeated invalid measurement slot; campaign stopped without fabricating observations",
+  "completedAt": "2026-10-07T15:11:15.080Z",
+  "secretDisposal": {
+    "browserClosed": true,
+    "cookiesPersisted": false,
+    "credentialsPersisted": false,
+    "traces": 0,
+    "HARs": 0
+  }
+}

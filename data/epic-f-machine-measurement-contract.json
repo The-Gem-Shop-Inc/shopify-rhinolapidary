@@ -1,0 +1,297 @@
+{
+  "$schema": "../schemas/epic-f-machine-measurement-contract.schema.json",
+  "schemaVersion": 1,
+  "status": "contract_ready",
+  "instrumentationState": "instrumentation_blocked",
+  "authorities": [
+    "data/storefront-event-contracts.json",
+    "docs/analytics/analytics-migration-verification-plan.md",
+    "docs/privacy/third-party-script-and-pixel-register.md",
+    "data/epic-d-homepage-measurement-plan.json",
+    "data/epic-c-navigation-measurement-plan.json"
+  ],
+  "businessQuestions": [
+    {
+      "id": "F-MQ-COMMERCE",
+      "question": "How do machine Product journeys continue through native commerce?",
+      "consumer": "Product Owner"
+    },
+    {
+      "id": "F-MQ-CONTACT",
+      "question": "Are machine shoppers using neutral Contact during evaluation?",
+      "consumer": "Product Owner"
+    },
+    {
+      "id": "F-MQ-RESOURCE",
+      "question": "Are approved Product resources used during machine evaluation?",
+      "consumer": "Product Owner"
+    },
+    {
+      "id": "F-MQ-CONTEXT",
+      "question": "Do shoppers navigate to explicitly contextual Products?",
+      "consumer": "Product Owner"
+    },
+    {
+      "id": "F-MQ-DELIVERY",
+      "question": "Are shoppers seeking delivery-policy information from machine pages?",
+      "consumer": "Product Owner"
+    }
+  ],
+  "nativeEvents": [
+    {
+      "owner": null,
+      "ownerAuthority": "U / Analytics Owner",
+      "ownerAssignment": "unresolved",
+      "consumer": "F / Product Owner",
+      "sourceSurface": "templates/product.machine.json",
+      "instrumentationState": "instrumentation_blocked",
+      "consentDependency": "U / Analytics Owner and Privacy Owner; decision absent",
+      "consentResolved": false,
+      "payloadSchemaVersion": 1,
+      "reportingOwner": "Analytics Owner",
+      "baselineOwner": "Analytics Owner",
+      "baselinePeriod": "First 28 days after separately approved collection; no historical values",
+      "reviewCadence": "Monthly after baseline; review with Product Owner",
+      "lifecycle": "contract_ready",
+      "eventId": "product_view",
+      "name": "product_view",
+      "ownerSlot": "U/native/product_view",
+      "native": true,
+      "businessQuestionId": "F-MQ-COMMERCE",
+      "source": "Existing Shopify commerce / checkout; exact collector mapping unverified by U",
+      "deduplication": {
+        "responsibility": "U / Analytics Owner",
+        "strategy": "One reserved native owner slot per commerce action; F emissions forbidden; U must verify collector event identity before activation"
+      },
+      "payloadSchema": "existing-U-native-contract-unresolved",
+      "emissionByF": false
+    },
+    {
+      "owner": null,
+      "ownerAuthority": "U / Analytics Owner",
+      "ownerAssignment": "unresolved",
+      "consumer": "F / Product Owner",
+      "sourceSurface": "templates/product.machine.json",
+      "instrumentationState": "instrumentation_blocked",
+      "consentDependency": "U / Analytics Owner and Privacy Owner; decision absent",
+      "consentResolved": false,
+      "payloadSchemaVersion": 1,
+      "reportingOwner": "Analytics Owner",
+      "baselineOwner": "Analytics Owner",
+      "baselinePeriod": "First 28 days after separately approved collection; no historical values",
+      "reviewCadence": "Monthly after baseline; review with Product Owner",
+      "lifecycle": "contract_ready",
+      "eventId": "add_to_cart",
+      "name": "add_to_cart",
+      "ownerSlot": "U/native/add_to_cart",
+      "native": true,
+      "businessQuestionId": "F-MQ-COMMERCE",
+      "source": "Existing Shopify commerce / checkout; exact collector mapping unverified by U",
+      "deduplication": {
+        "responsibility": "U / Analytics Owner",
+        "strategy": "One reserved native owner slot per commerce action; F emissions forbidden; U must verify collector event identity before activation"
+      },
+      "payloadSchema": "existing-U-native-contract-unresolved",
+      "emissionByF": false
+    },
+    {
+      "owner": null,
+      "ownerAuthority": "U / Analytics Owner",
+      "ownerAssignment": "unresolved",
+      "consumer": "F / Product Owner",
+      "sourceSurface": "Shopify native checkout transition (J/U-owned)",
+      "instrumentationState": "instrumentation_blocked",
+      "consentDependency": "U / Analytics Owner and Privacy Owner; decision absent",
+      "consentResolved": false,
+      "payloadSchemaVersion": 1,
+      "reportingOwner": "Analytics Owner",
+      "baselineOwner": "Analytics Owner",
+      "baselinePeriod": "First 28 days after separately approved collection; no historical values",
+      "reviewCadence": "Monthly after baseline; review with Product Owner",
+      "lifecycle": "contract_ready",
+      "eventId": "begin_checkout",
+      "name": "begin_checkout",
+      "ownerSlot": "U/native/begin_checkout",
+      "native": true,
+      "businessQuestionId": "F-MQ-COMMERCE",
+      "source": "Existing Shopify commerce / checkout; exact collector mapping unverified by U",
+      "deduplication": {
+        "responsibility": "U / Analytics Owner",
+        "strategy": "One reserved native owner slot per commerce action; F emissions forbidden; U must verify collector event identity before activation"
+      },
+      "payloadSchema": "existing-U-native-contract-unresolved",
+      "emissionByF": false
+    },
+    {
+      "owner": null,
+      "ownerAuthority": "U / Analytics Owner",
+      "ownerAssignment": "unresolved",
+      "consumer": "F / Product Owner",
+      "sourceSurface": "Shopify native checkout completion (J/U-owned)",
+      "instrumentationState": "instrumentation_blocked",
+      "consentDependency": "U / Analytics Owner and Privacy Owner; decision absent",
+      "consentResolved": false,
+      "payloadSchemaVersion": 1,
+      "reportingOwner": "Analytics Owner",
+      "baselineOwner": "Analytics Owner",
+      "baselinePeriod": "First 28 days after separately approved collection; no historical values",
+      "reviewCadence": "Monthly after baseline; review with Product Owner",
+      "lifecycle": "contract_ready",
+      "eventId": "purchase",
+      "name": "purchase",
+      "ownerSlot": "U/native/purchase",
+      "native": true,
+      "businessQuestionId": "F-MQ-COMMERCE",
+      "source": "Existing Shopify commerce / checkout; exact collector mapping unverified by U",
+      "deduplication": {
+        "responsibility": "U / Analytics Owner",
+        "strategy": "One reserved native owner slot per commerce action; F emissions forbidden; U must verify collector event identity before activation"
+      },
+      "payloadSchema": "existing-U-native-contract-unresolved",
+      "emissionByF": false
+    }
+  ],
+  "optionalEvents": [
+    {
+      "owner": null,
+      "ownerAuthority": "U / Analytics Owner",
+      "ownerAssignment": "unresolved",
+      "consumer": "F / Product Owner",
+      "sourceSurface": "templates/product.machine.json",
+      "instrumentationState": "instrumentation_blocked",
+      "consentDependency": "U / Analytics Owner and Privacy Owner; decision absent",
+      "consentResolved": false,
+      "payloadSchemaVersion": 1,
+      "reportingOwner": "Analytics Owner",
+      "baselineOwner": "Analytics Owner",
+      "baselinePeriod": "First 28 days after separately approved collection; no historical values",
+      "reviewCadence": "Monthly after baseline; review with Product Owner",
+      "lifecycle": "contract_ready",
+      "eventId": "rhino:machine:contact-activate",
+      "name": "rhino:machine:contact-activate",
+      "ownerSlot": "U/optional/contact",
+      "native": false,
+      "businessQuestionId": "F-MQ-CONTACT",
+      "source": "Future approved U collector; no adapter exists",
+      "deduplication": {
+        "responsibility": "U / Analytics Owner",
+        "strategy": "One collector per approved activation; collector-issued interaction identity plus eventId; no new customer/session identity in F payload"
+      },
+      "payloadSchema": "schemas/epic-f-machine-measurement-payload.schema.json#contact",
+      "emissionByF": false,
+      "module": "contact",
+      "decisionBoundary": "destination_activation"
+    },
+    {
+      "owner": null,
+      "ownerAuthority": "U / Analytics Owner",
+      "ownerAssignment": "unresolved",
+      "consumer": "F / Product Owner",
+      "sourceSurface": "templates/product.machine.json",
+      "instrumentationState": "instrumentation_blocked",
+      "consentDependency": "U / Analytics Owner and Privacy Owner; decision absent",
+      "consentResolved": false,
+      "payloadSchemaVersion": 1,
+      "reportingOwner": "Analytics Owner",
+      "baselineOwner": "Analytics Owner",
+      "baselinePeriod": "First 28 days after separately approved collection; no historical values",
+      "reviewCadence": "Monthly after baseline; review with Product Owner",
+      "lifecycle": "contract_ready",
+      "eventId": "rhino:machine:resource-activate",
+      "name": "rhino:machine:resource-activate",
+      "ownerSlot": "U/optional/resources",
+      "native": false,
+      "businessQuestionId": "F-MQ-RESOURCE",
+      "source": "Future approved U collector; no adapter exists",
+      "deduplication": {
+        "responsibility": "U / Analytics Owner",
+        "strategy": "One collector per approved activation; collector-issued interaction identity plus eventId; no new customer/session identity in F payload"
+      },
+      "payloadSchema": "schemas/epic-f-machine-measurement-payload.schema.json#resources",
+      "emissionByF": false,
+      "module": "resources",
+      "decisionBoundary": "destination_activation"
+    },
+    {
+      "owner": null,
+      "ownerAuthority": "U / Analytics Owner",
+      "ownerAssignment": "unresolved",
+      "consumer": "F / Product Owner",
+      "sourceSurface": "templates/product.machine.json",
+      "instrumentationState": "instrumentation_blocked",
+      "consentDependency": "U / Analytics Owner and Privacy Owner; decision absent",
+      "consentResolved": false,
+      "payloadSchemaVersion": 1,
+      "reportingOwner": "Analytics Owner",
+      "baselineOwner": "Analytics Owner",
+      "baselinePeriod": "First 28 days after separately approved collection; no historical values",
+      "reviewCadence": "Monthly after baseline; review with Product Owner",
+      "lifecycle": "contract_ready",
+      "eventId": "rhino:machine:context-navigate",
+      "name": "rhino:machine:context-navigate",
+      "ownerSlot": "U/optional/contextual",
+      "native": false,
+      "businessQuestionId": "F-MQ-CONTEXT",
+      "source": "Future approved U collector; no adapter exists",
+      "deduplication": {
+        "responsibility": "U / Analytics Owner",
+        "strategy": "One collector per approved activation; collector-issued interaction identity plus eventId; no new customer/session identity in F payload"
+      },
+      "payloadSchema": "schemas/epic-f-machine-measurement-payload.schema.json#contextual",
+      "emissionByF": false,
+      "module": "contextual",
+      "decisionBoundary": "destination_activation"
+    },
+    {
+      "owner": null,
+      "ownerAuthority": "U / Analytics Owner",
+      "ownerAssignment": "unresolved",
+      "consumer": "F / Product Owner",
+      "sourceSurface": "templates/product.machine.json",
+      "instrumentationState": "instrumentation_blocked",
+      "consentDependency": "U / Analytics Owner and Privacy Owner; decision absent",
+      "consentResolved": false,
+      "payloadSchemaVersion": 1,
+      "reportingOwner": "Analytics Owner",
+      "baselineOwner": "Analytics Owner",
+      "baselinePeriod": "First 28 days after separately approved collection; no historical values",
+      "reviewCadence": "Monthly after baseline; review with Product Owner",
+      "lifecycle": "contract_ready",
+      "eventId": "rhino:machine:delivery-navigate",
+      "name": "rhino:machine:delivery-navigate",
+      "ownerSlot": "U/optional/delivery",
+      "native": false,
+      "businessQuestionId": "F-MQ-DELIVERY",
+      "source": "Future approved U collector; no adapter exists",
+      "deduplication": {
+        "responsibility": "U / Analytics Owner",
+        "strategy": "One collector per approved activation; collector-issued interaction identity plus eventId; no new customer/session identity in F payload"
+      },
+      "payloadSchema": "schemas/epic-f-machine-measurement-payload.schema.json#delivery",
+      "emissionByF": false,
+      "module": "delivery",
+      "decisionBoundary": "destination_activation"
+    }
+  ],
+  "layers": {
+    "definition": "F repository contract",
+    "emission": "Blocked pending U owner, consent and collector decision; none in F7",
+    "collection": "U decision unresolved; no tool enabled",
+    "storage": "U decision unresolved; no store created",
+    "reporting": "Analytics Owner; existing native Shopify aggregate reporting where available",
+    "analysis": "Analytics Owner with Product Owner; 28-day post-approval baseline then monthly; no numeric targets"
+  },
+  "interpretationCautions": [
+    "Contact activation is not an inquiry or a purchase attribution claim",
+    "Native aggregate reporting cannot establish placement attribution",
+    "Consent/collection coverage and suppressed modules constrain denominators",
+    "Resources/contextual output currently zero; fixture activations are not customer evidence"
+  ],
+  "omittedDomains": [
+    "video: no active approved Product video",
+    "warranty: B3C-D03 blocked",
+    "specifications: no distinct customer decision boundary",
+    "section impressions, scrolling, expansion, rendering, fixture presence: not decision success"
+  ],
+  "releaseInstrumentationAuthorized": false
+}

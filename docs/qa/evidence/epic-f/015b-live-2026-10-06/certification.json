@@ -1,0 +1,3279 @@
+{
+  "schemaVersion": 1,
+  "kind": "F_PBI_015B_CERTIFICATION_PREFLIGHT",
+  "decision": "BLOCKED_CONFIGURATION_NOT_SAMPLED",
+  "authorization": {
+    "approvalMode": "delegated_development_override",
+    "authorizedAt": "2026-10-06",
+    "scope": "CURRENT_ASSIGNED_ZERO_GRANT_MACHINE_SHELL_MEASUREMENT_ONLY",
+    "allowed": [
+      "Read-only Admin/browser verification",
+      "Performance measurements after all protocol preconditions pass",
+      "Local developer tooling/evidence/status"
+    ],
+    "prohibited": [
+      "Runtime or Shopify persistent mutation",
+      "Product/Variant/assignment/factual updates",
+      "Payment/pickup/inventory/analytics configuration",
+      "Theme writes/publication",
+      "F-PBI-018B signoff"
+    ]
+  },
+  "sourceBinding": {
+    "identity": "GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06",
+    "canonicalSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+    "path": "docs/qa/evidence/epic-f/header-focus-correction-2026-10-06/source-binding.json",
+    "headerSha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339",
+    "runtimeFiles": 29
+  },
+  "environment": {
+    "browser": "Chromium",
+    "browserVersion": "149.0.7827.55",
+    "playwrightVersion": "1.61.1",
+    "nodeVersion": "v24.13.0",
+    "OS": {
+      "type": "Windows_NT",
+      "release": "10.0.26300",
+      "architecture": "x64"
+    },
+    "browserLaunchedForVersionOnly": true,
+    "storefrontNavigations": 0,
+    "lighthouseInstalled": false
+  },
+  "profiles": {
+    "mobile": {
+      "width": 390,
+      "height": 900,
+      "deviceScaleFactor": 1
+    },
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1
+    }
+  },
+  "throttling": {
+    "status": "UNRESOLVED_NO_APPROVED_CONCRETE_PROFILE",
+    "mobile": {
+      "latencyMs": null,
+      "downloadBytesPerSecond": null,
+      "uploadBytesPerSecond": null,
+      "cpuSlowdown": null
+    },
+    "desktop": {
+      "latencyMs": null,
+      "downloadBytesPerSecond": null,
+      "uploadBytesPerSecond": null,
+      "cpuSlowdown": null
+    }
+  },
+  "missingConfiguration": [
+    "Approved latencyMs",
+    "Approved downloadBytesPerSecond",
+    "Approved uploadBytesPerSecond",
+    "Approved cpuSlowdown"
+  ],
+  "policy": {
+    "authorities": [
+      {
+        "path": "data/brand-performance-budget.json",
+        "sha256": "6fc5f3faedee086f3429f85de3f46a17d87b981e3bd368a12a14339c51d0eb76"
+      },
+      {
+        "path": "docs/qa/rhino-brand-media-performance-budget.md",
+        "sha256": "42db3e3537d6b73d4996eeb1c4b4acaed7728eb159351aa8519c748aed75de2d"
+      },
+      {
+        "path": "docs/project/epic-f-shell-only-release-handoff.md",
+        "sha256": "50ae16166de499410559b5a74bbd9cc30b82c01cad5473571f9970e73dccbb9a"
+      },
+      {
+        "path": "scripts/lib/epic-f-performance.js",
+        "sha256": "09e9d4ce0179970712285f58eb03fbb2836d1de1e4b656e536d47f15f8fb6d90"
+      },
+      {
+        "path": "scripts/run-epic-f-machine-performance.js",
+        "sha256": "a0fe52341de8d3fd500266a7d6c70850d8ef1cfb0e24943fa763a1d775395d9b"
+      },
+      {
+        "path": "scripts/test-epic-f-performance.js",
+        "sha256": "1c37d64fbbfc32c978bf50fc5f50afca08dec27d6af9d721da4899a668c581e1"
+      }
+    ],
+    "settlePolicy": "navigation/load + document.fonts.ready + governed 1500ms settle",
+    "settleMs": 1500,
+    "interRunDelayMs": 2500,
+    "actualSettleTimings": null,
+    "actualInterRunDelays": null,
+    "cold": "Existing fixture collector creates a new context, clears Chromium HTTP cache and disables caching. Not executed as a live certification policy.",
+    "warm": "Existing machine collector has no warm-live implementation; no warm state was fabricated or executed.",
+    "resolveBeforeSampling": "Freeze a concrete already-approved profile, then implement/verify bounded live cold and warm lifecycles under that profile.",
+    "numericTupleInUnitTest": "150ms/200000Bps/90000Bps/4x appears only in a synthetic unit contract; explicitly not adopted as an approved profile.",
+    "supportingLighthouseTargets": {
+      "mobilePerformance": 85,
+      "accessibility": 95,
+      "scores": null,
+      "collected": false
+    },
+    "fieldINP": {
+      "targetMs": 200,
+      "measured": false,
+      "substitutedByTBT": false
+    },
+    "TBTProxy": "Established sum of max(0,longtask.duration - 50); not field INP or Lighthouse TBT",
+    "thresholdsChanged": false
+  },
+  "plan": {
+    "routes": 8,
+    "profiles": 2,
+    "cacheStates": 2,
+    "samplesPerRecord": 3,
+    "plannedRecords": 32,
+    "plannedSamples": 96,
+    "attemptedSamples": 0,
+    "validSamples": 0,
+    "invalidSamples": 0,
+    "retriedSamples": 0
+  },
+  "records": [
+    {
+      "route": "/products/beadmaster",
+      "productGid": "gid://shopify/Product/8905779937477",
+      "profile": "mobile",
+      "cache": "cold",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/beadmaster",
+      "productGid": "gid://shopify/Product/8905779937477",
+      "profile": "mobile",
+      "cache": "warm",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/beadmaster",
+      "productGid": "gid://shopify/Product/8905779937477",
+      "profile": "desktop",
+      "cache": "cold",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/beadmaster",
+      "productGid": "gid://shopify/Product/8905779937477",
+      "profile": "desktop",
+      "cache": "warm",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/em-1",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "profile": "mobile",
+      "cache": "cold",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/em-1",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "profile": "mobile",
+      "cache": "warm",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/em-1",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "profile": "desktop",
+      "cache": "cold",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/em-1",
+      "productGid": "gid://shopify/Product/8905780756677",
+      "profile": "desktop",
+      "cache": "warm",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/lapmaster-12",
+      "productGid": "gid://shopify/Product/8905781412037",
+      "profile": "mobile",
+      "cache": "cold",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/lapmaster-12",
+      "productGid": "gid://shopify/Product/8905781412037",
+      "profile": "mobile",
+      "cache": "warm",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/lapmaster-12",
+      "productGid": "gid://shopify/Product/8905781412037",
+      "profile": "desktop",
+      "cache": "cold",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/lapmaster-12",
+      "productGid": "gid://shopify/Product/8905781412037",
+      "profile": "desktop",
+      "cache": "warm",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/lapmaster-18",
+      "productGid": "gid://shopify/Product/8905781477573",
+      "profile": "mobile",
+      "cache": "cold",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/lapmaster-18",
+      "productGid": "gid://shopify/Product/8905781477573",
+      "profile": "mobile",
+      "cache": "warm",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/lapmaster-18",
+      "productGid": "gid://shopify/Product/8905781477573",
+      "profile": "desktop",
+      "cache": "cold",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/lapmaster-18",
+      "productGid": "gid://shopify/Product/8905781477573",
+      "profile": "desktop",
+      "cache": "warm",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/sawmaster-18",
+      "productGid": "gid://shopify/Product/8905784131781",
+      "profile": "mobile",
+      "cache": "cold",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/sawmaster-18",
+      "productGid": "gid://shopify/Product/8905784131781",
+      "profile": "mobile",
+      "cache": "warm",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/sawmaster-18",
+      "productGid": "gid://shopify/Product/8905784131781",
+      "profile": "desktop",
+      "cache": "cold",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/sawmaster-18",
+      "productGid": "gid://shopify/Product/8905784131781",
+      "profile": "desktop",
+      "cache": "warm",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/sawmaster-24",
+      "productGid": "gid://shopify/Product/8905784197317",
+      "profile": "mobile",
+      "cache": "cold",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/sawmaster-24",
+      "productGid": "gid://shopify/Product/8905784197317",
+      "profile": "mobile",
+      "cache": "warm",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/sawmaster-24",
+      "productGid": "gid://shopify/Product/8905784197317",
+      "profile": "desktop",
+      "cache": "cold",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/sawmaster-24",
+      "productGid": "gid://shopify/Product/8905784197317",
+      "profile": "desktop",
+      "cache": "warm",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/shapemaster",
+      "productGid": "gid://shopify/Product/8905784328389",
+      "profile": "mobile",
+      "cache": "cold",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/shapemaster",
+      "productGid": "gid://shopify/Product/8905784328389",
+      "profile": "mobile",
+      "cache": "warm",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/shapemaster",
+      "productGid": "gid://shopify/Product/8905784328389",
+      "profile": "desktop",
+      "cache": "cold",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/shapemaster",
+      "productGid": "gid://shopify/Product/8905784328389",
+      "profile": "desktop",
+      "cache": "warm",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/trimmaster",
+      "productGid": "gid://shopify/Product/8905785344197",
+      "profile": "mobile",
+      "cache": "cold",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/trimmaster",
+      "productGid": "gid://shopify/Product/8905785344197",
+      "profile": "mobile",
+      "cache": "warm",
+      "classification": "RELEASE_CERTIFICATION",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 512000,
+        "maxImageBytes": 358400,
+        "firstScreenMediaBytes": 358400,
+        "requestCount": 120,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/trimmaster",
+      "productGid": "gid://shopify/Product/8905785344197",
+      "profile": "desktop",
+      "cache": "cold",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    },
+    {
+      "route": "/products/trimmaster",
+      "productGid": "gid://shopify/Product/8905785344197",
+      "profile": "desktop",
+      "cache": "warm",
+      "classification": "SUPPORTING_RELEASE_COMPARISON",
+      "state": "NOT_SAMPLED_PRECONDITION_BLOCKED",
+      "requestedRuns": 3,
+      "samples": [],
+      "medians": null,
+      "metrics": {
+        "lcpMs": {
+          "status": "missing",
+          "value": null
+        },
+        "cls": {
+          "status": "missing",
+          "value": null
+        },
+        "tbtMs": {
+          "status": "missing",
+          "value": null
+        },
+        "initialTransferBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "imageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "maxImageBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "firstScreenMediaBytes": {
+          "status": "missing",
+          "value": null
+        },
+        "requestCount": {
+          "status": "missing",
+          "value": null
+        },
+        "immediateVideoIframeCount": {
+          "status": "missing",
+          "value": null
+        },
+        "autoplayMediaCount": {
+          "status": "missing",
+          "value": null
+        },
+        "thirdPartyScriptHostCount": {
+          "status": "missing",
+          "value": null
+        },
+        "synchronousThirdPartyScriptCount": {
+          "status": "missing",
+          "value": null
+        }
+      },
+      "thresholds": {
+        "lcpMs": 2500,
+        "cls": 0.1,
+        "tbtMs": 200,
+        "initialTransferBytes": 2097152,
+        "imageBytes": 921600,
+        "maxImageBytes": 512000,
+        "firstScreenMediaBytes": 512000,
+        "requestCount": 130,
+        "immediateVideoIframeCount": 0,
+        "autoplayMediaCount": 0,
+        "thirdPartyScriptHostCount": 0,
+        "synchronousThirdPartyScriptCount": 0
+      },
+      "violations": [
+        "PRECONDITION_APPROVED_CONCRETE_THROTTLE_UNRESOLVED"
+      ],
+      "identityVerification": {
+        "AdminIdentityAndAssignedSuffix": "VERIFIED_BEFORE_READ",
+        "MAINBinding": "VERIFIED_BEFORE_READ",
+        "actualHTTPAndDOM": "NOT_EXERCISED_NO_SAMPLES"
+      },
+      "resourceAttribution": null,
+      "providerState": "NOT_MEASURED"
+    }
+  ],
+  "metrics": {
+    "lcpMs": {
+      "status": "missing",
+      "value": null
+    },
+    "cls": {
+      "status": "missing",
+      "value": null
+    },
+    "tbtMs": {
+      "status": "missing",
+      "value": null
+    },
+    "initialTransferBytes": {
+      "status": "missing",
+      "value": null
+    },
+    "imageBytes": {
+      "status": "missing",
+      "value": null
+    },
+    "maxImageBytes": {
+      "status": "missing",
+      "value": null
+    },
+    "firstScreenMediaBytes": {
+      "status": "missing",
+      "value": null
+    },
+    "requestCount": {
+      "status": "missing",
+      "value": null
+    },
+    "immediateVideoIframeCount": {
+      "status": "missing",
+      "value": null
+    },
+    "autoplayMediaCount": {
+      "status": "missing",
+      "value": null
+    },
+    "thirdPartyScriptHostCount": {
+      "status": "missing",
+      "value": null
+    },
+    "synchronousThirdPartyScriptCount": {
+      "status": "missing",
+      "value": null
+    }
+  },
+  "approvedComparableBaseline": "NONE_AVAILABLE",
+  "beforeGate": {
+    "checkedAt": "2026-10-06T21:35:53.455Z",
+    "passed": true,
+    "mainTheme": {
+      "id": "158579622085",
+      "name": "shopify-rhinolapidary/main",
+      "role": "MAIN"
+    },
+    "completeFileInventory": 422,
+    "checkedFiles": [
+      {
+        "path": "assets/rhino-custom.css",
+        "sourceSha256": "32f44d332f5b1d51b95213292c54d6e5c17751ebf4e79878eba4e2c17ce5f961",
+        "storedMd5": "e3e2de8ce74e722d424bf8627b05faa1",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "layout/theme.liquid",
+        "sourceSha256": "87086adef642d447d2cba82186641e93460d815549375bf608da035534cec5af",
+        "storedMd5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "locales/en.default.json",
+        "sourceSha256": "1c9b35a463badc81f9b84c0e690b70c644c80f974338138875df761b281e792f",
+        "storedMd5": "fe76e42d09c36499465030cbe36cd0c8",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "locales/en.default.schema.json",
+        "sourceSha256": "8009bbec50222d4d8e9bb160f03e53ca00fd15e8be5b938070f1a8c52f7bfdd9",
+        "storedMd5": "1f61b62eaa6be77aa839978a029df32c",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "sections/cart-notification-product.liquid",
+        "sourceSha256": "7e775b942acae3ea9b6f76dce09fd7881dcf687271c8e365aece510fb41e652f",
+        "storedMd5": "e5bce80dea0ae667d76dc8a117faf575",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "sections/main-cart-items.liquid",
+        "sourceSha256": "d043f0d8ddc3148076866e19bae02efd52db7dbf7ee1ca7f19ea2cf832850cc6",
+        "storedMd5": "ef0ecb153fd6815a25aa0f49fc1a21c9",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "sections/main-product.liquid",
+        "sourceSha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3",
+        "storedMd5": "bf649d184fe72f0ba57161632924c8b8",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "sections/predictive-search.liquid",
+        "sourceSha256": "1f05232069cb26cdc28b4736ac6e681b863865f30c97740503231be030658575",
+        "storedMd5": "98dc0d6dd53a7d5dec53eb5f14cb8151",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/card-product.liquid",
+        "sourceSha256": "f2f0fe4c960d6f19c9de87767614fede2b745450f90e9fc6624685f29b61d877",
+        "storedMd5": "8a342a9a4e618729d42afc414f241b8c",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/cart-drawer.liquid",
+        "sourceSha256": "c1091354befbffa1bc0ed114d978377c436b8dc47e8e9eb348a843845d619c9a",
+        "storedMd5": "14b592922c8c3010c2327491dc51cc07",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/meta-tags.liquid",
+        "sourceSha256": "ebe74785f747771721b4ab7678f78a1a6e45be3a6c5f600bf04612c01cc2ca52",
+        "storedMd5": "1db48995e80a4f76ce30af839865e3b7",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/product-media-modal.liquid",
+        "sourceSha256": "97744048cb27bb56e323eaeee7307901331cb9f90c145d24cf2cc3861c3565ef",
+        "storedMd5": "2cfb336b4f9f9405208854c376192335",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-machine-contents.liquid",
+        "sourceSha256": "daefb3ad5757bf38cbaa0a372a42e8ef0b2283c716387f286c9a9f831d0802fd",
+        "storedMd5": "aceefd9a65962945c488c048bb8f64b8",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-machine-contextual.liquid",
+        "sourceSha256": "da07184dd3b1b621d2980b50c2e2aed9d40ce6ec75414d31eb48d0566437fe0b",
+        "storedMd5": "b604c361f1361c1864c0cfd516064d62",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-machine-delivery.liquid",
+        "sourceSha256": "1703a28753259ec81943fabafe89d883cf9ef975f12db9c337f66bc926a18ff9",
+        "storedMd5": "9450c6685158572e17b9852cacce24ec",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-machine-resources.liquid",
+        "sourceSha256": "0726da0a37eb47db309a4d3f376554b1c3ddf120091393933f1ab244960c7018",
+        "storedMd5": "053ec3f77fd462a0cd23dbec4eb35309",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-machine-specifications.liquid",
+        "sourceSha256": "39ed3f9e1968db38d373ebf56c6c96b0ba2c1cefc2a16128a41dcbb0a42f4e74",
+        "storedMd5": "0648a2366e98a7e2abea20a716593517",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-machine-support.liquid",
+        "sourceSha256": "9226eeee5163438988478d985782a25d6facc8354b4cc67a376009989fe24b1f",
+        "storedMd5": "d1425865df57bf73389132464d360fdd",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-product-consumer-route.liquid",
+        "sourceSha256": "62fbf208573b7800de0b30046940eaa1e7a445acb77aa42b32c7e558ee7c9bbd",
+        "storedMd5": "6fbbb09882dccb0f3554aeaf2a405b2e",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-product-context-delivery-projection.liquid",
+        "sourceSha256": "273479d996cb7f3dd3112a575734781750964c6e0bce936e4decf816170cf915",
+        "storedMd5": "7fcac2d269f7ec125d6167485bb0afe3",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-product-description.liquid",
+        "sourceSha256": "fd7af1f35621fd0c393f528cc40eb1c7ff16cfe81517525c2446363ef21b7d0c",
+        "storedMd5": "e6a9da3f6418e44015c5cb97f4f10556",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-product-fact-projection.liquid",
+        "sourceSha256": "502dbe69a03afa1a248b5eb033d2502855670d22975bc9aa4acccf4949c34431",
+        "storedMd5": "2a39b91bc5f0279b953bcbe11df99152",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-product-media-eligibility.liquid",
+        "sourceSha256": "4cd2ad166af64c8083b27a5531c52d63eb9a418bba435731e94fd868dec16056",
+        "storedMd5": "41f3f2cdce000ab333b0f2becf992912",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-product-structured-data.liquid",
+        "sourceSha256": "2ea5c3cc0f467b4ca9e14a4802622adb035b782b4c9a4e2fbc723e8864dcad5c",
+        "storedMd5": "06e902d83631c20dad8f51fe12540e64",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/rhino-product-support-resources-projection.liquid",
+        "sourceSha256": "70c7226c5376af3693dadc3bb5b377a7096764e201aa0a7d5f44aa3ea8658b25",
+        "storedMd5": "2b33febf1b25c7180720155f82cf0484",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "templates/product.machine.json",
+        "sourceSha256": "1527450e3324c0240a93618ea3a0a8371ec94dcbc0efb8d02719d0d290b652af",
+        "storedMd5": "98e5cb615f2fde3497837cd6821f995d",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/product-inventory.liquid",
+        "sourceSha256": "36de2da4743a045416f800f2638879b1d41c007ed9f825d55530e0a6a61d8fb9",
+        "storedMd5": "d8bc5446eb3b6384f9ac4735579cc391",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "snippets/card-product-placeholder.liquid",
+        "sourceSha256": "b36b75fb04a96ee49d4304e7c834a0b666004729f84aa2080b503f4a5a0fef56",
+        "storedMd5": "23243af28c36bbeedebdec78af55772a",
+        "exactPreviouslyVerifiedStoredBinding": true
+      },
+      {
+        "path": "sections/header.liquid",
+        "sourceSha256": "e9e34d8dae4c59cf5040b010339e2124e46d71f89d960d80f1a9ef1589d93339",
+        "storedMd5": "9bfb0e55ef5a6bcd4befc5369b98d4d8",
+        "exactPreviouslyVerifiedStoredBinding": true
+      }
+    ],
+    "machines": [
+      {
+        "gid": "gid://shopify/Product/8905779937477",
+        "handle": "beadmaster",
+        "suffix": "machine",
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484254032069"
+        ],
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:54:05Z"
+      },
+      {
+        "gid": "gid://shopify/Product/8905780756677",
+        "handle": "em-1",
+        "suffix": "machine",
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484254949573"
+        ],
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:54:18Z"
+      },
+      {
+        "gid": "gid://shopify/Product/8905781248197",
+        "handle": "jademaster",
+        "suffix": null,
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484255473861"
+        ],
+        "status": "ACTIVE",
+        "publishedAt": null
+      },
+      {
+        "gid": "gid://shopify/Product/8905781412037",
+        "handle": "lapmaster-12",
+        "suffix": "machine",
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484255637701"
+        ],
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:54:30Z"
+      },
+      {
+        "gid": "gid://shopify/Product/8905781477573",
+        "handle": "lapmaster-18",
+        "suffix": "machine",
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484255703237"
+        ],
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:54:31Z"
+      },
+      {
+        "gid": "gid://shopify/Product/8905784131781",
+        "handle": "sawmaster-18",
+        "suffix": "machine",
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484258914501"
+        ],
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:55:19Z"
+      },
+      {
+        "gid": "gid://shopify/Product/8905784197317",
+        "handle": "sawmaster-24",
+        "suffix": "machine",
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484258980037"
+        ],
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:55:20Z"
+      },
+      {
+        "gid": "gid://shopify/Product/8905784262853",
+        "handle": "sawmaster-36",
+        "suffix": null,
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484259045573"
+        ],
+        "status": "DRAFT",
+        "publishedAt": null
+      },
+      {
+        "gid": "gid://shopify/Product/8905784328389",
+        "handle": "shapemaster",
+        "suffix": "machine",
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484259111109"
+        ],
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:55:23Z"
+      },
+      {
+        "gid": "gid://shopify/Product/8905785344197",
+        "handle": "trimmaster",
+        "suffix": "machine",
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484260290757"
+        ],
+        "status": "ACTIVE",
+        "publishedAt": "2026-07-02T16:55:43Z"
+      },
+      {
+        "gid": "gid://shopify/Product/8905785868485",
+        "handle": "tumblemaster",
+        "suffix": null,
+        "productClass": "machine",
+        "variantGids": [
+          "gid://shopify/ProductVariant/46484260913349"
+        ],
+        "status": "DRAFT",
+        "publishedAt": null
+      }
+    ],
+    "distribution": {
+      "consumable": 39,
+      "accessory": 18,
+      "replacement_part": 54,
+      "machine": 11
+    },
+    "factualGrants": 0,
+    "F_DEC_001": "APPROVED_OPTION_A",
+    "sourceBindingIdentity": "GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06",
+    "sourceBindingSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+    "beforeReadCompletedAt": "2026-10-06T21:30:53.195Z",
+    "browserRouteIdentity": "NOT_EXERCISED_NO_PERFORMANCE_SAMPLES",
+    "APIversion": "Not exposed by connector"
+  },
+  "persistentAfter": {
+    "checkedAt": "2026-10-06T21:38:27.077Z",
+    "beforeReadCompletedAt": "2026-10-06T21:30:53.195Z",
+    "afterReadCompletedAt": "2026-10-06T21:37:21.822Z",
+    "mainSourceBindingUnchanged": true,
+    "allThemeAndFileRecordsUnchanged": true,
+    "ProductsVerified": 122,
+    "allQueriedProductAndVariantFieldsUnchanged": true,
+    "machineSuffixesUnchanged": 8,
+    "exclusionsUnchanged": 3,
+    "classificationsUnchanged": 122,
+    "factualGrants": 0,
+    "ProductMutations": 0,
+    "themeWrites": 0,
+    "publicationActions": 0,
+    "configurationChanges": 0,
+    "ShopifyPersistentMutations": 0,
+    "localRuntimeSourceChanged": false
+  },
+  "validation": {
+    "schema": "schemas/epic-f-performance-measurement.schema.json#/$defs/certificationPreflight",
+    "budgetEvaluation": "NOT_RUN_NO_SAMPLES",
+    "LCPownership": null,
+    "resourceAttribution": null,
+    "providerPerformanceState": "NOT_MEASURED",
+    "invalidRetryJournal": [],
+    "historicalDiagnosticsNotUsedAsBaselines": true,
+    "proof": {
+      "schemaValid": true,
+      "existingMeasuredRecordSchemaUnchanged": true,
+      "evaluateRunRejectsPreflightAsCertification": true,
+      "plannedRecords": 32,
+      "plannedSamples": 96,
+      "actualSamples": 0
+    }
+  },
+  "statusConsequences": {
+    "F_PBI_015B": "BLOCKED_MISSING_APPROVED_THROTTLE_PROFILE",
+    "F_PBI_015": "PARTIAL_CONTRACT_COMPLETE_LIVE_CERTIFICATION_NOT_EXECUTED",
+    "F_PBI_014B": "PARTIAL_FUTURE_LIVE_STATES_ONLY",
+    "F014B_FOCUS_CURRENT": "COMPLETE",
+    "F_PBI_017B": "COMPLETE",
+    "F_PBI_018B": "NOT_BEGUN_NOT_READY",
+    "budgetFailure": false,
+    "performanceCertified": false
+  }
+}

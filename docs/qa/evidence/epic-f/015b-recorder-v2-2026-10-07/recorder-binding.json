@@ -1,0 +1,144 @@
+{
+  "identity": "EPIC_F_015B_LIVE_RECORDER_V2",
+  "specification": {
+    "schemaVersion": 1,
+    "identity": "EPIC_F_015B_LIVE_RECORDER_V2",
+    "approvalMode": "delegated_development_override",
+    "approvedAt": "2026-10-07",
+    "profileId": "RHINO_LIGHTHOUSE_SLOW_4G_2026_10",
+    "storeSourceBindingIdentity": "GLOBAL_HEADER_FOCUS_CORRECTION_2026_10_06",
+    "storeSourceBindingSha256": "7f9156cef929619f7e9fb38ee5f51e740c7d63fe0efdeaf4cc510eaf32b72e37",
+    "window": {
+      "start": "Immediately before measured PAGE B Product navigation",
+      "close": "load -> document.fonts.ready -> 1500 ms settle",
+      "requestAdmission": "Only this page and its child frames while window is open; frozen at cutoff",
+      "metrics": "LCP, CLS, established long-task TBT proxy snapshot at cutoff; drain does not extend observation"
+    },
+    "terminalDrain": {
+      "maximumMs": 5000,
+      "scope": "Only already-admitted request identities",
+      "states": [
+        "COMPLETED_WITH_BYTES",
+        "FAILED_WITH_CLASSIFIED_REASON",
+        "UNRESOLVED"
+      ],
+      "unresolvedInvalidates": true,
+      "missingByteEvidence": null,
+      "postWindowRequests": "Retained diagnostically; not admitted"
+    },
+    "cache": {
+      "context": "Fresh independent BrowserContext for each measured sample; only memory authentication cookies copied",
+      "cold": "HTTP cache cleared before first Product navigation; no Product prime; bypass service workers",
+      "warm": "PAGE A same-route prime under approved throttle, load/fonts/1500ms, separate recorder drain, close A; PAGE B new target in SAME BrowserContext, cache retained, same throttle, first B navigation measured",
+      "primeTraffic": "PRIMING_LIFECYCLE target provenance, including close/unload diagnostics; never excluded by URL",
+      "measuredTelemetry": "Counts normally if initiated by PAGE B within measurement window"
+    },
+    "provenance": {
+      "scope": "Page-specific CDP session and Playwright Page events, including child frames",
+      "retained": [
+        "contextId",
+        "pageId",
+        "targetId",
+        "frameId",
+        "loaderId",
+        "requestId",
+        "requestSequence",
+        "timestamp",
+        "wallTime",
+        "initiator",
+        "membership"
+      ],
+      "correlation": "Unique same-target wall time within 2ms, method and URL; Playwright request object for all-frame lifecycle; ambiguity invalidates"
+    },
+    "interRunDelayMs": 2500,
+    "invalidRetryMaximumPerSlot": 1,
+    "canary": {
+      "route": "/products/beadmaster",
+      "productGid": "gid://shopify/Product/8905779937477",
+      "profile": "mobile",
+      "width": 390,
+      "height": 900,
+      "dpr": 1,
+      "coldSamples": 3,
+      "warmSamples": 3
+    },
+    "decision": {
+      "failure": "One mandatory valid triplet failure suffices; remaining 90 not needed to prove failure",
+      "success": "Canary pass is not certification; 90 additional valid samples still required"
+    },
+    "budgetsChanged": false,
+    "runtimeChangesAuthorized": false,
+    "ShopifyWritesAuthorized": false
+  },
+  "files": [
+    {
+      "path": "data/epic-f-performance-profiles.json",
+      "sha256": "4412365d44a02c819fb4af0fb5981a011a5a9a055a1ce844b3dde35fd84d55ce"
+    },
+    {
+      "path": "scripts/lib/epic-f-live-performance-profile.js",
+      "sha256": "5801a5b5174bd1e04e9b8c914f5cd5d6bde31f5aff34924b6bb54494809d96f6"
+    },
+    {
+      "path": "scripts/lib/epic-f-live-performance-collector.js",
+      "sha256": "68b611d7d8fed434eb0b0d10ea0c21ef322bab3c818535eb70f79ea4a9217d4f"
+    },
+    {
+      "path": "scripts/lib/epic-f-live-performance-campaign.js",
+      "sha256": "b4ae28bf855c89f0c66a7244e416a5e038ded178da9e44944992f6e8451e47a7"
+    },
+    {
+      "path": "scripts/run-epic-f-live-performance-certification.js",
+      "sha256": "fe8b3213d226986dccfb0670529957f9f83b0029919efed300ea6aa86974a457"
+    },
+    {
+      "path": "scripts/lib/epic-f-performance.js",
+      "sha256": "09e9d4ce0179970712285f58eb03fbb2836d1de1e4b656e536d47f15f8fb6d90"
+    },
+    {
+      "path": "scripts/validate-brand-performance-budget.js",
+      "sha256": "f2ca3b379ed9bb17a55320ac9f5ab7385b1f79721d93683c09e854af2addf8b7"
+    },
+    {
+      "path": "data/brand-performance-budget.json",
+      "sha256": "6fc5f3faedee086f3429f85de3f46a17d87b981e3bd368a12a14339c51d0eb76"
+    },
+    {
+      "path": "schemas/epic-f-performance-measurement.schema.json",
+      "sha256": "a2a26fd836f8146a9a526113377b625e14f9c06c6269a65117b4efe7cbadea30"
+    },
+    {
+      "path": "data/epic-f-performance-recorder-v2.json",
+      "sha256": "aab3fef23a3d0175ba4a7ba452bef50913deb15fd2c3aa1a17c649f88c446ef8"
+    },
+    {
+      "path": "scripts/lib/epic-f-live-performance-network-v2.js",
+      "sha256": "fa40ee4c052bd875c5f7654dd54f7e8de96f900947251ee7c8c2bb63c6a9941a"
+    },
+    {
+      "path": "scripts/lib/epic-f-live-performance-collector-v2.js",
+      "sha256": "361d941e9ffa29d214505e0a22f714ae15e9b3409870df06fe33a309cdd4f194"
+    },
+    {
+      "path": "scripts/lib/epic-f-live-performance-campaign-v2.js",
+      "sha256": "acee5263b99837f154557b13d7c71b1452e8b07253b2d3d59d62dba2c38f2d7b"
+    },
+    {
+      "path": "scripts/run-epic-f-live-performance-canary-v2.js",
+      "sha256": "c5fde54fe3b37833d81d30c454795818679b46af9f928aedafd21572302e89ac"
+    },
+    {
+      "path": "scripts/build-epic-f-recorder-v2.js",
+      "sha256": "bce699dba3837f1a96b48110f3c561634c3cf972c2372de5cebb7efb63f61b14"
+    },
+    {
+      "path": "scripts/test-epic-f-live-performance-v2.js",
+      "sha256": "1d1450300e8f0f49d83603c6e61892cec7a12ef0d052328d90a52d17ee5f99d8"
+    },
+    {
+      "path": "scripts/test-epic-f-live-performance-profile-v2.js",
+      "sha256": "a1a96a6f6cdf7bfce77730fdc21c534897dbded7596909ed9afc8f0d9be3641b"
+    }
+  ],
+  "sha256": "4f12de62602cad40a0dd2e13e6cb4d2ffa33c531ce5ecbc25529c7a8885ef3c7"
+}

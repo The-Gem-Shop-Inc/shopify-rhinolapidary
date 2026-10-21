@@ -1,0 +1,71 @@
+{
+  "asOf": "2026-10-05T20:10:36.597Z",
+  "scope": "READ_ONLY_NEXT_PRODUCT_TEMPLATE_ACTIVATION_DECISION",
+  "liveTheme": {
+    "id": "158579622085",
+    "role": "MAIN",
+    "machineTemplatePresent": false
+  },
+  "previewTheme": {
+    "id": "158631198917",
+    "name": "Rhino Lapidary - Preview",
+    "role": "UNPUBLISHED",
+    "machineTemplatePresent": true
+  },
+  "currentProductSuffixes": "All 122 null; eleven governed machines individually captured in current eligibility evidence",
+  "classificationPrerequisite": "SATISFIED_122_OF_122",
+  "definitionPrerequisite": "SATISFIED_38_OF_38",
+  "conditionalCandidates": 8,
+  "exclusions": 3,
+  "assignmentEligibleTargets": 0,
+  "assignmentExecutableTargets": 0,
+  "adminApi": {
+    "templateSuffixInputType": "String",
+    "absentLiveTemplateAssignmentAcceptance": "NOT_ESTABLISHED_BY_AVAILABLE_OFFICIAL_DOCUMENTATION",
+    "experimentalMutationPerformed": false,
+    "interpretation": "Schema input support does not prove the server accepts a suffix absent from the live theme. No reject/accept claim is made."
+  },
+  "liveRendering": {
+    "documentedMissingTemplateBehavior": "Deleted assigned templates display their resources using the default template",
+    "inferenceForAbsentMachineSuffix": "Default product-template fallback is expected if the suffix were stored while machine is absent from the live theme; this exact unassigned-state case was not experimentally mutated.",
+    "previewThemeSelection": "A store-level suffix does not select the unpublished preview theme"
+  },
+  "developmentSequence": {
+    "currentlySafe": "Continue persistent unpublished preview + view=machine without assignment",
+    "nextDecision": "Authorize preparation/review of a selective live-theme machine-template and dependency deployment, keeping the existing live theme rather than publishing the entire preview.",
+    "futurePrerequisites": [
+      "exact dependency closure and live/local source diff",
+      "before-state backup and rollback",
+      "default Product, non-machine, collection/search/cart/global regression",
+      "separate explicit authorization for any production-theme file change",
+      "then fresh bounded F7 protected before-read and target-bound assignment GO",
+      "preserve JadeMaster/SawMaster36/TumbleMaster exclusions",
+      "assigned-template parity and remaining 014B/015B release gates"
+    ],
+    "automaticAction": false,
+    "productionDeploymentAuthorized": false,
+    "assignmentAuthorized": false
+  },
+  "sources": [
+    {
+      "url": "https://help.shopify.com/en/manual/online-store/themes/theme-structure/templates",
+      "supports": [
+        "Admin assignment list is based on current live theme",
+        "preview alternate template without assignment",
+        "deleted assigned templates fall back to default"
+      ]
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/2026-10/input-objects/ProductUpdateInput",
+      "supports": [
+        "templateSuffix field exists; absent-template server validation not specified"
+      ]
+    }
+  ],
+  "technicalExpertWorksheetRequiredForCompletedClassification": false,
+  "F_PBI_017B": "BLOCKED_NOT_EXECUTED",
+  "F_PBI_018B": "NOT_BEGUN",
+  "productionThemeMutation": false,
+  "templateAssignments": 0,
+  "productionPublication": false
+}

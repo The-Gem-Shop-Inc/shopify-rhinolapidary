@@ -1,0 +1,117 @@
+{
+  "assessedAt": "2026-09-30T19:23:44.221Z",
+  "scope": "Shell-only execution handoff preparation; no new batch/PBI or execution authority",
+  "validationPassed": true,
+  "commands": [
+    {
+      "command": "node scripts/validate-epic-f-shell-only-release-handoff.js",
+      "exitCode": 0,
+      "output": "Shell handoff valid: eight proposals, three exclusions, full 38/122 E inputs, 28 preview files, 70 local containment renders; authorizations=false; no live actions."
+    },
+    {
+      "command": "node scripts/validate-epic-e-batch-4a.js --plan=E-MUT-020",
+      "exitCode": 0,
+      "output": "Batch 4A validation passed: 1 independent E-PBI-019 plan(s), bounded domain checked; execution unauthorized."
+    },
+    {
+      "command": "node scripts/validate-epic-e-batch-4a.js --plan=E-MUT-021",
+      "exitCode": 0,
+      "output": "Batch 4A validation passed: 1 independent E-PBI-019 plan(s), bounded domain checked; execution unauthorized."
+    },
+    {
+      "command": "node scripts/validate-epic-f-machine-template-rollout-plan.js",
+      "exitCode": 0,
+      "output": "Rollout plan ready: e69138cf06cdab34f7560058d156dfe0f4f042cc94d395582dd55fde1cfd7146; all 11 assessed; eight conditional future candidates; zero eligible/executable; rollback exact; both GO absent; publication forbidden."
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --check",
+      "exitCode": 0,
+      "output": ""
+    }
+  ],
+  "newFileWhitespaceChecks": [
+    {
+      "command": "git -c core.safecrlf=false diff --no-index --check -- test-results/epic-f/activation-review-empty.txt docs/project/epic-f-shell-only-release-handoff.md",
+      "exitCode": 1,
+      "whitespaceFindings": "",
+      "interpretation": "git --no-index reports different files (1); empty output means no whitespace findings"
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --no-index --check -- test-results/epic-f/activation-review-empty.txt data/epic-f-shell-only-release-preparation.json",
+      "exitCode": 1,
+      "whitespaceFindings": "",
+      "interpretation": "git --no-index reports different files (1); empty output means no whitespace findings"
+    },
+    {
+      "command": "git -c core.safecrlf=false diff --no-index --check -- test-results/epic-f/activation-review-empty.txt scripts/validate-epic-f-shell-only-release-handoff.js",
+      "exitCode": 1,
+      "whitespaceFindings": "",
+      "interpretation": "git --no-index reports different files (1); empty output means no whitespace findings"
+    }
+  ],
+  "sourceBoundary": {
+    "f8PreservedHashes": 21,
+    "activationReviewPreservedHashes": 8,
+    "lightweightWhitespaceValidatorExit": 0,
+    "existingReviewAndF8ValidationReused": true,
+    "newBrowserFleetRun": false,
+    "newThemeCheckRun": false
+  },
+  "assertions": {
+    "proposedCandidates": 8,
+    "preservedExclusions": 3,
+    "currentEligible": 0,
+    "currentExecutable": 0,
+    "definitionRows": 38,
+    "classRows": 122,
+    "proposedThemeFiles": 28,
+    "localContainmentRenders": 70,
+    "allExecutionAuthorizationsFalse": true,
+    "paymentDecisionUndecided": true
+  },
+  "files": [
+    {
+      "path": "docs/project/epic-f-shell-only-release-handoff.md",
+      "change": "created",
+      "sha256": "50ae16166de499410559b5a74bbd9cc30b82c01cad5473571f9970e73dccbb9a"
+    },
+    {
+      "path": "data/epic-f-shell-only-release-preparation.json",
+      "change": "created",
+      "sha256": "82020955116b278c0de04d4b500450dacfb1c5f39092b8222c1d6306cae47598"
+    },
+    {
+      "path": "scripts/validate-epic-f-shell-only-release-handoff.js",
+      "change": "created",
+      "sha256": "3643fbf005c6e91ead17b41e455ca276d99de5011ab5c2b8a4415d4c7e0ee574"
+    },
+    {
+      "path": "docs/qa/evidence/epic-f/shell-only-release-handoff-validation.json",
+      "change": "created",
+      "note": "Self hash excluded to avoid circular hashing"
+    }
+  ],
+  "ignoredAnalysisArtifacts": [
+    "test-results/epic-f/shell-dependency-trace.json",
+    "test-results/epic-f/build-shell-handoff.cjs"
+  ],
+  "runtimeThemeDelta": "none",
+  "performanceBudgetDelta": "none",
+  "actionsPerformed": {
+    "shopifyAdminMutation": false,
+    "productTemplateAssignment": false,
+    "productDataMutation": false,
+    "previewThemePush": false,
+    "productionThemePush": false,
+    "productionPublication": false,
+    "factualActivation": false,
+    "releaseSignoff018B": false
+  },
+  "limitations": [
+    "No fresh Shopify audit this preparation; Sept 30 observation remains expired for execution.",
+    "Target theme native file compatibility and complete backup hashes require fresh read before push approval.",
+    "Admin UI lists live-theme templates; a safe preview-only suffix assignment execution method is unresolved.",
+    "Existing E/F7 planning modules do not provide execution adapters.",
+    "Shopify-rendered parity and release performance remain future separately authorized work."
+  ]
+}

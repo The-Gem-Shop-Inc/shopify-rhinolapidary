@@ -1,0 +1,527 @@
+{
+  "observedAt": "2026-10-13 20:24:55 UTC",
+  "query": "query OwnerFactCompare($ids:[ID!]!){shop{id myshopifyDomain}nodes(ids:$ids){...on Product{id metafields(first:30){nodes{id namespace key type jsonValue compareDigest definition{id}}pageInfo{hasNextPage endCursor}}}}}",
+  "variables": {
+    "ids": [
+      "gid://shopify/Product/8905779937477",
+      "gid://shopify/Product/8905780756677",
+      "gid://shopify/Product/8905781477573",
+      "gid://shopify/Product/8905784131781",
+      "gid://shopify/Product/8905784197317",
+      "gid://shopify/Product/8905784328389",
+      "gid://shopify/Product/8905785344197"
+    ]
+  },
+  "response": {
+    "data": {
+      "shop": {
+        "id": "gid://shopify/Shop/79279947973",
+        "myshopifyDomain": "sz5dnk-nf.myshopify.com"
+      },
+      "nodes": [
+        {
+          "id": "gid://shopify/Product/8905779937477",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185426317509",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530190176453",
+                "namespace": "rhino",
+                "key": "input_voltage",
+                "type": "voltage",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658267333"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530190209221",
+                "namespace": "rhino",
+                "key": "input_frequencies",
+                "type": "list.frequency",
+                "jsonValue": [
+                  {
+                    "value": 60,
+                    "unit": "hertz"
+                  }
+                ],
+                "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658300101"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530338025669",
+                "namespace": "rhino",
+                "key": "motor_speed",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 3000,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658365637"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDMzODAyNTY2OSwibGFzdF92YWx1ZSI6IjcxNTMwMzM4MDI1NjY5In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905780756677",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185428021445",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530190143685",
+                "namespace": "rhino",
+                "key": "input_voltage",
+                "type": "voltage",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658267333"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337861829",
+                "namespace": "rhino",
+                "key": "wheel_speed_min",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 0,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "f84a80489302779274ed55207cad5099d2233e2a436015ab757ad78810d1dcbc",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658398405"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337894597",
+                "namespace": "rhino",
+                "key": "wheel_speed_max",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 3000,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658431173"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337927365",
+                "namespace": "rhino",
+                "key": "motor_power",
+                "type": "power",
+                "jsonValue": {
+                  "value": 1,
+                  "unit": "HORSEPOWER"
+                },
+                "compareDigest": "aee0727953f9e10f4eb08539d056f9782d139eac9796eabba38fd0287fe0dd9c",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658332869"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337960133",
+                "namespace": "rhino",
+                "key": "flex_shaft_speed_min",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 500,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "7d730f1d94cb8bb1dbe7e8be29519a7bbd14401c096bd8e8cfc2fe501c0776a2",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658463941"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337992901",
+                "namespace": "rhino",
+                "key": "flex_shaft_speed_max",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 5000,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "401f5638865ca00167aac4e09a8147672aca13d6b5a6dd7b2ba884ed9e7e24fb",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658496709"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDMzNzk5MjkwMSwibGFzdF92YWx1ZSI6IjcxNTMwMzM3OTkyOTAxIn0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905781477573",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185427628229",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530190012613",
+                "namespace": "rhino",
+                "key": "input_voltage",
+                "type": "voltage",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658267333"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530190045381",
+                "namespace": "rhino",
+                "key": "input_frequencies",
+                "type": "list.frequency",
+                "jsonValue": [
+                  {
+                    "value": 60,
+                    "unit": "hertz"
+                  }
+                ],
+                "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658300101"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337829061",
+                "namespace": "rhino",
+                "key": "motor_power",
+                "type": "power",
+                "jsonValue": {
+                  "value": 1,
+                  "unit": "HORSEPOWER"
+                },
+                "compareDigest": "aee0727953f9e10f4eb08539d056f9782d139eac9796eabba38fd0287fe0dd9c",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658332869"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDMzNzgyOTA2MSwibGFzdF92YWx1ZSI6IjcxNTMwMzM3ODI5MDYxIn0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905784131781",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185431855301",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530189947077",
+                "namespace": "rhino",
+                "key": "input_voltage",
+                "type": "voltage",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658267333"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530189979845",
+                "namespace": "rhino",
+                "key": "input_frequencies",
+                "type": "list.frequency",
+                "jsonValue": [
+                  {
+                    "value": 60,
+                    "unit": "hertz"
+                  }
+                ],
+                "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658300101"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337796293",
+                "namespace": "rhino",
+                "key": "motor_speed",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 1700,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "e7d4b28f62a5ae781baa45d2360016795704a2b1947381c5bf2e3b7ae9d42ec8",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658365637"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDMzNzc5NjI5MywibGFzdF92YWx1ZSI6IjcxNTMwMzM3Nzk2MjkzIn0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905784197317",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185431822533",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530189881541",
+                "namespace": "rhino",
+                "key": "input_voltage",
+                "type": "voltage",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658267333"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530189914309",
+                "namespace": "rhino",
+                "key": "input_frequencies",
+                "type": "list.frequency",
+                "jsonValue": [
+                  {
+                    "value": 60,
+                    "unit": "hertz"
+                  }
+                ],
+                "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658300101"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337763525",
+                "namespace": "rhino",
+                "key": "motor_speed",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 1700,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "e7d4b28f62a5ae781baa45d2360016795704a2b1947381c5bf2e3b7ae9d42ec8",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658365637"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDMzNzc2MzUyNSwibGFzdF92YWx1ZSI6IjcxNTMwMzM3NzYzNTI1In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905784328389",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185431756997",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530189816005",
+                "namespace": "rhino",
+                "key": "input_voltage",
+                "type": "voltage",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658267333"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530189848773",
+                "namespace": "rhino",
+                "key": "input_frequencies",
+                "type": "list.frequency",
+                "jsonValue": [
+                  {
+                    "value": 60,
+                    "unit": "hertz"
+                  }
+                ],
+                "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658300101"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337730757",
+                "namespace": "rhino",
+                "key": "motor_speed",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 3000,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658365637"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDMzNzczMDc1NywibGFzdF92YWx1ZSI6IjcxNTMwMzM3NzMwNzU3In0="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Product/8905785344197",
+          "metafields": {
+            "nodes": [
+              {
+                "id": "gid://shopify/Metafield/71185433755845",
+                "namespace": "rhino",
+                "key": "product_class",
+                "type": "single_line_text_field",
+                "jsonValue": "machine",
+                "compareDigest": "b63139f70fcafa127bf0e4a39d701c583f0ef747d62c6e66deda663bef0e54b7",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658201797"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530189750469",
+                "namespace": "rhino",
+                "key": "input_voltage",
+                "type": "voltage",
+                "jsonValue": {
+                  "value": 110,
+                  "unit": "VOLTS"
+                },
+                "compareDigest": "1dc7705a9f86abbaa466d91fa796d04e35303f8f673b46e9a51467ff7eac7748",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658267333"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530189783237",
+                "namespace": "rhino",
+                "key": "input_frequencies",
+                "type": "list.frequency",
+                "jsonValue": [
+                  {
+                    "value": 60,
+                    "unit": "hertz"
+                  }
+                ],
+                "compareDigest": "cb880325be818e02c2d91a27e85b185209bbface8e33261df610e65a7a5868a5",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658300101"
+                }
+              },
+              {
+                "id": "gid://shopify/Metafield/71530337697989",
+                "namespace": "rhino",
+                "key": "motor_speed",
+                "type": "rotational_speed",
+                "jsonValue": {
+                  "value": 3000,
+                  "unit": "REVOLUTIONS_PER_MINUTE"
+                },
+                "compareDigest": "081de415aa216df521699ddff3b22ac5a6455237854f8bada92163926f6cd71f",
+                "definition": {
+                  "id": "gid://shopify/MetafieldDefinition/298658365637"
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo3MTUzMDMzNzY5Nzk4OSwibGFzdF92YWx1ZSI6IjcxNTMwMzM3Njk3OTg5In0="
+            }
+          }
+        }
+      ]
+    }
+  }
+}
