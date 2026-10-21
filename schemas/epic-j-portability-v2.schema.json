@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "predecessor",
+    "ownerDecision",
+    "businessException",
+    "privateTraceGitIdentities",
+    "implementation"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "id": {
+      "const": "J1-EVIDENCE-PORTABILITY-V2-2026-10-21"
+    },
+    "predecessor": {
+      "$ref": "#/definitions/identity"
+    },
+    "ownerDecision": {
+      "$ref": "#/definitions/identity"
+    },
+    "businessException": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "absencePermittedInLocal",
+        "absencePermittedInPortable"
+      ],
+      "properties": {
+        "path": {
+          "const": "docs/product/AMER\u0130KA ROCK SHOPS.xlsx"
+        },
+        "sha256": {
+          "const": "cb74336c9584d8a52d92fd1d791650d730ae50c058cc1867f3a11fb81958968c"
+        },
+        "absencePermittedInLocal": {
+          "const": true
+        },
+        "absencePermittedInPortable": {
+          "const": true
+        }
+      }
+    },
+    "privateTraceGitIdentities": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256",
+          "gitBlobOid"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "gitBlobOid": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          }
+        }
+      }
+    },
+    "implementation": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "$ref": "#/definitions/identity"
+      }
+    }
+  },
+  "definitions": {
+    "identity": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

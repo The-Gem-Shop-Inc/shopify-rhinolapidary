@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "governingSuccessor": "J1-EVIDENCE-PORTABILITY-V1-2026-10-20",
+  "kind": "OBSERVED_HISTORICAL_METADATA_NOT_REGENERATED_MEASUREMENTS",
+  "original": {
+    "path": "docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/browser-live-01/artifacts/epic-j-cart-actual-preview-isolated-native-cart-390-desktop-chromium/trace.zip",
+    "sha256": "a2139f795c7ad5d4d396d40612b726bc66eb64ae983414b2c79920b1c0a1734f",
+    "runIdentifier": "browser-live-01"
+  },
+  "sourceReport": {
+    "path": "docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/browser-live-01/playwright.json",
+    "sha256": "1e9d0a19969726ffce7852e93bfebdc2e92249061eeb94d0e8b4999ef3de0abe"
+  },
+  "testResults": [
+    {
+      "testIdentity": "actual preview isolated native cart 390",
+      "outcome": "failed",
+      "durationMs": 11005,
+      "retry": 0,
+      "assertionFailureCount": 1
+    }
+  ],
+  "browser": "chromium",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 1000
+    },
+    {
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "requestCategories": [
+    {
+      "method": "GET",
+      "category": "AUTHENTICATION",
+      "transportResult": "HTTP_2XX",
+      "count": 2
+    },
+    {
+      "method": "GET",
+      "category": "CART_PAGE_OR_READ",
+      "transportResult": "HTTP_4XX",
+      "count": 1
+    },
+    {
+      "method": "GET",
+      "category": "OTHER",
+      "transportResult": "HTTP_2XX",
+      "count": 213
+    },
+    {
+      "method": "GET",
+      "category": "OTHER",
+      "transportResult": "HTTP_3XX",
+      "count": 5
+    },
+    {
+      "method": "GET",
+      "category": "OTHER",
+      "transportResult": "NO_HTTP_RESPONSE",
+      "count": 4
+    },
+    {
+      "method": "GET",
+      "category": "PRODUCT",
+      "transportResult": "HTTP_3XX",
+      "count": 3
+    },
+    {
+      "method": "POST",
+      "category": "AUTHENTICATION",
+      "transportResult": "HTTP_3XX",
+      "count": 1
+    },
+    {
+      "method": "POST",
+      "category": "OTHER",
+      "transportResult": "HTTP_2XX",
+      "count": 47
+    },
+    {
+      "method": "POST",
+      "category": "OTHER",
+      "transportResult": "NO_HTTP_RESPONSE",
+      "count": 8
+    }
+  ],
+  "limitations": "No assertion is inferred from an HTTP result. Test outcomes come only from the immutable Playwright report. No URLs, queries, headers, bodies, cookies or tokens are exported. Raw traces may contain additional debugging context; summaries do not replace them or certify a passed historical run."
+}

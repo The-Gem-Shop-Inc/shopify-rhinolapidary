@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "governingSuccessor", "kind", "original", "sourceReport", "testResults", "browser", "viewports", "requestCategories", "limitations"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "governingSuccessor": { "const": "J1-EVIDENCE-PORTABILITY-V1-2026-10-20" },
+    "kind": { "const": "OBSERVED_HISTORICAL_METADATA_NOT_REGENERATED_MEASUREMENTS" },
+    "original": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256", "runIdentifier"],
+      "properties": { "path": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "runIdentifier": { "type": "string" } }
+    },
+    "sourceReport": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256"],
+      "properties": { "path": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } }
+    },
+    "testResults": {
+      "type": "array", "items": {
+        "type": "object", "additionalProperties": false, "required": ["testIdentity", "outcome", "durationMs", "retry", "assertionFailureCount"],
+        "properties": { "testIdentity": { "type": "string" }, "outcome": { "enum": ["passed", "failed", "timedOut", "interrupted", "skipped"] }, "durationMs": { "type": "number", "minimum": 0 }, "retry": { "type": "integer", "minimum": 0 }, "assertionFailureCount": { "type": "integer", "minimum": 0 } }
+      }
+    },
+    "browser": { "const": "chromium" },
+    "viewports": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["width", "height"], "properties": { "width": { "type": "integer", "minimum": 1 }, "height": { "type": "integer", "minimum": 1 } } } },
+    "requestCategories": { "type": "array", "items": {
+      "type": "object", "additionalProperties": false, "required": ["method", "category", "transportResult", "count"],
+      "properties": { "method": { "enum": ["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "PATCH", "OTHER", "UNKNOWN"] }, "category": { "enum": ["AUTHENTICATION", "CART_MUTATION_OR_READ", "CART_PAGE_OR_READ", "PRODUCT", "OTHER"] }, "transportResult": { "type": "string", "pattern": "^(HTTP_[1-5]XX|NO_HTTP_RESPONSE)$" }, "count": { "type": "integer", "minimum": 1 } }
+    } },
+    "limitations": { "type": "string" }
+  }
+}

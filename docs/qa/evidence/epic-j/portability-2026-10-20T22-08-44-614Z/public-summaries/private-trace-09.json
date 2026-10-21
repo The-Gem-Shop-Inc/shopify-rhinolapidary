@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "governingSuccessor": "J1-EVIDENCE-PORTABILITY-V1-2026-10-20",
+  "kind": "OBSERVED_HISTORICAL_METADATA_NOT_REGENERATED_MEASUREMENTS",
+  "original": {
+    "path": "docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/integrated-01/artifacts/epic-j-cart-actual-preview-isolated-native-cart-360-desktop-chromium/trace.zip",
+    "sha256": "a45df0496bf86c6be7c469e58c39911b25a12593304b64a52b01730807f5e4d3",
+    "runIdentifier": "integrated-01"
+  },
+  "sourceReport": {
+    "path": "docs/qa/evidence/epic-j/j0-2026-10-20T17-13-15-800Z/integrated-01/playwright.json",
+    "sha256": "a4586895c93c8191887a390a49a4190dd80068254b2a20db505b99474d0e8b39"
+  },
+  "testResults": [
+    {
+      "testIdentity": "actual preview isolated native cart 360",
+      "outcome": "failed",
+      "durationMs": 21522,
+      "retry": 0,
+      "assertionFailureCount": 1
+    }
+  ],
+  "browser": "chromium",
+  "viewports": [
+    {
+      "width": 360,
+      "height": 1000
+    },
+    {
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "requestCategories": [
+    {
+      "method": "GET",
+      "category": "AUTHENTICATION",
+      "transportResult": "HTTP_2XX",
+      "count": 1
+    },
+    {
+      "method": "GET",
+      "category": "CART_PAGE_OR_READ",
+      "transportResult": "HTTP_2XX",
+      "count": 11
+    },
+    {
+      "method": "GET",
+      "category": "CART_PAGE_OR_READ",
+      "transportResult": "HTTP_3XX",
+      "count": 7
+    },
+    {
+      "method": "GET",
+      "category": "OTHER",
+      "transportResult": "HTTP_2XX",
+      "count": 430
+    },
+    {
+      "method": "GET",
+      "category": "OTHER",
+      "transportResult": "HTTP_3XX",
+      "count": 5
+    },
+    {
+      "method": "GET",
+      "category": "OTHER",
+      "transportResult": "NO_HTTP_RESPONSE",
+      "count": 5
+    },
+    {
+      "method": "GET",
+      "category": "PRODUCT",
+      "transportResult": "HTTP_2XX",
+      "count": 2
+    },
+    {
+      "method": "GET",
+      "category": "PRODUCT",
+      "transportResult": "HTTP_3XX",
+      "count": 2
+    },
+    {
+      "method": "POST",
+      "category": "AUTHENTICATION",
+      "transportResult": "HTTP_3XX",
+      "count": 1
+    },
+    {
+      "method": "POST",
+      "category": "CART_MUTATION_OR_READ",
+      "transportResult": "HTTP_2XX",
+      "count": 2
+    },
+    {
+      "method": "POST",
+      "category": "OTHER",
+      "transportResult": "HTTP_2XX",
+      "count": 118
+    },
+    {
+      "method": "POST",
+      "category": "OTHER",
+      "transportResult": "NO_HTTP_RESPONSE",
+      "count": 21
+    }
+  ],
+  "limitations": "No assertion is inferred from an HTTP result. Test outcomes come only from the immutable Playwright report. No URLs, queries, headers, bodies, cookies or tokens are exported. Raw traces may contain additional debugging context; summaries do not replace them or certify a passed historical run."
+}
