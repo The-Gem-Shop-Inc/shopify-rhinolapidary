@@ -531,6 +531,49 @@ cart-remove-button .icon-remove {
     align-items: flex-start;
     justify-content: flex-end;
   }
+
+  /* Let the full cart reflow at enlarged text sizes without shrinking controls.
+     The inactive drawer retains its existing layout. */
+  cart-items .cart-item {
+    grid-template: auto auto auto / minmax(0, 1fr) minmax(0, 3fr);
+  }
+
+  cart-items .cart-item > td {
+    min-width: 0;
+  }
+
+  cart-items .cart-item__details,
+  cart-items .cart-item__totals {
+    grid-column: 2;
+  }
+
+  cart-items .cart-item__quantity {
+    grid-column: 1 / -1;
+  }
+
+  cart-items .cart-item__image {
+    max-width: 100%;
+  }
+
+  cart-items .cart-item__name,
+  cart-items .product-option {
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  .cart__footer .totals {
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+  }
+
+  .cart__footer .totals > * {
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  .cart__footer .totals > * + * {
+    margin-left: 0;
+  }
 }
 
 @media screen and (min-width: 750px) {

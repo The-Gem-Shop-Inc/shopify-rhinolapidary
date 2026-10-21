@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "epic": "J",
+  "stage": "J0_BASELINE_AND_PLANNING",
+  "implementationAuthorized": false,
+  "items": [
+    {
+      "id": "J-PBI-001",
+      "title": "Harden native cart failure recovery and state synchronization",
+      "userValue": "Customers receive a clear failure and can safely retry without wrong quantities or duplicate additions.",
+      "baseline": "Native notification, /cart/change and 422 recovery exist; transport rejection in product-form catch logs an error without invoking its visible error handler.",
+      "scope": [
+        "Reproduce transport rejection, malformed/failed section response and stale navigation state",
+        "Correct only demonstrated error/retry defects using native endpoints and fragments"
+      ],
+      "exclusions": [
+        "New cart engine",
+        "Shipping policy",
+        "Account requirement"
+      ],
+      "dependencies": [
+        "J0"
+      ],
+      "acceptanceCriteria": [
+        "Selected Variant/quantity submits once",
+        "Transport failure produces a visible announced error and restores operable controls",
+        "422 update preserves last successful quantity and line ownership",
+        "Back/forward and section refresh show server cart state"
+      ],
+      "verification": [
+        "Existing J0 fixtures plus live isolated success/cleanup",
+        "Inject rejected fetch and invalid response without contacting cart backend"
+      ],
+      "files": [
+        "assets/product-form.js",
+        "assets/cart.js",
+        "assets/cart-notification.js"
+      ],
+      "decisionIds": [],
+      "mvp": true,
+      "batch": "J1",
+      "status": "PROPOSED_PENDING_REVIEW",
+      "implementationAuthorized": false,
+      "defects": [
+        "J-DEF-001"
+      ]
+    },
+    {
+      "id": "J-PBI-002",
+      "title": "Make active cart notification and page controls readable and accessible",
+      "userValue": "Keyboard and enlarged-text customers can inspect items and reach native checkout.",
+      "baseline": "J0 reproduces populated cart overflow to 504px at 360px/390px under 200% root text, with quantity right edge 494px. Active notification/focus recovery and desktop cart pass. No J0 runtime source change.",
+      "scope": [
+        "Correct only evidenced cart-specific focus, announcement or clipping defects",
+        "Keep notification and full cart coherent with native control labeling"
+      ],
+      "exclusions": [
+        "Activating drawer",
+        "Global header redesign",
+        "New checkout UI"
+      ],
+      "dependencies": [
+        "J-PBI-001"
+      ],
+      "acceptanceCriteria": [
+        "360/390/1440 and 200% text remain usable",
+        "Escape closes dialog and returns focus",
+        "Hidden dialog controls never receive focus",
+        "Item/Variant link names and subtotal remain readable",
+        "Serious/critical storefront findings fail acceptance; inherited C/F/provider findings retain separate ownership"
+      ],
+      "verification": [
+        "J0 Playwright/axe and keyboard checks",
+        "Native modal, Product and gallery regression"
+      ],
+      "files": [
+        "snippets/cart-notification.liquid",
+        "assets/component-cart-notification.css",
+        "sections/main-cart-items.liquid",
+        "sections/main-cart-footer.liquid",
+        "assets/component-cart.css",
+        "assets/component-cart-items.css"
+      ],
+      "decisionIds": [],
+      "mvp": true,
+      "batch": "J1",
+      "status": "PROPOSED_PENDING_REVIEW",
+      "implementationAuthorized": false,
+      "defects": [
+        "J-DEF-002"
+      ]
+    },
+    {
+      "id": "J-PBI-003",
+      "title": "Consume approved equipment delivery context in the cart",
+      "userValue": "Machine buyers see accurate delivery context without an invented freight quote.",
+      "baseline": "Native shipping/tax note exists; shipping profile/rate/pickup/lead-time policy is not verified by J0.",
+      "scope": [
+        "After K approval, render minimal exact-Product logistics context and approved contact route",
+        "Preserve mixed machine/consumable line identities and native checkout"
+      ],
+      "exclusions": [
+        "Calculate freight",
+        "Change profiles/rates/taxes",
+        "Geographic promises",
+        "Native compatibility inference"
+      ],
+      "dependencies": [
+        "J-PBI-001"
+      ],
+      "acceptanceCriteria": [
+        "Each message binds approved exact Product authority",
+        "Missing/expired authority suppresses optional content without disabling native cart",
+        "Mixed carts retain quantities/prices",
+        "No unsupported free freight/pickup/lead-time claim"
+      ],
+      "verification": [
+        "Approved/missing/expired copy fixtures",
+        "Read-only K configuration reconciliation",
+        "Cart responsive regressions"
+      ],
+      "files": [
+        "sections/main-cart-items.liquid",
+        "sections/main-cart-footer.liquid"
+      ],
+      "decisionIds": [
+        "J-DEC-001"
+      ],
+      "mvp": false,
+      "batch": "J2 AFTER K AUTHORITY",
+      "status": "PROPOSED_PENDING_REVIEW",
+      "implementationAuthorized": false
+    },
+    {
+      "id": "J-PBI-004",
+      "title": "Add approved optional notes and purchase support guidance",
+      "userValue": "Customers can supply useful instructions or reach the approved contact channel.",
+      "baseline": "Native cart-note implementation exists but show_cart_note is false; no approved PO/tax-exempt workflow.",
+      "scope": [
+        "Enable/configure optional native notes only after owner disposition",
+        "Use approved L service/contact resources for PO or tax-exempt guidance"
+      ],
+      "exclusions": [
+        "Guarantee exemption",
+        "Accept PO payment",
+        "Mandatory notes",
+        "New service policy"
+      ],
+      "dependencies": [
+        "J-PBI-001",
+        "J-PBI-002"
+      ],
+      "acceptanceCriteria": [
+        "Notes save/reload using /cart/update and error recovery",
+        "Optional note does not gate checkout",
+        "Approved resources are accessible; missing resource omitted"
+      ],
+      "verification": [
+        "Native note save/error fixture",
+        "Live isolated cart cleanup",
+        "L route and copy validation"
+      ],
+      "files": [
+        "sections/main-cart-footer.liquid",
+        "assets/cart.js",
+        "config/settings_data.json"
+      ],
+      "decisionIds": [
+        "J-DEC-002"
+      ],
+      "mvp": false,
+      "batch": "J2 OPTIONAL",
+      "status": "PROPOSED_PENDING_REVIEW",
+      "implementationAuthorized": false
+    },
+    {
+      "id": "J-PBI-005",
+      "title": "Apply explicitly approved Product-level commercial dispositions",
+      "userValue": "Affected buyers receive an accurate owner-approved disposition.",
+      "baseline": "MR16 and generic Saw Vice are native $0.00 with enabled purchase; neither free sale nor a hold is approved.",
+      "scope": [
+        "After G006 decisions, implement only exact Product/Variant actions and approved wording",
+        "Keep pricing, policy and compatibility authority separate"
+      ],
+      "exclusions": [
+        "Price-threshold cart blocking",
+        "Invented mitigation",
+        "Catalog changes without separate authorization"
+      ],
+      "dependencies": [
+        "J-PBI-001"
+      ],
+      "acceptanceCriteria": [
+        "No action without exact Product-level authority",
+        "Unaffected zero-price fixture remains native",
+        "Authorized disposition is tested across Product and cart entry paths",
+        "No account requirement or inferred compatibility"
+      ],
+      "verification": [
+        "Positive exact-authority and missing/mismatched/expired authority negatives",
+        "Native Variant and cart regressions"
+      ],
+      "files": [
+        "sections/main-cart-items.liquid",
+        "sections/main-cart-footer.liquid",
+        "snippets/buy-buttons.liquid"
+      ],
+      "decisionIds": [
+        "J-DEC-003"
+      ],
+      "mvp": false,
+      "batch": "J2 AFTER G006",
+      "status": "PROPOSED_PENDING_REVIEW",
+      "implementationAuthorized": false
+    },
+    {
+      "id": "J-PBI-006",
+      "title": "Clarify approved discount and accelerated checkout entry",
+      "userValue": "Customers understand native checkout choices without misleading payment promises.",
+      "baseline": "Product dynamic checkout is disabled; cart footer has conditional provider-supplied accelerated controls and discount application display, not a custom code form.",
+      "scope": [
+        "Retain native checkout unless owner approves a specific placement change",
+        "Explain approved discount workflow through existing eligible surfaces"
+      ],
+      "exclusions": [
+        "Install app",
+        "Enable payment provider",
+        "Create discount",
+        "Basic checkout-step UI",
+        "Checkout Branding API"
+      ],
+      "dependencies": [
+        "J-PBI-002"
+      ],
+      "acceptanceCriteria": [
+        "Current Basic entitlement is verified",
+        "Provider controls appear only when Shopify supplies them",
+        "Keyboard-visible standard checkout remains available",
+        "No fake discount or financing claim"
+      ],
+      "verification": [
+        "Conditional provider fixture",
+        "Native checkout visibility and non-submission guard",
+        "Plan negative fixtures"
+      ],
+      "files": [
+        "sections/main-cart-footer.liquid",
+        "snippets/buy-buttons.liquid"
+      ],
+      "decisionIds": [
+        "J-DEC-004"
+      ],
+      "mvp": false,
+      "batch": "J3 OPTIONAL",
+      "status": "PROPOSED_PENDING_REVIEW",
+      "implementationAuthorized": false
+    },
+    {
+      "id": "J-PBI-007",
+      "title": "Prepare bounded cart relationship guidance if approved",
+      "userValue": "Customers receive precise relationship guidance without a false compatibility claim.",
+      "baseline": "Approved fit is lease-bound; current G2 presentation is expired. Native Related products is separate.",
+      "scope": [
+        "Define an opt-in exact-relationship consumer after G003 operating policy and owner copy approval",
+        "Retain full-list and target-publication checks"
+      ],
+      "exclusions": [
+        "New compatibility graph",
+        "Infer incompatibility from absent fit",
+        "Required accessory inference",
+        "Cross-selling as fit"
+      ],
+      "dependencies": [
+        "J-PBI-001"
+      ],
+      "acceptanceCriteria": [
+        "Expired/incomplete/unpublished authority suppresses guidance",
+        "Native buying survives relationship expiry",
+        "Compatible/included/optional/recommended retain separate meanings"
+      ],
+      "verification": [
+        "Reuse G1/G2 exact-set and lifecycle negatives",
+        "Cart mixed-line fixtures",
+        "No network approval proxy"
+      ],
+      "files": [
+        "sections/main-cart-items.liquid"
+      ],
+      "decisionIds": [
+        "J-DEC-005"
+      ],
+      "mvp": false,
+      "batch": "DEFER UNTIL G003 POLICY",
+      "status": "PROPOSED_PENDING_REVIEW",
+      "implementationAuthorized": false
+    },
+    {
+      "id": "J-PBI-008",
+      "title": "Validate integrated cart handoff and release boundaries",
+      "userValue": "A reviewed cart change has reproducible technical evidence and explicit launch limitations.",
+      "baseline": "J0 supplies baseline tooling and protected-state checks; production and K/L/G release decisions remain separate.",
+      "scope": [
+        "Re-run accepted implemented PBI paths using J0 tools",
+        "Verify source/plan/current inventories, accessibility and bounded performance",
+        "Create reviewed file allowance and rollback only in a separately authorized deployment batch"
+      ],
+      "exclusions": [
+        "Deploy as part of J0",
+        "Renew receipts",
+        "Close G003/G005/G006",
+        "Implement O accounts"
+      ],
+      "dependencies": [
+        "J-PBI-001",
+        "J-PBI-002"
+      ],
+      "acceptanceCriteria": [
+        "All reviewed MVP technical criteria pass with exact logs/cleanup",
+        "Optional unapproved features are deferred rather than false failures",
+        "Commercial, K/L operational and production authorization remain distinct",
+        "Historical evidence and MAIN/unrelated preview bytes remain unchanged"
+      ],
+      "verification": [
+        "npm.cmd run validate:epic-j-j0 with fresh isolated evidence",
+        "Theme Check, Product/machine regressions and read-only inventories"
+      ],
+      "files": [
+        "scripts/run-epic-j-j0.js",
+        "tests/epic-j-cart.spec.js",
+        "scripts/lib/epic-j-j0.js"
+      ],
+      "decisionIds": [],
+      "mvp": true,
+      "batch": "J4",
+      "status": "PROPOSED_PENDING_REVIEW",
+      "implementationAuthorized": false
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+      "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config=playwright.machine.config.js",
+      "--grep",
+      "Chromium actual browser zoom",
+      "--output",
+      "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/machine-zoom-rerun/artifacts",
+      "--reporter=line,json"
+    ],
+    "configFile": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\playwright.machine.config.js",
+    "rootDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/machine-zoom-rerun/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/machine-.*\\.spec\\.js/"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "machine-zoom.spec.js",
+      "file": "machine-zoom.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Chromium actual browser zoom to 200% reflows the machine shell",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3264,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:33:44.219Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "actual-browser-zoom",
+                      "contentType": "application/json",
+                      "body": "eyJtZXRob2QiOiJjaHJvbWUudGFicy5zZXRab29tIiwiem9vbSI6MiwiYmVmb3JlIjp7IndpZHRoIjoxMjU4LCJkcHIiOjF9LCJhZnRlciI6eyJ3aWR0aCI6NjI5LCJkcHIiOjIsInNjcm9sbFdpZHRoIjo2Mjl9fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a1db509318fae255ab63-fb54246800f06c2d77ef",
+          "file": "machine-zoom.spec.js",
+          "line": 7,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T21:33:43.746Z",
+    "duration": 3786.6639999999998,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

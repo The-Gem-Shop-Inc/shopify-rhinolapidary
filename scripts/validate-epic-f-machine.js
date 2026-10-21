@@ -9,7 +9,7 @@ const hash = s => crypto.createHash('sha256').update(s.replaceAll('\r\n', '\n'))
 function validateArchitecture(overrides = {}) {
   const get = f => overrides[f] ?? read(f);
   const errors = [];
-  for (const [file, sha] of Object.entries(nativeBaseline)) if (hash(get(file)) !== sha && !(file === 'templates/product.json' && (() => { try { return require('./lib/epic-g-current-protection').surfaceMatches(file, sha, get(file)); } catch { return false; } })())) errors.push(`Native baseline changed: ${file}`);
+  for (const [file, sha] of Object.entries(nativeBaseline)) if (hash(get(file)) !== sha && !(file === 'assets/product-form.js' && process.env.RHINO_J_SOURCE_SUCCESSOR === 'J1-2026-10-20-NATIVE-CART' && (() => { try { return require('./lib/epic-j-j1-protection').nativeSurfaceMatches(file, sha, get(file)); } catch { return false; } })()) && !(file === 'templates/product.json' && (() => { try { return require('./lib/epic-g-current-protection').surfaceMatches(file, sha, get(file)); } catch { return false; } })())) errors.push(`Native baseline changed: ${file}`);
   const template = JSON.parse(get('templates/product.machine.json'));
   const main = template.sections.main;
   const expectedMain = JSON.parse(get('templates/product.json')).sections.main;

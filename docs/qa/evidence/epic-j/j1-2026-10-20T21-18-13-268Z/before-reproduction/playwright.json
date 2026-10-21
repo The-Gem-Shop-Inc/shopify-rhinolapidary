@@ -1,0 +1,583 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+      "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/epic-j-cart.spec.js",
+      "--project=desktop-chromium",
+      "--workers=1",
+      "--grep",
+      "J1 transport|J1 cart layout",
+      "--output",
+      "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before-reproduction/artifacts",
+      "--reporter=line,json"
+    ],
+    "configFile": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\playwright.config.js",
+    "rootDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before-reproduction/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-chromium",
+        "name": "desktop-chromium",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before-reproduction/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-chromium",
+        "name": "mobile-chromium",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before-reproduction/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-webkit",
+        "name": "desktop-webkit",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "epic-j-cart.spec.js",
+      "file": "epic-j-cart.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "J1 transport rejection is visible, announced, preserves selection and never auto-retries",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1007,
+                  "error": {
+                    "message": "TypeError: Cannot read properties of undefined (reading 'price')",
+                    "stack": "TypeError: Cannot read properties of undefined (reading 'price')\n    at productDocument (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:13:271)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:64:24",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                      "column": 271,
+                      "line": 13
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m..\\scripts\\lib\\epic-j-j1-fixtures.js:13\n\n  11 |   const ctx = F.contextFor('tracked-available', { template: '' });\n  12 |   const pv = variants.map(v => ({ ...ctx.product.variants[0], id: v.id.split('/').pop(), title: v.title, price: Number(v.price) * 100 }));\n> 13 |   ctx.product = { ...ctx.product, id: fixture.items[0].productGid.split('/').pop(), title: 'Saw Blade', handle: 'saw-blade', url: '/products/saw-blade', variants: pv, selected_variant: pv[selected], selected_or_first_available_variant: pv[selected], price: pv[selected].price,\n     |                                                                                                                                                                                                                                                                               ^\n  14 |     options_with_values: [{ name: 'Size', position: 1, values: pv.map((v, i) => ({ id: String(100 + i), selected: i === selected, available: true, product_url: '/products/saw-blade', toString: () => v.title })) }] };\n  15 |   ctx.routes.cart_url = '/cart';\n  16 |   let doc = F.documentFor('tracked-available', { template: '' });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                        "column": 271,
+                        "line": 13
+                      },
+                      "message": "TypeError: Cannot read properties of undefined (reading 'price')\n\n   at ..\\scripts\\lib\\epic-j-j1-fixtures.js:13\n\n  11 |   const ctx = F.contextFor('tracked-available', { template: '' });\n  12 |   const pv = variants.map(v => ({ ...ctx.product.variants[0], id: v.id.split('/').pop(), title: v.title, price: Number(v.price) * 100 }));\n> 13 |   ctx.product = { ...ctx.product, id: fixture.items[0].productGid.split('/').pop(), title: 'Saw Blade', handle: 'saw-blade', url: '/products/saw-blade', variants: pv, selected_variant: pv[selected], selected_or_first_available_variant: pv[selected], price: pv[selected].price,\n     |                                                                                                                                                                                                                                                                               ^\n  14 |     options_with_values: [{ name: 'Size', position: 1, values: pv.map((v, i) => ({ id: String(100 + i), selected: i === selected, available: true, product_url: '/products/saw-blade', toString: () => v.title })) }] };\n  15 |   ctx.routes.cart_url = '/cart';\n  16 |   let doc = F.documentFor('tracked-available', { template: '' });\n    at productDocument (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:13:271)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:64:24"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                        "column": 79,
+                        "line": 8
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[name=add]')\nExpected: not \u001b[32m\"true\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mtrue\u001b[27m\"\u001b[39m\n\nCall log:\n\u001b[2m  - Expect \"not toHaveAttribute\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[name=add]')\u001b[22m\n\u001b[2m    5 × locator resolved to <button name=\"add\" type=\"submit\" aria-disabled=\"true\" id=\"ProductSubmitButton-machine\" class=\"product-form__submit button button--full-width button--primary loading\">…</button>\u001b[22m\n\u001b[2m      - unexpected value \"true\"\u001b[22m\n\n\n   6 | const J = require('../scripts/lib/epic-j-j0');\n   7 | async function submit(page) { await page.locator('product-form form').evaluate(e => e.requestSubmit()); }\n>  8 | async function recovered(page) { await expect(page.locator('[name=add]')).not.toHaveAttribute('aria-disabled', 'true'); }\n     |                                                                               ^\n   9 | async function error(page) {\n  10 |   const alert = page.locator('.product-form__error-message-wrapper');\n  11 |   await expect(alert).toBeVisible(); await expect(alert).toHaveAttribute('role', 'alert'); await expect(alert).toHaveText(F.genericError);\n    at recovered (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:8:79)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:17:78"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:20:13.515Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-transport-r-a6210-tion-and-never-auto-retries-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-transport-r-a6210-tion-and-never-auto-retries-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-transport-r-a6210-tion-and-never-auto-retries-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                    "column": 271,
+                    "line": 13
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-e153913caed1f2b8fd74",
+          "file": "epic-j-j1.spec.js",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "J1 cart layout 360 text 100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1110,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:20:15.334Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-a65a3b56768e0013ff26",
+          "file": "epic-j-j1.spec.js",
+          "line": 72,
+          "column": 77
+        },
+        {
+          "title": "J1 cart layout 360 text 200",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1582,
+                  "error": {
+                    "message": "Error: cart horizontal overflow\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m361\u001b[39m\nReceived:    \u001b[31m385\u001b[39m",
+                    "stack": "Error: cart horizontal overflow\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m361\u001b[39m\nReceived:    \u001b[31m385\u001b[39m\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:83:65",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                      "column": 65,
+                      "line": 83
+                    },
+                    "snippet": "  81 |   J.write('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.json', geometry);\n  82 |   await page.screenshot({ path: J.outputPath('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.png'), fullPage: true });\n> 83 |   expect.soft(geometry.scrollWidth, 'cart horizontal overflow').toBeLessThanOrEqual(width + 1);\n     |                                                                 ^\n  84 |   for (const c of geometry.content) { expect.soft(c.left, c.class).toBeGreaterThanOrEqual(-1); expect.soft(c.right, c.class).toBeLessThanOrEqual(width + 1); }\n  85 |   for (const input of await page.locator('[name=\"updates[]\"]').all()) { await expect(input).toHaveAttribute('aria-label', /quantity/i); await expect(input).toBeEnabled(); await input.focus(); await expect(input).toBeFocused(); }\n  86 |   for (const remove of await page.locator('cart-remove-button a').all()) { await expect(remove).toHaveAttribute('aria-label', /remove.*Saw Blade/i); await remove.focus(); await expect(remove).toBeFocused(); }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                        "column": 65,
+                        "line": 83
+                      },
+                      "message": "Error: cart horizontal overflow\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m361\u001b[39m\nReceived:    \u001b[31m385\u001b[39m\n\n  81 |   J.write('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.json', geometry);\n  82 |   await page.screenshot({ path: J.outputPath('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.png'), fullPage: true });\n> 83 |   expect.soft(geometry.scrollWidth, 'cart horizontal overflow').toBeLessThanOrEqual(width + 1);\n     |                                                                 ^\n  84 |   for (const c of geometry.content) { expect.soft(c.left, c.class).toBeGreaterThanOrEqual(-1); expect.soft(c.right, c.class).toBeLessThanOrEqual(width + 1); }\n  85 |   for (const input of await page.locator('[name=\"updates[]\"]').all()) { await expect(input).toHaveAttribute('aria-label', /quantity/i); await expect(input).toBeEnabled(); await input.focus(); await expect(input).toBeFocused(); }\n  86 |   for (const remove of await page.locator('cart-remove-button a').all()) { await expect(remove).toHaveAttribute('aria-label', /remove.*Saw Blade/i); await remove.focus(); await expect(remove).toBeFocused(); }\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:83:65"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                        "column": 126,
+                        "line": 84
+                      },
+                      "message": "Error: quantity cart-quantity\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m361\u001b[39m\nReceived:    \u001b[31m375.375\u001b[39m\n\n  82 |   await page.screenshot({ path: J.outputPath('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.png'), fullPage: true });\n  83 |   expect.soft(geometry.scrollWidth, 'cart horizontal overflow').toBeLessThanOrEqual(width + 1);\n> 84 |   for (const c of geometry.content) { expect.soft(c.left, c.class).toBeGreaterThanOrEqual(-1); expect.soft(c.right, c.class).toBeLessThanOrEqual(width + 1); }\n     |                                                                                                                              ^\n  85 |   for (const input of await page.locator('[name=\"updates[]\"]').all()) { await expect(input).toHaveAttribute('aria-label', /quantity/i); await expect(input).toBeEnabled(); await input.focus(); await expect(input).toBeFocused(); }\n  86 |   for (const remove of await page.locator('cart-remove-button a').all()) { await expect(remove).toHaveAttribute('aria-label', /remove.*Saw Blade/i); await remove.focus(); await expect(remove).toBeFocused(); }\n  87 |   const checkout = page.locator('[name=checkout]'); await checkout.scrollIntoViewIfNeeded(); await checkout.focus(); await expect(checkout).toBeVisible(); await expect(checkout).toBeEnabled(); await expect(checkout).toBeFocused();\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:84:126"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                        "column": 126,
+                        "line": 84
+                      },
+                      "message": "Error: quantity cart-quantity\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m361\u001b[39m\nReceived:    \u001b[31m375.375\u001b[39m\n\n  82 |   await page.screenshot({ path: J.outputPath('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.png'), fullPage: true });\n  83 |   expect.soft(geometry.scrollWidth, 'cart horizontal overflow').toBeLessThanOrEqual(width + 1);\n> 84 |   for (const c of geometry.content) { expect.soft(c.left, c.class).toBeGreaterThanOrEqual(-1); expect.soft(c.right, c.class).toBeLessThanOrEqual(width + 1); }\n     |                                                                                                                              ^\n  85 |   for (const input of await page.locator('[name=\"updates[]\"]').all()) { await expect(input).toHaveAttribute('aria-label', /quantity/i); await expect(input).toBeEnabled(); await input.focus(); await expect(input).toBeFocused(); }\n  86 |   for (const remove of await page.locator('cart-remove-button a').all()) { await expect(remove).toHaveAttribute('aria-label', /remove.*Saw Blade/i); await remove.focus(); await expect(remove).toBeFocused(); }\n  87 |   const checkout = page.locator('[name=checkout]'); await checkout.scrollIntoViewIfNeeded(); await checkout.focus(); await expect(checkout).toBeVisible(); await expect(checkout).toBeEnabled(); await expect(checkout).toBeFocused();\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:84:126"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:20:16.549Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-360-text-200-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-360-text-200-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-360-text-200-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                    "column": 65,
+                    "line": 83
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-1aff0823a7cd516c4ca3",
+          "file": "epic-j-j1.spec.js",
+          "line": 72,
+          "column": 77
+        },
+        {
+          "title": "J1 cart layout 390 text 100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1020,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:20:19.152Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-9fbb693b8904af97cc1f",
+          "file": "epic-j-j1.spec.js",
+          "line": 72,
+          "column": 77
+        },
+        {
+          "title": "J1 cart layout 390 text 200",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1504,
+                  "error": {
+                    "message": "Error: cart horizontal overflow\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m391\u001b[39m\nReceived:    \u001b[31m395\u001b[39m",
+                    "stack": "Error: cart horizontal overflow\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m391\u001b[39m\nReceived:    \u001b[31m395\u001b[39m\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:83:65",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                      "column": 65,
+                      "line": 83
+                    },
+                    "snippet": "  81 |   J.write('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.json', geometry);\n  82 |   await page.screenshot({ path: J.outputPath('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.png'), fullPage: true });\n> 83 |   expect.soft(geometry.scrollWidth, 'cart horizontal overflow').toBeLessThanOrEqual(width + 1);\n     |                                                                 ^\n  84 |   for (const c of geometry.content) { expect.soft(c.left, c.class).toBeGreaterThanOrEqual(-1); expect.soft(c.right, c.class).toBeLessThanOrEqual(width + 1); }\n  85 |   for (const input of await page.locator('[name=\"updates[]\"]').all()) { await expect(input).toHaveAttribute('aria-label', /quantity/i); await expect(input).toBeEnabled(); await input.focus(); await expect(input).toBeFocused(); }\n  86 |   for (const remove of await page.locator('cart-remove-button a').all()) { await expect(remove).toHaveAttribute('aria-label', /remove.*Saw Blade/i); await remove.focus(); await expect(remove).toBeFocused(); }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                        "column": 65,
+                        "line": 83
+                      },
+                      "message": "Error: cart horizontal overflow\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m391\u001b[39m\nReceived:    \u001b[31m395\u001b[39m\n\n  81 |   J.write('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.json', geometry);\n  82 |   await page.screenshot({ path: J.outputPath('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.png'), fullPage: true });\n> 83 |   expect.soft(geometry.scrollWidth, 'cart horizontal overflow').toBeLessThanOrEqual(width + 1);\n     |                                                                 ^\n  84 |   for (const c of geometry.content) { expect.soft(c.left, c.class).toBeGreaterThanOrEqual(-1); expect.soft(c.right, c.class).toBeLessThanOrEqual(width + 1); }\n  85 |   for (const input of await page.locator('[name=\"updates[]\"]').all()) { await expect(input).toHaveAttribute('aria-label', /quantity/i); await expect(input).toBeEnabled(); await input.focus(); await expect(input).toBeFocused(); }\n  86 |   for (const remove of await page.locator('cart-remove-button a').all()) { await expect(remove).toHaveAttribute('aria-label', /remove.*Saw Blade/i); await remove.focus(); await expect(remove).toBeFocused(); }\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:83:65"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:20:20.277Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-390-text-200-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-390-text-200-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-390-text-200-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                    "column": 65,
+                    "line": 83
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-231259012ff40fcc145c",
+          "file": "epic-j-j1.spec.js",
+          "line": 72,
+          "column": 77
+        },
+        {
+          "title": "J1 cart layout 1440 text 100",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1637,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -   1\u001b[39m\n\u001b[31m+ Received  + 165\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure buttons have discernible text\",\u001b[39m\n\u001b[31m+     \"help\": \"Buttons must have discernible text\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/button-name?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"button-name\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-1 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-2 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.name-role-value\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.a\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT6.a\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.9.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -   1\u001b[39m\n\u001b[31m+ Received  + 165\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure buttons have discernible text\",\u001b[39m\n\u001b[31m+     \"help\": \"Buttons must have discernible text\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/button-name?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"button-name\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-1 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-2 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.name-role-value\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.a\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT6.a\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.9.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:90:82",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                      "column": 82,
+                      "line": 90
+                    },
+                    "snippet": "  88 |   expect(await checkout.getAttribute('form')).toBe('cart'); await expect(page.locator('.totals__total-value')).toContainText('$55.00');\n  89 |   const axe = await new AxeBuilder({ page }).analyze(); J.write('j1-axe-' + width + '-text' + (enlarged ? 200 : 100) + '.json', axe.violations);\n> 90 |   expect(axe.violations.filter(v => ['serious', 'critical'].includes(v.impact))).toEqual([]); expect(s.errors).toEqual([]);\n     |                                                                                  ^\n  91 | });\n  92 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                        "column": 82,
+                        "line": 90
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -   1\u001b[39m\n\u001b[31m+ Received  + 165\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure buttons have discernible text\",\u001b[39m\n\u001b[31m+     \"help\": \"Buttons must have discernible text\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/button-name?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"button-name\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-1 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-2 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.name-role-value\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.a\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT6.a\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.9.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  88 |   expect(await checkout.getAttribute('form')).toBe('cart'); await expect(page.locator('.totals__total-value')).toContainText('$55.00');\n  89 |   const axe = await new AxeBuilder({ page }).analyze(); J.write('j1-axe-' + width + '-text' + (enlarged ? 200 : 100) + '.json', axe.violations);\n> 90 |   expect(axe.violations.filter(v => ['serious', 'critical'].includes(v.impact))).toEqual([]); expect(s.errors).toEqual([]);\n     |                                                                                  ^\n  91 | });\n  92 |\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:90:82"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:20:22.746Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-1440-text-100-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-1440-text-100-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-1440-text-100-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                    "column": 82,
+                    "line": 90
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-93a357b9211d743d03c3",
+          "file": "epic-j-j1.spec.js",
+          "line": 72,
+          "column": 77
+        },
+        {
+          "title": "J1 cart layout 1440 text 200",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1861,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -   1\u001b[39m\n\u001b[31m+ Received  + 165\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure buttons have discernible text\",\u001b[39m\n\u001b[31m+     \"help\": \"Buttons must have discernible text\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/button-name?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"button-name\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-1 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-2 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.name-role-value\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.a\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT6.a\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.9.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -   1\u001b[39m\n\u001b[31m+ Received  + 165\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure buttons have discernible text\",\u001b[39m\n\u001b[31m+     \"help\": \"Buttons must have discernible text\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/button-name?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"button-name\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-1 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-2 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.name-role-value\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.a\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT6.a\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.9.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:90:82",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                      "column": 82,
+                      "line": 90
+                    },
+                    "snippet": "  88 |   expect(await checkout.getAttribute('form')).toBe('cart'); await expect(page.locator('.totals__total-value')).toContainText('$55.00');\n  89 |   const axe = await new AxeBuilder({ page }).analyze(); J.write('j1-axe-' + width + '-text' + (enlarged ? 200 : 100) + '.json', axe.violations);\n> 90 |   expect(axe.violations.filter(v => ['serious', 'critical'].includes(v.impact))).toEqual([]); expect(s.errors).toEqual([]);\n     |                                                                                  ^\n  91 | });\n  92 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                        "column": 82,
+                        "line": 90
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -   1\u001b[39m\n\u001b[31m+ Received  + 165\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure buttons have discernible text\",\u001b[39m\n\u001b[31m+     \"help\": \"Buttons must have discernible text\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/button-name?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"button-name\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-1 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"button-has-visible-text\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have inner text that is visible to screen readers\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have inner text that is visible to screen readers\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<button type=\\\"button\\\" aria-expanded=\\\"false\\\" class=\\\"quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide\\\">\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#CartItem-2 > .cart-item__quantity.cart-item__quantity--info > quantity-popover > .cart-item__quantity-wrapper.quantity-popover-wrapper > .quantity-popover-container.quantity-popover-container--hover > .quantity-popover__info-button--icon-only.quantity-popover__info-button.medium-hide\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.name-role-value\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.a\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT6.a\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.9.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  88 |   expect(await checkout.getAttribute('form')).toBe('cart'); await expect(page.locator('.totals__total-value')).toContainText('$55.00');\n  89 |   const axe = await new AxeBuilder({ page }).analyze(); J.write('j1-axe-' + width + '-text' + (enlarged ? 200 : 100) + '.json', axe.violations);\n> 90 |   expect(axe.violations.filter(v => ['serious', 'critical'].includes(v.impact))).toEqual([]); expect(s.errors).toEqual([]);\n     |                                                                                  ^\n  91 | });\n  92 |\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:90:82"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:20:25.255Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-1440-text-200-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-1440-text-200-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\before-reproduction\\artifacts\\epic-j-cart-J1-cart-layout-1440-text-200-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                    "column": 82,
+                    "line": 90
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-67ad0009a29f7e14771a",
+          "file": "epic-j-j1.spec.js",
+          "line": 72,
+          "column": 77
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T21:20:12.638Z",
+    "duration": 14933.836,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 5,
+    "flaky": 0
+  }
+}

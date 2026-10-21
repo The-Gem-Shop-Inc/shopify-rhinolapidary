@@ -1,0 +1,53 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:epic-j-cart
+> playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1 --output docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/cart-artifacts --reporter=line,json
+
+◇ injected env (12) from .env // tip: ⌘ suppress logs { quiet: true }
+
+Running 36 tests using 1 worker
+
+
+(node:21924) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+
+[1/36] [desktop-chromium] › tests\epic-j-j1.spec.js:13:1 › J1 transport rejection is visible, announced, preserves selection and never auto-retries
+[2/36] [desktop-chromium] › tests\epic-j-j1.spec.js:26:77 › J1 success and notification focus 360 text 100
+[3/36] [desktop-chromium] › tests\epic-j-j1.spec.js:26:77 › J1 success and notification focus 360 text 200
+[4/36] [desktop-chromium] › tests\epic-j-j1.spec.js:26:77 › J1 success and notification focus 390 text 100
+[5/36] [desktop-chromium] › tests\epic-j-j1.spec.js:26:77 › J1 success and notification focus 390 text 200
+[6/36] [desktop-chromium] › tests\epic-j-j1.spec.js:26:77 › J1 success and notification focus 1440 text 100
+[7/36] [desktop-chromium] › tests\epic-j-j1.spec.js:26:77 › J1 success and notification focus 1440 text 200
+[8/36] [desktop-chromium] › tests\epic-j-j1.spec.js:42:123 › J1 rejects missing-section without partial fragment updates or retrying an uncertain POST
+[9/36] [desktop-chromium] › tests\epic-j-j1.spec.js:42:123 › J1 rejects null-section without partial fragment updates or retrying an uncertain POST
+[10/36] [desktop-chromium] › tests\epic-j-j1.spec.js:42:123 › J1 rejects malformed-section without partial fragment updates or retrying an uncertain POST
+[11/36] [desktop-chromium] › tests\epic-j-j1.spec.js:42:123 › J1 rejects wrong-line without partial fragment updates or retrying an uncertain POST
+[12/36] [desktop-chromium] › tests\epic-j-j1.spec.js:42:123 › J1 rejects missing-key without partial fragment updates or retrying an uncertain POST
+[13/36] [desktop-chromium] › tests\epic-j-j1.spec.js:42:123 › J1 rejects invalid-json without partial fragment updates or retrying an uncertain POST
+[14/36] [desktop-chromium] › tests\epic-j-j1.spec.js:55:1 › J1 incomplete response after success closes prior notice and reconciles by native cart navigation
+[15/36] [desktop-chromium] › tests\epic-j-j1.spec.js:63:1 › J1 422 preserves prior cart and two Size line identities; history renders server state
+[16/36] [desktop-chromium] › tests\epic-j-j1.spec.js:82:1 › J1 native cart quantity, 422 restoration, section refresh, removal and empty recovery
+[17/36] [desktop-chromium] › tests\epic-j-j1.spec.js:99:77 › J1 cart layout 360 text 100
+[18/36] [desktop-chromium] › tests\epic-j-j1.spec.js:99:77 › J1 cart layout 360 text 200
+[19/36] [desktop-chromium] › tests\epic-j-j1.spec.js:99:77 › J1 cart layout 390 text 100
+[20/36] [desktop-chromium] › tests\epic-j-j1.spec.js:99:77 › J1 cart layout 390 text 200
+[21/36] [desktop-chromium] › tests\epic-j-j1.spec.js:99:77 › J1 cart layout 1440 text 100
+[22/36] [desktop-chromium] › tests\epic-j-j1.spec.js:99:77 › J1 cart layout 1440 text 200
+[23/36] [desktop-chromium] › tests\epic-j-cart.spec.js:8:1 › offline native cart rejects unavailable inventory and announces update error
+[24/36] [desktop-chromium] › tests\epic-j-cart.spec.js:11:1 › offline native drawer keyboard, close/focus return, checkout and page route
+[25/36] [desktop-chromium] › tests\epic-j-cart.spec.js:14:70 › offline drawer viewport 360 text 100
+[26/36] [desktop-chromium] › tests\epic-j-cart.spec.js:14:70 › offline drawer viewport 360 text 200
+[27/36] [desktop-chromium] › tests\epic-j-cart.spec.js:14:70 › offline drawer viewport 390 text 100
+[28/36] [desktop-chromium] › tests\epic-j-cart.spec.js:14:70 › offline drawer viewport 390 text 200
+[29/36] [desktop-chromium] › tests\epic-j-cart.spec.js:14:70 › offline drawer viewport 1440 text 100
+[30/36] [desktop-chromium] › tests\epic-j-cart.spec.js:14:70 › offline drawer viewport 1440 text 200
+[31/36] [desktop-chromium] › tests\epic-j-cart.spec.js:21:1 › offline cart notes use native update endpoint without new purchasing rules
+[32/36] [desktop-chromium] › tests\epic-j-cart.spec.js:24:1 › offline mixed equipment cart uses native identities without a freight or compatibility promise
+[33/36] [desktop-chromium] › tests\epic-j-cart.spec.js:27:1 › offline Product transport failure records current announcement defect without changing the theme
+[34/36] [desktop-chromium] › tests\epic-j-cart.spec.js:30:35 › actual preview isolated native cart 390
+[35/36] [desktop-chromium] › tests\epic-j-cart.spec.js:30:35 › actual preview isolated native cart 360
+[36/36] [desktop-chromium] › tests\epic-j-cart.spec.js:30:35 › actual preview isolated native cart 1440
+  3 skipped
+  33 passed (39.1s)

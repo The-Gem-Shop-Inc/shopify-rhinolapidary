@@ -1,0 +1,12 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 validate:epic-j-j0
+> node scripts/run-epic-j-j0.js --governance-only --evidence docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard
+
+{"label":"readiness","command":"npm.cmd run validate:epic-j-readiness","startedAt":"2026-10-20T21:26:15.882Z","log":"docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/readiness.txt","exitCode":1,"status":"FAIL","completedAt":"2026-10-20T21:26:20.786Z"}
+{"label":"governance-negative-tests","command":"npm.cmd run test:epic-j-readiness","startedAt":"2026-10-20T21:26:20.787Z","log":"docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/governance-negative-tests.txt","exitCode":1,"status":"FAIL","completedAt":"2026-10-20T21:26:25.414Z"}
+{"label":"cart-config","command":"npm.cmd run validate:cart-config","startedAt":"2026-10-20T21:26:25.415Z","log":"docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/cart-config.txt","exitCode":0,"status":"PASS","completedAt":"2026-10-20T21:26:25.807Z"}
+{"label":"purchase-architecture","command":"npm.cmd run validate:product-purchase","startedAt":"2026-10-20T21:26:25.807Z","log":"docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/purchase-architecture.txt","exitCode":0,"status":"PASS","completedAt":"2026-10-20T21:26:26.177Z"}
+{"label":"theme-architecture","command":"npm.cmd run validate:theme-architecture","startedAt":"2026-10-20T21:26:26.178Z","log":"docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/theme-architecture.txt","exitCode":0,"status":"PASS","completedAt":"2026-10-20T21:26:28.345Z"}
+{"label":"registers","command":"npm.cmd run validate:registers","startedAt":"2026-10-20T21:26:28.345Z","log":"docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/registers.txt","exitCode":0,"status":"PASS","completedAt":"2026-10-20T21:26:29.233Z"}
+{"label":"theme-check","command":"npm.cmd run theme:check","startedAt":"2026-10-20T21:26:29.233Z","log":"docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/theme-check.txt","exitCode":0,"status":"PASS","completedAt":"2026-10-20T21:26:48.619Z"}

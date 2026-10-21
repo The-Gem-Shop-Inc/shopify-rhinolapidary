@@ -19,7 +19,8 @@ if (!customElements.get('product-form')) {
 
       onSubmitHandler(evt) {
         evt.preventDefault();
-        if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
+        if (this.submitting || this.submitButton.getAttribute('aria-disabled') === 'true') return;
+        this.submitting = true;
 
         this.handleErrorMessage();
 
@@ -49,16 +50,18 @@ if (!customElements.get('product-form')) {
         fetch(`${routes.cart_add_url}`, config)
           .then((response) => response.json())
           .then((response) => {
+            if (!response || typeof response !== 'object') throw new Error('Invalid cart response');
             if (response.status) {
+              const message = response.description || response.message || window.cartStrings.error;
               publish(PUB_SUB_EVENTS.cartError, {
                 source: 'product-form',
                 productVariantId: variantId,
                 errors: response.errors || response.description,
                 message: response.message,
               });
-              this.handleErrorMessage(response.description);
-              this.dispatchCartErrorEvent(response.description || response.message, 'INVALID');
-              linesUpdateDeferred?.reject(new Error(response.description || response.message));
+              this.handleErrorMessage(message);
+              this.dispatchCartErrorEvent(message, 'INVALID');
+              linesUpdateDeferred?.reject(new Error(message));
 
               const soldOutMessage = this.submitButton.querySelector('.sold-out-message');
               if (!soldOutMessage) return;
@@ -73,6 +76,9 @@ if (!customElements.get('product-form')) {
               return;
             }
 
+            // Validate the complete response before publishing or replacing any fragment.
+            // A successful POST can have an incomplete section response; never retry it here.
+            this.validateCartSections(response);
             this.resolveCartLinesUpdate(linesUpdateDeferred);
 
             const startMarker = CartPerformance.createStartingMarker('add:wait-for-subscribers');
@@ -107,17 +113,35 @@ if (!customElements.get('product-form')) {
           })
           .catch((e) => {
             console.error(e);
-            this.dispatchCartErrorEvent(e.message || 'Network error', 'SERVICE_UNAVAILABLE');
+            const message = window.cartStrings.error;
+            this.handleErrorMessage(message);
+            this.cart?.close();
+            this.dispatchCartErrorEvent(message, 'SERVICE_UNAVAILABLE');
             linesUpdateDeferred?.reject(e);
           })
           .finally(() => {
+            this.submitting = false;
             this.submitButton.classList.remove('loading');
-            if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
             if (!this.error) this.submitButton.removeAttribute('aria-disabled');
             this.querySelector('.loading__spinner').classList.add('hidden');
 
             CartPerformance.measureFromEvent("add:user-action", evt);
           });
+      }
+
+      validateCartSections(response) {
+        if (typeof response.key !== 'string' || !response.key || !response.sections) {
+          throw new Error('Missing cart section response');
+        }
+        for (const section of this.cart.getSectionsToRender()) {
+          const html = response.sections[section.id];
+          const selector = section.id === 'cart-notification-product'
+            ? `#cart-notification-product-${CSS.escape(response.key)}`
+            : section.selector || '.shopify-section';
+          if (typeof html !== 'string' || !new DOMParser().parseFromString(html, 'text/html').querySelector(selector)) {
+            throw new Error('Invalid cart section response');
+          }
+        }
       }
 
       handleErrorMessage(errorMessage = false) {

@@ -1,0 +1,1228 @@
+{
+  "entries": 15,
+  "closure": [
+    "data/epic-e-batch-3b-contracts.json",
+    "data/epic-e-component-evidence.json",
+    "data/epic-e-product-classification.json",
+    "data/epic-e-product-identity.json",
+    "data/epic-e-relationship-matrix.json",
+    "data/epic-f-consumer-release.json",
+    "data/epic-f-field-roles.json",
+    "data/epic-j-j0-contract.json",
+    "data/metafield-metaobject-definitions.json",
+    "locales/en.default.json",
+    "playwright.config.js",
+    "playwright.machine.config.js",
+    "schemas/epic-f-fact-projection.schema.json",
+    "scripts/deploy-epic-f-header-focus-correction.js",
+    "scripts/deploy-epic-g-products-preview.js",
+    "scripts/lib/epic-e-006b-amended.js",
+    "scripts/lib/epic-e-admin-audit.js",
+    "scripts/lib/epic-e-batch-3c-contract.js",
+    "scripts/lib/epic-e-batch-3c.js",
+    "scripts/lib/epic-e-bom-owner-followup.js",
+    "scripts/lib/epic-e-final-owner-delta.js",
+    "scripts/lib/epic-e-migration-domains.js",
+    "scripts/lib/epic-e-operational-audit.js",
+    "scripts/lib/epic-e-owner-response-adapter.js",
+    "scripts/lib/epic-e-readiness.js",
+    "scripts/lib/epic-f-006b-binding.js",
+    "scripts/lib/epic-f-014b-assigned-validation.js",
+    "scripts/lib/epic-f-014b-browser-zoom.js",
+    "scripts/lib/epic-f-014b-focus.js",
+    "scripts/lib/epic-f-bom-contents-compiler.js",
+    "scripts/lib/epic-f-bom-owner-binding.js",
+    "scripts/lib/epic-f-consumer.js",
+    "scripts/lib/epic-f-customer-release.js",
+    "scripts/lib/epic-f-facts.js",
+    "scripts/lib/epic-f-final-owner-binding.js",
+    "scripts/lib/epic-f-governance.js",
+    "scripts/lib/epic-f-header-focus-correction.js",
+    "scripts/lib/epic-f-live-excluded-preview.js",
+    "scripts/lib/epic-f-live-machine-activation.js",
+    "scripts/lib/epic-f-live-media-activation.js",
+    "scripts/lib/epic-f-machine-fixtures.js",
+    "scripts/lib/epic-f-nonpersistent-preview.js",
+    "scripts/lib/epic-f-owner-activation-binding.js",
+    "scripts/lib/epic-f-preview-browser.js",
+    "scripts/lib/epic-f-preview-network-guard.js",
+    "scripts/lib/epic-f-release-cleanup-binding.js",
+    "scripts/lib/epic-g-admin-read.js",
+    "scripts/lib/epic-g-catalog-entry.js",
+    "scripts/lib/epic-g-catalog.js",
+    "scripts/lib/epic-g-current-protection.js",
+    "scripts/lib/epic-g-fit-refresh.js",
+    "scripts/lib/epic-g-foundation.js",
+    "scripts/lib/epic-g-integrated.js",
+    "scripts/lib/epic-g-machine-routes.js",
+    "scripts/lib/epic-g-native-successor.js",
+    "scripts/lib/epic-g-product-browser-overlay.js",
+    "scripts/lib/epic-g-product-release.js",
+    "scripts/lib/epic-j-cart-fixtures.js",
+    "scripts/lib/epic-j-j0.js",
+    "scripts/lib/epic-j-j1-fixtures.js",
+    "scripts/lib/epic-j-j1-protection.js",
+    "scripts/probe-epic-f-header-focus-correction.js",
+    "scripts/run-epic-f-014b-assigned-accessibility.js",
+    "scripts/smoke-epic-f-live-machine-activation.js",
+    "scripts/test-epic-j-j1-readiness.js",
+    "scripts/validate-brand-claims.js",
+    "scripts/validate-css-architecture.js",
+    "scripts/validate-design-tokens.js",
+    "scripts/validate-epic-e-batch-2b.js",
+    "scripts/validate-epic-f-machine.js",
+    "scripts/validate-epic-g-foundation.js",
+    "scripts/validate-epic-g-products.js",
+    "scripts/validate-json-registers.js",
+    "scripts/validate-navigation-spec.js",
+    "scripts/validate-product-purchase-architecture.js",
+    "scripts/validate-rhino-sections.js",
+    "scripts/validate-storefront-js-contracts.js",
+    "tests/epic-j-cart.spec.js",
+    "tests/epic-j-j1.spec.js",
+    "tests/fixtures/epic-f-machine-shell.json",
+    "tests/fixtures/epic-f-native-baseline.json",
+    "tests/fixtures/epic-j-cart.json",
+    "tests/machine-purchase.spec.js",
+    "tests/machine-shell.spec.js",
+    "tests/machine-zoom.spec.js"
+  ],
+  "edges": [
+    {
+      "from": "scripts/test-epic-j-j1-readiness.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/test-epic-j-j1-readiness.js",
+      "to": "scripts/lib/epic-j-j0.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/test-epic-j-j1-readiness.js",
+      "to": "scripts/lib/epic-j-j1-protection.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/test-epic-j-j1-readiness.js",
+      "to": "scripts/validate-epic-f-machine.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/test-epic-j-j1-readiness.js",
+      "to": "scripts/validate-epic-f-machine.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-f-machine.js",
+      "to": "scripts/lib/epic-f-machine-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-f-machine.js",
+      "to": "tests/fixtures/epic-f-native-baseline.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-f-machine.js",
+      "to": "scripts/lib/epic-j-j1-protection.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-f-machine.js",
+      "to": "scripts/lib/epic-g-current-protection.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-cart.spec.js",
+      "to": "scripts/lib/epic-j-j0.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-cart.spec.js",
+      "to": "scripts/lib/epic-j-cart-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-cart.spec.js",
+      "to": "tests/fixtures/epic-j-cart.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-cart.spec.js",
+      "to": "scripts/probe-epic-f-header-focus-correction.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-cart.spec.js",
+      "to": "scripts/lib/epic-g-integrated.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-cart.spec.js",
+      "to": "tests/epic-j-j1.spec.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-cart.spec.js",
+      "to": "scripts/lib/epic-f-machine-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-cart.spec.js",
+      "to": "locales/en.default.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/machine-purchase.spec.js",
+      "to": "scripts/lib/epic-f-machine-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/machine-shell.spec.js",
+      "to": "scripts/lib/epic-f-machine-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/machine-zoom.spec.js",
+      "to": "scripts/lib/epic-f-machine-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-owner-response-adapter.js",
+      "to": "data/metafield-metaobject-definitions.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-owner-response-adapter.js",
+      "to": "data/epic-e-batch-3b-contracts.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-owner-response-adapter.js",
+      "to": "scripts/lib/epic-e-migration-domains.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-owner-response-adapter.js",
+      "to": "data/epic-e-product-identity.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-owner-response-adapter.js",
+      "to": "data/epic-e-relationship-matrix.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-owner-response-adapter.js",
+      "to": "data/epic-e-component-evidence.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-owner-response-adapter.js",
+      "to": "data/epic-e-product-identity.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-owner-response-adapter.js",
+      "to": "scripts/lib/epic-f-live-machine-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j0.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j0.js",
+      "to": "scripts/validate-epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j0.js",
+      "to": "scripts/lib/epic-g-integrated.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j0.js",
+      "to": "scripts/lib/epic-g-native-successor.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j1-protection.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j1-protection.js",
+      "to": "scripts/lib/epic-j-j0.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-machine-fixtures.js",
+      "to": "tests/fixtures/epic-f-machine-shell.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-machine-fixtures.js",
+      "to": "data/epic-e-product-identity.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-machine-fixtures.js",
+      "to": "data/epic-f-consumer-release.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "tests/fixtures/epic-f-native-baseline.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "scripts/lib/epic-f-live-media-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "scripts/lib/epic-f-customer-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "scripts/lib/epic-f-live-media-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "tests/fixtures/epic-f-native-baseline.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "scripts/lib/epic-f-customer-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-current-protection.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-cart-fixtures.js",
+      "to": "scripts/lib/epic-f-machine-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-cart-fixtures.js",
+      "to": "tests/fixtures/epic-j-cart.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/probe-epic-f-header-focus-correction.js",
+      "to": "scripts/lib/epic-f-header-focus-correction.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/probe-epic-f-header-focus-correction.js",
+      "to": "scripts/run-epic-f-014b-assigned-accessibility.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/probe-epic-f-header-focus-correction.js",
+      "to": "scripts/smoke-epic-f-live-machine-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/lib/epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/lib/epic-g-native-successor.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/lib/epic-g-native-successor.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/validate-epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/lib/epic-g-native-successor.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/lib/epic-g-current-protection.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/lib/epic-g-fit-refresh.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/lib/epic-g-catalog.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-integrated.js",
+      "to": "scripts/lib/epic-g-catalog-entry.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-j1.spec.js",
+      "to": "scripts/lib/epic-j-j1-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-j1.spec.js",
+      "to": "scripts/lib/epic-j-cart-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "tests/epic-j-j1.spec.js",
+      "to": "scripts/lib/epic-j-j0.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-live-machine-activation.js",
+      "to": "scripts/lib/epic-f-nonpersistent-preview.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-live-machine-activation.js",
+      "to": "scripts/lib/epic-f-governance.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-foundation.js",
+      "to": "scripts/lib/epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-foundation.js",
+      "to": "scripts/lib/epic-g-admin-read.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-foundation.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-native-successor.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-final-owner-binding.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-final-owner-binding.js",
+      "to": "scripts/lib/epic-e-final-owner-delta.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-final-owner-binding.js",
+      "to": "scripts/lib/epic-f-006b-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-final-owner-binding.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-final-owner-binding.js",
+      "to": "scripts/lib/epic-f-customer-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-live-media-activation.js",
+      "to": "scripts/validate-brand-claims.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-live-media-activation.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-live-media-activation.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-customer-release.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-customer-release.js",
+      "to": "scripts/lib/epic-f-facts.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-customer-release.js",
+      "to": "data/epic-f-field-roles.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-customer-release.js",
+      "to": "data/epic-e-product-identity.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-customer-release.js",
+      "to": "data/epic-e-product-classification.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-customer-release.js",
+      "to": "scripts/lib/epic-f-facts.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-customer-release.js",
+      "to": "scripts/lib/epic-f-bom-contents-compiler.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-customer-release.js",
+      "to": "scripts/lib/epic-e-final-owner-delta.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/run-epic-f-014b-assigned-accessibility.js",
+      "to": "scripts/lib/epic-f-preview-network-guard.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/run-epic-f-014b-assigned-accessibility.js",
+      "to": "scripts/lib/epic-f-preview-browser.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/run-epic-f-014b-assigned-accessibility.js",
+      "to": "scripts/smoke-epic-f-live-machine-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/run-epic-f-014b-assigned-accessibility.js",
+      "to": "scripts/lib/epic-f-live-machine-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/run-epic-f-014b-assigned-accessibility.js",
+      "to": "scripts/lib/epic-f-014b-assigned-validation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/run-epic-f-014b-assigned-accessibility.js",
+      "to": "scripts/lib/epic-f-014b-browser-zoom.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/run-epic-f-014b-assigned-accessibility.js",
+      "to": "scripts/lib/epic-f-014b-focus.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/smoke-epic-f-live-machine-activation.js",
+      "to": "scripts/lib/epic-f-preview-network-guard.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/smoke-epic-f-live-machine-activation.js",
+      "to": "scripts/lib/epic-f-nonpersistent-preview.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/smoke-epic-f-live-machine-activation.js",
+      "to": "scripts/lib/epic-f-preview-browser.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/smoke-epic-f-live-machine-activation.js",
+      "to": "scripts/lib/epic-f-live-machine-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/smoke-epic-f-live-machine-activation.js",
+      "to": "scripts/lib/epic-f-live-excluded-preview.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-foundation.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-foundation.js",
+      "to": "scripts/lib/epic-f-consumer.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-foundation.js",
+      "to": "scripts/lib/epic-e-batch-3c.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-foundation.js",
+      "to": "scripts/lib/epic-e-readiness.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-foundation.js",
+      "to": "scripts/lib/epic-g-admin-read.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-foundation.js",
+      "to": "scripts/lib/epic-e-final-owner-delta.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-foundation.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-foundation.js",
+      "to": "scripts/lib/epic-f-customer-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-fit-refresh.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-fit-refresh.js",
+      "to": "scripts/lib/epic-g-product-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-fit-refresh.js",
+      "to": "scripts/deploy-epic-g-products-preview.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-fit-refresh.js",
+      "to": "scripts/lib/epic-g-integrated.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-fit-refresh.js",
+      "to": "scripts/deploy-epic-f-header-focus-correction.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-catalog.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-catalog.js",
+      "to": "scripts/lib/epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-catalog.js",
+      "to": "scripts/validate-epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-catalog.js",
+      "to": "scripts/lib/epic-g-machine-routes.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-catalog.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-catalog.js",
+      "to": "scripts/lib/epic-e-final-owner-delta.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-catalog-entry.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-catalog-entry.js",
+      "to": "scripts/lib/epic-g-catalog.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j1-fixtures.js",
+      "to": "scripts/lib/epic-f-machine-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j1-fixtures.js",
+      "to": "scripts/lib/epic-j-cart-fixtures.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j1-fixtures.js",
+      "to": "tests/fixtures/epic-j-cart.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j1-fixtures.js",
+      "to": "data/epic-j-j0-contract.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-j-j1-fixtures.js",
+      "to": "locales/en.default.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-nonpersistent-preview.js",
+      "to": "scripts/lib/epic-f-governance.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-nonpersistent-preview.js",
+      "to": "scripts/lib/epic-f-release-cleanup-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-nonpersistent-preview.js",
+      "to": "scripts/lib/epic-f-release-cleanup-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-admin-read.js",
+      "to": "scripts/lib/epic-e-admin-audit.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-final-owner-delta.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-final-owner-delta.js",
+      "to": "scripts/lib/epic-e-006b-amended.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-final-owner-delta.js",
+      "to": "scripts/lib/epic-e-migration-domains.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-final-owner-delta.js",
+      "to": "scripts/lib/epic-f-facts.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-final-owner-delta.js",
+      "to": "data/epic-e-product-identity.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-final-owner-delta.js",
+      "to": "scripts/lib/epic-f-live-machine-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-006b-binding.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-006b-binding.js",
+      "to": "scripts/lib/epic-e-006b-amended.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-006b-binding.js",
+      "to": "scripts/lib/epic-f-bom-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-006b-binding.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-006b-binding.js",
+      "to": "scripts/lib/epic-f-customer-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-bom-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-006b-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-006b-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-006b-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-bom-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-bom-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-customer-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-release-cleanup-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-owner-activation-binding.js",
+      "to": "scripts/lib/epic-f-release-cleanup-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-facts.js",
+      "to": "scripts/lib/epic-f-consumer.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-facts.js",
+      "to": "data/epic-f-field-roles.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-facts.js",
+      "to": "data/epic-e-batch-3b-contracts.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-facts.js",
+      "to": "schemas/epic-f-fact-projection.schema.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-facts.js",
+      "to": "scripts/validate-brand-claims.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-bom-contents-compiler.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-bom-contents-compiler.js",
+      "to": "scripts/lib/epic-f-facts.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-bom-contents-compiler.js",
+      "to": "data/epic-e-product-identity.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-preview-browser.js",
+      "to": "scripts/lib/epic-f-nonpersistent-preview.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-preview-browser.js",
+      "to": "scripts/lib/epic-f-preview-network-guard.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-014b-assigned-validation.js",
+      "to": "scripts/lib/epic-f-live-machine-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-e-migration-domains.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-e-readiness.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-e-final-owner-delta.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-f-customer-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-e-final-owner-delta.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-e-final-owner-delta.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/validate-epic-e-batch-2b.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-consumer.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-batch-3c.js",
+      "to": "scripts/lib/epic-e-batch-3c-contract.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-readiness.js",
+      "to": "scripts/lib/epic-e-batch-3c.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-readiness.js",
+      "to": "scripts/lib/epic-e-migration-domains.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-readiness.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-product-release.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-product-release.js",
+      "to": "scripts/lib/epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-product-release.js",
+      "to": "scripts/validate-epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/deploy-epic-g-products-preview.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/deploy-epic-g-products-preview.js",
+      "to": "scripts/validate-epic-g-products.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/deploy-epic-g-products-preview.js",
+      "to": "scripts/deploy-epic-f-header-focus-correction.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/deploy-epic-g-products-preview.js",
+      "to": "scripts/lib/epic-g-current-protection.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/deploy-epic-g-products-preview.js",
+      "to": "scripts/lib/epic-g-fit-refresh.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/deploy-epic-f-header-focus-correction.js",
+      "to": "scripts/lib/epic-f-header-focus-correction.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-machine-routes.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-machine-routes.js",
+      "to": "scripts/lib/epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-machine-routes.js",
+      "to": "scripts/lib/epic-f-customer-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-machine-routes.js",
+      "to": "scripts/lib/epic-g-current-protection.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-machine-routes.js",
+      "to": "scripts/validate-epic-g-foundation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-machine-routes.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-release-cleanup-binding.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-release-cleanup-binding.js",
+      "to": "scripts/lib/epic-f-live-media-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-release-cleanup-binding.js",
+      "to": "scripts/lib/epic-f-header-focus-correction.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-release-cleanup-binding.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-admin-audit.js",
+      "to": "scripts/lib/epic-e-operational-audit.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-006b-amended.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-006b-amended.js",
+      "to": "scripts/lib/epic-e-bom-owner-followup.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-006b-amended.js",
+      "to": "scripts/lib/epic-e-migration-domains.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-006b-amended.js",
+      "to": "data/epic-e-product-identity.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-006b-amended.js",
+      "to": "scripts/lib/epic-f-live-machine-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-bom-owner-binding.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-bom-owner-binding.js",
+      "to": "scripts/lib/epic-e-bom-owner-followup.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-bom-owner-binding.js",
+      "to": "scripts/lib/epic-f-owner-activation-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-f-bom-owner-binding.js",
+      "to": "scripts/lib/epic-f-customer-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-g-product-release.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-g-machine-routes.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-g-catalog.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-g-catalog-entry.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-g-catalog.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-g-catalog-entry.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-g-current-protection.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-f-final-owner-binding.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/validate-epic-g-products.js",
+      "to": "scripts/lib/epic-g-product-browser-overlay.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-bom-owner-followup.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-bom-owner-followup.js",
+      "to": "data/epic-e-product-identity.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-bom-owner-followup.js",
+      "to": "data/epic-e-product-identity.json",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-bom-owner-followup.js",
+      "to": "scripts/lib/epic-f-facts.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-e-bom-owner-followup.js",
+      "to": "scripts/lib/epic-f-live-machine-activation.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-product-browser-overlay.js",
+      "to": "scripts/lib/epic-e-owner-response-adapter.js",
+      "kind": "literal-commonjs-import"
+    },
+    {
+      "from": "scripts/lib/epic-g-product-browser-overlay.js",
+      "to": "scripts/lib/epic-g-product-release.js",
+      "kind": "literal-commonjs-import"
+    }
+  ],
+  "limitations": "Dynamic imports, file reads and semantic source contracts supplement this graph. The pinned J1 predecessor-map verification explicitly requires every one of its 5518 paths."
+}

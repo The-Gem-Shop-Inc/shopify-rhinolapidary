@@ -1,0 +1,88 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:machine-shell
+> playwright test --config=playwright.machine.config.js --output docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/machine-artifacts --reporter=line,json
+
+
+Running 58 tests using 1 worker
+
+
+(node:9008) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/58] tests\machine-purchase.spec.js:4:1 › valid quantity submits exactly the selected Variant once through native product-form
+[2/58] tests\machine-purchase.spec.js:20:1 › native quantity controls and invalid-quantity response retain error semantics
+[3/58] tests\machine-purchase.spec.js:36:1 › native Variant changes use section response state, including unavailable and recovery
+[4/58] tests\machine-purchase.spec.js:52:65 › draft route stays unavailable
+[5/58] tests\machine-purchase.spec.js:52:65 › unpublished route stays unavailable
+[6/58] tests\machine-purchase.spec.js:59:1 › no-JavaScript retains basic native form action, Variant ID and quantity
+[7/58] tests\machine-shell.spec.js:15:3 › 320px tracked-available: hierarchy, focus, no media, reflow and axe
+[8/58] tests\machine-shell.spec.js:15:3 › 320px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+[9/58] tests\machine-shell.spec.js:15:3 › 320px zero-deny: hierarchy, focus, no media, reflow and axe
+[10/58] tests\machine-shell.spec.js:15:3 › 320px untracked-available: hierarchy, focus, no media, reflow and axe
+[11/58] tests\machine-shell.spec.js:15:3 › 320px invalid-variant: hierarchy, focus, no media, reflow and axe
+[12/58] tests\machine-shell.spec.js:15:3 › 320px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+[13/58] tests\machine-shell.spec.js:15:3 › 360px tracked-available: hierarchy, focus, no media, reflow and axe
+[14/58] tests\machine-shell.spec.js:15:3 › 360px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+[15/58] tests\machine-shell.spec.js:15:3 › 360px zero-deny: hierarchy, focus, no media, reflow and axe
+[16/58] tests\machine-shell.spec.js:15:3 › 360px untracked-available: hierarchy, focus, no media, reflow and axe
+[17/58] tests\machine-shell.spec.js:15:3 › 360px invalid-variant: hierarchy, focus, no media, reflow and axe
+[18/58] tests\machine-shell.spec.js:15:3 › 360px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+[19/58] tests\machine-shell.spec.js:15:3 › 390px tracked-available: hierarchy, focus, no media, reflow and axe
+[20/58] tests\machine-shell.spec.js:15:3 › 390px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+[21/58] tests\machine-shell.spec.js:15:3 › 390px zero-deny: hierarchy, focus, no media, reflow and axe
+[22/58] tests\machine-shell.spec.js:15:3 › 390px untracked-available: hierarchy, focus, no media, reflow and axe
+[23/58] tests\machine-shell.spec.js:15:3 › 390px invalid-variant: hierarchy, focus, no media, reflow and axe
+[24/58] tests\machine-shell.spec.js:15:3 › 390px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+[25/58] tests\machine-shell.spec.js:15:3 › 768px tracked-available: hierarchy, focus, no media, reflow and axe
+[26/58] tests\machine-shell.spec.js:15:3 › 768px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+[27/58] tests\machine-shell.spec.js:15:3 › 768px zero-deny: hierarchy, focus, no media, reflow and axe
+[28/58] tests\machine-shell.spec.js:15:3 › 768px untracked-available: hierarchy, focus, no media, reflow and axe
+[29/58] tests\machine-shell.spec.js:15:3 › 768px invalid-variant: hierarchy, focus, no media, reflow and axe
+[30/58] tests\machine-shell.spec.js:15:3 › 768px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+[31/58] tests\machine-shell.spec.js:15:3 › 1024px tracked-available: hierarchy, focus, no media, reflow and axe
+[32/58] tests\machine-shell.spec.js:15:3 › 1024px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+[33/58] tests\machine-shell.spec.js:15:3 › 1024px zero-deny: hierarchy, focus, no media, reflow and axe
+[34/58] tests\machine-shell.spec.js:15:3 › 1024px untracked-available: hierarchy, focus, no media, reflow and axe
+[35/58] tests\machine-shell.spec.js:15:3 › 1024px invalid-variant: hierarchy, focus, no media, reflow and axe
+[36/58] tests\machine-shell.spec.js:15:3 › 1024px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+[37/58] tests\machine-shell.spec.js:15:3 › 1440px tracked-available: hierarchy, focus, no media, reflow and axe
+[38/58] tests\machine-shell.spec.js:15:3 › 1440px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+[39/58] tests\machine-shell.spec.js:15:3 › 1440px zero-deny: hierarchy, focus, no media, reflow and axe
+[40/58] tests\machine-shell.spec.js:15:3 › 1440px untracked-available: hierarchy, focus, no media, reflow and axe
+[41/58] tests\machine-shell.spec.js:15:3 › 1440px invalid-variant: hierarchy, focus, no media, reflow and axe
+[42/58] tests\machine-shell.spec.js:15:3 › 1440px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+[43/58] tests\machine-shell.spec.js:15:3 › 1920px tracked-available: hierarchy, focus, no media, reflow and axe
+[44/58] tests\machine-shell.spec.js:15:3 › 1920px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+[45/58] tests\machine-shell.spec.js:15:3 › 1920px zero-deny: hierarchy, focus, no media, reflow and axe
+[46/58] tests\machine-shell.spec.js:15:3 › 1920px untracked-available: hierarchy, focus, no media, reflow and axe
+[47/58] tests\machine-shell.spec.js:15:3 › 1920px invalid-variant: hierarchy, focus, no media, reflow and axe
+[48/58] tests\machine-shell.spec.js:15:3 › 1920px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+[49/58] tests\machine-shell.spec.js:58:38 › 320px long content and 200% text enlargement
+[50/58] tests\machine-shell.spec.js:58:38 › 360px long content and 200% text enlargement
+[51/58] tests\machine-shell.spec.js:58:38 › 390px long content and 200% text enlargement
+[52/58] tests\machine-shell.spec.js:58:38 › 768px long content and 200% text enlargement
+[53/58] tests\machine-shell.spec.js:58:38 › 1024px long content and 200% text enlargement
+[54/58] tests\machine-shell.spec.js:58:38 › 1440px long content and 200% text enlargement
+[55/58] tests\machine-shell.spec.js:58:38 › 1920px long content and 200% text enlargement
+[56/58] tests\machine-shell.spec.js:71:1 › Contact uses the approved route without context or intake enhancement
+[57/58] tests\machine-shell.spec.js:80:1 › default Product template remains a native non-machine purchase page
+[58/58] tests\machine-zoom.spec.js:7:1 › Chromium actual browser zoom to 200% reflows the machine shell
+  1) tests\machine-zoom.spec.js:7:1 › Chromium actual browser zoom to 200% reflows the machine shell 
+
+    Test timeout of 60000ms exceeded.
+
+    Error Context: docs\qa\evidence\epic-j\j1-2026-10-20T21-18-13-268Z\acceptance-01\machine-artifacts\machine-zoom-Chromium-actu-85894-0-reflows-the-machine-shell\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs\qa\evidence\epic-j\j1-2026-10-20T21-18-13-268Z\acceptance-01\machine-artifacts\machine-zoom-Chromium-actu-85894-0-reflows-the-machine-shell\trace.zip
+    Usage:
+
+        npx playwright show-trace docs\qa\evidence\epic-j\j1-2026-10-20T21-18-13-268Z\acceptance-01\machine-artifacts\machine-zoom-Chromium-actu-85894-0-reflows-the-machine-shell\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    tests\machine-zoom.spec.js:7:1 › Chromium actual browser zoom to 200% reflows the machine shell 
+  57 passed (2.3m)

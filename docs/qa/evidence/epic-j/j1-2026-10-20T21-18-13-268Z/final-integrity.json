@@ -1,0 +1,118 @@
+{
+  "successor": {
+    "schemaVersion": 1,
+    "id": "J1-2026-10-20-NATIVE-CART",
+    "authorization": "Product Owner J1 assignment: J-PBI-001 and J-PBI-002 repository implementation only; no theme deployment or catalog authority.",
+    "evidenceDirectory": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z",
+    "baseline": {
+      "path": "data/epic-j-j0-contract.json",
+      "sha256": "469e8a0582d31ba9fbb8c407281132c6ac9bf84aaa256b3c802b2ff49068b82a"
+    },
+    "before": {
+      "path": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/repository-before.json",
+      "sha256": "20c4fc5558d1e5bf8d94dc2075e07c8bdec15ca822715380805ec590ae7508b0"
+    },
+    "runtime": [
+      {
+        "path": "assets/product-form.js",
+        "oldSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+        "sha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+        "oldNormalizedSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+        "normalizedSha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+        "rollback": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before/assets/product-form.js",
+        "reason": "J-PBI-001: native translated/announced transport and malformed-section recovery; no automatic retry, exact one in-flight submit."
+      },
+      {
+        "path": "assets/component-cart-items.css",
+        "oldSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
+        "sha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+        "oldNormalizedSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
+        "normalizedSha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+        "rollback": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before/assets/component-cart-items.css",
+        "reason": "J-PBI-002: cart-only mobile grid and natural subtotal wrapping; no text reduction, header or drawer change."
+      }
+    ],
+    "reviewedRepositoryChanges": [
+      {
+        "path": "assets/product-form.js",
+        "oldSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+        "sha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+        "reason": "Explicit J1 runtime/test allowance."
+      },
+      {
+        "path": "assets/component-cart-items.css",
+        "oldSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
+        "sha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+        "reason": "Explicit J1 runtime/test allowance."
+      },
+      {
+        "path": "tests/epic-j-cart.spec.js",
+        "oldSha256": "611a9741caffc772201acd2d4c1c2f75a73bc55d6aa6e0ebd828d85854819830",
+        "sha256": "c001aed183bf6b2f0054a5c264967f2cc4a6120d55e0f865d82c723bbdf7a5fb",
+        "reason": "Explicit J1 runtime/test allowance."
+      },
+      {
+        "path": "scripts/lib/epic-j-cart-fixtures.js",
+        "oldSha256": "d17c56bb0c9f8dce1022e49bff4e91383c8ffd3aad5555ccef3532336296dec6",
+        "sha256": "6be387d395822319a431e833de86122e376c219075abe878f9d9029423deede4",
+        "reason": "Explicit J1 runtime/test allowance."
+      },
+      {
+        "path": "scripts/validate-epic-f-machine.js",
+        "oldSha256": "405d686dda31b5b993fc871a735a3d892a2c7d7eb0d9fcb51b38764ccf966998",
+        "sha256": "b082f23d71e73b76a30a924396eb1902c78ac31ff70c8d2edd15ca39ec964098",
+        "reason": "Opt-in exact J1 successor only for native Product JS; retain every historical hash and arbitrary-change rejection."
+      },
+      {
+        "path": "docs/rhino-lapidary-pbi-tracker-epic-j.md",
+        "oldSha256": "8ce75cd92c7651a70e2e872e3c9659cbf2fe36889b516b5cc781e7a5931c5792",
+        "sha256": "741b94440bcb39b5b12e155afb194ded5e596be05442e28a753536868674a145",
+        "reason": "Current J1 status appended separately from historical J0 planning."
+      }
+    ],
+    "addedSources": [
+      {
+        "path": "scripts/lib/epic-j-j1-fixtures.js",
+        "sha256": "be1634c0f2d57adc89816c17fc334c1f6d6421327a0f1f10baf6f2c144ecdaf4"
+      },
+      {
+        "path": "scripts/lib/epic-j-j1-protection.js",
+        "sha256": "45ba17c994bd7e79f72a8de20182562fb2cd6468198f226821d1d842f5e64d13"
+      },
+      {
+        "path": "scripts/test-epic-j-j1-readiness.js",
+        "sha256": "f3e5c91aba9cab12a371608748668834262145d2e535bc14d8fc54d8f67c3d3a"
+      },
+      {
+        "path": "scripts/run-epic-j-j1.js",
+        "sha256": "086ccecc3f671ab13d006c918b6c7386586af873ee07ef6e07ddf94b7c73d536"
+      },
+      {
+        "path": "tests/epic-j-j1.spec.js",
+        "sha256": "ccdb3f5434b2c9a54a6af944fdeff9bd0dbecd05d71f77fbf88bf8346c320e81"
+      }
+    ],
+    "receiptExpiresAtUnchanged": "2026-10-22T20:26:37.102Z",
+    "themeDeploymentAuthorized": false,
+    "publicationAuthorized": false,
+    "relationshipAuthorityChanged": false
+  },
+  "protectedState": {
+    "status": "PASS",
+    "checked": 730,
+    "missing": [],
+    "changed": []
+  },
+  "startingFilesChecked": 5518,
+  "changed": [
+    "tests/epic-j-cart.spec.js",
+    "assets/component-cart-items.css",
+    "docs/rhino-lapidary-pbi-tracker-epic-j.md",
+    "assets/product-form.js",
+    "scripts/lib/epic-j-cart-fixtures.js",
+    "scripts/validate-epic-f-machine.js"
+  ],
+  "historicalEvidenceChanged": [],
+  "approvalRecordsChanged": [],
+  "deploymentAuthorized": false
+}

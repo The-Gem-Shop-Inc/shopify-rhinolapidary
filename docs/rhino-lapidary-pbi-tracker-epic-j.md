@@ -1,5 +1,7 @@
 # Rhino Lapidary — Epic J PBI tracker
 
+**J1 update, October 20, 2026:** The Product Owner authorized repository implementation of J-PBI-001 and J-PBI-002. Both fixes are implemented with local native-fixture acceptance; changed-preview verification remains pending a separate deployment authorization. The J0 proposal and its structured planning register below are retained as the historical baseline. Current source authority is the separately pinned `data/epic-j-j1-source-successor.json`. J-PBI-008 remains PROPOSED, not complete. See [J1 engineering handoff](qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/handoff.md).
+
 **J0: architecture, executable baseline and planning delivered. Later PBIs: PROPOSED, pending Product Owner review. No customer-facing implementation or deployment is authorized by this tracker.**
 
 The active cart is native Trade notification plus full cart page. Basic/optional accounts are verified. Current regression acceptance remains FAIL on mobile enlarged text; J-DEF-001 also records a missing Product transport-error announcement. Neither was fixed in J0. G003 private revocation/operations, G005 historical screenshots and G006 commercial exceptions remain open; G007 bounded technical QA was accepted.

@@ -1,0 +1,557 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\dajem\\AppData\\Local\\JetBrains\\WebStorm2026.2\\acp-agents\\.runtimes\\node\\24.13.0\\node.exe",
+      "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/epic-j-cart.spec.js",
+      "--project=desktop-chromium",
+      "--workers=1",
+      "--grep",
+      "J1",
+      "--grep-invert",
+      "cart layout",
+      "--output",
+      "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/product-recovery-01/artifacts",
+      "--reporter=line,json"
+    ],
+    "configFile": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\playwright.config.js",
+    "rootDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/product-recovery-01/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-chromium",
+        "name": "desktop-chromium",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/product-recovery-01/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-chromium",
+        "name": "mobile-chromium",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/product-recovery-01/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-webkit",
+        "name": "desktop-webkit",
+        "testDir": "C:/Users/dajem/WebstormProjects/shopify-rhinolapidary/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "epic-j-cart.spec.js",
+      "file": "epic-j-cart.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "J1 transport rejection is visible, announced, preserves selection and never auto-retries",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1601,
+                  "error": {
+                    "message": "TypeError: Cannot read properties of undefined (reading 'price')",
+                    "stack": "TypeError: Cannot read properties of undefined (reading 'price')\n    at productDocument (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:13:271)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:65:24",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                      "column": 271,
+                      "line": 13
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m..\\scripts\\lib\\epic-j-j1-fixtures.js:13\n\n  11 |   const ctx = F.contextFor('tracked-available', { template: '' });\n  12 |   const pv = variants.map(v => ({ ...ctx.product.variants[0], id: v.id.split('/').pop(), title: v.title, price: Number(v.price) * 100 }));\n> 13 |   ctx.product = { ...ctx.product, id: fixture.items[0].productGid.split('/').pop(), title: 'Saw Blade', handle: 'saw-blade', url: '/products/saw-blade', variants: pv, selected_variant: pv[selected], selected_or_first_available_variant: pv[selected], price: pv[selected].price,\n     |                                                                                                                                                                                                                                                                               ^\n  14 |     options_with_values: [{ name: 'Size', position: 1, values: pv.map((v, i) => ({ id: String(100 + i), selected: i === selected, available: true, product_url: '/products/saw-blade', toString: () => v.title })) }] };\n  15 |   ctx.routes.cart_url = '/cart';\n  16 |   let doc = F.documentFor('tracked-available', { template: '' });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                        "column": 271,
+                        "line": 13
+                      },
+                      "message": "TypeError: Cannot read properties of undefined (reading 'price')\n\n   at ..\\scripts\\lib\\epic-j-j1-fixtures.js:13\n\n  11 |   const ctx = F.contextFor('tracked-available', { template: '' });\n  12 |   const pv = variants.map(v => ({ ...ctx.product.variants[0], id: v.id.split('/').pop(), title: v.title, price: Number(v.price) * 100 }));\n> 13 |   ctx.product = { ...ctx.product, id: fixture.items[0].productGid.split('/').pop(), title: 'Saw Blade', handle: 'saw-blade', url: '/products/saw-blade', variants: pv, selected_variant: pv[selected], selected_or_first_available_variant: pv[selected], price: pv[selected].price,\n     |                                                                                                                                                                                                                                                                               ^\n  14 |     options_with_values: [{ name: 'Size', position: 1, values: pv.map((v, i) => ({ id: String(100 + i), selected: i === selected, available: true, product_url: '/products/saw-blade', toString: () => v.title })) }] };\n  15 |   ctx.routes.cart_url = '/cart';\n  16 |   let doc = F.documentFor('tracked-available', { template: '' });\n    at productDocument (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:13:271)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:65:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:22:07.505Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\product-recovery-01\\artifacts\\epic-j-cart-J1-transport-r-a6210-tion-and-never-auto-retries-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\product-recovery-01\\artifacts\\epic-j-cart-J1-transport-r-a6210-tion-and-never-auto-retries-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\product-recovery-01\\artifacts\\epic-j-cart-J1-transport-r-a6210-tion-and-never-auto-retries-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                    "column": 271,
+                    "line": 13
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-e153913caed1f2b8fd74",
+          "file": "epic-j-j1.spec.js",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "J1 success prevents concurrent duplicate POSTs and notification retains native focus behavior",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1428,
+                  "error": {
+                    "message": "TypeError: Cannot read properties of undefined (reading 'price')",
+                    "stack": "TypeError: Cannot read properties of undefined (reading 'price')\n    at productDocument (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:13:271)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:65:24",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                      "column": 271,
+                      "line": 13
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m..\\scripts\\lib\\epic-j-j1-fixtures.js:13\n\n  11 |   const ctx = F.contextFor('tracked-available', { template: '' });\n  12 |   const pv = variants.map(v => ({ ...ctx.product.variants[0], id: v.id.split('/').pop(), title: v.title, price: Number(v.price) * 100 }));\n> 13 |   ctx.product = { ...ctx.product, id: fixture.items[0].productGid.split('/').pop(), title: 'Saw Blade', handle: 'saw-blade', url: '/products/saw-blade', variants: pv, selected_variant: pv[selected], selected_or_first_available_variant: pv[selected], price: pv[selected].price,\n     |                                                                                                                                                                                                                                                                               ^\n  14 |     options_with_values: [{ name: 'Size', position: 1, values: pv.map((v, i) => ({ id: String(100 + i), selected: i === selected, available: true, product_url: '/products/saw-blade', toString: () => v.title })) }] };\n  15 |   ctx.routes.cart_url = '/cart';\n  16 |   let doc = F.documentFor('tracked-available', { template: '' });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                        "column": 271,
+                        "line": 13
+                      },
+                      "message": "TypeError: Cannot read properties of undefined (reading 'price')\n\n   at ..\\scripts\\lib\\epic-j-j1-fixtures.js:13\n\n  11 |   const ctx = F.contextFor('tracked-available', { template: '' });\n  12 |   const pv = variants.map(v => ({ ...ctx.product.variants[0], id: v.id.split('/').pop(), title: v.title, price: Number(v.price) * 100 }));\n> 13 |   ctx.product = { ...ctx.product, id: fixture.items[0].productGid.split('/').pop(), title: 'Saw Blade', handle: 'saw-blade', url: '/products/saw-blade', variants: pv, selected_variant: pv[selected], selected_or_first_available_variant: pv[selected], price: pv[selected].price,\n     |                                                                                                                                                                                                                                                                               ^\n  14 |     options_with_values: [{ name: 'Size', position: 1, values: pv.map((v, i) => ({ id: String(100 + i), selected: i === selected, available: true, product_url: '/products/saw-blade', toString: () => v.title })) }] };\n  15 |   ctx.routes.cart_url = '/cart';\n  16 |   let doc = F.documentFor('tracked-available', { template: '' });\n    at productDocument (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:13:271)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:65:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:22:09.880Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\product-recovery-01\\artifacts\\epic-j-cart-J1-success-pre-dc487-tains-native-focus-behavior-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\product-recovery-01\\artifacts\\epic-j-cart-J1-success-pre-dc487-tains-native-focus-behavior-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\product-recovery-01\\artifacts\\epic-j-cart-J1-success-pre-dc487-tains-native-focus-behavior-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                    "column": 271,
+                    "line": 13
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-0969c0f60ff17baa88ed",
+          "file": "epic-j-j1.spec.js",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "J1 rejects missing-section without partial fragment updates or retrying an uncertain POST",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 727,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:22:12.091Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-eb63118a175e8e68685e",
+          "file": "epic-j-j1.spec.js",
+          "line": 40,
+          "column": 123
+        },
+        {
+          "title": "J1 rejects null-section without partial fragment updates or retrying an uncertain POST",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 605,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:22:12.913Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-59cfa411a553ffadd83a",
+          "file": "epic-j-j1.spec.js",
+          "line": 40,
+          "column": 123
+        },
+        {
+          "title": "J1 rejects malformed-section without partial fragment updates or retrying an uncertain POST",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 627,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:22:13.527Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-4fe07eb95223b740adc3",
+          "file": "epic-j-j1.spec.js",
+          "line": 40,
+          "column": 123
+        },
+        {
+          "title": "J1 rejects wrong-line without partial fragment updates or retrying an uncertain POST",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 713,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:22:14.162Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-431f5d52909839be38e4",
+          "file": "epic-j-j1.spec.js",
+          "line": 40,
+          "column": 123
+        },
+        {
+          "title": "J1 rejects missing-key without partial fragment updates or retrying an uncertain POST",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 994,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:22:14.885Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-4831ced06857b316f027",
+          "file": "epic-j-j1.spec.js",
+          "line": 40,
+          "column": 123
+        },
+        {
+          "title": "J1 rejects invalid-json without partial fragment updates or retrying an uncertain POST",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 645,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:22:15.900Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-fb6fc499ce3812ae54a3",
+          "file": "epic-j-j1.spec.js",
+          "line": 40,
+          "column": 123
+        },
+        {
+          "title": "J1 422 preserves prior cart and two Size line identities; history renders server state",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chromium",
+              "projectName": "desktop-chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 679,
+                  "error": {
+                    "message": "TypeError: Cannot read properties of undefined (reading 'price')",
+                    "stack": "TypeError: Cannot read properties of undefined (reading 'price')\n    at productDocument (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:13:271)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:65:24",
+                    "location": {
+                      "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                      "column": 271,
+                      "line": 13
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m..\\scripts\\lib\\epic-j-j1-fixtures.js:13\n\n  11 |   const ctx = F.contextFor('tracked-available', { template: '' });\n  12 |   const pv = variants.map(v => ({ ...ctx.product.variants[0], id: v.id.split('/').pop(), title: v.title, price: Number(v.price) * 100 }));\n> 13 |   ctx.product = { ...ctx.product, id: fixture.items[0].productGid.split('/').pop(), title: 'Saw Blade', handle: 'saw-blade', url: '/products/saw-blade', variants: pv, selected_variant: pv[selected], selected_or_first_available_variant: pv[selected], price: pv[selected].price,\n     |                                                                                                                                                                                                                                                                               ^\n  14 |     options_with_values: [{ name: 'Size', position: 1, values: pv.map((v, i) => ({ id: String(100 + i), selected: i === selected, available: true, product_url: '/products/saw-blade', toString: () => v.title })) }] };\n  15 |   ctx.routes.cart_url = '/cart';\n  16 |   let doc = F.documentFor('tracked-available', { template: '' });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                        "column": 271,
+                        "line": 13
+                      },
+                      "message": "TypeError: Cannot read properties of undefined (reading 'price')\n\n   at ..\\scripts\\lib\\epic-j-j1-fixtures.js:13\n\n  11 |   const ctx = F.contextFor('tracked-available', { template: '' });\n  12 |   const pv = variants.map(v => ({ ...ctx.product.variants[0], id: v.id.split('/').pop(), title: v.title, price: Number(v.price) * 100 }));\n> 13 |   ctx.product = { ...ctx.product, id: fixture.items[0].productGid.split('/').pop(), title: 'Saw Blade', handle: 'saw-blade', url: '/products/saw-blade', variants: pv, selected_variant: pv[selected], selected_or_first_available_variant: pv[selected], price: pv[selected].price,\n     |                                                                                                                                                                                                                                                                               ^\n  14 |     options_with_values: [{ name: 'Size', position: 1, values: pv.map((v, i) => ({ id: String(100 + i), selected: i === selected, available: true, product_url: '/products/saw-blade', toString: () => v.title })) }] };\n  15 |   ctx.routes.cart_url = '/cart';\n  16 |   let doc = F.documentFor('tracked-available', { template: '' });\n    at productDocument (C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:13:271)\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js:65:24"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js",
+                        "column": 56,
+                        "line": 57
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('product-form [name=id]')\nExpected: \u001b[32m\"464842586\u001b[7m85125\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"464842586\u001b[7m52357\u001b[27m\"\u001b[39m\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('product-form [name=id]')\u001b[22m\n\u001b[2m    2 × locator resolved to <input name=\"id\" type=\"hidden\" value=\"46484258652357\" class=\"product-variant-id\"/>\u001b[22m\n\u001b[2m      - unexpected value \"46484258652357\"\u001b[22m\n\n\n  55 |   await submit(page); await recovered(page); await expect(page.locator('#cart-notification')).toHaveClass(/active/); await page.keyboard.press('Escape');\n  56 |   await page.locator('label[for=\"machine-1-1\"]').click();\n> 57 |   await expect(page.locator('product-form [name=id]')).toHaveValue(F.fixture.items[1].variantId);\n     |                                                        ^\n  58 |   await submit(page); await recovered(page); await expect(page.locator('#cart-notification')).toHaveClass(/active/); await page.keyboard.press('Escape');\n  59 |   const prior = structuredClone(s.items); s.mode = '422';\n  60 |   await submit(page); await recovered(page); await expect(page.getByRole('alert')).toHaveText('Fixture quantity rejected');\n    at C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\tests\\epic-j-j1.spec.js:57:56"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T21:22:16.563Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\product-recovery-01\\artifacts\\epic-j-cart-J1-422-preserv-a133d-istory-renders-server-state-desktop-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\product-recovery-01\\artifacts\\epic-j-cart-J1-422-preserv-a133d-istory-renders-server-state-desktop-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\docs\\qa\\evidence\\epic-j\\j1-2026-10-20T21-18-13-268Z\\product-recovery-01\\artifacts\\epic-j-cart-J1-422-preserv-a133d-istory-renders-server-state-desktop-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary\\scripts\\lib\\epic-j-j1-fixtures.js",
+                    "column": 271,
+                    "line": 13
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2c162d621ce71d786bd0-a92049b74a7b24674caa",
+          "file": "epic-j-j1.spec.js",
+          "line": 53,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T21:22:06.782Z",
+    "duration": 10719.215,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

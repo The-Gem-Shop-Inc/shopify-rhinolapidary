@@ -1,0 +1,25 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:epic-j-cart
+> playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1 --grep J1 --grep-invert cart layout --output docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/product-recovery-02/artifacts --reporter=line,json
+
+◇ injected env (12) from .env // tip: ⌘ enable debugging { debug: true }
+
+Running 9 tests using 1 worker
+
+
+(node:14836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+
+[1/9] [desktop-chromium] › tests\epic-j-j1.spec.js:13:1 › J1 transport rejection is visible, announced, preserves selection and never auto-retries
+[2/9] [desktop-chromium] › tests\epic-j-j1.spec.js:26:1 › J1 success prevents concurrent duplicate POSTs and notification retains native focus behavior
+[3/9] [desktop-chromium] › tests\epic-j-j1.spec.js:40:123 › J1 rejects missing-section without partial fragment updates or retrying an uncertain POST
+[4/9] [desktop-chromium] › tests\epic-j-j1.spec.js:40:123 › J1 rejects null-section without partial fragment updates or retrying an uncertain POST
+[5/9] [desktop-chromium] › tests\epic-j-j1.spec.js:40:123 › J1 rejects malformed-section without partial fragment updates or retrying an uncertain POST
+[6/9] [desktop-chromium] › tests\epic-j-j1.spec.js:40:123 › J1 rejects wrong-line without partial fragment updates or retrying an uncertain POST
+[7/9] [desktop-chromium] › tests\epic-j-j1.spec.js:40:123 › J1 rejects missing-key without partial fragment updates or retrying an uncertain POST
+[8/9] [desktop-chromium] › tests\epic-j-j1.spec.js:40:123 › J1 rejects invalid-json without partial fragment updates or retrying an uncertain POST
+[9/9] [desktop-chromium] › tests\epic-j-j1.spec.js:53:1 › J1 422 preserves prior cart and two Size line identities; history renders server state
+  9 passed (9.3s)

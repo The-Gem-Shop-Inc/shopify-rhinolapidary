@@ -1,0 +1,684 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-20T21:36:15.486Z",
+  "scope": "J1_AUTHORIZED_REPOSITORY_ENGINEERING",
+  "pbi": [
+    {
+      "id": "J-PBI-001",
+      "classification": "COMPLETED_FOR_AUTHORIZED_REPOSITORY_SCOPE",
+      "repositoryImplemented": true,
+      "localAcceptance": "PASS",
+      "changedPreviewVerified": false,
+      "previewAcceptance": "PENDING_SEPARATE_DEPLOYMENT_AUTHORIZATION",
+      "productionAuthorized": false
+    },
+    {
+      "id": "J-PBI-002",
+      "classification": "COMPLETED_FOR_AUTHORIZED_REPOSITORY_SCOPE",
+      "repositoryImplemented": true,
+      "localAcceptance": "PASS",
+      "changedPreviewVerified": false,
+      "previewAcceptance": "PENDING_SEPARATE_DEPLOYMENT_AUTHORIZATION",
+      "productionAuthorized": false
+    }
+  ],
+  "technicalStatus": "PASS_WITH_RETAINED_BROWSER_ZOOM_TIMEOUT_AND_SUCCESSFUL_UNCHANGED_RERUN",
+  "allOriginalCommandsPassed": false,
+  "originalAcceptanceRunnerExit": 1,
+  "originalAcceptanceRunnerReason": "57/58 native machine cases passed; browser zoom API timed out. The unchanged focused rerun passed 1/1. Original FAIL is immutable.",
+  "changedFiles": [
+    {
+      "path": "assets/product-form.js",
+      "oldSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+      "sha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+      "reason": "Explicit J1 runtime/test allowance.",
+      "actualSha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+      "purpose": "J001: display native translated role=alert error for rejected/invalid responses; one in-flight submission; validate all requested section roots before publication/render; close stale notice; preserve native 422/sold-out and never auto-retry."
+    },
+    {
+      "path": "assets/component-cart-items.css",
+      "oldSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
+      "sha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+      "reason": "Explicit J1 runtime/test allowance.",
+      "actualSha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+      "purpose": "J002: mobile full-cart two-column reflow, full-width quantity row and natural subtotal wrapping. No reduced font, hidden content, header, desktop or inactive drawer redesign."
+    },
+    {
+      "path": "tests/epic-j-cart.spec.js",
+      "oldSha256": "611a9741caffc772201acd2d4c1c2f75a73bc55d6aa6e0ebd828d85854819830",
+      "sha256": "c001aed183bf6b2f0054a5c264967f2cc4a6120d55e0f865d82c723bbdf7a5fb",
+      "reason": "Explicit J1 runtime/test allowance.",
+      "actualSha256": "c001aed183bf6b2f0054a5c264967f2cc4a6120d55e0f865d82c723bbdf7a5fb",
+      "purpose": "Opt-in J1 cases and explicit repository-only live skips; supply the native translated global missing from the older platform fixture; assert visible error for J1."
+    },
+    {
+      "path": "scripts/lib/epic-j-cart-fixtures.js",
+      "oldSha256": "d17c56bb0c9f8dce1022e49bff4e91383c8ffd3aad5555ccef3532336296dec6",
+      "sha256": "6be387d395822319a431e833de86122e376c219075abe878f9d9029423deede4",
+      "reason": "Explicit J1 runtime/test allowance.",
+      "actualSha256": "6be387d395822319a431e833de86122e376c219075abe878f9d9029423deede4",
+      "purpose": "Parameterize server items and native null quantity maximum; retain original default fixture behavior."
+    },
+    {
+      "path": "scripts/validate-epic-f-machine.js",
+      "oldSha256": "405d686dda31b5b993fc871a735a3d892a2c7d7eb0d9fcb51b38764ccf966998",
+      "sha256": "b082f23d71e73b76a30a924396eb1902c78ac31ff70c8d2edd15ca39ec964098",
+      "reason": "Opt-in exact J1 successor only for native Product JS; retain every historical hash and arbitrary-change rejection.",
+      "actualSha256": "b082f23d71e73b76a30a924396eb1902c78ac31ff70c8d2edd15ca39ec964098",
+      "purpose": "One narrowly scoped opt-in native-source successor adapter; original expected hashes and arbitrary-source negative remain intact."
+    },
+    {
+      "path": "docs/rhino-lapidary-pbi-tracker-epic-j.md",
+      "oldSha256": "8ce75cd92c7651a70e2e872e3c9659cbf2fe36889b516b5cc781e7a5931c5792",
+      "sha256": "741b94440bcb39b5b12e155afb194ded5e596be05442e28a753536868674a145",
+      "reason": "Current J1 status appended separately from historical J0 planning.",
+      "actualSha256": "741b94440bcb39b5b12e155afb194ded5e596be05442e28a753536868674a145",
+      "purpose": "Record current owner authorization and local implementation separately above retained J0 proposal; J008 remains proposed."
+    },
+    {
+      "path": "scripts/lib/epic-j-j1-fixtures.js",
+      "sha256": "be1634c0f2d57adc89816c17fc334c1f6d6421327a0f1f10baf6f2c144ecdaf4",
+      "actualSha256": "be1634c0f2d57adc89816c17fc334c1f6d6421327a0f1f10baf6f2c144ecdaf4",
+      "purpose": "Reuse F/J Liquid and native scripts; emulate Product add, complete/incomplete sections, exact four Saw Blade Size identities, server cart changes and navigation on .local only."
+    },
+    {
+      "path": "scripts/lib/epic-j-j1-protection.js",
+      "sha256": "45ba17c994bd7e79f72a8de20182562fb2cd6468198f226821d1d842f5e64d13",
+      "actualSha256": "d45d9dcf30594e1c51656037faa937aae24b0ab650a03003414d2caa46676e75",
+      "purpose": "Pin reviewed successor manifest, predecessor/rollback hashes, exact repository deltas, all other starting files and all 730 J0 protected sources."
+    },
+    {
+      "path": "scripts/test-epic-j-j1-readiness.js",
+      "sha256": "f3e5c91aba9cab12a371608748668834262145d2e535bc14d8fc54d8f67c3d3a",
+      "actualSha256": "f3e5c91aba9cab12a371608748668834262145d2e535bc14d8fc54d8f67c3d3a",
+      "purpose": "Seven positive/eight negative successor, drift, policy and lifecycle assertions."
+    },
+    {
+      "path": "scripts/run-epic-j-j1.js",
+      "sha256": "086ccecc3f671ab13d006c918b6c7386586af873ee07ef6e07ddf94b7c73d536",
+      "actualSha256": "086ccecc3f671ab13d006c918b6c7386586af873ee07ef6e07ddf94b7c73d536",
+      "purpose": "Existing Playwright/npm orchestration, unique evidence, exact command exits and repository-only mode. No second cart/GraphQL/approval system."
+    },
+    {
+      "path": "tests/epic-j-j1.spec.js",
+      "sha256": "ccdb3f5434b2c9a54a6af944fdeff9bd0dbecd05d71f77fbf88bf8346c320e81",
+      "actualSha256": "ccdb3f5434b2c9a54a6af944fdeff9bd0dbecd05d71f77fbf88bf8346c320e81",
+      "purpose": "22 J1 browser cases: failure/recovery, duplicate submission, complete-fragment rejection, Size line identity, native state/history/section refresh, focus and six layout/axe cells."
+    },
+    {
+      "path": "data/epic-j-j1-source-successor.json",
+      "sha256": "6656356c225ee086c611381152d196b19e79782ba6dbe9a2ef07d14ad4f868db",
+      "actualSha256": "6656356c225ee086c611381152d196b19e79782ba6dbe9a2ef07d14ad4f868db",
+      "purpose": "Reviewed exact J1 source identities, before/after hashes and rollback sources; no receipt/grant/deployment authority."
+    }
+  ],
+  "successor": {
+    "id": "J1-2026-10-20-NATIVE-CART",
+    "sha256": "6656356c225ee086c611381152d196b19e79782ba6dbe9a2ef07d14ad4f868db",
+    "runtime": [
+      {
+        "path": "assets/product-form.js",
+        "oldSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+        "sha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+        "oldNormalizedSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+        "normalizedSha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+        "rollback": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before/assets/product-form.js",
+        "reason": "J-PBI-001: native translated/announced transport and malformed-section recovery; no automatic retry, exact one in-flight submit."
+      },
+      {
+        "path": "assets/component-cart-items.css",
+        "oldSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
+        "sha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+        "oldNormalizedSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
+        "normalizedSha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+        "rollback": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before/assets/component-cart-items.css",
+        "reason": "J-PBI-002: cart-only mobile grid and natural subtotal wrapping; no text reduction, header or drawer change."
+      }
+    ]
+  },
+  "protection": {
+    "successor": {
+      "schemaVersion": 1,
+      "id": "J1-2026-10-20-NATIVE-CART",
+      "authorization": "Product Owner J1 assignment: J-PBI-001 and J-PBI-002 repository implementation only; no theme deployment or catalog authority.",
+      "evidenceDirectory": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z",
+      "baseline": {
+        "path": "data/epic-j-j0-contract.json",
+        "sha256": "469e8a0582d31ba9fbb8c407281132c6ac9bf84aaa256b3c802b2ff49068b82a"
+      },
+      "before": {
+        "path": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/repository-before.json",
+        "sha256": "20c4fc5558d1e5bf8d94dc2075e07c8bdec15ca822715380805ec590ae7508b0"
+      },
+      "runtime": [
+        {
+          "path": "assets/product-form.js",
+          "oldSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+          "sha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+          "oldNormalizedSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+          "normalizedSha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+          "rollback": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before/assets/product-form.js",
+          "reason": "J-PBI-001: native translated/announced transport and malformed-section recovery; no automatic retry, exact one in-flight submit."
+        },
+        {
+          "path": "assets/component-cart-items.css",
+          "oldSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
+          "sha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+          "oldNormalizedSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
+          "normalizedSha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+          "rollback": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before/assets/component-cart-items.css",
+          "reason": "J-PBI-002: cart-only mobile grid and natural subtotal wrapping; no text reduction, header or drawer change."
+        }
+      ],
+      "reviewedRepositoryChanges": [
+        {
+          "path": "assets/product-form.js",
+          "oldSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
+          "sha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
+          "reason": "Explicit J1 runtime/test allowance."
+        },
+        {
+          "path": "assets/component-cart-items.css",
+          "oldSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
+          "sha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
+          "reason": "Explicit J1 runtime/test allowance."
+        },
+        {
+          "path": "tests/epic-j-cart.spec.js",
+          "oldSha256": "611a9741caffc772201acd2d4c1c2f75a73bc55d6aa6e0ebd828d85854819830",
+          "sha256": "c001aed183bf6b2f0054a5c264967f2cc4a6120d55e0f865d82c723bbdf7a5fb",
+          "reason": "Explicit J1 runtime/test allowance."
+        },
+        {
+          "path": "scripts/lib/epic-j-cart-fixtures.js",
+          "oldSha256": "d17c56bb0c9f8dce1022e49bff4e91383c8ffd3aad5555ccef3532336296dec6",
+          "sha256": "6be387d395822319a431e833de86122e376c219075abe878f9d9029423deede4",
+          "reason": "Explicit J1 runtime/test allowance."
+        },
+        {
+          "path": "scripts/validate-epic-f-machine.js",
+          "oldSha256": "405d686dda31b5b993fc871a735a3d892a2c7d7eb0d9fcb51b38764ccf966998",
+          "sha256": "b082f23d71e73b76a30a924396eb1902c78ac31ff70c8d2edd15ca39ec964098",
+          "reason": "Opt-in exact J1 successor only for native Product JS; retain every historical hash and arbitrary-change rejection."
+        },
+        {
+          "path": "docs/rhino-lapidary-pbi-tracker-epic-j.md",
+          "oldSha256": "8ce75cd92c7651a70e2e872e3c9659cbf2fe36889b516b5cc781e7a5931c5792",
+          "sha256": "741b94440bcb39b5b12e155afb194ded5e596be05442e28a753536868674a145",
+          "reason": "Current J1 status appended separately from historical J0 planning."
+        }
+      ],
+      "addedSources": [
+        {
+          "path": "scripts/lib/epic-j-j1-fixtures.js",
+          "sha256": "be1634c0f2d57adc89816c17fc334c1f6d6421327a0f1f10baf6f2c144ecdaf4"
+        },
+        {
+          "path": "scripts/lib/epic-j-j1-protection.js",
+          "sha256": "45ba17c994bd7e79f72a8de20182562fb2cd6468198f226821d1d842f5e64d13"
+        },
+        {
+          "path": "scripts/test-epic-j-j1-readiness.js",
+          "sha256": "f3e5c91aba9cab12a371608748668834262145d2e535bc14d8fc54d8f67c3d3a"
+        },
+        {
+          "path": "scripts/run-epic-j-j1.js",
+          "sha256": "086ccecc3f671ab13d006c918b6c7386586af873ee07ef6e07ddf94b7c73d536"
+        },
+        {
+          "path": "tests/epic-j-j1.spec.js",
+          "sha256": "ccdb3f5434b2c9a54a6af944fdeff9bd0dbecd05d71f77fbf88bf8346c320e81"
+        }
+      ],
+      "receiptExpiresAtUnchanged": "2026-10-22T20:26:37.102Z",
+      "themeDeploymentAuthorized": false,
+      "publicationAuthorized": false,
+      "relationshipAuthorityChanged": false
+    },
+    "protectedState": {
+      "status": "PASS",
+      "checked": 730,
+      "missing": [],
+      "changed": []
+    },
+    "startingFilesChecked": 5518,
+    "changed": [
+      "tests/epic-j-cart.spec.js",
+      "assets/component-cart-items.css",
+      "docs/rhino-lapidary-pbi-tracker-epic-j.md",
+      "assets/product-form.js",
+      "scripts/lib/epic-j-cart-fixtures.js",
+      "scripts/validate-epic-f-machine.js"
+    ],
+    "historicalEvidenceChanged": [],
+    "approvalRecordsChanged": [],
+    "deploymentAuthorized": false
+  },
+  "baseline": {
+    "path": "data/epic-j-j0-contract.json",
+    "sha256": "469e8a0582d31ba9fbb8c407281132c6ac9bf84aaa256b3c802b2ff49068b82a"
+  },
+  "tests": {
+    "j1Source": {
+      "passed": 15,
+      "positive": 7,
+      "negative": 8,
+      "failed": 0
+    },
+    "cart": {
+      "startTime": "2026-10-20T21:30:03.050Z",
+      "duration": 39059.635,
+      "expected": 33,
+      "skipped": 3,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "machine": {
+      "startTime": "2026-10-20T21:30:53.034Z",
+      "duration": 139489.219,
+      "expected": 57,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "unchangedZoomRerun": {
+      "startTime": "2026-10-20T21:33:43.746Z",
+      "duration": 3786.6639999999998,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "historicalJ0": {
+      "exitCode": 1,
+      "units": {
+        "passed": 40,
+        "positive": 9,
+        "negative": 32
+      },
+      "actualSourceGuard": "FAIL — exact J1 runtime and native validator successor intentionally rejected",
+      "interpretation": "Historical predecessor guard, not successor acceptance; no expected hash rewritten."
+    },
+    "commands": [
+      {
+        "label": "readiness",
+        "command": "npm.cmd run validate:epic-j-readiness",
+        "startedAt": "2026-10-20T21:26:15.882Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/readiness.txt",
+        "exitCode": 1,
+        "status": "FAIL",
+        "completedAt": "2026-10-20T21:26:20.786Z"
+      },
+      {
+        "label": "governance-negative-tests",
+        "command": "npm.cmd run test:epic-j-readiness",
+        "startedAt": "2026-10-20T21:26:20.787Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/governance-negative-tests.txt",
+        "exitCode": 1,
+        "status": "FAIL",
+        "completedAt": "2026-10-20T21:26:25.414Z"
+      },
+      {
+        "label": "cart-config",
+        "command": "npm.cmd run validate:cart-config",
+        "startedAt": "2026-10-20T21:26:25.415Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/cart-config.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T21:26:25.807Z"
+      },
+      {
+        "label": "purchase-architecture",
+        "command": "npm.cmd run validate:product-purchase",
+        "startedAt": "2026-10-20T21:26:25.807Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/purchase-architecture.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T21:26:26.177Z"
+      },
+      {
+        "label": "theme-architecture",
+        "command": "npm.cmd run validate:theme-architecture",
+        "startedAt": "2026-10-20T21:26:26.178Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/theme-architecture.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T21:26:28.345Z"
+      },
+      {
+        "label": "registers",
+        "command": "npm.cmd run validate:registers",
+        "startedAt": "2026-10-20T21:26:28.345Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/registers.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T21:26:29.233Z"
+      },
+      {
+        "label": "theme-check",
+        "command": "npm.cmd run theme:check",
+        "startedAt": "2026-10-20T21:26:29.233Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/historical-j0-guard/theme-check.txt",
+        "exitCode": 0,
+        "status": "PASS",
+        "completedAt": "2026-10-20T21:26:48.619Z"
+      },
+      {
+        "label": "j1-source-and-negative-tests",
+        "command": "node scripts/test-epic-j-j1-readiness.js",
+        "startedAt": "2026-10-20T21:29:32.688Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/j1-source-and-negative-tests.txt",
+        "exitCode": 0,
+        "completedAt": "2026-10-20T21:30:02.285Z",
+        "status": "PASS"
+      },
+      {
+        "label": "native-cart-browser",
+        "command": "npm.cmd run test:epic-j-cart -- --output docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/cart-artifacts --reporter=line,json",
+        "startedAt": "2026-10-20T21:30:02.286Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/native-cart-browser.txt",
+        "exitCode": 0,
+        "completedAt": "2026-10-20T21:30:42.152Z",
+        "status": "PASS"
+      },
+      {
+        "label": "native-machine-guard",
+        "command": "npm.cmd run validate:epic-f-machine",
+        "startedAt": "2026-10-20T21:30:42.152Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/native-machine-guard.txt",
+        "exitCode": 0,
+        "completedAt": "2026-10-20T21:30:52.279Z",
+        "status": "PASS"
+      },
+      {
+        "label": "native-machine-browser",
+        "command": "npm.cmd run test:machine-shell -- --output docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/machine-artifacts --reporter=line,json",
+        "startedAt": "2026-10-20T21:30:52.279Z",
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/native-machine-browser.txt",
+        "exitCode": 1,
+        "completedAt": "2026-10-20T21:33:12.573Z",
+        "status": "FAIL"
+      },
+      {
+        "command": "npm.cmd run validate:product-purchase",
+        "startedAt": "2026-10-20T21:31:09.303Z",
+        "completedAt": "2026-10-20T21:31:09.742Z",
+        "exitCode": 0,
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/final-static/product-purchase.txt"
+      },
+      {
+        "command": "npm.cmd run validate:theme-architecture",
+        "startedAt": "2026-10-20T21:31:09.743Z",
+        "completedAt": "2026-10-20T21:31:12.554Z",
+        "exitCode": 0,
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/final-static/theme-architecture.txt"
+      },
+      {
+        "command": "npm.cmd run validate:registers",
+        "startedAt": "2026-10-20T21:31:12.554Z",
+        "completedAt": "2026-10-20T21:31:13.703Z",
+        "exitCode": 0,
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/final-static/registers.txt"
+      },
+      {
+        "command": "npm.cmd run theme:check",
+        "startedAt": "2026-10-20T21:31:13.704Z",
+        "completedAt": "2026-10-20T21:31:40.909Z",
+        "exitCode": 0,
+        "log": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/final-static/theme-check.txt"
+      },
+      {
+        "command": "node --check assets/product-form.js",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": "node --check scripts/lib/epic-j-cart-fixtures.js",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": "node --check scripts/lib/epic-j-j1-fixtures.js",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": "node --check scripts/lib/epic-j-j1-protection.js",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": "node --check scripts/run-epic-j-j1.js",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": "node --check scripts/test-epic-j-j1-readiness.js",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": "node --check scripts/validate-epic-f-machine.js",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": "node --check tests/epic-j-cart.spec.js",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": "node --check tests/epic-j-j1.spec.js",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": "npm.cmd run test:machine-shell -- --grep \"Chromium actual browser zoom\" --output docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/machine-zoom-rerun/artifacts --reporter=line,json",
+        "exitCode": 0,
+        "passed": 1,
+        "failed": 0
+      },
+      {
+        "command": "git apply --check --reverse docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/j1-workspace.patch",
+        "exitCode": 0
+      }
+    ],
+    "retainedEarlyRuns": [
+      "before-reproduction",
+      "before-reproduction-corrected-fixture",
+      "product-recovery-01",
+      "product-recovery-02",
+      "mobile-reflow-01",
+      "cart-all-01",
+      "native-cart-extra-01"
+    ],
+    "toolkitValidator": {
+      "command": "node C:/Users/dajem/.codex/plugins/cache/openai-curated-remote/shopify/4.1.2/skills/shopify/scripts/validate.mjs --api liquid --theme-path C:/Users/dajem/WebstormProjects/shopify-rhinolapidary --files assets/product-form.js,assets/component-cart-items.css --artifact-id epic-j-j1-runtime --revision 1 --model gpt-6 --client-name codex --client-version 1",
+      "processExitCode": 0,
+      "status": "BLOCKED",
+      "reason": "Cannot find package '@shopify/theme-check-common' alongside the skill validator. The helper printed an error despite process exit 0. Repository Shopify CLI Theme Check passed, 499 files/no offenses; no toolkit installation or environment change was attempted."
+    }
+  },
+  "accessibility": {
+    "matrix": [
+      {
+        "width": 360,
+        "textPercent": 100,
+        "rootFont": "10px",
+        "beforeScrollWidth": 360,
+        "afterScrollWidth": 360,
+        "cartWidth": 360,
+        "quantityRight": 157,
+        "seriousCritical": 0,
+        "controls": "PASS: labeled quantity/removal, native 422 recovery, subtotal, enabled standard checkout; no checkout submitted",
+        "screenshot": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/j1-layout-360-text100.png"
+      },
+      {
+        "width": 360,
+        "textPercent": 200,
+        "rootFont": "20px",
+        "beforeScrollWidth": 385,
+        "afterScrollWidth": 360,
+        "cartWidth": 360,
+        "quantityRight": 312,
+        "seriousCritical": 0,
+        "controls": "PASS: labeled quantity/removal, native 422 recovery, subtotal, enabled standard checkout; no checkout submitted",
+        "screenshot": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/j1-layout-360-text200.png"
+      },
+      {
+        "width": 390,
+        "textPercent": 100,
+        "rootFont": "10px",
+        "beforeScrollWidth": 390,
+        "afterScrollWidth": 390,
+        "cartWidth": 390,
+        "quantityRight": 157,
+        "seriousCritical": 0,
+        "controls": "PASS: labeled quantity/removal, native 422 recovery, subtotal, enabled standard checkout; no checkout submitted",
+        "screenshot": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/j1-layout-390-text100.png"
+      },
+      {
+        "width": 390,
+        "textPercent": 200,
+        "rootFont": "20px",
+        "beforeScrollWidth": 395,
+        "afterScrollWidth": 390,
+        "cartWidth": 390,
+        "quantityRight": 312,
+        "seriousCritical": 0,
+        "controls": "PASS: labeled quantity/removal, native 422 recovery, subtotal, enabled standard checkout; no checkout submitted",
+        "screenshot": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/j1-layout-390-text200.png"
+      },
+      {
+        "width": 1440,
+        "textPercent": 100,
+        "rootFont": "10px",
+        "beforeScrollWidth": 1440,
+        "afterScrollWidth": 1440,
+        "cartWidth": 1440,
+        "quantityRight": 1042,
+        "seriousCritical": 0,
+        "controls": "PASS: labeled quantity/removal, native 422 recovery, subtotal, enabled standard checkout; no checkout submitted",
+        "screenshot": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/j1-layout-1440-text100.png"
+      },
+      {
+        "width": 1440,
+        "textPercent": 200,
+        "rootFont": "20px",
+        "beforeScrollWidth": 1440,
+        "afterScrollWidth": 1440,
+        "cartWidth": 1440,
+        "quantityRight": 1048.125,
+        "seriousCritical": 0,
+        "controls": "PASS: labeled quantity/removal, native 422 recovery, subtotal, enabled standard checkout; no checkout submitted",
+        "screenshot": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/acceptance-01/j1-layout-1440-text200.png"
+      }
+    ],
+    "desktopGeometry": [
+      {
+        "width": 1440,
+        "text": 100,
+        "contentGeometryUnchanged": true
+      },
+      {
+        "width": 1440,
+        "text": 200,
+        "contentGeometryUnchanged": true
+      }
+    ],
+    "activeNotificationFocus": "PASS all six width/text cases: modal names, trapped focus, Escape/focus return, hidden controls excluded",
+    "inherited": [
+      "Epic C: historical approximately 558px enlarged header, unchanged source; not measured or resolved by header-free J1 fixtures.",
+      "Epic F: inherited moderate EM-1 contents heading order, not closed.",
+      "Shopify preview toolbar: J0 provider-owned serious/critical observations retained; absent from local fixtures."
+    ],
+    "limitations": "Cart matrix uses actual native CSS/Liquid with platform I/O emulated and computed root 10px -> 20px. It is not actual changed-preview or global-page browser-zoom acceptance."
+  },
+  "authority": {
+    "adminObservation": "2026-10-20T17:14:27.595Z–2026-10-20T17:14:50.648Z (immutable J0; no new Admin read)",
+    "receiptExpiresAt": "2026-10-22T20:26:37.102Z",
+    "currentSourceVerification": "PASS at acceptance execution; no extension",
+    "fitLease": "Expired 2026-10-20T17:06:42.312Z; no refresh; native commerce remains independent"
+  },
+  "remoteThemes": {
+    "status": "NOT REOBSERVED IN J1",
+    "main": "158579622085",
+    "preview": "158631198917",
+    "lastJ0Inventory": "438 MAIN / 450 UNPUBLISHED, J0 resumed readback October 20 around 20:40 UTC; historical reference only",
+    "limitation": "Zero theme writes does not prove absence of external concurrent drift; fresh readback required for any future preview release."
+  },
+  "operations": {
+    "adminReads": 0,
+    "adminMutations": 0,
+    "themeReads": 0,
+    "themeWrites": 0,
+    "publications": 0,
+    "realCartPosts": 0,
+    "checkoutSubmissions": 0,
+    "orders": 0,
+    "liveCleanup": "NOT APPLICABLE — all cart requests intercepted on .local fixture hosts"
+  },
+  "git": {
+    "branch": "epic-j/j1-native-cart-recovery",
+    "startingBranch": "dev",
+    "startingHead": "c803d44697de39c0b12b939ec9b03580d867cb03",
+    "currentHead": "c803d44697de39c0b12b939ec9b03580d867cb03",
+    "startingWorkingTreeEntries": 741,
+    "indexUnchanged": true,
+    "prerequisitesAbsentFromHEAD": [
+      "data/epic-j-j0-contract.json",
+      "scripts/lib/epic-j-j0.js",
+      "scripts/lib/epic-f-machine-fixtures.js",
+      "scripts/validate-epic-f-machine.js",
+      "tests/epic-j-cart.spec.js",
+      "tests/fixtures/epic-f-native-baseline.json"
+    ],
+    "commit": null,
+    "push": "SKIPPED",
+    "reason": "The completed J1 regression and successor depend on the uncommitted J0/F baseline listed above, absent from HEAD. A self-contained commit would require staging unrelated pre-existing E/F/G/J0 work outside this batch. No staging, stash, reset, partial dependency commit, merge or force push was performed. Exact J1-only patch is supplied against the preserved starting workspace."
+  },
+  "remaining": {
+    "j1FunctionalFailures": [],
+    "retainedExecutionFailures": [
+      "Original historical J0 guard and original machine zoom timeout; see exact logs and focused rerun"
+    ],
+    "preview": "NOT VERIFIED; no theme writes authorized",
+    "optional": "J003–J007 unimplemented; J008 proposed/not complete",
+    "commercialOperational": [
+      "G006 MR16 $0 selling price/replacement specification unresolved",
+      "G006 generic Saw Vice $0 model identity/Variant mapping unresolved despite four received prices",
+      "G003 private revocation/production operating policy",
+      "G005 two overwritten historical screenshots remain unrecovered",
+      "K logistics/Admin shipping and L service policy remain separately owned"
+    ],
+    "publication": "No production/commercial readiness or publication approval. Git publication skipped for exact pre-existing dependency reasons."
+  },
+  "nextAction": {
+    "scope": "Separately authorized unpublished-preview validation of J001/J002 only",
+    "theme": "158631198917",
+    "allowlist": [
+      "assets/product-form.js",
+      "assets/component-cart-items.css"
+    ],
+    "prerequisites": [
+      "Commit/reconcile the existing J0/F/G foundation separately so J1 has an assignable Git base; then apply/check the supplied J1-only patch.",
+      "Fresh authenticated MAIN/preview identities and complete inventories; fresh remote rollback bytes; reconcile source and exact J1 hashes; no use of stale rollback files as current authority.",
+      "Separate explicit preview push authorization for the two exact assets, readback and rollback guards. No MAIN/publish/catalog authority."
+    ],
+    "verification": [
+      "Actual preview Product error/success and selected four Size Variants; transport/malformed cases remain offline/intercepted without reaching Shopify cart backend.",
+      "Native isolated positive-price Saw Blade adds, quantities, two Size lines, navigation/history, cart errors, removal and server-verified final empty cart.",
+      "360/390/1440 normal/200% root text, native dialog keyboard/focus, cart-specific geometry separated from inherited header; serious/critical storefront issues block.",
+      "Fresh theme readback, MAIN/unrelated-preview protection and bounded existing performance checks. Keep G003/G005/G006 and J008 open."
+    ]
+  }
+}

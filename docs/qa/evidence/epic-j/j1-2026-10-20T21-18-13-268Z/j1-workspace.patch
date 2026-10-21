@@ -1,0 +1,660 @@
+diff --git a/assets/product-form.js b/assets/product-form.js
+index ac22efe..63491c3 100644
+--- a/assets/product-form.js
++++ b/assets/product-form.js
+@@ -19,7 +19,8 @@ if (!customElements.get('product-form')) {
+ 
+       onSubmitHandler(evt) {
+         evt.preventDefault();
+-        if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
++        if (this.submitting || this.submitButton.getAttribute('aria-disabled') === 'true') return;
++        this.submitting = true;
+ 
+         this.handleErrorMessage();
+ 
+@@ -49,16 +50,18 @@ if (!customElements.get('product-form')) {
+         fetch(`${routes.cart_add_url}`, config)
+           .then((response) => response.json())
+           .then((response) => {
++            if (!response || typeof response !== 'object') throw new Error('Invalid cart response');
+             if (response.status) {
++              const message = response.description || response.message || window.cartStrings.error;
+               publish(PUB_SUB_EVENTS.cartError, {
+                 source: 'product-form',
+                 productVariantId: variantId,
+                 errors: response.errors || response.description,
+                 message: response.message,
+               });
+-              this.handleErrorMessage(response.description);
+-              this.dispatchCartErrorEvent(response.description || response.message, 'INVALID');
+-              linesUpdateDeferred?.reject(new Error(response.description || response.message));
++              this.handleErrorMessage(message);
++              this.dispatchCartErrorEvent(message, 'INVALID');
++              linesUpdateDeferred?.reject(new Error(message));
+ 
+               const soldOutMessage = this.submitButton.querySelector('.sold-out-message');
+               if (!soldOutMessage) return;
+@@ -73,6 +76,9 @@ if (!customElements.get('product-form')) {
+               return;
+             }
+ 
++            // Validate the complete response before publishing or replacing any fragment.
++            // A successful POST can have an incomplete section response; never retry it here.
++            this.validateCartSections(response);
+             this.resolveCartLinesUpdate(linesUpdateDeferred);
+ 
+             const startMarker = CartPerformance.createStartingMarker('add:wait-for-subscribers');
+@@ -107,12 +113,15 @@ if (!customElements.get('product-form')) {
+           })
+           .catch((e) => {
+             console.error(e);
+-            this.dispatchCartErrorEvent(e.message || 'Network error', 'SERVICE_UNAVAILABLE');
++            const message = window.cartStrings.error;
++            this.handleErrorMessage(message);
++            this.cart?.close();
++            this.dispatchCartErrorEvent(message, 'SERVICE_UNAVAILABLE');
+             linesUpdateDeferred?.reject(e);
+           })
+           .finally(() => {
++            this.submitting = false;
+             this.submitButton.classList.remove('loading');
+-            if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
+             if (!this.error) this.submitButton.removeAttribute('aria-disabled');
+             this.querySelector('.loading__spinner').classList.add('hidden');
+ 
+@@ -120,6 +129,21 @@ if (!customElements.get('product-form')) {
+           });
+       }
+ 
++      validateCartSections(response) {
++        if (typeof response.key !== 'string' || !response.key || !response.sections) {
++          throw new Error('Missing cart section response');
++        }
++        for (const section of this.cart.getSectionsToRender()) {
++          const html = response.sections[section.id];
++          const selector = section.id === 'cart-notification-product'
++            ? `#cart-notification-product-${CSS.escape(response.key)}`
++            : section.selector || '.shopify-section';
++          if (typeof html !== 'string' || !new DOMParser().parseFromString(html, 'text/html').querySelector(selector)) {
++            throw new Error('Invalid cart section response');
++          }
++        }
++      }
++
+       handleErrorMessage(errorMessage = false) {
+         if (this.hideErrors) return;
+ 
+diff --git a/assets/component-cart-items.css b/assets/component-cart-items.css
+index 903b17b..4610732 100644
+--- a/assets/component-cart-items.css
++++ b/assets/component-cart-items.css
+@@ -531,6 +531,49 @@ cart-remove-button .icon-remove {
+     align-items: flex-start;
+     justify-content: flex-end;
+   }
++
++  /* Let the full cart reflow at enlarged text sizes without shrinking controls.
++     The inactive drawer retains its existing layout. */
++  cart-items .cart-item {
++    grid-template: auto auto auto / minmax(0, 1fr) minmax(0, 3fr);
++  }
++
++  cart-items .cart-item > td {
++    min-width: 0;
++  }
++
++  cart-items .cart-item__details,
++  cart-items .cart-item__totals {
++    grid-column: 2;
++  }
++
++  cart-items .cart-item__quantity {
++    grid-column: 1 / -1;
++  }
++
++  cart-items .cart-item__image {
++    max-width: 100%;
++  }
++
++  cart-items .cart-item__name,
++  cart-items .product-option {
++    word-break: normal;
++    overflow-wrap: break-word;
++  }
++
++  .cart__footer .totals {
++    flex-wrap: wrap;
++    gap: 1rem 2rem;
++  }
++
++  .cart__footer .totals > * {
++    word-break: normal;
++    overflow-wrap: break-word;
++  }
++
++  .cart__footer .totals > * + * {
++    margin-left: 0;
++  }
+ }
+ 
+ @media screen and (min-width: 750px) {
+diff --git a/tests/epic-j-cart.spec.js b/tests/epic-j-cart.spec.js
+index 12a9d52..9ce3baa 100644
+--- a/tests/epic-j-cart.spec.js
++++ b/tests/epic-j-cart.spec.js
+@@ -4,6 +4,7 @@ const J=require('../scripts/lib/epic-j-j0'),F=require('../scripts/lib/epic-j-car
+ const {auth}=require('../scripts/probe-epic-f-header-focus-correction'),I=require('../scripts/lib/epic-g-integrated');
+ const AxeBuilder=require('@axe-core/playwright').default;
+ test.describe.configure({mode:'default'});
++if(process.env.RHINO_J_J1==='1')require('./epic-j-j1.spec');
+ test('offline native cart rejects unavailable inventory and announces update error',async({page})=>{
+  const f=await F.mount(page);await page.locator('#Quantity-1').fill('9');await page.locator('#Quantity-1').press('Tab');await expect(page.locator('#Line-item-error-1 .cart-item__error-text')).toHaveText('Fixture inventory quantity unavailable');await expect(page.locator('#Quantity-1')).toHaveValue('2');expect(f.requests).toHaveLength(1);expect(f.requests[0]).toMatchObject({line:'1',quantity:9});await expect(page.locator('#cart-live-region-text')).toHaveAttribute('aria-live','polite');expect(f.errors).toEqual([]);
+ });
+@@ -24,9 +25,10 @@ test('offline mixed equipment cart uses native identities without a freight or c
+  await F.mount(page,{mixed:true});await expect(page.locator('main .cart-item')).toHaveCount(2);await expect(page.locator('#Quantity-1')).toHaveAttribute('data-quantity-variant-id',fixture.items[0].variantId);await expect(page.locator('#Quantity-2')).toHaveAttribute('data-quantity-variant-id',fixture.machine.variantId);await expect(page.locator('main [name=checkout]')).toBeEnabled();expect(await page.locator('main').innerText()).not.toMatch(/guaranteed delivery|free freight|required accessory|compatible with/i);
+ });
+ test('offline Product transport failure records current announcement defect without changing the theme',async({page})=>{
+- const M=require('../scripts/lib/epic-f-machine-fixtures');await M.mount(page,'tracked-available');await page.route('**/cart/add.js',r=>r.abort('failed'));await page.locator('[name=add]').click();await page.waitForTimeout(600);await expect(page.locator('[name=add]')).not.toHaveAttribute('aria-disabled','true');const visible=await page.locator('.product-form__error-message-wrapper').isVisible();J.write('product-transport-diagnostic.json',{mode:'OFFLINE_NATIVE_PRODUCT_FORM_NETWORK_REJECTION',defect:'J-DEF-001',owner:'J-PBI-001',severity:'high',status:visible?'PASS':'FAIL',visibleError:visible,condition:'Native fetch rejects with network failure',controlsRecovered:true,scope:'Observed baseline defect; no customer-facing correction in J0'});
++ const M=require('../scripts/lib/epic-f-machine-fixtures');await page.addInitScript(value=>window.cartStrings={error:value},require('../locales/en.default.json').sections.cart.cart_error);await M.mount(page,'tracked-available');await page.route('**/cart/add.js',r=>r.abort('failed'));await page.locator('[name=add]').click();await page.waitForTimeout(600);await expect(page.locator('[name=add]')).not.toHaveAttribute('aria-disabled','true');const visible=await page.locator('.product-form__error-message-wrapper').isVisible();if(process.env.RHINO_J_J1==='1')expect(visible).toBe(true);J.write('product-transport-diagnostic.json',{mode:'OFFLINE_NATIVE_PRODUCT_FORM_NETWORK_REJECTION',defect:'J-DEF-001',owner:'J-PBI-001',severity:'high',status:visible?'PASS':'FAIL',visibleError:visible,condition:'Native fetch rejects with network failure',controlsRecovered:true,scope:process.env.RHINO_J_J1==='1'?'J1 local successor regression; historical J0 finding unchanged':'J0 baseline observation'});
+ });
+ for(const width of [390,360,1440])test('actual preview isolated native cart '+width,async({browser})=>{
++ test.skip(process.env.RHINO_J_LOCAL_ONLY==='1','J1 repository-only scope: changed assets are undeployed; actual-preview acceptance requires separate authorization.');
+  test.setTimeout(240000);expect(process.env.RHINO_J_LIVE).toBe('1');const out={mode:'ACTUAL_UNPUBLISHED_PREVIEW',themeId:'158631198917',width,startedAt:new Date().toISOString(),requests:[],checks:[],findings:[],failures:[]};let context,page,isolated=false,mocked=false;
+  const record=(id,details={})=>out.checks.push({id,status:'PASS',details});
+  try{
+diff --git a/scripts/lib/epic-j-cart-fixtures.js b/scripts/lib/epic-j-cart-fixtures.js
+index a488997..e63d038 100644
+--- a/scripts/lib/epic-j-cart-fixtures.js
++++ b/scripts/lib/epic-j-cart-fixtures.js
+@@ -2,10 +2,10 @@
+ // Execute repository Trade Liquid and JavaScript offline; only platform I/O is emulated.
+ const fs=require('node:fs'),F=require('./epic-f-machine-fixtures');
+ const fixture=require('../../tests/fixtures/epic-j-cart.json');
+-function context({empty=false,drawer=false,note=false,mixed=false}={}){
++function context({empty=false,drawer=false,note=false,mixed=false,items,nativeRules=false}={}){
+  const ctx=F.contextFor('tracked-available');ctx.settings={...ctx.settings,cart_type:drawer?'drawer':'notification',show_cart_note:note};ctx.routes={root_url:'/',cart_url:'/cart',cart_change_url:'/cart/change.js',cart_update_url:'/cart/update.js',all_products_collection_url:'/collections/all',account_login_url:'/account/login'};ctx.request={page_type:'cart',origin:'http://j0.local'};ctx.shop={name:'Rhino Lapidary',customer_accounts_enabled:true,shipping_policy:{body:'',url:'/policies/shipping-policy'}};
+- const items=empty?[]:(mixed?[fixture.items[0],fixture.machine]:fixture.items).map((v,index)=>({id:v.variantId,key:'fixture-'+v.variantId,index,quantity:v.quantity,url:'/products/'+v.handle+'?variant='+v.variantId,title:v.title,product_title:v.title,price:v.priceCents,original_price:v.priceCents,final_price:v.priceCents,final_line_price:v.priceCents*v.quantity,original_line_price:v.priceCents*v.quantity,discounts:[],line_level_discount_allocations:[],options_with_values:[{name:'Size',value:v.option}],properties:{},variant:{id:v.variantId,quantity_rule:{min:1,max:10,increment:1}},product:{id:v.productGid.split('/').pop(),title:v.title,has_only_default_variant:false,requires_selling_plan:false,metafields:{rhino:{}}},url_to_remove:'/cart/change?line='+(index+1)+'&quantity=0',instructions:{can_update_quantity:true,can_remove:true}}));
+- ctx.cart={items,item_count:items.reduce((n,v)=>n+v.quantity,0),total_price:items.reduce((n,v)=>n+v.final_line_price,0),cart_level_discount_applications:[],note:'',currency:{iso_code:'USD'}};return ctx;
++ const lines=empty?[]:(items??(mixed?[fixture.items[0],fixture.machine]:fixture.items)).map((v,index)=>({id:v.variantId,key:'fixture-'+v.variantId,index,quantity:v.quantity,url:'/products/'+v.handle+'?variant='+v.variantId,title:v.title,product_title:v.title,price:v.priceCents,original_price:v.priceCents,final_price:v.priceCents,final_line_price:v.priceCents*v.quantity,original_line_price:v.priceCents*v.quantity,discounts:[],line_level_discount_allocations:[],options_with_values:[{name:'Size',value:v.option}],properties:{},variant:{id:v.variantId,quantity_rule:{min:1,max:nativeRules?null:10,increment:1}},product:{id:v.productGid.split('/').pop(),title:v.title,has_only_default_variant:false,requires_selling_plan:false,metafields:{rhino:{}}},url_to_remove:'/cart/change?line='+(index+1)+'&quantity=0',instructions:{can_update_quantity:true,can_remove:true}}));
++ ctx.cart={items:lines,item_count:lines.reduce((n,v)=>n+v.quantity,0),total_price:lines.reduce((n,v)=>n+v.final_line_price,0),cart_level_discount_applications:[],note:'',currency:{iso_code:'USD'}};return ctx;
+ }
+ function render(file,ctx){const src=F.normalize(fs.readFileSync(file,'utf8')).replaceAll('cart == empty','cart.item_count == 0').replaceAll('cart != empty','cart.item_count != 0');return F.engine(ctx).parseAndRenderSync(src,ctx);}
+ function documentFor(options={}){const ctx=context(options);ctx.section={id:'main-cart-items',settings:{color_scheme:'scheme-2',padding_top:36,padding_bottom:36}};let body;if(options.drawer)body=render('snippets/cart-drawer.liquid',ctx).replace('<script src="/assets/cart.js" defer="defer"></script>','');else{body=render('sections/main-cart-items.liquid',ctx);ctx.section={id:'main-cart-footer',settings:{color_scheme:'scheme-2'},blocks:[{type:'subtotal',settings:{}},{type:'buttons',settings:{}}]};body+=render('sections/main-cart-footer.liquid',ctx);}return '<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>J0 offline native cart fixture</title>'+F.themeStyle(ctx)+'<link rel="stylesheet" href="/assets/base.css"><link rel="stylesheet" href="/assets/component-cart.css"><link rel="stylesheet" href="/assets/component-cart-items.css"><link rel="stylesheet" href="/assets/component-cart-drawer.css"><script>window.routes='+JSON.stringify(ctx.routes)+';window.cartStrings={error:"Fixture cart service unavailable",quantityError:"Only [quantity] available"};window.quickOrderListStrings={min_error:"Minimum [min]",max_error:"Maximum [max]",step_error:"Step [step]"};window.StandardEvents={createViewEventElement:()=>class extends HTMLElement {connectedCallback(){} dispatchViewEvent(){}}};</script>'+['constants.js','pubsub.js','global.js'].map(s=>'<script src="/assets/'+s+'" defer></script>').join('')+(options.drawer?'<script src="/assets/cart.js" defer></script><script src="/assets/cart-drawer.js" defer></script>':'')+'</head><body><a id="cart-icon-bubble" href="/cart">Cart</a><main>'+body+'</main></body></html>';}
+diff --git a/scripts/validate-epic-f-machine.js b/scripts/validate-epic-f-machine.js
+index ce65851..c745a1c 100644
+--- a/scripts/validate-epic-f-machine.js
++++ b/scripts/validate-epic-f-machine.js
+@@ -9,7 +9,7 @@ const hash = s => crypto.createHash('sha256').update(s.replaceAll('\r\n', '\n'))
+ function validateArchitecture(overrides = {}) {
+   const get = f => overrides[f] ?? read(f);
+   const errors = [];
+-  for (const [file, sha] of Object.entries(nativeBaseline)) if (hash(get(file)) !== sha && !(file === 'templates/product.json' && (() => { try { return require('./lib/epic-g-current-protection').surfaceMatches(file, sha, get(file)); } catch { return false; } })())) errors.push(`Native baseline changed: ${file}`);
++  for (const [file, sha] of Object.entries(nativeBaseline)) if (hash(get(file)) !== sha && !(file === 'assets/product-form.js' && process.env.RHINO_J_SOURCE_SUCCESSOR === 'J1-2026-10-20-NATIVE-CART' && (() => { try { return require('./lib/epic-j-j1-protection').nativeSurfaceMatches(file, sha, get(file)); } catch { return false; } })()) && !(file === 'templates/product.json' && (() => { try { return require('./lib/epic-g-current-protection').surfaceMatches(file, sha, get(file)); } catch { return false; } })())) errors.push(`Native baseline changed: ${file}`);
+   const template = JSON.parse(get('templates/product.machine.json'));
+   const main = template.sections.main;
+   const expectedMain = JSON.parse(get('templates/product.json')).sections.main;
+diff --git a/docs/rhino-lapidary-pbi-tracker-epic-j.md b/docs/rhino-lapidary-pbi-tracker-epic-j.md
+index e4cd7dc..b1eefe0 100644
+--- a/docs/rhino-lapidary-pbi-tracker-epic-j.md
++++ b/docs/rhino-lapidary-pbi-tracker-epic-j.md
+@@ -1,5 +1,7 @@
+ # Rhino Lapidary — Epic J PBI tracker
+ 
++**J1 update, October 20, 2026:** The Product Owner authorized repository implementation of J-PBI-001 and J-PBI-002. Both fixes are implemented with local native-fixture acceptance; changed-preview verification remains pending a separate deployment authorization. The J0 proposal and its structured planning register below are retained as the historical baseline. Current source authority is the separately pinned `data/epic-j-j1-source-successor.json`. J-PBI-008 remains PROPOSED, not complete. See [J1 engineering handoff](qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/handoff.md).
++
+ **J0: architecture, executable baseline and planning delivered. Later PBIs: PROPOSED, pending Product Owner review. No customer-facing implementation or deployment is authorized by this tracker.**
+ 
+ The active cart is native Trade notification plus full cart page. Basic/optional accounts are verified. Current regression acceptance remains FAIL on mobile enlarged text; J-DEF-001 also records a missing Product transport-error announcement. Neither was fixed in J0. G003 private revocation/operations, G005 historical screenshots and G006 commercial exceptions remain open; G007 bounded technical QA was accepted.
+diff --git a/scripts/lib/epic-j-j1-fixtures.js b/scripts/lib/epic-j-j1-fixtures.js
+new file mode 100644
+--- /dev/null
++++ b/scripts/lib/epic-j-j1-fixtures.js
+@@ -0,0 +1,89 @@
++'use strict';
++// Platform HTTP responses only; all Product/cart markup and behavior use repository Trade sources.
++const fs = require('node:fs');
++const F = require('./epic-f-machine-fixtures');
++const J = require('./epic-j-cart-fixtures');
++const fixture = require('../../tests/fixtures/epic-j-cart.json');
++const read = require('../../' + require('../../data/epic-j-j0-contract.json').adminRead);
++const variants = read.snapshot.datasets.variants.records.filter(v => v.product.id === fixture.items[0].productGid);
++const genericError = require('../../locales/en.default.json').sections.cart.cart_error;
++function productDocument(selected = 0) {
++  const ctx = F.contextFor('tracked-available', { template: '' });
++  const pv = variants.map(v => ({ ...ctx.product.variants[0], id: v.id.split('/').pop(), title: v.title, price: Number(v.price) * 100 }));
++  ctx.product = { ...ctx.product, id: fixture.items[0].productGid.split('/').pop(), title: 'Saw Blade', handle: 'saw-blade', url: '/products/saw-blade', variants: pv, selected_variant: pv[selected], selected_or_first_available_variant: pv[selected], price: pv[selected].price,
++    options_with_values: [{ name: 'Size', position: 1, values: pv.map((v, i) => ({ id: String(100 + i), selected: i === selected, available: true, product_url: '/products/saw-blade', toString: () => v.title })) }] };
++  ctx.routes.cart_url = '/cart';
++  let doc = F.documentFor('tracked-available', { template: '' });
++  const body = F.engine(ctx).parseAndRenderSync(F.normalize(fs.readFileSync('sections/main-product.liquid', 'utf8')), ctx);
++  doc = doc.replace(/<main id="MainContent">[\s\S]*<\/main>/, '<main id="MainContent">' + body + '</main>');
++  const notification = J.render('snippets/cart-notification.liquid', ctx);
++  return doc.replace('</head>', '<link rel="stylesheet" href="/assets/component-cart-notification.css"><script>window.cartStrings={error:' + JSON.stringify(genericError) + '};</script><script src="/assets/cart-notification.js" defer></script></head>')
++    .replace('</body>', '<a id="cart-icon-bubble" href="/cart">Cart</a>' + notification + '</body>');
++}
++function sections(state, key) {
++  const count = state.reduce((n, v) => n + v.quantity, 0);
++  return { 'cart-notification-product': '<div class="shopify-section"><div id="cart-notification-product-' + key + '">Saw Blade added</div></div>',
++    'cart-notification-button': '<div class="shopify-section">View cart (' + count + ')</div>',
++    'cart-icon-bubble': '<div class="shopify-section">Cart (' + count + ')</div>' };
++}
++function cartSections(items) {
++  const ctx = J.context({ items, nativeRules: true });
++  ctx.section = { id: 'main-cart-items', settings: { color_scheme: 'scheme-2' } };
++  const main = J.render('sections/main-cart-items.liquid', ctx);
++  ctx.section = { id: 'main-cart-footer', settings: { color_scheme: 'scheme-2' }, blocks: [{ type: 'subtotal', settings: {} }, { type: 'buttons', settings: {} }] };
++  return { 'main-cart-items': main, 'main-cart-footer': J.render('sections/main-cart-footer.liquid', ctx),
++    'cart-icon-bubble': '<div class="shopify-section">Cart</div>', 'cart-live-region-text': '<div class="shopify-section">Cart updated</div>' };
++}
++async function mount(page, { mode = 'success', initial = [] } = {}) {
++  const state = { items: structuredClone(initial), mode, posts: [], errors: [], reads: [], rendered: 0 };
++  page.on('pageerror', e => state.errors.push(e.message));
++  const cart = () => ({ ...J.context({ items: state.items }).cart, currency: 'USD' });
++  await page.route('**/*', async route => {
++    const req = route.request(), url = new URL(req.url());
++    if (url.hostname !== 'machine.local') return route.abort();
++    if (url.pathname.startsWith('/assets/') && fs.existsSync('.' + url.pathname)) return route.fulfill({ body: fs.readFileSync('.' + url.pathname), contentType: url.pathname.endsWith('.js') ? 'application/javascript' : 'text/css' });
++    if (url.pathname === '/cart/add.js') {
++      state.posts.push(req.postData());
++      if (state.mode === 'transport') return route.abort('failed');
++      if (state.mode === '422') return route.fulfill({ status: 422, json: { status: 422, description: 'Fixture quantity rejected', message: 'Cart Error' } });
++      const body = req.postData();
++      const id = body.match(/name="id"\r\n\r\n([^\r]+)/)?.[1];
++      const quantity = Number(body.match(/name="quantity"\r\n\r\n([^\r]+)/)?.[1] || 1);
++      const source = fixture.items.find(v => v.variantId === id);
++      if (!source) throw new Error('Unapproved fixture Variant ' + id);
++      const line = state.items.find(v => v.variantId === id);
++      if (line) line.quantity += quantity; else state.items.push({ ...source, quantity });
++      const key = 'fixture-' + id;
++      if (state.mode === 'invalid-json') return route.fulfill({ body: '{broken', contentType: 'application/json' });
++      const result = { id: Number(id), key, quantity, sections: sections(state.items, key) };
++      if (state.mode === 'missing-section') delete result.sections['cart-icon-bubble'];
++      if (state.mode === 'null-section') result.sections['cart-icon-bubble'] = null;
++      if (state.mode === 'malformed-section') result.sections['cart-icon-bubble'] = '<p>Missing native section root</p>';
++      if (state.mode === 'wrong-line') result.sections['cart-notification-product'] = '<div id="cart-notification-product-other">Wrong line</div>';
++      if (state.mode === 'missing-key') delete result.key;
++      await new Promise(resolve => setTimeout(resolve, 100));
++      return route.fulfill({ json: result });
++    }
++    if (['/cart.js', '/cart.json'].includes(url.pathname)) { state.reads.push(url.pathname); return route.fulfill({ json: cart() }); }
++    if (url.pathname === '/cart/change.js') {
++      state.posts.push(req.postData());
++      if (state.mode === '422') return route.fulfill({ status: 422, json: { errors: 'Fixture inventory quantity unavailable' } });
++      const { line, quantity } = JSON.parse(req.postData());
++      if (quantity === 0) state.items.splice(line - 1, 1); else state.items[line - 1].quantity = quantity;
++      return route.fulfill({ json: { ...cart(), sections: cartSections(state.items) } });
++    }
++    if (url.pathname === '/cart') return route.fulfill({ contentType: 'text/html', body: J.documentFor({ items: state.items, nativeRules: true }) });
++    if (url.searchParams.get('section_id') === 'pickup-availability') return route.fulfill({ contentType: 'text/html', body: '<div class="shopify-section"></div>' });
++    if (url.searchParams.has('section_id')) {
++      const option = url.searchParams.has('option_values') ? Number(url.searchParams.get('option_values')) - 100
++        : Math.max(0, variants.findIndex(v => v.id.endsWith('/' + url.searchParams.get('variant'))));
++      const document = productDocument(option);
++      return route.fulfill({ contentType: 'text/html', body: document });
++    }
++    if (url.pathname === '/products/saw-blade') return route.fulfill({ contentType: 'text/html', body: productDocument() });
++    return route.abort();
++  });
++  await page.goto('http://machine.local/products/saw-blade');
++  return state;
++}
++module.exports = { mount, productDocument, genericError, fixture };
+diff --git a/scripts/lib/epic-j-j1-protection.js b/scripts/lib/epic-j-j1-protection.js
+new file mode 100644
+--- /dev/null
++++ b/scripts/lib/epic-j-j1-protection.js
+@@ -0,0 +1,60 @@
++'use strict';
++// Explicit two-file successor only. Historical J0/F contracts remain immutable.
++const fs = require('node:fs'), assert = require('node:assert/strict');
++const E = require('./epic-e-owner-response-adapter');
++const J = require('./epic-j-j0');
++const MANIFEST = 'data/epic-j-j1-source-successor.json';
++const REVIEWED_MANIFEST_SHA256 = '6656356c225ee086c611381152d196b19e79782ba6dbe9a2ef07d14ad4f868db';
++function verify() {
++  const body = fs.readFileSync(MANIFEST);
++  assert.equal(E.hash(body), REVIEWED_MANIFEST_SHA256, 'Unreviewed J1 successor');
++  const successor = JSON.parse(body), baseline = E.read(J.CONTRACT);
++  assert.equal(E.hash(fs.readFileSync(J.CONTRACT)), successor.baseline.sha256, 'Historical J0 contract modified');
++  assert.equal(successor.id, 'J1-2026-10-20-NATIVE-CART');
++  assert.deepEqual(successor.runtime.map(r => r.path).sort(), ['assets/component-cart-items.css', 'assets/product-form.js']);
++  for (const r of successor.runtime) {
++    assert.equal(baseline.protectedSources.find(p => p.path === r.path)?.sha256, r.oldSha256, 'Unknown runtime predecessor');
++    assert.equal(E.hash(fs.readFileSync(r.rollback)), r.oldSha256, 'Rollback source drift');
++    assert.equal(E.hash(fs.readFileSync(r.path)), r.sha256, 'Unreviewed runtime source');
++  }
++  assert.equal(E.hash(fs.readFileSync(successor.before.path)), successor.before.sha256, 'J1 starting evidence modified');
++  const before = E.read(successor.before.path), allowed = new Map(successor.reviewedRepositoryChanges.map(r => [r.path, r]));
++  const changed = [];
++  for (const [path, hash] of Object.entries(before)) {
++    assert(fs.existsSync(path), 'Starting source removed: ' + path);
++    const current = E.hash(fs.readFileSync(path));
++    if (current !== hash) {
++      const approval = allowed.get(path);
++      assert(approval && approval.oldSha256 === hash && approval.sha256 === current, 'Unrelated or unreviewed source change: ' + path);
++      changed.push(path);
++    }
++  }
++  for (const r of successor.reviewedRepositoryChanges) {
++    assert.equal(before[r.path], r.oldSha256);
++    assert.equal(E.hash(fs.readFileSync(r.path)), r.sha256);
++  }
++  for (const r of successor.addedSources) {
++    assert.equal(before[r.path], undefined, 'New source existed at start');
++    const body = r.path === 'scripts/lib/epic-j-j1-protection.js'
++      ? fs.readFileSync(r.path, 'utf8').replace(REVIEWED_MANIFEST_SHA256, 'J1_MANIFEST_HASH_PENDING') : fs.readFileSync(r.path);
++    assert.equal(E.hash(body), r.sha256, 'New J1 source drift');
++  }
++  const currentFiles = require('node:child_process').execFileSync('rg', ['--files', '--hidden', '-g', '!.git', '-g', '!node_modules', '-g', '!test-results', '-g', '!playwright-report'], { encoding: 'utf8' }).trim().split(/\r?\n/).map(p => p.replaceAll('\\', '/'));
++  const knownAdded = new Set(successor.addedSources.map(r => r.path).concat(MANIFEST));
++  for (const p of currentFiles) assert(p.startsWith(successor.evidenceDirectory + '/') || before[p] || knownAdded.has(p), 'Unapproved new file: ' + p);
++  const expected = structuredClone(baseline);
++  for (const r of successor.reviewedRepositoryChanges) {
++    const source = expected.protectedSources.find(p => p.path === r.path);
++    if (source) { assert.equal(source.sha256, r.oldSha256); source.sha256 = r.sha256; }
++  }
++  const protectedState = J.protectedState(expected);
++  return { successor, protectedState, startingFilesChecked: Object.keys(before).length, changed, historicalEvidenceChanged: [], approvalRecordsChanged: [], deploymentAuthorized: false };
++}
++function nativeSurfaceMatches(path, oldSha256, text) {
++  const { successor } = verify();
++  const r = successor.runtime.find(r => r.path === path);
++  assert(r && r.oldNormalizedSha256 === oldSha256, 'Unknown native predecessor');
++  assert.equal(E.hash(text.replaceAll('\r\n', '\n')), r.normalizedSha256, 'Unreviewed native successor bytes');
++  return true;
++}
++module.exports = { MANIFEST, verify, nativeSurfaceMatches };
+diff --git a/scripts/test-epic-j-j1-readiness.js b/scripts/test-epic-j-j1-readiness.js
+new file mode 100644
+--- /dev/null
++++ b/scripts/test-epic-j-j1-readiness.js
+@@ -0,0 +1,23 @@
++'use strict';
++const assert = require('node:assert/strict'), fs = require('node:fs');
++const E = require('./lib/epic-e-owner-response-adapter'), J = require('./lib/epic-j-j0'), S = require('./lib/epic-j-j1-protection');
++const results = [];
++function test(name, kind, fn) { try { fn(); results.push({ name, kind, status: 'PASS' }); } catch (e) { results.push({ name, kind, status: 'FAIL', reason: e.message }); } }
++test('Exact J1 successor and unchanged historical sources', 'positive', () => S.verify());
++const baseline = E.read(J.CONTRACT);
++test('Historical J0 guard still rejects two changed runtime files', 'negative', () => assert.throws(() => J.protectedState(baseline), /Protected cart/));
++for (const path of ['assets/product-form.js', 'assets/component-cart-items.css']) {
++  const r = E.read(S.MANIFEST).runtime.find(r => r.path === path);
++  test('Exact reviewed native source ' + path, 'positive', () => S.nativeSurfaceMatches(path, r.oldNormalizedSha256, fs.readFileSync(path, 'utf8')));
++  test('Reject further runtime drift ' + path, 'negative', () => assert.throws(() => S.nativeSurfaceMatches(path, r.oldNormalizedSha256, fs.readFileSync(path, 'utf8') + '\n/* arbitrary change */')));
++  test('Reject unknown predecessor ' + path, 'negative', () => assert.throws(() => S.nativeSurfaceMatches(path, 'unknown', fs.readFileSync(path, 'utf8'))));
++}
++test('Reject unapproved runtime file', 'negative', () => assert.throws(() => S.nativeSurfaceMatches('assets/base.css', 'unknown', fs.readFileSync('assets/base.css', 'utf8'))));
++test('Current receipt/source remains valid without extension', 'positive', () => J.verifySource(baseline, E.read(baseline.adminRead)));
++test('Expired authority fails closed', 'negative', () => assert.throws(() => J.verifySource(baseline, E.read(baseline.adminRead), Date.parse(baseline.receiptExpiresAt) + 1)));
++test('Native identity and positive-price cart fixtures', 'positive', () => J.verifyFixture(E.read('tests/fixtures/epic-j-cart.json'), E.read(baseline.adminRead)));
++test('No invented purchase restriction or checkout entitlement', 'positive', () => J.verifyPolicy(baseline.policy, E.read('data/epic-j-business-decisions.json').decisions));
++test('Native machine source guard accepts exact successor', 'positive', () => { process.env.RHINO_J_SOURCE_SUCCESSOR = 'J1-2026-10-20-NATIVE-CART'; assert.deepEqual(require('./validate-epic-f-machine').validateArchitecture(), []); });
++test('Native machine guard still rejects arbitrary Product changes', 'negative', () => assert(require('./validate-epic-f-machine').validateArchitecture({ 'assets/product-form.js': fs.readFileSync('assets/product-form.js', 'utf8') + '\n// bad' }).length));
++J.write('j1-readiness-tests.json', { results, passed: results.filter(r => r.status === 'PASS').length, failed: results.filter(r => r.status === 'FAIL').length, positive: results.filter(r => r.kind === 'positive').length, negative: results.filter(r => r.kind === 'negative').length });
++console.log(JSON.stringify(results)); process.exitCode = results.some(r => r.status === 'FAIL') ? 1 : 0;
+diff --git a/scripts/run-epic-j-j1.js b/scripts/run-epic-j-j1.js
+new file mode 100644
+--- /dev/null
++++ b/scripts/run-epic-j-j1.js
+@@ -0,0 +1,32 @@
++'use strict';
++// Repository-only acceptance. No credentials, network clients, deployments or live cart mode.
++const fs = require('node:fs'), path = require('node:path'), cp = require('node:child_process'), assert = require('node:assert/strict');
++const J = require('./lib/epic-j-j0'), S = require('./lib/epic-j-j1-protection');
++(async () => {
++  const args = process.argv.slice(2), root = args[args.indexOf('--evidence') + 1];
++  assert(args.includes('--evidence') && root, 'Explicit unique --evidence directory required');
++  process.env.RHINO_J_EVIDENCE_DIR = root; J.directory();
++  fs.mkdirSync(root, { recursive: true });
++  fs.writeFileSync(root + '/reservation.json', JSON.stringify({ at: new Date().toISOString(), mode: 'REPOSITORY_ONLY' }), { flag: 'wx' });
++  const commands = [];
++  async function command(label, command, env = {}) {
++    const row = { label, command, startedAt: new Date().toISOString(), log: root + '/' + label + '.txt' };
++    const log = fs.openSync(row.log, 'wx');
++    row.exitCode = await new Promise((resolve, reject) => {
++      const child = cp.spawn('cmd.exe', ['/d', '/s', '/c', command], { windowsHide: true, env: { ...process.env, RHINO_J_LIVE: '0', RHINO_J_LOCAL_ONLY: '1', RHINO_J_J1: '1', RHINO_J_SOURCE_SUCCESSOR: 'J1-2026-10-20-NATIVE-CART', PLAYWRIGHT_JSON_OUTPUT_NAME: path.resolve(root, label + '-playwright.json'), ...env }, stdio: ['ignore', 'pipe', 'pipe'] });
++      child.stdout.on('data', data => fs.writeSync(log, data)); child.stderr.on('data', data => fs.writeSync(log, data));
++      child.once('error', reject); child.once('exit', code => resolve(code));
++    });
++    fs.closeSync(log); row.completedAt = new Date().toISOString(); row.status = row.exitCode === 0 ? 'PASS' : 'FAIL'; commands.push(row); console.log(JSON.stringify(row));
++  }
++  await command('j1-source-and-negative-tests', 'node scripts/test-epic-j-j1-readiness.js');
++  await command('native-cart-browser', 'npm.cmd run test:epic-j-cart -- --output ' + root + '/cart-artifacts --reporter=line,json');
++  await command('native-machine-guard', 'npm.cmd run validate:epic-f-machine');
++  await command('native-machine-browser', 'npm.cmd run test:machine-shell -- --output ' + root + '/machine-artifacts --reporter=line,json');
++  let protection; try { protection = S.verify(); } catch (e) { protection = { status: 'FAIL', reason: e.message }; }
++  const report = { schemaVersion: 1, scope: 'J1_REPOSITORY_ENGINEERING_ONLY', completedAt: new Date().toISOString(), commands, protection,
++    status: commands.every(c => c.exitCode === 0) && !protection.reason ? 'PASS' : 'FAIL',
++    actualChangedPreview: 'NOT VERIFIED — no deployment authorized', productionAuthorized: false, J_PBI_008: 'PROPOSED_NOT_COMPLETE',
++    operations: { adminReads: 0, adminMutations: 0, themeReads: 0, themeWrites: 0, publications: 0, realCartPosts: 0, checkoutSubmissions: 0, orders: 0, liveCleanup: 'NOT APPLICABLE — all cart requests intercepted on .local fixture hosts' } };
++  J.write('report.json', report); console.log('J1 repository status: ' + report.status); process.exitCode = report.status === 'PASS' ? 0 : 1;
++})().catch(e => { console.error(e.stack); process.exitCode = 1; });
+diff --git a/tests/epic-j-j1.spec.js b/tests/epic-j-j1.spec.js
+new file mode 100644
+--- /dev/null
++++ b/tests/epic-j-j1.spec.js
+@@ -0,0 +1,121 @@
++'use strict';
++const { test, expect } = require('@playwright/test');
++const AxeBuilder = require('@axe-core/playwright').default;
++const F = require('../scripts/lib/epic-j-j1-fixtures');
++const C = require('../scripts/lib/epic-j-cart-fixtures');
++const J = require('../scripts/lib/epic-j-j0');
++async function submit(page) { await page.locator('product-form form').evaluate(e => e.requestSubmit()); }
++async function recovered(page) { await expect(page.locator('[name=add]')).not.toHaveAttribute('aria-disabled', 'true'); }
++async function error(page) {
++  const alert = page.locator('.product-form__error-message-wrapper');
++  await expect(alert).toBeVisible(); await expect(alert).toHaveAttribute('role', 'alert'); await expect(alert).toHaveText(F.genericError);
++}
++test('J1 transport rejection is visible, announced, preserves selection and never auto-retries', async ({ page }) => {
++  const s = await F.mount(page, { mode: 'transport' });
++  await page.locator('label[for="machine-1-1"]').click();
++  await expect(page.locator('product-form [name=id]')).toHaveValue(F.fixture.items[1].variantId);
++  await page.locator('[name=quantity]').fill('2'); await submit(page); await recovered(page);
++  await error(page); await page.waitForTimeout(200);
++  expect(s.posts).toHaveLength(1); expect(s.items).toEqual([]);
++  await expect(page.locator('product-form [name=id]')).toHaveValue(F.fixture.items[1].variantId);
++  await expect(page.locator('[name=quantity]')).toHaveValue('2');
++  s.mode = 'success'; await submit(page); await expect(page.locator('#cart-notification')).toHaveClass(/active/); await recovered(page);
++  expect(s.posts).toHaveLength(2); expect(s.items[0].quantity).toBe(2); expect(s.errors).toEqual([]);
++  J.write('j1-transport.json', { visibleAnnouncedError: true, preservedVariant: F.fixture.items[1].variantId, quantity: 2, emulatedPosts: s.posts.length, automaticRetries: 0 });
++});
++for (const width of [360, 390, 1440]) for (const enlarged of [false, true]) test('J1 success and notification focus ' + width + ' text ' + (enlarged ? 200 : 100), async ({ page }) => {
++  await page.setViewportSize({ width, height: 1000 });
++  const s = await F.mount(page);
++  if (enlarged) await page.evaluate(() => document.documentElement.style.fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2 + 'px');
++  await page.locator('[name=add]').focus();
++  await page.locator('product-form form').evaluate(e => { e.requestSubmit(); e.requestSubmit(); });
++  await expect(page.locator('#cart-notification')).toHaveClass(/active/); await recovered(page);
++  expect(s.posts).toHaveLength(1); expect(s.items[0].quantity).toBe(1);
++  const dialog = page.locator('#cart-notification');
++  await expect(dialog).toHaveAttribute('aria-modal', 'true'); await expect(dialog).toHaveAttribute('aria-label', /added/i);
++  await expect.poll(() => page.evaluate(() => !!document.activeElement.closest('cart-notification'))).toBe(true);
++  await page.keyboard.press('Escape'); await expect(page.locator('[name=add]')).toBeFocused();
++  await expect(dialog).toHaveCSS('visibility', 'hidden');
++  for (let i = 0; i < 6; i++) { await page.keyboard.press('Tab'); expect(await page.evaluate(() => !!document.activeElement.closest('cart-notification'))).toBe(false); }
++  expect(s.errors).toEqual([]);
++});
++for (const mode of ['missing-section', 'null-section', 'malformed-section', 'wrong-line', 'missing-key', 'invalid-json']) test('J1 rejects ' + mode + ' without partial fragment updates or retrying an uncertain POST', async ({ page }) => {
++  const s = await F.mount(page, { mode });
++  const prior = await page.locator('#cart-icon-bubble').innerHTML();
++  await page.evaluate(() => { window.j1updates = 0; subscribe(PUB_SUB_EVENTS.cartUpdate, () => { window.j1updates++; }); });
++  await submit(page); await recovered(page); await error(page);
++  expect(await page.locator('#cart-icon-bubble').innerHTML()).toBe(prior);
++  expect(await page.evaluate(() => window.j1updates)).toBe(0);
++  await expect(page.locator('#cart-notification')).not.toHaveClass(/active/);
++  expect(s.posts).toHaveLength(1); expect(s.items[0].quantity).toBe(1);
++  // An uncertain response may follow a successful server add. Only read/navigate to reconcile.
++  await page.goto('http://machine.local/cart'); await expect(page.locator('.cart-item')).toHaveCount(1);
++  await expect(page.locator('[name="updates[]"]')).toHaveValue('1'); expect(s.posts).toHaveLength(1);
++});
++test('J1 incomplete response after success closes prior notice and reconciles by native cart navigation', async ({ page }) => {
++  const s = await F.mount(page); await submit(page); await recovered(page); await expect(page.locator('#cart-notification')).toHaveClass(/active/);
++  const oldIcon = await page.locator('#cart-icon-bubble').innerHTML();
++  s.mode = 'missing-section'; await submit(page); await recovered(page); await error(page);
++  await expect(page.locator('#cart-notification')).not.toHaveClass(/active/);
++  expect(await page.locator('#cart-icon-bubble').innerHTML()).toBe(oldIcon); expect(s.posts).toHaveLength(2);
++  await page.goto('http://machine.local/cart'); await expect(page.locator('[name="updates[]"]')).toHaveValue('2'); expect(s.posts).toHaveLength(2);
++});
++test('J1 422 preserves prior cart and two Size line identities; history renders server state', async ({ page }) => {
++  const s = await F.mount(page); expect(await page.locator('variant-selects input').count()).toBe(4);
++  await submit(page); await recovered(page); await expect(page.locator('#cart-notification')).toHaveClass(/active/); await page.keyboard.press('Escape');
++  await page.locator('label[for="machine-1-1"]').click();
++  await expect(page.locator('product-form [name=id]')).toHaveValue(F.fixture.items[1].variantId);
++  await submit(page); await recovered(page); await expect(page.locator('#cart-notification')).toHaveClass(/active/); await page.keyboard.press('Escape');
++  const prior = structuredClone(s.items); s.mode = '422';
++  await submit(page); await recovered(page); await expect(page.getByRole('alert')).toHaveText('Fixture quantity rejected');
++  expect(s.items).toEqual(prior); expect(s.posts).toHaveLength(3);
++  await page.goto('http://machine.local/cart'); await expect(page.locator('.cart-item')).toHaveCount(2);
++  for (const line of prior) await expect(page.locator('[data-quantity-variant-id="' + line.variantId + '"]')).toHaveValue('1');
++  await expect(page.locator('.totals__total-value')).toContainText('$40.00');
++  await page.locator('.cart-item__name').first().click();
++  // Emulated server cart changes between navigations; no second cart implementation runs in the page.
++  s.items[0].quantity = 3;
++  await page.goBack(); await expect(page.locator('[data-quantity-variant-id="' + prior[0].variantId + '"]')).toHaveValue('3');
++  await page.goForward(); await page.goBack(); await expect(page.locator('.cart-item')).toHaveCount(2);
++  await expect(page.locator('.totals__total-value')).toContainText('$70.00'); expect(s.errors).toEqual([]);
++});
++test('J1 native cart quantity, 422 restoration, section refresh, removal and empty recovery', async ({ page }) => {
++  const s = await F.mount(page); await submit(page); await recovered(page);
++  await page.locator('#cart-notification-button').click(); await expect(page).toHaveURL(/\/cart$/);
++  await page.locator('[name=plus]').click(); await expect(page.locator('[name="updates[]"]')).toHaveValue('2');
++  await expect(page.locator('.totals__total-value')).toContainText('$30.00');
++  s.mode = '422'; await page.locator('[name=plus]').click();
++  await expect(page.locator('.cart-item__error-text')).toHaveText('Fixture inventory quantity unavailable');
++  await expect(page.locator('[name="updates[]"]')).toHaveValue('2'); expect(s.items[0].quantity).toBe(2);
++  s.mode = 'success'; await page.locator('[name=minus]').click();
++  await expect(page.locator('[name="updates[]"]')).toHaveValue('1'); await expect(page.locator('.totals__total-value')).toContainText('$15.00');
++  s.items[0].quantity = 3;
++  await page.evaluate(() => publish(PUB_SUB_EVENTS.cartUpdate, { source: 'fixture-server-observation' }));
++  await expect(page.locator('[name="updates[]"]')).toHaveValue('3');
++  await page.locator('cart-remove-button a').click(); await expect(page.locator('.cart__empty-text')).toBeVisible();
++  await expect(page.locator('[name=checkout]')).not.toBeVisible(); expect(s.items).toEqual([]); expect(s.posts).toHaveLength(5); expect(s.errors).toEqual([]);
++  J.write('j1-native-cart-state.json', { emulatedPosts: 5, emulatedFinalCartEmpty: true, nativeSectionRefresh: true, realPosts: 0 });
++});
++for (const width of [360, 390, 1440]) for (const enlarged of [false, true]) test('J1 cart layout ' + width + ' text ' + (enlarged ? 200 : 100), async ({ page }) => {
++  await page.setViewportSize({ width, height: 1000 }); const s = await C.mount(page, { nativeRules: true });
++  if (enlarged) await page.evaluate(() => document.documentElement.style.fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2 + 'px');
++  const geometry = await page.evaluate(() => {
++    const box = e => { const r = e.getBoundingClientRect(); return { left: r.left, right: r.right, width: r.width, height: r.height, scrollWidth: e.scrollWidth, clientWidth: e.clientWidth, text: e.textContent.trim() }; };
++    return { viewport: innerWidth, rootFont: getComputedStyle(document.documentElement).fontSize, scrollWidth: document.documentElement.scrollWidth,
++      cart: box(document.querySelector('cart-items')), rows: [...document.querySelectorAll('.cart-item')].map(box),
++      content: [...document.querySelectorAll('.cart-item__name,.product-option,.cart-item__price-wrapper,quantity-input,cart-remove-button,.totals,[name=checkout]')].filter(e => e.getBoundingClientRect().width).map(e => ({ ...box(e), class: e.className, tag: e.tagName })) };
++  });
++  J.write('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.json', geometry);
++  await page.screenshot({ path: J.outputPath('j1-layout-' + width + '-text' + (enlarged ? 200 : 100) + '.png'), fullPage: true });
++  expect.soft(geometry.scrollWidth, 'cart horizontal overflow').toBeLessThanOrEqual(width + 1);
++  for (const c of geometry.content) { expect.soft(c.left, c.class).toBeGreaterThanOrEqual(-1); expect.soft(c.right, c.class).toBeLessThanOrEqual(width + 1); }
++  for (const input of await page.locator('[name="updates[]"]').all()) { await expect(input).toHaveAttribute('aria-label', /quantity/i); await expect(input).toBeEnabled(); await input.focus(); await expect(input).toBeFocused(); }
++  for (const remove of await page.locator('cart-remove-button a').all()) { await expect(remove).toHaveAttribute('aria-label', /remove.*Saw Blade/i); await remove.focus(); await expect(remove).toBeFocused(); }
++  const checkout = page.locator('[name=checkout]'); await checkout.scrollIntoViewIfNeeded(); await checkout.focus(); await expect(checkout).toBeVisible(); await expect(checkout).toBeEnabled(); await expect(checkout).toBeFocused();
++  expect(await checkout.getAttribute('form')).toBe('cart'); await expect(page.locator('.totals__total-value')).toContainText('$55.00');
++  await page.locator('.cart-item [name=plus]').first().click();
++  await expect(page.locator('.cart-item__error-text').first()).toHaveText('Fixture inventory quantity unavailable');
++  await expect(page.locator('[name="updates[]"]').first()).toHaveValue('2');
++  const axe = await new AxeBuilder({ page }).analyze(); J.write('j1-axe-' + width + '-text' + (enlarged ? 200 : 100) + '.json', axe.violations);
++  expect(axe.violations.filter(v => ['serious', 'critical'].includes(v.impact))).toEqual([]); expect(s.errors).toEqual([]);
++});
+diff --git a/data/epic-j-j1-source-successor.json b/data/epic-j-j1-source-successor.json
+new file mode 100644
+--- /dev/null
++++ b/data/epic-j-j1-source-successor.json
+@@ -0,0 +1,98 @@
++{
++  "schemaVersion": 1,
++  "id": "J1-2026-10-20-NATIVE-CART",
++  "authorization": "Product Owner J1 assignment: J-PBI-001 and J-PBI-002 repository implementation only; no theme deployment or catalog authority.",
++  "evidenceDirectory": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z",
++  "baseline": {
++    "path": "data/epic-j-j0-contract.json",
++    "sha256": "469e8a0582d31ba9fbb8c407281132c6ac9bf84aaa256b3c802b2ff49068b82a"
++  },
++  "before": {
++    "path": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/repository-before.json",
++    "sha256": "20c4fc5558d1e5bf8d94dc2075e07c8bdec15ca822715380805ec590ae7508b0"
++  },
++  "runtime": [
++    {
++      "path": "assets/product-form.js",
++      "oldSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
++      "sha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
++      "oldNormalizedSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
++      "normalizedSha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
++      "rollback": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before/assets/product-form.js",
++      "reason": "J-PBI-001: native translated/announced transport and malformed-section recovery; no automatic retry, exact one in-flight submit."
++    },
++    {
++      "path": "assets/component-cart-items.css",
++      "oldSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
++      "sha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
++      "oldNormalizedSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
++      "normalizedSha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
++      "rollback": "docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/before/assets/component-cart-items.css",
++      "reason": "J-PBI-002: cart-only mobile grid and natural subtotal wrapping; no text reduction, header or drawer change."
++    }
++  ],
++  "reviewedRepositoryChanges": [
++    {
++      "path": "assets/product-form.js",
++      "oldSha256": "aac169636e4bea2fe681b2263bc83126c816976cb434a8409a0b3c3dc1b4dd7f",
++      "sha256": "da08afa153574f787a24ba5575c8e62cc5c40f344c3e84dadb66edee722b5ce7",
++      "reason": "Explicit J1 runtime/test allowance."
++    },
++    {
++      "path": "assets/component-cart-items.css",
++      "oldSha256": "0cffb73c727e544750d944e8c3bbedda1ff4539c88c25aee106b602747f0cc9a",
++      "sha256": "a2765fd6ba70f84801291b2b8615b6e099568b690a22b758baacde021b1a3e9c",
++      "reason": "Explicit J1 runtime/test allowance."
++    },
++    {
++      "path": "tests/epic-j-cart.spec.js",
++      "oldSha256": "611a9741caffc772201acd2d4c1c2f75a73bc55d6aa6e0ebd828d85854819830",
++      "sha256": "c001aed183bf6b2f0054a5c264967f2cc4a6120d55e0f865d82c723bbdf7a5fb",
++      "reason": "Explicit J1 runtime/test allowance."
++    },
++    {
++      "path": "scripts/lib/epic-j-cart-fixtures.js",
++      "oldSha256": "d17c56bb0c9f8dce1022e49bff4e91383c8ffd3aad5555ccef3532336296dec6",
++      "sha256": "6be387d395822319a431e833de86122e376c219075abe878f9d9029423deede4",
++      "reason": "Explicit J1 runtime/test allowance."
++    },
++    {
++      "path": "scripts/validate-epic-f-machine.js",
++      "oldSha256": "405d686dda31b5b993fc871a735a3d892a2c7d7eb0d9fcb51b38764ccf966998",
++      "sha256": "b082f23d71e73b76a30a924396eb1902c78ac31ff70c8d2edd15ca39ec964098",
++      "reason": "Opt-in exact J1 successor only for native Product JS; retain every historical hash and arbitrary-change rejection."
++    },
++    {
++      "path": "docs/rhino-lapidary-pbi-tracker-epic-j.md",
++      "oldSha256": "8ce75cd92c7651a70e2e872e3c9659cbf2fe36889b516b5cc781e7a5931c5792",
++      "sha256": "741b94440bcb39b5b12e155afb194ded5e596be05442e28a753536868674a145",
++      "reason": "Current J1 status appended separately from historical J0 planning."
++    }
++  ],
++  "addedSources": [
++    {
++      "path": "scripts/lib/epic-j-j1-fixtures.js",
++      "sha256": "be1634c0f2d57adc89816c17fc334c1f6d6421327a0f1f10baf6f2c144ecdaf4"
++    },
++    {
++      "path": "scripts/lib/epic-j-j1-protection.js",
++      "sha256": "45ba17c994bd7e79f72a8de20182562fb2cd6468198f226821d1d842f5e64d13"
++    },
++    {
++      "path": "scripts/test-epic-j-j1-readiness.js",
++      "sha256": "f3e5c91aba9cab12a371608748668834262145d2e535bc14d8fc54d8f67c3d3a"
++    },
++    {
++      "path": "scripts/run-epic-j-j1.js",
++      "sha256": "086ccecc3f671ab13d006c918b6c7386586af873ee07ef6e07ddf94b7c73d536"
++    },
++    {
++      "path": "tests/epic-j-j1.spec.js",
++      "sha256": "ccdb3f5434b2c9a54a6af944fdeff9bd0dbecd05d71f77fbf88bf8346c320e81"
++    }
++  ],
++  "receiptExpiresAtUnchanged": "2026-10-22T20:26:37.102Z",
++  "themeDeploymentAuthorized": false,
++  "publicationAuthorized": false,
++  "relationshipAuthorityChanged": false
++}

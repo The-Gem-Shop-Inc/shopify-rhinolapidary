@@ -1,0 +1,22 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:epic-j-cart
+> playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1 --grep J1 cart layout --output docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/mobile-reflow-01/artifacts --reporter=line,json
+
+◇ injected env (12) from .env // tip: ⌘ suppress logs { quiet: true }
+
+Running 6 tests using 1 worker
+
+
+(node:2388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+
+[1/6] [desktop-chromium] › tests\epic-j-j1.spec.js:72:77 › J1 cart layout 360 text 100
+[2/6] [desktop-chromium] › tests\epic-j-j1.spec.js:72:77 › J1 cart layout 360 text 200
+[3/6] [desktop-chromium] › tests\epic-j-j1.spec.js:72:77 › J1 cart layout 390 text 100
+[4/6] [desktop-chromium] › tests\epic-j-j1.spec.js:72:77 › J1 cart layout 390 text 200
+[5/6] [desktop-chromium] › tests\epic-j-j1.spec.js:72:77 › J1 cart layout 1440 text 100
+[6/6] [desktop-chromium] › tests\epic-j-j1.spec.js:72:77 › J1 cart layout 1440 text 200
+  6 passed (7.5s)

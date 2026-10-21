@@ -1,0 +1,65 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:machine-shell
+> playwright test --config=playwright.machine.config.js --list
+
+Listing tests:
+  machine-purchase.spec.js:4:1 › valid quantity submits exactly the selected Variant once through native product-form
+  machine-purchase.spec.js:20:1 › native quantity controls and invalid-quantity response retain error semantics
+  machine-purchase.spec.js:36:1 › native Variant changes use section response state, including unavailable and recovery
+  machine-purchase.spec.js:52:65 › draft route stays unavailable
+  machine-purchase.spec.js:52:65 › unpublished route stays unavailable
+  machine-purchase.spec.js:59:1 › no-JavaScript retains basic native form action, Variant ID and quantity
+  machine-shell.spec.js:15:3 › 320px tracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 320px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 320px zero-deny: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 320px untracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 320px invalid-variant: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 320px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 360px tracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 360px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 360px zero-deny: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 360px untracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 360px invalid-variant: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 360px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 390px tracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 390px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 390px zero-deny: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 390px untracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 390px invalid-variant: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 390px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 768px tracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 768px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 768px zero-deny: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 768px untracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 768px invalid-variant: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 768px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1024px tracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1024px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1024px zero-deny: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1024px untracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1024px invalid-variant: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1024px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1440px tracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1440px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1440px zero-deny: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1440px untracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1440px invalid-variant: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1440px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1920px tracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1920px tracked-unavailable: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1920px zero-deny: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1920px untracked-available: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1920px invalid-variant: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:15:3 › 1920px quantity-rule-soldout: hierarchy, focus, no media, reflow and axe
+  machine-shell.spec.js:58:38 › 320px long content and 200% text enlargement
+  machine-shell.spec.js:58:38 › 360px long content and 200% text enlargement
+  machine-shell.spec.js:58:38 › 390px long content and 200% text enlargement
+  machine-shell.spec.js:58:38 › 768px long content and 200% text enlargement
+  machine-shell.spec.js:58:38 › 1024px long content and 200% text enlargement
+  machine-shell.spec.js:58:38 › 1440px long content and 200% text enlargement
+  machine-shell.spec.js:58:38 › 1920px long content and 200% text enlargement
+  machine-shell.spec.js:71:1 › Contact uses the approved route without context or intake enhancement
+  machine-shell.spec.js:80:1 › default Product template remains a native non-machine purchase page
+  machine-zoom.spec.js:7:1 › Chromium actual browser zoom to 200% reflows the machine shell
+Total: 58 tests in 3 files

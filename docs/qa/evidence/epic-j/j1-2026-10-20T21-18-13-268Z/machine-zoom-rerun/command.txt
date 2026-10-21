@@ -1,0 +1,14 @@
+npm warn Unknown env config "min-release-age". This will stop working in the next major version of npm.
+
+> shopify-rhinolapidary@1.0.0 test:machine-shell
+> playwright test --config=playwright.machine.config.js --grep Chromium actual browser zoom --output docs/qa/evidence/epic-j/j1-2026-10-20T21-18-13-268Z/machine-zoom-rerun/artifacts --reporter=line,json
+
+
+Running 1 test using 1 worker
+
+
+(node:6048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] tests\machine-zoom.spec.js:7:1 › Chromium actual browser zoom to 200% reflows the machine shell
+  1 passed (3.8s)
