@@ -7,7 +7,11 @@
       "owner": "Storefront engineering",
       "requiredForLaunch": true,
       "source": "theme",
-      "validatedBy": ["test:smoke", "test:ally", "test:navigation"]
+      "validatedBy": [
+        "test:smoke",
+        "test:ally",
+        "test:navigation"
+      ]
     },
     {
       "fixtureId": "collection",
@@ -15,7 +19,10 @@
       "owner": "Storefront engineering",
       "requiredForLaunch": true,
       "source": "shopify-admin",
-      "validatedBy": ["test:smoke", "test:navigation"]
+      "validatedBy": [
+        "test:smoke",
+        "test:navigation"
+      ]
     },
     {
       "fixtureId": "simpleProduct",
@@ -23,7 +30,11 @@
       "owner": "Storefront engineering",
       "requiredForLaunch": true,
       "source": "shopify-admin",
-      "validatedBy": ["test:smoke", "test:cart", "test:ally"]
+      "validatedBy": [
+        "test:smoke",
+        "test:cart",
+        "test:ally"
+      ]
     },
     {
       "fixtureId": "cart",
@@ -31,7 +42,20 @@
       "owner": "Storefront engineering",
       "requiredForLaunch": true,
       "source": "theme",
-      "validatedBy": ["test:smoke", "test:cart"]
+      "validatedBy": [
+        "test:smoke",
+        "test:cart"
+      ]
+    },
+    {
+      "fixtureId": "machineProduct",
+      "path": "/products/trimmaster",
+      "owner": "Storefront engineering / Epic F",
+      "requiredForLaunch": true,
+      "source": "shopify-admin",
+      "validatedBy": [
+        "validate:epic-f-batch-f1"
+      ]
     }
   ]
 }

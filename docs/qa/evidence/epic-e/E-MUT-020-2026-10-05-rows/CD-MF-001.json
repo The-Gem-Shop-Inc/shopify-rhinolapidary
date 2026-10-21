@@ -1,0 +1,85 @@
+{
+  "rowId": "CD-MF-001",
+  "intendedIdentity": "PRODUCT:rhino.product_class",
+  "startedAt": "2026-10-05T19:02:10.846Z",
+  "beforeState": "ABSENT",
+  "before": [],
+  "input": {
+    "ownerType": "PRODUCT",
+    "namespace": "rhino",
+    "key": "product_class",
+    "name": "Product class",
+    "description": "Canonical Rhino catalog role used to distinguish machines, replacement parts, consumables, and accessories without relying on Product Type, tags, or collections.",
+    "type": "single_line_text_field",
+    "access": {
+      "storefront": "PUBLIC_READ"
+    },
+    "validations": [
+      {
+        "name": "choices",
+        "value": "[\"machine\",\"replacement_part\",\"consumable\",\"accessory\"]"
+      }
+    ]
+  },
+  "operation": "metafieldDefinitionCreate",
+  "result": "created",
+  "returnedGid": "gid://shopify/MetafieldDefinition/298658201797",
+  "nextRowId": "CD-MF-002",
+  "response": {
+    "data": {
+      "metafieldDefinitionCreate": {
+        "createdDefinition": {
+          "id": "gid://shopify/MetafieldDefinition/298658201797",
+          "ownerType": "PRODUCT",
+          "namespace": "rhino",
+          "key": "product_class",
+          "name": "Product class",
+          "description": "Canonical Rhino catalog role used to distinguish machines, replacement parts, consumables, and accessories without relying on Product Type, tags, or collections.",
+          "type": {
+            "name": "single_line_text_field",
+            "category": "TEXT"
+          },
+          "validations": [
+            {
+              "name": "choices",
+              "value": "[\"machine\",\"replacement_part\",\"consumable\",\"accessory\"]"
+            }
+          ],
+          "access": {
+            "admin": "PUBLIC_READ_WRITE",
+            "storefront": "PUBLIC_READ",
+            "customerAccount": "NONE"
+          },
+          "metafieldsCount": 0
+        },
+        "userErrors": []
+      }
+    }
+  },
+  "afterState": {
+    "id": "gid://shopify/MetafieldDefinition/298658201797",
+    "ownerType": "PRODUCT",
+    "namespace": "rhino",
+    "key": "product_class",
+    "name": "Product class",
+    "description": "Canonical Rhino catalog role used to distinguish machines, replacement parts, consumables, and accessories without relying on Product Type, tags, or collections.",
+    "type": {
+      "name": "single_line_text_field",
+      "category": "TEXT"
+    },
+    "validations": [
+      {
+        "name": "choices",
+        "value": "[\"machine\",\"replacement_part\",\"consumable\",\"accessory\"]"
+      }
+    ],
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ",
+      "customerAccount": "NONE"
+    },
+    "metafieldsCount": 0
+  },
+  "differences": [],
+  "completedAt": "2026-10-05T19:02:11.616Z"
+}

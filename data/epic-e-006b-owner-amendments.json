@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "authority": "EXPLICIT_DATED_OWNER_RESPONSES_ACCEPTED_IN_AUTHORIZED_USER_TASK",
+  "approvalMode": "delegated_development_override",
+  "reviewers": ["Kevin", "Avery"],
+  "reviewDate": "2026-10-14",
+  "sealedWorksheet": "data/epic-e-006b-completed-worksheet-responses.json",
+  "decisions": {
+    "jadeAssembledLWHInches": [40.5, 21, 23.5],
+    "jadeOil": {"value": 8, "unit": "us_gallons", "meaning": "cutting-oil reservoir / operating fill", "waterFieldPermitted": false},
+    "correctedPackingBlock": "Handwritten values replace corresponding printed values; untouched printed current packing values remain approved/current",
+    "packingRevision": {"formalIdsMaintained": false, "revisionId": null, "authority": "Kevin + Avery dated review 2026-10-14", "missingIdIsBlocker": false},
+    "existingTumbleMaster": {"productGid": "gid://shopify/Product/8905785868485", "physicalCapacityGallons": 14, "future40GallonProduct": "SEPARATE_NON_EXECUTABLE_PREPARATION_ONLY"},
+    "gallonPolicy": "New owner-approved Shopify worksheet values use US gallons; historical/external semantics remain mixed/unknown and are not automatically converted"
+  },
+  "untouchedCurrentPackingWeightsLb": {"lap12": 122, "saw18": 426, "saw24": 454, "shape": 135, "trim": 71, "jade": 154, "saw36": 662},
+  "scopeNotes": [
+    "Current packing workbook quantities are retained; older catalog alternatives are not promoted into simultaneous current weights.",
+    "NET, assembled, packed/crated and native shipping states remain distinct.",
+    "A fixed exact operating oil fill is represented by equal governed min/max bounds; no new scalar definition or unit conversion."
+  ]
+}

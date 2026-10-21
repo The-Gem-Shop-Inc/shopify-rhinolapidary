@@ -4,6 +4,11 @@ const { spawnSync } = require('child_process');
 
 const checks = [
     {
+        name: 'Epic F consumer provenance and claims containment',
+        command: 'npm',
+        args: ['run', 'validate:epic-f-batch-f1'],
+    },
+    {
         name: 'Repository hygiene',
         command: 'python',
         args: ['scripts/validate-theme-repository.py'],

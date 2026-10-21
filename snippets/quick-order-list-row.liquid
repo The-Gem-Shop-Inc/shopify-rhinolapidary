@@ -1,3 +1,6 @@
+{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: variant.product -%}{%- endcapture -%}
+{%- assign rhino_legacy_content = false -%}
+{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}{%- assign rhino_legacy_content = true -%}{%- endif -%}
 {% comment %}
   Variant List Row
 
@@ -22,7 +25,7 @@
     {%- if show_image -%}
       <div class="variant-item__media">
         <div class="variant-item__image-container global-media-settings{% unless is_modal %} gradient{% endunless %}{% unless image %} variant-item__image-container--no-img{% endunless %}">
-          {% if image %}
+          {% if image and rhino_legacy_content %}
             {%- assign img_height = 43 | divided_by: image.aspect_ratio | ceil -%}
             {{
               image

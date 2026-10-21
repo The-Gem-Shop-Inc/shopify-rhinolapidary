@@ -1056,18 +1056,21 @@ async function installPerformanceObservers(
             lcpMs: 0,
             cls: 0,
             tbtMs: 0,
+            observations: { lcpMs: 'missing', cls: 'missing', tbtMs: 'missing' },
         };
 
         const observe = (
             type,
             callback
         ) => {
+            const metric = { 'largest-contentful-paint': 'lcpMs', 'layout-shift': 'cls', longtask: 'tbtMs' }[type];
             try {
                 if (
                     !PerformanceObserver
                         .supportedEntryTypes
                         ?.includes(type)
                 ) {
+                    window.__rhinoPerformance.observations[metric] = 'unsupported';
                     return;
                 }
 
@@ -1083,8 +1086,9 @@ async function installPerformanceObservers(
                     type,
                     buffered: true,
                 });
+                if (metric !== 'lcpMs') window.__rhinoPerformance.observations[metric] = 'measured';
             } catch {
-                // Zero is reported if unsupported.
+                window.__rhinoPerformance.observations[metric] = 'unsupported';
             }
         };
 
@@ -1094,6 +1098,7 @@ async function installPerformanceObservers(
                 const last = entries.at(-1);
 
                 if (last) {
+                    window.__rhinoPerformance.observations.lcpMs = 'measured';
                     window.__rhinoPerformance
                         .lcpMs = last.startTime;
                 }
@@ -1157,6 +1162,7 @@ async function createNetworkRecorder(
                     mimeType: '',
                     status: 0,
                     bytes: 0,
+                    completed: false,
                     failed: false,
                 }
             );
@@ -1201,6 +1207,7 @@ async function createNetworkRecorder(
             );
 
             if (record) {
+                record.completed = true;
                 record.bytes =
                     event.encodedDataLength || 0;
             }
@@ -2538,6 +2545,10 @@ if (require.main === module) {
 }
 
 module.exports = {
+    installPerformanceObservers,
+    createNetworkRecorder,
+    median,
+    isAllowedHost,
     assertMeasurableStorefrontPage,
     buildStorefrontUrl,
     collectRouteIdentity,

@@ -115,3 +115,11 @@ Launch is blocked if:
 * Legacy analytics scripts are still active unintentionally.
 * Customer consent behavior is unknown.
 * Analytics/pixel configuration is not listed in the register.
+
+## F7 machine decision contract handoff
+
+The existing [storefront event registry](../../data/storefront-event-contracts.json) references the [F machine measurement contract](../../data/epic-f-machine-measurement-contract.json). This is a repository contract extension, not an enabled collector. Each Product-view, add-to-cart, begin-checkout and purchase action has exactly one reserved U/native owner slot. Actual owner assignments in the inventory above are still unresolved; F cannot assign itself, emit aliases or wrap native buy buttons. Slot uniqueness is not evidence of a configured pixel or verified native emission.
+
+Four optional destination activations answer Product Owner questions: neutral Contact use, approved Product-resource use, navigation to exact contextual Products, and delivery-policy information seeking. Analytics Owner owns reporting and the first 28 days of baseline collection after separately approved activation, followed by monthly review with Product Owner. No historical values or numerical targets are asserted. Contact activation is not a form submission, lead or attributable purchase.
+
+U / Analytics Owner and Privacy Owner must resolve exact event ownership, collector/tool, consent requirements, source-event deduplication identity, storage and collection coverage before any instrumentation. Shopify-native consent is not approval for a new tool; app pixels and theme code are not presumed equivalent. F7 adds no emission, collection, storage, dashboard, Customer Event, consent configuration or runtime listener. All custom release instrumentation remains blocked, including otherwise valid fixtures. Later U collector work must verify the single-emission strategy for a real interaction before approval; F7 validates ownership/payload contracts only.

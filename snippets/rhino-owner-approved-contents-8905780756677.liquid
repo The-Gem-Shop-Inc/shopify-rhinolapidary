@@ -1,0 +1,114 @@
+{% doc %}
+Exact reconciled EM-1 contents; package children remain within one line.
+@param {product} product - Exact current machine Product.
+@param {section} section - Containing machine section.
+{% enddoc %}
+{%- comment -%}Exact E-reconciled contents. Package children are evidence, not duplicate membership lines.{%- endcomment -%}
+{%- assign rhino_bom_now = 'now' | date: '%s' | plus: 0 -%}
+{%- if template.suffix == 'machine' and product.id == 8905780756677 and product.published_at != blank and product.metafields.rhino.product_class.value == 'machine' and rhino_bom_now >= 1792095997 and rhino_bom_now < 1792700797 -%}
+{%- assign rhino_bom_members = product.metafields.rhino.included_products.value -%}
+{%- assign rhino_bom_quantities = product.metafields.rhino.included_quantities.value -%}
+{%- assign rhino_bom_noncatalog = product.metafields.rhino.noncatalog_components.value -%}
+{%- assign rhino_bom_ids = rhino_bom_members | map: 'id' | sort | join: ',' -%}
+{%- assign rhino_bom_valid = true -%}
+{%- assign rhino_bom_part_0 = all_products['bonded-diamond-wheel-80'] -%}
+{%- assign rhino_bom_part_1 = all_products['bonded-diamond-wheel-220'] -%}
+{%- assign rhino_bom_part_2 = all_products['resin-diamond-wheel-280'] -%}
+{%- assign rhino_bom_part_3 = all_products['resin-diamond-wheel-600'] -%}
+{%- assign rhino_bom_part_4 = all_products['resin-diamond-wheel-1200'] -%}
+{%- assign rhino_bom_part_5 = all_products['resin-diamond-wheel-3000'] -%}
+{%- assign rhino_bom_part_6 = all_products['left-moss-pad'] -%}
+{%- assign rhino_bom_part_7 = all_products['right-moss-pad'] -%}
+{%- unless product.metafields.rhino.included_products.type == 'list.product_reference' and product.metafields.rhino.included_quantities.type == 'json' and product.metafields.rhino.noncatalog_components.type == 'json' and rhino_bom_ids == '8905778331845,8905778430149,8905778921669,8905778987205,8905779052741,8905779118277,8905782034629,8905783574725' and rhino_bom_quantities.size == 8 and rhino_bom_noncatalog.size == 19 and rhino_bom_quantities['gid://shopify/Product/8905778430149'] == 1 and rhino_bom_part_0.id == 8905778430149 and rhino_bom_part_0.metafields.rhino.product_class.value == 'consumable' and rhino_bom_quantities['gid://shopify/Product/8905778331845'] == 1 and rhino_bom_part_1.id == 8905778331845 and rhino_bom_part_1.metafields.rhino.product_class.value == 'consumable' and rhino_bom_quantities['gid://shopify/Product/8905778987205'] == 1 and rhino_bom_part_2.id == 8905778987205 and rhino_bom_part_2.metafields.rhino.product_class.value == 'consumable' and rhino_bom_quantities['gid://shopify/Product/8905779118277'] == 1 and rhino_bom_part_3.id == 8905779118277 and rhino_bom_part_3.metafields.rhino.product_class.value == 'consumable' and rhino_bom_quantities['gid://shopify/Product/8905778921669'] == 1 and rhino_bom_part_4.id == 8905778921669 and rhino_bom_part_4.metafields.rhino.product_class.value == 'consumable' and rhino_bom_quantities['gid://shopify/Product/8905779052741'] == 1 and rhino_bom_part_5.id == 8905779052741 and rhino_bom_part_5.metafields.rhino.product_class.value == 'consumable' and rhino_bom_quantities['gid://shopify/Product/8905782034629'] == 1 and rhino_bom_part_6.id == 8905782034629 and rhino_bom_part_6.metafields.rhino.product_class.value == 'consumable' and rhino_bom_quantities['gid://shopify/Product/8905783574725'] == 1 and rhino_bom_part_7.id == 8905783574725 and rhino_bom_part_7.metafields.rhino.product_class.value == 'consumable' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- for rhino_bom_line in rhino_bom_noncatalog -%}
+{%- case forloop.index0 -%}
+{%- when 0 -%}
+{%- unless rhino_bom_line.label == 'Flexible-shaft packaged set (flexible shaft, 18-piece accessory set and 3 attachment heads)' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 1 -%}
+{%- unless rhino_bom_line.label == 'Silversmithing spindles' and rhino_bom_line.quantity == 2 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 2 -%}
+{%- unless rhino_bom_line.label == 'Sanding/polishing wheels' and rhino_bom_line.quantity == 3 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 3 -%}
+{%- unless rhino_bom_line.label == 'DIALUX Superfinishing Paste' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 4 -%}
+{%- unless rhino_bom_line.label == 'DIALUX Polishing Paste' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 5 -%}
+{%- unless rhino_bom_line.label == 'Flat lap' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 6 -%}
+{%- unless rhino_bom_line.label == 'Magnetic felt pad' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 7 -%}
+{%- unless rhino_bom_line.label == 'Magnetic 80-grit disc' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 8 -%}
+{%- unless rhino_bom_line.label == 'Magnifying glass attachment' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 9 -%}
+{%- unless rhino_bom_line.label == 'Jointed light attachment' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 10 -%}
+{%- unless rhino_bom_line.label == 'Wrist rests' and rhino_bom_line.quantity == 2 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 11 -%}
+{%- unless rhino_bom_line.label == 'Water pump' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 12 -%}
+{%- unless rhino_bom_line.label == 'Tank filtration system' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 13 -%}
+{%- unless rhino_bom_line.label == 'Right-side shield (loose included item)' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 14 -%}
+{%- unless rhino_bom_line.label == 'Moss Filtration Pads' and rhino_bom_line.quantity == 2 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 15 -%}
+{%- unless rhino_bom_line.label == 'Brass spray nozzles' and rhino_bom_line.quantity == 2 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 16 -%}
+{%- unless rhino_bom_line.label == 'Spoke wrench' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 17 -%}
+{%- unless rhino_bom_line.label == 'Hex key' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- when 18 -%}
+{%- unless rhino_bom_line.label == 'Crescent wrench' and rhino_bom_line.quantity == 1 and rhino_bom_line.meaning == 'included' -%}{%- assign rhino_bom_valid = false -%}{%- endunless -%}
+{%- else -%}{%- assign rhino_bom_valid = false -%}
+{%- endcase -%}
+{%- endfor -%}
+{%- if rhino_bom_valid -%}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+<section class="rhino-machine-facts rhino-machine-contents" aria-labelledby="OwnerContents-{{ section.id }}"><h2 id="OwnerContents-{{ section.id }}">{{ 'products.product.machine_facts.included' | t }}</h2><ul class="rhino-machine-contents-list" role="list">
+<li class="rhino-machine-component" data-rhino-owner-content="6 in Bonded Diamond Wheel, 80 grit" data-rhino-owner-catalog="8905778430149">
+{% assign rhino_bom_card_id = section.id | append: '-contents-0' %}{% render 'card-product', card_product: rhino_bom_part_0, section_id: rhino_bom_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+<span class="rhino-machine-component-quantity">× 1</span></li>
+<li class="rhino-machine-component" data-rhino-owner-content="6 in Bonded Diamond Wheel, 220 grit" data-rhino-owner-catalog="8905778331845">
+{% assign rhino_bom_card_id = section.id | append: '-contents-1' %}{% render 'card-product', card_product: rhino_bom_part_1, section_id: rhino_bom_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+<span class="rhino-machine-component-quantity">× 1</span></li>
+<li class="rhino-machine-component" data-rhino-owner-content="6 in Resin Bond Diamond Wheel, 280 grit" data-rhino-owner-catalog="8905778987205">
+{% assign rhino_bom_card_id = section.id | append: '-contents-2' %}{% render 'card-product', card_product: rhino_bom_part_2, section_id: rhino_bom_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+<span class="rhino-machine-component-quantity">× 1</span></li>
+<li class="rhino-machine-component" data-rhino-owner-content="6 in Resin Bond Diamond Wheel, 600 grit" data-rhino-owner-catalog="8905779118277">
+{% assign rhino_bom_card_id = section.id | append: '-contents-3' %}{% render 'card-product', card_product: rhino_bom_part_3, section_id: rhino_bom_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+<span class="rhino-machine-component-quantity">× 1</span></li>
+<li class="rhino-machine-component" data-rhino-owner-content="6 in Resin Bond Diamond Wheel, 1200 grit" data-rhino-owner-catalog="8905778921669">
+{% assign rhino_bom_card_id = section.id | append: '-contents-4' %}{% render 'card-product', card_product: rhino_bom_part_4, section_id: rhino_bom_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+<span class="rhino-machine-component-quantity">× 1</span></li>
+<li class="rhino-machine-component" data-rhino-owner-content="6 in Resin Bond Diamond Wheel, 3000 grit" data-rhino-owner-catalog="8905779052741">
+{% assign rhino_bom_card_id = section.id | append: '-contents-5' %}{% render 'card-product', card_product: rhino_bom_part_5, section_id: rhino_bom_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+<span class="rhino-machine-component-quantity">× 1</span></li>
+<li class="rhino-machine-component" data-rhino-owner-content="Left Moss Pad" data-rhino-owner-catalog="8905782034629">
+{% assign rhino_bom_card_id = section.id | append: '-contents-6' %}{% render 'card-product', card_product: rhino_bom_part_6, section_id: rhino_bom_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+<span class="rhino-machine-component-quantity">× 1</span></li>
+<li class="rhino-machine-component" data-rhino-owner-content="Right Moss Pad" data-rhino-owner-catalog="8905783574725">
+{% assign rhino_bom_card_id = section.id | append: '-contents-7' %}{% render 'card-product', card_product: rhino_bom_part_7, section_id: rhino_bom_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+<span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Flexible-shaft packaged set (flexible shaft, 18-piece accessory set and 3 attachment heads)">Flexible-shaft packaged set (flexible shaft, 18-piece accessory set and 3 attachment heads) <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Silversmithing spindles">Silversmithing spindles <span class="rhino-machine-component-quantity">× 2</span></li>
+<li data-rhino-owner-content="Sanding/polishing wheels">Sanding/polishing wheels <span class="rhino-machine-component-quantity">× 3</span></li>
+<li data-rhino-owner-content="DIALUX Superfinishing Paste">DIALUX Superfinishing Paste <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="DIALUX Polishing Paste">DIALUX Polishing Paste <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Flat lap">Flat lap <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Magnetic felt pad">Magnetic felt pad <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Magnetic 80-grit disc">Magnetic 80-grit disc <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Magnifying glass attachment">Magnifying glass attachment <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Jointed light attachment">Jointed light attachment <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Wrist rests">Wrist rests <span class="rhino-machine-component-quantity">× 2</span></li>
+<li data-rhino-owner-content="Water pump">Water pump <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Tank filtration system">Tank filtration system <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Right-side shield (loose included item)">Right-side shield (loose included item) <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Moss Filtration Pads">Moss Filtration Pads <span class="rhino-machine-component-quantity">× 2</span></li>
+<li data-rhino-owner-content="Brass spray nozzles">Brass spray nozzles <span class="rhino-machine-component-quantity">× 2</span></li>
+<li data-rhino-owner-content="Spoke wrench">Spoke wrench <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Hex key">Hex key <span class="rhino-machine-component-quantity">× 1</span></li>
+<li data-rhino-owner-content="Crescent wrench">Crescent wrench <span class="rhino-machine-component-quantity">× 1</span></li>
+</ul></section>
+{%- endif -%}
+{%- endif -%}

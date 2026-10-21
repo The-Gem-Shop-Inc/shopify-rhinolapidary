@@ -329,7 +329,13 @@ function removeRootBlocks(source) {
 }
 
 function findLiteralColorsOutsideRoot(source) {
-    const withoutRoot = removeRootBlocks(source);
+    // Trade's scheme foreground is a governed RGB tuple, not a literal color.
+    // Match the complete balanced expression; unknown variables/fallbacks and
+    // literal RGB/HSL/hex values remain subject to the original rejection.
+    const withoutRoot = removeRootBlocks(source).replace(
+        /rgba\(\s*var\(\s*--color-foreground\s*\)\s*,\s*(0?\.\d+|0|1)\s*\)/gi,
+        (expression, alpha) => Number(alpha) <= 1 ? '' : expression,
+    );
 
     const matches = withoutRoot.match(
         /#[0-9a-f]{3,8}\b|rgba?\([^)]*\)|hsla?\([^)]*\)/gi,
@@ -483,8 +489,7 @@ function main() {
     );
 }
 
-try {
-    main();
-} catch (error) {
-    fail(error.stack || error.message);
+if (require.main === module) {
+    try { main(); } catch (error) { fail(error.stack || error.message); }
 }
+module.exports = { findLiteralColorsOutsideRoot, main };

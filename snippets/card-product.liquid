@@ -28,13 +28,20 @@
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
+{%- assign rhino_card_heading = 'h3' -%}
+{%- if rhino_contents_context -%}{%- assign rhino_card_heading = 'h4' -%}{%- endif -%}
 {%- if card_product and card_product != empty -%}
+{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: card_product -%}{%- endcapture -%}
+{%- assign rhino_legacy_content = false -%}
+{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}{%- assign rhino_legacy_content = true -%}{%- endif -%}
+{%- assign rhino_card_media = nil -%}
+{%- if rhino_legacy_content and rhino_owner_customer_context != true -%}{%- assign rhino_card_media = card_product.featured_media -%}{%- endif -%}
   {%- liquid
     assign ratio = 1
-    if card_product.featured_media and media_aspect_ratio == 'portrait'
+    if rhino_card_media and media_aspect_ratio == 'portrait'
       assign ratio = 0.8
-    elsif card_product.featured_media and media_aspect_ratio == 'adapt'
-      assign ratio = card_product.featured_media.aspect_ratio
+    elsif rhino_card_media and media_aspect_ratio == 'adapt'
+      assign ratio = rhino_card_media.aspect_ratio
     endif
     if ratio == 0 or ratio == null
       assign ratio = 1
@@ -46,42 +53,42 @@
       <div
         class="
           card card--{{ settings.card_style }}
-          {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
+          {% if rhino_card_media %} card--media{% else %} card--text{% endif %}
           {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
           {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
           {% if extend_height %} card--extend-height{% endif %}
-          {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
+          {% if rhino_card_media == nil and settings.card_style == 'card' %} ratio{% endif %}
           {% if horizontal_class %} card--horizontal{% endif %}
         "
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         <div
-          class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
+          class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if rhino_card_media or settings.card_style == 'standard' %} ratio{% endif %}"
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
         >
-          {%- if card_product.featured_media -%}
+          {%- if rhino_card_media -%}
             <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
               <div class="media media--transparent media--hover-effect">
                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                 <img
                   srcset="
-                    {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                    {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+                    {%- if rhino_card_media.width >= 165 -%}{{ rhino_card_media | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if rhino_card_media.width >= 360 -%}{{ rhino_card_media | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if rhino_card_media.width >= 533 -%}{{ rhino_card_media | image_url: width: 533 }} 533w,{%- endif -%}
+                    {%- if rhino_card_media.width >= 720 -%}{{ rhino_card_media | image_url: width: 720 }} 720w,{%- endif -%}
+                    {%- if rhino_card_media.width >= 940 -%}{{ rhino_card_media | image_url: width: 940 }} 940w,{%- endif -%}
+                    {%- if rhino_card_media.width >= 1066 -%}{{ rhino_card_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                    {{ rhino_card_media | image_url }} {{ rhino_card_media.width }}w
                   "
-                  src="{{ card_product.featured_media | image_url: width: 533 }}"
+                  src="{{ rhino_card_media | image_url: width: 533 }}"
                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                  alt="{{ card_product.featured_media.alt | escape }}"
+                  alt="{{ rhino_card_media.alt | escape }}"
                   class="motion-reduce"
                   {% unless lazy_load == false %}
                     loading="lazy"
                   {% endunless %}
-                  width="{{ card_product.featured_media.width }}"
-                  height="{{ card_product.featured_media.height }}"
+                  width="{{ rhino_card_media.width }}"
+                  height="{{ rhino_card_media.height }}"
                 >
                 {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
@@ -110,9 +117,9 @@
           {%- endif -%}
           <div class="card__content">
             <div class="card__information">
-              <h3
+              <{{ rhino_card_heading }}
                 class="card__heading"
-                {% if card_product.featured_media == null and settings.card_style == 'standard' %}
+                {% if rhino_card_media == null and settings.card_style == 'standard' %}
                   id="title-{{ section_id }}-{{ card_product.id }}"
                 {% endif %}
               >
@@ -124,7 +131,7 @@
                 >
                   {{ card_product.title | escape }}
                 </a>
-              </h3>
+              </{{ rhino_card_heading }}>
             </div>
             <div class="card__badge {{ settings.badge_position }}">
               {%- if card_product.available == false -%}
@@ -147,9 +154,9 @@
         </div>
         <div class="card__content">
           <div class="card__information">
-            <h3
-              class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
-              {% if card_product.featured_media or settings.card_style == 'card' %}
+            <{{ rhino_card_heading }}
+              class="card__heading{% if rhino_card_media or settings.card_style == 'standard' %} h5{% endif %}"
+              {% if rhino_card_media or settings.card_style == 'card' %}
                 id="title-{{ section_id }}-{{ card_product.id }}"
               {% endif %}
             >
@@ -161,7 +168,8 @@
               >
                 {{ card_product.title | escape }}
               </a>
-            </h3>
+            </{{ rhino_card_heading }}>
+            {%- unless rhino_contents_context -%}
             <div class="card-information">
               {%- if show_vendor -%}
                 <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
@@ -289,6 +297,7 @@
                 {% endif %}
               {%- endif -%}
             </div>
+            {%- endunless -%}
           </div>
           {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
           {% if quick_add == 'standard' %}
@@ -468,7 +477,7 @@
                     >
                       <div class="quick-add__content-info__media">
                         <div class="quick-add__info">
-                          {%- if card_product.featured_media -%}
+                          {%- if rhino_card_media -%}
                             <div
                               class="quick-add__product-media"
                             >
@@ -476,23 +485,23 @@
                                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                                 <img
                                   srcset="
-                                    {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-                                    {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-                                    {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-                                    {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-                                    {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
-                                    {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                                    {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+                                    {%- if rhino_card_media.width >= 165 -%}{{ rhino_card_media | image_url: width: 165 }} 165w,{%- endif -%}
+                                    {%- if rhino_card_media.width >= 360 -%}{{ rhino_card_media | image_url: width: 360 }} 360w,{%- endif -%}
+                                    {%- if rhino_card_media.width >= 533 -%}{{ rhino_card_media | image_url: width: 533 }} 533w,{%- endif -%}
+                                    {%- if rhino_card_media.width >= 720 -%}{{ rhino_card_media | image_url: width: 720 }} 720w,{%- endif -%}
+                                    {%- if rhino_card_media.width >= 940 -%}{{ rhino_card_media | image_url: width: 940 }} 940w,{%- endif -%}
+                                    {%- if rhino_card_media.width >= 1066 -%}{{ rhino_card_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                    {{ rhino_card_media | image_url }} {{ rhino_card_media.width }}w
                                   "
-                                  src="{{ card_product.featured_media | image_url: width: 533 }}"
+                                  src="{{ rhino_card_media | image_url: width: 533 }}"
                                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                                  alt="{{ card_product.featured_media.alt | escape }}"
+                                  alt="{{ rhino_card_media.alt | escape }}"
                                   class="motion-reduce"
                                   {% unless lazy_load == false %}
                                     loading="lazy"
                                   {% endunless %}
-                                  width="{{ card_product.featured_media.width }}"
-                                  height="{{ card_product.featured_media.height }}"
+                                  width="{{ rhino_card_media.width }}"
+                                  height="{{ rhino_card_media.height }}"
                                 >
                                 {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
                               </div>
@@ -579,49 +588,5 @@
       assign ratio = 0.8
     endif
   -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover">
-    <div
-      class="
-        card card--{{ settings.card_style }}
-        {% if extend_height %} card--extend-height{% endif %}
-        {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
-        {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
-      "
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-    >
-      <div
-        class="card__inner{% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
-      >
-        <div
-          class="card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
-        >
-          <div
-            class="media media--transparent"
-          >
-            {%- if placeholder_image -%}
-              {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- else -%}
-              {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading card__heading--placeholder{% if settings.card_style == 'standard' %} h5{% endif %}">
-            <a role="link" aria-disabled="true" class="full-unstyled-link">
-              {{ 'onboarding.product_title' | t }}
-            </a>
-          </h3>
-          <div class="card-information">
-            {%- if show_vendor -%}
-              <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
-            {%- endif -%}
-            {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% render 'card-product-placeholder', ratio: ratio, extend_height: extend_height, image_shape: image_shape, placeholder_image: placeholder_image, show_vendor: show_vendor, placeholder: placeholder %}
 {%- endif -%}

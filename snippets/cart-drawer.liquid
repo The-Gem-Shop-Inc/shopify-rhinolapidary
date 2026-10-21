@@ -120,6 +120,10 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
+{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: item.product -%}{%- endcapture -%}
+{%- assign rhino_legacy_content = false -%}
+{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}{%- assign rhino_legacy_content = true -%}{%- endif -%}
+
                       <tr
                         id="CartDrawer-Item-{{ item.index | plus: 1 }}"
                         class="cart-item{% if item.parent_relationship.parent != null %} cart-item__nested-line{% endif %}"
@@ -133,7 +137,7 @@
                           role="cell"
                           headers="CartDrawer-ColumnProductImage"
                         >
-                          {% if item.image %}
+                          {% if rhino_legacy_content and item.image %}
                             {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
                             <a href="{{ item.url }}" class="cart-item__link" tabindex="-1" aria-hidden="true"> </a>
                             <img

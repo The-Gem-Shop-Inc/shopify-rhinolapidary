@@ -1,0 +1,52 @@
+{
+  "planId": "E-MUT-021",
+  "approvalMode": "delegated_development_override",
+  "approvalDate": "2026-10-05",
+  "inputSha256": "d1aa54a482f1ac786f8e616eede866c790ebe123f8d557dfb6b2c0de076614e1",
+  "approvedRowCount": 122,
+  "approvedDistribution": {
+    "machine": 11,
+    "replacement_part": 54,
+    "consumable": 39,
+    "accessory": 18
+  },
+  "productOwnerDecision": "GO — complete approved 122-Product classification set",
+  "delegatedAuthorityOverride": {
+    "explicit": true,
+    "scope": "E-MUT-021 only; ordinary independent human approval requirement overridden for this development execution; historical slots unchanged"
+  },
+  "shop": {
+    "id": "gid://shopify/Shop/79279947973",
+    "domain": "sz5dnk-nf.myshopify.com"
+  },
+  "definitionGid": "gid://shopify/MetafieldDefinition/298658201797",
+  "authorizedMutations": [
+    "metafieldsSet"
+  ],
+  "allowedWrite": {
+    "ownerType": "PRODUCT",
+    "namespace": "rhino",
+    "key": "product_class",
+    "type": "single_line_text_field",
+    "values": [
+      "machine",
+      "replacement_part",
+      "consumable",
+      "accessory"
+    ]
+  },
+  "prohibitedWrites": [
+    "all other Product or Variant fields/metafields",
+    "definition creation/update",
+    "templateSuffix assignment",
+    "production or preview theme push/publication",
+    "machine-family entries",
+    "technical/BOM/compatibility/resource values",
+    "payment/analytics configuration",
+    "cart/Contact/checkout/order actions"
+  ],
+  "historicalApprovalsRewritten": false,
+  "compareBeforeWriteRequired": true,
+  "compareAndSetAbsentRequired": true,
+  "maximumBatchSize": 25
+}

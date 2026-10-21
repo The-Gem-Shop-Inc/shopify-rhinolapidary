@@ -50,7 +50,11 @@
                             {{ link.title | escape }}
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                            {%- for childlink in link.links -%}
+                            {%- assign g_catalog_existing = link.links | where: 'url', routes.all_products_collection_url -%}
+{%- if link.handle == 'catalog' and g_catalog_existing == empty -%}
+<li><a id="HeaderDrawer-g-catalog-entry" href="{{ routes.all_products_collection_url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset" data-rhino-g-catalog-entry>Parts and supplies</a></li>
+{%- endif -%}
+{%- for childlink in link.links -%}
                               <li>
                                 {%- if childlink.links == blank -%}
                                   <a

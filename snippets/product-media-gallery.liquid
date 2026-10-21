@@ -1,3 +1,30 @@
+{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: product -%}{%- endcapture -%}
+{%- assign rhino_legacy_content = false -%}
+{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}{%- assign rhino_legacy_content = true -%}{%- endif -%}
+{%- assign rhino_media = product.media -%}
+{%- unless rhino_legacy_content -%}
+  {%- assign rhino_media = product.media | where: 'id', '' -%}
+  {%- assign rhino_seen_media = '|' -%}
+  {%- for media in product.media -%}
+    {%- capture rhino_media_eligibility -%}{%- render 'rhino-product-media-eligibility', product: product, media: media -%}{%- endcapture -%}
+    {%- assign rhino_media_key = media.id | prepend: '|' | append: '|' -%}
+    {%- if rhino_consumer_route == 'machine' and rhino_media_eligibility == 'eligible' -%}
+      {%- unless rhino_seen_media contains rhino_media_key -%}
+        {%- assign rhino_media_match = product.media | where: 'id', media.id | slice: 0, 1 -%}
+        {%- assign rhino_media = rhino_media | concat: rhino_media_match -%}
+        {%- assign rhino_seen_media = rhino_seen_media | append: media.id | append: '|' -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endunless -%}
+{%- assign rhino_featured_media = product.selected_or_first_available_variant.featured_media -%}
+{%- assign rhino_machine_media = false -%}
+{%- unless rhino_legacy_content -%}
+  {%- assign rhino_machine_media = true -%}
+  {%- assign rhino_featured_media = rhino_media | where: 'id', rhino_featured_media.id | first -%}
+  {%- assign rhino_featured_media = rhino_featured_media | default: rhino_media.first -%}
+{%- endunless -%}
+{%- if rhino_legacy_content or rhino_media.size > 0 -%}
 {% comment %}
   Renders a product media gallery. Should be used with 'media-gallery.js'
   Also see 'product-media-modal'
@@ -12,7 +39,11 @@
 {% endcomment %}
 
 {%- liquid
-  if section.settings.hide_variants and variant_images.size == product.media.size
+  assign rhino_media_fit = section.settings.media_fit
+  if rhino_machine_media
+    assign rhino_media_fit = 'contain'
+  endif
+  if section.settings.hide_variants and variant_images.size == rhino_media.size
     assign single_media_visible = true
   endif
 
@@ -20,7 +51,7 @@
     assign single_media_visible = true
   endif
 
-  assign media_count = product.media.size
+  assign media_count = rhino_media.size
   if section.settings.hide_variants and media_count > 1 and variant_images.size > 0
     assign media_count = media_count | minus: variant_images.size | plus: 1
   endif
@@ -61,8 +92,8 @@
       class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
       role="list"
     >
-      {%- if product.selected_or_first_available_variant.featured_media != null -%}
-        {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+      {%- if rhino_featured_media != null -%}
+        {%- assign featured_media = rhino_featured_media -%}
         <li
           id="Slide-{{ section.id }}-{{ featured_media.id }}"
           class="product__media-item grid__item slider__slide is-active{% if single_media_visible %} product__media-item--single{% endif %}{% if featured_media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
@@ -79,13 +110,14 @@
             modal_id: section.id,
             xr_button: true,
             media_width: media_width,
-            media_fit: section.settings.media_fit,
+            media_fit: rhino_media_fit,
+            rhino_machine_media: rhino_machine_media,
             constrain_to_viewport: section.settings.constrain_to_viewport,
             lazy_load: false
           %}
         </li>
       {%- endif -%}
-      {%- for media in product.media -%}
+      {%- for media in rhino_media -%}
         {% if media_position >= limit
           or media_position >= 1
           and section.settings.hide_variants
@@ -94,10 +126,10 @@
           {% continue %}
         {% endif %}
 
-        {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+        {%- unless media.id == rhino_featured_media.id -%}
           <li
             id="Slide-{{ section.id }}-{{ media.id }}"
-            class="product__media-item grid__item slider__slide{% if single_media_visible %} product__media-item--single{% endif %}{% if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            class="product__media-item grid__item slider__slide{% if single_media_visible %} product__media-item--single{% endif %}{% if rhino_featured_media == nil and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
             data-media-id="{{ section.id }}-{{ media.id }}"
           >
             {%- liquid
@@ -117,7 +149,8 @@
               modal_id: section.id,
               xr_button: true,
               media_width: media_width,
-              media_fit: section.settings.media_fit,
+              media_fit: rhino_media_fit,
+            rhino_machine_media: rhino_machine_media,
               constrain_to_viewport: section.settings.constrain_to_viewport,
               lazy_load: lazy_load
             %}
@@ -237,7 +270,7 @@
               aria-controls="GalleryViewer-{{ section.id }}"
               aria-describedby="{{ thumbnail_id }}"
             >
-              {{
+              {%- capture rhino_thumbnail_image -%}{{
                 featured_media.preview_image
                 | image_url: width: 416
                 | image_tag:
@@ -245,14 +278,13 @@
                   sizes: sizes,
                   widths: '54, 74, 104, 162, 208, 324, 416',
                   id: thumbnail_id,
-                  alt: featured_media.alt
-                | escape
-              }}
+                  alt: featured_media.alt}}{%- endcapture -%}
+                {% if rhino_machine_media %}{{ rhino_thumbnail_image }}{% else %}{{ rhino_thumbnail_image | escape }}{% endif %}
             </button>
           </li>
         {%- endif -%}
-        {%- for media in product.media -%}
-          {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+        {%- for media in rhino_media -%}
+          {%- unless media.id == rhino_featured_media.id -%}
             {%- liquid
               capture media_index
                 if media.media_type == 'model'
@@ -290,8 +322,8 @@
               <button
                 class="thumbnail global-media-settings global-media-settings--no-shadow"
                 aria-label="{%- if media.media_type == 'image' -%}{{ 'products.product.media.load_image' | t: index: media_index }}{%- elsif media.media_type == 'model' -%}{{ 'products.product.media.load_model' | t: index: media_index }}{%- elsif media.media_type == 'video' or media.media_type == 'external_video' -%}{{ 'products.product.media.load_video' | t: index: media_index }}{%- endif -%}"
-                {% if media == product.selected_or_first_available_variant.featured_media
-                  or product.selected_or_first_available_variant.featured_media == null
+                {% if media == rhino_featured_media
+                  or rhino_featured_media == null
                   and forloop.index == 1
                 %}
                   aria-current="true"
@@ -299,7 +331,7 @@
                 aria-controls="GalleryViewer-{{ section.id }}"
                 aria-describedby="{{ thumbnail_id }}"
               >
-                {{
+                {%- capture rhino_thumbnail_image -%}{{
                   media.preview_image
                   | image_url: width: 416
                   | image_tag:
@@ -307,9 +339,8 @@
                     sizes: sizes,
                     widths: '54, 74, 104, 162, 208, 324, 416',
                     id: thumbnail_id,
-                    alt: media.alt
-                  | escape
-                }}
+                    alt: media.alt}}{%- endcapture -%}
+                {% if rhino_machine_media %}{{ rhino_thumbnail_image }}{% else %}{{ rhino_thumbnail_image | escape }}{% endif %}
               </button>
             </li>
           {%- endunless -%}
@@ -330,3 +361,5 @@
     </slider-component>
   {%- endif -%}
 </media-gallery>
+
+{%- endif -%}

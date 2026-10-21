@@ -1,0 +1,1802 @@
+{
+  "planId": "E-MUT-020",
+  "before": {
+    "startedAt": "2026-10-05T18:55:12.195Z",
+    "completedAt": "2026-10-05T18:56:53.495Z"
+  },
+  "after": {
+    "startedAt": "2026-10-05T19:03:37.215Z",
+    "completedAt": "2026-10-05T19:04:12.312Z"
+  },
+  "apiSurface": "Shopify connector Admin GraphQL",
+  "apiVersionExposed": false,
+  "shop": {
+    "id": "gid://shopify/Shop/79279947973",
+    "name": "Rhino Lapidary",
+    "myshopifyDomain": "sz5dnk-nf.myshopify.com"
+  },
+  "paginationExhausted": true,
+  "readQueryAdaptations": {
+    "deliveryConfiguration": "Removed unavailable coversAllItems output field only",
+    "shopPolicies": "Current Shop.shopPolicies array replaces removed convenience fields; raw returned data preserved",
+    "deprecatedMarketRegions": "Validated and read successfully; deprecation retained"
+  },
+  "inputAccessAdaptation": {
+    "firstFailedCode": "ADMIN_ACCESS_INPUT_NOT_ALLOWED",
+    "noWritesOnFailedAttempt": true,
+    "merchantOwnedIdentityUnchanged": true,
+    "omittedInputs": [
+      "access.admin",
+      "access.customerAccount"
+    ],
+    "actualAdmin": "PUBLIC_READ_WRITE",
+    "actualCustomerAccount": "NONE",
+    "repositoryAdminIntent": "merchant_read_write",
+    "sources": [
+      "https://shopify.dev/docs/apps/build/metaobjects#merchant-owned-metaobjects",
+      "https://shopify.dev/docs/apps/build/metafields#merchant-owned-metafields"
+    ],
+    "note": "Merchant-owned data is shared across installed apps by Shopify; no app-reserved ownership or app-only access is introduced."
+  },
+  "supportedTypes": {
+    "data": {
+      "metafieldDefinitionTypes": [
+        {
+          "name": "antenna_gain",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "antenna_gain"
+            },
+            {
+              "name": "max",
+              "type": "antenna_gain"
+            }
+          ]
+        },
+        {
+          "name": "area",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "area"
+            },
+            {
+              "name": "max",
+              "type": "area"
+            }
+          ]
+        },
+        {
+          "name": "battery_charge_capacity",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "battery_charge_capacity"
+            },
+            {
+              "name": "max",
+              "type": "battery_charge_capacity"
+            }
+          ]
+        },
+        {
+          "name": "battery_energy_capacity",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "battery_energy_capacity"
+            },
+            {
+              "name": "max",
+              "type": "battery_energy_capacity"
+            }
+          ]
+        },
+        {
+          "name": "boolean",
+          "supportedValidations": []
+        },
+        {
+          "name": "capacitance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "capacitance"
+            },
+            {
+              "name": "max",
+              "type": "capacitance"
+            }
+          ]
+        },
+        {
+          "name": "color",
+          "supportedValidations": []
+        },
+        {
+          "name": "concentration",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "concentration"
+            },
+            {
+              "name": "max",
+              "type": "concentration"
+            }
+          ]
+        },
+        {
+          "name": "data_storage_capacity",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "data_storage_capacity"
+            },
+            {
+              "name": "max",
+              "type": "data_storage_capacity"
+            }
+          ]
+        },
+        {
+          "name": "data_transfer_rate",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "data_transfer_rate"
+            },
+            {
+              "name": "max",
+              "type": "data_transfer_rate"
+            }
+          ]
+        },
+        {
+          "name": "date_time",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "date_time"
+            },
+            {
+              "name": "max",
+              "type": "date_time"
+            }
+          ]
+        },
+        {
+          "name": "date",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "date"
+            },
+            {
+              "name": "max",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "name": "dimension",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "dimension"
+            },
+            {
+              "name": "max",
+              "type": "dimension"
+            }
+          ]
+        },
+        {
+          "name": "display_density",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "display_density"
+            },
+            {
+              "name": "max",
+              "type": "display_density"
+            }
+          ]
+        },
+        {
+          "name": "distance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "distance"
+            },
+            {
+              "name": "max",
+              "type": "distance"
+            }
+          ]
+        },
+        {
+          "name": "duration",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "duration"
+            },
+            {
+              "name": "max",
+              "type": "duration"
+            }
+          ]
+        },
+        {
+          "name": "electric_current",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "electric_current"
+            },
+            {
+              "name": "max",
+              "type": "electric_current"
+            }
+          ]
+        },
+        {
+          "name": "electrical_resistance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "electrical_resistance"
+            },
+            {
+              "name": "max",
+              "type": "electrical_resistance"
+            }
+          ]
+        },
+        {
+          "name": "energy",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "energy"
+            },
+            {
+              "name": "max",
+              "type": "energy"
+            }
+          ]
+        },
+        {
+          "name": "frequency",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "frequency"
+            },
+            {
+              "name": "max",
+              "type": "frequency"
+            }
+          ]
+        },
+        {
+          "name": "id",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "number_integer"
+            },
+            {
+              "name": "max",
+              "type": "number_integer"
+            },
+            {
+              "name": "regex",
+              "type": "single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "illuminance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "illuminance"
+            },
+            {
+              "name": "max",
+              "type": "illuminance"
+            }
+          ]
+        },
+        {
+          "name": "inductance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "inductance"
+            },
+            {
+              "name": "max",
+              "type": "inductance"
+            }
+          ]
+        },
+        {
+          "name": "json",
+          "supportedValidations": [
+            {
+              "name": "schema",
+              "type": "json"
+            }
+          ]
+        },
+        {
+          "name": "jurisdiction",
+          "supportedValidations": []
+        },
+        {
+          "name": "language",
+          "supportedValidations": []
+        },
+        {
+          "name": "link",
+          "supportedValidations": [
+            {
+              "name": "allowed_domains",
+              "type": "list.single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "list.antenna_gain",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "antenna_gain"
+            },
+            {
+              "name": "max",
+              "type": "antenna_gain"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.area",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "area"
+            },
+            {
+              "name": "max",
+              "type": "area"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.battery_charge_capacity",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "battery_charge_capacity"
+            },
+            {
+              "name": "max",
+              "type": "battery_charge_capacity"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.battery_energy_capacity",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "battery_energy_capacity"
+            },
+            {
+              "name": "max",
+              "type": "battery_energy_capacity"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.capacitance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "capacitance"
+            },
+            {
+              "name": "max",
+              "type": "capacitance"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.color",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.concentration",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "concentration"
+            },
+            {
+              "name": "max",
+              "type": "concentration"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.data_storage_capacity",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "data_storage_capacity"
+            },
+            {
+              "name": "max",
+              "type": "data_storage_capacity"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.data_transfer_rate",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "data_transfer_rate"
+            },
+            {
+              "name": "max",
+              "type": "data_transfer_rate"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.date_time",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "date_time"
+            },
+            {
+              "name": "max",
+              "type": "date_time"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.date",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "date"
+            },
+            {
+              "name": "max",
+              "type": "date"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.dimension",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "dimension"
+            },
+            {
+              "name": "max",
+              "type": "dimension"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.display_density",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "display_density"
+            },
+            {
+              "name": "max",
+              "type": "display_density"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.distance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "distance"
+            },
+            {
+              "name": "max",
+              "type": "distance"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.duration",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "duration"
+            },
+            {
+              "name": "max",
+              "type": "duration"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.electric_current",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "electric_current"
+            },
+            {
+              "name": "max",
+              "type": "electric_current"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.electrical_resistance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "electrical_resistance"
+            },
+            {
+              "name": "max",
+              "type": "electrical_resistance"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.energy",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "energy"
+            },
+            {
+              "name": "max",
+              "type": "energy"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.frequency",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "frequency"
+            },
+            {
+              "name": "max",
+              "type": "frequency"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.illuminance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "illuminance"
+            },
+            {
+              "name": "max",
+              "type": "illuminance"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.inductance",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "inductance"
+            },
+            {
+              "name": "max",
+              "type": "inductance"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.jurisdiction",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.link",
+          "supportedValidations": [
+            {
+              "name": "allowed_domains",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.luminous_flux",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "luminous_flux"
+            },
+            {
+              "name": "max",
+              "type": "luminous_flux"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.mass_flow_rate",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "mass_flow_rate"
+            },
+            {
+              "name": "max",
+              "type": "mass_flow_rate"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.number_decimal",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "number_decimal"
+            },
+            {
+              "name": "max",
+              "type": "number_decimal"
+            },
+            {
+              "name": "max_precision",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.number_integer",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "number_integer"
+            },
+            {
+              "name": "max",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.power",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "power"
+            },
+            {
+              "name": "max",
+              "type": "power"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.pressure",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "pressure"
+            },
+            {
+              "name": "max",
+              "type": "pressure"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.rating",
+          "supportedValidations": [
+            {
+              "name": "scale_min",
+              "type": "number_decimal"
+            },
+            {
+              "name": "scale_max",
+              "type": "number_decimal"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.resolution",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "resolution"
+            },
+            {
+              "name": "max",
+              "type": "resolution"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.rotational_speed",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "rotational_speed"
+            },
+            {
+              "name": "max",
+              "type": "rotational_speed"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.single_line_text_field",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "number_integer"
+            },
+            {
+              "name": "max",
+              "type": "number_integer"
+            },
+            {
+              "name": "regex",
+              "type": "single_line_text_field"
+            },
+            {
+              "name": "choices",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.sound_level",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "sound_level"
+            },
+            {
+              "name": "max",
+              "type": "sound_level"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.speed",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "speed"
+            },
+            {
+              "name": "max",
+              "type": "speed"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.temperature",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "temperature"
+            },
+            {
+              "name": "max",
+              "type": "temperature"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.thermal_power",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "thermal_power"
+            },
+            {
+              "name": "max",
+              "type": "thermal_power"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.url",
+          "supportedValidations": [
+            {
+              "name": "allowed_domains",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.voltage",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "voltage"
+            },
+            {
+              "name": "max",
+              "type": "voltage"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.volume",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "volume"
+            },
+            {
+              "name": "max",
+              "type": "volume"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.volumetric_flow_rate",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "volumetric_flow_rate"
+            },
+            {
+              "name": "max",
+              "type": "volumetric_flow_rate"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "list.weight",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "weight"
+            },
+            {
+              "name": "max",
+              "type": "weight"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "luminous_flux",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "luminous_flux"
+            },
+            {
+              "name": "max",
+              "type": "luminous_flux"
+            }
+          ]
+        },
+        {
+          "name": "mass_flow_rate",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "mass_flow_rate"
+            },
+            {
+              "name": "max",
+              "type": "mass_flow_rate"
+            }
+          ]
+        },
+        {
+          "name": "money",
+          "supportedValidations": []
+        },
+        {
+          "name": "multi_line_text_field",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "number_integer"
+            },
+            {
+              "name": "max",
+              "type": "number_integer"
+            },
+            {
+              "name": "regex",
+              "type": "single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "number_decimal",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "number_decimal"
+            },
+            {
+              "name": "max",
+              "type": "number_decimal"
+            },
+            {
+              "name": "max_precision",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "number_integer",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "number_integer"
+            },
+            {
+              "name": "max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "power",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "power"
+            },
+            {
+              "name": "max",
+              "type": "power"
+            }
+          ]
+        },
+        {
+          "name": "pressure",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "pressure"
+            },
+            {
+              "name": "max",
+              "type": "pressure"
+            }
+          ]
+        },
+        {
+          "name": "rating",
+          "supportedValidations": [
+            {
+              "name": "scale_min",
+              "type": "number_decimal"
+            },
+            {
+              "name": "scale_max",
+              "type": "number_decimal"
+            }
+          ]
+        },
+        {
+          "name": "resolution",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "resolution"
+            },
+            {
+              "name": "max",
+              "type": "resolution"
+            }
+          ]
+        },
+        {
+          "name": "rich_text_field",
+          "supportedValidations": []
+        },
+        {
+          "name": "rotational_speed",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "rotational_speed"
+            },
+            {
+              "name": "max",
+              "type": "rotational_speed"
+            }
+          ]
+        },
+        {
+          "name": "single_line_text_field",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "number_integer"
+            },
+            {
+              "name": "max",
+              "type": "number_integer"
+            },
+            {
+              "name": "regex",
+              "type": "single_line_text_field"
+            },
+            {
+              "name": "choices",
+              "type": "list.single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "sound_level",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "sound_level"
+            },
+            {
+              "name": "max",
+              "type": "sound_level"
+            }
+          ]
+        },
+        {
+          "name": "speed",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "speed"
+            },
+            {
+              "name": "max",
+              "type": "speed"
+            }
+          ]
+        },
+        {
+          "name": "temperature",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "temperature"
+            },
+            {
+              "name": "max",
+              "type": "temperature"
+            }
+          ]
+        },
+        {
+          "name": "thermal_power",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "thermal_power"
+            },
+            {
+              "name": "max",
+              "type": "thermal_power"
+            }
+          ]
+        },
+        {
+          "name": "url",
+          "supportedValidations": [
+            {
+              "name": "allowed_domains",
+              "type": "list.single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "voltage",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "voltage"
+            },
+            {
+              "name": "max",
+              "type": "voltage"
+            }
+          ]
+        },
+        {
+          "name": "volume",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "volume"
+            },
+            {
+              "name": "max",
+              "type": "volume"
+            }
+          ]
+        },
+        {
+          "name": "volumetric_flow_rate",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "volumetric_flow_rate"
+            },
+            {
+              "name": "max",
+              "type": "volumetric_flow_rate"
+            }
+          ]
+        },
+        {
+          "name": "weight",
+          "supportedValidations": [
+            {
+              "name": "min",
+              "type": "weight"
+            },
+            {
+              "name": "max",
+              "type": "weight"
+            }
+          ]
+        },
+        {
+          "name": "company_reference",
+          "supportedValidations": []
+        },
+        {
+          "name": "list.company_reference",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "customer_reference",
+          "supportedValidations": []
+        },
+        {
+          "name": "list.customer_reference",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "product_reference",
+          "supportedValidations": []
+        },
+        {
+          "name": "list.product_reference",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "collection_reference",
+          "supportedValidations": []
+        },
+        {
+          "name": "list.collection_reference",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "variant_reference",
+          "supportedValidations": []
+        },
+        {
+          "name": "list.variant_reference",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "file_reference",
+          "supportedValidations": [
+            {
+              "name": "file_type_options",
+              "type": "list.single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "list.file_reference",
+          "supportedValidations": [
+            {
+              "name": "file_type_options",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "product_taxonomy_value_reference",
+          "supportedValidations": [
+            {
+              "name": "product_taxonomy_attribute_handle",
+              "type": "single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "list.product_taxonomy_value_reference",
+          "supportedValidations": [
+            {
+              "name": "product_taxonomy_attribute_handle",
+              "type": "single_line_text_field"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "product_taxonomy_disclosure_reference",
+          "supportedValidations": []
+        },
+        {
+          "name": "metaobject_reference",
+          "supportedValidations": [
+            {
+              "name": "metaobject_definition_id",
+              "type": "single_line_text_field"
+            },
+            {
+              "name": "metaobject_definition_type",
+              "type": "single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "list.metaobject_reference",
+          "supportedValidations": [
+            {
+              "name": "metaobject_definition_id",
+              "type": "single_line_text_field"
+            },
+            {
+              "name": "metaobject_definition_type",
+              "type": "single_line_text_field"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "mixed_reference",
+          "supportedValidations": [
+            {
+              "name": "metaobject_definition_ids",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "metaobject_definition_types",
+              "type": "list.single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "list.mixed_reference",
+          "supportedValidations": [
+            {
+              "name": "metaobject_definition_ids",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "metaobject_definition_types",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "disclosure_reference",
+          "supportedValidations": [
+            {
+              "name": "metaobject_definition_ids",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "metaobject_definition_types",
+              "type": "list.single_line_text_field"
+            }
+          ]
+        },
+        {
+          "name": "list.disclosure_reference",
+          "supportedValidations": [
+            {
+              "name": "metaobject_definition_ids",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "metaobject_definition_types",
+              "type": "list.single_line_text_field"
+            },
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "page_reference",
+          "supportedValidations": []
+        },
+        {
+          "name": "list.page_reference",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "article_reference",
+          "supportedValidations": []
+        },
+        {
+          "name": "list.article_reference",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        },
+        {
+          "name": "order_reference",
+          "supportedValidations": []
+        },
+        {
+          "name": "list.order_reference",
+          "supportedValidations": [
+            {
+              "name": "list.min",
+              "type": "number_integer"
+            },
+            {
+              "name": "list.max",
+              "type": "number_integer"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

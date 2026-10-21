@@ -11,8 +11,8 @@ const templateRules = [
     },
     {
         file: 'templates/product.machine.json',
-        requiredMainBlocks: ['title', 'price'],
-        allowMissingIfAbsent: true,
+        requiredMainBlocks: ['title', 'price', 'variant_picker', 'quantity_selector', 'buy_buttons', 'machine_contact'],
+        allowMissingIfAbsent: false,
     },
     {
         file: 'templates/product.consumable.json',

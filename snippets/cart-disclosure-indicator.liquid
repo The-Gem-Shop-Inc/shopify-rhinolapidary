@@ -1,3 +1,5 @@
+{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: product -%}{%- endcapture -%}
+{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}
 {% comment %}
   Renders a cart disclosure indicator when the product has a disclosure configured for the cart surface.
 
@@ -125,4 +127,6 @@
       </div>
     </div>
   </cart-disclosure-modal>
+{%- endif -%}
+
 {%- endif -%}

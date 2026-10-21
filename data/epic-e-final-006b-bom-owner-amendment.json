@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "approvalMode": "delegated_development_override",
+  "authority": "EXPLICIT_PRODUCT_OWNER_AUTHORIZED_PROJECT_OWNER_USER_CLARIFICATION",
+  "reviewerRole": "PRODUCT_OWNER_AUTHORIZED_PROJECT_OWNER",
+  "reviewerPersonalName": null,
+  "reviewDate": "2026-10-15",
+  "supplements": "Kevin + Avery worksheet dated 2026-10-14; new answers are not attributed to those reviewers",
+  "startingSourceBindingSha256": "e8e2e5adc08699e30306c4b37acb4d964a8343062a19e3d134f91b9a9378473a",
+  "technicalDecisions": [
+    {"productGid":"gid://shopify/Product/8905779937477","field":"motor_power","value":1,"unit":"horsepower","meaning":"Final owner value supersedes held 0.55 kW candidate; no conversion"},
+    {"productGid":"gid://shopify/Product/8905784131781","field":"motor_power","value":1,"unit":"horsepower","meaning":"Final owner value supersedes held 1.8 kW candidate; no conversion"},
+    {"productGid":"gid://shopify/Product/8905780756677","field":"motor_speed","value":3000,"unit":"revolutions_per_minute","meaning":"Independently owner-confirmed rated primary motor scalar"},
+    {"productGid":"gid://shopify/Product/8905780756677","field":"blade_diameter_min","value":6,"unit":"inches","meaning":"Exact supported blade attachment size, equal endpoints"},
+    {"productGid":"gid://shopify/Product/8905780756677","field":"blade_diameter_max","value":6,"unit":"inches","meaning":"Same final size authority as minimum; existing value may be a no-op"},
+    {"productGid":"gid://shopify/Product/8905780756677","field":"water_reservoir_capacity","value":3.5,"unit":"us_gallons","meaning":"Explicit final U.S.-gallon approval, water reservoir only"},
+    {"productGid":"gid://shopify/Product/8905781248197","field":"input_voltage","value":110,"unit":"volts"},
+    {"productGid":"gid://shopify/Product/8905781248197","field":"input_frequencies","value":[60],"unit":"hertz"},
+    {"productGid":"gid://shopify/Product/8905781248197","field":"blade_arbor_diameter","value":1,"unit":"inches","meaning":"Blade arbor only; wheel arbor not approved"}
+  ],
+  "unknownDispositions": [
+    {"productGid":"gid://shopify/Product/8905785868485","field":"motor_power","state":"OWNER_UNKNOWN_SUPPRESSED","write":false,"askAgain":false},
+    {"productGid":"gid://shopify/Product/8905785868485","field":"motor_speed","state":"OWNER_UNKNOWN_SUPPRESSED","write":false,"askAgain":false}
+  ],
+  "contentsQuantities": [
+    {"productGid":"gid://shopify/Product/8905780756677","componentProductGid":"gid://shopify/Product/8905782034629","diagnosticLabel":"Left Moss Pad","included":true,"quantity":1},
+    {"productGid":"gid://shopify/Product/8905780756677","componentProductGid":"gid://shopify/Product/8905783574725","diagnosticLabel":"Right Moss Pad","included":true,"quantity":1}
+  ],
+  "preserve": ["existing manufacturer-nameplate horsepower convention", "all prior 116 reconciled technical rows", "existing 25 contents lines and package grouping", "Moss Filtration Pads ×2 as a distinct noncatalog identity", "noncatalog_components", "40 compatibility edges", "six media grants", "all assignments", "native shipping weights"],
+  "outOfScope": ["E-MUT-030", "E-MUT-031", "E-MUT-032", "E-MUT-036", "Variant creation", "Product splits", "performance work"]
+}

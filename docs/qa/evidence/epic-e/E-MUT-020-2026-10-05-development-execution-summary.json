@@ -1,0 +1,634 @@
+{
+  "asOf": "2026-10-05",
+  "F_DEC_001": "APPROVED_OPTION_A",
+  "E_MUT_020": "EXECUTED_AND_RECONCILED",
+  "E_MUT_021": "NOT_EXECUTED",
+  "repositoryShell": "COMPLETE_UNCHANGED",
+  "persistentPreviewDeployment": "COMPLETE",
+  "machineTemplateOnPreviewTheme": "PRESENT",
+  "productionTheme": "UNCHANGED",
+  "ProductTemplateAssignments": "UNCHANGED",
+  "F_PBI_014B": "PARTIAL",
+  "F_PBI_015B": "DEFERRED",
+  "F_PBI_017B": "BLOCKED_NOT_EXECUTED",
+  "F_PBI_018B": "NOT_BEGUN",
+  "liveProductionRelease": "NOT_AUTHORIZED",
+  "authorizationMode": "delegated_development_override",
+  "inputSha256": "c211f7c6258eedea6eed7d0ce64bb9272c70160f91d11b08e770474f2cd43edb",
+  "beforeRead": {
+    "startedAt": "2026-10-05T18:55:12.195Z",
+    "completedAt": "2026-10-05T18:56:53.495Z"
+  },
+  "beforeCounts": {
+    "absent": 38,
+    "exact": 0,
+    "compatible": 0,
+    "conflicts": 0
+  },
+  "execution": {
+    "created": 38,
+    "reused": 0,
+    "failed": 0,
+    "blocked": 0,
+    "diagnosedFailedAttempts": 1,
+    "totalAttempts": 39,
+    "definitions": [
+      {
+        "rowId": "CD-MO-001",
+        "identity": "METAOBJECT:machine_family",
+        "gid": "gid://shopify/MetaobjectDefinition/25406406853"
+      },
+      {
+        "rowId": "CD-MF-001",
+        "identity": "PRODUCT:rhino.product_class",
+        "gid": "gid://shopify/MetafieldDefinition/298658201797"
+      },
+      {
+        "rowId": "CD-MF-002",
+        "identity": "PRODUCT:rhino.machine_family",
+        "gid": "gid://shopify/MetafieldDefinition/298658234565"
+      },
+      {
+        "rowId": "CD-MF-010",
+        "identity": "PRODUCT:rhino.input_voltage",
+        "gid": "gid://shopify/MetafieldDefinition/298658267333"
+      },
+      {
+        "rowId": "CD-MF-011",
+        "identity": "PRODUCT:rhino.input_frequencies",
+        "gid": "gid://shopify/MetafieldDefinition/298658300101"
+      },
+      {
+        "rowId": "CD-MF-012",
+        "identity": "PRODUCT:rhino.motor_power",
+        "gid": "gid://shopify/MetafieldDefinition/298658332869"
+      },
+      {
+        "rowId": "CD-MF-013",
+        "identity": "PRODUCT:rhino.motor_speed",
+        "gid": "gid://shopify/MetafieldDefinition/298658365637"
+      },
+      {
+        "rowId": "CD-MF-014",
+        "identity": "PRODUCT:rhino.wheel_speed_min",
+        "gid": "gid://shopify/MetafieldDefinition/298658398405"
+      },
+      {
+        "rowId": "CD-MF-015",
+        "identity": "PRODUCT:rhino.wheel_speed_max",
+        "gid": "gid://shopify/MetafieldDefinition/298658431173"
+      },
+      {
+        "rowId": "CD-MF-016",
+        "identity": "PRODUCT:rhino.flex_shaft_speed_min",
+        "gid": "gid://shopify/MetafieldDefinition/298658463941"
+      },
+      {
+        "rowId": "CD-MF-017",
+        "identity": "PRODUCT:rhino.flex_shaft_speed_max",
+        "gid": "gid://shopify/MetafieldDefinition/298658496709"
+      },
+      {
+        "rowId": "CD-MF-018",
+        "identity": "PRODUCT:rhino.blade_diameter_min",
+        "gid": "gid://shopify/MetafieldDefinition/298659119301"
+      },
+      {
+        "rowId": "CD-MF-019",
+        "identity": "PRODUCT:rhino.blade_diameter_max",
+        "gid": "gid://shopify/MetafieldDefinition/298659152069"
+      },
+      {
+        "rowId": "CD-MF-020",
+        "identity": "PRODUCT:rhino.wheel_diameter",
+        "gid": "gid://shopify/MetafieldDefinition/298659184837"
+      },
+      {
+        "rowId": "CD-MF-021",
+        "identity": "PRODUCT:rhino.blade_arbor_diameter",
+        "gid": "gid://shopify/MetafieldDefinition/298659217605"
+      },
+      {
+        "rowId": "CD-MF-022",
+        "identity": "PRODUCT:rhino.wheel_arbor_diameter",
+        "gid": "gid://shopify/MetafieldDefinition/298659250373"
+      },
+      {
+        "rowId": "CD-MF-023",
+        "identity": "PRODUCT:rhino.water_reservoir_capacity",
+        "gid": "gid://shopify/MetafieldDefinition/298659381445"
+      },
+      {
+        "rowId": "CD-MF-024",
+        "identity": "PRODUCT:rhino.cutting_oil_fill_min",
+        "gid": "gid://shopify/MetafieldDefinition/298659610821"
+      },
+      {
+        "rowId": "CD-MF-025",
+        "identity": "PRODUCT:rhino.cutting_oil_fill_max",
+        "gid": "gid://shopify/MetafieldDefinition/298659840197"
+      },
+      {
+        "rowId": "CD-MF-026",
+        "identity": "PRODUCT:rhino.water_system_type",
+        "gid": "gid://shopify/MetafieldDefinition/298660069573"
+      },
+      {
+        "rowId": "CD-MF-027",
+        "identity": "PRODUCT:rhino.net_weight",
+        "gid": "gid://shopify/MetafieldDefinition/298660102341"
+      },
+      {
+        "rowId": "CD-MF-028",
+        "identity": "PRODUCT:rhino.assembled_length",
+        "gid": "gid://shopify/MetafieldDefinition/298660135109"
+      },
+      {
+        "rowId": "CD-MF-029",
+        "identity": "PRODUCT:rhino.assembled_width",
+        "gid": "gid://shopify/MetafieldDefinition/298660167877"
+      },
+      {
+        "rowId": "CD-MF-030",
+        "identity": "PRODUCT:rhino.assembled_height",
+        "gid": "gid://shopify/MetafieldDefinition/298660200645"
+      },
+      {
+        "rowId": "CD-MF-031",
+        "identity": "PRODUCT:rhino.crate_length",
+        "gid": "gid://shopify/MetafieldDefinition/298660233413"
+      },
+      {
+        "rowId": "CD-MF-032",
+        "identity": "PRODUCT:rhino.crate_width",
+        "gid": "gid://shopify/MetafieldDefinition/298660266181"
+      },
+      {
+        "rowId": "CD-MF-033",
+        "identity": "PRODUCT:rhino.crate_height",
+        "gid": "gid://shopify/MetafieldDefinition/298660298949"
+      },
+      {
+        "rowId": "CD-MF-034",
+        "identity": "PRODUCT:rhino.compatible_machines",
+        "gid": "gid://shopify/MetafieldDefinition/298660331717"
+      },
+      {
+        "rowId": "CD-MF-035",
+        "identity": "PRODUCT:rhino.included_products",
+        "gid": "gid://shopify/MetafieldDefinition/298660364485"
+      },
+      {
+        "rowId": "CD-MF-036",
+        "identity": "PRODUCT:rhino.included_quantities",
+        "gid": "gid://shopify/MetafieldDefinition/298660397253"
+      },
+      {
+        "rowId": "CD-MF-037",
+        "identity": "PRODUCT:rhino.noncatalog_components",
+        "gid": "gid://shopify/MetafieldDefinition/298660430021"
+      },
+      {
+        "rowId": "CD-MF-039",
+        "identity": "PRODUCT:rhino.optional_products",
+        "gid": "gid://shopify/MetafieldDefinition/298660462789"
+      },
+      {
+        "rowId": "CD-MF-040",
+        "identity": "PRODUCT:rhino.recommended_products",
+        "gid": "gid://shopify/MetafieldDefinition/298660495557"
+      },
+      {
+        "rowId": "CD-MF-041",
+        "identity": "PRODUCT:rhino.manual_files",
+        "gid": "gid://shopify/MetafieldDefinition/298660528325"
+      },
+      {
+        "rowId": "CD-MF-042",
+        "identity": "PRODUCT:rhino.diagram_files",
+        "gid": "gid://shopify/MetafieldDefinition/298660561093"
+      },
+      {
+        "rowId": "CD-MF-043",
+        "identity": "PRODUCT:rhino.instruction_files",
+        "gid": "gid://shopify/MetafieldDefinition/298660593861"
+      },
+      {
+        "rowId": "CD-MF-044",
+        "identity": "PRODUCT:rhino.video_files",
+        "gid": "gid://shopify/MetafieldDefinition/298660626629"
+      },
+      {
+        "rowId": "CD-MF-045",
+        "identity": "PRODUCT:rhino.support_files",
+        "gid": "gid://shopify/MetafieldDefinition/298660659397"
+      }
+    ]
+  },
+  "ProductValuesPopulated": 0,
+  "compatibilityValuesCreated": 0,
+  "bomResourceValuesCreated": 0,
+  "machineFamilyRecordsCreated": 0,
+  "preview": {
+    "target": "158631198917",
+    "role": "UNPUBLISHED",
+    "fileCount": 32,
+    "files": [
+      {
+        "path": "assets/rhino-custom.css",
+        "sha256": "32f44d332f5b1d51b95213292c54d6e5c17751ebf4e79878eba4e2c17ce5f961",
+        "md5": "e3e2de8ce74e722d424bf8627b05faa1",
+        "bytes": 46005
+      },
+      {
+        "path": "layout/theme.liquid",
+        "sha256": "87086adef642d447d2cba82186641e93460d815549375bf608da035534cec5af",
+        "md5": "a97f66b7b623bcc4eeb3abb6b7d9fe29",
+        "bytes": 24252
+      },
+      {
+        "path": "locales/en.default.json",
+        "sha256": "1c9b35a463badc81f9b84c0e690b70c644c80f974338138875df761b281e792f",
+        "md5": "fe76e42d09c36499465030cbe36cd0c8",
+        "bytes": 23107
+      },
+      {
+        "path": "locales/en.default.schema.json",
+        "sha256": "8009bbec50222d4d8e9bb160f03e53ca00fd15e8be5b938070f1a8c52f7bfdd9",
+        "md5": "1f61b62eaa6be77aa839978a029df32c",
+        "bytes": 93674
+      },
+      {
+        "path": "sections/cart-notification-product.liquid",
+        "sha256": "7e775b942acae3ea9b6f76dce09fd7881dcf687271c8e365aece510fb41e652f",
+        "md5": "e5bce80dea0ae667d76dc8a117faf575",
+        "bytes": 2854
+      },
+      {
+        "path": "sections/main-cart-items.liquid",
+        "sha256": "d043f0d8ddc3148076866e19bae02efd52db7dbf7ee1ca7f19ea2cf832850cc6",
+        "md5": "ef0ecb153fd6815a25aa0f49fc1a21c9",
+        "bytes": 26437
+      },
+      {
+        "path": "sections/main-product.liquid",
+        "sha256": "c482aa06d6705589587e47b4d354cc0637e8de1cc77e652c7c88510563111de3",
+        "md5": "bf649d184fe72f0ba57161632924c8b8",
+        "bytes": 103954
+      },
+      {
+        "path": "sections/predictive-search.liquid",
+        "sha256": "1f05232069cb26cdc28b4736ac6e681b863865f30c97740503231be030658575",
+        "md5": "98dc0d6dd53a7d5dec53eb5f14cb8151",
+        "bytes": 13398
+      },
+      {
+        "path": "snippets/card-product.liquid",
+        "sha256": "f2f0fe4c960d6f19c9de87767614fede2b745450f90e9fc6624685f29b61d877",
+        "md5": "8a342a9a4e618729d42afc414f241b8c",
+        "bytes": 34696
+      },
+      {
+        "path": "snippets/cart-disclosure-indicator.liquid",
+        "sha256": "1357a59febcedf2423275ff4543edbd87611b3644521022aeccc638e9e0ca7c4",
+        "md5": "913aa8606b0dc6177f2815d368aaa9c5",
+        "bytes": 4788
+      },
+      {
+        "path": "snippets/cart-drawer.liquid",
+        "sha256": "c1091354befbffa1bc0ed114d978377c436b8dc47e8e9eb348a843845d619c9a",
+        "md5": "14b592922c8c3010c2327491dc51cc07",
+        "bytes": 31329
+      },
+      {
+        "path": "snippets/meta-tags.liquid",
+        "sha256": "ebe74785f747771721b4ab7678f78a1a6e45be3a6c5f600bf04612c01cc2ca52",
+        "md5": "1db48995e80a4f76ce30af839865e3b7",
+        "bytes": 5574
+      },
+      {
+        "path": "snippets/product-disclosures.liquid",
+        "sha256": "1ae664f2a75d0e40600be154582ed1b39caaa6b8b94d1c735edb0d1edaf40a5e",
+        "md5": "6fdab86f6f9355e7fc5748cd42f372d3",
+        "bytes": 4132
+      },
+      {
+        "path": "snippets/product-media-modal.liquid",
+        "sha256": "97744048cb27bb56e323eaeee7307901331cb9f90c145d24cf2cc3861c3565ef",
+        "md5": "2cfb336b4f9f9405208854c376192335",
+        "bytes": 3781
+      },
+      {
+        "path": "snippets/rhino-machine-contents.liquid",
+        "sha256": "daefb3ad5757bf38cbaa0a372a42e8ef0b2283c716387f286c9a9f831d0802fd",
+        "md5": "aceefd9a65962945c488c048bb8f64b8",
+        "bytes": 1930
+      },
+      {
+        "path": "snippets/rhino-machine-contextual.liquid",
+        "sha256": "da07184dd3b1b621d2980b50c2e2aed9d40ce6ec75414d31eb48d0566437fe0b",
+        "md5": "b604c361f1361c1864c0cfd516064d62",
+        "bytes": 1240
+      },
+      {
+        "path": "snippets/rhino-machine-delivery.liquid",
+        "sha256": "1703a28753259ec81943fabafe89d883cf9ef975f12db9c337f66bc926a18ff9",
+        "md5": "9450c6685158572e17b9852cacce24ec",
+        "bytes": 1918
+      },
+      {
+        "path": "snippets/rhino-machine-resources.liquid",
+        "sha256": "0726da0a37eb47db309a4d3f376554b1c3ddf120091393933f1ab244960c7018",
+        "md5": "053ec3f77fd462a0cd23dbec4eb35309",
+        "bytes": 1733
+      },
+      {
+        "path": "snippets/rhino-machine-specifications.liquid",
+        "sha256": "39ed3f9e1968db38d373ebf56c6c96b0ba2c1cefc2a16128a41dcbb0a42f4e74",
+        "md5": "0648a2366e98a7e2abea20a716593517",
+        "bytes": 990
+      },
+      {
+        "path": "snippets/rhino-machine-support.liquid",
+        "sha256": "9226eeee5163438988478d985782a25d6facc8354b4cc67a376009989fe24b1f",
+        "md5": "d1425865df57bf73389132464d360fdd",
+        "bytes": 2044
+      },
+      {
+        "path": "snippets/rhino-product-consumer-route.liquid",
+        "sha256": "62fbf208573b7800de0b30046940eaa1e7a445acb77aa42b32c7e558ee7c9bbd",
+        "md5": "6fbbb09882dccb0f3554aeaf2a405b2e",
+        "bytes": 5318
+      },
+      {
+        "path": "snippets/rhino-product-context-delivery-projection.liquid",
+        "sha256": "273479d996cb7f3dd3112a575734781750964c6e0bce936e4decf816170cf915",
+        "md5": "7fcac2d269f7ec125d6167485bb0afe3",
+        "bytes": 386
+      },
+      {
+        "path": "snippets/rhino-product-description.liquid",
+        "sha256": "fd7af1f35621fd0c393f528cc40eb1c7ff16cfe81517525c2446363ef21b7d0c",
+        "md5": "e6a9da3f6418e44015c5cb97f4f10556",
+        "bytes": 269
+      },
+      {
+        "path": "snippets/rhino-product-fact-projection.liquid",
+        "sha256": "502dbe69a03afa1a248b5eb033d2502855670d22975bc9aa4acccf4949c34431",
+        "md5": "2a39b91bc5f0279b953bcbe11df99152",
+        "bytes": 415
+      },
+      {
+        "path": "snippets/rhino-product-media-eligibility.liquid",
+        "sha256": "4cd2ad166af64c8083b27a5531c52d63eb9a418bba435731e94fd868dec16056",
+        "md5": "41f3f2cdce000ab333b0f2becf992912",
+        "bytes": 183
+      },
+      {
+        "path": "snippets/rhino-product-structured-data.liquid",
+        "sha256": "2ea5c3cc0f467b4ca9e14a4802622adb035b782b4c9a4e2fbc723e8864dcad5c",
+        "md5": "06e902d83631c20dad8f51fe12540e64",
+        "bytes": 1694
+      },
+      {
+        "path": "snippets/rhino-product-support-resources-projection.liquid",
+        "sha256": "70c7226c5376af3693dadc3bb5b377a7096764e201aa0a7d5f44aa3ea8658b25",
+        "md5": "2b33febf1b25c7180720155f82cf0484",
+        "bytes": 451
+      },
+      {
+        "path": "templates/product.machine.json",
+        "sha256": "1527450e3324c0240a93618ea3a0a8371ec94dcbc0efb8d02719d0d290b652af",
+        "md5": "98e5cb615f2fde3497837cd6821f995d",
+        "bytes": 1579
+      },
+      {
+        "path": "snippets/product-inventory.liquid",
+        "sha256": "36de2da4743a045416f800f2638879b1d41c007ed9f825d55530e0a6a61d8fb9",
+        "md5": "d8bc5446eb3b6384f9ac4735579cc391",
+        "bytes": 3399
+      },
+      {
+        "path": "snippets/card-product-placeholder.liquid",
+        "sha256": "b36b75fb04a96ee49d4304e7c834a0b666004729f84aa2080b503f4a5a0fef56",
+        "md5": "23243af28c36bbeedebdec78af55772a",
+        "bytes": 2195
+      },
+      {
+        "path": "snippets/facets-mobile.liquid",
+        "sha256": "ce85b03c129e186c02ea39ca2aefc814ed7a4dd6677fd7cc4e1554e986be7c44",
+        "md5": "d69b498a0088cbf9abc8bbdf52793486",
+        "bytes": 17904
+      },
+      {
+        "path": "snippets/facets.liquid",
+        "sha256": "e17207ee60dcf8331ce74e60d7ec8f89380cb9a10c7537a650b8b66f5e0d8cb6",
+        "md5": "b3c855b73976bbbd567c084fc378ea19",
+        "bytes": 30994
+      }
+    ],
+    "manifestSha256": "2c068978e8210c3c79df35257ce66db4626fb8561df25bf69fb44ef3ad1d0f1e",
+    "pushExit": 0,
+    "pushCount": 1,
+    "parserRecovery": {
+      "initialRunnerExit": 1,
+      "cliExit": 0,
+      "reason": "Strict Theme Check emitted [] before deployment JSON; corrected local parser recovered original retained stdout",
+      "additionalPushes": 0,
+      "recoveredAt": "2026-10-05T19:16:36.897Z"
+    },
+    "created": 17,
+    "updated": 15,
+    "checksumsVerified": 32,
+    "inlineTransportPresent": false,
+    "smokePassed": 16,
+    "smokeFailed": 0,
+    "computedSmokePassed": 2,
+    "consoleErrors": 32,
+    "consoleOwnership": "Shop Pay/provider CSP frame-ancestors plus 403; zero page/Liquid errors",
+    "editorUrl": "https://sz5dnk-nf.myshopify.com/admin/themes/158631198917/editor",
+    "previewRootUrl": "https://sz5dnk-nf.myshopify.com?preview_theme_id=158631198917",
+    "products": [
+      {
+        "title": "BeadMaster 6\"",
+        "url": "https://sz5dnk-nf.myshopify.com/products/beadmaster?preview_theme_id=158631198917&view=machine"
+      },
+      {
+        "title": "EM-1 Machine",
+        "url": "https://sz5dnk-nf.myshopify.com/products/em-1?preview_theme_id=158631198917&view=machine"
+      },
+      {
+        "title": "LapMaster 12\"",
+        "url": "https://sz5dnk-nf.myshopify.com/products/lapmaster-12?preview_theme_id=158631198917&view=machine"
+      },
+      {
+        "title": "LapMaster 18\"",
+        "url": "https://sz5dnk-nf.myshopify.com/products/lapmaster-18?preview_theme_id=158631198917&view=machine"
+      },
+      {
+        "title": "SawMaster 18\"",
+        "url": "https://sz5dnk-nf.myshopify.com/products/sawmaster-18?preview_theme_id=158631198917&view=machine"
+      },
+      {
+        "title": "SawMaster 24\"",
+        "url": "https://sz5dnk-nf.myshopify.com/products/sawmaster-24?preview_theme_id=158631198917&view=machine"
+      },
+      {
+        "title": "ShapeMaster 6\"",
+        "url": "https://sz5dnk-nf.myshopify.com/products/shapemaster?preview_theme_id=158631198917&view=machine"
+      },
+      {
+        "title": "TrimMaster",
+        "url": "https://sz5dnk-nf.myshopify.com/products/trimmaster?preview_theme_id=158631198917&view=machine"
+      }
+    ]
+  },
+  "finalState": {
+    "completedAt": "2026-10-05T19:28:17.802Z",
+    "counts": {
+      "products": 122,
+      "variants": 125,
+      "previewFiles": 426,
+      "productionFiles": 406
+    },
+    "assertions": {
+      "productsUnchanged": true,
+      "variantsUnchanged": true,
+      "previewFilesUnchangedSincePush": true,
+      "productionFilesUnchanged": true,
+      "previewUnpublished": true,
+      "productionIdentityUnchanged": true
+    }
+  },
+  "validations": [
+    {
+      "command": "node scripts/test-e-mut-020-development-execution.js",
+      "exitCode": 0,
+      "result": "52 tests passed"
+    },
+    {
+      "command": "node scripts/validate-epic-e-batch-4a.js --plan=E-MUT-020",
+      "exitCode": 0,
+      "result": "historical deterministic plan valid; current authorization separate"
+    },
+    {
+      "command": "node scripts/validate-epic-e-batch-4a.js",
+      "exitCode": 0,
+      "result": "architecture gates passed"
+    },
+    {
+      "command": "node scripts/test-epic-e-batch-4a.js",
+      "exitCode": 0,
+      "result": "64 tests passed"
+    },
+    {
+      "command": "node scripts/test-epic-e-custom-data-contract.js",
+      "exitCode": 0,
+      "result": "contract tests passed"
+    },
+    {
+      "command": "node scripts/test-epic-e-admin-mutation-plan.js",
+      "exitCode": 0,
+      "result": "normal multi-approval architecture retained"
+    },
+    {
+      "command": "node scripts/validate-e-mut-020-execution-reconciliation.js",
+      "exitCode": 0,
+      "result": "38/38, zero Product values"
+    },
+    {
+      "command": "node scripts/run-epic-e-gates.js --mode=admin --plan=E-MUT-020 --before=docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-before-admin-snapshot.json --snapshot=docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-after-admin-snapshot.json --output=docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-after-drift.json",
+      "exitCode": 0,
+      "result": "admin_reconciled; separate historical CSV/fixture ownership diagnostics retained"
+    },
+    {
+      "command": "RHINO_EPIC_F_CLEANUP_BINDING=docs/qa/evidence/epic-f/release-gate-cleanup-source-binding.json npm run validate:epic-f-batch-f8",
+      "exitCode": 0,
+      "result": "F1-F8 aggregate; 178 local Playwright tests passed"
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exitCode": 0,
+      "result": "register/schema validation passed"
+    },
+    {
+      "command": "node scripts/validate-hardcoded-strings.js",
+      "exitCode": 0,
+      "result": "existing namespace/selector warnings retained"
+    },
+    {
+      "command": "Shopify CLI 4.8.3 theme check --path . --fail-level warning --output json",
+      "exitCode": 0,
+      "result": "[]: zero errors; zero warnings; threshold unchanged"
+    },
+    {
+      "command": "node scripts/validate-epic-f-persistent-preview-readback.js",
+      "exitCode": 0,
+      "result": "32/32 stored checksums exact"
+    },
+    {
+      "command": "node scripts/smoke-epic-f-persistent-development-preview.js",
+      "exitCode": 0,
+      "result": "16/16 persistent mobile/desktop cells"
+    },
+    {
+      "command": "node scripts/smoke-epic-f-persistent-development-preview.js --computed-smoke",
+      "exitCode": 0,
+      "result": "2/2 representative computed-style cells"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "result": "no whitespace errors"
+    }
+  ],
+  "E_MUT_021Readiness": {
+    "definitionPrerequisite": "SATISFIED",
+    "definitionGid": "gid://shopify/MetafieldDefinition/298658201797",
+    "rows": 122,
+    "candidates": 0,
+    "requiredBeforeExecution": [
+      "separate E-MUT-021 execution authorization/approval gate",
+      "fresh compare-before-write"
+    ],
+    "technicalExpertAnswersRequired": false
+  },
+  "evidenceFiles": [
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-execution-authorization.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-before-admin-snapshot.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-after-admin-snapshot.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-read-provenance.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-definition-after-inventory.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-journal.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-rows/",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-reconciliation.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-after-drift.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-final-development-state.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-final-post-smoke-state.json",
+    "docs/qa/evidence/epic-f/2026-10-05-persistent-development-source-binding.json",
+    "docs/qa/evidence/epic-f/2026-10-05-persistent-preview-before.json",
+    "docs/qa/evidence/epic-f/2026-10-05-persistent-preview-push.json",
+    "docs/qa/evidence/epic-f/2026-10-05-persistent-preview-after-push.json",
+    "docs/qa/evidence/epic-f/2026-10-05-persistent-preview-readback.json",
+    "docs/qa/evidence/epic-f/2026-10-05-persistent-preview-password-gate-attempt.json",
+    "docs/qa/evidence/epic-f/2026-10-05-persistent-preview-smoke.json",
+    "docs/qa/evidence/epic-f/2026-10-05-persistent-preview-computed-smoke.json",
+    "docs/qa/evidence/epic-f/2026-10-05-persistent-css-cdn-fidelity.json",
+    "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-final-local-audit.json"
+  ],
+  "toolingFiles": [
+    "scripts/lib/e-mut-020-development-execution.js",
+    "scripts/test-e-mut-020-development-execution.js",
+    "scripts/validate-e-mut-020-execution-reconciliation.js",
+    "scripts/lib/epic-e-custom-data-contract.js",
+    "schemas/epic-e-admin-snapshot.schema.json",
+    "scripts/build-epic-f-persistent-development-binding.js",
+    "scripts/deploy-epic-f-development-preview.js",
+    "scripts/validate-epic-f-persistent-preview-readback.js",
+    "scripts/smoke-epic-f-persistent-development-preview.js",
+    "data/epic-f-current-decisions.json",
+    "data/epic-e-current-execution-status.json",
+    "data/epic-f-current-development-status.json",
+    "docs/project/e-mut-020-execution-and-preview-deployment.md"
+  ]
+}

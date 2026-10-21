@@ -1,3 +1,5 @@
+{%- assign rhino_media_autoplay = true -%}
+{%- if rhino_machine_media -%}{%- assign rhino_media_autoplay = false -%}{%- endif -%}
 {% comment %}
   Renders product media
 
@@ -82,18 +84,18 @@
         {%- if media.host == 'youtube' -%}
           {{
             media
-            | external_video_url: autoplay: true, loop: loop, playlist: media.external_id
+            | external_video_url: autoplay: rhino_media_autoplay, loop: loop, playlist: media.external_id
             | external_video_tag: class: video_class, loading: 'lazy'
           }}
         {%- else -%}
           {{
             media
-            | external_video_url: autoplay: true, loop: loop
+            | external_video_url: autoplay: rhino_media_autoplay, loop: loop
             | external_video_tag: class: video_class, loading: 'lazy'
           }}
         {%- endif -%}
       {%- when 'video' -%}
-        {{ media | media_tag: image_size: '2048x', autoplay: true, loop: loop, controls: true, preload: 'none' }}
+        {{ media | media_tag: image_size: '2048x', autoplay: rhino_media_autoplay, loop: loop, controls: true, preload: 'none' }}
       {%- when 'model' -%}
         {{ media | media_tag: image_size: '2048x', toggleable: true }}
     {%- endcase -%}

@@ -1,3 +1,6 @@
+{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: product -%}{%- endcapture -%}
+{%- assign rhino_legacy_content = false -%}
+{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}{%- assign rhino_legacy_content = true -%}{%- endif -%}
 {%- liquid
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
@@ -14,8 +17,12 @@
 
   if request.page_type == 'product'
     assign og_type = 'product'
+    if rhino_legacy_content == false
+      assign og_title = product.title
+      assign og_description = ''
+    endif
     assign product_social_image = product.featured_media.preview_image | default: product.featured_image
-    if product_social_image
+    if product_social_image and rhino_legacy_content
       assign social_image = product_social_image
       assign product_social_image_alt = product.featured_media.alt | default: product_social_image.alt
       if product_social_image_alt != blank
@@ -86,7 +93,9 @@
 <meta property="og:url" content="{{ og_url }}">
 <meta property="og:title" content="{{ og_title | escape }}">
 <meta property="og:type" content="{{ og_type }}">
+{%- if og_description != blank -%}
 <meta property="og:description" content="{{ og_description | escape }}">
+{%- endif -%}
 
 {%- if social_image_url != blank -%}
   <meta property="og:image" content="{{ social_image_url }}">
@@ -110,7 +119,9 @@
 {%- endif -%}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
+{%- if og_description != blank -%}
 <meta name="twitter:description" content="{{ og_description | escape }}">
+{%- endif -%}
 {%- if social_image_url != blank -%}
   <meta name="twitter:image" content="{{ social_image_url }}">
   <meta name="twitter:image:alt" content="{{ social_image_alt | escape }}">

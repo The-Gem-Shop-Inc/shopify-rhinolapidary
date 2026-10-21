@@ -12,9 +12,9 @@
           "settings": {}
         },
         "sku": {
-          "type": "sku",
+          "type": "custom_liquid",
           "settings": {
-            "text_style": "uppercase"
+            "custom_liquid": "{% render 'rhino-g-product-detail', product: product, section: section %}"
           }
         },
         "inventory": {
@@ -47,6 +47,12 @@
           "type": "description",
           "settings": {}
         },
+        "rhino-g-fit": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'rhino-g-product-fit', product: product, section: section, heading: 'Fits these machines' %}"
+          }
+        },
         "share": {
           "type": "share",
           "settings": {
@@ -63,6 +69,7 @@
         "quantity-selector",
         "buy-buttons",
         "description",
+        "rhino-g-fit",
         "share"
       ],
       "settings": {

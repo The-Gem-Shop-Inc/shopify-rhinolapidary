@@ -1,0 +1,49 @@
+/* Only ordinary G Product pages opt in through the native SKU fragment. */
+product-info:has([data-rhino-g-detail]) .product__modal-opener--image {
+  position: relative;
+}
+
+product-info:has([data-rhino-g-detail]) .product__modal-opener--image .product__media-toggle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* The native updater toggles this class; collapse the whole empty row. */
+[data-rhino-g-detail].hidden,
+rhino-g-fit[hidden] {
+  display: none !important;
+}
+
+[data-rhino-g-sku-value] {
+  user-select: text;
+  overflow-wrap: anywhere;
+}
+
+rhino-g-fit {
+  display: block;
+  margin-block: 2rem;
+}
+
+rhino-g-fit h2 {
+  margin: 0 0 1rem;
+  font-size: calc(var(--font-heading-scale) * 1.8rem);
+}
+
+rhino-g-fit ul {
+  margin: 0;
+  padding-inline-start: 2rem;
+}
+
+rhino-g-fit li + li {
+  margin-block-start: 0.8rem;
+}
+
+rhino-g-fit a {
+  display: inline-block;
+  padding-block: 0.4rem;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.3rem;
+}
+

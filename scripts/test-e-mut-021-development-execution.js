@@ -1,0 +1,20 @@
+'use strict';
+const assert=require('node:assert/strict');const lib=require('./lib/e-mut-021-development-execution');let passed=0;const test=f=>{f();passed++;};const bundle=lib.authorize(),auth=lib.read(lib.AUTH),clone=x=>JSON.parse(JSON.stringify(x));
+test(()=>assert.deepEqual(lib.distribution(bundle.rows),lib.EXPECTED));
+for(const [key,value]of [['planId','E-MUT-020'],['inputSha256','wrong'],['approvedRowCount',121],['approvalMode','skipApprovals'],['definitionGid','wrong'],['compareAndSetAbsentRequired',false],['maximumBatchSize',26],['historicalApprovalsRewritten',true]])test(()=>{const a=clone(auth);a[key]=value;assert.throws(()=>lib.authorize(a,bundle));});
+test(()=>{const b=clone(bundle);b.rows[0].desired='machine';assert.throws(()=>lib.authorize(auth,b));});
+test(()=>{const a=clone(auth);a.authorizedMutations.push('productUpdate');assert.throws(()=>lib.authorize(a,bundle));});
+for(const row of bundle.rows){test(()=>{const p={id:row.targetGid,productClass:null};assert.equal(lib.classify(row,p).state,'ABSENT');const input=lib.mutationInput(row,p,bundle);assert.deepEqual(Object.keys(input).sort(),['compareDigest','key','namespace','ownerId','type','value']);assert.equal(input.compareDigest,null);assert.equal(input.value,row.desired);});}
+const row=bundle.rows[0],m={id:'gid://shopify/Metafield/123',namespace:'rhino',key:'product_class',type:'single_line_text_field',value:row.desired,jsonValue:row.desired,definition:{id:lib.DEFINITION},owner:{id:row.targetGid}};
+test(()=>assert.equal(lib.classify(row,{id:row.targetGid,productClass:m}).state,'EXACT_MATCH'));
+for(const change of [{value:'machine',jsonValue:'machine'},{type:'json'},{definition:{id:'wrong'}},{owner:{id:'gid://shopify/Product/123'}}])test(()=>assert.equal(lib.classify(row,{id:row.targetGid,productClass:{...m,...change}}).state,'CONFLICT'));
+test(()=>assert.throws(()=>lib.mutationInput(row,{id:row.targetGid,productClass:m},bundle)));
+test(()=>assert.throws(()=>lib.classify(row,null)));
+test(()=>assert.throws(()=>lib.classify(row,{id:'gid://shopify/Product/123'})));
+test(()=>assert.throws(()=>lib.mutationInput({...row,desired:'machine'},{id:row.targetGid,productClass:null},bundle)));
+test(()=>assert.equal(lib.classify(row,{id:row.targetGid,metafields:{nodes:[m,m]}}).state,'CONFLICT'));
+const input=lib.mutationInput(row,{id:row.targetGid,productClass:null},bundle),response={data:{metafieldsSet:{metafields:[m],userErrors:[]}}};
+test(()=>assert.equal(lib.verifyMutation(response,[input]).length,1));test(()=>assert.throws(()=>lib.verifyMutation({errors:[{message:'bad'}]},[input])));test(()=>assert.throws(()=>lib.verifyMutation({data:{metafieldsSet:{metafields:[],userErrors:[{message:'stale'}]}}},[input])));
+for(const key of ['namespace','key','type','value'])test(()=>{const r=clone(response);r.data.metafieldsSet.metafields[0][key]='wrong';assert.throws(()=>lib.verifyMutation(r,[input]));});
+test(()=>{const r=clone(response);r.data.metafieldsSet.metafields[0].definition.id='wrong';assert.throws(()=>lib.verifyMutation(r,[input]));});
+console.log(JSON.stringify({passed,failed:0,scope:'E-MUT-021 exact 122-row delegated development authorization; product_class only; absent CAS; no remote calls'}));

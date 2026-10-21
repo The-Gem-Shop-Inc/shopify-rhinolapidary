@@ -1,3 +1,5 @@
+{%- capture rhino_consumer_route -%}{%- render 'rhino-product-consumer-route', product: product -%}{%- endcapture -%}
+{%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}
 {%- assign disclosure_surface = surface | default: 'product_page' -%}
 {%- assign disclosures = product.metafields.shopify.disclosure.value -%}
 {%- assign summary_html = '' -%}
@@ -105,4 +107,6 @@
   </div>
 
   <script src="{{ 'disclosures.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 {%- endif -%}

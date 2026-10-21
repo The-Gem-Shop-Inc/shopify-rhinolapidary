@@ -1,0 +1,114 @@
+{
+  "completedAt": "2026-10-05T20:10:36.673Z",
+  "results": [
+    {
+      "command": "node scripts/validate-epic-e-batch-2b.js",
+      "exit": 0,
+      "output": "Epic E Batch 2B validation passed: 122 approved classifications, 121 governed SKU proposals, 2 explicit SKU blockers, and 22 preserved configuration decisions.\n"
+    },
+    {
+      "command": "node scripts/validate-epic-e-batch-4a.js --plan=E-MUT-021",
+      "exit": 0,
+      "output": "Batch 4A validation passed: 1 independent E-PBI-019 plan(s), bounded domain checked; execution unauthorized.\n"
+    },
+    {
+      "command": "node scripts/test-epic-e-admin-mutation-plan.js",
+      "exit": 0,
+      "output": "Epic E mutation-plan negative tests passed: missing safety metadata, unsplit E-PBI-022, and approval without GO are rejected.\n"
+    },
+    {
+      "command": "node scripts/test-epic-e-batch-4a.js",
+      "exit": 0,
+      "output": "Batch 4A: 64 positive/adversarial checks passed; all migration and network-write execution remains disabled.\n"
+    },
+    {
+      "command": "node scripts/validate-epic-f-consumer.js",
+      "exit": 0,
+      "output": "F1 consumer valid: 11 machines, zero grants, shell only; live fact eligibility remains blocked.\n"
+    },
+    {
+      "command": "node scripts/test-epic-f-consumer.js",
+      "exit": 0,
+      "output": "F1 consumer adversarial matrix passed: 22 cases; positive fixtures cannot generate customer artifacts.\n"
+    },
+    {
+      "command": "node scripts/validate-epic-f-machine-template-rollout-plan.js",
+      "exit": 0,
+      "output": "Rollout plan ready: e69138cf06cdab34f7560058d156dfe0f4f042cc94d395582dd55fde1cfd7146; all 11 assessed; eight conditional future candidates; zero eligible/executable; rollback exact; both GO absent; publication forbidden.\n"
+    },
+    {
+      "command": "node scripts/test-epic-f-machine-template-rollout-plan.js",
+      "exit": 0,
+      "output": "rollout-tests: 67 checks passed; events=0; mutations=0\n"
+    },
+    {
+      "command": "node scripts/validate-epic-f-machine-page-readiness.js",
+      "exit": 1,
+      "output": "F8 runtime delta forbidden: sections/main-product.liquid\nF8 runtime delta forbidden: snippets/card-product.liquid\nF8 runtime delta forbidden: snippets/facets.liquid\nF8 new runtime file forbidden: snippets/card-product-placeholder.liquid\nF8 new runtime file forbidden: snippets/facets-mobile.liquid\nF8 new runtime file forbidden: snippets/product-inventory.liquid\nSource-bound readiness mismatch: repositoryAggregatePassed\n"
+    },
+    {
+      "command": "node scripts/validate-json-registers.js",
+      "exit": 0,
+      "output": "Epic F machine-page repository readiness: valid\nepic-f-machine-measurement-contract: valid\nepic-f-machine-template-rollout-policy: valid\nepic-f-machine-template-rollout-plan: valid\nF7 historical before-read fixture: valid\nEpic F contextual/delivery architecture contract: valid\nEpic F support/resources architecture contract: valid\nEpic F specification/contents presentation roles: valid\nEpic F suppressed media release: valid\nEpic F synthetic gallery fixtures: valid\nEpic F future content cleanup: valid\nEpic F consumer release: valid\nEpic F consumer fixtures: valid\nepic-e-batch-3b-contracts: valid\nepic-e-relationship-matrix: valid\nepic-e-measurement-evidence: valid\nepic-e-component-evidence: valid\nepic-e-resource-catalog: valid\nepic-e-technical-field-evidence: valid\nepic-e-batch-3b-decision-packet: valid\nepic-e-batch-3b-extracted-evidence: valid\nadmin dependency register: valid\nstorefront fixtures: valid\nproduct data rules: valid\ncollection filter spec: valid\nsearch discovery desired state: valid\nmetafield and metaobject definitions: valid\nnavigation spec: valid\nhomepage section outcomes: valid\nhomepage content claims map: valid\nglobal navigation IA: valid\nfooter support resources: valid\nlocalization market decision: valid\nEpic C navigation measurement plan: valid\nEpic D homepage measurement plan: valid\nEpic D homepage NFR readiness: valid\ndesign token inventory: valid\nstorefront event contracts: valid\nstock asset ledger: valid\nmedia manifest: valid\nstock Trade remnants: valid\nhardcoded string allowlist: valid\ntheme environments: valid\nlaunch fixture ownership: valid\nrelease risk register: valid\nEpic E source governance: valid\nEpic E technical source index: valid\nEpic E gap and conflict register: valid\nEpic E Admin mutation-plan template: valid\nEpic E product classification: valid\nEpic E product identity: valid\nRhino commerce SKU registry: valid\nEpic E commercial configuration candidates: valid\nEpic E Product Owner decisions: valid\nEpic E conflict reference index: valid\nEpic E Vendor semantic audit: valid\nEpic E variant architecture: valid\nEpic E custom-data definition diff: valid\n"
+    },
+    {
+      "command": "node scripts/validate-hardcoded-strings.js",
+      "exit": 0,
+      "output": "Hardcoded string validation warnings:\n- rhino-js-namespace-version: allowlisted string no longer found in assets/rhino-storefront.js\n- assets/rhino-storefront.js: possible hardcoded customer-facing string \".shopify-policy__body\"\n- assets/rhino-storefront.js: possible hardcoded customer-facing string \"[style*=\"color\" i]\"\n- assets/rhino-storefront.js: possible hardcoded customer-facing string \"attributes\"\n- assets/rhino-storefront.js: possible hardcoded customer-facing string \"DOMContentLoaded\"\nHardcoded string validation passed with 1 allowlist entries.\n"
+    },
+    {
+      "command": "RHINO_EPIC_F_CLEANUP_BINDING=docs/qa/evidence/epic-f/release-gate-cleanup-source-binding.json node scripts/validate-epic-f-machine-page-readiness.js",
+      "exit": 0,
+      "output": "Passed with established cleanup binding; initial unbound invocation exit1 retained above."
+    },
+    {
+      "command": "node scripts/test-e-mut-021-development-execution.js",
+      "exit": 0,
+      "passed": 151
+    },
+    {
+      "command": "node scripts/test-e-mut-021-reconciliation.js",
+      "exit": 0,
+      "passed": 11
+    },
+    {
+      "command": "node scripts/validate-e-mut-021-execution-reconciliation.js",
+      "exit": 0,
+      "reconciled": 122
+    },
+    {
+      "command": "node scripts/run-epic-e-gates.js --mode=admin --plan=E-MUT-021 --before=docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-before-admin-snapshot.json --snapshot=docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-after-admin-snapshot.json --output=docs/qa/evidence/epic-e/E-MUT-021-2026-10-05-after-drift.json",
+      "exit": 0
+    },
+    {
+      "command": "node scripts/refresh-epic-f-current-shopify-eligibility.js",
+      "exit": 0
+    },
+    {
+      "command": "node scripts/test-epic-f-current-shopify-eligibility.js",
+      "exit": 0,
+      "passed": 68
+    },
+    {
+      "command": "node scripts/smoke-epic-f-persistent-development-preview.js --classification-smoke",
+      "exit": 0,
+      "passed": 8
+    },
+    {
+      "command": "Shopify CLI 4.8.3 theme check --path . --fail-level warning --output json",
+      "exit": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0
+    }
+  ],
+  "historicalValidatorsPreserved": true,
+  "initialLocalCorrections": [
+    "Snapshot metadata for empty Variant/Collection definitions corrected to schema-required zero_definitions, then snapshot validator exit0",
+    "Reconciliation correctly scopes 38 approved E-MUT-020 rows within the 42-row registry, leaving four deferred definition contracts unchanged",
+    "F8 historical validator requires the established cleanup source binding; bound invocation passed"
+  ]
+}

@@ -29,9 +29,14 @@ function assertReadOnlyOperations(operations=OPERATIONS) {
   for (const [name,query] of Object.entries(operations)) if (!/^\s*query\b/.test(query) || /\bmutation\b/i.test(query)) throw new Error(`${name} is not an approved read-only query`);
 }
 
-async function runAdminAudit({shopDomain,accessToken,fetchImpl=global.fetch,now=()=>new Date(),only,apiVersion=API_VERSION,operational=false}) {
+async function runAdminAudit({shopDomain,accessToken,fetchImpl=global.fetch,now=()=>new Date(),only,apiVersion=API_VERSION,operational=false,operationOverrides={},pageSize}) {
   const enrichment=operational?require('./epic-e-operational-audit'):{OPERATIONAL_OPERATIONS:{},OPERATIONAL_ROOTS:{}};
   const operations={...OPERATIONS,...enrichment.OPERATIONAL_OPERATIONS};
+  for (const [name,query] of Object.entries(operationOverrides)) {
+    if (!Object.hasOwn(operations,name)) throw new Error(`Unknown dataset override ${name}`);
+    operations[name]=query;
+  }
+  if (pageSize!==undefined && (!Number.isInteger(pageSize)||pageSize<1||pageSize>250)) throw new Error('Invalid audit page size');
   const rootFields={...ROOT_FIELDS,...enrichment.OPERATIONAL_ROOTS};
   only=only||Object.keys(operations);
   assertReadOnlyOperations(operations);
@@ -48,7 +53,7 @@ async function runAdminAudit({shopDomain,accessToken,fetchImpl=global.fetch,now=
     do {
       let response;
       try {
-        response=await fetchImpl(`https://${normalizedShop}/admin/api/${apiVersion}/graphql.json`,{method:'POST',headers:{'Content-Type':'application/json','X-Shopify-Access-Token':accessToken},body:JSON.stringify({query:operations[name],variables:{first:operational?1:PAGE_SIZE,after}})});
+        response=await fetchImpl(`https://${normalizedShop}/admin/api/${apiVersion}/graphql.json`,{method:'POST',headers:{'Content-Type':'application/json','X-Shopify-Access-Token':accessToken},body:JSON.stringify({query:operations[name],variables:{first:pageSize??(operational?1:PAGE_SIZE),after}})});
       } catch (error) {
         snapshot.errors.push({dataset:name,kind:'transport',message:safeMessage(error.message),path:null}); dataset.queryStatus='query_failure'; break;
       }

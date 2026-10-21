@@ -87,7 +87,7 @@ function validatePlanBundle(plan,bundle,context){
   if(row.domain==='commerce_sku'&&!context.sku.allocations.some(a=>a.variantGid===row.targetGid&&a.sku===row.desired&&a.issuanceState==='approved'))errors.push('proposed SKU cannot become approved migration');
   if(row.domain==='product_class'&&!context.classification.mappings.some(m=>m.productGid===row.targetGid&&m.classDecisionState==='approved'&&m.proposedProductClass===row.desired&&m.approvalDecisionId===row.approvalDecisionId))errors.push('class approval mismatch');
   if(row.domain==='category'&&!context.decisions.decisions.taxonomy.productDecisions.some(m=>m.productGid===row.targetGid&&m.taxonomyCategoryId===row.desired&&m.decisionState==='approved'))errors.push('Category candidate has no exact approval');
-  if(!['definitions','product_class','category'].includes(row.domain))errors.push('domain has no currently approved population input adapter; owner closure required');
+  if(!['definitions','product_class','category'].includes(row.domain)&&!require('./epic-e-owner-response-adapter').ownerRowApproved(row,context.ownerResponses))errors.push('domain has no currently approved population input adapter; owner closure required');
   if(row.domain==='shipping_weight'&&row.field!=='ProductVariant.inventoryItem.measurement.weight')errors.push('native shipping weight cannot become metafield');
   if(!bundle.rollback?.some(r=>r.rowId===row.rowId&&digest(r.restore)===digest(row.before)))errors.push('row rollback missing or differs from before state');
  }

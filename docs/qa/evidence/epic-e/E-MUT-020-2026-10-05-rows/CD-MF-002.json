@@ -1,0 +1,85 @@
+{
+  "rowId": "CD-MF-002",
+  "intendedIdentity": "PRODUCT:rhino.machine_family",
+  "startedAt": "2026-10-05T19:02:12.262Z",
+  "beforeState": "ABSENT",
+  "before": [],
+  "input": {
+    "ownerType": "PRODUCT",
+    "namespace": "rhino",
+    "key": "machine_family",
+    "name": "Machine family",
+    "description": "Reference from a Product to one governed reusable machine-family record; family membership is organizational context, not Product identity or compatibility proof.",
+    "type": "metaobject_reference",
+    "access": {
+      "storefront": "PUBLIC_READ"
+    },
+    "validations": [
+      {
+        "name": "metaobject_definition_id",
+        "value": "gid://shopify/MetaobjectDefinition/25406406853"
+      }
+    ]
+  },
+  "operation": "metafieldDefinitionCreate",
+  "result": "created",
+  "returnedGid": "gid://shopify/MetafieldDefinition/298658234565",
+  "nextRowId": "CD-MF-010",
+  "response": {
+    "data": {
+      "metafieldDefinitionCreate": {
+        "createdDefinition": {
+          "id": "gid://shopify/MetafieldDefinition/298658234565",
+          "ownerType": "PRODUCT",
+          "namespace": "rhino",
+          "key": "machine_family",
+          "name": "Machine family",
+          "description": "Reference from a Product to one governed reusable machine-family record; family membership is organizational context, not Product identity or compatibility proof.",
+          "type": {
+            "name": "metaobject_reference",
+            "category": "REFERENCE"
+          },
+          "validations": [
+            {
+              "name": "metaobject_definition_id",
+              "value": "gid://shopify/MetaobjectDefinition/25406406853"
+            }
+          ],
+          "access": {
+            "admin": "PUBLIC_READ_WRITE",
+            "storefront": "PUBLIC_READ",
+            "customerAccount": "NONE"
+          },
+          "metafieldsCount": 0
+        },
+        "userErrors": []
+      }
+    }
+  },
+  "afterState": {
+    "id": "gid://shopify/MetafieldDefinition/298658234565",
+    "ownerType": "PRODUCT",
+    "namespace": "rhino",
+    "key": "machine_family",
+    "name": "Machine family",
+    "description": "Reference from a Product to one governed reusable machine-family record; family membership is organizational context, not Product identity or compatibility proof.",
+    "type": {
+      "name": "metaobject_reference",
+      "category": "REFERENCE"
+    },
+    "validations": [
+      {
+        "name": "metaobject_definition_id",
+        "value": "gid://shopify/MetaobjectDefinition/25406406853"
+      }
+    ],
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ",
+      "customerAccount": "NONE"
+    },
+    "metafieldsCount": 0
+  },
+  "differences": [],
+  "completedAt": "2026-10-05T19:02:12.943Z"
+}

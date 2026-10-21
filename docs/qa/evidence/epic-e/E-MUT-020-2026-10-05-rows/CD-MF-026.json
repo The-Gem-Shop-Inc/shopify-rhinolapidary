@@ -1,0 +1,85 @@
+{
+  "rowId": "CD-MF-026",
+  "intendedIdentity": "PRODUCT:rhino.water_system_type",
+  "startedAt": "2026-10-05T19:02:38.281Z",
+  "beforeState": "ABSENT",
+  "before": [],
+  "input": {
+    "ownerType": "PRODUCT",
+    "namespace": "rhino",
+    "key": "water_system_type",
+    "name": "water system type",
+    "description": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines.",
+    "type": "single_line_text_field",
+    "access": {
+      "storefront": "PUBLIC_READ"
+    },
+    "validations": [
+      {
+        "name": "choices",
+        "value": "[\"recirculating_filtered\"]"
+      }
+    ]
+  },
+  "operation": "metafieldDefinitionCreate",
+  "result": "created",
+  "returnedGid": "gid://shopify/MetafieldDefinition/298660069573",
+  "nextRowId": "CD-MF-027",
+  "response": {
+    "data": {
+      "metafieldDefinitionCreate": {
+        "createdDefinition": {
+          "id": "gid://shopify/MetafieldDefinition/298660069573",
+          "ownerType": "PRODUCT",
+          "namespace": "rhino",
+          "key": "water_system_type",
+          "name": "water system type",
+          "description": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines.",
+          "type": {
+            "name": "single_line_text_field",
+            "category": "TEXT"
+          },
+          "validations": [
+            {
+              "name": "choices",
+              "value": "[\"recirculating_filtered\"]"
+            }
+          ],
+          "access": {
+            "admin": "PUBLIC_READ_WRITE",
+            "storefront": "PUBLIC_READ",
+            "customerAccount": "NONE"
+          },
+          "metafieldsCount": 0
+        },
+        "userErrors": []
+      }
+    }
+  },
+  "afterState": {
+    "id": "gid://shopify/MetafieldDefinition/298660069573",
+    "ownerType": "PRODUCT",
+    "namespace": "rhino",
+    "key": "water_system_type",
+    "name": "water system type",
+    "description": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines.",
+    "type": {
+      "name": "single_line_text_field",
+      "category": "TEXT"
+    },
+    "validations": [
+      {
+        "name": "choices",
+        "value": "[\"recirculating_filtered\"]"
+      }
+    ],
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ",
+      "customerAccount": "NONE"
+    },
+    "metafieldsCount": 0
+  },
+  "differences": [],
+  "completedAt": "2026-10-05T19:02:38.984Z"
+}

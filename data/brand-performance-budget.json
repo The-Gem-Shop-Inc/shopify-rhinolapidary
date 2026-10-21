@@ -137,5 +137,84 @@
       "fallback": "/policies/privacy-policy",
       "required": true
     }
-  ]
+  ],
+  "machineProduct": {
+    "policySource": "docs/qa/rhino-brand-media-performance-budget.md",
+    "thresholds": {
+      "lcpMs": [
+        "runtime.lcpMs"
+      ],
+      "cls": [
+        "runtime.cls"
+      ],
+      "tbtMs": [
+        "runtime.tbtMs"
+      ],
+      "mobileInitialTransferBytes": [
+        "homepage.runtime.mobileInitialTransferBytes",
+        "globalChrome.runtime.totalTransferBytes"
+      ],
+      "desktopInitialTransferBytes": [
+        "homepage.runtime.desktopInitialTransferBytes",
+        "globalChrome.runtime.totalTransferBytes"
+      ],
+      "mobileImageBytes": [
+        "runtime.mobileInitialImageBytes"
+      ],
+      "desktopImageBytes": [
+        "runtime.desktopInitialImageBytes"
+      ],
+      "mobileMaxImageBytes": [
+        "runtime.mobileMaxImageBytes"
+      ],
+      "desktopMaxImageBytes": [
+        "runtime.desktopMaxImageBytes"
+      ],
+      "mobileFirstScreenMediaBytes": [
+        "homepage.runtime.mobileFirstScreenMediaBytes"
+      ],
+      "desktopFirstScreenMediaBytes": [
+        "homepage.runtime.desktopFirstScreenMediaBytes"
+      ],
+      "mobileRequestCount": [
+        "homepage.runtime.mobileRequestCount",
+        "globalChrome.runtime.mobileMaxResourceCount"
+      ],
+      "desktopRequestCount": [
+        "homepage.runtime.desktopRequestCount",
+        "globalChrome.runtime.desktopMaxResourceCount"
+      ],
+      "immediateVideoIframeCount": [
+        "runtime.immediateVideoIframeCount"
+      ],
+      "autoplayMediaCount": [
+        "runtime.autoplayMediaCount"
+      ],
+      "thirdPartyScriptHostCount": [
+        "runtime.thirdPartyScriptHostCount"
+      ],
+      "synchronousThirdPartyScriptCount": [
+        "static.synchronousThirdPartyScriptCount"
+      ]
+    },
+    "derivation": "Minimum of referenced approved limits; no threshold exception.",
+    "localPolicy": {
+      "environment": "local-fixture",
+      "runs": 1,
+      "throttling": "none-local-fixture",
+      "cache": "cold-no-store",
+      "settleMsSource": "runtime.settleMs",
+      "releaseCertification": false
+    },
+    "releasePolicy": {
+      "minimumMobileRuns": 3,
+      "source": "docs/qa/rhino-brand-media-performance-budget.md",
+      "throttling": "Slow 4G or explicitly approved mobile profile; record exact parameters",
+      "cache": "record cold and warm where supported",
+      "settleMsSource": "runtime.settleMs",
+      "aggregation": "median",
+      "actualThemeIdentityRequired": true,
+      "authorizationRequired": true
+    }
+  }
 }

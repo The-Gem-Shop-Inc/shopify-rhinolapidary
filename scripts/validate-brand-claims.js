@@ -11,6 +11,7 @@ const REGISTER_PATH = path.join(
 );
 
 const CUSTOMER_FACING_DIRECTORIES = [
+    'assets',
     'layout',
     'sections',
     'snippets',
@@ -24,6 +25,7 @@ const GOVERNED_CLAIM_SOURCE_FILES = [
     'data/footer-support-resources.json',
     'data/localization-market-decision.json',
     'data/homepage-content-claims-map.json',
+    'tests/fixtures/epic-f-consumer.json',
 ];
 
 const CUSTOMER_FACING_EXTENSIONS = new Set([
@@ -233,6 +235,19 @@ function validateSourceText(relativePath, sourceText, register) {
     return violations;
 }
 
+// Scan every textual representation, including hidden DOM, attributes, encoded
+// HTML and JSON-LD strings. Existing claim rules remain unchanged.
+function validateRenderedText(relativePath, sourceText, register = readRegister()) {
+    const decoded = sourceText
+        .replace(/\\u([0-9a-f]{4})/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+        .replace(/&#(?:x([0-9a-f]+)|(\d+));/gi, (_, hex, dec) => String.fromCodePoint(parseInt(hex || dec, hex ? 16 : 10)))
+        .replace(/&(?:nbsp|amp|quot|lt|gt);/gi, entity => ({ '&nbsp;': ' ', '&amp;': '&', '&quot;': '"', '&lt;': '<', '&gt;': '>' })[entity.toLowerCase()]);
+    return [...new Set([
+        ...validateSourceText(relativePath, decoded, register),
+        ...validateSourceText(relativePath, decoded.replace(/<[^>]*>/g, ''), register),
+    ])];
+}
+
 function collectScannedFiles() {
     const directoryFiles = CUSTOMER_FACING_DIRECTORIES
         .flatMap((directory) => (
@@ -312,4 +327,5 @@ module.exports = {
     validateBrandClaims,
     validateRegisterShape,
     validateSourceText,
+    validateRenderedText,
 };

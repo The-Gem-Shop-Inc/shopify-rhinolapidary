@@ -5,6 +5,20 @@ const Ajv2020 = require('ajv/dist/2020');
 const ROOT = process.cwd();
 
 const targets = [
+    { name: 'Epic G isolated foundation fixture', schemaPath: 'schemas/epic-g-foundation-fixture.schema.json', dataPath: 'tests/fixtures/epic-g-foundation.json' },
+    { name: 'Epic F machine-page repository readiness', schemaPath: 'schemas/epic-f-machine-page-readiness.schema.json', dataPath: 'data/epic-f-machine-page-readiness.json' },
+    { name: 'epic-f-machine-measurement-contract', schemaPath: 'schemas/epic-f-machine-measurement-contract.schema.json', dataPath: 'data/epic-f-machine-measurement-contract.json' },
+    { name: 'epic-f-machine-template-rollout-policy', schemaPath: 'schemas/epic-f-machine-template-rollout-policy.schema.json', dataPath: 'data/epic-f-machine-template-rollout-policy.json' },
+    { name: 'epic-f-machine-template-rollout-plan', schemaPath: 'schemas/epic-f-machine-template-rollout-plan.schema.json', dataPath: 'data/epic-f-machine-template-rollout-plan.json' },
+    { name: 'F7 historical before-read fixture', schemaPath: 'schemas/epic-f-machine-template-before.schema.json', dataPath: 'tests/fixtures/epic-f-machine-template-before.json' },
+    { name: 'Epic F contextual/delivery architecture contract', schemaPath: 'schemas/epic-f-context-delivery-contract.schema.json', dataPath: 'data/epic-f-context-delivery-contract.json' },
+    { name: 'Epic F support/resources architecture contract', schemaPath: 'schemas/epic-f-support-resources-contract.schema.json', dataPath: 'data/epic-f-support-resources-contract.json' },
+    { name: 'Epic F specification/contents presentation roles', schemaPath: 'schemas/epic-f-field-roles.schema.json', dataPath: 'data/epic-f-field-roles.json' },
+    { name: 'Epic F suppressed media release', schemaPath: 'schemas/epic-f-media-release.schema.json', dataPath: 'data/epic-f-media-release.json' },
+    { name: 'Epic F synthetic gallery fixtures', schemaPath: 'schemas/epic-f-gallery-fixtures.schema.json', dataPath: 'tests/fixtures/epic-f-gallery.json' },
+    { name: 'Epic F future content cleanup', schemaPath: 'schemas/epic-f-content-cleanup-plan.schema.json', dataPath: 'data/epic-f-content-cleanup-plan.json' },
+    { name: 'Epic F consumer release', schemaPath: 'schemas/epic-f-consumer-release.schema.json', dataPath: 'data/epic-f-consumer-release.json' },
+    { name: 'Epic F consumer fixtures', schemaPath: 'schemas/epic-f-consumer-fixtures.schema.json', dataPath: 'tests/fixtures/epic-f-consumer.json' },
     ...[
         'epic-e-batch-3b-contracts', 'epic-e-relationship-matrix',
         'epic-e-measurement-evidence', 'epic-e-component-evidence',

@@ -47,6 +47,24 @@
           "notes": "Admin menu parent uses COLLECTIONS /collections, but Trade renders nested parents as disclosure controls; child links carry the route contract.",
           "items": [
             {
+              "id": "primary-catalog-g-entry",
+              "label": "Parts and supplies",
+              "status": "verified_current",
+              "owner": "Epic G / G-PBI-005",
+              "targetPath": "/collections/all",
+              "source": "docs/qa/evidence/epic-g/g3b-2026-10-19/deployed-browser.json",
+              "sourceType": "theme_route",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "routeContractId": "g-catalog-entry",
+              "expectedInRenderedChrome": true,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Preview 158631198917 only: native mega menu and mobile drawer child. Actual keyboard arrival verified separately at both widths. MAIN and Shopify Admin menus unchanged."
+            },
+            {
               "id": "primary-catalog-saws",
               "label": "Saws",
               "status": "verified_current",
@@ -609,7 +627,7 @@
             },
             {
               "id": "mega-support-shipping",
-      "label": "Shipping policy",
+              "label": "Shipping policy",
               "status": "blocked",
               "owner": "Unresolved operations, legal, content, and Shopify Admin owners",
               "targetPath": null,
@@ -1689,6 +1707,67 @@
         }
       ],
       "notes": "These items preserve required route categories and future destinations without inventing handles or URLs."
+    },
+    {
+      "id": "g-catalog-role-directory",
+      "label": "Catalog Product groups (in-page)",
+      "owner": "Epic G / G-PBI-005",
+      "sourceType": "theme_route",
+      "adminHandle": null,
+      "items": [
+        {
+          "id": "g-catalog-replacement-part",
+          "label": "Replacement Parts",
+          "status": "verified_current",
+          "owner": "Epic G / G-PBI-005",
+          "targetPath": "/collections/all#g-replacement-parts",
+          "source": "G3B collection index; docs/qa/evidence/epic-g/g3b-2026-10-19/deployed-browser.json",
+          "sourceType": "theme_route",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "routeContractId": "g-catalog-replacement-part",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "utility"
+          ],
+          "notes": "G3B actual preview verified. Preview 158631198917 only; MAIN 158579622085 unchanged and does not have the role fragments. Existing Catalog entry retained. No Shopify Admin menu or homepage edit."
+        },
+        {
+          "id": "g-catalog-consumable",
+          "label": "Consumables",
+          "status": "verified_current",
+          "owner": "Epic G / G-PBI-005",
+          "targetPath": "/collections/all#g-consumables",
+          "source": "G3B collection index; docs/qa/evidence/epic-g/g3b-2026-10-19/deployed-browser.json",
+          "sourceType": "theme_route",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "routeContractId": "g-catalog-consumable",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "utility"
+          ],
+          "notes": "G3B actual preview verified. Preview 158631198917 only; MAIN 158579622085 unchanged and does not have the role fragments. Existing Catalog entry retained. No Shopify Admin menu or homepage edit."
+        },
+        {
+          "id": "g-catalog-accessory",
+          "label": "Accessories",
+          "status": "verified_current",
+          "owner": "Epic G / G-PBI-005",
+          "targetPath": "/collections/all#g-accessories",
+          "source": "G3B collection index; docs/qa/evidence/epic-g/g3b-2026-10-19/deployed-browser.json",
+          "sourceType": "theme_route",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "routeContractId": "g-catalog-accessory",
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "utility"
+          ],
+          "notes": "G3B actual preview verified. Preview 158631198917 only; MAIN 158579622085 unchanged and does not have the role fragments. Existing Catalog entry retained. No Shopify Admin menu or homepage edit."
+        }
+      ],
+      "notes": "In-page role choices on the existing native catalog, not new global menu items. Historical unavailable aggregate collection routes remain unavailable."
     }
   ],
   "unresolvedDependencies": [

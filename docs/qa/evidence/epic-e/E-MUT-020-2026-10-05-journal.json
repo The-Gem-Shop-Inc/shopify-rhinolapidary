@@ -1,0 +1,2895 @@
+{
+  "planId": "E-MUT-020",
+  "status": "EXECUTED_AND_RECONCILED",
+  "inputSha256": "c211f7c6258eedea6eed7d0ce64bb9272c70160f91d11b08e770474f2cd43edb",
+  "attempts": [
+    {
+      "startedAt": "2026-10-05T18:59:12.929Z",
+      "rowId": "CD-MO-001",
+      "beforeState": "ABSENT",
+      "operation": "metaobjectDefinitionCreate",
+      "input": {
+        "type": "machine_family",
+        "name": "Machine family",
+        "description": "Reusable governed Rhino machine-family entity referenced by Products and potentially by later approved support-resource architecture.",
+        "displayNameKey": "name",
+        "access": {
+          "admin": "MERCHANT_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "capabilities": {
+          "publishable": {
+            "enabled": false
+          },
+          "translatable": {
+            "enabled": true
+          }
+        },
+        "fieldDefinitions": [
+          {
+            "key": "name",
+            "name": "Name",
+            "description": "Approved customer-facing machine-family name.",
+            "required": true,
+            "type": "single_line_text_field",
+            "validations": []
+          },
+          {
+            "key": "description",
+            "name": "Description",
+            "description": "Approved family-level description without unresolved technical or compatibility claims.",
+            "required": false,
+            "type": "multi_line_text_field",
+            "validations": []
+          }
+        ]
+      },
+      "response": {
+        "data": {
+          "metaobjectDefinitionCreate": {
+            "metaobjectDefinition": null,
+            "userErrors": [
+              {
+                "field": [
+                  "definition",
+                  "access",
+                  "admin"
+                ],
+                "message": "Admin access can only be specified on metaobject definitions that have an app-reserved type.",
+                "code": "ADMIN_ACCESS_INPUT_NOT_ALLOWED"
+              }
+            ]
+          }
+        },
+        "error_code": "INVALID_ARGUMENT"
+      },
+      "result": "failed",
+      "returnedGid": null,
+      "diagnosis": "ADMIN_ACCESS_INPUT_NOT_ALLOWED: merchant-owned identity; omit app-only access.admin and customerAccount inputs; require returned Admin PUBLIC_READ_WRITE, customerAccount NONE; no identity/type/validation/storefront change"
+    },
+    {
+      "rowId": "CD-MO-001",
+      "startedAt": "2026-10-05T19:01:05.595Z",
+      "beforeState": "ABSENT",
+      "operation": "metaobjectDefinitionCreate",
+      "input": {
+        "type": "machine_family",
+        "name": "Machine family",
+        "description": "Reusable governed Rhino machine-family entity referenced by Products and potentially by later approved support-resource architecture.",
+        "displayNameKey": "name",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "capabilities": {
+          "publishable": {
+            "enabled": false
+          },
+          "translatable": {
+            "enabled": true
+          }
+        },
+        "fieldDefinitions": [
+          {
+            "key": "name",
+            "name": "Name",
+            "description": "Approved customer-facing machine-family name.",
+            "required": true,
+            "type": "single_line_text_field",
+            "validations": []
+          },
+          {
+            "key": "description",
+            "name": "Description",
+            "description": "Approved family-level description without unresolved technical or compatibility claims.",
+            "required": false,
+            "type": "multi_line_text_field",
+            "validations": []
+          }
+        ]
+      },
+      "response": {
+        "data": {
+          "metaobjectDefinitionCreate": {
+            "metaobjectDefinition": {
+              "id": "gid://shopify/MetaobjectDefinition/25406406853",
+              "type": "machine_family",
+              "name": "Machine family",
+              "description": "Reusable governed Rhino machine-family entity referenced by Products and potentially by later approved support-resource architecture.",
+              "displayNameKey": "name",
+              "fieldDefinitions": [
+                {
+                  "key": "name",
+                  "name": "Name",
+                  "description": "Approved customer-facing machine-family name.",
+                  "required": true,
+                  "type": {
+                    "name": "single_line_text_field",
+                    "category": "TEXT"
+                  },
+                  "validations": []
+                },
+                {
+                  "key": "description",
+                  "name": "Description",
+                  "description": "Approved family-level description without unresolved technical or compatibility claims.",
+                  "required": false,
+                  "type": {
+                    "name": "multi_line_text_field",
+                    "category": "TEXT"
+                  },
+                  "validations": []
+                }
+              ],
+              "capabilities": {
+                "publishable": {
+                  "enabled": false
+                },
+                "translatable": {
+                  "enabled": true
+                }
+              },
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              }
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "returnedGid": "gid://shopify/MetaobjectDefinition/25406406853",
+      "afterState": {
+        "id": "gid://shopify/MetaobjectDefinition/25406406853",
+        "type": "machine_family",
+        "name": "Machine family",
+        "description": "Reusable governed Rhino machine-family entity referenced by Products and potentially by later approved support-resource architecture.",
+        "displayNameKey": "name",
+        "fieldDefinitions": [
+          {
+            "key": "name",
+            "name": "Name",
+            "description": "Approved customer-facing machine-family name.",
+            "required": true,
+            "type": {
+              "name": "single_line_text_field",
+              "category": "TEXT"
+            },
+            "validations": []
+          },
+          {
+            "key": "description",
+            "name": "Description",
+            "description": "Approved family-level description without unresolved technical or compatibility claims.",
+            "required": false,
+            "type": {
+              "name": "multi_line_text_field",
+              "category": "TEXT"
+            },
+            "validations": []
+          }
+        ],
+        "capabilities": {
+          "publishable": {
+            "enabled": false
+          },
+          "translatable": {
+            "enabled": true
+          }
+        },
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        }
+      },
+      "result": "created"
+    },
+    {
+      "rowId": "CD-MF-001",
+      "intendedIdentity": "PRODUCT:rhino.product_class",
+      "startedAt": "2026-10-05T19:02:10.846Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "product_class",
+        "name": "Product class",
+        "description": "Canonical Rhino catalog role used to distinguish machines, replacement parts, consumables, and accessories without relying on Product Type, tags, or collections.",
+        "type": "single_line_text_field",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": [
+          {
+            "name": "choices",
+            "value": "[\"machine\",\"replacement_part\",\"consumable\",\"accessory\"]"
+          }
+        ]
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658201797",
+      "nextRowId": "CD-MF-002",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658201797",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "product_class",
+              "name": "Product class",
+              "description": "Canonical Rhino catalog role used to distinguish machines, replacement parts, consumables, and accessories without relying on Product Type, tags, or collections.",
+              "type": {
+                "name": "single_line_text_field",
+                "category": "TEXT"
+              },
+              "validations": [
+                {
+                  "name": "choices",
+                  "value": "[\"machine\",\"replacement_part\",\"consumable\",\"accessory\"]"
+                }
+              ],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658201797",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "product_class",
+        "name": "Product class",
+        "description": "Canonical Rhino catalog role used to distinguish machines, replacement parts, consumables, and accessories without relying on Product Type, tags, or collections.",
+        "type": {
+          "name": "single_line_text_field",
+          "category": "TEXT"
+        },
+        "validations": [
+          {
+            "name": "choices",
+            "value": "[\"machine\",\"replacement_part\",\"consumable\",\"accessory\"]"
+          }
+        ],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:11.616Z"
+    },
+    {
+      "rowId": "CD-MF-002",
+      "intendedIdentity": "PRODUCT:rhino.machine_family",
+      "startedAt": "2026-10-05T19:02:12.262Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "machine_family",
+        "name": "Machine family",
+        "description": "Reference from a Product to one governed reusable machine-family record; family membership is organizational context, not Product identity or compatibility proof.",
+        "type": "metaobject_reference",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": [
+          {
+            "name": "metaobject_definition_id",
+            "value": "gid://shopify/MetaobjectDefinition/25406406853"
+          }
+        ]
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658234565",
+      "nextRowId": "CD-MF-010",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658234565",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "machine_family",
+              "name": "Machine family",
+              "description": "Reference from a Product to one governed reusable machine-family record; family membership is organizational context, not Product identity or compatibility proof.",
+              "type": {
+                "name": "metaobject_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [
+                {
+                  "name": "metaobject_definition_id",
+                  "value": "gid://shopify/MetaobjectDefinition/25406406853"
+                }
+              ],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658234565",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "machine_family",
+        "name": "Machine family",
+        "description": "Reference from a Product to one governed reusable machine-family record; family membership is organizational context, not Product identity or compatibility proof.",
+        "type": {
+          "name": "metaobject_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [
+          {
+            "name": "metaobject_definition_id",
+            "value": "gid://shopify/MetaobjectDefinition/25406406853"
+          }
+        ],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:12.943Z"
+    },
+    {
+      "rowId": "CD-MF-010",
+      "intendedIdentity": "PRODUCT:rhino.input_voltage",
+      "startedAt": "2026-10-05T19:02:13.619Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "input_voltage",
+        "name": "input voltage",
+        "description": "Rated machine input voltage; conflicting regional observations are not configurations.",
+        "type": "voltage",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658267333",
+      "nextRowId": "CD-MF-011",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658267333",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "input_voltage",
+              "name": "input voltage",
+              "description": "Rated machine input voltage; conflicting regional observations are not configurations.",
+              "type": {
+                "name": "voltage",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658267333",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "input_voltage",
+        "name": "input voltage",
+        "description": "Rated machine input voltage; conflicting regional observations are not configurations.",
+        "type": {
+          "name": "voltage",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:14.355Z"
+    },
+    {
+      "rowId": "CD-MF-011",
+      "intendedIdentity": "PRODUCT:rhino.input_frequencies",
+      "startedAt": "2026-10-05T19:02:15.076Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "input_frequencies",
+        "name": "input frequencies",
+        "description": "Explicitly rated discrete supply frequencies; do not expand a printed range into a list without Technical confirmation.",
+        "type": "list.frequency",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658300101",
+      "nextRowId": "CD-MF-012",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658300101",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "input_frequencies",
+              "name": "input frequencies",
+              "description": "Explicitly rated discrete supply frequencies; do not expand a printed range into a list without Technical confirmation.",
+              "type": {
+                "name": "list.frequency",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658300101",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "input_frequencies",
+        "name": "input frequencies",
+        "description": "Explicitly rated discrete supply frequencies; do not expand a printed range into a list without Technical confirmation.",
+        "type": {
+          "name": "list.frequency",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:16.124Z"
+    },
+    {
+      "rowId": "CD-MF-012",
+      "intendedIdentity": "PRODUCT:rhino.motor_power",
+      "startedAt": "2026-10-05T19:02:17.747Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "motor_power",
+        "name": "motor power",
+        "description": "Rated primary drive motor output; input consumption and auxiliary motor power are different facts. Preserve horsepower standard uncertainty before conversion.",
+        "type": "power",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658332869",
+      "nextRowId": "CD-MF-013",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658332869",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "motor_power",
+              "name": "motor power",
+              "description": "Rated primary drive motor output; input consumption and auxiliary motor power are different facts. Preserve horsepower standard uncertainty before conversion.",
+              "type": {
+                "name": "power",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658332869",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "motor_power",
+        "name": "motor power",
+        "description": "Rated primary drive motor output; input consumption and auxiliary motor power are different facts. Preserve horsepower standard uncertainty before conversion.",
+        "type": {
+          "name": "power",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:18.483Z"
+    },
+    {
+      "rowId": "CD-MF-013",
+      "intendedIdentity": "PRODUCT:rhino.motor_speed",
+      "startedAt": "2026-10-05T19:02:19.256Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "motor_speed",
+        "name": "motor speed",
+        "description": "Rated primary motor shaft speed; does not represent tool operating speed.",
+        "type": "rotational_speed",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658365637",
+      "nextRowId": "CD-MF-014",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658365637",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "motor_speed",
+              "name": "motor speed",
+              "description": "Rated primary motor shaft speed; does not represent tool operating speed.",
+              "type": {
+                "name": "rotational_speed",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658365637",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "motor_speed",
+        "name": "motor speed",
+        "description": "Rated primary motor shaft speed; does not represent tool operating speed.",
+        "type": {
+          "name": "rotational_speed",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:19.971Z"
+    },
+    {
+      "rowId": "CD-MF-014",
+      "intendedIdentity": "PRODUCT:rhino.wheel_speed_min",
+      "startedAt": "2026-10-05T19:02:20.612Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "wheel_speed_min",
+        "name": "wheel speed min",
+        "description": "Minimum supported wheel operating speed for the approved current machine configuration.",
+        "type": "rotational_speed",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658398405",
+      "nextRowId": "CD-MF-015",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658398405",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "wheel_speed_min",
+              "name": "wheel speed min",
+              "description": "Minimum supported wheel operating speed for the approved current machine configuration.",
+              "type": {
+                "name": "rotational_speed",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658398405",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "wheel_speed_min",
+        "name": "wheel speed min",
+        "description": "Minimum supported wheel operating speed for the approved current machine configuration.",
+        "type": {
+          "name": "rotational_speed",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:21.423Z"
+    },
+    {
+      "rowId": "CD-MF-015",
+      "intendedIdentity": "PRODUCT:rhino.wheel_speed_max",
+      "startedAt": "2026-10-05T19:02:22.130Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "wheel_speed_max",
+        "name": "wheel speed max",
+        "description": "Maximum supported wheel operating speed; cannot inherit flex-shaft speed.",
+        "type": "rotational_speed",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658431173",
+      "nextRowId": "CD-MF-016",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658431173",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "wheel_speed_max",
+              "name": "wheel speed max",
+              "description": "Maximum supported wheel operating speed; cannot inherit flex-shaft speed.",
+              "type": {
+                "name": "rotational_speed",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658431173",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "wheel_speed_max",
+        "name": "wheel speed max",
+        "description": "Maximum supported wheel operating speed; cannot inherit flex-shaft speed.",
+        "type": {
+          "name": "rotational_speed",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:22.788Z"
+    },
+    {
+      "rowId": "CD-MF-016",
+      "intendedIdentity": "PRODUCT:rhino.flex_shaft_speed_min",
+      "startedAt": "2026-10-05T19:02:23.507Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "flex_shaft_speed_min",
+        "name": "flex shaft speed min",
+        "description": "Minimum flex-shaft operating speed; attachment-specific EM-1 control range.",
+        "type": "rotational_speed",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658463941",
+      "nextRowId": "CD-MF-017",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658463941",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "flex_shaft_speed_min",
+              "name": "flex shaft speed min",
+              "description": "Minimum flex-shaft operating speed; attachment-specific EM-1 control range.",
+              "type": {
+                "name": "rotational_speed",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658463941",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "flex_shaft_speed_min",
+        "name": "flex shaft speed min",
+        "description": "Minimum flex-shaft operating speed; attachment-specific EM-1 control range.",
+        "type": {
+          "name": "rotational_speed",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:24.215Z"
+    },
+    {
+      "rowId": "CD-MF-017",
+      "intendedIdentity": "PRODUCT:rhino.flex_shaft_speed_max",
+      "startedAt": "2026-10-05T19:02:24.914Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "flex_shaft_speed_max",
+        "name": "flex shaft speed max",
+        "description": "Maximum flex-shaft operating speed; never a motor or wheel speed alias.",
+        "type": "rotational_speed",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298658496709",
+      "nextRowId": "CD-MF-018",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298658496709",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "flex_shaft_speed_max",
+              "name": "flex shaft speed max",
+              "description": "Maximum flex-shaft operating speed; never a motor or wheel speed alias.",
+              "type": {
+                "name": "rotational_speed",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298658496709",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "flex_shaft_speed_max",
+        "name": "flex shaft speed max",
+        "description": "Maximum flex-shaft operating speed; never a motor or wheel speed alias.",
+        "type": {
+          "name": "rotational_speed",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:25.564Z"
+    },
+    {
+      "rowId": "CD-MF-018",
+      "intendedIdentity": "PRODUCT:rhino.blade_diameter_min",
+      "startedAt": "2026-10-05T19:02:26.216Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "blade_diameter_min",
+        "name": "blade diameter min",
+        "description": "Minimum supported blade diameter; range endpoints require an approved mounting specification.",
+        "type": "dimension",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298659119301",
+      "nextRowId": "CD-MF-019",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298659119301",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "blade_diameter_min",
+              "name": "blade diameter min",
+              "description": "Minimum supported blade diameter; range endpoints require an approved mounting specification.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298659119301",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "blade_diameter_min",
+        "name": "blade diameter min",
+        "description": "Minimum supported blade diameter; range endpoints require an approved mounting specification.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:27.273Z"
+    },
+    {
+      "rowId": "CD-MF-019",
+      "intendedIdentity": "PRODUCT:rhino.blade_diameter_max",
+      "startedAt": "2026-10-05T19:02:27.936Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "blade_diameter_max",
+        "name": "blade diameter max",
+        "description": "Maximum supported blade diameter; does not independently prove compatibility.",
+        "type": "dimension",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298659152069",
+      "nextRowId": "CD-MF-020",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298659152069",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "blade_diameter_max",
+              "name": "blade diameter max",
+              "description": "Maximum supported blade diameter; does not independently prove compatibility.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298659152069",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "blade_diameter_max",
+        "name": "blade diameter max",
+        "description": "Maximum supported blade diameter; does not independently prove compatibility.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:28.716Z"
+    },
+    {
+      "rowId": "CD-MF-020",
+      "intendedIdentity": "PRODUCT:rhino.wheel_diameter",
+      "startedAt": "2026-10-05T19:02:29.500Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "wheel_diameter",
+        "name": "wheel diameter",
+        "description": "Nominal supported arbor wheel diameter; does not identify included wheel products.",
+        "type": "dimension",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298659184837",
+      "nextRowId": "CD-MF-021",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298659184837",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "wheel_diameter",
+              "name": "wheel diameter",
+              "description": "Nominal supported arbor wheel diameter; does not identify included wheel products.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298659184837",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "wheel_diameter",
+        "name": "wheel diameter",
+        "description": "Nominal supported arbor wheel diameter; does not identify included wheel products.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:30.407Z"
+    },
+    {
+      "rowId": "CD-MF-021",
+      "intendedIdentity": "PRODUCT:rhino.blade_arbor_diameter",
+      "startedAt": "2026-10-05T19:02:31.070Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "blade_arbor_diameter",
+        "name": "blade arbor diameter",
+        "description": "Blade mounting arbor diameter; excludes wheel mounting and threaded attachments.",
+        "type": "dimension",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298659217605",
+      "nextRowId": "CD-MF-022",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298659217605",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "blade_arbor_diameter",
+              "name": "blade arbor diameter",
+              "description": "Blade mounting arbor diameter; excludes wheel mounting and threaded attachments.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298659217605",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "blade_arbor_diameter",
+        "name": "blade arbor diameter",
+        "description": "Blade mounting arbor diameter; excludes wheel mounting and threaded attachments.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:31.791Z"
+    },
+    {
+      "rowId": "CD-MF-022",
+      "intendedIdentity": "PRODUCT:rhino.wheel_arbor_diameter",
+      "startedAt": "2026-10-05T19:02:32.428Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "wheel_arbor_diameter",
+        "name": "wheel arbor diameter",
+        "description": "Wheel mounting arbor diameter; other mount geometries require separate evidence.",
+        "type": "dimension",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298659250373",
+      "nextRowId": "CD-MF-023",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298659250373",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "wheel_arbor_diameter",
+              "name": "wheel arbor diameter",
+              "description": "Wheel mounting arbor diameter; other mount geometries require separate evidence.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298659250373",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "wheel_arbor_diameter",
+        "name": "wheel arbor diameter",
+        "description": "Wheel mounting arbor diameter; other mount geometries require separate evidence.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:33.153Z"
+    },
+    {
+      "rowId": "CD-MF-023",
+      "intendedIdentity": "PRODUCT:rhino.water_reservoir_capacity",
+      "startedAt": "2026-10-05T19:02:33.940Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "water_reservoir_capacity",
+        "name": "water reservoir capacity",
+        "description": "Water reservoir nominal capacity; Technical must confirm US versus Imperial gallon before approval.",
+        "type": "volume",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298659381445",
+      "nextRowId": "CD-MF-024",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298659381445",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "water_reservoir_capacity",
+              "name": "water reservoir capacity",
+              "description": "Water reservoir nominal capacity; Technical must confirm US versus Imperial gallon before approval.",
+              "type": {
+                "name": "volume",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298659381445",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "water_reservoir_capacity",
+        "name": "water reservoir capacity",
+        "description": "Water reservoir nominal capacity; Technical must confirm US versus Imperial gallon before approval.",
+        "type": {
+          "name": "volume",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:34.612Z"
+    },
+    {
+      "rowId": "CD-MF-024",
+      "intendedIdentity": "PRODUCT:rhino.cutting_oil_fill_min",
+      "startedAt": "2026-10-05T19:02:35.316Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_min",
+        "name": "cutting oil fill min",
+        "description": "Minimum operating cutting-oil fill; not nominal tank or water capacity.",
+        "type": "volume",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298659610821",
+      "nextRowId": "CD-MF-025",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298659610821",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "cutting_oil_fill_min",
+              "name": "cutting oil fill min",
+              "description": "Minimum operating cutting-oil fill; not nominal tank or water capacity.",
+              "type": {
+                "name": "volume",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298659610821",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_min",
+        "name": "cutting oil fill min",
+        "description": "Minimum operating cutting-oil fill; not nominal tank or water capacity.",
+        "type": {
+          "name": "volume",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:36.064Z"
+    },
+    {
+      "rowId": "CD-MF-025",
+      "intendedIdentity": "PRODUCT:rhino.cutting_oil_fill_max",
+      "startedAt": "2026-10-05T19:02:36.829Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_max",
+        "name": "cutting oil fill max",
+        "description": "Maximum operating cutting-oil fill; preserve gallon-system ambiguity.",
+        "type": "volume",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298659840197",
+      "nextRowId": "CD-MF-026",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298659840197",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "cutting_oil_fill_max",
+              "name": "cutting oil fill max",
+              "description": "Maximum operating cutting-oil fill; preserve gallon-system ambiguity.",
+              "type": {
+                "name": "volume",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298659840197",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "cutting_oil_fill_max",
+        "name": "cutting oil fill max",
+        "description": "Maximum operating cutting-oil fill; preserve gallon-system ambiguity.",
+        "type": {
+          "name": "volume",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:37.597Z"
+    },
+    {
+      "rowId": "CD-MF-026",
+      "intendedIdentity": "PRODUCT:rhino.water_system_type",
+      "startedAt": "2026-10-05T19:02:38.281Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "water_system_type",
+        "name": "water system type",
+        "description": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines.",
+        "type": "single_line_text_field",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": [
+          {
+            "name": "choices",
+            "value": "[\"recirculating_filtered\"]"
+          }
+        ]
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660069573",
+      "nextRowId": "CD-MF-027",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660069573",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "water_system_type",
+              "name": "water system type",
+              "description": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines.",
+              "type": {
+                "name": "single_line_text_field",
+                "category": "TEXT"
+              },
+              "validations": [
+                {
+                  "name": "choices",
+                  "value": "[\"recirculating_filtered\"]"
+                }
+              ],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660069573",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "water_system_type",
+        "name": "water system type",
+        "description": "Governed water system arrangement: recirculating_filtered is evidenced by the EM-1 filtration system; no default for other machines.",
+        "type": {
+          "name": "single_line_text_field",
+          "category": "TEXT"
+        },
+        "validations": [
+          {
+            "name": "choices",
+            "value": "[\"recirculating_filtered\"]"
+          }
+        ],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:38.984Z"
+    },
+    {
+      "rowId": "CD-MF-027",
+      "intendedIdentity": "PRODUCT:rhino.net_weight",
+      "startedAt": "2026-10-05T19:02:39.635Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "net_weight",
+        "name": "net weight",
+        "description": "Durable net machine weight without shipping packaging, fluid fill and installed accessories explicitly declared.",
+        "type": "weight",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660102341",
+      "nextRowId": "CD-MF-028",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660102341",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "net_weight",
+              "name": "net weight",
+              "description": "Durable net machine weight without shipping packaging, fluid fill and installed accessories explicitly declared.",
+              "type": {
+                "name": "weight",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660102341",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "net_weight",
+        "name": "net weight",
+        "description": "Durable net machine weight without shipping packaging, fluid fill and installed accessories explicitly declared.",
+        "type": {
+          "name": "weight",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:40.257Z"
+    },
+    {
+      "rowId": "CD-MF-028",
+      "intendedIdentity": "PRODUCT:rhino.assembled_length",
+      "startedAt": "2026-10-05T19:02:41.019Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "assembled_length",
+        "name": "assembled length",
+        "description": "Assembled machine length; axis orientation and included assemblies must be approved from the drawing.",
+        "type": "dimension",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660135109",
+      "nextRowId": "CD-MF-029",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660135109",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "assembled_length",
+              "name": "assembled length",
+              "description": "Assembled machine length; axis orientation and included assemblies must be approved from the drawing.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660135109",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "assembled_length",
+        "name": "assembled length",
+        "description": "Assembled machine length; axis orientation and included assemblies must be approved from the drawing.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:41.899Z"
+    },
+    {
+      "rowId": "CD-MF-029",
+      "intendedIdentity": "PRODUCT:rhino.assembled_width",
+      "startedAt": "2026-10-05T19:02:42.600Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "assembled_width",
+        "name": "assembled width",
+        "description": "Assembled machine width; axis orientation and included assemblies must be approved from the drawing.",
+        "type": "dimension",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660167877",
+      "nextRowId": "CD-MF-030",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660167877",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "assembled_width",
+              "name": "assembled width",
+              "description": "Assembled machine width; axis orientation and included assemblies must be approved from the drawing.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660167877",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "assembled_width",
+        "name": "assembled width",
+        "description": "Assembled machine width; axis orientation and included assemblies must be approved from the drawing.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:43.367Z"
+    },
+    {
+      "rowId": "CD-MF-030",
+      "intendedIdentity": "PRODUCT:rhino.assembled_height",
+      "startedAt": "2026-10-05T19:02:44.198Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "assembled_height",
+        "name": "assembled height",
+        "description": "Assembled machine height; axis orientation and included assemblies must be approved from the drawing.",
+        "type": "dimension",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660200645",
+      "nextRowId": "CD-MF-031",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660200645",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "assembled_height",
+              "name": "assembled height",
+              "description": "Assembled machine height; axis orientation and included assemblies must be approved from the drawing.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660200645",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "assembled_height",
+        "name": "assembled height",
+        "description": "Assembled machine height; axis orientation and included assemblies must be approved from the drawing.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:44.980Z"
+    },
+    {
+      "rowId": "CD-MF-031",
+      "intendedIdentity": "PRODUCT:rhino.crate_length",
+      "startedAt": "2026-10-05T19:02:45.569Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "crate_length",
+        "name": "crate length",
+        "description": "Outer standard shipping crate length; includes packing allowances and must have an Operations-approved packing revision.",
+        "type": "dimension",
+        "access": {
+          "storefront": "NONE"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660233413",
+      "nextRowId": "CD-MF-032",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660233413",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "crate_length",
+              "name": "crate length",
+              "description": "Outer standard shipping crate length; includes packing allowances and must have an Operations-approved packing revision.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "NONE",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660233413",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "crate_length",
+        "name": "crate length",
+        "description": "Outer standard shipping crate length; includes packing allowances and must have an Operations-approved packing revision.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "NONE",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:46.436Z"
+    },
+    {
+      "rowId": "CD-MF-032",
+      "intendedIdentity": "PRODUCT:rhino.crate_width",
+      "startedAt": "2026-10-05T19:02:47.387Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "crate_width",
+        "name": "crate width",
+        "description": "Outer standard shipping crate width; includes packing allowances and must have an Operations-approved packing revision.",
+        "type": "dimension",
+        "access": {
+          "storefront": "NONE"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660266181",
+      "nextRowId": "CD-MF-033",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660266181",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "crate_width",
+              "name": "crate width",
+              "description": "Outer standard shipping crate width; includes packing allowances and must have an Operations-approved packing revision.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "NONE",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660266181",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "crate_width",
+        "name": "crate width",
+        "description": "Outer standard shipping crate width; includes packing allowances and must have an Operations-approved packing revision.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "NONE",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:48.095Z"
+    },
+    {
+      "rowId": "CD-MF-033",
+      "intendedIdentity": "PRODUCT:rhino.crate_height",
+      "startedAt": "2026-10-05T19:02:48.728Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "crate_height",
+        "name": "crate height",
+        "description": "Outer standard shipping crate height; includes packing allowances and must have an Operations-approved packing revision.",
+        "type": "dimension",
+        "access": {
+          "storefront": "NONE"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660298949",
+      "nextRowId": "CD-MF-034",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660298949",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "crate_height",
+              "name": "crate height",
+              "description": "Outer standard shipping crate height; includes packing allowances and must have an Operations-approved packing revision.",
+              "type": {
+                "name": "dimension",
+                "category": "MEASUREMENT"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "NONE",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660298949",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "crate_height",
+        "name": "crate height",
+        "description": "Outer standard shipping crate height; includes packing allowances and must have an Operations-approved packing revision.",
+        "type": {
+          "name": "dimension",
+          "category": "MEASUREMENT"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "NONE",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:49.426Z"
+    },
+    {
+      "rowId": "CD-MF-034",
+      "intendedIdentity": "PRODUCT:rhino.compatible_machines",
+      "startedAt": "2026-10-05T19:02:50.135Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "compatible_machines",
+        "name": "compatible machines",
+        "description": "Dependent Product to exact compatible machine Product references; only universally applicable approved Product edges.",
+        "type": "list.product_reference",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660331717",
+      "nextRowId": "CD-MF-035",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660331717",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "compatible_machines",
+              "name": "compatible machines",
+              "description": "Dependent Product to exact compatible machine Product references; only universally applicable approved Product edges.",
+              "type": {
+                "name": "list.product_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660331717",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "compatible_machines",
+        "name": "compatible machines",
+        "description": "Dependent Product to exact compatible machine Product references; only universally applicable approved Product edges.",
+        "type": {
+          "name": "list.product_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:50.801Z"
+    },
+    {
+      "rowId": "CD-MF-035",
+      "intendedIdentity": "PRODUCT:rhino.included_products",
+      "startedAt": "2026-10-05T19:02:51.792Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "included_products",
+        "name": "included products",
+        "description": "Exact catalog Products included in the current commercial machine package; independent from fit and recommendations.",
+        "type": "list.product_reference",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660364485",
+      "nextRowId": "CD-MF-036",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660364485",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "included_products",
+              "name": "included products",
+              "description": "Exact catalog Products included in the current commercial machine package; independent from fit and recommendations.",
+              "type": {
+                "name": "list.product_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660364485",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "included_products",
+        "name": "included products",
+        "description": "Exact catalog Products included in the current commercial machine package; independent from fit and recommendations.",
+        "type": {
+          "name": "list.product_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:52.715Z"
+    },
+    {
+      "rowId": "CD-MF-036",
+      "intendedIdentity": "PRODUCT:rhino.included_quantities",
+      "startedAt": "2026-10-05T19:02:53.707Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "included_quantities",
+        "name": "included quantities",
+        "description": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership.",
+        "type": "json",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660397253",
+      "nextRowId": "CD-MF-037",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660397253",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "included_quantities",
+              "name": "included quantities",
+              "description": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership.",
+              "type": {
+                "name": "json",
+                "category": "JSON"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660397253",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "included_quantities",
+        "name": "included quantities",
+        "description": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership.",
+        "type": {
+          "name": "json",
+          "category": "JSON"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:54.713Z"
+    },
+    {
+      "rowId": "CD-MF-037",
+      "intendedIdentity": "PRODUCT:rhino.noncatalog_components",
+      "startedAt": "2026-10-05T19:02:55.358Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "noncatalog_components",
+        "name": "noncatalog components",
+        "description": "Product-local component lines with label, positive integer quantity and included/not_included/optional meaning for evidenced noncatalog contents.",
+        "type": "json",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660430021",
+      "nextRowId": "CD-MF-039",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660430021",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "noncatalog_components",
+              "name": "noncatalog components",
+              "description": "Product-local component lines with label, positive integer quantity and included/not_included/optional meaning for evidenced noncatalog contents.",
+              "type": {
+                "name": "json",
+                "category": "JSON"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660430021",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "noncatalog_components",
+        "name": "noncatalog components",
+        "description": "Product-local component lines with label, positive integer quantity and included/not_included/optional meaning for evidenced noncatalog contents.",
+        "type": {
+          "name": "json",
+          "category": "JSON"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:56.057Z"
+    },
+    {
+      "rowId": "CD-MF-039",
+      "intendedIdentity": "PRODUCT:rhino.optional_products",
+      "startedAt": "2026-10-05T19:02:56.705Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "optional_products",
+        "name": "optional products",
+        "description": "Separately selectable optional catalog components confirmed by Technical and Product Owner; not speculative machine Variants.",
+        "type": "list.product_reference",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660462789",
+      "nextRowId": "CD-MF-040",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660462789",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "optional_products",
+              "name": "optional products",
+              "description": "Separately selectable optional catalog components confirmed by Technical and Product Owner; not speculative machine Variants.",
+              "type": {
+                "name": "list.product_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660462789",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "optional_products",
+        "name": "optional products",
+        "description": "Separately selectable optional catalog components confirmed by Technical and Product Owner; not speculative machine Variants.",
+        "type": {
+          "name": "list.product_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:57.437Z"
+    },
+    {
+      "rowId": "CD-MF-040",
+      "intendedIdentity": "PRODUCT:rhino.recommended_products",
+      "startedAt": "2026-10-05T19:02:58.096Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "recommended_products",
+        "name": "recommended products",
+        "description": "Product Owner merchandising recommendations; cannot establish compatibility or box contents.",
+        "type": "list.product_reference",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660495557",
+      "nextRowId": "CD-MF-041",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660495557",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "recommended_products",
+              "name": "recommended products",
+              "description": "Product Owner merchandising recommendations; cannot establish compatibility or box contents.",
+              "type": {
+                "name": "list.product_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660495557",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "recommended_products",
+        "name": "recommended products",
+        "description": "Product Owner merchandising recommendations; cannot establish compatibility or box contents.",
+        "type": {
+          "name": "list.product_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:02:58.887Z"
+    },
+    {
+      "rowId": "CD-MF-041",
+      "intendedIdentity": "PRODUCT:rhino.manual_files",
+      "startedAt": "2026-10-05T19:02:59.606Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "manual_files",
+        "name": "manual files",
+        "description": "Exact Shopify File references for approved manual resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": "list.file_reference",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660528325",
+      "nextRowId": "CD-MF-042",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660528325",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "manual_files",
+              "name": "manual files",
+              "description": "Exact Shopify File references for approved manual resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+              "type": {
+                "name": "list.file_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660528325",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "manual_files",
+        "name": "manual files",
+        "description": "Exact Shopify File references for approved manual resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": {
+          "name": "list.file_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:03:00.293Z"
+    },
+    {
+      "rowId": "CD-MF-042",
+      "intendedIdentity": "PRODUCT:rhino.diagram_files",
+      "startedAt": "2026-10-05T19:03:01.456Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "diagram_files",
+        "name": "diagram files",
+        "description": "Exact Shopify File references for approved diagram resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": "list.file_reference",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660561093",
+      "nextRowId": "CD-MF-043",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660561093",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "diagram_files",
+              "name": "diagram files",
+              "description": "Exact Shopify File references for approved diagram resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+              "type": {
+                "name": "list.file_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660561093",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "diagram_files",
+        "name": "diagram files",
+        "description": "Exact Shopify File references for approved diagram resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": {
+          "name": "list.file_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:03:02.152Z"
+    },
+    {
+      "rowId": "CD-MF-043",
+      "intendedIdentity": "PRODUCT:rhino.instruction_files",
+      "startedAt": "2026-10-05T19:03:03.056Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "instruction_files",
+        "name": "instruction files",
+        "description": "Exact Shopify File references for approved instruction resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": "list.file_reference",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660593861",
+      "nextRowId": "CD-MF-044",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660593861",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "instruction_files",
+              "name": "instruction files",
+              "description": "Exact Shopify File references for approved instruction resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+              "type": {
+                "name": "list.file_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660593861",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "instruction_files",
+        "name": "instruction files",
+        "description": "Exact Shopify File references for approved instruction resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": {
+          "name": "list.file_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:03:03.779Z"
+    },
+    {
+      "rowId": "CD-MF-044",
+      "intendedIdentity": "PRODUCT:rhino.video_files",
+      "startedAt": "2026-10-05T19:03:04.468Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "video_files",
+        "name": "video files",
+        "description": "Exact Shopify File references for approved video resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": "list.file_reference",
+        "access": {
+          "storefront": "PUBLIC_READ"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660626629",
+      "nextRowId": "CD-MF-045",
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660626629",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "video_files",
+              "name": "video files",
+              "description": "Exact Shopify File references for approved video resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+              "type": {
+                "name": "list.file_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "PUBLIC_READ",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660626629",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "video_files",
+        "name": "video files",
+        "description": "Exact Shopify File references for approved video resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": {
+          "name": "list.file_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "PUBLIC_READ",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:03:05.534Z"
+    },
+    {
+      "rowId": "CD-MF-045",
+      "intendedIdentity": "PRODUCT:rhino.support_files",
+      "startedAt": "2026-10-05T19:03:06.187Z",
+      "beforeState": "ABSENT",
+      "before": [],
+      "input": {
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "support_files",
+        "name": "support files",
+        "description": "Exact Shopify File references for approved support resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": "list.file_reference",
+        "access": {
+          "storefront": "NONE"
+        },
+        "validations": []
+      },
+      "operation": "metafieldDefinitionCreate",
+      "result": "created",
+      "returnedGid": "gid://shopify/MetafieldDefinition/298660659397",
+      "nextRowId": null,
+      "response": {
+        "data": {
+          "metafieldDefinitionCreate": {
+            "createdDefinition": {
+              "id": "gid://shopify/MetafieldDefinition/298660659397",
+              "ownerType": "PRODUCT",
+              "namespace": "rhino",
+              "key": "support_files",
+              "name": "support files",
+              "description": "Exact Shopify File references for approved support resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+              "type": {
+                "name": "list.file_reference",
+                "category": "REFERENCE"
+              },
+              "validations": [],
+              "access": {
+                "admin": "PUBLIC_READ_WRITE",
+                "storefront": "NONE",
+                "customerAccount": "NONE"
+              },
+              "metafieldsCount": 0
+            },
+            "userErrors": []
+          }
+        }
+      },
+      "afterState": {
+        "id": "gid://shopify/MetafieldDefinition/298660659397",
+        "ownerType": "PRODUCT",
+        "namespace": "rhino",
+        "key": "support_files",
+        "name": "support files",
+        "description": "Exact Shopify File references for approved support resources. Version, rights, current status and Product applicability are governed by the repository resource catalog; evidence Files are not automatically downloads.",
+        "type": {
+          "name": "list.file_reference",
+          "category": "REFERENCE"
+        },
+        "validations": [],
+        "access": {
+          "admin": "PUBLIC_READ_WRITE",
+          "storefront": "NONE",
+          "customerAccount": "NONE"
+        },
+        "metafieldsCount": 0
+      },
+      "differences": [],
+      "completedAt": "2026-10-05T19:03:06.949Z"
+    }
+  ],
+  "reconciledIds": {
+    "CD-MO-001": "gid://shopify/MetaobjectDefinition/25406406853",
+    "CD-MF-001": "gid://shopify/MetafieldDefinition/298658201797",
+    "CD-MF-002": "gid://shopify/MetafieldDefinition/298658234565",
+    "CD-MF-010": "gid://shopify/MetafieldDefinition/298658267333",
+    "CD-MF-011": "gid://shopify/MetafieldDefinition/298658300101",
+    "CD-MF-012": "gid://shopify/MetafieldDefinition/298658332869",
+    "CD-MF-013": "gid://shopify/MetafieldDefinition/298658365637",
+    "CD-MF-014": "gid://shopify/MetafieldDefinition/298658398405",
+    "CD-MF-015": "gid://shopify/MetafieldDefinition/298658431173",
+    "CD-MF-016": "gid://shopify/MetafieldDefinition/298658463941",
+    "CD-MF-017": "gid://shopify/MetafieldDefinition/298658496709",
+    "CD-MF-018": "gid://shopify/MetafieldDefinition/298659119301",
+    "CD-MF-019": "gid://shopify/MetafieldDefinition/298659152069",
+    "CD-MF-020": "gid://shopify/MetafieldDefinition/298659184837",
+    "CD-MF-021": "gid://shopify/MetafieldDefinition/298659217605",
+    "CD-MF-022": "gid://shopify/MetafieldDefinition/298659250373",
+    "CD-MF-023": "gid://shopify/MetafieldDefinition/298659381445",
+    "CD-MF-024": "gid://shopify/MetafieldDefinition/298659610821",
+    "CD-MF-025": "gid://shopify/MetafieldDefinition/298659840197",
+    "CD-MF-026": "gid://shopify/MetafieldDefinition/298660069573",
+    "CD-MF-027": "gid://shopify/MetafieldDefinition/298660102341",
+    "CD-MF-028": "gid://shopify/MetafieldDefinition/298660135109",
+    "CD-MF-029": "gid://shopify/MetafieldDefinition/298660167877",
+    "CD-MF-030": "gid://shopify/MetafieldDefinition/298660200645",
+    "CD-MF-031": "gid://shopify/MetafieldDefinition/298660233413",
+    "CD-MF-032": "gid://shopify/MetafieldDefinition/298660266181",
+    "CD-MF-033": "gid://shopify/MetafieldDefinition/298660298949",
+    "CD-MF-034": "gid://shopify/MetafieldDefinition/298660331717",
+    "CD-MF-035": "gid://shopify/MetafieldDefinition/298660364485",
+    "CD-MF-036": "gid://shopify/MetafieldDefinition/298660397253",
+    "CD-MF-037": "gid://shopify/MetafieldDefinition/298660430021",
+    "CD-MF-039": "gid://shopify/MetafieldDefinition/298660462789",
+    "CD-MF-040": "gid://shopify/MetafieldDefinition/298660495557",
+    "CD-MF-041": "gid://shopify/MetafieldDefinition/298660528325",
+    "CD-MF-042": "gid://shopify/MetafieldDefinition/298660561093",
+    "CD-MF-043": "gid://shopify/MetafieldDefinition/298660593861",
+    "CD-MF-044": "gid://shopify/MetafieldDefinition/298660626629",
+    "CD-MF-045": "gid://shopify/MetafieldDefinition/298660659397"
+  },
+  "nextRowId": null,
+  "definitionRows": 38,
+  "created": 38,
+  "reused": 0,
+  "terminalFailed": 0,
+  "terminalBlocked": 0,
+  "diagnosedFailedAttempts": 1,
+  "ProductValuesPopulated": 0,
+  "afterRead": "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-after-admin-snapshot.json",
+  "reconciliation": "docs/qa/evidence/epic-e/E-MUT-020-2026-10-05-reconciliation.json"
+}

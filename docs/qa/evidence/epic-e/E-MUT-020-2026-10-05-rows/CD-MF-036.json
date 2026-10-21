@@ -1,0 +1,70 @@
+{
+  "rowId": "CD-MF-036",
+  "intendedIdentity": "PRODUCT:rhino.included_quantities",
+  "startedAt": "2026-10-05T19:02:53.707Z",
+  "beforeState": "ABSENT",
+  "before": [],
+  "input": {
+    "ownerType": "PRODUCT",
+    "namespace": "rhino",
+    "key": "included_quantities",
+    "name": "included quantities",
+    "description": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership.",
+    "type": "json",
+    "access": {
+      "storefront": "PUBLIC_READ"
+    },
+    "validations": []
+  },
+  "operation": "metafieldDefinitionCreate",
+  "result": "created",
+  "returnedGid": "gid://shopify/MetafieldDefinition/298660397253",
+  "nextRowId": "CD-MF-037",
+  "response": {
+    "data": {
+      "metafieldDefinitionCreate": {
+        "createdDefinition": {
+          "id": "gid://shopify/MetafieldDefinition/298660397253",
+          "ownerType": "PRODUCT",
+          "namespace": "rhino",
+          "key": "included_quantities",
+          "name": "included quantities",
+          "description": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership.",
+          "type": {
+            "name": "json",
+            "category": "JSON"
+          },
+          "validations": [],
+          "access": {
+            "admin": "PUBLIC_READ_WRITE",
+            "storefront": "PUBLIC_READ",
+            "customerAccount": "NONE"
+          },
+          "metafieldsCount": 0
+        },
+        "userErrors": []
+      }
+    }
+  },
+  "afterState": {
+    "id": "gid://shopify/MetafieldDefinition/298660397253",
+    "ownerType": "PRODUCT",
+    "namespace": "rhino",
+    "key": "included_quantities",
+    "name": "included quantities",
+    "description": "Positive integer quantity map keyed by exactly the GIDs in included_products; companion metadata, never independent membership.",
+    "type": {
+      "name": "json",
+      "category": "JSON"
+    },
+    "validations": [],
+    "access": {
+      "admin": "PUBLIC_READ_WRITE",
+      "storefront": "PUBLIC_READ",
+      "customerAccount": "NONE"
+    },
+    "metafieldsCount": 0
+  },
+  "differences": [],
+  "completedAt": "2026-10-05T19:02:54.713Z"
+}

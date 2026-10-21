@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bounded completed team worksheet responses owned by Epic E",
+  "type": "object",
+  "required": ["schemaVersion", "authority", "source", "approvalMode", "rows", "holds", "contents", "resolvedCompatibilityEdges", "resourceOwnerEvidence", "gritHandoff"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "authority": {"const": "COMPLETED_TEAM_WORKSHEET_ACCEPTED_IN_AUTHORIZED_DEVELOPMENT_TASK"},
+    "approvalMode": {"const": "delegated_development_override"},
+    "source": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"const": "docs/project/completed-worksheet-decisions-transcribed.md"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}},
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rowId", "kind", "targetGid", "domain", "planId", "field", "type", "desired", "valueState", "approvalDecisionId", "conflictIds", "sourceExcerpt"],
+        "properties": {
+          "kind": {"const": "value"},
+          "targetGid": {"type": "string", "pattern": "^gid://shopify/Product/[0-9]+$"},
+          "domain": {"enum": ["electrical", "motor_speed", "tool_mount", "water_fluid", "durable_measurements", "crate_measurements", "compatibility", "included_components", "optional_components"]},
+          "planId": {"type": "string", "pattern": "^E-MUT-0(2[6-9]|3[01456])$"},
+          "field": {"type": "string", "pattern": "^PRODUCT\\.metafields\\.rhino\\.[a-z_]+$"},
+          "valueState": {"const": "approved"},
+          "approvalDecisionId": {"type": "string", "pattern": "^TEAM-WORKSHEET:[a-f0-9]{64}$"},
+          "conflictIds": {"type": "array", "maxItems": 0},
+          "sourceExcerpt": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "holds": {"type": "array", "items": {"type": "object", "required": ["productGid", "field", "reason"]}},
+    "resourceOwnerEvidence": {"type": "object", "properties": {"publicationApproved": {"const": false}, "languageApproved": {"const": false}, "currentVersionApproved": {"const": false}, "customerActivation": {"const": false}}},
+    "gritHandoff": {"type": "object", "properties": {"valueExecution": {"const": false}}}
+  }
+}

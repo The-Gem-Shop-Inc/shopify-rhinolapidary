@@ -194,6 +194,18 @@ function normalizedValidations(values) {
   return (values || []).map((entry) => ({ name: entry.name, value: typeof entry.value === 'string' ? entry.value : JSON.stringify(entry.value) })).sort((a, b) => a.name.localeCompare(b.name));
 }
 
+function accessMatches(desired, live, definition) {
+  // Merchant-owned namespaces/types cannot accept app-only Admin access inputs.
+  // Shopify returns PUBLIC_READ_WRITE for merchant-managed, shared definitions.
+  const merchantOwned = definition.resourceKind === 'metaobject'
+    ? !/^\$app(?::|$)|^app--/.test(definition.type)
+    : !/^\$app(?::|$)|^app--/.test(definition.namespace);
+  const adminMatches = live?.admin === desired.admin || merchantOwned &&
+    desired.admin === 'MERCHANT_READ_WRITE' && live?.admin === 'PUBLIC_READ_WRITE';
+  return adminMatches && live?.storefront === desired.storefront &&
+    (live?.customerAccount === undefined || live.customerAccount === 'NONE');
+}
+
 function compareDefinition(desired, live, liveDefinitions = []) {
   const desiredAccess = {
     admin: ({ none: 'NONE', merchant_read: 'MERCHANT_READ', merchant_read_write: 'MERCHANT_READ_WRITE' })[desired.accessIntent?.admin],
@@ -213,7 +225,7 @@ function compareDefinition(desired, live, liveDefinitions = []) {
     const desiredShopifyValidations = normalizedValidations([...(desired.validationRules || []).filter((rule) => rule.enforcement === 'shopify_definition'), ...resolvedValidations]);
     const liveValidations = normalizedValidations(live.validations);
     if (JSON.stringify(desiredShopifyValidations) !== JSON.stringify(liveValidations)) differences.push({ field: 'validations', desired: desiredShopifyValidations, current: liveValidations });
-    if (JSON.stringify(desiredAccess) !== JSON.stringify(live.access || {})) differences.push({ field: 'access', desired: desiredAccess, current: live.access || null });
+    if (!accessMatches(desiredAccess, live.access, desired)) differences.push({ field: 'access', desired: desiredAccess, current: live.access || null });
     return differences.length ? { state: 'conflict', differences } : { state: 'no_op', differences: [] };
   }
   const differences = [];
@@ -221,7 +233,7 @@ function compareDefinition(desired, live, liveDefinitions = []) {
   const desiredFields = (desired.fields || []).map(({ key, name, description, required, type }) => ({ key, name, description, required, type })).sort((a, b) => a.key.localeCompare(b.key));
   const liveFields = (live.fieldDefinitions || []).map((field) => ({ key: field.key, name: field.name, description: field.description, required: field.required, type: typeof field.type === 'string' ? field.type : field.type?.name })).sort((a, b) => a.key.localeCompare(b.key));
   if (JSON.stringify(desiredFields) !== JSON.stringify(liveFields)) differences.push({ field: 'fields', desired: desiredFields, current: liveFields });
-  if (JSON.stringify(desiredAccess) !== JSON.stringify(live.access || {})) differences.push({ field: 'access', desired: desiredAccess, current: live.access || null });
+  if (!accessMatches(desiredAccess, live.access, desired)) differences.push({ field: 'access', desired: desiredAccess, current: live.access || null });
   const desiredCapabilities = { publishable: { enabled: desired.capabilities?.publishable }, translatable: { enabled: desired.capabilities?.translatable } };
   if (JSON.stringify(desiredCapabilities) !== JSON.stringify(live.capabilities || {})) differences.push({ field: 'capabilities', desired: desiredCapabilities, current: live.capabilities || null });
   return differences.length ? { state: 'conflict', differences } : { state: 'no_op', differences: [] };
