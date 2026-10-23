@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "reportType": "configuration_drift",
+  "assessedAt": "2026-10-23T18:00:00.000Z",
+  "inputClassification": "synthetic_fixture",
+  "overallState": "UNVERIFIED",
+  "operationalReadiness": "BLOCKED",
+  "liveCheckoutEnforcement": "UNVERIFIED",
+  "summary": { "PASS": 5, "FAIL": 0, "BLOCKED": 0, "UNVERIFIED": 1 },
+  "results": [
+    {
+      "id": "free_shipping",
+      "state": "PASS",
+      "message": "No zero-cost or threshold-based free-shipping path appears in the supplied complete datasets.",
+      "actions": []
+    },
+    {
+      "id": "machine_shipping",
+      "state": "PASS",
+      "message": "Supplied machine assignments use quotation-required profiles; profiles alone do not prove every checkout bypass is blocked.",
+      "actions": []
+    },
+    {
+      "id": "pickup",
+      "state": "PASS",
+      "message": "Supplied pickup configuration has explicit Product eligibility and location-readiness states.",
+      "actions": []
+    },
+    {
+      "id": "geography",
+      "state": "PASS",
+      "message": "Supplied destinations remain within the 50-state scope and Alaska/Hawaii rates carry separate approval evidence.",
+      "actions": []
+    },
+    {
+      "id": "product_logistics",
+      "state": "PASS",
+      "message": "Supplied Product records contain positive weights and explicit package-characteristic status.",
+      "actions": []
+    },
+    {
+      "id": "evidence_freshness",
+      "state": "UNVERIFIED",
+      "message": "Synthetic input validates the comparison engine only; its Shopify mapping and business authority are unverified.",
+      "actions": ["Run a separately authorized, sanitized Shopify collection and approve its mapping."]
+    }
+  ]
+}

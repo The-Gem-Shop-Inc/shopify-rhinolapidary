@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-k-evidence-receipts.schema.json",
+  "title": "Epic K operational evidence receipts",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "version", "status", "inputClassification", "synthetic", "operationalReadiness", "liveCheckoutCompliance", "assessmentAsOf", "receipts"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-k-evidence-receipts" },
+    "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+-provisional$" },
+    "status": { "enum": ["intake_open_no_authoritative_receipts", "partial_evidence", "evidence_attached"] },
+    "inputClassification": { "enum": ["authoritative_intake", "synthetic_fixture"] },
+    "synthetic": { "type": "boolean" },
+    "operationalReadiness": { "enum": ["blocked", "unverified"] },
+    "liveCheckoutCompliance": { "const": "unverified" },
+    "assessmentAsOf": { "type": "string", "format": "date-time" },
+    "receipts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "requirementId", "category", "synthetic", "ownerRole", "verificationStatus", "source", "subject", "collectedAt", "validity", "support", "assertions"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(K-RECEIPT|SYNTHETIC-RECEIPT)-[A-Z0-9-]+$" },
+          "requirementId": { "enum": ["K-EVID-001", "K-EVID-002", "K-EVID-003", "K-EVID-004", "K-EVID-005", "K-EVID-006", "K-EVID-007", "K-EVID-008"] },
+          "category": {
+            "enum": [
+              "product_variant_pickup_eligibility",
+              "grafton_inventory_location_readiness",
+              "shipping_weights_package_characteristics",
+              "approved_shipping_services_regions",
+              "alaska_hawaii_rates",
+              "carrier_insurance_options",
+              "claims_contacts_responsibilities",
+              "quotation_approval_scope_expiration"
+            ]
+          },
+          "synthetic": { "type": "boolean" },
+          "ownerRole": { "type": "string", "minLength": 2 },
+          "verificationStatus": { "enum": ["available", "accepted", "pending", "rejected"] },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["artifactType", "reference", "sanitized"],
+            "properties": {
+              "artifactType": { "type": "string", "minLength": 2 },
+              "reference": { "type": "string", "minLength": 2 },
+              "sanitized": { "const": true },
+              "restrictedRawArtifact": { "type": "boolean" },
+              "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+            }
+          },
+          "subject": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "identifiers", "scope"],
+            "properties": {
+              "type": { "type": "string", "minLength": 2 },
+              "identifiers": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
+              "scope": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } }
+            }
+          },
+          "collectedAt": { "type": "string", "format": "date-time" },
+          "validity": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind"],
+            "properties": {
+              "kind": { "enum": ["none_established", "interval"] },
+              "validFrom": { "type": "string", "format": "date-time" },
+              "expiresAt": { "type": "string", "format": "date-time" }
+            },
+            "allOf": [
+              {
+                "if": { "properties": { "kind": { "const": "interval" } }, "required": ["kind"] },
+                "then": { "required": ["validFrom", "expiresAt"] }
+              }
+            ]
+          },
+          "support": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["supportsRequirement", "coverage", "supportedFacts"],
+            "properties": {
+              "supportsRequirement": { "type": "boolean" },
+              "coverage": { "enum": ["complete", "partial", "unsupported"] },
+              "supportedFacts": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 2 } }
+            }
+          },
+          "assertions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "value"],
+              "properties": {
+                "name": { "type": "string", "minLength": 2 },
+                "value": { "type": ["string", "number", "boolean", "null"] }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

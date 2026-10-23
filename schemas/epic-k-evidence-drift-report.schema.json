@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-k-evidence-drift-report.schema.json",
+  "title": "Epic K evidence or configuration drift report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "reportType", "assessedAt", "inputClassification", "overallState", "operationalReadiness", "liveCheckoutEnforcement", "summary", "results"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "reportType": { "enum": ["evidence_gap", "configuration_drift"] },
+    "assessedAt": { "type": "string", "format": "date-time" },
+    "inputClassification": { "enum": ["authoritative_intake", "synthetic_fixture", "sanitized_future_shopify_audit"] },
+    "overallState": { "$ref": "#/$defs/state" },
+    "operationalReadiness": { "enum": ["BLOCKED", "UNVERIFIED"] },
+    "liveCheckoutEnforcement": { "const": "UNVERIFIED" },
+    "summary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["PASS", "FAIL", "BLOCKED", "UNVERIFIED"],
+      "properties": {
+        "PASS": { "type": "integer", "minimum": 0 },
+        "FAIL": { "type": "integer", "minimum": 0 },
+        "BLOCKED": { "type": "integer", "minimum": 0 },
+        "UNVERIFIED": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "results": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "state", "message", "actions"],
+        "properties": {
+          "id": { "type": "string", "minLength": 2 },
+          "state": { "$ref": "#/$defs/state" },
+          "message": { "type": "string", "minLength": 2 },
+          "actions": { "type": "array", "items": { "type": "string", "minLength": 2 } }
+        }
+      }
+    }
+  },
+  "$defs": { "state": { "enum": ["PASS", "FAIL", "BLOCKED", "UNVERIFIED"] } }
+}

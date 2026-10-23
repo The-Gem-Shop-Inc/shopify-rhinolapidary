@@ -1,0 +1,205 @@
+{
+  "fixtureType": "synthetic_only",
+  "authorityEffect": "none",
+  "containsRealShopifyData": false,
+  "evaluationTime": "2026-10-23T18:00:00.000Z",
+  "baseReceiptSet": {
+    "schemaVersion": 1,
+    "contractId": "epic-k-evidence-receipts",
+    "version": "1.0.0-provisional",
+    "status": "partial_evidence",
+    "inputClassification": "synthetic_fixture",
+    "synthetic": true,
+    "operationalReadiness": "blocked",
+    "liveCheckoutCompliance": "unverified",
+    "assessmentAsOf": "2026-10-23T18:00:00.000Z",
+    "receipts": [
+      {
+        "id": "SYNTHETIC-RECEIPT-004-A",
+        "requirementId": "K-EVID-004",
+        "category": "approved_shipping_services_regions",
+        "synthetic": true,
+        "ownerRole": "Shipping operations",
+        "verificationStatus": "accepted",
+        "source": {
+          "artifactType": "synthetic_operations_register",
+          "reference": "SYNTHETIC-SOURCE-SERVICES-001",
+          "sanitized": true,
+          "restrictedRawArtifact": false
+        },
+        "subject": {
+          "type": "synthetic_service_region",
+          "identifiers": ["SYNTHETIC-SERVICE-PAID-001"],
+          "scope": ["SYNTHETIC-US-REGION", "SYNTHETIC-PRODUCT-CLASS"]
+        },
+        "collectedAt": "2026-10-23T16:00:00.000Z",
+        "validity": {
+          "kind": "interval",
+          "validFrom": "2026-10-23T00:00:00.000Z",
+          "expiresAt": "2026-11-23T00:00:00.000Z"
+        },
+        "support": {
+          "supportsRequirement": true,
+          "coverage": "complete",
+          "supportedFacts": ["Approved paid service", "Supported region", "Product eligibility", "Service limitations"]
+        },
+        "assertions": [
+          { "name": "service_status", "value": "approved" }
+        ]
+      }
+    ]
+  },
+  "receiptCases": [
+    { "id": "valid_structure", "mutation": "none", "expectedSchemaValid": true, "expectedRequirementState": "BLOCKED" },
+    { "id": "missing_owner", "mutation": "remove_owner", "expectedSchemaValid": false },
+    { "id": "unsupported_owner", "mutation": "unsupported_owner", "expectedSchemaValid": true, "expectedRequirementState": "FAIL" },
+    { "id": "unsupported_scope", "mutation": "unsupported_scope", "expectedSchemaValid": true, "expectedRequirementState": "FAIL" },
+    { "id": "duplicate_receipt", "mutation": "duplicate", "expectedSchemaValid": true, "expectedRequirementState": "FAIL" },
+    { "id": "conflicting_receipt", "mutation": "conflict", "expectedSchemaValid": true, "expectedRequirementState": "FAIL" },
+    { "id": "expired_receipt", "mutation": "expired", "expectedSchemaValid": true, "expectedRequirementState": "FAIL" },
+    { "id": "partial_receipt", "mutation": "partial", "expectedSchemaValid": true, "expectedRequirementState": "BLOCKED" },
+    { "id": "available_not_accepted", "mutation": "available", "expectedSchemaValid": true, "expectedRequirementState": "BLOCKED" },
+    { "id": "synthetic_cannot_authorize", "mutation": "none", "expectedSchemaValid": true, "expectedRequirementState": "BLOCKED" }
+  ],
+  "baseSnapshot": {
+    "schemaVersion": 1,
+    "contractId": "epic-k-normalized-shopify-config-snapshot",
+    "snapshotVersion": "1.0.0",
+    "synthetic": true,
+    "source": {
+      "system": "normalized_shopify_configuration",
+      "mappingStatus": "synthetic_contract_only",
+      "collectedAt": "2026-10-23T18:00:00.000Z",
+      "collectorAuthority": "SYNTHETIC-K1B01-TEST",
+      "authorityStatus": "synthetic",
+      "sanitized": true,
+      "validity": { "kind": "none_established" },
+      "datasetCompleteness": {
+        "profiles": "complete",
+        "zones": "complete",
+        "rates": "complete",
+        "discounts": "complete",
+        "markets": "complete",
+        "pickup": "complete",
+        "products": "complete"
+      }
+    },
+    "profiles": [
+      {
+        "id": "SYNTHETIC_PROFILE_STANDARD",
+        "name": "Synthetic paid standard shipping",
+        "assignedProductRefs": ["SYNTHETIC_PRODUCT_PART"],
+        "machineShipmentMode": "unverified"
+      },
+      {
+        "id": "SYNTHETIC_PROFILE_MACHINE_QUOTE",
+        "name": "Synthetic machine quotation",
+        "assignedProductRefs": ["SYNTHETIC_PRODUCT_MACHINE"],
+        "machineShipmentMode": "quotation_required"
+      }
+    ],
+    "zones": [
+      {
+        "id": "SYNTHETIC_ZONE_US",
+        "countryCodes": ["US"],
+        "subdivisionCodes": ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+      }
+    ],
+    "rates": [
+      {
+        "id": "SYNTHETIC_RATE_STANDARD",
+        "profileId": "SYNTHETIC_PROFILE_STANDARD",
+        "zoneIds": ["SYNTHETIC_ZONE_US"],
+        "type": "flat",
+        "active": true,
+        "amountCents": 1234,
+        "currencyCode": "USD",
+        "subdivisionCodes": ["IL"],
+        "operationalApproval": "accepted",
+        "serviceAvailability": "confirmed"
+      },
+      {
+        "id": "SYNTHETIC_RATE_AK",
+        "profileId": "SYNTHETIC_PROFILE_STANDARD",
+        "zoneIds": ["SYNTHETIC_ZONE_US"],
+        "type": "flat",
+        "active": true,
+        "amountCents": 2345,
+        "currencyCode": "USD",
+        "subdivisionCodes": ["AK"],
+        "operationalApproval": "accepted",
+        "serviceAvailability": "confirmed"
+      },
+      {
+        "id": "SYNTHETIC_RATE_HI",
+        "profileId": "SYNTHETIC_PROFILE_STANDARD",
+        "zoneIds": ["SYNTHETIC_ZONE_US"],
+        "type": "flat",
+        "active": true,
+        "amountCents": 3456,
+        "currencyCode": "USD",
+        "subdivisionCodes": ["HI"],
+        "operationalApproval": "accepted",
+        "serviceAvailability": "confirmed"
+      }
+    ],
+    "discounts": [
+      { "id": "SYNTHETIC_DISCOUNT_NONE", "active": false, "shippingEffect": "none" }
+    ],
+    "markets": [
+      { "id": "SYNTHETIC_MARKET_US", "countryCodes": ["US"], "active": true, "checkoutAvailabilityEvidence": "confirmed" }
+    ],
+    "pickup": [
+      {
+        "id": "SYNTHETIC_LOCATION_GRAFTON",
+        "code": "GRAFTON",
+        "active": true,
+        "pickupEnabled": true,
+        "eligibilityAssignmentStatus": "complete",
+        "inventoryReadinessStatus": "accepted"
+      }
+    ],
+    "products": [
+      {
+        "ref": "SYNTHETIC_PRODUCT_PART",
+        "classification": "replacement_part",
+        "requiresShipping": true,
+        "profileId": "SYNTHETIC_PROFILE_STANDARD",
+        "pickupEligibility": "approved",
+        "shippingWeight": { "value": 2, "unit": "lb", "evidenceStatus": "synthetic" },
+        "packageCharacteristicsStatus": "synthetic_complete",
+        "packages": [
+          { "id": "SYNTHETIC_PACKAGE_PART", "quantity": 1, "length": 10, "width": 8, "height": 4, "dimensionUnit": "in" }
+        ]
+      },
+      {
+        "ref": "SYNTHETIC_PRODUCT_MACHINE",
+        "classification": "machine",
+        "requiresShipping": true,
+        "profileId": "SYNTHETIC_PROFILE_MACHINE_QUOTE",
+        "pickupEligibility": "approved",
+        "shippingWeight": { "value": 200, "unit": "lb", "evidenceStatus": "synthetic" },
+        "packageCharacteristicsStatus": "synthetic_complete",
+        "packages": [
+          { "id": "SYNTHETIC_PACKAGE_MACHINE", "quantity": 1, "length": 40, "width": 30, "height": 36, "dimensionUnit": "in" }
+        ]
+      }
+    ]
+  },
+  "snapshotCases": [
+    { "id": "valid_synthetic", "mutation": "none", "expectedDomain": "free_shipping", "expectedState": "PASS" },
+    { "id": "zero_cost_rate", "mutation": "zero_rate", "expectedDomain": "free_shipping", "expectedState": "FAIL" },
+    { "id": "threshold_free_rate", "mutation": "threshold_free", "expectedDomain": "free_shipping", "expectedState": "FAIL" },
+    { "id": "missing_discount_dataset", "mutation": "missing_discounts", "expectedDomain": "free_shipping", "expectedState": "BLOCKED" },
+    { "id": "permissive_machine_profile", "mutation": "permissive_machine", "expectedDomain": "machine_shipping", "expectedState": "FAIL" },
+    { "id": "missing_machine_profile_data", "mutation": "missing_machine_profile", "expectedDomain": "machine_shipping", "expectedState": "BLOCKED" },
+    { "id": "unverified_grafton_eligibility", "mutation": "unknown_pickup", "expectedDomain": "pickup", "expectedState": "BLOCKED" },
+    { "id": "missing_pickup_location_readiness", "mutation": "missing_pickup_readiness", "expectedDomain": "pickup", "expectedState": "BLOCKED" },
+    { "id": "international_zone_without_market_evidence", "mutation": "international_zone", "expectedDomain": "geography", "expectedState": "FAIL" },
+    { "id": "alaska_rate_without_approval", "mutation": "unapproved_ak", "expectedDomain": "geography", "expectedState": "FAIL" },
+    { "id": "missing_product_weight", "mutation": "missing_weight", "expectedDomain": "product_logistics", "expectedState": "FAIL" },
+    { "id": "zero_product_weight", "mutation": "zero_weight", "expectedDomain": "product_logistics", "expectedState": "FAIL" },
+    { "id": "missing_package_characteristics", "mutation": "missing_packages", "expectedDomain": "product_logistics", "expectedState": "UNVERIFIED" },
+    { "id": "expired_snapshot", "mutation": "expired_snapshot", "expectedDomain": "evidence_freshness", "expectedState": "FAIL" }
+  ]
+}

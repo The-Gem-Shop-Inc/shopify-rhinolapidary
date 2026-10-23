@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-k-shopify-config-snapshot.schema.json",
+  "title": "Normalized Epic K Shopify configuration snapshot",
+  "description": "A normalized intermediate representation. A future authorized audit must establish and document the mapping from Shopify responses.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "snapshotVersion", "synthetic", "source", "profiles", "zones", "rates", "discounts", "markets", "pickup", "products"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-k-normalized-shopify-config-snapshot" },
+    "snapshotVersion": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+    "synthetic": { "type": "boolean" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system", "mappingStatus", "collectedAt", "collectorAuthority", "authorityStatus", "sanitized", "validity", "datasetCompleteness"],
+      "properties": {
+        "system": { "const": "normalized_shopify_configuration" },
+        "mappingStatus": { "enum": ["synthetic_contract_only", "approved_mapping_attached"] },
+        "collectedAt": { "type": "string", "format": "date-time" },
+        "collectorAuthority": { "type": "string", "minLength": 2 },
+        "authorityStatus": { "enum": ["accepted", "unverified", "synthetic"] },
+        "sanitized": { "const": true },
+        "validity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind"],
+          "properties": {
+            "kind": { "enum": ["none_established", "interval"] },
+            "expiresAt": { "type": "string", "format": "date-time" }
+          },
+          "allOf": [{ "if": { "properties": { "kind": { "const": "interval" } } }, "then": { "required": ["expiresAt"] } }]
+        },
+        "datasetCompleteness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["profiles", "zones", "rates", "discounts", "markets", "pickup", "products"],
+          "properties": {
+            "profiles": { "$ref": "#/$defs/completeness" },
+            "zones": { "$ref": "#/$defs/completeness" },
+            "rates": { "$ref": "#/$defs/completeness" },
+            "discounts": { "$ref": "#/$defs/completeness" },
+            "markets": { "$ref": "#/$defs/completeness" },
+            "pickup": { "$ref": "#/$defs/completeness" },
+            "products": { "$ref": "#/$defs/completeness" }
+          }
+        }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "name", "assignedProductRefs", "machineShipmentMode"],
+        "properties": {
+          "id": { "$ref": "#/$defs/reference" },
+          "name": { "type": "string", "minLength": 1 },
+          "assignedProductRefs": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/reference" } },
+          "machineShipmentMode": { "enum": ["quotation_required", "ordinary_checkout_possible", "unverified"] }
+        }
+      }
+    },
+    "zones": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "countryCodes", "subdivisionCodes"],
+        "properties": {
+          "id": { "$ref": "#/$defs/reference" },
+          "countryCodes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z]{2}$" } },
+          "subdivisionCodes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z]{2}$" } }
+        }
+      }
+    },
+    "rates": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "profileId", "zoneIds", "type", "active", "amountCents", "currencyCode", "subdivisionCodes", "operationalApproval", "serviceAvailability"],
+        "properties": {
+          "id": { "$ref": "#/$defs/reference" },
+          "profileId": { "$ref": "#/$defs/reference" },
+          "zoneIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/reference" } },
+          "type": { "enum": ["flat", "threshold_free", "carrier_calculated", "freight_quote"] },
+          "active": { "type": "boolean" },
+          "amountCents": { "type": ["integer", "null"], "minimum": 0 },
+          "thresholdCents": { "type": "integer", "minimum": 0 },
+          "currencyCode": { "type": "string", "pattern": "^[A-Z]{3}$" },
+          "subdivisionCodes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z]{2}$" } },
+          "operationalApproval": { "enum": ["accepted", "missing", "pending", "not_applicable"] },
+          "serviceAvailability": { "enum": ["confirmed", "unverified", "not_applicable"] }
+        }
+      }
+    },
+    "discounts": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "active", "shippingEffect"],
+        "properties": {
+          "id": { "$ref": "#/$defs/reference" },
+          "active": { "type": "boolean" },
+          "shippingEffect": { "enum": ["zero_shipping", "reduced_shipping", "none", "unverified"] }
+        }
+      }
+    },
+    "markets": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "countryCodes", "active", "checkoutAvailabilityEvidence"],
+        "properties": {
+          "id": { "$ref": "#/$defs/reference" },
+          "countryCodes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z]{2}$" } },
+          "active": { "type": "boolean" },
+          "checkoutAvailabilityEvidence": { "enum": ["confirmed", "absent", "unverified"] }
+        }
+      }
+    },
+    "pickup": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "code", "active", "pickupEnabled", "eligibilityAssignmentStatus", "inventoryReadinessStatus"],
+        "properties": {
+          "id": { "$ref": "#/$defs/reference" },
+          "code": { "type": "string", "minLength": 2 },
+          "active": { "type": "boolean" },
+          "pickupEnabled": { "type": "boolean" },
+          "eligibilityAssignmentStatus": { "enum": ["complete", "partial", "missing"] },
+          "inventoryReadinessStatus": { "enum": ["accepted", "pending", "missing"] }
+        }
+      }
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["ref", "classification", "requiresShipping", "profileId", "pickupEligibility", "shippingWeight", "packageCharacteristicsStatus", "packages"],
+        "properties": {
+          "ref": { "$ref": "#/$defs/reference" },
+          "classification": { "enum": ["machine", "replacement_part", "accessory", "consumable", "other"] },
+          "requiresShipping": { "type": "boolean" },
+          "profileId": { "$ref": "#/$defs/reference" },
+          "pickupEligibility": { "enum": ["approved", "rejected", "unknown"] },
+          "shippingWeight": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "required": ["value", "unit", "evidenceStatus"],
+            "properties": {
+              "value": { "type": "number", "minimum": 0 },
+              "unit": { "enum": ["g", "kg", "oz", "lb"] },
+              "evidenceStatus": { "enum": ["accepted", "available", "missing", "synthetic"] }
+            }
+          },
+          "packageCharacteristicsStatus": { "enum": ["complete", "partial", "missing", "synthetic_complete"] },
+          "packages": {
+            "type": "array",
+            "items": {
+              "type": "object", "additionalProperties": false,
+              "required": ["id", "quantity", "length", "width", "height", "dimensionUnit"],
+              "properties": {
+                "id": { "$ref": "#/$defs/reference" },
+                "quantity": { "type": "integer", "minimum": 1 },
+                "length": { "type": "number", "exclusiveMinimum": 0 },
+                "width": { "type": "number", "exclusiveMinimum": 0 },
+                "height": { "type": "number", "exclusiveMinimum": 0 },
+                "dimensionUnit": { "enum": ["in", "cm"] }
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "packageCharacteristicsStatus": { "enum": ["complete", "synthetic_complete"] } } },
+            "then": { "properties": { "packages": { "minItems": 1 } } }
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "completeness": { "enum": ["complete", "partial", "missing"] },
+    "reference": { "type": "string", "pattern": "^[A-Z][A-Z0-9_-]+$" }
+  }
+}
