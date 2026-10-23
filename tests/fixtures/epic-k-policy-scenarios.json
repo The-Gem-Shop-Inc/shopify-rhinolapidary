@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "fixtureType": "synthetic_only",
+  "operationalEvidence": false,
+  "realProductClaimsAllowed": false,
+  "routingCases": [
+    {
+      "id": "K-SYN-ORDINARY-PAID-WI",
+      "cart": { "items": [{ "id": "SYNTHETIC-PART-A", "kind": "part", "quantity": 1, "pickupEligibility": "unknown" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "WI" },
+        "shippingServiceApproval": "approved",
+        "shippingRate": { "status": "approved_paid", "amountCents": 1200 }
+      },
+      "expected": { "route": "ordinary_paid_shipping", "policyEligible": true }
+    },
+    {
+      "id": "K-SYN-FREE-SHIPPING-BLOCKED",
+      "cart": { "items": [{ "id": "SYNTHETIC-SUPPLY-A", "kind": "supply", "quantity": 2, "pickupEligibility": "unknown" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "IL" },
+        "shippingServiceApproval": "approved",
+        "shippingRate": { "status": "free", "amountCents": 0 }
+      },
+      "expected": { "route": "blocked_by_policy", "policyEligible": false }
+    },
+    {
+      "id": "K-SYN-MISSING-RATE-EVIDENCE",
+      "cart": { "items": [{ "id": "SYNTHETIC-ACCESSORY-A", "kind": "accessory", "quantity": 1, "pickupEligibility": "unknown" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "MN" },
+        "shippingServiceApproval": "approved",
+        "shippingRate": { "status": "missing" }
+      },
+      "expected": { "route": "operational_evidence_required", "policyEligible": null }
+    },
+    {
+      "id": "K-SYN-PICKUP-MACHINE-APPROVED",
+      "cart": { "items": [{ "id": "SYNTHETIC-MACHINE-A", "kind": "machine", "quantity": 1, "pickupEligibility": "approved" }] },
+      "request": {
+        "intent": "pickup",
+        "destination": { "countryCode": "US", "subdivisionCode": "WI" },
+        "pickupLocation": "GRAFTON",
+        "locationReadiness": "approved"
+      },
+      "expected": { "route": "ordinary_grafton_pickup", "policyEligible": true }
+    },
+    {
+      "id": "K-SYN-PICKUP-ALL-APPROVED",
+      "cart": { "items": [
+        { "id": "SYNTHETIC-MACHINE-A", "kind": "machine", "quantity": 1, "pickupEligibility": "approved" },
+        { "id": "SYNTHETIC-ACCESSORY-A", "kind": "accessory", "quantity": 2, "pickupEligibility": "approved" }
+      ] },
+      "request": {
+        "intent": "pickup",
+        "destination": { "countryCode": "US", "subdivisionCode": "WI" },
+        "pickupLocation": "GRAFTON",
+        "locationReadiness": "approved"
+      },
+      "expected": { "route": "ordinary_grafton_pickup", "policyEligible": true }
+    },
+    {
+      "id": "K-SYN-PICKUP-ONE-REJECTED",
+      "cart": { "items": [
+        { "id": "SYNTHETIC-MACHINE-A", "kind": "machine", "quantity": 1, "pickupEligibility": "approved" },
+        { "id": "SYNTHETIC-PART-B", "kind": "part", "quantity": 1, "pickupEligibility": "rejected" }
+      ] },
+      "request": {
+        "intent": "pickup",
+        "destination": { "countryCode": "US", "subdivisionCode": "WI" },
+        "pickupLocation": "GRAFTON",
+        "locationReadiness": "approved"
+      },
+      "expected": { "route": "blocked_by_policy", "policyEligible": false }
+    },
+    {
+      "id": "K-SYN-PICKUP-UNKNOWN",
+      "cart": { "items": [{ "id": "SYNTHETIC-MACHINE-B", "kind": "machine", "quantity": 1, "pickupEligibility": "unknown" }] },
+      "request": {
+        "intent": "pickup",
+        "destination": { "countryCode": "US", "subdivisionCode": "WI" },
+        "pickupLocation": "GRAFTON",
+        "locationReadiness": "approved"
+      },
+      "expected": { "route": "operational_evidence_required", "policyEligible": null }
+    },
+    {
+      "id": "K-SYN-MACHINE-SHIPMENT",
+      "cart": { "items": [{ "id": "SYNTHETIC-MACHINE-A", "kind": "machine", "quantity": 1, "pickupEligibility": "approved" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "WI" }
+      },
+      "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
+    },
+    {
+      "id": "K-SYN-MACHINE-MIXED-CART",
+      "cart": { "items": [
+        { "id": "SYNTHETIC-MACHINE-A", "kind": "machine", "quantity": 1, "pickupEligibility": "approved" },
+        { "id": "SYNTHETIC-ACCESSORY-A", "kind": "accessory", "quantity": 3, "pickupEligibility": "approved" }
+      ] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "IL" }
+      },
+      "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
+    },
+    {
+      "id": "K-SYN-MACHINE-QUANTITY-TWO",
+      "cart": { "items": [{ "id": "SYNTHETIC-MACHINE-A", "kind": "machine", "quantity": 2, "pickupEligibility": "approved" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "IA" }
+      },
+      "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
+    },
+    {
+      "id": "K-SYN-MACHINE-CHANGED-TO-SHIPMENT",
+      "cart": { "items": [{ "id": "SYNTHETIC-MACHINE-A", "kind": "machine", "quantity": 1, "pickupEligibility": "approved" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "WI" },
+        "pickupLocation": "GRAFTON",
+        "locationReadiness": "approved"
+      },
+      "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
+    },
+    {
+      "id": "K-SYN-ALASKA-QUOTE-INTAKE",
+      "cart": { "items": [{ "id": "SYNTHETIC-PART-A", "kind": "part", "quantity": 1, "pickupEligibility": "unknown" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "AK" }
+      },
+      "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
+    },
+    {
+      "id": "K-SYN-HAWAII-QUOTE-INTAKE",
+      "cart": { "items": [{ "id": "SYNTHETIC-SUPPLY-A", "kind": "supply", "quantity": 1, "pickupEligibility": "unknown" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "HI" }
+      },
+      "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
+    },
+    {
+      "id": "K-SYN-INTERNATIONAL-BLOCKED",
+      "cart": { "items": [{ "id": "SYNTHETIC-PART-A", "kind": "part", "quantity": 1, "pickupEligibility": "unknown" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "CA", "subdivisionCode": "ON" },
+        "adminZoneObserved": true
+      },
+      "expected": { "route": "blocked_by_policy", "policyEligible": false }
+    },
+    {
+      "id": "K-SYN-TERRITORY-BLOCKED",
+      "cart": { "items": [{ "id": "SYNTHETIC-PART-A", "kind": "part", "quantity": 1, "pickupEligibility": "unknown" }] },
+      "request": {
+        "intent": "shipment",
+        "destination": { "countryCode": "US", "subdivisionCode": "PR" }
+      },
+      "expected": { "route": "blocked_by_policy", "policyEligible": false }
+    },
+    {
+      "id": "K-SYN-RHINO-DELIVERY-QUOTE",
+      "cart": { "items": [{ "id": "SYNTHETIC-MACHINE-A", "kind": "machine", "quantity": 1, "pickupEligibility": "approved" }] },
+      "request": {
+        "intent": "rhino_delivery",
+        "destination": { "countryCode": "US", "subdivisionCode": "WI" }
+      },
+      "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
+    }
+  ]
+}

@@ -5,6 +5,10 @@ const Ajv2020 = require('ajv/dist/2020');
 const ROOT = process.cwd();
 
 const targets = [
+    { name: 'Epic K provisional decisions', schemaPath: 'schemas/epic-k-provisional-decisions.schema.json', dataPath: 'data/epic-k-provisional-decisions.json' },
+    { name: 'Epic K provisional fulfillment policy', schemaPath: 'schemas/epic-k-fulfillment-policy.schema.json', dataPath: 'data/epic-k-fulfillment-policy.json' },
+    { name: 'Epic K operational evidence requirements', schemaPath: 'schemas/epic-k-operational-evidence.schema.json', dataPath: 'data/epic-k-operational-evidence-requirements.json' },
+    { name: 'Epic K synthetic policy scenarios', schemaPath: 'schemas/epic-k-policy-scenarios.schema.json', dataPath: 'tests/fixtures/epic-k-policy-scenarios.json' },
     { name: 'Epic G isolated foundation fixture', schemaPath: 'schemas/epic-g-foundation-fixture.schema.json', dataPath: 'tests/fixtures/epic-g-foundation.json' },
     { name: 'Epic F machine-page repository readiness', schemaPath: 'schemas/epic-f-machine-page-readiness.schema.json', dataPath: 'data/epic-f-machine-page-readiness.json' },
     { name: 'epic-f-machine-measurement-contract', schemaPath: 'schemas/epic-f-machine-measurement-contract.schema.json', dataPath: 'data/epic-f-machine-measurement-contract.json' },

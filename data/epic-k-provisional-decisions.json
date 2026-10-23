@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "contractId": "epic-k-provisional-decisions",
+  "version": "1.0.0-provisional",
+  "status": "provisional",
+  "recordedAt": "2026-10-23T00:00:00-05:00",
+  "authority": {
+    "sourceType": "user_supplied_provisional_decision_record",
+    "sourceDate": "2026-10-23",
+    "approvalEffect": "does_not_constitute_final_business_approval"
+  },
+  "boundPbis": ["K-PBI-001", "K-PBI-002"],
+  "decisions": [
+    {
+      "id": "K-DEC-001",
+      "status": "provisional",
+      "statement": "No free shipping option is approved for shipped orders.",
+      "owners": ["Product Owner", "Shipping operations", "Finance"],
+      "dependencies": ["Approved paid shipping services and rates"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-002",
+      "status": "provisional",
+      "statement": "Shipped machines require an approved shipping quotation before payment.",
+      "owners": ["Product Owner", "Shipping operations"],
+      "dependencies": ["Epic E Product classification", "Authoritative Product and Variant eligibility"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-003",
+      "status": "provisional",
+      "statement": "Initial service geography covers all 50 United States; Alaska and Hawaii require separately approved rates.",
+      "owners": ["Product Owner", "Shipping operations"],
+      "dependencies": ["Approved services by region", "Alaska and Hawaii rate evidence"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-004",
+      "status": "provisional",
+      "statement": "International fulfillment is outside the initial Epic K scope.",
+      "owners": ["Product Owner"],
+      "dependencies": ["Future international operating policy"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-005",
+      "status": "provisional",
+      "statement": "The customer assembles the complete cart and requests a quotation; after approval, staff prepares a Shopify draft order and sends an invoice for payment.",
+      "owners": ["Product Owner", "Warehouse or shipping operations"],
+      "dependencies": ["Approved staff procedure", "Separate authorization for Shopify draft-order operations"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-006",
+      "status": "provisional",
+      "statement": "The initial delivery quotation request collects residential or commercial designation, liftgate requirements, and access information.",
+      "owners": ["Warehouse or shipping operations"],
+      "dependencies": ["Approved quotation intake procedure"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-007",
+      "status": "provisional",
+      "statement": "No numeric delivery estimate may be published without operations approval.",
+      "owners": ["Shipping operations", "Product Owner"],
+      "dependencies": ["Operations-owned delivery estimate evidence"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-008",
+      "status": "provisional",
+      "statement": "Only explicitly approved products may use Grafton pickup; approved pickup-eligible machines may use ordinary pickup checkout.",
+      "owners": ["Product Owner", "Grafton operations"],
+      "dependencies": ["Epic E and Epic F Product facts", "Grafton readiness", "Authoritative pickup eligibility"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-009",
+      "status": "provisional",
+      "statement": "Damage and claims instructions depend on the actual carrier and shipment service; Rhino delivery follows an internal reporting process, and insurance may be recommended without guaranteeing compensation.",
+      "owners": ["Shipping operations", "Customer service", "Epic L owner"],
+      "dependencies": ["Carrier-specific claims evidence", "Epic L responsibilities"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-010",
+      "status": "provisional",
+      "statement": "Warehouse or shipping operations owns shipping quotation preparation and approval.",
+      "owners": ["Warehouse or shipping operations"],
+      "dependencies": ["Named operational approvers"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-011",
+      "status": "provisional",
+      "statement": "One approved quotation covers the complete order whenever shipped machinery is involved.",
+      "owners": ["Warehouse or shipping operations", "Product Owner"],
+      "dependencies": ["Complete-cart quotation scope evidence"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-014",
+      "status": "provisional",
+      "statement": "Ordinary pickup checkout is permitted only when every cart item is explicitly pickup eligible.",
+      "owners": ["Product Owner", "Grafton operations"],
+      "dependencies": ["Authoritative Product and Variant pickup eligibility"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-015",
+      "status": "provisional",
+      "statement": "Available insurance coverage and its cost are presented as selectable quotation options before invoicing.",
+      "owners": ["Shipping operations", "Finance"],
+      "dependencies": ["Carrier insurance availability and cost evidence"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-016",
+      "status": "provisional",
+      "statement": "The customer notifies Rhino and follows applicable carrier instructions; the customer is not assumed to be authorized to file every carrier claim.",
+      "owners": ["Customer service", "Shipping operations", "Epic L owner"],
+      "dependencies": ["Designated Rhino contact process", "Carrier-specific filing responsibilities"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-017",
+      "status": "provisional",
+      "statement": "Rhino delivery is offered only through individually approved quotations and is not a generally available automatic checkout option.",
+      "owners": ["Product Owner", "Shipping operations"],
+      "dependencies": ["Individually approved Rhino delivery evidence"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-018",
+      "status": "provisional",
+      "statement": "Operations establishes a validity period for each approved quotation; expired or materially changed quotations require renewed approval.",
+      "owners": ["Warehouse or shipping operations"],
+      "dependencies": ["Quotation validity evidence", "Material-change comparison"],
+      "implementationEffect": "repository_policy_input_only"
+    },
+    {
+      "id": "K-DEC-019",
+      "status": "provisional",
+      "statement": "Alaska and Hawaii quotation requests are permitted, but payment invoicing requires an approved rate and confirmed service availability.",
+      "owners": ["Shipping operations", "Finance"],
+      "dependencies": ["Alaska and Hawaii rate evidence", "Confirmed carrier service availability"],
+      "implementationEffect": "repository_policy_input_only"
+    }
+  ],
+  "boundaries": {
+    "shopifyMutationAuthorized": false,
+    "themeMutationAuthorized": false,
+    "customerFacingChangeAuthorized": false,
+    "checkoutEnforcementEstablished": false,
+    "operationalReadinessEstablished": false
+  },
+  "dependencies": ["Epic E", "Epic F", "Epic J", "Epic L"]
+}

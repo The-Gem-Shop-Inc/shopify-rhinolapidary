@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-k-fulfillment-policy.schema.json",
+  "title": "Epic K provisional fulfillment policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "version", "status", "decisionContract", "enforcement", "shipping", "pickup", "quotation", "insurance", "claims", "contentGovernance"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-k-fulfillment-policy" },
+    "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+-provisional$" },
+    "status": { "const": "provisional" },
+    "decisionContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "version", "decisionIds"],
+      "properties": {
+        "path": { "const": "data/epic-k-provisional-decisions.json" },
+        "version": { "type": "string" },
+        "decisionIds": { "type": "array", "minItems": 17, "uniqueItems": true, "items": { "type": "string", "pattern": "^K-DEC-[0-9]{3}$" } }
+      }
+    },
+    "enforcement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryAssessmentOnly", "liveCheckoutEnforcement", "shopifyConfigurationCompliance", "realProductEligibilityEstablished"],
+      "properties": {
+        "repositoryAssessmentOnly": { "const": true },
+        "liveCheckoutEnforcement": { "const": false },
+        "shopifyConfigurationCompliance": { "const": "unverified" },
+        "realProductEligibilityEstablished": { "const": false }
+      }
+    },
+    "shipping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["freeShippingAllowed", "ordinaryShipment", "machineShipment", "geography", "rhinoDelivery"],
+      "properties": {
+        "freeShippingAllowed": { "const": false },
+        "ordinaryShipment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["requiresApprovedPaidRate", "requiresApprovedService", "decisionIds"],
+          "properties": {
+            "requiresApprovedPaidRate": { "const": true },
+            "requiresApprovedService": { "const": true },
+            "decisionIds": { "$ref": "#/$defs/decisionIds" }
+          }
+        },
+        "machineShipment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["route", "scope", "approvalOwner", "decisionIds"],
+          "properties": {
+            "route": { "const": "approved_whole_cart_quotation_before_payment" },
+            "scope": { "const": "complete_cart" },
+            "approvalOwner": { "const": "warehouse_or_shipping_operations" },
+            "decisionIds": { "$ref": "#/$defs/decisionIds" }
+          }
+        },
+        "geography": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["initialCountry", "includedStateCount", "alaskaHawaii", "international", "territories", "decisionIds"],
+          "properties": {
+            "initialCountry": { "const": "US" },
+            "includedStateCount": { "const": 50 },
+            "alaskaHawaii": { "const": "quotation_intake_allowed_separate_rate_and_service_approval_required_before_invoice" },
+            "international": { "const": "outside_initial_scope" },
+            "territories": { "const": "outside_initial_scope_unless_separately_approved" },
+            "decisionIds": { "$ref": "#/$defs/decisionIds" }
+          }
+        },
+        "rhinoDelivery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["automaticCheckoutOption", "route", "decisionIds"],
+          "properties": {
+            "automaticCheckoutOption": { "const": false },
+            "route": { "const": "individually_approved_quotation" },
+            "decisionIds": { "$ref": "#/$defs/decisionIds" }
+          }
+        }
+      }
+    },
+    "pickup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["location", "eligibilityRule", "cartRule", "unknownEligibility", "decisionIds"],
+      "properties": {
+        "location": { "const": "GRAFTON" },
+        "eligibilityRule": { "const": "explicit_product_or_variant_approval_required" },
+        "cartRule": { "const": "every_cart_item_must_be_explicitly_pickup_eligible" },
+        "unknownEligibility": { "const": "not_approved" },
+        "decisionIds": { "$ref": "#/$defs/decisionIds" }
+      }
+    },
+    "quotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requestFlow", "approvalOwner", "scope", "requiredDeliveryInputs", "validity", "materialChanges", "decisionIds"],
+      "properties": {
+        "requestFlow": { "const": "customer_cart_to_request_to_staff_draft_order_invoice" },
+        "approvalOwner": { "const": "warehouse_or_shipping_operations" },
+        "scope": { "const": "complete_required_cart" },
+        "requiredDeliveryInputs": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": { "enum": ["residential_or_commercial", "liftgate_requirement", "access_information"] }
+        },
+        "validity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["durationDefined", "owner", "expiredAction"],
+          "properties": {
+            "durationDefined": { "const": false },
+            "owner": { "const": "operations" },
+            "expiredAction": { "const": "renewed_approval_required" }
+          }
+        },
+        "materialChanges": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": { "enum": ["cart", "destination", "delivery_requirements", "insurance_selection"] }
+        },
+        "decisionIds": { "$ref": "#/$defs/decisionIds" }
+      }
+    },
+    "insurance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selectionPoint", "requiresAvailabilityEvidence", "requiresCostEvidence", "missingCostBehavior", "compensationGuaranteed", "decisionIds"],
+      "properties": {
+        "selectionPoint": { "const": "before_invoice" },
+        "requiresAvailabilityEvidence": { "const": true },
+        "requiresCostEvidence": { "const": true },
+        "missingCostBehavior": { "const": "cannot_be_selected_or_represented_as_free" },
+        "compensationGuaranteed": { "const": false },
+        "decisionIds": { "$ref": "#/$defs/decisionIds" }
+      }
+    },
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rhinoNotificationRequired", "designatedContactProcessRequired", "carrierSpecificInstructionsRequired", "customerAlwaysAuthorizedToFileCarrierClaim", "uninsuredRemediesCategoricallyEliminated", "decisionIds"],
+      "properties": {
+        "rhinoNotificationRequired": { "const": true },
+        "designatedContactProcessRequired": { "const": true },
+        "carrierSpecificInstructionsRequired": { "const": true },
+        "customerAlwaysAuthorizedToFileCarrierClaim": { "const": false },
+        "uninsuredRemediesCategoricallyEliminated": { "const": false },
+        "decisionIds": { "$ref": "#/$defs/decisionIds" }
+      }
+    },
+    "contentGovernance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["numericDeliveryEstimateDefault", "approvedEstimateAuthority", "unrelatedNumberCategories", "decisionIds"],
+      "properties": {
+        "numericDeliveryEstimateDefault": { "const": "reject" },
+        "approvedEstimateAuthority": { "const": "operations" },
+        "unrelatedNumberCategories": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": { "enum": ["machine_specification", "quotation_expiration", "price", "quantity"] }
+        },
+        "decisionIds": { "$ref": "#/$defs/decisionIds" }
+      }
+    }
+  },
+  "$defs": {
+    "decisionIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^K-DEC-[0-9]{3}$" }
+    }
+  }
+}

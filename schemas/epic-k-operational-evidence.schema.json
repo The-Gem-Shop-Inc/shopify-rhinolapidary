@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-k-operational-evidence.schema.json",
+  "title": "Epic K operational evidence requirements",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "version", "status", "operationalReadiness", "liveCheckoutCompliance", "requirements"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-k-operational-evidence-requirements" },
+    "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+-provisional$" },
+    "status": { "const": "provisional" },
+    "operationalReadiness": { "const": "not_established" },
+    "liveCheckoutCompliance": { "const": "unverified" },
+    "requirements": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "category", "authorityOwners", "sourceEpic", "status", "syntheticDataMaySatisfy", "requiredFacts", "blocks"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^K-EVID-[0-9]{3}$" },
+          "category": {
+            "enum": [
+              "product_variant_pickup_eligibility",
+              "grafton_inventory_location_readiness",
+              "shipping_weights_package_characteristics",
+              "approved_shipping_services_regions",
+              "alaska_hawaii_rates",
+              "carrier_insurance_options",
+              "claims_contacts_responsibilities",
+              "quotation_approval_scope_expiration"
+            ]
+          },
+          "authorityOwners": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
+          "sourceEpic": { "enum": ["Epic E", "Epic F", "Epic K", "Epic L"] },
+          "status": { "const": "missing_external_evidence" },
+          "syntheticDataMaySatisfy": { "const": false },
+          "requiredFacts": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 4 } },
+          "blocks": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 4 } }
+        }
+      }
+    }
+  }
+}

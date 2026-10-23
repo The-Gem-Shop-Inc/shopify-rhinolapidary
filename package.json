@@ -220,6 +220,9 @@
     "test:epic-g-integrated:performance": "node scripts/validate-epic-g-integrated-performance.js",
     "validate:epic-j-readiness": "node scripts/validate-epic-j-readiness.js",
     "test:epic-j-readiness": "node scripts/test-epic-j-readiness.js",
+    "validate:epic-k-policy": "node scripts/validate-epic-k-policy.js",
+    "test:epic-k-policy": "node scripts/test-epic-k-policy.js",
+    "validate:epic-k-k1a": "npm run validate:epic-k-policy && npm run test:epic-k-policy",
     "test:epic-j-cart": "playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1",
     "validate:epic-j-j0": "node scripts/run-epic-j-j0.js"
   },

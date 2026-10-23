@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "contractId": "epic-k-fulfillment-policy",
+  "version": "1.0.0-provisional",
+  "status": "provisional",
+  "decisionContract": {
+    "path": "data/epic-k-provisional-decisions.json",
+    "version": "1.0.0-provisional",
+    "decisionIds": [
+      "K-DEC-001", "K-DEC-002", "K-DEC-003", "K-DEC-004", "K-DEC-005", "K-DEC-006",
+      "K-DEC-007", "K-DEC-008", "K-DEC-009", "K-DEC-010", "K-DEC-011", "K-DEC-014",
+      "K-DEC-015", "K-DEC-016", "K-DEC-017", "K-DEC-018", "K-DEC-019"
+    ]
+  },
+  "enforcement": {
+    "repositoryAssessmentOnly": true,
+    "liveCheckoutEnforcement": false,
+    "shopifyConfigurationCompliance": "unverified",
+    "realProductEligibilityEstablished": false
+  },
+  "shipping": {
+    "freeShippingAllowed": false,
+    "ordinaryShipment": {
+      "requiresApprovedPaidRate": true,
+      "requiresApprovedService": true,
+      "decisionIds": ["K-DEC-001", "K-DEC-003"]
+    },
+    "machineShipment": {
+      "route": "approved_whole_cart_quotation_before_payment",
+      "scope": "complete_cart",
+      "approvalOwner": "warehouse_or_shipping_operations",
+      "decisionIds": ["K-DEC-002", "K-DEC-005", "K-DEC-010", "K-DEC-011"]
+    },
+    "geography": {
+      "initialCountry": "US",
+      "includedStateCount": 50,
+      "alaskaHawaii": "quotation_intake_allowed_separate_rate_and_service_approval_required_before_invoice",
+      "international": "outside_initial_scope",
+      "territories": "outside_initial_scope_unless_separately_approved",
+      "decisionIds": ["K-DEC-003", "K-DEC-004", "K-DEC-019"]
+    },
+    "rhinoDelivery": {
+      "automaticCheckoutOption": false,
+      "route": "individually_approved_quotation",
+      "decisionIds": ["K-DEC-017"]
+    }
+  },
+  "pickup": {
+    "location": "GRAFTON",
+    "eligibilityRule": "explicit_product_or_variant_approval_required",
+    "cartRule": "every_cart_item_must_be_explicitly_pickup_eligible",
+    "unknownEligibility": "not_approved",
+    "decisionIds": ["K-DEC-008", "K-DEC-014"]
+  },
+  "quotation": {
+    "requestFlow": "customer_cart_to_request_to_staff_draft_order_invoice",
+    "approvalOwner": "warehouse_or_shipping_operations",
+    "scope": "complete_required_cart",
+    "requiredDeliveryInputs": ["residential_or_commercial", "liftgate_requirement", "access_information"],
+    "validity": {
+      "durationDefined": false,
+      "owner": "operations",
+      "expiredAction": "renewed_approval_required"
+    },
+    "materialChanges": ["cart", "destination", "delivery_requirements", "insurance_selection"],
+    "decisionIds": ["K-DEC-005", "K-DEC-006", "K-DEC-010", "K-DEC-011", "K-DEC-018", "K-DEC-019"]
+  },
+  "insurance": {
+    "selectionPoint": "before_invoice",
+    "requiresAvailabilityEvidence": true,
+    "requiresCostEvidence": true,
+    "missingCostBehavior": "cannot_be_selected_or_represented_as_free",
+    "compensationGuaranteed": false,
+    "decisionIds": ["K-DEC-009", "K-DEC-015"]
+  },
+  "claims": {
+    "rhinoNotificationRequired": true,
+    "designatedContactProcessRequired": true,
+    "carrierSpecificInstructionsRequired": true,
+    "customerAlwaysAuthorizedToFileCarrierClaim": false,
+    "uninsuredRemediesCategoricallyEliminated": false,
+    "decisionIds": ["K-DEC-009", "K-DEC-016"]
+  },
+  "contentGovernance": {
+    "numericDeliveryEstimateDefault": "reject",
+    "approvedEstimateAuthority": "operations",
+    "unrelatedNumberCategories": ["machine_specification", "quotation_expiration", "price", "quantity"],
+    "decisionIds": ["K-DEC-007", "K-DEC-018"]
+  }
+}

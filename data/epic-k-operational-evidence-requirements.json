@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "contractId": "epic-k-operational-evidence-requirements",
+  "version": "1.0.0-provisional",
+  "status": "provisional",
+  "operationalReadiness": "not_established",
+  "liveCheckoutCompliance": "unverified",
+  "requirements": [
+    {
+      "id": "K-EVID-001",
+      "category": "product_variant_pickup_eligibility",
+      "authorityOwners": ["Epic E Product Data owner", "Epic F Product presentation owner", "Grafton operations"],
+      "sourceEpic": "Epic E",
+      "status": "missing_external_evidence",
+      "syntheticDataMaySatisfy": false,
+      "requiredFacts": ["Exact Product and Variant identity", "Explicit pickup eligibility", "Approval identity and effective period"],
+      "blocks": ["Real Product pickup claims", "Ordinary pickup checkout readiness"]
+    },
+    {
+      "id": "K-EVID-002",
+      "category": "grafton_inventory_location_readiness",
+      "authorityOwners": ["Grafton operations", "Inventory operations"],
+      "sourceEpic": "Epic K",
+      "status": "missing_external_evidence",
+      "syntheticDataMaySatisfy": false,
+      "requiredFacts": ["Location readiness", "Inventory fulfillment ownership", "Pickup operating procedure"],
+      "blocks": ["Grafton pickup activation", "Pickup operational readiness"]
+    },
+    {
+      "id": "K-EVID-003",
+      "category": "shipping_weights_package_characteristics",
+      "authorityOwners": ["Epic E Product Data owner", "Epic F Product facts owner", "Shipping operations"],
+      "sourceEpic": "Epic E",
+      "status": "missing_external_evidence",
+      "syntheticDataMaySatisfy": false,
+      "requiredFacts": ["Packed shipping weight", "Package count", "Package dimensions and units", "Measurement inclusions"],
+      "blocks": ["Rate configuration readiness", "Real Product logistics claims"]
+    },
+    {
+      "id": "K-EVID-004",
+      "category": "approved_shipping_services_regions",
+      "authorityOwners": ["Shipping operations"],
+      "sourceEpic": "Epic K",
+      "status": "missing_external_evidence",
+      "syntheticDataMaySatisfy": false,
+      "requiredFacts": ["Approved paid service", "Supported region", "Product eligibility", "Service limitations"],
+      "blocks": ["Ordinary shipment operational readiness", "Shopify profile and rate configuration"]
+    },
+    {
+      "id": "K-EVID-005",
+      "category": "alaska_hawaii_rates",
+      "authorityOwners": ["Shipping operations", "Finance"],
+      "sourceEpic": "Epic K",
+      "status": "missing_external_evidence",
+      "syntheticDataMaySatisfy": false,
+      "requiredFacts": ["Approved Alaska rate", "Approved Hawaii rate", "Confirmed service availability", "Approval identity"],
+      "blocks": ["Alaska and Hawaii invoicing", "Alaska and Hawaii payment authorization"]
+    },
+    {
+      "id": "K-EVID-006",
+      "category": "carrier_insurance_options",
+      "authorityOwners": ["Shipping operations", "Finance"],
+      "sourceEpic": "Epic K",
+      "status": "missing_external_evidence",
+      "syntheticDataMaySatisfy": false,
+      "requiredFacts": ["Available coverage option", "Cost", "Applicable service", "Selection acceptance"],
+      "blocks": ["Insurance selection on a real quotation", "Insurance-related customer claims"]
+    },
+    {
+      "id": "K-EVID-007",
+      "category": "claims_contacts_responsibilities",
+      "authorityOwners": ["Shipping operations", "Customer service", "Epic L owner"],
+      "sourceEpic": "Epic L",
+      "status": "missing_external_evidence",
+      "syntheticDataMaySatisfy": false,
+      "requiredFacts": ["Designated Rhino contact process", "Carrier-specific filing responsibility", "Internal Rhino delivery process"],
+      "blocks": ["Customer-facing claims instructions", "Notification-template readiness"]
+    },
+    {
+      "id": "K-EVID-008",
+      "category": "quotation_approval_scope_expiration",
+      "authorityOwners": ["Warehouse or shipping operations"],
+      "sourceEpic": "Epic K",
+      "status": "missing_external_evidence",
+      "syntheticDataMaySatisfy": false,
+      "requiredFacts": ["Named approver", "Complete cart scope", "Destination and delivery requirements", "Insurance selection", "Expiration timestamp"],
+      "blocks": ["Real quotation invoicing", "Draft-order handoff readiness"]
+    }
+  ]
+}
