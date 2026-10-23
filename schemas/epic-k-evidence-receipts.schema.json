@@ -4,7 +4,7 @@
   "title": "Epic K operational evidence receipts",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "contractId", "version", "status", "inputClassification", "synthetic", "operationalReadiness", "liveCheckoutCompliance", "assessmentAsOf", "receipts"],
+  "required": ["schemaVersion", "contractId", "version", "status", "inputClassification", "synthetic", "operationalReadiness", "liveCheckoutCompliance", "generatedAt", "receipts"],
   "properties": {
     "schemaVersion": { "const": 1 },
     "contractId": { "const": "epic-k-evidence-receipts" },
@@ -14,7 +14,7 @@
     "synthetic": { "type": "boolean" },
     "operationalReadiness": { "enum": ["blocked", "unverified"] },
     "liveCheckoutCompliance": { "const": "unverified" },
-    "assessmentAsOf": { "type": "string", "format": "date-time" },
+    "generatedAt": { "type": "string", "format": "date-time" },
     "receipts": {
       "type": "array",
       "items": {

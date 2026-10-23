@@ -34,10 +34,21 @@ No Shopify Admin API, Shopify CLI, storefront, theme, customer, order, or carrie
 
 A domain-level `PASS` means that the supplied complete dataset passed that comparison only. Shipping profiles alone do not prove every checkout bypass is blocked. A configured zone does not prove a market is available to checkout. An active pickup location does not prove Product eligibility or inventory readiness.
 
+## K1B-01-R safety corrections
+
+Review identified six false acceptance paths in the initial K1B-01 evaluator. The correction batch applies these changes without changing the provisional decisions or the accepted K1A routing evaluator:
+
+1. **Freshness clock:** both assessors now require an explicitly injected, valid assessment time. Neither a receipt-set timestamp nor `snapshot.source.collectedAt` can act as the assessment clock. Missing or invalid clocks and evidence collected after the clock are `BLOCKED`; explicit expiration at the assessment time is `FAIL`. Fixture generation time is stored separately from assessment time, and no default evidence lifetime is inferred.
+2. **Machine enforcement:** a machine assigned to an `unverified` mode, a missing profile, or an incomplete profile assignment is `BLOCKED`. `ordinary_checkout_possible` remains a verified policy conflict (`FAIL`). A scoped `PASS` only describes supplied quotation-routing data and never proves checkout enforcement.
+3. **Free-shipping uncertainty:** every normalized rate now carries `effectivePriceStatus`. Explicit zero and threshold-free paths remain `FAIL`; active discounts or applicable rates with unknown effects are `BLOCKED`; only complete, verified paid or explicit quotation-required evidence can support a scoped comparison.
+4. **International geography:** an international zone by itself is `UNVERIFIED`. Confirmed active international checkout availability through matching Market evidence is `FAIL`. Inactive or unknown Market evidence remains unresolved. A complete US-only zone and Market dataset may pass this comparison.
+5. **Alaska and Hawaii:** both states must have separate active rates with accepted operational approval, confirmed availability, and verified positive paid-price evidence. A missing state rate is `BLOCKED`; a configured rate lacking required approval or availability is `FAIL`.
+6. **Logistics authority:** missing or zero weight remains `FAIL`; positive weights with missing or merely available evidence are `BLOCKED`; synthetic weights or packages and incomplete packages are `UNVERIFIED`. Only accepted packed weights and complete nonsynthetic package evidence can produce a scoped `PASS`.
+
 ## Deterministic reports
 
 - `data/epic-k-evidence-gap-report.json`: authoritative intake comparison, `BLOCKED`; all eight `K-EVID-*` requirements are missing accepted receipts.
-- `tests/fixtures/epic-k-synthetic-config-drift-report.json`: synthetic comparison, five scoped domain checks `PASS` and evidence freshness `UNVERIFIED`; overall result `UNVERIFIED`, operational readiness `BLOCKED`, live checkout enforcement `UNVERIFIED`.
+- `tests/fixtures/epic-k-synthetic-config-drift-report.json`: synthetic comparison, four scoped domain checks `PASS`; Product logistics and evidence freshness are `UNVERIFIED`; overall result `UNVERIFIED`, operational readiness `BLOCKED`, live checkout enforcement `UNVERIFIED`.
 
 Both files are reproduced exactly by `npm run validate:epic-k-evidence`. A stale committed report fails validation.
 
@@ -47,7 +58,7 @@ Both files are reproduced exactly by `npm run validate:epic-k-evidence`. A stale
 
 - one synthetic, structurally valid receipt and parameterized cases for missing or unsupported ownership, unsupported scope, duplicates, conflicts, expiration, partial evidence, available-but-unaccepted evidence, and synthetic authority attempts;
 - one complete normalized synthetic snapshot with synthetic profiles, 50-state zone, paid rates, Alaska/Hawaii approval markers, market, Grafton pickup state, and synthetic Product logistics;
-- parameterized drift cases for zero-cost and threshold free shipping, missing discounts, permissive or missing machine profiles, unknown pickup eligibility, missing location readiness, an international zone without market evidence, unapproved Alaska rates, missing or zero weights, and expired snapshot evidence.
+- parameterized drift cases for zero-cost, threshold-free, unknown-rate, unknown-discount, and missing-discount inputs; permissive, unverified, and missing machine profiles; unknown pickup eligibility and missing location readiness; inactive, unknown, and confirmed international Market states; missing or unapproved Alaska/Hawaii rates; missing, zero, unaccepted, synthetic, and accepted weights; incomplete packages; expired snapshots; and collection after the assessment time.
 
 Fixtures contain no Shopify GIDs, customer addresses, credentials, draft orders, private insurance documents, or unredacted exports. Restricted raw evidence collected in a future batch must remain in approved restricted storage; only redacted references, digests, and sanitized summaries may enter the repository.
 
@@ -96,7 +107,7 @@ Final verification results:
 | Command | Exit | Result |
 | --- | ---: | --- |
 | `npm run validate:epic-k-evidence` | 0 | Contracts and deterministic reports valid; 8 evidence requirements `BLOCKED` |
-| `npm run test:epic-k-evidence` | 0 | 33/33 tests passed |
+| `npm run test:epic-k-evidence` | 0 | 52/52 tests passed |
 | `npm run validate:epic-k-k1a` | 0 | 16 routing scenarios and 73/73 policy tests passed |
 | `npm run validate:epic-k-k1b01` | 0 | K1A plus K1B-01 validation and test gate passed |
 | `npm run validate:registers` | 0 | All registered JSON contracts valid |

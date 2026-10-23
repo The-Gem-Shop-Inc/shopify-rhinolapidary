@@ -77,7 +77,7 @@
       "type": "array",
       "items": {
         "type": "object", "additionalProperties": false,
-        "required": ["id", "profileId", "zoneIds", "type", "active", "amountCents", "currencyCode", "subdivisionCodes", "operationalApproval", "serviceAvailability"],
+        "required": ["id", "profileId", "zoneIds", "type", "active", "amountCents", "effectivePriceStatus", "currencyCode", "subdivisionCodes", "operationalApproval", "serviceAvailability"],
         "properties": {
           "id": { "$ref": "#/$defs/reference" },
           "profileId": { "$ref": "#/$defs/reference" },
@@ -85,12 +85,32 @@
           "type": { "enum": ["flat", "threshold_free", "carrier_calculated", "freight_quote"] },
           "active": { "type": "boolean" },
           "amountCents": { "type": ["integer", "null"], "minimum": 0 },
+          "effectivePriceStatus": { "enum": ["verified_paid", "verified_zero", "unverified", "quotation_required"] },
           "thresholdCents": { "type": "integer", "minimum": 0 },
           "currencyCode": { "type": "string", "pattern": "^[A-Z]{3}$" },
           "subdivisionCodes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z]{2}$" } },
           "operationalApproval": { "enum": ["accepted", "missing", "pending", "not_applicable"] },
           "serviceAvailability": { "enum": ["confirmed", "unverified", "not_applicable"] }
-        }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "effectivePriceStatus": { "const": "verified_paid" } } },
+            "then": { "properties": { "amountCents": { "type": "integer", "minimum": 1 } } }
+          },
+          {
+            "if": { "properties": { "effectivePriceStatus": { "const": "verified_zero" } } },
+            "then": {
+              "anyOf": [
+                { "properties": { "amountCents": { "const": 0 } } },
+                { "properties": { "type": { "const": "threshold_free" } } }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "effectivePriceStatus": { "const": "quotation_required" } } },
+            "then": { "properties": { "type": { "const": "freight_quote" } } }
+          }
+        ]
       }
     },
     "discounts": {

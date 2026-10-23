@@ -2,7 +2,8 @@
   "fixtureType": "synthetic_only",
   "authorityEffect": "none",
   "containsRealShopifyData": false,
-  "evaluationTime": "2026-10-23T18:00:00.000Z",
+  "fixtureGeneratedAt": "2026-10-23T17:00:00.000Z",
+  "assessmentTime": "2026-10-23T18:00:00.000Z",
   "baseReceiptSet": {
     "schemaVersion": 1,
     "contractId": "epic-k-evidence-receipts",
@@ -12,7 +13,7 @@
     "synthetic": true,
     "operationalReadiness": "blocked",
     "liveCheckoutCompliance": "unverified",
-    "assessmentAsOf": "2026-10-23T18:00:00.000Z",
+    "generatedAt": "2026-10-23T17:00:00.000Z",
     "receipts": [
       {
         "id": "SYNTHETIC-RECEIPT-004-A",
@@ -113,6 +114,7 @@
         "type": "flat",
         "active": true,
         "amountCents": 1234,
+        "effectivePriceStatus": "verified_paid",
         "currencyCode": "USD",
         "subdivisionCodes": ["IL"],
         "operationalApproval": "accepted",
@@ -125,6 +127,7 @@
         "type": "flat",
         "active": true,
         "amountCents": 2345,
+        "effectivePriceStatus": "verified_paid",
         "currencyCode": "USD",
         "subdivisionCodes": ["AK"],
         "operationalApproval": "accepted",
@@ -137,6 +140,7 @@
         "type": "flat",
         "active": true,
         "amountCents": 3456,
+        "effectivePriceStatus": "verified_paid",
         "currencyCode": "USD",
         "subdivisionCodes": ["HI"],
         "operationalApproval": "accepted",
@@ -187,19 +191,32 @@
     ]
   },
   "snapshotCases": [
-    { "id": "valid_synthetic", "mutation": "none", "expectedDomain": "free_shipping", "expectedState": "PASS" },
+    { "id": "complete_verified_paid_rates", "mutation": "none", "expectedDomain": "free_shipping", "expectedState": "PASS" },
     { "id": "zero_cost_rate", "mutation": "zero_rate", "expectedDomain": "free_shipping", "expectedState": "FAIL" },
     { "id": "threshold_free_rate", "mutation": "threshold_free", "expectedDomain": "free_shipping", "expectedState": "FAIL" },
+    { "id": "unknown_active_discount", "mutation": "unknown_discount", "expectedDomain": "free_shipping", "expectedState": "BLOCKED" },
+    { "id": "unknown_active_rate_cost", "mutation": "unknown_rate", "expectedDomain": "free_shipping", "expectedState": "BLOCKED" },
     { "id": "missing_discount_dataset", "mutation": "missing_discounts", "expectedDomain": "free_shipping", "expectedState": "BLOCKED" },
     { "id": "permissive_machine_profile", "mutation": "permissive_machine", "expectedDomain": "machine_shipping", "expectedState": "FAIL" },
+    { "id": "unverified_machine_profile", "mutation": "unverified_machine", "expectedDomain": "machine_shipping", "expectedState": "BLOCKED" },
     { "id": "missing_machine_profile_data", "mutation": "missing_machine_profile", "expectedDomain": "machine_shipping", "expectedState": "BLOCKED" },
     { "id": "unverified_grafton_eligibility", "mutation": "unknown_pickup", "expectedDomain": "pickup", "expectedState": "BLOCKED" },
     { "id": "missing_pickup_location_readiness", "mutation": "missing_pickup_readiness", "expectedDomain": "pickup", "expectedState": "BLOCKED" },
-    { "id": "international_zone_without_market_evidence", "mutation": "international_zone", "expectedDomain": "geography", "expectedState": "FAIL" },
+    { "id": "international_zone_inactive_market", "mutation": "international_inactive_market", "expectedDomain": "geography", "expectedState": "UNVERIFIED" },
+    { "id": "international_zone_unknown_market", "mutation": "international_unknown_market", "expectedDomain": "geography", "expectedState": "UNVERIFIED" },
+    { "id": "international_checkout_confirmed", "mutation": "international_confirmed_market", "expectedDomain": "geography", "expectedState": "FAIL" },
+    { "id": "no_international_zone_complete_evidence", "mutation": "none", "expectedDomain": "geography", "expectedState": "PASS" },
+    { "id": "missing_alaska_rate", "mutation": "missing_ak_rate", "expectedDomain": "geography", "expectedState": "BLOCKED" },
+    { "id": "missing_hawaii_rate", "mutation": "missing_hi_rate", "expectedDomain": "geography", "expectedState": "BLOCKED" },
     { "id": "alaska_rate_without_approval", "mutation": "unapproved_ak", "expectedDomain": "geography", "expectedState": "FAIL" },
     { "id": "missing_product_weight", "mutation": "missing_weight", "expectedDomain": "product_logistics", "expectedState": "FAIL" },
     { "id": "zero_product_weight", "mutation": "zero_weight", "expectedDomain": "product_logistics", "expectedState": "FAIL" },
+    { "id": "positive_weight_missing_authority", "mutation": "weight_status_missing", "expectedDomain": "product_logistics", "expectedState": "BLOCKED" },
+    { "id": "positive_weight_available_only", "mutation": "weight_status_available", "expectedDomain": "product_logistics", "expectedState": "BLOCKED" },
+    { "id": "positive_weight_synthetic", "mutation": "weight_status_synthetic", "expectedDomain": "product_logistics", "expectedState": "UNVERIFIED" },
+    { "id": "positive_weight_accepted_in_synthetic_fixture", "mutation": "weight_status_accepted", "expectedDomain": "product_logistics", "expectedState": "UNVERIFIED" },
     { "id": "missing_package_characteristics", "mutation": "missing_packages", "expectedDomain": "product_logistics", "expectedState": "UNVERIFIED" },
-    { "id": "expired_snapshot", "mutation": "expired_snapshot", "expectedDomain": "evidence_freshness", "expectedState": "FAIL" }
+    { "id": "expired_snapshot", "mutation": "expired_snapshot", "expectedDomain": "evidence_freshness", "expectedState": "FAIL" },
+    { "id": "snapshot_collected_after_assessment", "mutation": "collected_after_assessment", "expectedDomain": "evidence_freshness", "expectedState": "BLOCKED" }
   ]
 }

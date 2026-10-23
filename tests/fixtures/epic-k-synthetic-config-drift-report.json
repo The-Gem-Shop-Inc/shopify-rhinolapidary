@@ -6,7 +6,7 @@
   "overallState": "UNVERIFIED",
   "operationalReadiness": "BLOCKED",
   "liveCheckoutEnforcement": "UNVERIFIED",
-  "summary": { "PASS": 5, "FAIL": 0, "BLOCKED": 0, "UNVERIFIED": 1 },
+  "summary": { "PASS": 4, "FAIL": 0, "BLOCKED": 0, "UNVERIFIED": 2 },
   "results": [
     {
       "id": "free_shipping",
@@ -34,9 +34,9 @@
     },
     {
       "id": "product_logistics",
-      "state": "PASS",
-      "message": "Supplied Product records contain positive weights and explicit package-characteristic status.",
-      "actions": []
+      "state": "UNVERIFIED",
+      "message": "Synthetic weight or package measurements validate comparison behavior but cannot establish Product logistics authority.",
+      "actions": ["Attach accepted packed measurements through Epic E/F and warehouse ownership."]
     },
     {
       "id": "evidence_freshness",

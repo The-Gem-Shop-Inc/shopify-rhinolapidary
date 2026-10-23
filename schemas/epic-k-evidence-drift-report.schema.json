@@ -8,7 +8,12 @@
   "properties": {
     "schemaVersion": { "const": 1 },
     "reportType": { "enum": ["evidence_gap", "configuration_drift"] },
-    "assessedAt": { "type": "string", "format": "date-time" },
+    "assessedAt": {
+      "oneOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ]
+    },
     "inputClassification": { "enum": ["authoritative_intake", "synthetic_fixture", "sanitized_future_shopify_audit"] },
     "overallState": { "$ref": "#/$defs/state" },
     "operationalReadiness": { "enum": ["BLOCKED", "UNVERIFIED"] },

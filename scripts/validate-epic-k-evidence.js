@@ -16,7 +16,7 @@ function validateEpicKEvidence() {
     const expectedDrift = readJson('tests/fixtures/epic-k-synthetic-config-drift-report.json');
     const errors = [];
 
-    const evidence = verifyEvidence(receipts, requirements);
+    const evidence = verifyEvidence(receipts, requirements, { asOf: expectedGap.assessedAt });
     errors.push(...evidence.errors);
     if (evidence.report) {
         errors.push(...schemaErrors('schemas/epic-k-evidence-drift-report.schema.json', evidence.report, 'evidence gap report'));
@@ -24,7 +24,7 @@ function validateEpicKEvidence() {
         try { assert.deepEqual(evidence.report, expectedGap); } catch { errors.push('committed evidence gap report is not deterministic or is stale'); }
     }
 
-    const drift = assessConfigurationDrift(fixtures.baseSnapshot, undefined, { asOf: fixtures.evaluationTime });
+    const drift = assessConfigurationDrift(fixtures.baseSnapshot, undefined, { asOf: fixtures.assessmentTime });
     errors.push(...drift.errors);
     if (drift.report) {
         errors.push(...schemaErrors('schemas/epic-k-evidence-drift-report.schema.json', drift.report, 'configuration drift report'));
@@ -37,6 +37,9 @@ function validateEpicKEvidence() {
     if (fixtures.fixtureType !== 'synthetic_only' || fixtures.authorityEffect !== 'none'
         || fixtures.containsRealShopifyData !== false) {
         errors.push('K1B-01 fixtures must remain synthetic and confer no authority');
+    }
+    if (fixtures.fixtureGeneratedAt === fixtures.assessmentTime) {
+        errors.push('fixture generation time and explicit assessment time must remain distinct');
     }
     if (evidence.report?.liveCheckoutEnforcement !== 'UNVERIFIED'
         || drift.report?.liveCheckoutEnforcement !== 'UNVERIFIED') {
