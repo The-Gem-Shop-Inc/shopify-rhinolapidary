@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "contractId": "epic-k-fulfillment-policy",
-  "version": "1.0.0-provisional",
+  "version": "1.0.1-provisional",
   "status": "provisional",
   "decisionContract": {
     "path": "data/epic-k-provisional-decisions.json",
@@ -17,6 +17,13 @@
     "liveCheckoutEnforcement": false,
     "shopifyConfigurationCompliance": "unverified",
     "realProductEligibilityEstablished": false
+  },
+  "assessmentSemantics": {
+    "repositoryPolicyAssessment": "offline_synthetic_evidence_only",
+    "paymentAuthorizedAlwaysFalse": true,
+    "canInvoiceAlwaysFalse": true,
+    "shopifyPaymentAuthorization": "unverified",
+    "operationalReadiness": "unverified"
   },
   "shipping": {
     "freeShippingAllowed": false,
@@ -63,6 +70,13 @@
       "expiredAction": "renewed_approval_required"
     },
     "materialChanges": ["cart", "destination", "delivery_requirements", "insurance_selection"],
+    "invoiceEvidence": {
+      "identifiedServiceRequired": true,
+      "documentedServiceSupportRequired": true,
+      "documentedShippingChargeRequired": true,
+      "approvedShippingChargeRequired": true,
+      "positiveShippingChargeRequired": true
+    },
     "decisionIds": ["K-DEC-005", "K-DEC-006", "K-DEC-010", "K-DEC-011", "K-DEC-018", "K-DEC-019"]
   },
   "insurance": {

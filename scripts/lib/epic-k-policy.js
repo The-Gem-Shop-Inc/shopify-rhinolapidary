@@ -116,6 +116,11 @@ function validateContracts({ decisions, policy, evidence, scenarios } = {}) {
     if (policy.enforcement?.realProductEligibilityEstablished !== false) {
         errors.push('K1A has no authoritative real Product or Variant eligibility register');
     }
+    if (policy.assessmentSemantics?.repositoryPolicyAssessment !== 'offline_synthetic_evidence_only'
+        || policy.assessmentSemantics?.paymentAuthorizedAlwaysFalse !== true
+        || policy.assessmentSemantics?.canInvoiceAlwaysFalse !== true) {
+        errors.push('quotation assessment must remain offline-only and must never authorize payment or a real invoice');
+    }
     if (policy.insurance?.missingCostBehavior !== 'cannot_be_selected_or_represented_as_free') {
         errors.push('missing insurance cost must not be represented as free coverage');
     }
@@ -161,12 +166,13 @@ function validateContracts({ decisions, policy, evidence, scenarios } = {}) {
 
 function result(route, policyEligible, reasons, extra = {}) {
     return {
+        ...extra,
         route,
         policyEligible,
         shopifyCheckoutEnforceable: 'unverified',
         paymentAuthorized: false,
+        operationalReadiness: 'unverified',
         reasons,
-        ...extra,
     };
 }
 
@@ -249,6 +255,10 @@ function normalizeQuoteScope(scenario) {
         destination: {
             countryCode: request.destination?.countryCode || null,
             subdivisionCode: request.destination?.subdivisionCode || null,
+            postalCode: request.destination?.postalCode || null,
+            city: request.destination?.city || null,
+            address1: request.destination?.address1 || null,
+            address2: request.destination?.address2 || null,
         },
         deliveryRequirements: {
             designation: request.deliveryRequirements?.designation || null,
@@ -263,33 +273,115 @@ function quoteScopeKey(scope) {
     return JSON.stringify(scope);
 }
 
-function assessQuotation(scenario, quotation, { now = '2026-10-23T12:00:00.000Z', policy } = {}) {
+function parseTimestamp(value) {
+    if (typeof value !== 'string') return null;
+    const match = value.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d{1,3})?(Z|[+-]\d{2}:\d{2})$/);
+    if (!match) return null;
+    const [, year, month, day, hour, minute, second, zone] = match;
+    const numbers = [year, month, day, hour, minute, second].map(Number);
+    const [yearNumber, monthNumber, dayNumber, hourNumber, minuteNumber, secondNumber] = numbers;
+    const daysInMonth = new Date(Date.UTC(yearNumber, monthNumber, 0)).getUTCDate();
+    if (monthNumber < 1 || monthNumber > 12
+        || dayNumber < 1 || dayNumber > daysInMonth
+        || hourNumber > 23 || minuteNumber > 59 || secondNumber > 59) return null;
+    if (zone !== 'Z') {
+        const [zoneHour, zoneMinute] = zone.slice(1).split(':').map(Number);
+        if (zoneHour > 14 || zoneMinute > 59 || (zoneHour === 14 && zoneMinute !== 0)) return null;
+    }
+    const parsed = Date.parse(value);
+    return Number.isFinite(parsed) ? parsed : null;
+}
+
+function presentString(value) {
+    return typeof value === 'string' && value.trim().length > 0;
+}
+
+function assessQuotation(scenario, quotation, { now, policy } = {}) {
     const fulfillment = assessFulfillment(scenario, policy);
     const reasons = [...fulfillment.reasons];
-    let canInvoice = true;
+    let repositorySatisfied = true;
     if (fulfillment.route !== ROUTES.QUOTATION) {
-        return { ...fulfillment, canInvoice: false, quotationStatus: 'not_required_for_route' };
+        return {
+            ...fulfillment,
+            canInvoice: false,
+            repositoryInvoiceEvidenceComplete: false,
+            repositoryPolicyAssessment: 'not_applicable',
+            authorizationScope: 'repository_policy_assessment_only',
+            quotationStatus: 'not_required_for_route',
+        };
     }
     if (!quotation || quotation.status !== 'operations_approved') {
-        canInvoice = false;
+        repositorySatisfied = false;
         reasons.push('operations approval is required before invoicing');
     }
     if (quotation?.approvedBy?.role !== 'warehouse_or_shipping_operations') {
-        canInvoice = false;
+        repositorySatisfied = false;
         reasons.push('quotation approver must be warehouse or shipping operations');
     }
     if (!quotation?.scope || quoteScopeKey(quotation.scope) !== quoteScopeKey(normalizeQuoteScope(scenario))) {
-        canInvoice = false;
+        repositorySatisfied = false;
         reasons.push('quotation scope does not match the current cart, destination, delivery requirements, and insurance selection');
     }
-    if (!quotation?.expiresAt || Date.parse(quotation.expiresAt) <= Date.parse(now)) {
-        canInvoice = false;
-        reasons.push('quotation is expired or has no valid operations-defined expiration');
+    const evaluationTime = parseTimestamp(now);
+    const expirationTime = parseTimestamp(quotation?.expiresAt);
+    if (evaluationTime === null) {
+        repositorySatisfied = false;
+        reasons.push('a valid explicit evaluation time is required for quotation assessment');
+    }
+    if (expirationTime === null) {
+        repositorySatisfied = false;
+        reasons.push('quotation expiration is missing or invalid');
+    } else if (evaluationTime !== null && expirationTime <= evaluationTime) {
+        repositorySatisfied = false;
+        reasons.push('quotation is expired and requires renewed operations approval');
+    }
+
+    const destination = scenario?.request?.destination || {};
+    if (!presentString(destination.postalCode)
+        || !presentString(destination.city)
+        || !presentString(destination.address1)
+        || (destination.address2 != null && !presentString(destination.address2))) {
+        repositorySatisfied = false;
+        reasons.push('quotation shipment destination requires postal code, city, street address, and a valid secondary address when supplied');
+    }
+
+    const delivery = scenario?.request?.deliveryRequirements || {};
+    if (!['residential', 'commercial'].includes(delivery.designation)) {
+        repositorySatisfied = false;
+        reasons.push('delivery requirements need an explicit residential or commercial designation');
+    }
+    if (typeof delivery.liftgateRequired !== 'boolean') {
+        repositorySatisfied = false;
+        reasons.push('delivery requirements need an explicit true or false liftgate response');
+    }
+    if (!presentString(delivery.accessInformation)) {
+        repositorySatisfied = false;
+        reasons.push('delivery requirements need access information or an explicit no-special-limitations declaration');
+    }
+
+    if (!presentString(quotation?.shippingService?.id)
+        || quotation?.shippingService?.supportStatus !== 'documented_supported') {
+        repositorySatisfied = false;
+        reasons.push('quotation requires an identified shipping service with documented support evidence');
+    }
+    const shippingCharge = quotation?.shippingCharge;
+    if (shippingCharge?.documented !== true) {
+        repositorySatisfied = false;
+        reasons.push('quotation requires a documented shipping charge');
+    }
+    if (!Number.isInteger(shippingCharge?.amountCents) || shippingCharge.amountCents <= 0
+        || !/^[A-Z]{3}$/.test(shippingCharge?.currencyCode || '')) {
+        repositorySatisfied = false;
+        reasons.push('quotation requires a positive shipping charge amount and currency');
+    }
+    if (shippingCharge?.approvalStatus !== 'operations_approved') {
+        repositorySatisfied = false;
+        reasons.push('quotation shipping charge requires operations approval');
     }
     if (NON_CONTIGUOUS_STATES.has(scenario.request.destination.subdivisionCode)
         && (quotation?.destinationApproval?.rateApproved !== true
             || quotation?.destinationApproval?.serviceAvailabilityConfirmed !== true)) {
-        canInvoice = false;
+        repositorySatisfied = false;
         reasons.push('Alaska or Hawaii requires an approved rate and confirmed service availability');
     }
     if (scenario.request.insuranceSelection === 'selected') {
@@ -299,15 +391,20 @@ function assessQuotation(scenario, quotation, { now = '2026-10-23T12:00:00.000Z'
             || !Number.isInteger(insurance?.amountCents)
             || insurance.amountCents < 0
             || insurance?.customerAccepted !== true) {
-            canInvoice = false;
+            repositorySatisfied = false;
             reasons.push('selected insurance requires documented availability and cost plus customer acceptance');
         }
     }
     return {
         ...fulfillment,
-        paymentAuthorized: canInvoice,
-        canInvoice,
-        quotationStatus: canInvoice ? 'approved_for_invoice' : 'renewal_or_evidence_required',
+        paymentAuthorized: false,
+        canInvoice: false,
+        repositoryInvoiceEvidenceComplete: repositorySatisfied,
+        repositoryPolicyAssessment: repositorySatisfied ? 'satisfied' : 'not_satisfied',
+        authorizationScope: 'repository_policy_assessment_only',
+        quotationStatus: repositorySatisfied ? 'repository_policy_satisfied' : 'renewal_or_evidence_required',
+        shopifyCheckoutEnforceable: 'unverified',
+        operationalReadiness: 'unverified',
         reasons,
     };
 }
@@ -351,6 +448,7 @@ module.exports = {
     assessQuotation,
     clone,
     normalizeQuoteScope,
+    parseTimestamp,
     readJson,
     validateContentClaims,
     validateContracts,

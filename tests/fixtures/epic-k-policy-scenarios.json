@@ -104,7 +104,14 @@
       ] },
       "request": {
         "intent": "shipment",
-        "destination": { "countryCode": "US", "subdivisionCode": "IL" }
+        "destination": {
+          "countryCode": "US",
+          "subdivisionCode": "IL",
+          "postalCode": "SYN-IL-001",
+          "city": "Synthetic Central City",
+          "address1": "100 Synthetic Freight Way",
+          "address2": "Synthetic Dock A"
+        }
       },
       "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
     },
@@ -133,7 +140,14 @@
       "cart": { "items": [{ "id": "SYNTHETIC-PART-A", "kind": "part", "quantity": 1, "pickupEligibility": "unknown" }] },
       "request": {
         "intent": "shipment",
-        "destination": { "countryCode": "US", "subdivisionCode": "AK" }
+        "destination": {
+          "countryCode": "US",
+          "subdivisionCode": "AK",
+          "postalCode": "SYN-AK-001",
+          "city": "Synthetic North City",
+          "address1": "200 Synthetic Freight Way",
+          "address2": null
+        }
       },
       "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
     },
@@ -142,7 +156,14 @@
       "cart": { "items": [{ "id": "SYNTHETIC-SUPPLY-A", "kind": "supply", "quantity": 1, "pickupEligibility": "unknown" }] },
       "request": {
         "intent": "shipment",
-        "destination": { "countryCode": "US", "subdivisionCode": "HI" }
+        "destination": {
+          "countryCode": "US",
+          "subdivisionCode": "HI",
+          "postalCode": "SYN-HI-001",
+          "city": "Synthetic Island City",
+          "address1": "300 Synthetic Freight Way",
+          "address2": "Synthetic Receiving"
+        }
       },
       "expected": { "route": "whole_cart_quotation_required", "policyEligible": true }
     },

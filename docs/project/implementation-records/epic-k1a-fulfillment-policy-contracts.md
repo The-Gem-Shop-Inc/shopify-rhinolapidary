@@ -73,9 +73,27 @@ The pure `assessFulfillment` function returns one of five routes:
 
 Every result separately reports `shopifyCheckoutEnforceable=unverified`. Policy eligibility therefore cannot be mistaken for present checkout enforcement.
 
-The pure `assessQuotation` function compares a canonical whole-cart scope. The scope includes item identity and quantity, destination, residential/commercial designation, liftgate choice, access information, and insurance selection. It rejects missing operations approval, the wrong approver role, expiration, material scope changes, incomplete Alaska/Hawaii evidence, and incomplete selected-insurance evidence.
+The pure `assessQuotation` function compares a canonical whole-cart scope. The scope includes item identity and quantity, complete synthetic destination identity, residential/commercial designation, liftgate choice, access information, and insurance selection. It rejects missing operations approval, the wrong approver role, invalid or expired timestamps, material scope changes, incomplete service or charge evidence, incomplete Alaska/Hawaii evidence, and incomplete selected-insurance evidence.
+
+`assessQuotation` requires an explicit evaluation clock. A complete synthetic quotation can return `repositoryPolicyAssessment=satisfied` and `repositoryInvoiceEvidenceComplete=true`. It always returns `paymentAuthorized=false`, `canInvoice=false`, `shopifyCheckoutEnforceable=unverified`, and `operationalReadiness=unverified`. These legacy fields cannot be interpreted as real payment or invoice authorization.
 
 The fixture contains only `SYNTHETIC-*` identifiers. Schema and semantic checks reject Shopify GIDs and prohibit fixtures from satisfying operational readiness.
+
+## K1A-R quotation safety corrections
+
+K1A-R started from commit `1eae7f5598c0d82cf944da83725d1bce248c4dd7` on `epic-k/k1a-fulfillment-policy-contracts`. It changes no provisional decision statement or approval state.
+
+The executable fulfillment policy contract advances from `1.0.0-provisional` to `1.0.1-provisional`; the unchanged decision contract remains `1.0.0-provisional`.
+
+| Defect | Correction |
+|---|---|
+| `Date.parse()` could return `NaN`, allowing malformed expiration through the comparison | Strict timestamp parsing rejects missing, malformed, calendar-invalid, expired, missing-clock, and invalid-clock cases; the evaluator has no fixed default clock |
+| Quotation scope contained only country and state | Scope now includes country, state, postal code, city, street address, and optional secondary address; committed addresses are explicitly synthetic |
+| Delivery requirements were normalized but not validated | Shipment quotations require `residential` or `commercial`, an explicit boolean liftgate response, and nonblank access information or an explicit no-special-limitations declaration |
+| Service and shipping-charge evidence were absent | Repository assessment requires an identified documented-supported service and a documented, positive, currency-qualified, operations-approved synthetic shipping charge |
+| `canInvoice=true` and `paymentAuthorized=true` could be mistaken for real authorization | Both fields now remain false; the clearer repository-only assessment fields carry offline results, while Shopify and operational readiness remain unverified |
+
+Thirty regression checks were added, raising the focused suite from 43 to 73. Added coverage includes malformed and missing expiration, missing and invalid clocks, postal/street identity changes, missing and malformed delivery inputs, explicit false liftgate handling, explicit no-access-limitations handling, pickup independence, missing/unsupported service, missing/invalid/unapproved charges, documented zero-cost insurance, and repository-only authorization semantics.
 
 ## Content governance
 
@@ -117,14 +135,14 @@ K1A validation results at handoff:
 | Command | Exit | Result |
 |---|---:|---|
 | `npm run validate:epic-k-policy` | 0 | 3 contracts, 16 synthetic routing scenarios, and the claims baseline valid; 8 external evidence categories remain missing |
-| `npm run test:epic-k-policy` | 0 | 43/43 positive and negative checks passed |
-| `npm run validate:epic-k-k1a` | 0 | Aggregate policy validation and 43/43 tests passed |
+| `npm run test:epic-k-policy` | 0 | 73/73 positive and negative checks passed |
+| `npm run validate:epic-k-k1a` | 0 | Aggregate policy validation and 73/73 tests passed |
 | `npm run validate:registers` | 0 | All four new Epic K schema targets and all existing register targets valid |
 | `npm run validate:cart-config` | 0 | Existing cart architecture valid; `cart_type=notification` |
 | `npm run validate:product-purchase` | 0 | Existing Product purchase architecture valid |
 | `npm run validate:theme-architecture` | 0 | Navigation, 102 design tokens, CSS, storefront JS, and Rhino section checks passed |
 
-No browser, preview, live checkout, Admin configuration, notification, package, rate, or Product integration check is represented as passed.
+All seven commands above were rerun for K1A-R and exited 0. No browser, preview, live checkout, Admin configuration, notification, package, rate, or Product integration check is represented as passed.
 
 ## PBI status
 

@@ -26,6 +26,8 @@ function scenario(id) {
     return clone(scenarios.routingCases.find((entry) => entry.id === id));
 }
 
+const EVALUATION_TIME = '2026-10-23T12:00:00.000Z';
+
 function quotationScenario() {
     const value = scenario('K-SYN-MACHINE-MIXED-CART');
     value.request.deliveryRequirements = {
@@ -44,6 +46,16 @@ function approvedQuote(value) {
         approvedBy: { role: 'warehouse_or_shipping_operations', id: 'SYNTHETIC-OPERATOR-A' },
         scope: normalizeQuoteScope(value),
         expiresAt: '2026-10-30T12:00:00.000Z',
+        shippingService: {
+            id: 'SYNTHETIC-FREIGHT-SERVICE-A',
+            supportStatus: 'documented_supported',
+        },
+        shippingCharge: {
+            documented: true,
+            amountCents: 12500,
+            currencyCode: 'USD',
+            approvalStatus: 'operations_approved',
+        },
         destinationApproval: { rateApproved: true, serviceAvailabilityConfirmed: true },
         insurance: {
             availabilityDocumented: false,
@@ -52,6 +64,28 @@ function approvedQuote(value) {
             customerAccepted: false,
         },
     };
+}
+
+function assessment(value, quote, now = EVALUATION_TIME) {
+    return assessQuotation(value, quote, { now, policy });
+}
+
+function assertAssessmentSatisfied(actual) {
+    assert.equal(actual.repositoryPolicyAssessment, 'satisfied');
+    assert.equal(actual.repositoryInvoiceEvidenceComplete, true);
+    assert.equal(actual.authorizationScope, 'repository_policy_assessment_only');
+    assert.equal(actual.canInvoice, false);
+    assert.equal(actual.paymentAuthorized, false);
+    assert.equal(actual.shopifyCheckoutEnforceable, 'unverified');
+    assert.equal(actual.operationalReadiness, 'unverified');
+}
+
+function assertAssessmentRejected(actual, reasonPattern) {
+    assert.equal(actual.repositoryPolicyAssessment, 'not_satisfied');
+    assert.equal(actual.repositoryInvoiceEvidenceComplete, false);
+    assert.equal(actual.canInvoice, false);
+    assert.equal(actual.paymentAuthorized, false);
+    if (reasonPattern) assert.match(actual.reasons.join(' '), reasonPattern);
 }
 
 test('canonical contracts and fixtures validate', () => {
@@ -74,64 +108,192 @@ test('pickup is a distinct route and is not classified as free shipping', () => 
     assert.doesNotMatch(actual.reasons.join(' '), /free shipping/i);
 });
 
-test('approved whole-cart quotation may proceed to invoice in a synthetic scenario', () => {
+test('complete synthetic quotation satisfies only the repository policy assessment', () => {
     const value = quotationScenario();
-    const actual = assessQuotation(value, approvedQuote(value));
-    assert.equal(actual.canInvoice, true);
-    assert.equal(actual.paymentAuthorized, true);
+    assertAssessmentSatisfied(assessment(value, approvedQuote(value)));
 });
 
-test('quotation cannot be invoiced before operations approval', () => {
+test('passing offline assessment never authorizes Shopify payment or a real invoice', () => {
+    const value = quotationScenario();
+    const actual = assessment(value, approvedQuote(value));
+    assertAssessmentSatisfied(actual);
+    assert.equal(actual.paymentAuthorized, false);
+    assert.equal(actual.canInvoice, false);
+});
+
+test('quotation assessment fails before operations approval', () => {
     const value = quotationScenario();
     const quote = approvedQuote(value);
     quote.status = 'requested';
-    assert.equal(assessQuotation(value, quote).canInvoice, false);
+    assertAssessmentRejected(assessment(value, quote), /operations approval/);
 });
 
 test('expired quotation requires renewed authorization', () => {
     const value = quotationScenario();
     const quote = approvedQuote(value);
     quote.expiresAt = '2026-10-22T12:00:00.000Z';
-    const actual = assessQuotation(value, quote);
-    assert.equal(actual.canInvoice, false);
-    assert.match(actual.reasons.join(' '), /expired/);
+    assertAssessmentRejected(assessment(value, quote), /expired/);
+});
+
+test('malformed quotation expiration is rejected', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    quote.expiresAt = 'not-a-timestamp';
+    assertAssessmentRejected(assessment(value, quote), /expiration is missing or invalid/);
+});
+
+test('invalid calendar quotation expiration is rejected', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    quote.expiresAt = '2026-02-31T12:00:00.000Z';
+    assertAssessmentRejected(assessment(value, quote), /expiration is missing or invalid/);
+});
+
+test('missing quotation expiration is rejected', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    delete quote.expiresAt;
+    assertAssessmentRejected(assessment(value, quote), /expiration is missing or invalid/);
+});
+
+test('missing evaluation time cannot satisfy quotation assessment', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    assertAssessmentRejected(assessQuotation(value, quote, { policy }), /valid explicit evaluation time/);
+});
+
+test('invalid evaluation time cannot satisfy quotation assessment', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    assertAssessmentRejected(assessment(value, quote, 'invalid-clock'), /valid explicit evaluation time/);
 });
 
 test('complete-cart scope rejects a quotation missing an accessory', () => {
     const value = quotationScenario();
     const quote = approvedQuote(value);
     quote.scope.cart = quote.scope.cart.filter((item) => item.kind === 'machine');
-    assert.equal(assessQuotation(value, quote).canInvoice, false);
+    assertAssessmentRejected(assessment(value, quote), /scope does not match/);
 });
 
 test('machine quantity change invalidates prior payment authorization', () => {
     const value = quotationScenario();
     const quote = approvedQuote(value);
     value.cart.items[0].quantity += 1;
-    assert.equal(assessQuotation(value, quote).canInvoice, false);
+    assertAssessmentRejected(assessment(value, quote), /scope does not match/);
 });
 
 test('destination change invalidates prior payment authorization', () => {
     const value = quotationScenario();
     const quote = approvedQuote(value);
     value.request.destination.subdivisionCode = 'MN';
-    assert.equal(assessQuotation(value, quote).canInvoice, false);
+    assertAssessmentRejected(assessment(value, quote), /scope does not match/);
+});
+
+test('street address change within the same state invalidates the quotation', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    value.request.destination.address1 = '101 Different Synthetic Freight Way';
+    assertAssessmentRejected(assessment(value, quote), /scope does not match/);
+});
+
+test('postal code change within the same state invalidates the quotation', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    value.request.destination.postalCode = 'SYN-IL-002';
+    assertAssessmentRejected(assessment(value, quote), /scope does not match/);
 });
 
 test('delivery-requirements change invalidates prior payment authorization', () => {
     const value = quotationScenario();
     const quote = approvedQuote(value);
     value.request.deliveryRequirements.liftgateRequired = true;
-    assert.equal(assessQuotation(value, quote).canInvoice, false);
+    assertAssessmentRejected(assessment(value, quote), /scope does not match/);
+});
+
+for (const [field, pattern] of [
+    ['postalCode', /shipment destination/],
+    ['city', /shipment destination/],
+    ['address1', /shipment destination/],
+]) {
+    test(`missing quotation destination ${field} is rejected`, () => {
+        const value = quotationScenario();
+        delete value.request.destination[field];
+        const quote = approvedQuote(value);
+        assertAssessmentRejected(assessment(value, quote), pattern);
+    });
+}
+
+test('blank applicable secondary address is rejected', () => {
+    const value = quotationScenario();
+    value.request.destination.address2 = '   ';
+    const quote = approvedQuote(value);
+    assertAssessmentRejected(assessment(value, quote), /shipment destination/);
+});
+
+test('missing residential or commercial designation is rejected', () => {
+    const value = quotationScenario();
+    delete value.request.deliveryRequirements.designation;
+    const quote = approvedQuote(value);
+    assertAssessmentRejected(assessment(value, quote), /residential or commercial designation/);
+});
+
+test('malformed residential or commercial designation is rejected', () => {
+    const value = quotationScenario();
+    value.request.deliveryRequirements.designation = 'unspecified';
+    const quote = approvedQuote(value);
+    assertAssessmentRejected(assessment(value, quote), /residential or commercial designation/);
+});
+
+test('missing liftgate response is rejected', () => {
+    const value = quotationScenario();
+    delete value.request.deliveryRequirements.liftgateRequired;
+    const quote = approvedQuote(value);
+    assertAssessmentRejected(assessment(value, quote), /true or false liftgate response/);
+});
+
+test('malformed liftgate response is rejected', () => {
+    const value = quotationScenario();
+    value.request.deliveryRequirements.liftgateRequired = 'no';
+    const quote = approvedQuote(value);
+    assertAssessmentRejected(assessment(value, quote), /true or false liftgate response/);
+});
+
+test('missing access information is rejected', () => {
+    const value = quotationScenario();
+    delete value.request.deliveryRequirements.accessInformation;
+    const quote = approvedQuote(value);
+    assertAssessmentRejected(assessment(value, quote), /access information/);
+});
+
+test('blank access information is rejected', () => {
+    const value = quotationScenario();
+    value.request.deliveryRequirements.accessInformation = '   ';
+    const quote = approvedQuote(value);
+    assertAssessmentRejected(assessment(value, quote), /access information/);
+});
+
+test('explicit false liftgate and no-special-limitations declaration are accepted', () => {
+    const value = quotationScenario();
+    value.request.deliveryRequirements = {
+        designation: 'residential',
+        liftgateRequired: false,
+        accessInformation: 'no_special_access_limitations',
+    };
+    const quote = approvedQuote(value);
+    assertAssessmentSatisfied(assessment(value, quote));
+});
+
+test('ordinary pickup does not require freight delivery fields', () => {
+    const value = scenario('K-SYN-PICKUP-MACHINE-APPROVED');
+    assert.equal(value.request.deliveryRequirements, undefined);
+    assert.equal(assessFulfillment(value, policy).route, ROUTES.PICKUP);
 });
 
 test('insurance-selection change invalidates prior payment authorization', () => {
     const value = quotationScenario();
     const quote = approvedQuote(value);
     value.request.insuranceSelection = 'selected';
-    const actual = assessQuotation(value, quote);
-    assert.equal(actual.canInvoice, false);
-    assert.match(actual.reasons.join(' '), /scope|insurance/);
+    assertAssessmentRejected(assessment(value, quote), /scope|insurance/);
 });
 
 test('selected insurance requires documented availability, cost, and acceptance', () => {
@@ -145,7 +307,21 @@ test('selected insurance requires documented availability, cost, and acceptance'
         amountCents: 2500,
         customerAccepted: true,
     };
-    assert.equal(assessQuotation(value, quote).canInvoice, true);
+    assertAssessmentSatisfied(assessment(value, quote));
+});
+
+test('documented and accepted zero-cost insurance remains distinct from missing cost', () => {
+    const value = quotationScenario();
+    value.request.insuranceSelection = 'selected';
+    const quote = approvedQuote(value);
+    quote.scope = normalizeQuoteScope(value);
+    quote.insurance = {
+        availabilityDocumented: true,
+        costDocumented: true,
+        amountCents: 0,
+        customerAccepted: true,
+    };
+    assertAssessmentSatisfied(assessment(value, quote));
 });
 
 test('missing insurance premium is not treated as free purchased coverage', () => {
@@ -159,9 +335,44 @@ test('missing insurance premium is not treated as free purchased coverage', () =
         amountCents: null,
         customerAccepted: true,
     };
-    const actual = assessQuotation(value, quote);
-    assert.equal(actual.canInvoice, false);
-    assert.match(actual.reasons.join(' '), /documented availability and cost/);
+    assertAssessmentRejected(assessment(value, quote), /documented availability and cost/);
+});
+
+test('missing freight service evidence is rejected', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    delete quote.shippingService;
+    assertAssessmentRejected(assessment(value, quote), /identified shipping service/);
+});
+
+test('unsupported freight service is rejected', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    quote.shippingService.supportStatus = 'unverified';
+    assertAssessmentRejected(assessment(value, quote), /documented support evidence/);
+});
+
+test('missing shipping charge is rejected', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    delete quote.shippingCharge;
+    assertAssessmentRejected(assessment(value, quote), /documented shipping charge/);
+});
+
+for (const invalidAmount of [null, 0, -1, 12.5, '12500']) {
+    test(`invalid shipping charge amount ${JSON.stringify(invalidAmount)} is rejected`, () => {
+        const value = quotationScenario();
+        const quote = approvedQuote(value);
+        quote.shippingCharge.amountCents = invalidAmount;
+        assertAssessmentRejected(assessment(value, quote), /positive shipping charge amount/);
+    });
+}
+
+test('unapproved shipping charge is rejected', () => {
+    const value = quotationScenario();
+    const quote = approvedQuote(value);
+    quote.shippingCharge.approvalStatus = 'pending';
+    assertAssessmentRejected(assessment(value, quote), /shipping charge requires operations approval/);
 });
 
 test('Alaska quotation cannot invoice without separate rate and service evidence', () => {
@@ -172,17 +383,17 @@ test('Alaska quotation cannot invoice without separate rate and service evidence
     value.request.insuranceSelection = 'declined';
     const quote = approvedQuote(value);
     quote.destinationApproval = { rateApproved: false, serviceAvailabilityConfirmed: false };
-    assert.equal(assessQuotation(value, quote).canInvoice, false);
+    assertAssessmentRejected(assessment(value, quote), /Alaska or Hawaii/);
 });
 
-test('Hawaii quotation may invoice only after separate rate and service approval', () => {
+test('Hawaii quotation satisfies offline policy only after separate rate and service approval', () => {
     const value = scenario('K-SYN-HAWAII-QUOTE-INTAKE');
     value.request.deliveryRequirements = {
         designation: 'commercial', liftgateRequired: true, accessInformation: 'SYNTHETIC-ACCESS',
     };
     value.request.insuranceSelection = 'declined';
     const quote = approvedQuote(value);
-    assert.equal(assessQuotation(value, quote).canInvoice, true);
+    assertAssessmentSatisfied(assessment(value, quote));
 });
 
 test('unapproved numeric delivery estimate is rejected', () => {

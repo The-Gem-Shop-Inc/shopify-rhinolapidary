@@ -4,7 +4,7 @@
   "title": "Epic K provisional fulfillment policy",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "contractId", "version", "status", "decisionContract", "enforcement", "shipping", "pickup", "quotation", "insurance", "claims", "contentGovernance"],
+  "required": ["schemaVersion", "contractId", "version", "status", "decisionContract", "enforcement", "assessmentSemantics", "shipping", "pickup", "quotation", "insurance", "claims", "contentGovernance"],
   "properties": {
     "schemaVersion": { "const": 1 },
     "contractId": { "const": "epic-k-fulfillment-policy" },
@@ -29,6 +29,18 @@
         "liveCheckoutEnforcement": { "const": false },
         "shopifyConfigurationCompliance": { "const": "unverified" },
         "realProductEligibilityEstablished": { "const": false }
+      }
+    },
+    "assessmentSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryPolicyAssessment", "paymentAuthorizedAlwaysFalse", "canInvoiceAlwaysFalse", "shopifyPaymentAuthorization", "operationalReadiness"],
+      "properties": {
+        "repositoryPolicyAssessment": { "const": "offline_synthetic_evidence_only" },
+        "paymentAuthorizedAlwaysFalse": { "const": true },
+        "canInvoiceAlwaysFalse": { "const": true },
+        "shopifyPaymentAuthorization": { "const": "unverified" },
+        "operationalReadiness": { "const": "unverified" }
       }
     },
     "shipping": {
@@ -98,7 +110,7 @@
     "quotation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["requestFlow", "approvalOwner", "scope", "requiredDeliveryInputs", "validity", "materialChanges", "decisionIds"],
+      "required": ["requestFlow", "approvalOwner", "scope", "requiredDeliveryInputs", "validity", "materialChanges", "invoiceEvidence", "decisionIds"],
       "properties": {
         "requestFlow": { "const": "customer_cart_to_request_to_staff_draft_order_invoice" },
         "approvalOwner": { "const": "warehouse_or_shipping_operations" },
@@ -124,6 +136,18 @@
           "minItems": 4,
           "uniqueItems": true,
           "items": { "enum": ["cart", "destination", "delivery_requirements", "insurance_selection"] }
+        },
+        "invoiceEvidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["identifiedServiceRequired", "documentedServiceSupportRequired", "documentedShippingChargeRequired", "approvedShippingChargeRequired", "positiveShippingChargeRequired"],
+          "properties": {
+            "identifiedServiceRequired": { "const": true },
+            "documentedServiceSupportRequired": { "const": true },
+            "documentedShippingChargeRequired": { "const": true },
+            "approvedShippingChargeRequired": { "const": true },
+            "positiveShippingChargeRequired": { "const": true }
+          }
         },
         "decisionIds": { "$ref": "#/$defs/decisionIds" }
       }

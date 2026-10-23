@@ -51,6 +51,7 @@ function main() {
     console.log('Epic K provisional policy contracts: valid.');
     console.log(`Synthetic routing scenarios: ${result.scenarios.routingCases.length} passed.`);
     console.log(`Operational evidence: ${result.evidence.requirements.length} required categories remain MISSING_EXTERNAL_EVIDENCE.`);
+    console.log('Quotation authorization: repository assessment only; canInvoice=false and paymentAuthorized=false.');
     console.log('Live Shopify checkout enforcement and configuration compliance: UNVERIFIED.');
 }
 
