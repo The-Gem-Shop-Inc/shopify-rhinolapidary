@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "contractId": "epic-k-shopify-mapping-acceptance",
+  "version": "1.0.0",
+  "receiptId": "K1B03B-MAPPING-ACCEPTANCE-2026-10-24",
+  "acceptanceStatus": "accepted_verified_subset",
+  "authority": {
+    "role": "Product Owner",
+    "confirmationDate": "2026-10-24",
+    "source": "Product Owner confirmation on October 24, 2026",
+    "scope": "bounded_technical_mapping_acceptance",
+    "newBusinessDecisionCreated": false
+  },
+  "sourceLinks": {
+    "sourceMapping": {
+      "path": "data/epic-k-shopify-source-mapping.json",
+      "contractId": "epic-k-shopify-source-mapping",
+      "version": "1.1.0",
+      "fingerprint": {
+        "algorithm": "canonical-json-sha256",
+        "value": "1d3e038b87bacda974ab3c24bbdaaa329bb14b742e4390068558e2a89f9df85f"
+      }
+    },
+    "sanitizedSnapshot": {
+      "path": "data/epic-k-shopify-config-snapshot-2026-10-24.json",
+      "contractId": "epic-k-normalized-shopify-config-snapshot",
+      "version": "1.2.0",
+      "fingerprint": {
+        "algorithm": "canonical-json-sha256",
+        "value": "1af808e320832c642cab0dbec5a3e8afaf2995e97d224e496a97acf7917b0ab2"
+      }
+    },
+    "auditProvenance": {
+      "path": "data/epic-k-shopify-audit-provenance-2026-10-24.json",
+      "contractId": "epic-k-shopify-audit-provenance",
+      "auditId": "K1B02-AUDIT-2026-10-24",
+      "fingerprint": {
+        "algorithm": "canonical-json-sha256",
+        "value": "a931c94fbd2bbb8ddf68c19699134864da641adb92eb73171433e5f233cf17b1"
+      }
+    }
+  },
+  "acceptedMappings": [
+    { "normalizedPath": "source.apiVersion", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "source.sourceVerificationStatus", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "source.collectionAuthorizationStatus", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "profiles[]", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "profiles[].assignedProductRefs", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "zones[]", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "rates[]", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "discounts[]", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "markets[]", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "pickup[]", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "products[].requiresShipping", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "products[].shippingWeight", "sourceStatus": "verified", "acceptance": "accepted" },
+    { "normalizedPath": "products[].shopifyInventoryStatus", "sourceStatus": "verified", "acceptance": "accepted" }
+  ],
+  "unresolvedMappings": [
+    { "normalizedPath": "source.mappingAcceptanceStatus", "sourceStatus": "partial", "acceptance": "not_accepted" },
+    { "normalizedPath": "source.operationalAuthorityStatus", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
+    { "normalizedPath": "profiles[].machineShipmentMode", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
+    { "normalizedPath": "rates[].operationalApproval", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
+    { "normalizedPath": "discounts[].shippingEffect", "sourceStatus": "partial", "acceptance": "not_accepted" },
+    { "normalizedPath": "markets[].checkoutAvailabilityEvidence", "sourceStatus": "partial", "acceptance": "not_accepted" },
+    { "normalizedPath": "pickup[].eligibilityAssignmentStatus", "sourceStatus": "unavailable", "acceptance": "not_accepted" },
+    { "normalizedPath": "pickup[].inventoryReadinessStatus", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
+    { "normalizedPath": "products[].classification", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
+    { "normalizedPath": "products[].pickupEligibility", "sourceStatus": "unavailable", "acceptance": "not_accepted" },
+    { "normalizedPath": "products[].packages", "sourceStatus": "unavailable", "acceptance": "not_accepted" }
+  ],
+  "boundaries": {
+    "entireRegisterAcceptanceStatus": "pending",
+    "operationalEvidenceStatus": "BLOCKED",
+    "operationalEvidenceRequirementCount": 8,
+    "liveCheckoutEnforcement": "UNVERIFIED",
+    "parentPbiStatus": "partial",
+    "shopifyOperationsPerformed": false,
+    "businessDecisionsChanged": false,
+    "excludedClaims": [
+      "shipping_prices_or_regional_service_availability",
+      "product_classification_or_pickup_eligibility",
+      "packed_weight_accuracy",
+      "package_characteristics",
+      "insurance_pricing",
+      "warehouse_readiness",
+      "machine_quotation_enforcement",
+      "checkout_compliance"
+    ],
+    "departmentalDecisionContext": "Previously communicated Epic K business decisions were obtained from the relevant departmental authorities and are not reopened by outstanding operational evidence."
+  }
+}

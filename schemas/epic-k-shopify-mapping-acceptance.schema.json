@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-k-shopify-mapping-acceptance.schema.json",
+  "title": "Epic K bounded Shopify source mapping acceptance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "contractId",
+    "version",
+    "receiptId",
+    "acceptanceStatus",
+    "authority",
+    "sourceLinks",
+    "acceptedMappings",
+    "unresolvedMappings",
+    "boundaries"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-k-shopify-mapping-acceptance" },
+    "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+    "receiptId": { "const": "K1B03B-MAPPING-ACCEPTANCE-2026-10-24" },
+    "acceptanceStatus": { "const": "accepted_verified_subset" },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "confirmationDate", "source", "scope", "newBusinessDecisionCreated"],
+      "properties": {
+        "role": { "const": "Product Owner" },
+        "confirmationDate": { "const": "2026-10-24" },
+        "source": { "const": "Product Owner confirmation on October 24, 2026" },
+        "scope": { "const": "bounded_technical_mapping_acceptance" },
+        "newBusinessDecisionCreated": { "const": false }
+      }
+    },
+    "sourceLinks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceMapping", "sanitizedSnapshot", "auditProvenance"],
+      "properties": {
+        "sourceMapping": { "$ref": "#/$defs/sourceMappingLink" },
+        "sanitizedSnapshot": { "$ref": "#/$defs/snapshotLink" },
+        "auditProvenance": { "$ref": "#/$defs/provenanceLink" }
+      }
+    },
+    "acceptedMappings": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": { "$ref": "#/$defs/acceptedMapping" }
+    },
+    "unresolvedMappings": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "items": { "$ref": "#/$defs/unresolvedMapping" }
+    },
+    "boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entireRegisterAcceptanceStatus",
+        "operationalEvidenceStatus",
+        "operationalEvidenceRequirementCount",
+        "liveCheckoutEnforcement",
+        "parentPbiStatus",
+        "shopifyOperationsPerformed",
+        "businessDecisionsChanged",
+        "excludedClaims",
+        "departmentalDecisionContext"
+      ],
+      "properties": {
+        "entireRegisterAcceptanceStatus": { "const": "pending" },
+        "operationalEvidenceStatus": { "const": "BLOCKED" },
+        "operationalEvidenceRequirementCount": { "const": 8 },
+        "liveCheckoutEnforcement": { "const": "UNVERIFIED" },
+        "parentPbiStatus": { "const": "partial" },
+        "shopifyOperationsPerformed": { "const": false },
+        "businessDecisionsChanged": { "const": false },
+        "excludedClaims": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "shipping_prices_or_regional_service_availability",
+              "product_classification_or_pickup_eligibility",
+              "packed_weight_accuracy",
+              "package_characteristics",
+              "insurance_pricing",
+              "warehouse_readiness",
+              "machine_quotation_enforcement",
+              "checkout_compliance"
+            ]
+          }
+        },
+        "departmentalDecisionContext": {
+          "const": "Previously communicated Epic K business decisions were obtained from the relevant departmental authorities and are not reopened by outstanding operational evidence."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "fingerprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "value"],
+      "properties": {
+        "algorithm": { "const": "canonical-json-sha256" },
+        "value": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "sourceMappingLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "contractId", "version", "fingerprint"],
+      "properties": {
+        "path": { "const": "data/epic-k-shopify-source-mapping.json" },
+        "contractId": { "const": "epic-k-shopify-source-mapping" },
+        "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+        "fingerprint": { "$ref": "#/$defs/fingerprint" }
+      }
+    },
+    "snapshotLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "contractId", "version", "fingerprint"],
+      "properties": {
+        "path": { "const": "data/epic-k-shopify-config-snapshot-2026-10-24.json" },
+        "contractId": { "const": "epic-k-normalized-shopify-config-snapshot" },
+        "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+        "fingerprint": { "$ref": "#/$defs/fingerprint" }
+      }
+    },
+    "provenanceLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "contractId", "auditId", "fingerprint"],
+      "properties": {
+        "path": { "const": "data/epic-k-shopify-audit-provenance-2026-10-24.json" },
+        "contractId": { "const": "epic-k-shopify-audit-provenance" },
+        "auditId": { "const": "K1B02-AUDIT-2026-10-24" },
+        "fingerprint": { "$ref": "#/$defs/fingerprint" }
+      }
+    },
+    "acceptedMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normalizedPath", "sourceStatus", "acceptance"],
+      "properties": {
+        "normalizedPath": { "type": "string", "minLength": 2 },
+        "sourceStatus": { "const": "verified" },
+        "acceptance": { "const": "accepted" }
+      }
+    },
+    "unresolvedMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normalizedPath", "sourceStatus", "acceptance"],
+      "properties": {
+        "normalizedPath": { "type": "string", "minLength": 2 },
+        "sourceStatus": { "enum": ["partial", "unavailable", "requires_operational_evidence"] },
+        "acceptance": { "const": "not_accepted" }
+      }
+    }
+  }
+}
