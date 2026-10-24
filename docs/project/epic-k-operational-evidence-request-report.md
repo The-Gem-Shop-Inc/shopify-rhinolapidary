@@ -546,4 +546,4 @@ Prepare a candidate that conforms to `schemas/epic-k-evidence-receipts.schema.js
 npm run validate:epic-k-evidence-intake -- --submission <sanitized-candidate.json> --as-of <ISO-8601 timestamp>
 ```
 
-A valid intake candidate remains subject to authoritative review and attachment. It does not update the accepted receipt register automatically.
+A valid intake candidate has passed structural and semantic checks only. Source authenticity and departmental acceptance remain unverified until independently established, and the candidate is not attached to the authoritative register automatically. Operational readiness and Shopify checkout enforcement remain separate gates.

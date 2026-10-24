@@ -9,6 +9,7 @@ const {
 } = require('./lib/epic-k-evidence-intake');
 
 const REPORT_PATH = 'docs/project/epic-k-operational-evidence-request-report.md';
+const PREPARATION_AS_OF = '2026-10-24T23:59:59.000Z';
 
 function argumentValue(name) {
     const index = process.argv.indexOf(name);
@@ -22,7 +23,7 @@ function validateCommittedIntake() {
     const evidenceGap = readJson('data/epic-k-evidence-gap-report.json');
     const mapping = readJson('data/epic-k-shopify-source-mapping.json');
     const mappingAcceptance = readJson('data/epic-k-shopify-mapping-acceptance-2026-10-24.json');
-    const result = validateIntakeManifest(manifest, requirements, receipts, evidenceGap, mapping, mappingAcceptance);
+    const result = validateIntakeManifest(manifest, requirements, receipts, evidenceGap, mapping, mappingAcceptance, { asOf: PREPARATION_AS_OF });
     const expectedReport = renderDepartmentalRequestReport(manifest, requirements);
     const committedReport = fs.existsSync(REPORT_PATH) ? fs.readFileSync(REPORT_PATH, 'utf8') : null;
     if (committedReport !== expectedReport) result.errors.push('departmental evidence request report is missing or stale; run npm run generate:epic-k-evidence-requests');
@@ -47,7 +48,7 @@ function main() {
     }
     console.log('Epic K operational evidence intake manifest and departmental report: valid.');
     console.log(`${result.requestCount} evidence requests; ${result.blockedCount}/8 operational requirements remain BLOCKED.`);
-    console.log('Accepted receipts created: 0; live checkout enforcement: UNVERIFIED; K-PBI-002: partial.');
+    console.log(`Current receipt register entries: ${result.receiptCount}; live checkout enforcement: UNVERIFIED; K-PBI-002: partial.`);
 }
 
 if (require.main === module) main();

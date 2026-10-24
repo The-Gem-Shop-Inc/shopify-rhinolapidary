@@ -21,6 +21,9 @@ const NON_APPROVAL_ARTIFACT_TYPES = new Set([
     'unconfirmed_export',
 ]);
 const UNVERIFIED_VALUES = new Set(['', 'unknown', 'unverified', 'pending', 'missing', 'not established', 'not_established', 'n/a', 'tbd']);
+const WEIGHT_UNITS = new Set(['g', 'kg', 'oz', 'lb']);
+const DIMENSION_UNITS = new Set(['mm', 'cm', 'm', 'in', 'ft']);
+const CURRENCY_PATTERN = /^[A-Z]{3}$/;
 
 function fingerprint(value) {
     return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
@@ -40,7 +43,7 @@ function sameMembers(left, right) {
     return left.length === right.length && [...left].sort().every((value, index) => value === [...right].sort()[index]);
 }
 
-function validateIntakeManifest(manifest, requirements, receipts, evidenceGap, mapping, mappingAcceptance) {
+function validateIntakeManifest(manifest, requirements, receipts, evidenceGap, mapping, mappingAcceptance, options = {}) {
     const errors = [
         ...schemaErrors('schemas/epic-k-evidence-intake-manifest.schema.json', manifest, 'evidence intake manifest'),
         ...schemaErrors('schemas/epic-k-operational-evidence.schema.json', requirements, 'evidence requirements'),
@@ -80,15 +83,16 @@ function validateIntakeManifest(manifest, requirements, receipts, evidenceGap, m
         }
     }
 
-    if (receipts.receipts.length !== 0 || receipts.status !== 'intake_open_no_authoritative_receipts') {
-        errors.push('authoritative receipt register must remain empty during intake preparation');
-    }
-    const verified = verifyEvidence(receipts, requirements, { asOf: '2026-10-24T23:59:59.000Z' });
+    const asOf = options.asOf;
+    if (parseTimestamp(asOf) === null) errors.push('a valid explicit assessment time is required for authoritative receipt evaluation');
+    const verified = verifyEvidence(receipts, requirements, { asOf });
     errors.push(...verified.errors);
     const blockedCount = verified.report?.summary?.BLOCKED || 0;
-    if (blockedCount !== 8 || verified.report?.operationalReadiness !== 'BLOCKED') errors.push('all eight operational requirements must remain BLOCKED');
+    if (verified.report?.results?.some((entry) => entry.state === 'FAIL')) {
+        errors.push('authoritative receipt register contains expired, duplicate, conflicting, unsupported, or incorrectly scoped evidence');
+    }
+    if (verified.report?.operationalReadiness !== 'BLOCKED') errors.push('operational readiness must remain BLOCKED until the evidence gate explicitly establishes otherwise');
     if (verified.report?.liveCheckoutEnforcement !== 'UNVERIFIED') errors.push('live checkout enforcement must remain UNVERIFIED');
-    if (evidenceGap.summary?.BLOCKED !== 8 || evidenceGap.operationalReadiness !== 'BLOCKED') errors.push('committed evidence gap report must retain eight blocked requirements');
     if (mapping.version !== '1.2.0' || mapping.productOwnerMappingAcceptanceStatus !== 'accepted') errors.push('accepted source mapping version 1.2.0 must remain authoritative');
     if (mappingAcceptance.mappingDesignAcceptanceStatus !== 'accepted') errors.push('all 24 mapping definitions must retain Product Owner design acceptance');
     if (manifest.submissionContract.intakeCreatesAcceptedReceipt || manifest.globalBoundaries.shopifyAccessAuthorized || manifest.globalBoundaries.shopifyMutationAuthorized) {
@@ -96,7 +100,7 @@ function validateIntakeManifest(manifest, requirements, receipts, evidenceGap, m
     }
     if (JSON.stringify(manifest).includes('K-DEC-020')) errors.push('intake manifest cannot create a new K-DEC decision');
 
-    return { errors, requestCount: manifest.requests.length, blockedCount };
+    return { errors, requestCount: manifest.requests.length, blockedCount, receiptCount: receipts.receipts.length };
 }
 
 function validateAssertionValue(assertion, syntheticFixture, errors, receiptId) {
@@ -112,13 +116,146 @@ function validateAssertionValue(assertion, syntheticFixture, errors, receiptId) 
     }
 }
 
+function assertionsByName(receipt) {
+    return new Map(receipt.assertions.map((assertion) => [assertion.name, assertion.value]));
+}
+
+function requireNonplaceholderString(assertions, name, errors, receiptId) {
+    const value = assertions.get(name);
+    if (typeof value !== 'string' || UNVERIFIED_VALUES.has(value.trim().toLowerCase()) || value.trim().length < 2) {
+        errors.push(`${receiptId}: ${name} must be an explicit, nonplaceholder string`);
+        return null;
+    }
+    return value.trim();
+}
+
+function requirePositiveNumber(assertions, name, errors, receiptId) {
+    const value = assertions.get(name);
+    if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
+        errors.push(`${receiptId}: ${name} must be a finite number greater than zero; numeric strings are not accepted`);
+        return null;
+    }
+    return value;
+}
+
+function requireNonnegativeNumber(assertions, name, errors, receiptId) {
+    const value = assertions.get(name);
+    if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) {
+        errors.push(`${receiptId}: ${name} must be a documented finite number of zero or greater; absent, unknown, and numeric-string costs are not accepted`);
+        return null;
+    }
+    return value;
+}
+
+function requirePositiveInteger(assertions, name, errors, receiptId) {
+    const value = assertions.get(name);
+    if (!Number.isInteger(value) || value <= 0) {
+        errors.push(`${receiptId}: ${name} must be a positive integer`);
+        return null;
+    }
+    return value;
+}
+
+function requireUnit(assertions, name, allowed, errors, receiptId) {
+    const value = assertions.get(name);
+    if (typeof value !== 'string' || !allowed.has(value.trim().toLowerCase())) {
+        errors.push(`${receiptId}: ${name} must use a recognized explicit unit (${[...allowed].join(', ')})`);
+        return null;
+    }
+    return value.trim().toLowerCase();
+}
+
+function validatePackageDimensions(assertions, packageCount, errors, receiptId) {
+    const value = assertions.get('packageDimensions');
+    if (typeof value !== 'string') {
+        errors.push(`${receiptId}: packageDimensions must list positive length x width x height measurements for every package`);
+        return;
+    }
+    const packages = value.split(';').map((entry) => entry.trim()).filter(Boolean);
+    const complete = packages.length > 0 && packages.every((entry) => {
+        const dimensions = entry.split(/\s*[xX×]\s*/);
+        return dimensions.length === 3 && dimensions.every((dimension) => {
+            if (!/^(?:0|[1-9]\d*)(?:\.\d+)?$/.test(dimension)) return false;
+            const parsed = Number(dimension);
+            return Number.isFinite(parsed) && parsed > 0;
+        });
+    });
+    if (!complete) errors.push(`${receiptId}: packageDimensions must contain three strictly positive numeric dimensions per package`);
+    if (packageCount !== null && packages.length !== packageCount) {
+        errors.push(`${receiptId}: packageDimensions must contain exactly one complete dimension set for each package`);
+    }
+}
+
+function requireBoolean(assertions, name, errors, receiptId, requiredValue) {
+    const value = assertions.get(name);
+    if (typeof value !== 'boolean' || (requiredValue !== undefined && value !== requiredValue)) {
+        const suffix = requiredValue === undefined ? 'an explicit boolean' : `explicitly ${requiredValue}`;
+        errors.push(`${receiptId}: ${name} must be ${suffix}`);
+        return null;
+    }
+    return value;
+}
+
+function requireCurrency(assertions, errors, receiptId) {
+    const value = assertions.get('currency');
+    if (typeof value !== 'string' || !CURRENCY_PATTERN.test(value.trim().toUpperCase())) {
+        errors.push(`${receiptId}: currency must be an explicit three-letter currency code`);
+        return null;
+    }
+    return value.trim().toUpperCase();
+}
+
+function validateRequirementSemantics(receipt, errors) {
+    const assertions = assertionsByName(receipt);
+    if (receipt.requirementId === 'K-EVID-001') {
+        requireBoolean(assertions, 'pickupEligibility', errors, receipt.id);
+        return;
+    }
+    if (receipt.requirementId === 'K-EVID-003') {
+        if (receipt.subject.identifiers.length < 2) errors.push(`${receipt.id}: packed logistics evidence must identify both Product and Variant`);
+        requirePositiveNumber(assertions, 'packedShippingWeight', errors, receipt.id);
+        const packageCount = requirePositiveInteger(assertions, 'packageCount', errors, receipt.id);
+        validatePackageDimensions(assertions, packageCount, errors, receipt.id);
+        requireUnit(assertions, 'weightUnit', WEIGHT_UNITS, errors, receipt.id);
+        requireUnit(assertions, 'dimensionUnit', DIMENSION_UNITS, errors, receipt.id);
+        requireNonplaceholderString(assertions, 'measurementInclusions', errors, receipt.id);
+        return;
+    }
+    if (receipt.requirementId === 'K-EVID-005') {
+        requirePositiveNumber(assertions, 'alaskaRate', errors, receipt.id);
+        requirePositiveNumber(assertions, 'hawaiiRate', errors, receipt.id);
+        requireCurrency(assertions, errors, receipt.id);
+        requireBoolean(assertions, 'confirmedServiceAvailability', errors, receipt.id, true);
+        requireBoolean(assertions, 'alaskaServiceAvailability', errors, receipt.id, true);
+        requireBoolean(assertions, 'hawaiiServiceAvailability', errors, receipt.id, true);
+        const alaskaApproval = requireNonplaceholderString(assertions, 'alaskaApprovalReference', errors, receipt.id);
+        const hawaiiApproval = requireNonplaceholderString(assertions, 'hawaiiApprovalReference', errors, receipt.id);
+        if (alaskaApproval && hawaiiApproval && alaskaApproval === hawaiiApproval) {
+            errors.push(`${receipt.id}: Alaska and Hawaii require separate state approval references; a general rate approval is insufficient`);
+        }
+        return;
+    }
+    if (receipt.requirementId === 'K-EVID-006') {
+        requireNonnegativeNumber(assertions, 'cost', errors, receipt.id);
+        requireCurrency(assertions, errors, receipt.id);
+        requireNonplaceholderString(assertions, 'availableCoverageOption', errors, receipt.id);
+        requireNonplaceholderString(assertions, 'applicableService', errors, receipt.id);
+        requireBoolean(assertions, 'selectionAcceptance', errors, receipt.id);
+    }
+}
+
 function validateSubmissionCandidate(receiptSet, manifest, requirements, options = {}) {
     const errors = [
         ...schemaErrors('schemas/epic-k-evidence-receipts.schema.json', receiptSet, 'submission candidate'),
     ];
     const asOf = options.asOf;
     if (parseTimestamp(asOf) === null) errors.push('a valid explicit assessment time is required');
-    if (errors.length) return { errors, submissionState: 'INVALID', evidenceReport: null };
+    if (errors.length) return {
+        errors,
+        submissionState: 'INVALID',
+        candidatePolicyComparison: null,
+        authorityAssessment: null,
+    };
 
     const requestByRequirement = new Map(manifest.requests.map((entry) => [entry.requirementId, entry]));
     const requirementById = new Map(requirements.requirements.map((entry) => [entry.id, entry]));
@@ -157,6 +294,7 @@ function validateSubmissionCandidate(receiptSet, manifest, requirements, options
         const prohibited = assertionNames.filter((name) => PROHIBITED_ASSERTIONS.has(name));
         if (prohibited.length) errors.push(`${receipt.id}: configuration evidence cannot infer checkout or payment authority: ${prohibited.join(', ')}`);
         for (const assertion of receipt.assertions) validateAssertionValue(assertion, syntheticFixture, errors, receipt.id);
+        validateRequirementSemantics(receipt, errors);
 
         const discovered = request.repositorySources.find((source) => source.repositoryPath === receipt.source.reference);
         if (receipt.verificationStatus === 'accepted' && discovered && !discovered.maySatisfyRequirement) {
@@ -178,7 +316,30 @@ function validateSubmissionCandidate(receiptSet, manifest, requirements, options
     return {
         errors,
         submissionState: errors.length ? 'INVALID' : 'VALID_STRUCTURE_AND_SCOPE',
-        evidenceReport: verification.report,
+        candidatePolicyComparison: verification.report ? {
+            ...verification.report,
+            assessmentScope: 'NON_AUTHORITATIVE_CANDIDATE_COMPARISON',
+            establishesRepositoryAuthority: false,
+        } : null,
+        authorityAssessment: {
+            structuralAndSemanticValidation: errors.length ? 'FAIL' : 'PASS',
+            sourceAuthenticity: 'UNVERIFIED',
+            departmentalAcceptance: 'UNVERIFIED',
+            authoritativeRegisterAttachment: 'NOT_ATTACHED',
+            operationalReadiness: 'BLOCKED',
+            liveCheckoutEnforcement: 'UNVERIFIED',
+            candidateVerificationStatusIsAuthority: false,
+        },
+        policyEffects: receiptSet.receipts
+            .filter((receipt) => receipt.requirementId === 'K-EVID-001')
+            .map((receipt) => {
+                const pickupEligibility = assertionsByName(receipt).get('pickupEligibility');
+                return {
+                    receiptId: receipt.id,
+                    pickupEligibility: pickupEligibility === false ? 'explicitly_ineligible' : pickupEligibility === true ? 'candidate_eligible' : 'unspecified',
+                    ordinaryPickupAuthorized: false,
+                };
+            }),
     };
 }
 
@@ -219,7 +380,7 @@ function renderDepartmentalRequestReport(manifest, requirements) {
     lines.push('## Submission validation', '');
     lines.push('Prepare a candidate that conforms to `schemas/epic-k-evidence-receipts.schema.json`, then run:', '');
     lines.push('```powershell', 'npm run validate:epic-k-evidence-intake -- --submission <sanitized-candidate.json> --as-of <ISO-8601 timestamp>', '```', '');
-    lines.push('A valid intake candidate remains subject to authoritative review and attachment. It does not update the accepted receipt register automatically.', '');
+    lines.push('A valid intake candidate has passed structural and semantic checks only. Source authenticity and departmental acceptance remain unverified until independently established, and the candidate is not attached to the authoritative register automatically. Operational readiness and Shopify checkout enforcement remain separate gates.', '');
     return lines.join('\n');
 }
 

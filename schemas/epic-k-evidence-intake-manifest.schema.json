@@ -4,11 +4,11 @@
   "title": "Epic K operational evidence intake manifest",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "contractId", "version", "status", "preparedOn", "requirementsSource", "submissionContract", "globalBoundaries", "requests"],
+  "required": ["schemaVersion", "contractId", "version", "status", "preparedOn", "requirementsSource", "historicalPreparationRecord", "submissionContract", "globalBoundaries", "requests"],
   "properties": {
     "schemaVersion": { "const": 1 },
     "contractId": { "const": "epic-k-operational-evidence-intake-manifest" },
-    "version": { "const": "1.0.0" },
+    "version": { "const": "1.1.0" },
     "status": { "const": "request_only_no_evidence_attached" },
     "preparedOn": { "const": "2026-10-24" },
     "requirementsSource": {
@@ -20,6 +20,29 @@
         "contractId": { "const": "epic-k-operational-evidence-requirements" },
         "version": { "const": "1.0.0-provisional" },
         "fingerprint": { "$ref": "#/$defs/fingerprint" }
+      }
+    },
+    "historicalPreparationRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asOf", "receiptRegisterFingerprint", "evidenceGapFingerprint", "receiptCount", "blockedRequirementCount", "recordIsHistorical"],
+      "properties": {
+        "asOf": { "const": "2026-10-24T23:59:59.000Z" },
+        "receiptRegisterFingerprint": {
+          "allOf": [
+            { "$ref": "#/$defs/fingerprint" },
+            { "properties": { "value": { "const": "27fc9290a80ed0b2116d61776c5a72845ddcf14e23f4f69f61014e1ea5a2b858" } } }
+          ]
+        },
+        "evidenceGapFingerprint": {
+          "allOf": [
+            { "$ref": "#/$defs/fingerprint" },
+            { "properties": { "value": { "const": "5ccafc5fc49dc74143453e4dc3701431c9c281744d174d62cd0b10c7b3ca429e" } } }
+          ]
+        },
+        "receiptCount": { "const": 0 },
+        "blockedRequirementCount": { "const": 8 },
+        "recordIsHistorical": { "const": true }
       }
     },
     "submissionContract": {
