@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "contractId": "epic-k-operational-evidence-intake-manifest",
+  "version": "1.0.0",
+  "status": "request_only_no_evidence_attached",
+  "preparedOn": "2026-10-24",
+  "requirementsSource": {
+    "path": "data/epic-k-operational-evidence-requirements.json",
+    "contractId": "epic-k-operational-evidence-requirements",
+    "version": "1.0.0-provisional",
+    "fingerprint": {
+      "algorithm": "canonical-json-sha256",
+      "value": "8ba2d3819a364af2f274e710e17953f464961cdd9f3e77b7ee6dce79367d5e23"
+    }
+  },
+  "submissionContract": {
+    "schemaPath": "schemas/epic-k-evidence-receipts.schema.json",
+    "receiptTargetPath": "data/epic-k-evidence-receipts.json",
+    "validationLibrary": "scripts/lib/epic-k-evidence-drift.js#verifyEvidence",
+    "intakeCreatesAcceptedReceipt": false
+  },
+  "globalBoundaries": {
+    "operationalEvidence": "BLOCKED",
+    "operationalReadiness": "BLOCKED",
+    "liveCheckoutEnforcement": "UNVERIFIED",
+    "mappingDesignAcceptance": "accepted_all_24_definitions",
+    "remediationStatus": "proposal_only",
+    "shopifyAccessAuthorized": false,
+    "shopifyMutationAuthorized": false,
+    "parentPbiStatus": "partial"
+  },
+  "requests": [
+    {
+      "requestId": "K-INTAKE-001",
+      "requirementId": "K-EVID-001",
+      "requestState": "awaiting_authoritative_submission",
+      "allowedSubjectTypes": ["product_variant_pickup_eligibility"],
+      "requiredScopeDimensions": ["Product references", "Variant references", "Grafton pickup eligibility decision"],
+      "acceptableArtifacts": ["Owner-approved Product and Variant eligibility register", "Signed Grafton operations eligibility matrix", "Versioned approval export with owner attestation"],
+      "requiredProvenance": ["Named authoritative owner role", "Source artifact reference and SHA-256 digest", "Collection timestamp", "Approval identity and effective interval"],
+      "validityMode": "required_interval",
+      "validityRationale": "Pickup eligibility can change and requires an explicit effective period.",
+      "sanitizationRequirements": ["Use stable Product and Variant references", "Exclude customer data and credentials", "Keep restricted raw approvals outside Git"],
+      "requiredAssertionNames": ["ownerIdentity", "pickupEligibility"],
+      "repositorySources": [
+        { "repositoryPath": "data/epic-e-product-classification.json", "classification": "relevant_requires_confirmation_or_renewal", "summary": "Contains governed Product classification relationships.", "limitation": "Does not establish current Product or Variant pickup approval; prior E/F owner authority expired October 22, 2026.", "maySatisfyRequirement": false },
+        { "repositoryPath": "data/epic-f-current-shopify-eligibility.json", "classification": "informational_only", "summary": "Describes current storefront Product eligibility context.", "limitation": "Storefront eligibility is not Grafton pickup authorization.", "maySatisfyRequirement": false },
+        { "repositoryPath": "data/epic-k-shopify-config-snapshot-2026-10-24.json", "classification": "informational_only", "summary": "Records sanitized Product and location configuration observations.", "limitation": "The audit reports unknown Product pickup eligibility and cannot provide operations approval.", "maySatisfyRequirement": false }
+      ],
+      "humanAuthorityInputs": ["Exact Product and Variant list", "Explicit eligible or ineligible value per subject", "Approval identity", "Effective start and expiration"],
+      "prohibitedInferences": ["Product classification implies pickup eligibility", "Positive inventory implies pickup approval", "An active Shopify location implies Product eligibility"]
+    },
+    {
+      "requestId": "K-INTAKE-002",
+      "requirementId": "K-EVID-002",
+      "requestState": "awaiting_authoritative_submission",
+      "allowedSubjectTypes": ["grafton_location_readiness"],
+      "requiredScopeDimensions": ["Grafton location", "Inventory ownership", "Pickup operating procedure"],
+      "acceptableArtifacts": ["Approved warehouse readiness checklist", "Inventory ownership procedure", "Current pickup standard operating procedure"],
+      "requiredProvenance": ["Grafton or inventory operations owner identity", "Source artifact reference and SHA-256 digest", "Collection timestamp", "Declared validity"],
+      "validityMode": "required_interval",
+      "validityRationale": "Location readiness and procedures are current operating conditions.",
+      "sanitizationRequirements": ["Remove employee personal information", "Exclude alarm, access-control, and credential details", "Store restricted procedures outside Git and commit only a sanitized summary"],
+      "requiredAssertionNames": ["ownerIdentity", "locationReadiness", "inventoryFulfillmentOwnership", "pickupOperatingProcedure"],
+      "repositorySources": [
+        { "repositoryPath": "data/epic-k-shopify-config-snapshot-2026-10-24.json", "classification": "informational_only", "summary": "Shows three observed locations with pickup disabled.", "limitation": "Configuration does not establish warehouse readiness, inventory ownership, or procedure approval.", "maySatisfyRequirement": false },
+        { "repositoryPath": null, "classification": "missing_or_inaccessible", "summary": "No approved Grafton pickup procedure was found in the repository.", "limitation": "Grafton and inventory operations must supply the current controlled artifact.", "maySatisfyRequirement": false }
+      ],
+      "humanAuthorityInputs": ["Current readiness decision", "Responsible inventory owner", "Pickup preparation, identity, handoff, exception, and closure procedure", "Validity interval"],
+      "prohibitedInferences": ["Shopify location activation establishes readiness", "Inventory quantity establishes ownership", "Pickup-disabled configuration establishes future procedure"]
+    },
+    {
+      "requestId": "K-INTAKE-003",
+      "requirementId": "K-EVID-003",
+      "requestState": "awaiting_authoritative_submission",
+      "allowedSubjectTypes": ["product_variant_package_measurement"],
+      "requiredScopeDimensions": ["Product and Variant references", "Each shipping package or crate", "Packed state and included components"],
+      "acceptableArtifacts": ["Current packing record approved by Technical Owner and Operations", "Approved engineering packing drawing", "Dated warehouse measurement worksheet with owner attestation"],
+      "requiredProvenance": ["Technical or operations owner identity", "Measurement method and instrument context", "Source artifact reference and SHA-256 digest", "Collection timestamp"],
+      "validityMode": "owner_declared_interval_or_none",
+      "validityRationale": "An owner must state whether the physical specification is version-bound or has an effective interval.",
+      "sanitizationRequirements": ["Use stable Product and Variant references", "Exclude supplier account details", "State units explicitly", "Keep restricted drawings outside Git if necessary"],
+      "requiredAssertionNames": ["ownerIdentity", "packedShippingWeight", "weightUnit", "packageCount", "packageDimensions", "dimensionUnit", "measurementInclusions"],
+      "repositorySources": [
+        { "repositoryPath": "data/epic-e-measurement-evidence.json", "classification": "relevant_requires_confirmation_or_renewal", "summary": "Records 81 positive native weights, 44 missing or zero weights, zero approved custom measurements, and zero package records.", "limitation": "Native Shopify weights are not approved packed measurements; prior E/F authority cannot be silently renewed.", "maySatisfyRequirement": false },
+        { "repositoryPath": "docs/project/completed-worksheet-decisions-transcribed.md", "classification": "relevant_requires_confirmation_or_renewal", "summary": "Contains a transcribed LapMaster 18 packed-weight observation.", "limitation": "One observation is incomplete coverage and remains distinct from native Shopify weight and current packing authority.", "maySatisfyRequirement": false },
+        { "repositoryPath": "data/epic-e-source-governance.json", "classification": "potentially_authoritative_current", "summary": "Defines current engineering drawing or packing record approved by Technical Owner and Operations as the authority model.", "limitation": "The governance rule identifies acceptable authority but supplies no Product measurements.", "maySatisfyRequirement": false }
+      ],
+      "humanAuthorityInputs": ["Packed weight and unit per shipping unit", "Package count", "Dimensions and units for every package", "Included and excluded components", "Owner approval and applicability"],
+      "prohibitedInferences": ["Positive Shopify weight is an approved packed weight", "A machine specification is a crate dimension", "One package observation covers other Products or Variants"]
+    },
+    {
+      "requestId": "K-INTAKE-004",
+      "requirementId": "K-EVID-004",
+      "requestState": "awaiting_authoritative_submission",
+      "allowedSubjectTypes": ["shipping_service_region_product_scope"],
+      "requiredScopeDimensions": ["Paid shipping service", "Supported region", "Eligible Product scope", "Service limitations"],
+      "acceptableArtifacts": ["Shipping operations service matrix", "Current carrier service agreement summary approved for use", "Approved rate and eligibility schedule"],
+      "requiredProvenance": ["Shipping operations approval identity", "Carrier or internal source reference and SHA-256 digest", "Collection timestamp", "Effective interval"],
+      "validityMode": "required_interval",
+      "validityRationale": "Services, regions, and limitations are time-sensitive operational facts.",
+      "sanitizationRequirements": ["Remove carrier account numbers and credentials", "Use sanitized service references", "Exclude negotiated confidential terms from Git"],
+      "requiredAssertionNames": ["ownerIdentity", "approvedPaidService", "supportedRegion", "productEligibility", "serviceLimitations"],
+      "repositorySources": [
+        { "repositoryPath": "data/epic-k-shopify-config-snapshot-2026-10-24.json", "classification": "informational_only", "summary": "Records configured services, zones, assignments, and unresolved calculated rates.", "limitation": "Shopify configuration does not establish operations approval, carrier availability, or complete Product eligibility.", "maySatisfyRequirement": false },
+        { "repositoryPath": "data/epic-e-source-governance.json", "classification": "potentially_authoritative_current", "summary": "Identifies Shopify configuration plus approved Operations policy as the authority model.", "limitation": "The governance rule supplies no approved service matrix.", "maySatisfyRequirement": false }
+      ],
+      "humanAuthorityInputs": ["Approved paid service names", "Supported states or regions", "Eligible Product or class scope", "Exclusions and limitations", "Effective period"],
+      "prohibitedInferences": ["Configured shipping method is operations-approved", "A zone proves checkout availability", "An unknown carrier-calculated rate is a verified paid service"]
+    },
+    {
+      "requestId": "K-INTAKE-005",
+      "requirementId": "K-EVID-005",
+      "requestState": "awaiting_authoritative_submission",
+      "allowedSubjectTypes": ["alaska_hawaii_rate_approval"],
+      "requiredScopeDimensions": ["Alaska", "Hawaii", "Applicable service", "Product eligibility"],
+      "acceptableArtifacts": ["Finance-approved Alaska and Hawaii rate schedule", "Carrier quote or tariff with shipping-operations approval", "Approved state-specific service matrix"],
+      "requiredProvenance": ["Shipping operations and finance approval identities", "Carrier or calculation source reference and SHA-256 digest", "Collection timestamp", "Effective interval"],
+      "validityMode": "required_interval",
+      "validityRationale": "Rates and carrier availability require explicit current validity.",
+      "sanitizationRequirements": ["Remove carrier account identifiers", "Retain currency and unit basis", "Keep confidential raw tariffs outside Git"],
+      "requiredAssertionNames": ["ownerIdentity", "alaskaRate", "hawaiiRate", "confirmedServiceAvailability", "approvalIdentity"],
+      "repositorySources": [
+        { "repositoryPath": "data/epic-k-shopify-config-snapshot-2026-10-24.json", "classification": "informational_only", "summary": "Shows Alaska and Hawaii within configured US scope and observed rate definitions.", "limitation": "No separate approved Alaska or Hawaii rate and service evidence is attached.", "maySatisfyRequirement": false },
+        { "repositoryPath": "data/epic-k-fulfillment-policy.json", "classification": "potentially_authoritative_current", "summary": "Authorizes quotation intake while requiring separate rates before invoicing.", "limitation": "Policy authority does not supply either state rate, service availability, or finance approval.", "maySatisfyRequirement": false }
+      ],
+      "humanAuthorityInputs": ["Alaska rate and basis", "Hawaii rate and basis", "Confirmed service for each state", "Product limitations", "Shipping operations and finance approval identities", "Validity interval"],
+      "prohibitedInferences": ["Quotation intake permits invoicing", "A generic US rate is separately approved for Alaska or Hawaii", "Zone membership proves carrier service"]
+    },
+    {
+      "requestId": "K-INTAKE-006",
+      "requirementId": "K-EVID-006",
+      "requestState": "awaiting_authoritative_submission",
+      "allowedSubjectTypes": ["carrier_insurance_service_option"],
+      "requiredScopeDimensions": ["Carrier or delivery service", "Coverage option", "Cost basis", "Customer selection requirement"],
+      "acceptableArtifacts": ["Current carrier insurance schedule", "Finance-approved insurance option matrix", "Service-specific coverage terms with operations approval"],
+      "requiredProvenance": ["Shipping operations and finance approval identities", "Carrier source reference and SHA-256 digest", "Collection timestamp", "Effective interval"],
+      "validityMode": "required_interval",
+      "validityRationale": "Coverage availability, cost, and applicable services can change.",
+      "sanitizationRequirements": ["Remove carrier account and policy numbers", "Keep restricted insurance documents outside Git", "Commit only sanitized coverage and cost evidence"],
+      "requiredAssertionNames": ["ownerIdentity", "availableCoverageOption", "cost", "applicableService", "selectionAcceptance"],
+      "repositorySources": [
+        { "repositoryPath": "data/epic-k-fulfillment-policy.json", "classification": "potentially_authoritative_current", "summary": "Defines that documented insurance availability and cost may be selected during quotation.", "limitation": "The policy contains no carrier option, premium, limit, or service availability.", "maySatisfyRequirement": false },
+        { "repositoryPath": null, "classification": "missing_or_inaccessible", "summary": "No current carrier insurance schedule was found in the repository.", "limitation": "Shipping operations and finance must provide a sanitized authoritative artifact.", "maySatisfyRequirement": false }
+      ],
+      "humanAuthorityInputs": ["Available coverage option", "Actual cost and currency", "Applicable carrier service", "Selection and acceptance procedure", "Validity interval"],
+      "prohibitedInferences": ["Missing cost means complimentary coverage", "Insurance recommendation guarantees compensation", "One carrier option applies to another service"]
+    },
+    {
+      "requestId": "K-INTAKE-007",
+      "requirementId": "K-EVID-007",
+      "requestState": "awaiting_authoritative_submission",
+      "allowedSubjectTypes": ["claims_contact_and_responsibility_process"],
+      "requiredScopeDimensions": ["Rhino notification route", "Carrier and service", "Filing responsibility", "Rhino delivery process"],
+      "acceptableArtifacts": ["Approved customer-service claims procedure", "Carrier-specific filing responsibility matrix", "Approved Rhino delivery damage process"],
+      "requiredProvenance": ["Shipping operations, customer service, or Epic L owner identity", "Procedure reference and SHA-256 digest", "Collection timestamp", "Declared validity"],
+      "validityMode": "owner_declared_interval_or_none",
+      "validityRationale": "The procedure owner must state the effective version or interval.",
+      "sanitizationRequirements": ["Use role-based contact routes where possible", "Exclude employee personal contact details", "Remove carrier account identifiers", "Keep restricted procedures outside Git"],
+      "requiredAssertionNames": ["ownerIdentity", "designatedRhinoContactProcess", "carrierFilingResponsibility", "internalRhinoDeliveryProcess"],
+      "repositorySources": [
+        { "repositoryPath": "data/epic-e-warranty-support-evidence.json", "classification": "relevant_requires_confirmation_or_renewal", "summary": "Indexes warranty and support contact candidates.", "limitation": "Policy approval is false and the evidence does not establish current carrier filing or internal delivery claims procedures.", "maySatisfyRequirement": false },
+        { "repositoryPath": "docs/policy/Rhino Lapidary Policies - Warranty, Shipping, Returns.pdf", "classification": "informational_only", "summary": "Historical policy source relevant to shipping, returns, and warranty language.", "limitation": "The legal claims register blocks reuse without current operational and legal authority.", "maySatisfyRequirement": false },
+        { "repositoryPath": "data/legal-claims-register.json", "classification": "potentially_authoritative_current", "summary": "Defines review gates for shipping, freight, warranty, returns, and contact claims.", "limitation": "It governs claim use but supplies no current carrier-specific responsibility or Rhino delivery procedure.", "maySatisfyRequirement": false }
+      ],
+      "humanAuthorityInputs": ["Designated Rhino notification route", "Carrier-specific customer or merchant filing responsibility", "Internal Rhino delivery reporting and escalation process", "Procedure version or validity"],
+      "prohibitedInferences": ["Customer always files the carrier claim", "Lack of purchased insurance eliminates all remedies", "Historical policy text is a current approved process"]
+    },
+    {
+      "requestId": "K-INTAKE-008",
+      "requirementId": "K-EVID-008",
+      "requestState": "awaiting_authoritative_submission",
+      "allowedSubjectTypes": ["complete_order_quotation_authorization"],
+      "requiredScopeDimensions": ["Complete cart", "Destination", "Residential or commercial designation", "Liftgate response", "Access information", "Insurance selection", "Quotation validity"],
+      "acceptableArtifacts": ["Operations-approved quotation record", "Signed quotation approval receipt", "Controlled warehouse or shipping quotation authorization export"],
+      "requiredProvenance": ["Named warehouse or shipping operations approver", "Quotation artifact reference and SHA-256 digest", "Approval timestamp", "Explicit validity interval"],
+      "validityMode": "required_interval",
+      "validityRationale": "Each quotation requires its own validity period and renewed approval after expiration or material change.",
+      "sanitizationRequirements": ["Use synthetic data in repository tests", "Do not commit customer addresses", "Store real quotation artifacts outside Git with access control", "Commit only sanitized relationship references"],
+      "requiredAssertionNames": ["ownerIdentity", "namedApprover", "completeCartScope", "destinationDeliveryRequirements", "insuranceSelection"],
+      "repositorySources": [
+        { "repositoryPath": "data/epic-k-fulfillment-policy.json", "classification": "potentially_authoritative_current", "summary": "Defines the approved quotation lifecycle and whole-cart policy.", "limitation": "The policy contract is not a real quotation, named approval, shipping charge, service confirmation, or payment authorization.", "maySatisfyRequirement": false },
+        { "repositoryPath": "scripts/lib/epic-k-policy.js", "classification": "informational_only", "summary": "Implements deterministic offline quotation assessment.", "limitation": "Repository assessment cannot authorize a real invoice, shipment, payment, or Shopify checkout.", "maySatisfyRequirement": false }
+      ],
+      "humanAuthorityInputs": ["Named approver", "Complete cart identity and quantities", "Destination and required delivery inputs", "Selected insurance and documented cost", "Approved service and charge", "Validity start and expiration"],
+      "prohibitedInferences": ["Offline assessment authorizes invoicing", "A draft order proves shipping approval", "An unchanged state or postal region preserves quotation authorization after a material address change"]
+    }
+  ]
+}
