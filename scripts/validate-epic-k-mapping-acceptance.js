@@ -2,6 +2,8 @@
 
 const { readJson } = require('./lib/epic-k-policy');
 const { validateMappingAcceptance } = require('./lib/epic-k-mapping-acceptance');
+const { validateEpicKShopifyAudit } = require('./validate-epic-k-shopify-audit');
+const { validateRemediationPreflight } = require('./validate-epic-k-remediation-preflight');
 
 function validateCommittedMappingAcceptance() {
     const receipt = readJson('data/epic-k-shopify-mapping-acceptance-2026-10-24.json');
@@ -10,7 +12,10 @@ function validateCommittedMappingAcceptance() {
     const provenance = readJson('data/epic-k-shopify-audit-provenance-2026-10-24.json');
     const evidenceGap = readJson('data/epic-k-evidence-gap-report.json');
     const currentDrift = readJson('data/epic-k-shopify-configuration-drift-report-2026-10-24.json');
-    return validateMappingAcceptance(receipt, mapping, snapshot, provenance, evidenceGap, currentDrift);
+    const result = validateMappingAcceptance(receipt, mapping, snapshot, provenance, evidenceGap, currentDrift);
+    result.errors.push(...validateEpicKShopifyAudit().errors.map((error) => `historical audit: ${error}`));
+    result.errors.push(...validateRemediationPreflight().errors.map((error) => `historical remediation projection: ${error}`));
+    return result;
 }
 
 function main() {
@@ -21,8 +26,9 @@ function main() {
         process.exitCode = 1;
         return;
     }
-    console.log('Epic K bounded Product Owner technical mapping acceptance: valid.');
-    console.log(`${result.acceptedCount} verified mappings accepted; ${result.unresolvedCount} mappings retain their prior unresolved classifications.`);
+    console.log('Epic K complete Product Owner mapping design acceptance: valid.');
+    console.log(`${result.acceptedDefinitionCount} mapping definitions accepted; ${result.evidenceLimitationCount} evidence limitations remain explicit.`);
+    console.log('Source classifications: 13 verified, 3 partial, 5 require operational evidence, 3 unavailable.');
     console.log('Operational evidence: 8/8 BLOCKED; live checkout enforcement: UNVERIFIED; K-PBI-002: partial.');
 }
 

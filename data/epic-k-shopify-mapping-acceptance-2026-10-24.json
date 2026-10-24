@@ -1,24 +1,25 @@
 {
   "schemaVersion": 1,
   "contractId": "epic-k-shopify-mapping-acceptance",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "receiptId": "K1B03B-MAPPING-ACCEPTANCE-2026-10-24",
-  "acceptanceStatus": "accepted_verified_subset",
+  "mappingDesignAcceptanceStatus": "accepted",
   "authority": {
     "role": "Product Owner",
     "confirmationDate": "2026-10-24",
-    "source": "Product Owner confirmation on October 24, 2026",
-    "scope": "bounded_technical_mapping_acceptance",
-    "newBusinessDecisionCreated": false
+    "source": "Product Owner clarification confirming review and approval of all 24 mapping definitions",
+    "scope": "complete_mapping_design_acceptance",
+    "newBusinessDecisionCreated": false,
+    "additionalProductOwnerApprovalRequired": false
   },
   "sourceLinks": {
     "sourceMapping": {
       "path": "data/epic-k-shopify-source-mapping.json",
       "contractId": "epic-k-shopify-source-mapping",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "fingerprint": {
         "algorithm": "canonical-json-sha256",
-        "value": "1d3e038b87bacda974ab3c24bbdaaa329bb14b742e4390068558e2a89f9df85f"
+        "value": "39d57799fd98bbf0ca255bd363ad632897c59cd90e4c556f0cd09c107aefb371"
       }
     },
     "sanitizedSnapshot": {
@@ -40,40 +41,67 @@
       }
     }
   },
-  "acceptedMappings": [
-    { "normalizedPath": "source.apiVersion", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "source.sourceVerificationStatus", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "source.collectionAuthorizationStatus", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "profiles[]", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "profiles[].assignedProductRefs", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "zones[]", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "rates[]", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "discounts[]", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "markets[]", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "pickup[]", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "products[].requiresShipping", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "products[].shippingWeight", "sourceStatus": "verified", "acceptance": "accepted" },
-    { "normalizedPath": "products[].shopifyInventoryStatus", "sourceStatus": "verified", "acceptance": "accepted" }
+  "classificationSummary": {
+    "verified": 13,
+    "partial": 3,
+    "requiresOperationalEvidence": 5,
+    "unavailable": 3,
+    "total": 24
+  },
+  "acceptedMappingDefinitions": [
+    { "normalizedPath": "source.apiVersion", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "source.sourceVerificationStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "source.mappingAcceptanceStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "partial" },
+    { "normalizedPath": "source.collectionAuthorizationStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "source.operationalAuthorityStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence" },
+    { "normalizedPath": "profiles[]", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "profiles[].assignedProductRefs", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "profiles[].machineShipmentMode", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence" },
+    { "normalizedPath": "zones[]", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "rates[]", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "rates[].operationalApproval", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence" },
+    { "normalizedPath": "discounts[]", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "discounts[].shippingEffect", "designAcceptance": "accepted", "sourceVerificationStatus": "partial" },
+    { "normalizedPath": "markets[]", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "markets[].checkoutAvailabilityEvidence", "designAcceptance": "accepted", "sourceVerificationStatus": "partial" },
+    { "normalizedPath": "pickup[]", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "pickup[].eligibilityAssignmentStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "unavailable" },
+    { "normalizedPath": "pickup[].inventoryReadinessStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence" },
+    { "normalizedPath": "products[].requiresShipping", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "products[].shippingWeight", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "products[].classification", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence" },
+    { "normalizedPath": "products[].shopifyInventoryStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "verified" },
+    { "normalizedPath": "products[].pickupEligibility", "designAcceptance": "accepted", "sourceVerificationStatus": "unavailable" },
+    { "normalizedPath": "products[].packages", "designAcceptance": "accepted", "sourceVerificationStatus": "unavailable" }
   ],
-  "unresolvedMappings": [
-    { "normalizedPath": "source.mappingAcceptanceStatus", "sourceStatus": "partial", "acceptance": "not_accepted" },
-    { "normalizedPath": "source.operationalAuthorityStatus", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
-    { "normalizedPath": "profiles[].machineShipmentMode", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
-    { "normalizedPath": "rates[].operationalApproval", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
-    { "normalizedPath": "discounts[].shippingEffect", "sourceStatus": "partial", "acceptance": "not_accepted" },
-    { "normalizedPath": "markets[].checkoutAvailabilityEvidence", "sourceStatus": "partial", "acceptance": "not_accepted" },
-    { "normalizedPath": "pickup[].eligibilityAssignmentStatus", "sourceStatus": "unavailable", "acceptance": "not_accepted" },
-    { "normalizedPath": "pickup[].inventoryReadinessStatus", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
-    { "normalizedPath": "products[].classification", "sourceStatus": "requires_operational_evidence", "acceptance": "not_accepted" },
-    { "normalizedPath": "products[].pickupEligibility", "sourceStatus": "unavailable", "acceptance": "not_accepted" },
-    { "normalizedPath": "products[].packages", "sourceStatus": "unavailable", "acceptance": "not_accepted" }
+  "evidenceLimitations": [
+    { "normalizedPath": "source.mappingAcceptanceStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "partial", "limitationStatus": "outstanding" },
+    { "normalizedPath": "source.operationalAuthorityStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence", "limitationStatus": "outstanding" },
+    { "normalizedPath": "profiles[].machineShipmentMode", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence", "limitationStatus": "outstanding" },
+    { "normalizedPath": "rates[].operationalApproval", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence", "limitationStatus": "outstanding" },
+    { "normalizedPath": "discounts[].shippingEffect", "designAcceptance": "accepted", "sourceVerificationStatus": "partial", "limitationStatus": "outstanding" },
+    { "normalizedPath": "markets[].checkoutAvailabilityEvidence", "designAcceptance": "accepted", "sourceVerificationStatus": "partial", "limitationStatus": "outstanding" },
+    { "normalizedPath": "pickup[].eligibilityAssignmentStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "unavailable", "limitationStatus": "outstanding" },
+    { "normalizedPath": "pickup[].inventoryReadinessStatus", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence", "limitationStatus": "outstanding" },
+    { "normalizedPath": "products[].classification", "designAcceptance": "accepted", "sourceVerificationStatus": "requires_operational_evidence", "limitationStatus": "outstanding" },
+    { "normalizedPath": "products[].pickupEligibility", "designAcceptance": "accepted", "sourceVerificationStatus": "unavailable", "limitationStatus": "outstanding" },
+    { "normalizedPath": "products[].packages", "designAcceptance": "accepted", "sourceVerificationStatus": "unavailable", "limitationStatus": "outstanding" }
   ],
+  "application": {
+    "authoritativeMappingVersion": "1.2.0",
+    "appliesTo": "future_assessments_using_mapping_version_1.2.0_or_this_explicit_acceptance_receipt",
+    "historicalSnapshotAcceptanceStatus": "pending",
+    "historicalAuditProvenanceAcceptanceStatus": "pending",
+    "historicalReportsRewritten": false
+  },
   "boundaries": {
-    "entireRegisterAcceptanceStatus": "pending",
+    "designApprovalComplete": true,
     "operationalEvidenceStatus": "BLOCKED",
     "operationalEvidenceRequirementCount": 8,
     "liveCheckoutEnforcement": "UNVERIFIED",
     "parentPbiStatus": "partial",
+    "shopifyAccessAuthorized": false,
+    "shopifyMutationsAuthorized": false,
     "shopifyOperationsPerformed": false,
     "businessDecisionsChanged": false,
     "excludedClaims": [

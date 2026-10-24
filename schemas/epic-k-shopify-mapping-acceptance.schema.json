@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "epic-k-shopify-mapping-acceptance.schema.json",
-  "title": "Epic K bounded Shopify source mapping acceptance",
+  "title": "Epic K full Shopify mapping design acceptance",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -9,29 +9,32 @@
     "contractId",
     "version",
     "receiptId",
-    "acceptanceStatus",
+    "mappingDesignAcceptanceStatus",
     "authority",
     "sourceLinks",
-    "acceptedMappings",
-    "unresolvedMappings",
+    "classificationSummary",
+    "acceptedMappingDefinitions",
+    "evidenceLimitations",
+    "application",
     "boundaries"
   ],
   "properties": {
     "schemaVersion": { "const": 1 },
     "contractId": { "const": "epic-k-shopify-mapping-acceptance" },
-    "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+    "version": { "const": "1.1.0" },
     "receiptId": { "const": "K1B03B-MAPPING-ACCEPTANCE-2026-10-24" },
-    "acceptanceStatus": { "const": "accepted_verified_subset" },
+    "mappingDesignAcceptanceStatus": { "const": "accepted" },
     "authority": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["role", "confirmationDate", "source", "scope", "newBusinessDecisionCreated"],
+      "required": ["role", "confirmationDate", "source", "scope", "newBusinessDecisionCreated", "additionalProductOwnerApprovalRequired"],
       "properties": {
         "role": { "const": "Product Owner" },
         "confirmationDate": { "const": "2026-10-24" },
-        "source": { "const": "Product Owner confirmation on October 24, 2026" },
-        "scope": { "const": "bounded_technical_mapping_acceptance" },
-        "newBusinessDecisionCreated": { "const": false }
+        "source": { "const": "Product Owner clarification confirming review and approval of all 24 mapping definitions" },
+        "scope": { "const": "complete_mapping_design_acceptance" },
+        "newBusinessDecisionCreated": { "const": false },
+        "additionalProductOwnerApprovalRequired": { "const": false }
       }
     },
     "sourceLinks": {
@@ -44,38 +47,72 @@
         "auditProvenance": { "$ref": "#/$defs/provenanceLink" }
       }
     },
-    "acceptedMappings": {
-      "type": "array",
-      "minItems": 13,
-      "maxItems": 13,
-      "items": { "$ref": "#/$defs/acceptedMapping" }
+    "classificationSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verified", "partial", "requiresOperationalEvidence", "unavailable", "total"],
+      "properties": {
+        "verified": { "const": 13 },
+        "partial": { "const": 3 },
+        "requiresOperationalEvidence": { "const": 5 },
+        "unavailable": { "const": 3 },
+        "total": { "const": 24 }
+      }
     },
-    "unresolvedMappings": {
+    "acceptedMappingDefinitions": {
+      "type": "array",
+      "minItems": 24,
+      "maxItems": 24,
+      "items": { "$ref": "#/$defs/acceptedMappingDefinition" }
+    },
+    "evidenceLimitations": {
       "type": "array",
       "minItems": 11,
       "maxItems": 11,
-      "items": { "$ref": "#/$defs/unresolvedMapping" }
+      "items": { "$ref": "#/$defs/evidenceLimitation" }
+    },
+    "application": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authoritativeMappingVersion",
+        "appliesTo",
+        "historicalSnapshotAcceptanceStatus",
+        "historicalAuditProvenanceAcceptanceStatus",
+        "historicalReportsRewritten"
+      ],
+      "properties": {
+        "authoritativeMappingVersion": { "const": "1.2.0" },
+        "appliesTo": { "const": "future_assessments_using_mapping_version_1.2.0_or_this_explicit_acceptance_receipt" },
+        "historicalSnapshotAcceptanceStatus": { "const": "pending" },
+        "historicalAuditProvenanceAcceptanceStatus": { "const": "pending" },
+        "historicalReportsRewritten": { "const": false }
+      }
     },
     "boundaries": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "entireRegisterAcceptanceStatus",
+        "designApprovalComplete",
         "operationalEvidenceStatus",
         "operationalEvidenceRequirementCount",
         "liveCheckoutEnforcement",
         "parentPbiStatus",
+        "shopifyAccessAuthorized",
+        "shopifyMutationsAuthorized",
         "shopifyOperationsPerformed",
         "businessDecisionsChanged",
         "excludedClaims",
         "departmentalDecisionContext"
       ],
       "properties": {
-        "entireRegisterAcceptanceStatus": { "const": "pending" },
+        "designApprovalComplete": { "const": true },
         "operationalEvidenceStatus": { "const": "BLOCKED" },
         "operationalEvidenceRequirementCount": { "const": 8 },
         "liveCheckoutEnforcement": { "const": "UNVERIFIED" },
         "parentPbiStatus": { "const": "partial" },
+        "shopifyAccessAuthorized": { "const": false },
+        "shopifyMutationsAuthorized": { "const": false },
         "shopifyOperationsPerformed": { "const": false },
         "businessDecisionsChanged": { "const": false },
         "excludedClaims": {
@@ -119,7 +156,7 @@
       "properties": {
         "path": { "const": "data/epic-k-shopify-source-mapping.json" },
         "contractId": { "const": "epic-k-shopify-source-mapping" },
-        "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+        "version": { "const": "1.2.0" },
         "fingerprint": { "$ref": "#/$defs/fingerprint" }
       }
     },
@@ -130,7 +167,7 @@
       "properties": {
         "path": { "const": "data/epic-k-shopify-config-snapshot-2026-10-24.json" },
         "contractId": { "const": "epic-k-normalized-shopify-config-snapshot" },
-        "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+        "version": { "const": "1.2.0" },
         "fingerprint": { "$ref": "#/$defs/fingerprint" }
       }
     },
@@ -145,24 +182,25 @@
         "fingerprint": { "$ref": "#/$defs/fingerprint" }
       }
     },
-    "acceptedMapping": {
+    "acceptedMappingDefinition": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["normalizedPath", "sourceStatus", "acceptance"],
+      "required": ["normalizedPath", "designAcceptance", "sourceVerificationStatus"],
       "properties": {
         "normalizedPath": { "type": "string", "minLength": 2 },
-        "sourceStatus": { "const": "verified" },
-        "acceptance": { "const": "accepted" }
+        "designAcceptance": { "const": "accepted" },
+        "sourceVerificationStatus": { "enum": ["verified", "partial", "requires_operational_evidence", "unavailable"] }
       }
     },
-    "unresolvedMapping": {
+    "evidenceLimitation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["normalizedPath", "sourceStatus", "acceptance"],
+      "required": ["normalizedPath", "designAcceptance", "sourceVerificationStatus", "limitationStatus"],
       "properties": {
         "normalizedPath": { "type": "string", "minLength": 2 },
-        "sourceStatus": { "enum": ["partial", "unavailable", "requires_operational_evidence"] },
-        "acceptance": { "const": "not_accepted" }
+        "designAcceptance": { "const": "accepted" },
+        "sourceVerificationStatus": { "enum": ["partial", "requires_operational_evidence", "unavailable"] },
+        "limitationStatus": { "const": "outstanding" }
       }
     }
   }

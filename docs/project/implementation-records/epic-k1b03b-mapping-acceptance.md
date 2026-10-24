@@ -1,51 +1,61 @@
-# Epic K1B-03B — Bounded Product Owner Technical Mapping Acceptance
+# Epic K1B-03B — Full Product Owner Mapping Design Acceptance
 
 Date: 2026-10-24
 Branch: `epic-k/k1b03b-mapping-acceptance`
-Baseline: `47f8f4f893dbcbc7e440202accfde2bd6797d2b8`
+Original baseline: `47f8f4f893dbcbc7e440202accfde2bd6797d2b8`
+Correction baseline: `2fd3edd2564bf3080b9a086ff7ba4b8bc9759797`
 Parent PBI: `K-PBI-002` (`partial`)
 
-## Recorded acceptance
+## Corrected acceptance
 
-The Product Owner confirmed acceptance on October 24, 2026 of the thirteen mappings already classified `verified` in `data/epic-k-shopify-source-mapping.json`. The versioned receipt `data/epic-k-shopify-mapping-acceptance-2026-10-24.json` binds that acceptance to canonical JSON SHA-256 fingerprints of source mapping version `1.1.0`, sanitized snapshot version `1.2.0`, and audit `K1B02-AUDIT-2026-10-24`.
+The Product Owner reviewed and approved the design of all 24 definitions in `data/epic-k-shopify-source-mapping.json`. This approval includes the structures used to represent incomplete, unavailable, and operationally dependent information. No additional Product Owner mapping design approval is required.
 
-Accepted paths:
+The corrected versioned receipt `data/epic-k-shopify-mapping-acceptance-2026-10-24.json` records every definition as design accepted and binds the approval to:
 
-1. `source.apiVersion`
-2. `source.sourceVerificationStatus`
-3. `source.collectionAuthorizationStatus`
-4. `profiles[]`
-5. `profiles[].assignedProductRefs`
-6. `zones[]`
-7. `rates[]`
-8. `discounts[]`
-9. `markets[]`
-10. `pickup[]`
-11. `products[].requiresShipping`
-12. `products[].shippingWeight`
-13. `products[].shopifyInventoryStatus`
+- Source mapping version `1.2.0` and its canonical JSON SHA-256 fingerprint.
+- Sanitized snapshot version `1.2.0` and its existing fingerprint.
+- Audit `K1B02-AUDIT-2026-10-24` and its existing provenance fingerprint.
 
-The receipt separately lists the other eleven mappings with their existing `partial`, `unavailable`, or `requires_operational_evidence` classifications. The source register's global `productOwnerMappingAcceptanceStatus`, snapshot `mappingAcceptanceStatus`, and audit provenance acceptance status remain `pending` because those fields represent the full 24-entry mapping rather than this verified subset.
+The authoritative source mapping changed only its contract version from `1.1.0` to `1.2.0` and `productOwnerMappingAcceptanceStatus` from `pending` to `accepted`. Its 24 mapping definitions and their source classifications did not change.
 
-## Authority boundary
+## Separate status dimensions
 
-This is technical mapping acceptance. It creates no `K-DEC-*` decision and does not approve shipping prices, service availability, Product classification, pickup eligibility, packed weights, packages, insurance, warehouse readiness, machine quotation enforcement, or checkout compliance.
+Mapping design acceptance means the Product Owner approved the normalized data structure, transformation rules, and the way missing evidence is represented. All 24 definitions have this status.
 
-The Product Owner clarified that the previously communicated Epic K business decisions were obtained from the relevant departmental authorities. Outstanding operational receipts do not reopen those decisions. They continue to govern separate evidence and readiness gates.
+Shopify source verification describes the evidence available for each definition. Those classifications remain:
 
-No Shopify query, mutation, order, theme operation, publication, freight-price change, or operational receipt was performed or created by K1B-03B.
+| Source classification | Count |
+|---|---:|
+| `verified` | 13 |
+| `partial` | 3 |
+| `requires_operational_evidence` | 5 |
+| `unavailable` | 3 |
+
+Operational evidence determines whether authoritative owners have supplied the facts needed for readiness. All eight `K-EVID-*` requirements remain `BLOCKED`.
+
+Checkout enforcement requires separate integration evidence. It remains `UNVERIFIED`.
+
+Design acceptance does not verify shipping prices, regional services, Product classification, pickup eligibility, packed weights, package characteristics, insurance, warehouse readiness, machine quotation enforcement, or checkout compliance.
+
+## Historical and future application
+
+The October 24 sanitized snapshot, audit provenance, configuration drift report, and K1B-03A projection preserve the assessment states recorded when they were created. Their historical mapping acceptance fields remain `pending`; none were rewritten to imply the approval existed during those assessments.
+
+The full design acceptance applies to future assessments that use authoritative mapping version `1.2.0` or explicitly link this acceptance receipt. Future assessments must still evaluate source freshness, operational evidence, and checkout behavior independently.
+
+The Product Owner also confirmed that previously communicated Epic K business decisions were obtained from the relevant departmental authorities. Outstanding operational evidence does not reopen those decisions.
 
 ## Executable controls
 
-The dedicated validator and tests enforce:
+The corrected validator and tests require:
 
-- Exactly the thirteen source mappings whose status is `verified` are accepted.
-- The other eleven mappings retain their original classifications and are not promoted.
-- Mapping, snapshot, and audit provenance identities, versions, and canonical fingerprints match.
-- Duplicate, missing, unknown, partial, unavailable, and operational-evidence paths fail closed.
-- The original mapping register and whole-register acceptance fields remain unchanged.
-- All eight operational evidence requirements remain `BLOCKED`.
-- Operational readiness remains `BLOCKED`, live checkout enforcement remains `UNVERIFIED`, and `K-PBI-002` remains `partial`.
+- Exactly 24 accepted mapping definitions with no missing, duplicate, or invented path.
+- Exact preservation of every definition's original source classification.
+- Exactly eleven explicit evidence limitations.
+- Canonical fingerprint matches for the mapping, snapshot, and audit provenance.
+- Reproducible historical K1B-02 audit and K1B-03A projection reports.
+- Eight blocked operational evidence requirements, blocked operational readiness, and unverified checkout enforcement.
+- No Shopify access, mutation authority, operation, business decision, or new `K-DEC-*` record.
 
 Commands:
 
@@ -56,4 +66,4 @@ npm run validate:epic-k-mapping-acceptance
 
 ## Status
 
-K1B-03B durably records the bounded Product Owner acceptance of the verified mapping subset. It does not establish full mapping acceptance, operational readiness, Shopify checkout enforcement, or completion of `K-PBI-002` or Epic K.
+K1B-03B-R corrects the acceptance scope to all 24 mapping definitions. `K-PBI-002` remains partial because mapping design approval does not satisfy operational evidence or checkout enforcement gates. No Shopify operation occurred.

@@ -3,35 +3,43 @@
 const crypto = require('node:crypto');
 const { schemaErrors } = require('./epic-k-evidence-drift');
 
-const EXPECTED_ACCEPTED_PATHS = Object.freeze([
-    'source.apiVersion',
-    'source.sourceVerificationStatus',
-    'source.collectionAuthorizationStatus',
-    'profiles[]',
-    'profiles[].assignedProductRefs',
-    'zones[]',
-    'rates[]',
-    'discounts[]',
-    'markets[]',
-    'pickup[]',
-    'products[].requiresShipping',
-    'products[].shippingWeight',
-    'products[].shopifyInventoryStatus',
-]);
-
-const EXPECTED_UNRESOLVED = Object.freeze({
+const EXPECTED_SOURCE_STATUSES = Object.freeze({
+    'source.apiVersion': 'verified',
+    'source.sourceVerificationStatus': 'verified',
     'source.mappingAcceptanceStatus': 'partial',
+    'source.collectionAuthorizationStatus': 'verified',
     'source.operationalAuthorityStatus': 'requires_operational_evidence',
+    'profiles[]': 'verified',
+    'profiles[].assignedProductRefs': 'verified',
     'profiles[].machineShipmentMode': 'requires_operational_evidence',
+    'zones[]': 'verified',
+    'rates[]': 'verified',
     'rates[].operationalApproval': 'requires_operational_evidence',
+    'discounts[]': 'verified',
     'discounts[].shippingEffect': 'partial',
+    'markets[]': 'verified',
     'markets[].checkoutAvailabilityEvidence': 'partial',
+    'pickup[]': 'verified',
     'pickup[].eligibilityAssignmentStatus': 'unavailable',
     'pickup[].inventoryReadinessStatus': 'requires_operational_evidence',
+    'products[].requiresShipping': 'verified',
+    'products[].shippingWeight': 'verified',
     'products[].classification': 'requires_operational_evidence',
+    'products[].shopifyInventoryStatus': 'verified',
     'products[].pickupEligibility': 'unavailable',
     'products[].packages': 'unavailable',
 });
+
+const EXPECTED_STATUS_COUNTS = Object.freeze({
+    verified: 13,
+    partial: 3,
+    requires_operational_evidence: 5,
+    unavailable: 3,
+});
+
+const EXPECTED_LIMITATION_PATHS = Object.freeze(Object.entries(EXPECTED_SOURCE_STATUSES)
+    .filter(([, status]) => status !== 'verified')
+    .map(([path]) => path));
 
 function fingerprint(value) {
     return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
@@ -54,8 +62,24 @@ function comparePathSet(actual, expected, label, errors) {
     const expectedSet = new Set(expected);
     const unknown = [...actualSet].filter((path) => !expectedSet.has(path)).sort();
     const missing = [...expectedSet].filter((path) => !actualSet.has(path)).sort();
-    if (unknown.length) errors.push(`${label} contains unknown or ineligible paths: ${unknown.join(', ')}`);
+    if (unknown.length) errors.push(`${label} contains unknown paths: ${unknown.join(', ')}`);
     if (missing.length) errors.push(`${label} is missing paths: ${missing.join(', ')}`);
+}
+
+function countStatuses(entries, key) {
+    return entries.reduce((counts, entry) => {
+        const status = entry[key];
+        counts[status] = (counts[status] || 0) + 1;
+        return counts;
+    }, {});
+}
+
+function validateStatusCounts(actual, errors) {
+    for (const [status, expected] of Object.entries(EXPECTED_STATUS_COUNTS)) {
+        if ((actual[status] || 0) !== expected) errors.push(`${status} source classification count must remain ${expected}`);
+    }
+    const unknown = Object.keys(actual).filter((status) => !(status in EXPECTED_STATUS_COUNTS));
+    if (unknown.length) errors.push(`unexpected source classifications: ${unknown.sort().join(', ')}`);
 }
 
 function validateMappingAcceptance(receipt, mapping, snapshot, provenance, evidenceGap, currentDrift) {
@@ -67,36 +91,47 @@ function validateMappingAcceptance(receipt, mapping, snapshot, provenance, evide
         ...schemaErrors('schemas/epic-k-evidence-drift-report.schema.json', evidenceGap, 'evidence gap report'),
         ...schemaErrors('schemas/epic-k-evidence-drift-report.schema.json', currentDrift, 'configuration drift report'),
     ];
-    if (errors.length) return { errors, acceptedCount: 0, unresolvedCount: 0 };
+    if (errors.length) return { errors, acceptedDefinitionCount: 0, evidenceLimitationCount: 0, classificationCounts: {} };
 
+    const expectedPaths = Object.keys(EXPECTED_SOURCE_STATUSES);
     const mappingPaths = mapping.mappings.map((entry) => entry.normalizedPath);
-    const mappingDuplicates = duplicateValues(mappingPaths);
-    if (mappingDuplicates.length) errors.push(`source mapping contains duplicate paths: ${mappingDuplicates.join(', ')}`);
-    if (mapping.mappings.length !== 24) errors.push(`source mapping must retain 24 entries; found ${mapping.mappings.length}`);
-
+    comparePathSet(mappingPaths, expectedPaths, 'source mapping definitions', errors);
+    if (mapping.mappings.length !== 24) errors.push(`source mapping must retain 24 definitions; found ${mapping.mappings.length}`);
     const mappingByPath = new Map(mapping.mappings.map((entry) => [entry.normalizedPath, entry]));
-    const verifiedPaths = mapping.mappings.filter((entry) => entry.status === 'verified').map((entry) => entry.normalizedPath);
-    const unresolvedPaths = mapping.mappings.filter((entry) => entry.status !== 'verified').map((entry) => entry.normalizedPath);
-    comparePathSet(verifiedPaths, EXPECTED_ACCEPTED_PATHS, 'verified source mappings', errors);
-    comparePathSet(unresolvedPaths, Object.keys(EXPECTED_UNRESOLVED), 'unresolved source mappings', errors);
-
-    const acceptedPaths = receipt.acceptedMappings.map((entry) => entry.normalizedPath);
-    comparePathSet(acceptedPaths, EXPECTED_ACCEPTED_PATHS, 'accepted mappings', errors);
-    for (const entry of receipt.acceptedMappings) {
-        const source = mappingByPath.get(entry.normalizedPath);
-        if (!source) errors.push(`${entry.normalizedPath}: accepted path is absent from the source mapping`);
-        else if (source.status !== 'verified') errors.push(`${entry.normalizedPath}: ${source.status} mapping cannot be accepted by the verified subset receipt`);
-        if (entry.sourceStatus !== source?.status) errors.push(`${entry.normalizedPath}: receipt status does not match the source mapping`);
+    for (const [path, expectedStatus] of Object.entries(EXPECTED_SOURCE_STATUSES)) {
+        const source = mappingByPath.get(path);
+        if (source && source.status !== expectedStatus) errors.push(`${path}: source classification must remain ${expectedStatus}`);
     }
+    const classificationCounts = countStatuses(mapping.mappings, 'status');
+    validateStatusCounts(classificationCounts, errors);
 
-    const receiptUnresolvedPaths = receipt.unresolvedMappings.map((entry) => entry.normalizedPath);
-    comparePathSet(receiptUnresolvedPaths, Object.keys(EXPECTED_UNRESOLVED), 'unresolved receipt mappings', errors);
-    for (const entry of receipt.unresolvedMappings) {
-        const expectedStatus = EXPECTED_UNRESOLVED[entry.normalizedPath];
+    const acceptedPaths = receipt.acceptedMappingDefinitions.map((entry) => entry.normalizedPath);
+    comparePathSet(acceptedPaths, expectedPaths, 'accepted mapping definitions', errors);
+    for (const entry of receipt.acceptedMappingDefinitions) {
         const source = mappingByPath.get(entry.normalizedPath);
-        if (!source) errors.push(`${entry.normalizedPath}: unresolved path is absent from the source mapping`);
-        if (expectedStatus && entry.sourceStatus !== expectedStatus) errors.push(`${entry.normalizedPath}: unresolved status must remain ${expectedStatus}`);
-        if (source && entry.sourceStatus !== source.status) errors.push(`${entry.normalizedPath}: receipt status does not match the source mapping`);
+        const expectedStatus = EXPECTED_SOURCE_STATUSES[entry.normalizedPath];
+        if (!source) errors.push(`${entry.normalizedPath}: accepted definition is absent from the source mapping`);
+        if (entry.designAcceptance !== 'accepted') errors.push(`${entry.normalizedPath}: mapping design must be accepted`);
+        if (expectedStatus && entry.sourceVerificationStatus !== expectedStatus) {
+            errors.push(`${entry.normalizedPath}: accepted design must preserve source classification ${expectedStatus}`);
+        }
+        if (source && entry.sourceVerificationStatus !== source.status) {
+            errors.push(`${entry.normalizedPath}: receipt classification does not match the source mapping`);
+        }
+    }
+    validateStatusCounts(countStatuses(receipt.acceptedMappingDefinitions, 'sourceVerificationStatus'), errors);
+
+    const limitationPaths = receipt.evidenceLimitations.map((entry) => entry.normalizedPath);
+    comparePathSet(limitationPaths, EXPECTED_LIMITATION_PATHS, 'evidence limitations', errors);
+    for (const entry of receipt.evidenceLimitations) {
+        const expectedStatus = EXPECTED_SOURCE_STATUSES[entry.normalizedPath];
+        if (expectedStatus === 'verified') errors.push(`${entry.normalizedPath}: verified mapping cannot be an evidence limitation`);
+        if (expectedStatus && entry.sourceVerificationStatus !== expectedStatus) {
+            errors.push(`${entry.normalizedPath}: evidence limitation must preserve source classification ${expectedStatus}`);
+        }
+        if (entry.designAcceptance !== 'accepted' || entry.limitationStatus !== 'outstanding') {
+            errors.push(`${entry.normalizedPath}: design acceptance and outstanding evidence limitation must remain distinct`);
+        }
     }
 
     const links = receipt.sourceLinks;
@@ -113,38 +148,58 @@ function validateMappingAcceptance(receipt, mapping, snapshot, provenance, evide
     if (links.sanitizedSnapshot.fingerprint.value !== fingerprint(snapshot)) errors.push('sanitized snapshot fingerprint mismatch');
     if (links.auditProvenance.fingerprint.value !== fingerprint(provenance)) errors.push('audit provenance fingerprint mismatch');
 
-    if (mapping.productOwnerMappingAcceptanceStatus !== 'pending') errors.push('whole source mapping register acceptance must remain pending');
-    if (snapshot.source.mappingAcceptanceStatus !== 'pending') errors.push('snapshot whole-register mapping acceptance must remain pending');
-    if (provenance.productOwnerMappingAcceptanceStatus !== 'pending') errors.push('audit provenance whole-register mapping acceptance must remain pending');
-    if (receipt.boundaries.entireRegisterAcceptanceStatus !== 'pending') errors.push('receipt must not promote the entire mapping register');
+    if (mapping.version !== '1.2.0' || mapping.productOwnerMappingAcceptanceStatus !== 'accepted') {
+        errors.push('authoritative mapping version 1.2.0 must record complete Product Owner design acceptance');
+    }
+    if (receipt.mappingDesignAcceptanceStatus !== 'accepted' || !receipt.boundaries.designApprovalComplete) {
+        errors.push('receipt must record complete mapping design acceptance');
+    }
+    if (receipt.authority.additionalProductOwnerApprovalRequired !== false) {
+        errors.push('no additional Product Owner mapping design approval is required');
+    }
+    if (snapshot.source.mappingAcceptanceStatus !== 'pending'
+        || provenance.productOwnerMappingAcceptanceStatus !== 'pending'
+        || receipt.application.historicalSnapshotAcceptanceStatus !== 'pending'
+        || receipt.application.historicalAuditProvenanceAcceptanceStatus !== 'pending'
+        || receipt.application.historicalReportsRewritten !== false) {
+        errors.push('historical October 24 acceptance metadata and reports must remain unchanged');
+    }
 
     const evidenceResults = evidenceGap.results || [];
     if (evidenceGap.summary?.BLOCKED !== 8 || evidenceResults.length !== 8 || evidenceResults.some((entry) => entry.state !== 'BLOCKED')) {
         errors.push('all eight operational evidence requirements must remain BLOCKED');
     }
-    if (evidenceGap.operationalReadiness !== 'BLOCKED') errors.push('operational readiness must remain BLOCKED');
-    if (evidenceGap.liveCheckoutEnforcement !== 'UNVERIFIED') errors.push('evidence report checkout enforcement must remain UNVERIFIED');
-    if (currentDrift.operationalReadiness !== 'BLOCKED') errors.push('configuration drift operational readiness must remain BLOCKED');
-    if (currentDrift.liveCheckoutEnforcement !== 'UNVERIFIED') errors.push('configuration drift checkout enforcement must remain UNVERIFIED');
+    if (evidenceGap.operationalReadiness !== 'BLOCKED' || currentDrift.operationalReadiness !== 'BLOCKED') {
+        errors.push('operational readiness must remain BLOCKED');
+    }
+    if (evidenceGap.liveCheckoutEnforcement !== 'UNVERIFIED' || currentDrift.liveCheckoutEnforcement !== 'UNVERIFIED') {
+        errors.push('live checkout enforcement must remain UNVERIFIED');
+    }
     const freshness = currentDrift.results.find((entry) => entry.id === 'evidence_freshness');
-    if (freshness?.state !== 'BLOCKED') errors.push('existing whole-register mapping freshness gate must remain BLOCKED');
+    if (freshness?.state !== 'BLOCKED') errors.push('historical drift evidence freshness result must remain BLOCKED');
 
     if (receipt.authority.newBusinessDecisionCreated !== false || JSON.stringify(receipt).includes('K-DEC-020')) {
-        errors.push('bounded technical mapping acceptance must not create K-DEC-020 or another business decision');
+        errors.push('mapping design acceptance must not create K-DEC-020 or another business decision');
     }
-    if (receipt.boundaries.shopifyOperationsPerformed !== false) errors.push('receipt cannot record a Shopify operation');
+    if (receipt.boundaries.shopifyAccessAuthorized
+        || receipt.boundaries.shopifyMutationsAuthorized
+        || receipt.boundaries.shopifyOperationsPerformed) {
+        errors.push('mapping design acceptance cannot authorize or record Shopify operations');
+    }
     if (receipt.boundaries.businessDecisionsChanged !== false) errors.push('receipt cannot change Epic K business decisions');
 
     return {
         errors,
-        acceptedCount: receipt.acceptedMappings.length,
-        unresolvedCount: receipt.unresolvedMappings.length,
+        acceptedDefinitionCount: receipt.acceptedMappingDefinitions.length,
+        evidenceLimitationCount: receipt.evidenceLimitations.length,
+        classificationCounts,
     };
 }
 
 module.exports = {
-    EXPECTED_ACCEPTED_PATHS,
-    EXPECTED_UNRESOLVED,
+    EXPECTED_LIMITATION_PATHS,
+    EXPECTED_SOURCE_STATUSES,
+    EXPECTED_STATUS_COUNTS,
     fingerprint,
     validateMappingAcceptance,
 };

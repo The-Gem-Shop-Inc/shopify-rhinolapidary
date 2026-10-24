@@ -61,8 +61,8 @@ function validateEpicKShopifyAudit() {
     if (!mapping.mappings.some((entry) => entry.status === 'unavailable') || !mapping.mappings.some((entry) => entry.status === 'requires_operational_evidence')) {
         errors.push('source mapping must preserve unavailable and operational-evidence boundaries');
     }
-    if (mapping.sourceVerificationStatus !== 'verified' || mapping.productOwnerMappingAcceptanceStatus !== 'pending') {
-        errors.push('Shopify source verification must remain distinct from pending Product Owner mapping acceptance');
+    if (mapping.sourceVerificationStatus !== 'verified' || mapping.productOwnerMappingAcceptanceStatus !== 'accepted' || mapping.version !== '1.2.0') {
+        errors.push('Current source verification and complete Product Owner mapping design acceptance must remain distinct and explicit');
     }
     if (snapshot.source.mappingAcceptanceStatus !== 'pending' || snapshot.source.operationalAuthorityStatus !== 'blocked') {
         errors.push('normalization must not promote Shopify data into mapping or operational approval');
