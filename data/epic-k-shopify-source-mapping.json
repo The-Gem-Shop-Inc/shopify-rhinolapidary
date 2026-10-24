@@ -1,11 +1,13 @@
 {
   "schemaVersion": 1,
   "contractId": "epic-k-shopify-source-mapping",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "projectApiVersion": "2026-07",
   "auditApiVersion": "2026-10",
   "verifiedAt": "2026-10-24T14:25:37.885Z",
   "storeRef": "RHINO_LAPIDARY",
+  "sourceVerificationStatus": "verified",
+  "productOwnerMappingAcceptanceStatus": "pending",
   "mappings": [
     {
       "normalizedPath": "source.apiVersion",
@@ -18,6 +20,54 @@
       "operationalApprovalRequired": false,
       "unavailableBehavior": "Block collection provenance rather than infer a version",
       "status": "verified"
+    },
+    {
+      "normalizedPath": "source.sourceVerificationStatus",
+      "dataset": "provenance",
+      "shopifySource": "Admin GraphQL shop.myshopifyDomain identity query and authorized endpoint",
+      "requiredReadPermission": "authenticated Admin API query access",
+      "transformation": "Set verified only after the returned myshopifyDomain exactly matches the authorized Rhino store",
+      "pagination": "not applicable",
+      "shopifyEstablishesFact": true,
+      "operationalApprovalRequired": false,
+      "unavailableBehavior": "Abort collection and do not normalize the response as Rhino evidence",
+      "status": "verified"
+    },
+    {
+      "normalizedPath": "source.mappingAcceptanceStatus",
+      "dataset": "provenance",
+      "shopifySource": "Product Owner mapping acceptance record; not supplied by Shopify",
+      "requiredReadPermission": "not applicable",
+      "transformation": "Keep pending until the Product Owner explicitly accepts the verified normalization mapping",
+      "pagination": "not applicable",
+      "shopifyEstablishesFact": false,
+      "operationalApprovalRequired": false,
+      "unavailableBehavior": "Keep mapping acceptance pending and block an accepted mapping claim",
+      "status": "partial"
+    },
+    {
+      "normalizedPath": "source.collectionAuthorizationStatus",
+      "dataset": "provenance",
+      "shopifySource": "Product Owner authorization for the bounded read-only K1B-02 audit",
+      "requiredReadPermission": "not applicable",
+      "transformation": "Record read-only collection authorization without promoting operational readiness",
+      "pagination": "not applicable",
+      "shopifyEstablishesFact": false,
+      "operationalApprovalRequired": false,
+      "unavailableBehavior": "Block collection provenance",
+      "status": "verified"
+    },
+    {
+      "normalizedPath": "source.operationalAuthorityStatus",
+      "dataset": "provenance",
+      "shopifySource": "Epic E/F owners, warehouse, shipping operations, finance, and other evidence owners; not supplied by Shopify",
+      "requiredReadPermission": "not applicable",
+      "transformation": "Remain blocked until the applicable authoritative evidence receipts are accepted",
+      "pagination": "not applicable",
+      "shopifyEstablishesFact": false,
+      "operationalApprovalRequired": true,
+      "unavailableBehavior": "Keep operational authority blocked",
+      "status": "requires_operational_evidence"
     },
     {
       "normalizedPath": "profiles[]",

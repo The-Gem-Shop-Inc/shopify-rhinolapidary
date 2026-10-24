@@ -3,7 +3,7 @@
 const assert = require('node:assert/strict');
 const { QUERIES, assertReadOnlyQuery } = require('./lib/epic-k-shopify-audit');
 const { assessConfigurationDrift, schemaErrors } = require('./lib/epic-k-evidence-drift');
-const { readJson } = require('./lib/epic-k-policy');
+const { parseTimestamp, readJson } = require('./lib/epic-k-policy');
 
 function validateEpicKShopifyAudit() {
     const mapping = readJson('data/epic-k-shopify-source-mapping.json');
@@ -23,7 +23,9 @@ function validateEpicKShopifyAudit() {
     const committed = JSON.stringify({ mapping, snapshot, expectedDrift, provenance });
     if (/gid:\/\/shopify\//i.test(committed)) errors.push('committed K1B-02 artifacts contain a raw Shopify GID');
     if (/shpat_|shpca_|x-shopify-access-token/i.test(committed)) errors.push('committed K1B-02 artifacts contain a credential marker');
-    if (snapshot.source.collectedAt === snapshot.source.assessmentTime) errors.push('collection time must remain distinct from explicit assessment time');
+    const collectedAt = parseTimestamp(snapshot.source.collectedAt);
+    const assessedAt = parseTimestamp(snapshot.source.assessmentTime);
+    if (collectedAt === null || assessedAt === null || assessedAt <= collectedAt) errors.push('assessment time must be valid and strictly after collection time');
     if (snapshot.source.assessmentTime !== expectedDrift.assessedAt || expectedDrift.assessedAt !== provenance.assessedAt) {
         errors.push('snapshot, drift report, and provenance assessment times must match');
     }
@@ -33,12 +35,22 @@ function validateEpicKShopifyAudit() {
         try { assert.deepEqual(actual.report, expectedDrift); } catch { errors.push('committed live drift report is stale or non-deterministic'); }
         const states = Object.fromEntries(actual.report.results.map((entry) => [entry.id, entry.state]));
         const expected = {
-            free_shipping: 'FAIL', machine_shipping: 'BLOCKED', pickup: 'BLOCKED', geography: 'UNVERIFIED',
-            product_logistics: 'FAIL', evidence_freshness: 'UNVERIFIED',
+            free_shipping: 'FAIL', machine_shipping: 'BLOCKED', pickup: 'BLOCKED', geography: 'FAIL',
+            product_logistics: 'FAIL', evidence_freshness: 'BLOCKED',
         };
         try { assert.deepEqual(states, expected); } catch { errors.push('live audit domain classifications differ from the reviewed K1B-02 evidence'); }
         if (actual.report.liveCheckoutEnforcement !== 'UNVERIFIED') errors.push('live checkout enforcement must remain UNVERIFIED');
         if (actual.report.operationalReadiness !== 'BLOCKED') errors.push('operational readiness must remain BLOCKED');
+        const geography = actual.report.results.find((entry) => entry.id === 'geography');
+        const domestic = geography?.findings?.find((entry) => entry.id === 'domestic_destination_scope');
+        const international = geography?.findings?.find((entry) => entry.id === 'international_checkout_exposure');
+        const requiredCodes = ['AA', 'AE', 'AP', 'AS', 'DC', 'FM', 'GU', 'MH', 'MP', 'PR', 'PW', 'VI'];
+        if (domestic?.state !== 'FAIL' || !requiredCodes.every((code) => domestic.message.includes(code))) errors.push('geography must preserve all 12 confirmed out-of-scope US zone codes');
+        if (international?.state !== 'UNVERIFIED') errors.push('international checkout exposure must remain UNVERIFIED');
+        if (!['FAIL', 'BLOCKED'].includes(geography?.findings?.find((entry) => entry.id === 'ak_rate_approval')?.state)
+            || !['FAIL', 'BLOCKED'].includes(geography?.findings?.find((entry) => entry.id === 'hi_rate_approval')?.state)) {
+            errors.push('Alaska and Hawaii approval gaps must remain visible');
+        }
     }
     if (provenance.collection.mutationCount !== 0) errors.push('audit provenance must record zero Shopify mutations');
     if (Object.values(provenance.customerAndMerchantImpact).some(Boolean)) errors.push('read-only audit must record no customer or merchant impact');
@@ -48,6 +60,12 @@ function validateEpicKShopifyAudit() {
     if (snapshot.products.some((product) => !product.shopifyInventoryStatus || !Array.isArray(product.inventoryLocationRefs))) errors.push('sanitized snapshot must retain Shopify inventory status and sanitized location relationships');
     if (!mapping.mappings.some((entry) => entry.status === 'unavailable') || !mapping.mappings.some((entry) => entry.status === 'requires_operational_evidence')) {
         errors.push('source mapping must preserve unavailable and operational-evidence boundaries');
+    }
+    if (mapping.sourceVerificationStatus !== 'verified' || mapping.productOwnerMappingAcceptanceStatus !== 'pending') {
+        errors.push('Shopify source verification must remain distinct from pending Product Owner mapping acceptance');
+    }
+    if (snapshot.source.mappingAcceptanceStatus !== 'pending' || snapshot.source.operationalAuthorityStatus !== 'blocked') {
+        errors.push('normalization must not promote Shopify data into mapping or operational approval');
     }
     return { errors, snapshot, report: actual.report, provenance, evidenceGap };
 }

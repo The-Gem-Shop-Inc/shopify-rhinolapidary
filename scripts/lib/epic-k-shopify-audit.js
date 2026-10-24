@@ -2,9 +2,48 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseTimestamp } = require('./epic-k-policy');
 
 const API_VERSION = '2026-10';
 const STORE_DOMAIN = 'rhino-lapidary.myshopify.com';
+
+function assertAuthorizedShopDomain(shopDomain) {
+    if (typeof shopDomain !== 'string' || shopDomain !== STORE_DOMAIN) {
+        const error = new Error(`Epic K collection is authorized only for ${STORE_DOMAIN}.`);
+        error.code = 'UNAUTHORIZED_STORE';
+        throw error;
+    }
+    return shopDomain;
+}
+
+function assertAssessmentChronology(collectedAt, assessmentTime) {
+    const collected = parseTimestamp(collectedAt);
+    const assessed = parseTimestamp(assessmentTime);
+    if (collected === null) throw new Error('A valid strict ISO-8601 collectedAt timestamp is required.');
+    if (assessed === null) throw new Error('A valid explicit strict ISO-8601 assessmentTime is required.');
+    if (assessed <= collected) throw new Error('assessmentTime must be strictly after collectedAt.');
+}
+
+function verifyShopIdentity(access, expectedDomain = STORE_DOMAIN) {
+    assertAuthorizedShopDomain(expectedDomain);
+    const observedDomain = access?.shop?.myshopifyDomain;
+    if (typeof observedDomain !== 'string' || !/^[a-z0-9][a-z0-9-]*\.myshopify\.com$/.test(observedDomain)) {
+        const error = new Error('Admin identity response omitted a valid myshopifyDomain.');
+        error.code = 'STORE_IDENTITY_MISSING';
+        throw error;
+    }
+    if (observedDomain !== expectedDomain) {
+        const error = new Error('Admin identity does not match the authorized Rhino Shopify store.');
+        error.code = 'STORE_IDENTITY_MISMATCH';
+        throw error;
+    }
+    return {
+        expectedDomain,
+        observedDomain,
+        verificationStatus: 'verified',
+        verificationBasis: 'admin_graphql_shop_identity',
+    };
+}
 
 function assertReadOnlyQuery(query) {
     const source = String(query || '').replace(/^\s*#[^\n]*$/gm, '').trim();
@@ -22,9 +61,10 @@ function stableRef(prefix, rawId) {
     return `${prefix}_${hash.toString(16).padStart(16, '0').toUpperCase()}`;
 }
 
-async function queryAdmin({ shopDomain, token, apiVersion, query, variables = {} }) {
+async function queryAdmin({ shopDomain, token, apiVersion, query, variables = {}, fetchImpl = fetch }) {
+    assertAuthorizedShopDomain(shopDomain);
     assertReadOnlyQuery(query);
-    const response = await fetch(`https://${shopDomain}/admin/api/${apiVersion}/graphql.json`, {
+    const response = await fetchImpl(`https://${shopDomain}/admin/api/${apiVersion}/graphql.json`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': token },
         body: JSON.stringify({ query, variables }),
@@ -70,20 +110,20 @@ async function collectConnection(runQuery, operation, field, variables = {}, pag
 
 async function collectShopifyConfiguration(options = {}) {
     const shopDomain = options.shopDomain || STORE_DOMAIN;
+    assertAuthorizedShopDomain(shopDomain);
     const apiVersion = options.apiVersion || API_VERSION;
-    const collectedAt = options.collectedAt || new Date().toISOString();
+    const clock = options.clock || (() => new Date().toISOString());
+    const collectedAt = options.collectedAt || clock();
     const assessmentTime = options.assessmentTime;
     const token = options.token;
     if (!token) throw Object.assign(new Error('SHOPIFY_ADMIN_ACCESS_TOKEN is required for live collection.'), { code: 'MISSING_CREDENTIAL' });
-    if (!assessmentTime || Number.isNaN(Date.parse(assessmentTime))) throw new Error('A valid explicit assessmentTime is required.');
+    assertAssessmentChronology(collectedAt, assessmentTime);
     const runQuery = options.runQuery || ((query, variables) => queryAdmin({ shopDomain, token, apiVersion, query, variables }));
     const failures = [];
     const datasets = { profiles: [], discounts: [], markets: [], locations: [], variants: [], functions: [] };
     const completeness = Object.fromEntries(Object.keys(datasets).map((key) => [key, 'missing']));
-    let access = null;
-    try { access = await runQuery(QUERIES.access, {}); } catch (error) {
-        failures.push({ dataset: 'provenance', state: 'inaccessible', code: error.code || 'QUERY_FAILED', message: error.message });
-    }
+    const access = await runQuery(QUERIES.access, {});
+    const identity = verifyShopIdentity(access, shopDomain);
     const collect = async (key, operation, field, pageSize = 50) => {
         try {
             const result = await collectConnection(runQuery, operation, field, {}, pageSize);
@@ -147,7 +187,7 @@ async function collectShopifyConfiguration(options = {}) {
         schemaVersion: 1,
         contractId: 'epic-k-shopify-read-only-collection',
         synthetic: false,
-        source: { shopDomain, apiVersion, collectedAt, assessmentTime, access },
+        source: { shopDomain, apiVersion, collectedAt, assessmentTime, identity, access },
         completeness,
         failures,
         datasets,
@@ -170,7 +210,29 @@ function normalizeWeight(weight) {
     return { value: Number(weight.value), unit: units[weight.unit], evidenceStatus: Number(weight.value) > 0 ? 'available' : 'missing' };
 }
 
+function assertVerifiedCollectionIdentity(collection) {
+    const identity = collection?.source?.identity;
+    if (collection?.synthetic) {
+        const trustedSynthetic = identity?.verificationStatus === 'verified'
+            && identity?.verificationBasis === 'trusted_test_fixture'
+            && typeof identity.expectedDomain === 'string'
+            && identity.expectedDomain === identity.observedDomain
+            && identity.expectedDomain.endsWith('.invalid');
+        if (!trustedSynthetic) throw new Error('Synthetic normalization requires an explicitly trusted matching test identity.');
+        return;
+    }
+    assertAuthorizedShopDomain(collection?.source?.shopDomain);
+    if (identity?.verificationStatus !== 'verified'
+        || identity.verificationBasis !== 'admin_graphql_shop_identity'
+        || identity.expectedDomain !== STORE_DOMAIN
+        || identity.observedDomain !== STORE_DOMAIN) {
+        throw new Error('A verified Rhino Admin identity is required before normalization.');
+    }
+}
+
 function normalizeShopifyConfiguration(collection) {
+    assertVerifiedCollectionIdentity(collection);
+    assertAssessmentChronology(collection.source.collectedAt, collection.source.assessmentTime);
     const profiles = [];
     const zones = [];
     const rates = [];
@@ -222,7 +284,10 @@ function normalizeShopifyConfiguration(collection) {
         let shippingEffect = 'none';
         if (/FreeShipping/.test(discount.__typename || '')) shippingEffect = 'zero_shipping';
         else if (active && classes.includes('SHIPPING')) shippingEffect = 'unverified';
-        return { id: stableRef('DISCOUNT', node.id), active, shippingEffect };
+        const effectiveShippingPriceStatus = shippingEffect === 'zero_shipping'
+            ? 'verified_zero'
+            : shippingEffect === 'none' ? 'not_applicable' : 'unverified';
+        return { id: stableRef('DISCOUNT', node.id), active, shippingEffect, effectiveShippingPriceStatus };
     });
     const markets = (collection.datasets.markets || []).map((market) => ({
         id: stableRef('MARKET', market.id),
@@ -266,13 +331,17 @@ function normalizeShopifyConfiguration(collection) {
     return {
         schemaVersion: 1,
         contractId: 'epic-k-normalized-shopify-config-snapshot',
-        snapshotVersion: '1.1.0',
+        snapshotVersion: '1.2.0',
         synthetic: Boolean(collection.synthetic),
         source: {
             system: 'normalized_shopify_configuration',
             storeRef: collection.synthetic ? 'SYNTHETIC_SHOP' : 'RHINO_LAPIDARY',
             apiVersion: collection.source.apiVersion,
-            mappingStatus: collection.synthetic ? 'synthetic_contract_only' : 'approved_mapping_attached',
+            mappingStatus: collection.synthetic ? 'synthetic_contract_only' : 'source_verified_mapping_pending_acceptance',
+            sourceVerificationStatus: collection.synthetic ? 'synthetic' : 'verified',
+            mappingAcceptanceStatus: collection.synthetic ? 'synthetic' : 'pending',
+            collectionAuthorizationStatus: collection.synthetic ? 'synthetic' : 'authorized',
+            operationalAuthorityStatus: collection.synthetic ? 'synthetic' : 'blocked',
             collectedAt: collection.source.collectedAt,
             assessmentTime: collection.source.assessmentTime,
             collectorAuthority: collection.synthetic ? 'SYNTHETIC-K1B02-TEST' : 'PRODUCT_OWNER_AUTHORIZED_READ_ONLY_AUDIT_2026_10_24',
@@ -308,15 +377,41 @@ function writeRestrictedJson(relativePath, value) {
     return target;
 }
 
+function isPathInside(parent, candidate) {
+    const relative = path.relative(parent, candidate);
+    return relative === '' || (!relative.startsWith(`..${path.sep}`) && relative !== '..' && !path.isAbsolute(relative));
+}
+
+function resolveRawRetentionDestination(options = {}) {
+    const destination = options.destination;
+    if (!destination) return { enabled: false, directory: null };
+    if (options.approved !== true) throw new Error('Raw evidence retention requires explicit approved-storage configuration.');
+    if (!path.isAbsolute(destination)) throw new Error('Raw evidence retention destination must be an absolute path.');
+    const existsSync = options.existsSync || fs.existsSync;
+    const realpathSync = options.realpathSync || fs.realpathSync;
+    const statSync = options.statSync || fs.statSync;
+    if (!existsSync(destination)) throw new Error('Approved raw evidence destination does not exist.');
+    const directory = realpathSync(destination);
+    if (!statSync(directory).isDirectory()) throw new Error('Approved raw evidence destination must be a directory.');
+    const repositoryRoot = realpathSync(options.repositoryRoot || process.cwd());
+    if (isPathInside(repositoryRoot, directory)) throw new Error('Raw evidence destination must be outside the repository.');
+    return { enabled: true, directory };
+}
+
 module.exports = {
     API_VERSION,
     QUERIES,
     STORE_DOMAIN,
+    assertAssessmentChronology,
+    assertAuthorizedShopDomain,
     assertReadOnlyQuery,
+    assertVerifiedCollectionIdentity,
     collectConnection,
     collectShopifyConfiguration,
     normalizeShopifyConfiguration,
     queryAdmin,
+    resolveRawRetentionDestination,
     stableRef,
+    verifyShopIdentity,
     writeRestrictedJson,
 };

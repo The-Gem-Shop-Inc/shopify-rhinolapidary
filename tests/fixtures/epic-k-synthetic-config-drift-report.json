@@ -29,8 +29,30 @@
     {
       "id": "geography",
       "state": "PASS",
-      "message": "Supplied destinations remain within the 50-state scope and Alaska/Hawaii rates carry separate approval evidence.",
-      "actions": []
+      "message": "Supplied destination scope and separate Alaska/Hawaii evidence satisfy the bounded comparison.",
+      "actions": [],
+      "findings": [
+        {
+          "id": "domestic_destination_scope",
+          "state": "PASS",
+          "message": "Configured US subdivisions match the approved 50-state scope."
+        },
+        {
+          "id": "international_checkout_exposure",
+          "state": "PASS",
+          "message": "Complete supplied zone and Market evidence contains no international checkout exposure."
+        },
+        {
+          "id": "ak_rate_approval",
+          "state": "PASS",
+          "message": "AK has separately accepted paid-rate and service evidence in the supplied comparison input."
+        },
+        {
+          "id": "hi_rate_approval",
+          "state": "PASS",
+          "message": "HI has separately accepted paid-rate and service evidence in the supplied comparison input."
+        }
+      ]
     },
     {
       "id": "product_logistics",

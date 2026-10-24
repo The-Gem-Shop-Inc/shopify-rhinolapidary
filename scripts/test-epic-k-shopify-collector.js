@@ -3,10 +3,13 @@
 const assert = require('node:assert/strict');
 const {
     QUERIES,
+    STORE_DOMAIN,
     assertReadOnlyQuery,
     collectConnection,
     collectShopifyConfiguration,
     normalizeShopifyConfiguration,
+    queryAdmin,
+    resolveRawRetentionDestination,
     stableRef,
 } = require('./lib/epic-k-shopify-audit');
 const { assessConfigurationDrift, schemaErrors } = require('./lib/epic-k-evidence-drift');
@@ -18,10 +21,72 @@ function test(name, run) { tests.push({ name, run }); }
 function base() { return clone(fixture.baseCollection); }
 function snapshot(mutate = () => {}) { const input = base(); mutate(input); return normalizeShopifyConfiguration(input); }
 function result(report, id) { return report.results.find((entry) => entry.id === id); }
+function emptyRunQuery(identityDomain = STORE_DOMAIN, callLog = []) {
+    return async (query) => {
+        callLog.push(query);
+        if (query === QUERIES.access) return { shop: identityDomain === null ? {} : { myshopifyDomain: identityDomain }, appInstallation: { accessScopes: [] } };
+        const fields = [
+            [QUERIES.discounts, 'discountNodes'], [QUERIES.markets, 'markets'], [QUERIES.locations, 'locations'],
+            [QUERIES.variants, 'productVariants'], [QUERIES.functions, 'shopifyFunctions'], [QUERIES.profileIndex, 'deliveryProfiles'],
+        ];
+        const match = fields.find(([operation]) => operation === query);
+        if (match) return { [match[1]]: { nodes: [], pageInfo: { hasNextPage: false, endCursor: null } } };
+        throw new Error('unexpected query');
+    };
+}
 
 test('query guard accepts named read-only queries', () => assert.doesNotThrow(() => assertReadOnlyQuery(QUERIES.variants)));
 test('query guard rejects a mutation operation', () => assert.throws(() => assertReadOnlyQuery('mutation Unsafe { productDelete(input: {}) { deletedProductId } }'), /mutations are prohibited/i));
 test('query guard rejects an omitted operation type', () => assert.throws(() => assertReadOnlyQuery('{ shop { name } }'), /query operations only/i));
+test('incorrect destination fails before any network request', async () => {
+    let networkCalls = 0;
+    await assert.rejects(() => queryAdmin({
+        shopDomain: 'other-shop.myshopify.com', token: 'synthetic-token', apiVersion: '2026-10', query: QUERIES.access,
+        fetchImpl: async () => { networkCalls += 1; },
+    }), /authorized only/i);
+    assert.equal(networkCalls, 0);
+});
+test('malformed destination fails before any network request', async () => {
+    let networkCalls = 0;
+    await assert.rejects(() => queryAdmin({
+        shopDomain: 'https://rhino-lapidary.myshopify.com', token: 'synthetic-token', apiVersion: '2026-10', query: QUERIES.access,
+        fetchImpl: async () => { networkCalls += 1; },
+    }), /authorized only/i);
+    assert.equal(networkCalls, 0);
+});
+test('mismatched Admin identity stops collection after the identity query', async () => {
+    const calls = [];
+    await assert.rejects(() => collectShopifyConfiguration({
+        shopDomain: STORE_DOMAIN, token: 'synthetic-token', collectedAt: '2026-10-24T12:30:00.000Z', assessmentTime: '2026-10-24T13:00:00.000Z',
+        runQuery: emptyRunQuery('other-shop.myshopify.com', calls),
+    }), /does not match/i);
+    assert.equal(calls.length, 1);
+});
+test('missing Admin identity fails closed before dataset queries', async () => {
+    const calls = [];
+    await assert.rejects(() => collectShopifyConfiguration({
+        shopDomain: STORE_DOMAIN, token: 'synthetic-token', collectedAt: '2026-10-24T12:30:00.000Z', assessmentTime: '2026-10-24T13:00:00.000Z',
+        runQuery: emptyRunQuery(null, calls),
+    }), /omitted a valid myshopifyDomain/i);
+    assert.equal(calls.length, 1);
+});
+test('verified Rhino identity permits read-only dataset collection', async () => {
+    const calls = [];
+    const actual = await collectShopifyConfiguration({
+        shopDomain: STORE_DOMAIN, token: 'synthetic-token', collectedAt: '2026-10-24T12:30:00.000Z', assessmentTime: '2026-10-24T13:00:00.000Z',
+        runQuery: emptyRunQuery(STORE_DOMAIN, calls),
+    });
+    assert.equal(actual.source.identity.observedDomain, STORE_DOMAIN);
+    assert.equal(actual.source.identity.verificationStatus, 'verified');
+    assert(calls.length > 1);
+});
+test('failed identity verification cannot produce a Rhino snapshot', () => {
+    const input = base();
+    input.synthetic = false;
+    input.source.shopDomain = STORE_DOMAIN;
+    input.source.identity = { expectedDomain: STORE_DOMAIN, observedDomain: 'other-shop.myshopify.com', verificationStatus: 'verified', verificationBasis: 'admin_graphql_shop_identity' };
+    assert.throws(() => normalizeShopifyConfiguration(input), /verified Rhino Admin identity/i);
+});
 test('stable references are deterministic and contain no Shopify GID', () => {
     assert.equal(stableRef('VARIANT', 'gid://shopify/ProductVariant/SYNTHETIC-1'), stableRef('VARIANT', 'gid://shopify/ProductVariant/SYNTHETIC-1'));
     assert(!stableRef('VARIANT', 'gid://shopify/ProductVariant/SYNTHETIC-1').includes('gid://'));
@@ -69,6 +134,7 @@ test('carrier-calculated final prices remain unverified', () => {
 test('active explicit free-shipping discounts normalize as zero shipping', () => {
     const actual = snapshot((input) => input.datasets.discounts.push({ id: 'gid://shopify/DiscountNode/SYNTHETIC-FREE', discount: { __typename: 'DiscountAutomaticFreeShipping', status: 'ACTIVE', discountClasses: ['SHIPPING'] } }));
     assert.equal(actual.discounts[0].shippingEffect, 'zero_shipping');
+    assert.equal(actual.discounts[0].effectiveShippingPriceStatus, 'verified_zero');
 });
 test('active shipping Function effects remain unverified', () => {
     const actual = snapshot((input) => input.datasets.discounts.push({ id: 'gid://shopify/DiscountNode/SYNTHETIC-APP', discount: { __typename: 'DiscountAutomaticApp', status: 'ACTIVE', discountClasses: ['SHIPPING'], appDiscountType: { discountClasses: ['SHIPPING'] } } }));
@@ -127,7 +193,7 @@ test('explicit collection failures are retained without raw identifiers', () => 
 });
 test('missing API permission produces an actionable collector failure', async () => {
     const runQuery = async (query) => {
-        if (query === QUERIES.access) return { shop: { myshopifyDomain: 'synthetic.invalid' }, appInstallation: { accessScopes: [] } };
+        if (query === QUERIES.access) return { shop: { myshopifyDomain: STORE_DOMAIN }, appInstallation: { accessScopes: [] } };
         if (query === QUERIES.discounts) throw Object.assign(new Error('Access denied for discountNodes'), { code: 'ACCESS_DENIED' });
         const fields = [
             [QUERIES.markets, 'markets'], [QUERIES.locations, 'locations'], [QUERIES.variants, 'productVariants'], [QUERIES.functions, 'shopifyFunctions'], [QUERIES.profileIndex, 'deliveryProfiles'],
@@ -136,15 +202,45 @@ test('missing API permission produces an actionable collector failure', async ()
         if (match) return { [match[1]]: { nodes: [], pageInfo: { hasNextPage: false, endCursor: null } } };
         throw new Error('unexpected query');
     };
-    const actual = await collectShopifyConfiguration({ token: 'synthetic-token', assessmentTime: '2026-10-24T13:00:00.000Z', runQuery });
+    const actual = await collectShopifyConfiguration({ token: 'synthetic-token', collectedAt: '2026-10-24T12:30:00.000Z', assessmentTime: '2026-10-24T13:00:00.000Z', runQuery });
     assert.equal(actual.completeness.discounts, 'missing');
     assert.equal(actual.failures.find((failure) => failure.dataset === 'discounts').state, 'inaccessible');
 });
 test('normalized snapshots conform to the repository schema', () => assert.deepEqual(schemaErrors('schemas/epic-k-shopify-config-snapshot.schema.json', snapshot(), 'collector snapshot'), []));
 test('normalized snapshots contain no raw Shopify GIDs', () => assert(!/gid:\/\/shopify\//i.test(JSON.stringify(snapshot()))));
-test('explicit invalid assessment time cannot pass snapshot schema validation', () => {
-    const actual = snapshot((input) => { input.source.assessmentTime = 'not-a-clock'; });
-    assert(schemaErrors('schemas/epic-k-shopify-config-snapshot.schema.json', actual, 'collector snapshot').length > 0);
+test('normalization keeps source verification separate from mapping and operational approval', () => {
+    const actual = snapshot();
+    assert.equal(actual.source.sourceVerificationStatus, 'synthetic');
+    assert.equal(actual.source.mappingAcceptanceStatus, 'synthetic');
+    assert.equal(actual.source.operationalAuthorityStatus, 'synthetic');
+});
+test('explicit invalid assessment time fails before normalization', () => assert.throws(
+    () => snapshot((input) => { input.source.assessmentTime = 'not-a-clock'; }),
+    /strict ISO-8601 assessmentTime/i,
+));
+test('assessment must occur strictly after collection', () => assert.throws(
+    () => snapshot((input) => { input.source.assessmentTime = input.source.collectedAt; }),
+    /strictly after collectedAt/i,
+));
+test('raw evidence is transient by default', () => assert.deepEqual(resolveRawRetentionDestination({}), { enabled: false, directory: null }));
+test('raw evidence retention rejects an unapproved external destination', () => assert.throws(() => resolveRawRetentionDestination({
+    destination: 'C:\\approved-restricted-storage\\epic-k', approved: false, repositoryRoot: process.cwd(),
+}), /requires explicit approved-storage configuration/i));
+test('raw evidence retention rejects an unsafe repository destination', () => assert.throws(() => resolveRawRetentionDestination({
+    destination: process.cwd(), approved: true, repositoryRoot: process.cwd(),
+}), /outside the repository/i));
+test('approved external raw evidence destination is accepted without writing an artifact', () => {
+    const external = 'C:\\approved-restricted-storage\\epic-k';
+    const actual = resolveRawRetentionDestination({
+        destination: external,
+        approved: true,
+        repositoryRoot: process.cwd(),
+        existsSync: () => true,
+        realpathSync: (value) => value,
+        statSync: () => ({ isDirectory: () => true }),
+    });
+    assert.equal(actual.enabled, true);
+    assert.equal(actual.directory, external);
 });
 test('expired snapshot evidence fails freshness assessment', () => {
     const actual = snapshot();

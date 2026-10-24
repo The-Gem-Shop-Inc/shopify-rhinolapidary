@@ -50,6 +50,17 @@ function mutateSnapshot(mutation) {
     if (mutation === 'unknown_discount') {
         value.discounts[0].active = true;
         value.discounts[0].shippingEffect = 'unverified';
+        value.discounts[0].effectiveShippingPriceStatus = 'unverified';
+    }
+    if (mutation === 'reduced_discount_unknown') {
+        value.discounts[0].active = true;
+        value.discounts[0].shippingEffect = 'reduced_shipping';
+        value.discounts[0].effectiveShippingPriceStatus = 'unverified';
+    }
+    if (mutation === 'reduced_discount_positive') {
+        value.discounts[0].active = true;
+        value.discounts[0].shippingEffect = 'reduced_shipping';
+        value.discounts[0].effectiveShippingPriceStatus = 'verified_positive';
     }
     if (mutation === 'unknown_rate') {
         value.rates[0].type = 'carrier_calculated';
@@ -78,6 +89,12 @@ function mutateSnapshot(mutation) {
                 ? 'confirmed'
                 : mutation === 'international_inactive_market' ? 'absent' : 'unverified',
         });
+    }
+    if (mutation === 'territory_scope') value.zones[0].subdivisionCodes.push('PR');
+    if (mutation === 'territory_and_international') {
+        value.zones[0].subdivisionCodes.push('PR');
+        value.zones.push({ id: 'SYNTHETIC_ZONE_CA', countryCodes: ['CA'], subdivisionCodes: [] });
+        value.markets.push({ id: 'SYNTHETIC_MARKET_CA', countryCodes: ['CA'], active: true, checkoutAvailabilityEvidence: 'unverified' });
     }
     if (mutation === 'missing_ak_rate') value.rates = value.rates.filter((rate) => !rate.subdivisionCodes.includes('AK'));
     if (mutation === 'missing_hi_rate') value.rates = value.rates.filter((rate) => !rate.subdivisionCodes.includes('HI'));
@@ -174,7 +191,67 @@ for (const fixture of fixtures.snapshotCases) {
 test('international zone without confirmed checkout remains unresolved', () => {
     const actual = assessConfigurationDrift(mutateSnapshot('international_unknown_market'), undefined, { asOf: fixtures.assessmentTime });
     assert.equal(resultById(actual.report, 'geography').state, 'UNVERIFIED');
-    assert.match(resultById(actual.report, 'geography').message, /does not confirm active international checkout availability/);
+    assert.match(resultById(actual.report, 'geography').message, /does not confirm customer checkout availability/);
+});
+
+test('territory or military codes are confirmed domestic scope discrepancies', () => {
+    const value = mutateSnapshot('territory_scope');
+    value.zones[0].subdivisionCodes.push('AA');
+    const actual = assessConfigurationDrift(value, undefined, { asOf: fixtures.assessmentTime });
+    const geography = resultById(actual.report, 'geography');
+    assert.equal(geography.state, 'FAIL');
+    assert.match(geography.findings.find((entry) => entry.id === 'domestic_destination_scope').message, /AA, PR/);
+});
+
+test('domestic discrepancy is not masked by unresolved international exposure', () => {
+    const actual = assessConfigurationDrift(mutateSnapshot('territory_and_international'), undefined, { asOf: fixtures.assessmentTime });
+    const geography = resultById(actual.report, 'geography');
+    assert.equal(geography.state, 'FAIL');
+    assert.equal(geography.findings.find((entry) => entry.id === 'domestic_destination_scope').state, 'FAIL');
+    assert.equal(geography.findings.find((entry) => entry.id === 'international_checkout_exposure').state, 'UNVERIFIED');
+});
+
+test('fully compliant 50-state input keeps independent geography findings passing', () => {
+    const geography = resultById(assessConfigurationDrift(mutateSnapshot('none'), undefined, { asOf: fixtures.assessmentTime }).report, 'geography');
+    assert.equal(geography.state, 'PASS');
+    assert(geography.findings.every((entry) => entry.state === 'PASS'));
+});
+
+test('missing Alaska and Hawaii approvals remain individually visible', () => {
+    for (const [mutation, findingId] of [['missing_ak_rate', 'ak_rate_approval'], ['missing_hi_rate', 'hi_rate_approval']]) {
+        const geography = resultById(assessConfigurationDrift(mutateSnapshot(mutation), undefined, { asOf: fixtures.assessmentTime }).report, 'geography');
+        assert.equal(geography.state, 'BLOCKED');
+        assert.equal(geography.findings.find((entry) => entry.id === findingId).state, 'BLOCKED');
+        assert.match(geography.findings.find((entry) => entry.id === findingId).message, /invoicing is blocked/);
+    }
+});
+
+test('confirmed international checkout remains a verified policy conflict', () => {
+    const geography = resultById(assessConfigurationDrift(mutateSnapshot('international_confirmed_market'), undefined, { asOf: fixtures.assessmentTime }).report, 'geography');
+    assert.equal(geography.state, 'FAIL');
+    assert.equal(geography.findings.find((entry) => entry.id === 'international_checkout_exposure').state, 'FAIL');
+});
+
+test('multiple geography discrepancies are reported together', () => {
+    const value = mutateSnapshot('territory_and_international');
+    value.markets.find((market) => market.countryCodes.includes('CA')).checkoutAvailabilityEvidence = 'confirmed';
+    value.rates[1].operationalApproval = 'missing';
+    const geography = resultById(assessConfigurationDrift(value, undefined, { asOf: fixtures.assessmentTime }).report, 'geography');
+    assert.equal(geography.state, 'FAIL');
+    assert.deepEqual(
+        geography.findings.filter((entry) => entry.state === 'FAIL').map((entry) => entry.id),
+        ['domestic_destination_scope', 'international_checkout_exposure', 'ak_rate_approval'],
+    );
+});
+
+test('reduced shipping discount remains blocked without verified positive effective charge', () => {
+    const actual = assessConfigurationDrift(mutateSnapshot('reduced_discount_unknown'), undefined, { asOf: fixtures.assessmentTime });
+    assert.equal(resultById(actual.report, 'free_shipping').state, 'BLOCKED');
+});
+
+test('reduced shipping discount can pass only with verified positive effective charge', () => {
+    const actual = assessConfigurationDrift(mutateSnapshot('reduced_discount_positive'), undefined, { asOf: fixtures.assessmentTime });
+    assert.equal(resultById(actual.report, 'free_shipping').state, 'PASS');
 });
 
 test('valid synthetic snapshot scopes PASS results to supplied comparison data', () => {
@@ -217,6 +294,24 @@ test('missing snapshot assessment time cannot establish freshness', () => {
 test('invalid snapshot assessment time cannot establish freshness', () => {
     const actual = assessConfigurationDrift(fixtures.baseSnapshot, undefined, { asOf: 'invalid-clock' });
     assert.equal(actual.report.assessedAt, null);
+    assert.equal(resultById(actual.report, 'evidence_freshness').state, 'BLOCKED');
+});
+
+test('evaluation time before the recorded assessment cannot establish freshness', () => {
+    const actual = assessConfigurationDrift(fixtures.baseSnapshot, undefined, { asOf: '2026-10-23T17:59:30.000Z' });
+    assert.equal(resultById(actual.report, 'evidence_freshness').state, 'BLOCKED');
+});
+
+test('Shopify source verification does not imply Product Owner mapping acceptance', () => {
+    const value = mutateSnapshot('none');
+    value.synthetic = false;
+    value.source.mappingStatus = 'source_verified_mapping_pending_acceptance';
+    value.source.sourceVerificationStatus = 'verified';
+    value.source.mappingAcceptanceStatus = 'pending';
+    value.source.collectionAuthorizationStatus = 'authorized';
+    value.source.operationalAuthorityStatus = 'blocked';
+    value.source.authorityStatus = 'accepted';
+    const actual = assessConfigurationDrift(value, undefined, { asOf: fixtures.assessmentTime });
     assert.equal(resultById(actual.report, 'evidence_freshness').state, 'BLOCKED');
 });
 

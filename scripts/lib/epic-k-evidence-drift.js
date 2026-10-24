@@ -166,8 +166,8 @@ function verifyEvidence(receipts, requirements = readJson('data/epic-k-operation
     };
 }
 
-function finding(id, state, message, actions = []) {
-    return { id, state, message, actions };
+function finding(id, state, message, actions = [], findings = undefined) {
+    return findings ? { id, state, message, actions, findings } : { id, state, message, actions };
 }
 
 function assessConfigurationDrift(snapshot, policy = readJson('data/epic-k-fulfillment-policy.json'), options = {}) {
@@ -186,14 +186,19 @@ function assessConfigurationDrift(snapshot, policy = readJson('data/epic-k-fulfi
         || rate.type === 'threshold_free'
         || rate.effectivePriceStatus === 'verified_zero'
     ));
-    const zeroDiscounts = snapshot.discounts.filter((discount) => discount.active && discount.shippingEffect === 'zero_shipping');
+    const zeroDiscounts = snapshot.discounts.filter((discount) => discount.active && (
+        discount.shippingEffect === 'zero_shipping'
+        || discount.effectiveShippingPriceStatus === 'verified_zero'
+    ));
     const unknownRates = snapshot.rates.filter((rate) => rate.active && (
         rate.effectivePriceStatus === 'unverified'
         || (rate.effectivePriceStatus === 'verified_paid'
             && (!Number.isInteger(rate.amountCents) || rate.amountCents <= 0))
     ));
-    const unknownDiscounts = snapshot.discounts.filter((discount) => (
-        discount.active && discount.shippingEffect === 'unverified'
+    const unknownDiscounts = snapshot.discounts.filter((discount) => discount.active && (
+        discount.shippingEffect === 'unverified'
+        || (discount.shippingEffect === 'reduced_shipping'
+            && discount.effectiveShippingPriceStatus !== 'verified_positive')
     ));
     if (zeroRates.length || zeroDiscounts.length) {
         results.push(finding('free_shipping', STATES.FAIL, 'Supplied configuration contains an active zero-cost or threshold-based free-shipping path.', ['Review the identified rate or promotion under K-DEC-001.']));
@@ -251,34 +256,54 @@ function assessConfigurationDrift(snapshot, policy = readJson('data/epic-k-fulfi
         code,
         nonContiguousRates.filter((rate) => rate.subdivisionCodes.includes(code)),
     ]));
-    const missingNonContiguousRates = [...nonContiguousByState].filter(([, rates]) => rates.length === 0).map(([code]) => code);
-    const unapprovedNonContiguous = nonContiguousRates.filter((rate) => (
-        rate.operationalApproval !== 'accepted' || rate.serviceAvailability !== 'confirmed'
-    ));
-    const unverifiedNonContiguousPrices = nonContiguousRates.filter((rate) => (
-        rate.operationalApproval === 'accepted'
-        && rate.serviceAvailability === 'confirmed'
-        && (rate.effectivePriceStatus !== 'verified_paid'
-            || !Number.isInteger(rate.amountCents)
-            || rate.amountCents <= 0)
-    ));
-    if (confirmedInternationalCheckout) {
-        results.push(finding('geography', STATES.FAIL, 'Supplied Market evidence confirms active international checkout availability contrary to K-DEC-004.', ['Disable or separately approve the confirmed international checkout exposure.']));
-    } else if (internationalZones.length) {
-        results.push(finding('geography', STATES.UNVERIFIED, 'An international shipping zone is configured, but the supplied Market evidence does not confirm active international checkout availability.', ['Verify Market activation and actual checkout availability before determining whether K-DEC-004 is contradicted.']));
-    } else if (outsideFiftyStates.length || (complete.zones === 'complete' && missingUsStates.length)) {
-        results.push(finding('geography', STATES.FAIL, 'The supplied complete zone scope does not match the approved 50-state geography.', ['Reconcile state and territory scope with K-DEC-003 and K-DEC-004.']));
-    } else if (unapprovedNonContiguous.length) {
-        results.push(finding('geography', STATES.FAIL, 'Supplied Alaska or Hawaii rates lack accepted operational approval or confirmed service availability.', ['Attach separate Alaska and Hawaii rate and service approvals.']));
-    } else if (missingNonContiguousRates.length) {
-        results.push(finding('geography', STATES.BLOCKED, `No separately approved rate evidence is supplied for ${missingNonContiguousRates.join(' and ')}.`, ['Attach separate approved rate and service evidence for both Alaska and Hawaii before invoicing.']));
-    } else if (unverifiedNonContiguousPrices.length) {
-        results.push(finding('geography', STATES.BLOCKED, 'Alaska or Hawaii rate cost evidence remains unverified.', ['Attach accepted paid-rate evidence for both Alaska and Hawaii before invoicing.']));
-    } else if (complete.zones !== 'complete' || complete.markets !== 'complete' || complete.rates !== 'complete') {
-        results.push(finding('geography', STATES.BLOCKED, 'Zone, market, or rate evidence is incomplete, so checkout geography cannot be established.', ['Collect complete zones, markets, and rate scope.']));
+    const geographyFindings = [];
+    if (outsideFiftyStates.length || (complete.zones === 'complete' && missingUsStates.length)) {
+        const outsideText = outsideFiftyStates.length ? ` Configured out-of-scope codes: ${outsideFiftyStates.sort().join(', ')}.` : '';
+        const missingText = missingUsStates.length ? ` Missing state codes: ${missingUsStates.sort().join(', ')}.` : '';
+        geographyFindings.push({ id: 'domestic_destination_scope', state: STATES.FAIL, message: `The supplied complete US zone scope does not match the approved 50 states.${outsideText}${missingText}` });
+    } else if (complete.zones !== 'complete') {
+        geographyFindings.push({ id: 'domestic_destination_scope', state: STATES.BLOCKED, message: 'US shipping-zone evidence is incomplete.' });
     } else {
-        results.push(finding('geography', STATES.PASS, 'Supplied destinations remain within the 50-state scope and Alaska/Hawaii rates carry separate approval evidence.'));
+        geographyFindings.push({ id: 'domestic_destination_scope', state: STATES.PASS, message: 'Configured US subdivisions match the approved 50-state scope.' });
     }
+
+    if (confirmedInternationalCheckout) {
+        geographyFindings.push({ id: 'international_checkout_exposure', state: STATES.FAIL, message: 'Market evidence confirms active international checkout availability contrary to K-DEC-004.' });
+    } else if (internationalZones.length) {
+        geographyFindings.push({ id: 'international_checkout_exposure', state: STATES.UNVERIFIED, message: 'International shipping destinations are configured, but Market evidence does not confirm customer checkout availability.' });
+    } else if (complete.zones !== 'complete' || complete.markets !== 'complete') {
+        geographyFindings.push({ id: 'international_checkout_exposure', state: STATES.BLOCKED, message: 'Zone or Market evidence is incomplete, so international checkout exposure cannot be established.' });
+    } else {
+        geographyFindings.push({ id: 'international_checkout_exposure', state: STATES.PASS, message: 'Complete supplied zone and Market evidence contains no international checkout exposure.' });
+    }
+
+    for (const code of ['AK', 'HI']) {
+        const stateRates = nonContiguousByState.get(code);
+        if (!stateRates.length) {
+            geographyFindings.push({ id: `${code.toLowerCase()}_rate_approval`, state: STATES.BLOCKED, message: `${code} has no separately approved rate and service evidence; quotation intake remains permitted but invoicing is blocked.` });
+        } else if (stateRates.some((rate) => rate.operationalApproval !== 'accepted' || rate.serviceAvailability !== 'confirmed')) {
+            geographyFindings.push({ id: `${code.toLowerCase()}_rate_approval`, state: STATES.FAIL, message: `${code} has a configured rate without accepted operational approval and confirmed service availability.` });
+        } else if (stateRates.some((rate) => rate.effectivePriceStatus !== 'verified_paid' || !Number.isInteger(rate.amountCents) || rate.amountCents <= 0)) {
+            geographyFindings.push({ id: `${code.toLowerCase()}_rate_approval`, state: STATES.BLOCKED, message: `${code} rate cost evidence remains unverified; quotation intake remains permitted but invoicing is blocked.` });
+        } else {
+            geographyFindings.push({ id: `${code.toLowerCase()}_rate_approval`, state: STATES.PASS, message: `${code} has separately accepted paid-rate and service evidence in the supplied comparison input.` });
+        }
+    }
+    if (complete.rates !== 'complete') {
+        geographyFindings.push({ id: 'rate_dataset_completeness', state: STATES.BLOCKED, message: 'Rate evidence is incomplete.' });
+    }
+    const geographyState = worstState(geographyFindings);
+    const geographyActions = geographyState === STATES.PASS ? [] : [
+        'Reconcile configured destination scope and verify international checkout availability.',
+        'Attach separate Alaska and Hawaii rate and service approvals before invoicing.',
+    ];
+    results.push(finding(
+        'geography',
+        geographyState,
+        geographyFindings.filter((entry) => entry.state !== STATES.PASS).map((entry) => entry.message).join(' ') || 'Supplied destination scope and separate Alaska/Hawaii evidence satisfy the bounded comparison.',
+        geographyActions,
+        geographyFindings,
+    ));
 
     const shippable = snapshot.products.filter((product) => product.requiresShipping);
     const invalidWeights = shippable.filter((product) => !product.shippingWeight || product.shippingWeight.value <= 0);
@@ -308,18 +333,22 @@ function assessConfigurationDrift(snapshot, policy = readJson('data/epic-k-fulfi
 
     const asOf = assessmentTime;
     const collectedAt = parseTimestamp(snapshot.source.collectedAt);
+    const recordedAssessmentTime = parseTimestamp(snapshot.source.assessmentTime);
     const expiration = snapshot.source.validity.kind === 'interval' ? parseTimestamp(snapshot.source.validity.expiresAt) : null;
     if (asOf === null) {
         results.push(finding('evidence_freshness', STATES.BLOCKED, 'A valid explicit assessment time is required; collection time cannot substitute for the assessment clock.', ['Supply an explicit assessment time.']));
-    } else if (collectedAt !== null && collectedAt > asOf) {
-        results.push(finding('evidence_freshness', STATES.BLOCKED, 'The snapshot was collected after the assessment time and was not yet available.', ['Use an assessment time at or after collection.']));
+    } else if (recordedAssessmentTime === null || collectedAt === null || recordedAssessmentTime <= collectedAt) {
+        results.push(finding('evidence_freshness', STATES.BLOCKED, 'The recorded assessment did not occur strictly after collection.', ['Record valid collection and assessment timestamps in chronological order.']));
+    } else if (asOf < recordedAssessmentTime) {
+        results.push(finding('evidence_freshness', STATES.BLOCKED, 'The supplied evaluation time predates the recorded assessment.', ['Use an evaluation time at or after the recorded assessment.']));
     } else if (snapshot.source.validity.kind === 'interval' && (expiration === null || expiration <= asOf)) {
         results.push(finding('evidence_freshness', STATES.FAIL, 'The supplied snapshot is expired or cannot be evaluated against its authoritative validity interval.', ['Collect a fresh authorized snapshot.']));
     } else if (snapshot.synthetic) {
         results.push(finding('evidence_freshness', STATES.UNVERIFIED, 'Synthetic input validates the comparison engine only; its Shopify mapping and business authority are unverified.', ['Run a separately authorized, sanitized Shopify collection and approve its mapping.']));
-    } else if (snapshot.source.mappingStatus !== 'approved_mapping_attached'
-        || snapshot.source.authorityStatus !== 'accepted') {
-        results.push(finding('evidence_freshness', STATES.BLOCKED, 'Snapshot mapping or collector authority is not accepted.', ['Approve the Shopify-to-normalized mapping and collection authority.']));
+    } else if (snapshot.source.sourceVerificationStatus !== 'verified'
+        || snapshot.source.mappingAcceptanceStatus !== 'accepted'
+        || snapshot.source.collectionAuthorizationStatus !== 'authorized') {
+        results.push(finding('evidence_freshness', STATES.BLOCKED, 'Shopify source verification, Product Owner mapping acceptance, and collection authorization are separate gates; at least one remains unresolved.', ['Obtain explicit Product Owner acceptance of the verified source mapping without treating it as operational approval.']));
     } else if (snapshot.source.validity.kind === 'none_established') {
         results.push(finding('evidence_freshness', STATES.UNVERIFIED, 'No authoritative validity interval exists; no universal expiration period is inferred.', ['Have the source owner establish any applicable validity rule.']));
     } else {

@@ -4,7 +4,7 @@
   "title": "Epic K Shopify audit provenance",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "contractId", "auditId", "storeRef", "apiVersion", "collectedAt", "assessedAt", "authorization", "collection", "datasets", "sanitization", "restrictedEvidence", "customerAndMerchantImpact", "operationalEvidence", "liveCheckoutEnforcement"],
+  "required": ["schemaVersion", "contractId", "auditId", "storeRef", "apiVersion", "collectedAt", "assessedAt", "authorization", "sourceVerificationStatus", "productOwnerMappingAcceptanceStatus", "operationalAuthorityStatus", "collection", "datasets", "sanitization", "restrictedEvidence", "customerAndMerchantImpact", "operationalEvidence", "liveCheckoutEnforcement"],
   "properties": {
     "schemaVersion": { "const": 1 },
     "contractId": { "const": "epic-k-shopify-audit-provenance" },
@@ -14,6 +14,9 @@
     "collectedAt": { "type": "string", "format": "date-time" },
     "assessedAt": { "type": "string", "format": "date-time" },
     "authorization": { "const": "product_owner_authorized_read_only_epic_k_audit" },
+    "sourceVerificationStatus": { "const": "verified" },
+    "productOwnerMappingAcceptanceStatus": { "enum": ["accepted", "pending", "unverified"] },
+    "operationalAuthorityStatus": { "const": "blocked" },
     "collection": {
       "type": "object", "additionalProperties": false,
       "required": ["interface", "finalQueryCount", "mutationCount", "schemaInspection", "storeIdentityVerified", "initialReadOnlyQueryCorrections"],

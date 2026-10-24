@@ -8,9 +8,9 @@
   "liveCheckoutEnforcement": "UNVERIFIED",
   "summary": {
     "PASS": 0,
-    "FAIL": 2,
-    "BLOCKED": 2,
-    "UNVERIFIED": 2
+    "FAIL": 3,
+    "BLOCKED": 3,
+    "UNVERIFIED": 0
   },
   "results": [
     {
@@ -39,10 +39,33 @@
     },
     {
       "id": "geography",
-      "state": "UNVERIFIED",
-      "message": "An international shipping zone is configured, but the supplied Market evidence does not confirm active international checkout availability.",
+      "state": "FAIL",
+      "message": "The supplied complete US zone scope does not match the approved 50 states. Configured out-of-scope codes: AA, AE, AP, AS, DC, FM, GU, MH, MP, PR, PW, VI. International shipping destinations are configured, but Market evidence does not confirm customer checkout availability. AK has a configured rate without accepted operational approval and confirmed service availability. HI has a configured rate without accepted operational approval and confirmed service availability.",
       "actions": [
-        "Verify Market activation and actual checkout availability before determining whether K-DEC-004 is contradicted."
+        "Reconcile configured destination scope and verify international checkout availability.",
+        "Attach separate Alaska and Hawaii rate and service approvals before invoicing."
+      ],
+      "findings": [
+        {
+          "id": "domestic_destination_scope",
+          "state": "FAIL",
+          "message": "The supplied complete US zone scope does not match the approved 50 states. Configured out-of-scope codes: AA, AE, AP, AS, DC, FM, GU, MH, MP, PR, PW, VI."
+        },
+        {
+          "id": "international_checkout_exposure",
+          "state": "UNVERIFIED",
+          "message": "International shipping destinations are configured, but Market evidence does not confirm customer checkout availability."
+        },
+        {
+          "id": "ak_rate_approval",
+          "state": "FAIL",
+          "message": "AK has a configured rate without accepted operational approval and confirmed service availability."
+        },
+        {
+          "id": "hi_rate_approval",
+          "state": "FAIL",
+          "message": "HI has a configured rate without accepted operational approval and confirmed service availability."
+        }
       ]
     },
     {
@@ -55,10 +78,10 @@
     },
     {
       "id": "evidence_freshness",
-      "state": "UNVERIFIED",
-      "message": "No authoritative validity interval exists; no universal expiration period is inferred.",
+      "state": "BLOCKED",
+      "message": "Shopify source verification, Product Owner mapping acceptance, and collection authorization are separate gates; at least one remains unresolved.",
       "actions": [
-        "Have the source owner establish any applicable validity rule."
+        "Obtain explicit Product Owner acceptance of the verified source mapping without treating it as operational approval."
       ]
     }
   ]

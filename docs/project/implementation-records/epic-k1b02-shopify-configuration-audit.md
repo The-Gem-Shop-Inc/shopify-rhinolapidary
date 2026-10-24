@@ -19,6 +19,8 @@ The repository's existing Epic E local Admin collector defaults to API `2026-07`
 
 The mapping was verified against the connected schema and Shopify's versioned Admin GraphQL documentation for `deliveryProfiles`, `discountNodes`, `markets`, `locations`, `InventoryItem`, and `DeliveryMethodDefinition`. The mapping deliberately leaves these facts unresolved:
 
+Shopify source verification is recorded separately from Product Owner acceptance of the normalization mapping. The October 24 source mapping is verified, its Product Owner mapping acceptance remains `pending`, read-only collection was authorized, and operational authority remains `blocked`.
+
 - Shipping profiles do not prove quotation-only checkout enforcement.
 - An active Market or shipping zone does not prove successful checkout availability.
 - Carrier-calculated rates do not reveal every customer's final shipping price.
@@ -36,7 +38,7 @@ The reusable collector is [`scripts/audit-epic-k-shopify-config.js`](../../../sc
 3. Rejects every operation that is not an explicit GraphQL `query` and rejects any document containing `mutation`.
 4. Uses Admin API `2026-10` unless `EPIC_K_SHOPIFY_API_VERSION` explicitly selects another reviewed version.
 5. Exhausts top-level pagination and treats absent cursors, access failures, query failures, and partial datasets as failures rather than clean absence.
-6. Writes raw local output only below ignored `test-results/epic-k/k1b02/` with restricted file mode.
+6. Does not persist raw Admin responses by default. Explicit retention requires an existing, approved absolute directory outside the repository, configured with `EPIC_K_RAW_EVIDENCE_DIRECTORY` and `EPIC_K_RAW_EVIDENCE_APPROVED=true`.
 7. Replaces Shopify GIDs with deterministic prefixed references before producing a sanitized snapshot candidate.
 
 Command:
@@ -88,9 +90,9 @@ The deterministic report is [`data/epic-k-shopify-configuration-drift-report-202
 | Free shipping | `FAIL` | The active $0 Standard rate at the $70 threshold contradicts provisional K-DEC-001. No setting was changed. |
 | Machine shipping | `BLOCKED` | Product classification authority and quotation enforcement evidence are absent. A profile assignment cannot prove all shipped machinery is quoted before payment. |
 | Grafton pickup | `BLOCKED` | No returned location had pickup enabled, no authoritative Grafton mapping exists, and Product eligibility plus readiness receipts are missing. |
-| Geography | `UNVERIFIED` | An international zone exists while only a US Market was returned. Zone presence alone does not establish international checkout; the Domestic zone also contains destinations outside the 50 states. |
+| Geography | `FAIL` | The Domestic zone contains `AA, AE, AP, AS, DC, FM, GU, MH, MP, PR, PW, VI`, which is a confirmed configured-scope discrepancy. International checkout remains independently `UNVERIFIED`, and Alaska/Hawaii operational rate approvals remain absent. |
 | Product logistics | `FAIL` | Forty-four shippable Variants have zero configured weight. Positive values do not satisfy packed-weight or package authority. |
-| Evidence freshness | `UNVERIFIED` | The explicit collection and assessment clocks are valid, but no authoritative validity interval exists and none was invented. |
+| Evidence freshness | `BLOCKED` | Collection chronology is valid and Shopify source identity is verified, but Product Owner acceptance of the normalization mapping remains pending. Collection authorization does not confer mapping or operational approval. |
 
 Overall configuration drift is `FAIL`. Operational readiness remains `BLOCKED`, and live checkout enforcement remains `UNVERIFIED`.
 
@@ -115,23 +117,36 @@ The Shopify snapshot is configuration evidence. It does not satisfy any of these
 
 [`tests/fixtures/epic-k-shopify-collector-responses.json`](../../../tests/fixtures/epic-k-shopify-collector-responses.json) contains synthetic Admin-response shapes only. It exercises multiple profiles and assignments, pagination, permission failures, fixed and conditional rates, carrier uncertainty, free-shipping discounts, shipping Functions, international Market states, Alaska/Hawaii approval separation, pickup/inventory authority boundaries, weights, packages, partial datasets, failed queries, explicit clocks, sanitization, and the live-enforcement boundary.
 
-`npm run test:epic-k-collector` currently contains 31 independent positive and negative tests. `npm run validate:epic-k-shopify-audit` validates the mapping, snapshot, provenance, deterministic report, zero-mutation invariant, eight blocked evidence categories, sanitization, and expected live finding counts.
+`npm run test:epic-k-collector` now contains 43 independent positive and negative tests. `npm run test:epic-k-evidence` contains 62 tests. `npm run validate:epic-k-shopify-audit` validates the mapping, snapshot, provenance, deterministic report, zero-mutation invariant, eight blocked evidence categories, sanitization, chronology, authority boundaries, and expected live findings.
+
+## K1B-02-R audit safety corrections
+
+Review of K1B-02 identified six repository defects. This correction batch made no Shopify query and preserved the October 24 sanitized observations.
+
+1. The collector accepted a configurable destination without enforcing the authorized store and did not fail closed on `shop.myshopifyDomain`. It now validates the exact destination before any request, verifies the returned Rhino identity before subsequent queries, and refuses to normalize unverified or mismatched live evidence.
+2. Geography used one precedence chain, so international uncertainty masked confirmed domestic scope drift and Alaska/Hawaii approval gaps. The stable `geography` result now aggregates independent domestic scope, international checkout, Alaska approval, and Hawaii approval findings.
+3. An active `reduced_shipping` discount could pass without proof that its effective charge stayed positive. The contract now requires an explicit effective-price status, and the evaluator blocks unknown effects.
+4. The standalone collector persisted raw Admin responses under `test-results` by default. Raw processing is now transient by default; optional retention requires explicit approval and an existing external directory that resolves outside the repository.
+5. Normalization treated nonsynthetic Shopify data as an approved mapping. Source verification, Product Owner mapping acceptance, collection authorization, and operational authority are now separate contract fields. The October 24 mapping acceptance remains pending and all external authority remains blocked.
+6. Timestamp checks used permissive parsing and did not fully enforce chronology. Collection and assessment use the shared strict parser; assessment must follow collection, and a failed chronology gate cannot pass freshness.
+
+Regression coverage includes wrong destination before network access, missing and mismatched identity, failed normalization after identity failure, transient raw handling, unsafe retention paths, strict clock ordering, unresolved reduced-shipping effects, independent geography findings, all 12 configured out-of-scope codes, Alaska/Hawaii visibility, and concurrent geographic discrepancies.
 
 Verification on 2026-10-24:
 
 | Command | Exit | Result |
 |---|---:|---|
 | `npm run validate:epic-k-evidence` | 0 | Contracts valid; 8/8 operational requirements blocked |
-| `npm run test:epic-k-evidence` | 0 | 52/52 passed |
-| `npm run validate:epic-k-k1b01` | 0 | K1A 73/73 and evidence 52/52 passed |
+| `npm run test:epic-k-evidence` | 0 | 62/62 passed |
+| `npm run validate:epic-k-k1b01` | 0 | K1A 73/73 and evidence 62/62 passed |
 | `npm run validate:epic-k-k1a` | 0 | 73/73 passed |
 | `npm run validate:registers` | 0 | 69 schema/data targets valid |
 | `npm run validate:cart-config` | 0 | Passed; `cart_type=notification` |
 | `npm run validate:product-purchase` | 0 | Product purchase architecture passed |
 | `npm run validate:theme-architecture` | 0 | 31 routes, 102 tokens, CSS, one storefront event, and Rhino sections passed |
-| `npm run validate:epic-k-shopify-audit` | 0 | Mapping, live sanitized snapshot, provenance, deterministic drift, and zero-impact invariants passed |
-| `npm run validate:epic-k-k1b02` | 0 | Aggregate K1A, K1B-01, live audit, and 31/31 collector tests passed |
-| `npm run test:epic-k-collector` | 0 | 31/31 passed |
+| `npm run validate:epic-k-shopify-audit` | 0 | Mapping, sanitized snapshot, provenance, chronology, authority boundaries, deterministic drift, and zero-impact invariants passed; 3 FAIL, 3 BLOCKED, 0 aggregate UNVERIFIED findings |
+| `npm run validate:epic-k-k1b02` | 0 | Aggregate K1A, K1B-01, audit, 73/73 policy tests, 62/62 evidence tests, and 43/43 collector tests passed |
+| `npm run test:epic-k-collector` | 0 | 43/43 passed |
 
 The recurring npm warning about `min-release-age` is environmental and did not affect exit codes.
 
@@ -145,7 +160,7 @@ No action affected Shopify data, customer experience, orders, payments, checkout
 |---|---|---|
 | K-PBI-002 | `PARTIAL_CONFIGURATION_AUDIT_COMPLETE` | Source mapping, collector, adapter, authenticated snapshot, drift report, and tests exist; operational evidence, policy remediation, and checkout integration acceptance remain incomplete |
 | Epic K operational readiness | `BLOCKED` | All eight external evidence requirements remain blocked |
-| Shopify configuration compliance | `FAIL_WITH_UNVERIFIED_DOMAINS` | Confirmed free-shipping and zero-weight defects coexist with blocked/unverified routing domains |
+| Shopify configuration compliance | `FAIL_WITH_BLOCKED_AND_UNVERIFIED_DOMAINS` | Confirmed free-shipping, domestic destination-scope, and zero-weight discrepancies coexist with blocked/unverified routing domains |
 | Shopify checkout enforcement | `UNVERIFIED` | No checkout transaction or separately authorized integration assessment occurred |
 
 K-PBI-002 and Epic K are not complete.
@@ -159,6 +174,7 @@ K-PBI-002 and Epic K are not complete.
 5. Operations must identify the Grafton Shopify location, establish readiness, and approve explicit Product/Variant eligibility before pickup can be enabled.
 6. Shipping operations must define approved services, carrier-calculated-rate handling, insurance choices, and quote validity evidence.
 7. Customer service and shipping operations must approve claims contacts and responsibilities.
+8. Product Owner must explicitly accept or reject the verified Shopify-to-normalized mapping; read-only audit authorization does not supply that acceptance.
 
 ## Recommended next dependency-ordered batch
 

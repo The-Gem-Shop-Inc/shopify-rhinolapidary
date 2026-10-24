@@ -14,16 +14,20 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["system", "storeRef", "apiVersion", "mappingStatus", "collectedAt", "assessmentTime", "collectorAuthority", "authorityStatus", "sanitized", "sanitizationStatus", "validity", "datasetCompleteness", "collectionFailures"],
+      "required": ["system", "storeRef", "apiVersion", "mappingStatus", "sourceVerificationStatus", "mappingAcceptanceStatus", "collectionAuthorizationStatus", "operationalAuthorityStatus", "collectedAt", "assessmentTime", "collectorAuthority", "authorityStatus", "sanitized", "sanitizationStatus", "validity", "datasetCompleteness", "collectionFailures"],
       "properties": {
         "system": { "const": "normalized_shopify_configuration" },
         "storeRef": { "$ref": "#/$defs/reference" },
         "apiVersion": { "type": "string", "pattern": "^20[0-9]{2}-(01|04|07|10)$" },
-        "mappingStatus": { "enum": ["synthetic_contract_only", "approved_mapping_attached"] },
+        "mappingStatus": { "description": "Repository mapping maturity; Shopify provenance alone cannot set approved_mapping_attached.", "enum": ["synthetic_contract_only", "source_verified_mapping_pending_acceptance", "approved_mapping_attached"] },
+        "sourceVerificationStatus": { "description": "Whether Shopify established the collected source fact.", "enum": ["verified", "unverified", "synthetic"] },
+        "mappingAcceptanceStatus": { "description": "Product Owner acceptance of the Shopify-to-contract mapping, distinct from source verification.", "enum": ["accepted", "pending", "unverified", "synthetic"] },
+        "collectionAuthorizationStatus": { "description": "Authorization to perform the read-only collection, distinct from operational approval.", "enum": ["authorized", "unverified", "synthetic"] },
+        "operationalAuthorityStatus": { "description": "External business-owner authority for operational use of the evidence.", "enum": ["accepted", "blocked", "unverified", "synthetic"] },
         "collectedAt": { "type": "string", "format": "date-time" },
         "assessmentTime": { "type": "string", "format": "date-time" },
         "collectorAuthority": { "type": "string", "minLength": 2 },
-        "authorityStatus": { "enum": ["accepted", "unverified", "synthetic"] },
+        "authorityStatus": { "description": "Legacy collection-authorization status retained for compatibility; it does not confer mapping or operational approval.", "enum": ["accepted", "unverified", "synthetic"] },
         "sanitized": { "const": true },
         "sanitizationStatus": { "enum": ["synthetic_only", "raw_identifiers_replaced"] },
         "collectionFailures": {
@@ -133,11 +137,12 @@
       "type": "array",
       "items": {
         "type": "object", "additionalProperties": false,
-        "required": ["id", "active", "shippingEffect"],
+        "required": ["id", "active", "shippingEffect", "effectiveShippingPriceStatus"],
         "properties": {
           "id": { "$ref": "#/$defs/reference" },
           "active": { "type": "boolean" },
-          "shippingEffect": { "enum": ["zero_shipping", "reduced_shipping", "none", "unverified"] }
+          "shippingEffect": { "enum": ["zero_shipping", "reduced_shipping", "none", "unverified"] },
+          "effectiveShippingPriceStatus": { "enum": ["verified_positive", "verified_zero", "unverified", "not_applicable"] }
         }
       }
     },
