@@ -59,7 +59,7 @@ function main() {
     console.log('Epic K evidence receipt and normalized snapshot contracts: valid.');
     console.log(`Evidence readiness: ${result.evidenceReport.overallState}; ${result.evidenceReport.summary.BLOCKED} requirements BLOCKED.`);
     console.log(`Synthetic configuration comparison: ${result.driftReport.overallState}; live checkout enforcement UNVERIFIED.`);
-    console.log('Operational readiness remains BLOCKED; no Shopify data was accessed.');
+    console.log('Operational readiness remains BLOCKED; K1B-01 synthetic fixtures make no live Shopify compliance claim.');
 }
 
 if (require.main === module) main();

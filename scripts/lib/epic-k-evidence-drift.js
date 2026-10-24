@@ -206,6 +206,7 @@ function assessConfigurationDrift(snapshot, policy = readJson('data/epic-k-fulfi
     }
 
     const machines = snapshot.products.filter((product) => product.classification === 'machine');
+    const unknownClassifications = snapshot.products.filter((product) => product.classification === 'unknown');
     const profileById = new Map(snapshot.profiles.map((profile) => [profile.id, profile]));
     const permissiveMachines = machines.filter((product) => profileById.get(product.profileId)?.machineShipmentMode === 'ordinary_checkout_possible');
     const missingMachineProfiles = machines.filter((product) => !profileById.has(product.profileId));
@@ -216,7 +217,7 @@ function assessConfigurationDrift(snapshot, policy = readJson('data/epic-k-fulfi
     });
     if (permissiveMachines.length) {
         results.push(finding('machine_shipping', STATES.FAIL, 'A supplied machine assignment points to a profile that may expose ordinary shipping checkout.', ['Verify all machine assignments and checkout bypass controls.']));
-    } else if (complete.profiles !== 'complete' || complete.products !== 'complete'
+    } else if (complete.profiles !== 'complete' || complete.products !== 'complete' || unknownClassifications.length
         || missingMachineProfiles.length || unverifiedMachineProfiles.length || incompleteMachineAssignments.length) {
         results.push(finding('machine_shipping', STATES.BLOCKED, 'Machine Product assignment or quotation enforcement evidence is missing or unverified.', ['Collect complete Product-to-profile assignments and supported quotation-routing evidence.']));
     } else {
@@ -331,7 +332,7 @@ function assessConfigurationDrift(snapshot, policy = readJson('data/epic-k-fulfi
             schemaVersion: 1,
             reportType: 'configuration_drift',
             assessedAt,
-            inputClassification: snapshot.synthetic ? 'synthetic_fixture' : 'sanitized_future_shopify_audit',
+            inputClassification: snapshot.synthetic ? 'synthetic_fixture' : 'sanitized_shopify_audit',
             overallState: worstState(results),
             operationalReadiness: STATES.BLOCKED,
             liveCheckoutEnforcement: STATES.UNVERIFIED,

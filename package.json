@@ -226,6 +226,10 @@
     "validate:epic-k-evidence": "node scripts/validate-epic-k-evidence.js",
     "test:epic-k-evidence": "node scripts/test-epic-k-evidence.js",
     "validate:epic-k-k1b01": "npm run validate:epic-k-k1a && npm run validate:epic-k-evidence && npm run test:epic-k-evidence",
+    "audit:epic-k-shopify": "node scripts/audit-epic-k-shopify-config.js",
+    "validate:epic-k-shopify-audit": "node scripts/validate-epic-k-shopify-audit.js",
+    "test:epic-k-collector": "node scripts/test-epic-k-shopify-collector.js",
+    "validate:epic-k-k1b02": "npm run validate:epic-k-k1b01 && npm run validate:epic-k-shopify-audit && npm run test:epic-k-collector",
     "test:epic-j-cart": "playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1",
     "validate:epic-j-j0": "node scripts/run-epic-j-j0.js"
   },

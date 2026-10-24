@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "contractId": "epic-k-shopify-audit-provenance",
+  "auditId": "K1B02-AUDIT-2026-10-24",
+  "storeRef": "RHINO_LAPIDARY",
+  "apiVersion": "2026-10",
+  "collectedAt": "2026-10-24T14:25:37.885Z",
+  "assessedAt": "2026-10-24T14:29:27.286Z",
+  "authorization": "product_owner_authorized_read_only_epic_k_audit",
+  "collection": {
+    "interface": "authenticated_shopify_admin_graphql_connector",
+    "finalQueryCount": 25,
+    "mutationCount": 0,
+    "schemaInspection": true,
+    "storeIdentityVerified": true,
+    "initialReadOnlyQueryCorrections": 3
+  },
+  "datasets": [
+    {
+      "id": "access_and_store_identity",
+      "operation": "EpicKAuditAccess",
+      "requiredScopes": [],
+      "scopeStatus": "not_required",
+      "pages": 1,
+      "recordCount": 1,
+      "completeness": "complete",
+      "notes": "Connected store identity matched the authorized Rhino store; required audit read scopes were present."
+    },
+    {
+      "id": "shipping_profiles_zones_rates_assignments",
+      "operation": "EpicKAuditDeliveryProfiles",
+      "requiredScopes": ["read_products", "read_shipping"],
+      "scopeStatus": "granted",
+      "pages": 15,
+      "recordCount": 1,
+      "completeness": "complete",
+      "notes": "One profile, 122 Product assignments, two zones, and five active method definitions were collected with no remaining pagination cursor."
+    },
+    {
+      "id": "discounts",
+      "operation": "EpicKAuditDiscounts",
+      "requiredScopes": ["read_discounts"],
+      "scopeStatus": "granted",
+      "pages": 1,
+      "recordCount": 0,
+      "completeness": "complete",
+      "notes": "No DiscountNode records were returned; this does not negate the confirmed zero-cost shipping-rate path."
+    },
+    {
+      "id": "markets",
+      "operation": "EpicKAuditMarkets",
+      "requiredScopes": ["read_markets"],
+      "scopeStatus": "granted",
+      "pages": 1,
+      "recordCount": 1,
+      "completeness": "complete",
+      "notes": "One active United States Market was returned; Market configuration alone does not prove checkout availability."
+    },
+    {
+      "id": "locations_and_pickup",
+      "operation": "EpicKAuditLocations",
+      "requiredScopes": ["read_locations"],
+      "scopeStatus": "granted",
+      "pages": 1,
+      "recordCount": 3,
+      "completeness": "complete",
+      "notes": "All returned locations had localPickupSettingsV2 absent; no Product eligibility or operations approval was inferred."
+    },
+    {
+      "id": "product_variant_logistics",
+      "operation": "EpicKAuditProductVariants",
+      "requiredScopes": ["read_inventory", "read_products"],
+      "scopeStatus": "granted",
+      "pages": 5,
+      "recordCount": 125,
+      "completeness": "partial",
+      "notes": "Variant shipping flags and configured weights were collected; authoritative classification and package/crate characteristics were unavailable."
+    },
+    {
+      "id": "shopify_functions",
+      "operation": "EpicKAuditFunctions",
+      "requiredScopes": ["read_discounts"],
+      "scopeStatus": "granted",
+      "pages": 1,
+      "recordCount": 0,
+      "completeness": "complete",
+      "notes": "No installed Shopify Functions were returned by the authorized query."
+    },
+    {
+      "id": "package_characteristics",
+      "operation": "EpicKAuditProductVariants",
+      "requiredScopes": ["read_products"],
+      "scopeStatus": "granted",
+      "pages": 5,
+      "recordCount": 0,
+      "completeness": "unsupported",
+      "notes": "The inspected Admin GraphQL fields did not provide complete per-Variant package or crate dimensions."
+    }
+  ],
+  "sanitization": {
+    "rawGidsCommitted": false,
+    "credentialsCommitted": false,
+    "customerDataCommitted": false,
+    "stableReferences": "fnv1a64_prefixed"
+  },
+  "restrictedEvidence": {
+    "rawResponsePersistence": "not_persisted_after_transient_connector_processing",
+    "gitPath": null,
+    "futureStorageRequirement": "If raw Admin responses are retained in a later audit, store them outside Git with access control, encryption, retention limits, and redaction review."
+  },
+  "customerAndMerchantImpact": {
+    "shopifyDataChanged": false,
+    "customerExperienceChanged": false,
+    "ordersChanged": false,
+    "paymentsChanged": false,
+    "publicationChanged": false
+  },
+  "operationalEvidence": "BLOCKED",
+  "liveCheckoutEnforcement": "UNVERIFIED"
+}

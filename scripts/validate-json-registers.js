@@ -10,6 +10,10 @@ const targets = [
     { name: 'Epic K operational evidence requirements', schemaPath: 'schemas/epic-k-operational-evidence.schema.json', dataPath: 'data/epic-k-operational-evidence-requirements.json' },
     { name: 'Epic K operational evidence receipts', schemaPath: 'schemas/epic-k-evidence-receipts.schema.json', dataPath: 'data/epic-k-evidence-receipts.json' },
     { name: 'Epic K evidence gap report', schemaPath: 'schemas/epic-k-evidence-drift-report.schema.json', dataPath: 'data/epic-k-evidence-gap-report.json' },
+    { name: 'Epic K Shopify source mapping', schemaPath: 'schemas/epic-k-shopify-source-mapping.schema.json', dataPath: 'data/epic-k-shopify-source-mapping.json' },
+    { name: 'Epic K sanitized Shopify snapshot', schemaPath: 'schemas/epic-k-shopify-config-snapshot.schema.json', dataPath: 'data/epic-k-shopify-config-snapshot-2026-10-24.json' },
+    { name: 'Epic K Shopify configuration drift report', schemaPath: 'schemas/epic-k-evidence-drift-report.schema.json', dataPath: 'data/epic-k-shopify-configuration-drift-report-2026-10-24.json' },
+    { name: 'Epic K Shopify audit provenance', schemaPath: 'schemas/epic-k-shopify-audit-provenance.schema.json', dataPath: 'data/epic-k-shopify-audit-provenance-2026-10-24.json' },
     { name: 'Epic K synthetic policy scenarios', schemaPath: 'schemas/epic-k-policy-scenarios.schema.json', dataPath: 'tests/fixtures/epic-k-policy-scenarios.json' },
     { name: 'Epic G isolated foundation fixture', schemaPath: 'schemas/epic-g-foundation-fixture.schema.json', dataPath: 'tests/fixtures/epic-g-foundation.json' },
     { name: 'Epic F machine-page repository readiness', schemaPath: 'schemas/epic-f-machine-page-readiness.schema.json', dataPath: 'data/epic-f-machine-page-readiness.json' },
@@ -239,6 +243,7 @@ const ajv = new Ajv2020({
     },
 });
 let failed = false;
+const validators = new Map();
 
 for (const target of targets) {
     const schemaExists = fs.existsSync(path.join(ROOT, target.schemaPath));
@@ -250,9 +255,12 @@ for (const target of targets) {
         continue;
     }
 
-    const schema = readJson(target.schemaPath);
     const data = readJson(target.dataPath);
-    const validate = ajv.compile(schema);
+    let validate = validators.get(target.schemaPath);
+    if (!validate) {
+        validate = ajv.compile(readJson(target.schemaPath));
+        validators.set(target.schemaPath, validate);
+    }
 
     if (!validate(data)) {
         console.error(`${target.name}: invalid`);

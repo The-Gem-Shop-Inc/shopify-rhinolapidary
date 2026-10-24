@@ -1,0 +1,103 @@
+{
+  "fixtureType": "synthetic_shopify_admin_responses",
+  "containsRealShopifyData": false,
+  "authorityEffect": "none",
+  "generatedAt": "2026-10-24T12:00:00.000Z",
+  "baseCollection": {
+    "schemaVersion": 1,
+    "contractId": "epic-k-shopify-read-only-collection",
+    "synthetic": true,
+    "source": {
+      "shopDomain": "synthetic-rhino.example.invalid",
+      "apiVersion": "2026-10",
+      "collectedAt": "2026-10-24T12:30:00.000Z",
+      "assessmentTime": "2026-10-24T13:00:00.000Z"
+    },
+    "completeness": {
+      "profiles": "complete",
+      "discounts": "complete",
+      "markets": "complete",
+      "locations": "complete",
+      "variants": "complete",
+      "functions": "complete"
+    },
+    "failures": [],
+    "datasets": {
+      "profiles": [
+        {
+          "id": "gid://shopify/DeliveryProfile/SYNTHETIC-GENERAL",
+          "name": "Synthetic General",
+          "default": true,
+          "coversAllItems": false,
+          "items": [{
+            "product": { "id": "gid://shopify/Product/SYNTHETIC-PART", "handle": "synthetic-part", "productType": "Part", "tags": [] },
+            "variants": { "pageInfo": { "hasNextPage": false, "endCursor": null }, "nodes": [{ "id": "gid://shopify/ProductVariant/SYNTHETIC-PART-1", "sku": "SYNTHETIC-PART-1" }] }
+          }],
+          "groups": [{
+            "locationGroup": { "id": "gid://shopify/DeliveryLocationGroup/SYNTHETIC-1", "locations": { "pageInfo": { "hasNextPage": false, "endCursor": null }, "nodes": [{ "id": "gid://shopify/Location/SYNTHETIC-GRAFTON", "name": "Synthetic Grafton", "isActive": true }] } },
+            "locationGroupZones": { "pageInfo": { "hasNextPage": false, "endCursor": null }, "nodes": [{
+              "zone": { "id": "gid://shopify/DeliveryZone/SYNTHETIC-US", "name": "Synthetic United States", "countries": [{ "code": { "countryCode": "US", "restOfWorld": false }, "provinces": [{ "code": "WI" }, { "code": "AK" }, { "code": "HI" }] }] },
+              "methodDefinitions": { "pageInfo": { "hasNextPage": false, "endCursor": null }, "nodes": [{
+                "id": "gid://shopify/DeliveryMethodDefinition/SYNTHETIC-PAID",
+                "name": "Synthetic Paid",
+                "active": true,
+                "methodConditions": [],
+                "rateProvider": { "__typename": "DeliveryRateDefinition", "id": "gid://shopify/DeliveryRateDefinition/SYNTHETIC-PAID", "price": { "amount": "12.00", "currencyCode": "USD" } }
+              }] }
+            }] }
+          }]
+        },
+        {
+          "id": "gid://shopify/DeliveryProfile/SYNTHETIC-MACHINE",
+          "name": "Synthetic Machine",
+          "default": false,
+          "coversAllItems": false,
+          "items": [{
+            "product": { "id": "gid://shopify/Product/SYNTHETIC-MACHINE", "handle": "synthetic-machine", "productType": "Machine", "tags": [] },
+            "variants": { "pageInfo": { "hasNextPage": false, "endCursor": null }, "nodes": [{ "id": "gid://shopify/ProductVariant/SYNTHETIC-MACHINE-1", "sku": "SYNTHETIC-MACHINE-1" }] }
+          }],
+          "groups": []
+        }
+      ],
+      "discounts": [],
+      "markets": [{
+        "id": "gid://shopify/Market/SYNTHETIC-US",
+        "name": "Synthetic United States",
+        "status": "ACTIVE",
+        "type": "REGION",
+        "conditions": { "regionsCondition": { "regions": { "pageInfo": { "hasNextPage": false, "endCursor": null }, "nodes": [{ "__typename": "MarketRegionCountry", "id": "gid://shopify/MarketRegion/SYNTHETIC-US", "name": "United States", "code": "US" }] } } },
+        "delivery": { "shipping": { "isEnabled": true } }
+      }],
+      "locations": [{
+        "id": "gid://shopify/Location/SYNTHETIC-GRAFTON",
+        "name": "Synthetic Grafton",
+        "isActive": true,
+        "fulfillsOnlineOrders": true,
+        "shipsInventory": true,
+        "hasActiveInventory": true,
+        "localPickupSettingsV2": { "pickupTime": "TWENTY_FOUR_HOURS" }
+      }],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/SYNTHETIC-PART-1",
+          "sku": "SYNTHETIC-PART-1",
+          "inventoryQuantity": 5,
+          "sellableOnlineQuantity": 5,
+          "deliveryProfile": { "id": "gid://shopify/DeliveryProfile/SYNTHETIC-GENERAL" },
+          "product": { "id": "gid://shopify/Product/SYNTHETIC-PART", "handle": "synthetic-part", "productType": "Part", "tags": [], "status": "ACTIVE" },
+          "inventoryItem": { "id": "gid://shopify/InventoryItem/SYNTHETIC-PART-1", "requiresShipping": true, "tracked": true, "measurement": { "weight": { "value": 2, "unit": "POUNDS" } }, "inventoryLevels": { "pageInfo": { "hasNextPage": false, "endCursor": null }, "nodes": [] } }
+        },
+        {
+          "id": "gid://shopify/ProductVariant/SYNTHETIC-MACHINE-1",
+          "sku": "SYNTHETIC-MACHINE-1",
+          "inventoryQuantity": 1,
+          "sellableOnlineQuantity": 1,
+          "deliveryProfile": { "id": "gid://shopify/DeliveryProfile/SYNTHETIC-MACHINE" },
+          "product": { "id": "gid://shopify/Product/SYNTHETIC-MACHINE", "handle": "synthetic-machine", "productType": "Machine", "tags": [], "status": "ACTIVE" },
+          "inventoryItem": { "id": "gid://shopify/InventoryItem/SYNTHETIC-MACHINE-1", "requiresShipping": true, "tracked": true, "measurement": { "weight": { "value": 100, "unit": "POUNDS" } }, "inventoryLevels": { "pageInfo": { "hasNextPage": false, "endCursor": null }, "nodes": [] } }
+        }
+      ],
+      "functions": []
+    }
+  }
+}
