@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-k-remediation-proposal.schema.json",
+  "title": "Epic K offline configuration remediation proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "version", "proposalId", "proposalState", "generatedAt", "source", "authority", "candidates", "projectionExpectations"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-k-shopify-remediation-proposal" },
+    "version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+-provisional$" },
+    "proposalId": { "const": "K1B03A-REMEDIATION-PREFLIGHT-2026-10-24" },
+    "proposalState": { "const": "proposal_only" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["snapshotPath", "snapshotFingerprintSha256", "provenancePath", "auditId", "storeRef", "synthetic", "sourceVerificationStatus", "mappingAcceptanceStatus", "collectedAt", "assessedAt"],
+      "properties": {
+        "snapshotPath": { "const": "data/epic-k-shopify-config-snapshot-2026-10-24.json" },
+        "snapshotFingerprintSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "provenancePath": { "const": "data/epic-k-shopify-audit-provenance-2026-10-24.json" },
+        "auditId": { "const": "K1B02-AUDIT-2026-10-24" },
+        "storeRef": { "const": "RHINO_LAPIDARY" },
+        "synthetic": { "const": false },
+        "sourceVerificationStatus": { "const": "verified" },
+        "mappingAcceptanceStatus": { "const": "pending" },
+        "collectedAt": { "type": "string", "format": "date-time" },
+        "assessedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyStatus", "executionAuthorized", "shopifyAccessAuthorized", "operationalEvidenceAccepted", "requiredForExecution"],
+      "properties": {
+        "policyStatus": { "const": "provisional" },
+        "executionAuthorized": { "const": false },
+        "shopifyAccessAuthorized": { "const": false },
+        "operationalEvidenceAccepted": { "const": false },
+        "requiredForExecution": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "type": "string", "minLength": 2 }
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/candidate" }
+    },
+    "projectionExpectations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["freeShipping", "domesticDestinationScope", "internationalCheckoutExposure", "alaskaRateApproval", "hawaiiRateApproval", "machineShipping", "pickup", "productLogistics", "evidenceFreshness", "zeroWeightVariantCount", "blockedOperationalEvidenceCount", "mappingAcceptanceStatus", "liveCheckoutEnforcement"],
+      "properties": {
+        "freeShipping": { "const": "BLOCKED" },
+        "domesticDestinationScope": { "const": "PASS" },
+        "internationalCheckoutExposure": { "const": "UNVERIFIED" },
+        "alaskaRateApproval": { "enum": ["FAIL", "BLOCKED"] },
+        "hawaiiRateApproval": { "enum": ["FAIL", "BLOCKED"] },
+        "machineShipping": { "const": "BLOCKED" },
+        "pickup": { "const": "BLOCKED" },
+        "productLogistics": { "const": "FAIL" },
+        "evidenceFreshness": { "const": "BLOCKED" },
+        "zeroWeightVariantCount": { "const": 44 },
+        "blockedOperationalEvidenceCount": { "const": 8 },
+        "mappingAcceptanceStatus": { "const": "pending" },
+        "liveCheckoutEnforcement": { "const": "UNVERIFIED" }
+      }
+    }
+  },
+  "$defs": {
+    "textList": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "string", "minLength": 2 }
+    },
+    "reference": { "type": "string", "pattern": "^[A-Z][A-Z0-9_-]+$" },
+    "candidate": {
+      "oneOf": [
+        { "$ref": "#/$defs/rateCandidate" },
+        { "$ref": "#/$defs/zoneCandidate" }
+      ]
+    },
+    "candidateBase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "proposalState", "policyReferences", "observed", "proposed", "preconditions", "affectedScope", "expectedChange", "knownRisks", "unresolvedDependencies", "rollbackCapture", "requiredExecutionAuthority"],
+      "properties": {
+        "id": { "enum": ["K-REM-001", "K-REM-002"] },
+        "title": { "type": "string", "minLength": 2 },
+        "proposalState": { "const": "proposal_only" },
+        "policyReferences": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "pattern": "^K-DEC-[0-9]{3}$" } },
+        "observed": {
+          "type": "object", "additionalProperties": false,
+          "required": ["snapshotPath", "snapshotFingerprintSha256", "targetType", "targetRef", "sourceCollectedAt", "sourceAssessmentTime", "currentValue"],
+          "properties": {
+            "snapshotPath": { "const": "data/epic-k-shopify-config-snapshot-2026-10-24.json" },
+            "snapshotFingerprintSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "targetType": { "enum": ["shipping_rate", "shipping_zone"] },
+            "targetRef": { "$ref": "#/$defs/reference" },
+            "sourceCollectedAt": { "type": "string", "format": "date-time" },
+            "sourceAssessmentTime": { "type": "string", "format": "date-time" },
+            "currentValue": { "type": "object" }
+          }
+        },
+        "proposed": { "type": "object" },
+        "preconditions": { "$ref": "#/$defs/textList" },
+        "affectedScope": { "$ref": "#/$defs/textList" },
+        "expectedChange": { "$ref": "#/$defs/textList" },
+        "knownRisks": { "$ref": "#/$defs/textList" },
+        "unresolvedDependencies": { "$ref": "#/$defs/textList" },
+        "rollbackCapture": { "$ref": "#/$defs/textList" },
+        "requiredExecutionAuthority": { "$ref": "#/$defs/textList" }
+      }
+    },
+    "rateCandidate": {
+      "allOf": [
+        { "$ref": "#/$defs/candidateBase" },
+        {
+          "properties": {
+            "id": { "const": "K-REM-001" },
+            "observed": {
+              "properties": {
+                "targetType": { "const": "shipping_rate" },
+                "currentValue": {
+                  "type": "object", "additionalProperties": false,
+                  "required": ["active", "type", "amountCents", "thresholdCents", "currencyCode"],
+                  "properties": {
+                    "active": { "const": true },
+                    "type": { "const": "threshold_free" },
+                    "amountCents": { "const": 0 },
+                    "thresholdCents": { "const": 7000 },
+                    "currencyCode": { "const": "USD" }
+                  }
+                }
+              }
+            },
+            "proposed": {
+              "type": "object", "additionalProperties": false,
+              "required": ["changeType", "projectedActivePathPresent", "replacementRateSelected", "preserveObservedPaidRateRefs", "carrierCalculatedRateStatus"],
+              "properties": {
+                "changeType": { "const": "remove_or_deactivate_observed_rate" },
+                "projectedActivePathPresent": { "const": false },
+                "replacementRateSelected": { "const": false },
+                "preserveObservedPaidRateRefs": {
+                  "type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true,
+                  "items": { "$ref": "#/$defs/reference" }
+                },
+                "carrierCalculatedRateStatus": { "const": "unresolved" }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "zoneCandidate": {
+      "allOf": [
+        { "$ref": "#/$defs/candidateBase" },
+        {
+          "properties": {
+            "id": { "const": "K-REM-002" },
+            "observed": {
+              "properties": {
+                "targetType": { "const": "shipping_zone" },
+                "currentValue": {
+                  "type": "object", "additionalProperties": false,
+                  "required": ["countryCodes", "subdivisionCodes", "outOfScopeSubdivisionCodes"],
+                  "properties": {
+                    "countryCodes": { "const": ["US"] },
+                    "subdivisionCodes": { "type": "array", "minItems": 62, "maxItems": 62, "uniqueItems": true, "items": { "pattern": "^[A-Z]{2}$" } },
+                    "outOfScopeSubdivisionCodes": { "const": ["AA", "AE", "AP", "AS", "DC", "FM", "GU", "MH", "MP", "PR", "PW", "VI"] }
+                  }
+                }
+              }
+            },
+            "proposed": {
+              "type": "object", "additionalProperties": false,
+              "required": ["changeType", "countryCodes", "subdivisionCodes", "removedSubdivisionCodes", "preserveAlaskaHawaii", "preserveInternationalZone"],
+              "properties": {
+                "changeType": { "const": "restrict_us_zone_to_approved_states" },
+                "countryCodes": { "const": ["US"] },
+                "subdivisionCodes": { "type": "array", "minItems": 50, "maxItems": 50, "uniqueItems": true, "items": { "pattern": "^[A-Z]{2}$" } },
+                "removedSubdivisionCodes": { "const": ["AA", "AE", "AP", "AS", "DC", "FM", "GU", "MH", "MP", "PR", "PW", "VI"] },
+                "preserveAlaskaHawaii": { "const": true },
+                "preserveInternationalZone": { "const": true }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

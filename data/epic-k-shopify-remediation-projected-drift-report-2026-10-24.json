@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "reportType": "configuration_drift",
+  "assessedAt": "2026-10-24T14:29:27.286Z",
+  "inputClassification": "sanitized_shopify_projection",
+  "overallState": "FAIL",
+  "operationalReadiness": "BLOCKED",
+  "liveCheckoutEnforcement": "UNVERIFIED",
+  "summary": {
+    "PASS": 0,
+    "FAIL": 2,
+    "BLOCKED": 4,
+    "UNVERIFIED": 0
+  },
+  "results": [
+    {
+      "id": "free_shipping",
+      "state": "BLOCKED",
+      "message": "An active shipping rate or discount has an unverified effective shipping price.",
+      "actions": [
+        "Resolve every active rate and shipping-discount effect before asserting that free shipping is absent."
+      ]
+    },
+    {
+      "id": "machine_shipping",
+      "state": "BLOCKED",
+      "message": "Machine Product assignment or quotation enforcement evidence is missing or unverified.",
+      "actions": [
+        "Collect complete Product-to-profile assignments and supported quotation-routing evidence."
+      ]
+    },
+    {
+      "id": "pickup",
+      "state": "BLOCKED",
+      "message": "Grafton pickup configuration or location evidence is missing.",
+      "actions": [
+        "Collect location, pickup-setting, and readiness evidence."
+      ]
+    },
+    {
+      "id": "geography",
+      "state": "FAIL",
+      "message": "International shipping destinations are configured, but Market evidence does not confirm customer checkout availability. AK has a configured rate without accepted operational approval and confirmed service availability. HI has a configured rate without accepted operational approval and confirmed service availability.",
+      "actions": [
+        "Reconcile configured destination scope and verify international checkout availability.",
+        "Attach separate Alaska and Hawaii rate and service approvals before invoicing."
+      ],
+      "findings": [
+        {
+          "id": "domestic_destination_scope",
+          "state": "PASS",
+          "message": "Configured US subdivisions match the approved 50-state scope."
+        },
+        {
+          "id": "international_checkout_exposure",
+          "state": "UNVERIFIED",
+          "message": "International shipping destinations are configured, but Market evidence does not confirm customer checkout availability."
+        },
+        {
+          "id": "ak_rate_approval",
+          "state": "FAIL",
+          "message": "AK has a configured rate without accepted operational approval and confirmed service availability."
+        },
+        {
+          "id": "hi_rate_approval",
+          "state": "FAIL",
+          "message": "HI has a configured rate without accepted operational approval and confirmed service availability."
+        }
+      ]
+    },
+    {
+      "id": "product_logistics",
+      "state": "FAIL",
+      "message": "One or more supplied shippable Products have missing or zero shipping weight.",
+      "actions": [
+        "Obtain authoritative packed weights through Epic E/F ownership."
+      ]
+    },
+    {
+      "id": "evidence_freshness",
+      "state": "BLOCKED",
+      "message": "Shopify source verification, Product Owner mapping acceptance, and collection authorization are separate gates; at least one remains unresolved.",
+      "actions": [
+        "Obtain explicit Product Owner acceptance of the verified source mapping without treating it as operational approval."
+      ]
+    }
+  ]
+}

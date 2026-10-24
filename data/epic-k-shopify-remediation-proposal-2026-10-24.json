@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "contractId": "epic-k-shopify-remediation-proposal",
+  "version": "1.0.0-provisional",
+  "proposalId": "K1B03A-REMEDIATION-PREFLIGHT-2026-10-24",
+  "proposalState": "proposal_only",
+  "generatedAt": "2026-10-24T10:48:50.673-05:00",
+  "source": {
+    "snapshotPath": "data/epic-k-shopify-config-snapshot-2026-10-24.json",
+    "snapshotFingerprintSha256": "1af808e320832c642cab0dbec5a3e8afaf2995e97d224e496a97acf7917b0ab2",
+    "provenancePath": "data/epic-k-shopify-audit-provenance-2026-10-24.json",
+    "auditId": "K1B02-AUDIT-2026-10-24",
+    "storeRef": "RHINO_LAPIDARY",
+    "synthetic": false,
+    "sourceVerificationStatus": "verified",
+    "mappingAcceptanceStatus": "pending",
+    "collectedAt": "2026-10-24T14:25:37.885Z",
+    "assessedAt": "2026-10-24T14:29:27.286Z"
+  },
+  "authority": {
+    "policyStatus": "provisional",
+    "executionAuthorized": false,
+    "shopifyAccessAuthorized": false,
+    "operationalEvidenceAccepted": false,
+    "requiredForExecution": [
+      "Explicit Product Owner authorization for the exact Shopify configuration mutation batch",
+      "Authorized Shopify Admin operator and reviewed rollback evidence",
+      "Shipping operations review of service effects and Alaska/Hawaii quotation boundaries"
+    ]
+  },
+  "candidates": [
+    {
+      "id": "K-REM-001",
+      "title": "Remove the observed zero-cost threshold shipping path",
+      "proposalState": "proposal_only",
+      "policyReferences": ["K-DEC-001"],
+      "observed": {
+        "snapshotPath": "data/epic-k-shopify-config-snapshot-2026-10-24.json",
+        "snapshotFingerprintSha256": "1af808e320832c642cab0dbec5a3e8afaf2995e97d224e496a97acf7917b0ab2",
+        "targetType": "shipping_rate",
+        "targetRef": "RATE_30FCB2E66D59853D",
+        "sourceCollectedAt": "2026-10-24T14:25:37.885Z",
+        "sourceAssessmentTime": "2026-10-24T14:29:27.286Z",
+        "currentValue": {
+          "active": true,
+          "type": "threshold_free",
+          "amountCents": 0,
+          "thresholdCents": 7000,
+          "currencyCode": "USD"
+        }
+      },
+      "proposed": {
+        "changeType": "remove_or_deactivate_observed_rate",
+        "projectedActivePathPresent": false,
+        "replacementRateSelected": false,
+        "preserveObservedPaidRateRefs": ["RATE_20A0A92F67A2506D", "RATE_62EFE87320A141A2"],
+        "carrierCalculatedRateStatus": "unresolved"
+      },
+      "preconditions": [
+        "Fresh authorized Admin evidence must confirm the target still uniquely matches the observed zero-cost threshold rule",
+        "Product Owner must authorize the exact future mutation after reviewing customer and commercial impact"
+      ],
+      "affectedScope": [
+        "Only the observed active zero-cost Standard shipping rule at the $70 threshold",
+        "No replacement rate, carrier rate, Product assignment, Market, location, or checkout behavior is selected"
+      ],
+      "expectedChange": [
+        "The identified zero-cost threshold path is absent from the future authorized configuration",
+        "Free-shipping compliance remains unresolved until every applicable rate and discount effect is verified"
+      ],
+      "knownRisks": [
+        "Removing the rule may leave some carts without a usable shipping method",
+        "Other discounts, carrier calculations, or checkout paths may still produce an unknown or zero charge"
+      ],
+      "unresolvedDependencies": [
+        "K-EVID-004 approved shipping services and regions",
+        "Carrier-calculated final price behavior and checkout enforcement"
+      ],
+      "rollbackCapture": [
+        "Capture the target rate reference, active state, amount, threshold, currency, zone, profile, and conditions immediately before change",
+        "Capture sanitized before-state screenshots or export in approved restricted storage and record the Admin operator and change time"
+      ],
+      "requiredExecutionAuthority": [
+        "Explicit Product Owner approval of removal or deactivation",
+        "Authorized Shopify Admin operator",
+        "Shipping operations confirmation of the intended service effect"
+      ]
+    },
+    {
+      "id": "K-REM-002",
+      "title": "Restrict the observed US zone to the approved 50 states",
+      "proposalState": "proposal_only",
+      "policyReferences": ["K-DEC-003", "K-DEC-004", "K-DEC-019"],
+      "observed": {
+        "snapshotPath": "data/epic-k-shopify-config-snapshot-2026-10-24.json",
+        "snapshotFingerprintSha256": "1af808e320832c642cab0dbec5a3e8afaf2995e97d224e496a97acf7917b0ab2",
+        "targetType": "shipping_zone",
+        "targetRef": "ZONE_8FBCE0BCBE55E5F2",
+        "sourceCollectedAt": "2026-10-24T14:25:37.885Z",
+        "sourceAssessmentTime": "2026-10-24T14:29:27.286Z",
+        "currentValue": {
+          "countryCodes": ["US"],
+          "subdivisionCodes": ["AA", "AE", "AK", "AL", "AP", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "FM", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MO", "MP", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"],
+          "outOfScopeSubdivisionCodes": ["AA", "AE", "AP", "AS", "DC", "FM", "GU", "MH", "MP", "PR", "PW", "VI"]
+        }
+      },
+      "proposed": {
+        "changeType": "restrict_us_zone_to_approved_states",
+        "countryCodes": ["US"],
+        "subdivisionCodes": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"],
+        "removedSubdivisionCodes": ["AA", "AE", "AP", "AS", "DC", "FM", "GU", "MH", "MP", "PR", "PW", "VI"],
+        "preserveAlaskaHawaii": true,
+        "preserveInternationalZone": true
+      },
+      "preconditions": [
+        "Fresh authorized Admin evidence must confirm the target still uniquely matches the observed US zone",
+        "Product Owner must authorize the exact future destination-scope mutation",
+        "Shipping operations must confirm that Alaska and Hawaii remain quotation-intake destinations without invoicing approval"
+      ],
+      "affectedScope": [
+        "Only the twelve observed out-of-scope subdivision codes in the US shipping zone",
+        "The US zone, all 50 states, Alaska, Hawaii, and the international zone remain present"
+      ],
+      "expectedChange": [
+        "The configured US subdivision list contains exactly the approved 50 states",
+        "International checkout exposure and Alaska/Hawaii rate approval remain independently unresolved"
+      ],
+      "knownRisks": [
+        "Removing configured destinations may change availability for military, District of Columbia, and territory addresses",
+        "Zone configuration alone cannot prove the checkout behavior presented to every customer"
+      ],
+      "unresolvedDependencies": [
+        "K-EVID-004 approved shipping services and regions",
+        "K-EVID-005 accepted Alaska and Hawaii rate and service evidence",
+        "Verified international checkout availability"
+      ],
+      "rollbackCapture": [
+        "Capture the complete US zone country and subdivision membership immediately before change",
+        "Capture associated profile, method, and Market relationships plus the Admin operator and change time"
+      ],
+      "requiredExecutionAuthority": [
+        "Explicit Product Owner approval of the twelve-code removal",
+        "Authorized Shopify Admin operator",
+        "Shipping operations confirmation of destination and Alaska/Hawaii effects"
+      ]
+    }
+  ],
+  "projectionExpectations": {
+    "freeShipping": "BLOCKED",
+    "domesticDestinationScope": "PASS",
+    "internationalCheckoutExposure": "UNVERIFIED",
+    "alaskaRateApproval": "FAIL",
+    "hawaiiRateApproval": "FAIL",
+    "machineShipping": "BLOCKED",
+    "pickup": "BLOCKED",
+    "productLogistics": "FAIL",
+    "evidenceFreshness": "BLOCKED",
+    "zeroWeightVariantCount": 44,
+    "blockedOperationalEvidenceCount": 8,
+    "mappingAcceptanceStatus": "pending",
+    "liveCheckoutEnforcement": "UNVERIFIED"
+  }
+}
