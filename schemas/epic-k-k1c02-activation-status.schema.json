@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-k-k1c02-activation-status.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "batch", "parentPbi", "store", "audit", "verification", "activation", "controlledMutations", "rollback", "privacy"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-k-k1c02-activation-status" },
+    "batch": { "const": "K1C-02" },
+    "parentPbi": { "const": "K-PBI-003" },
+    "store": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authorizedMyshopifyDomain", "storefrontAlias", "identityVerified"],
+      "properties": {
+        "authorizedMyshopifyDomain": { "const": "sz5dnk-nf.myshopify.com" },
+        "storefrontAlias": { "const": "rhino-lapidary.myshopify.com" },
+        "identityVerified": { "const": true }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "required": ["date", "apiVersion", "readOnlyConfigurationCollectionComplete", "shipping", "markets", "pickup"],
+      "properties": {
+        "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+        "apiVersion": { "type": "string" },
+        "readOnlyConfigurationCollectionComplete": { "type": "boolean" },
+        "shipping": { "type": "object" },
+        "markets": { "type": "object" },
+        "pickup": { "type": "object" }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": ["unpublishedPreviewThemeUploaded", "productionThemePublishedByBatch", "quotePreviewAssessment", "contactSubmissionConfirmed", "draftInvoice"],
+      "properties": {
+        "unpublishedPreviewThemeUploaded": { "type": "boolean" },
+        "unpublishedPreviewThemeId": { "type": "string" },
+        "productionThemeId": { "type": "string" },
+        "productionThemePublishedByBatch": { "type": "boolean" },
+        "quotePreviewAssessment": { "type": "string" },
+        "contactDestinationConfigured": { "type": "string" },
+        "contactSubmissionConfirmed": { "type": "boolean" },
+        "draftInvoice": { "type": "object" }
+      }
+    },
+    "activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "productionThemePublished", "shippingRatesRemoved", "productionShippingMutations", "pickupConfigurationMutations", "blockers", "liveCheckoutEnforcement", "operationalReadiness"],
+      "properties": {
+        "state": { "enum": ["BLOCKED", "ACTIVE", "ROLLED_BACK"] },
+        "productionThemePublished": { "type": "boolean" },
+        "shippingRatesRemoved": { "type": "array", "items": { "type": "string" } },
+        "productionShippingMutations": { "type": "array", "items": { "type": "string" } },
+        "pickupConfigurationMutations": { "type": "array", "items": { "type": "string" } },
+        "blockers": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "liveCheckoutEnforcement": { "enum": ["PASS", "FAIL", "BLOCKED", "UNVERIFIED"] },
+        "operationalReadiness": { "enum": ["PASS", "FAIL", "BLOCKED", "UNVERIFIED"] }
+      }
+    },
+    "controlledMutations": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "rollback": {
+      "type": "object",
+      "required": ["restrictedArtifactLabel", "productionRollbackRequired", "rateBaseline", "previewRollbackSourceCommit"],
+      "properties": {
+        "restrictedArtifactLabel": { "type": "string" },
+        "productionRollbackRequired": { "type": "boolean" },
+        "rateBaseline": { "type": "array" },
+        "previewRollbackSourceCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["credentialsCommitted", "customerDataCommitted", "rawShopifyGidsCommitted", "rawEvidenceCommitted"],
+      "properties": {
+        "credentialsCommitted": { "const": false },
+        "customerDataCommitted": { "const": false },
+        "rawShopifyGidsCommitted": { "const": false },
+        "rawEvidenceCommitted": { "const": false }
+      }
+    }
+  }
+}

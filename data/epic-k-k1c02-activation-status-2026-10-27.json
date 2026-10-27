@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "contractId": "epic-k-k1c02-activation-status",
+  "batch": "K1C-02",
+  "parentPbi": "K-PBI-003",
+  "store": {
+    "authorizedMyshopifyDomain": "sz5dnk-nf.myshopify.com",
+    "storefrontAlias": "rhino-lapidary.myshopify.com",
+    "identityVerified": true
+  },
+  "audit": {
+    "date": "2026-10-27",
+    "apiVersion": "2026-10",
+    "readOnlyConfigurationCollectionComplete": true,
+    "shipping": {
+      "profiles": [
+        {
+          "name": "General",
+          "assignedVariantCount": 114,
+          "zones": [
+            {
+              "name": "Domestic",
+              "subdivisionScope": "48_contiguous_states",
+              "methods": [
+                { "name": "Standard", "amountCents": 800, "currency": "USD" },
+                { "name": "Express", "amountCents": 1500, "currency": "USD" }
+              ]
+            },
+            {
+              "name": "Alaska and Hawaii: quotation required",
+              "subdivisionScope": "AK_HI",
+              "methods": []
+            }
+          ]
+        },
+        {
+          "name": "Machinery: approved freight quotation required",
+          "assignedVariantCount": 11,
+          "zones": [
+            {
+              "name": "United States",
+              "subdivisionScope": "50_states",
+              "methods": []
+            }
+          ]
+        }
+      ],
+      "activeDiscountCount": 0
+    },
+    "markets": {
+      "activeMarketCount": 1,
+      "activeCountryScope": ["US"]
+    },
+    "pickup": {
+      "locationCount": 3,
+      "graftonActive": true,
+      "graftonPickupEnabled": true,
+      "graftonPickupTime": "one_business_day_excluding_weekends",
+      "otherPickupEnabledLocationCount": 0,
+      "activeVariantsWithPositiveGraftonInventory": 3,
+      "machinesWithPositiveGraftonInventory": 0,
+      "approvedPickupVariantCount": 0
+    }
+  },
+  "verification": {
+    "unpublishedPreviewThemeUploaded": true,
+    "unpublishedPreviewThemeId": "158631198917",
+    "productionThemeId": "158579622085",
+    "productionThemePublishedByBatch": false,
+    "quotePreviewAssessment": "BLOCKED_HTTP_429",
+    "contactDestinationConfigured": "UNVERIFIED_QUERY_FIELD",
+    "contactSubmissionConfirmed": false,
+    "draftInvoice": {
+      "controlledDraftCreated": true,
+      "representativeLineCount": 2,
+      "customShippingChargeAccepted": true,
+      "totalsReconciled": true,
+      "invoicePaymentUrlGenerated": true,
+      "invoiceSent": false,
+      "paymentProcessed": false,
+      "draftDeleted": true,
+      "testCustomerDeleted": true
+    }
+  },
+  "activation": {
+    "state": "BLOCKED",
+    "productionThemePublished": false,
+    "shippingRatesRemoved": [],
+    "productionShippingMutations": [],
+    "pickupConfigurationMutations": [],
+    "blockers": [
+      "K-EVID-001 has no accepted exact Product or Variant pickup eligibility receipt, so the governed pickup registry is empty.",
+      "K-EVID-002 remains blocked; current Shopify pickup settings and inventory do not establish warehouse operational authority.",
+      "The unpublished storefront preview returned Shopify HTTP 429 during controlled cart verification, so quotation contact delivery and the checkout matrix are not accepted."
+    ],
+    "liveCheckoutEnforcement": "UNVERIFIED",
+    "operationalReadiness": "BLOCKED"
+  },
+  "controlledMutations": [
+    "unpublished_preview_theme_partial_push",
+    "draft_order_create",
+    "test_customer_create",
+    "draft_order_customer_assignment",
+    "draft_order_delete",
+    "test_customer_delete"
+  ],
+  "rollback": {
+    "restrictedArtifactLabel": "LocalAppData/RhinoLapidary/restricted-evidence/epic-k-k1c02-2026-10-27",
+    "productionRollbackRequired": false,
+    "rateBaseline": [
+      { "zone": "Domestic", "name": "Standard", "amountCents": 800, "currency": "USD" },
+      { "zone": "Domestic", "name": "Express", "amountCents": 1500, "currency": "USD" }
+    ],
+    "previewRollbackSourceCommit": "e49323d6993f4141c185333fcb49d468fbd195ce"
+  },
+  "privacy": {
+    "credentialsCommitted": false,
+    "customerDataCommitted": false,
+    "rawShopifyGidsCommitted": false,
+    "rawEvidenceCommitted": false
+  }
+}
