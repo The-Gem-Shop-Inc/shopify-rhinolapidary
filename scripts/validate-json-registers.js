@@ -18,6 +18,7 @@ const targets = [
     { name: 'Epic K Shopify remediation projected drift', schemaPath: 'schemas/epic-k-evidence-drift-report.schema.json', dataPath: 'data/epic-k-shopify-remediation-projected-drift-report-2026-10-24.json' },
     { name: 'Epic K bounded Shopify mapping acceptance', schemaPath: 'schemas/epic-k-shopify-mapping-acceptance.schema.json', dataPath: 'data/epic-k-shopify-mapping-acceptance-2026-10-24.json' },
     { name: 'Epic K operational evidence intake manifest', schemaPath: 'schemas/epic-k-evidence-intake-manifest.schema.json', dataPath: 'data/epic-k-evidence-intake-manifest.json' },
+    { name: 'Epic K temporary quotation checkout', schemaPath: 'schemas/epic-k-temporary-quote-mode.schema.json', dataPath: 'data/epic-k-temporary-quote-mode.json' },
     { name: 'Epic K synthetic policy scenarios', schemaPath: 'schemas/epic-k-policy-scenarios.schema.json', dataPath: 'tests/fixtures/epic-k-policy-scenarios.json' },
     { name: 'Epic G isolated foundation fixture', schemaPath: 'schemas/epic-g-foundation-fixture.schema.json', dataPath: 'tests/fixtures/epic-g-foundation.json' },
     { name: 'Epic F machine-page repository readiness', schemaPath: 'schemas/epic-f-machine-page-readiness.schema.json', dataPath: 'data/epic-f-machine-page-readiness.json' },

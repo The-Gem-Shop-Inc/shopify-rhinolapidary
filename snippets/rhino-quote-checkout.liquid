@@ -1,0 +1,221 @@
+{% doc %}
+Renders the temporary Epic K shipping quotation and conditional Grafton pickup checkout routes.
+
+@param {object} cart - The current Shopify cart.
+{% enddoc %}
+
+{%- liquid
+  capture pickup_registry
+    render 'rhino-quote-pickup-eligibility'
+  endcapture
+  assign pickup_registry = pickup_registry | strip
+  assign pickup_allowed = true
+  if cart == empty
+    assign pickup_allowed = false
+  endif
+-%}
+
+{%- capture cart_signature -%}
+  {%- for item in cart.items -%}{{ item.variant.id }}:{{ item.quantity }}{% unless forloop.last %}|{% endunless %}{%- endfor -%}
+{%- endcapture -%}
+
+{%- for item in cart.items -%}
+  {%- liquid
+    capture variant_token
+      echo '|'
+      echo item.variant.id
+      echo '|'
+    endcapture
+    unless pickup_registry contains variant_token
+      assign pickup_allowed = false
+    endunless
+    assign grafton_available = false
+    for store_availability in item.variant.store_availabilities
+      assign pickup_location_name = store_availability.location.name | downcase | strip
+      if store_availability.pick_up_enabled and store_availability.available and pickup_location_name contains 'grafton'
+        assign grafton_available = true
+      endif
+    endfor
+    unless grafton_available
+      assign pickup_allowed = false
+    endunless
+  -%}
+{%- endfor -%}
+
+{%- assign quote_reference = cart.token | slice: 0, 8 | upcase | prepend: 'KQ-' | append: '-' | append: cart.item_count -%}
+
+<rhino-quote-mode
+  class="rhino-quote-mode"
+  data-cart-signature="{{ cart_signature | strip | escape }}"
+  data-reference="{{ quote_reference | escape }}"
+  data-string-duplicate="{{ 'sections.cart.quote_mode.duplicate' | t | escape }}"
+  data-string-invalid-cart="{{ 'sections.cart.quote_mode.invalid_cart' | t | escape }}"
+  data-string-submitting="{{ 'sections.cart.quote_mode.submitting' | t | escape }}"
+>
+  <h2 class="rhino-quote-mode__heading">{{ 'sections.cart.quote_mode.heading' | t }}</h2>
+  <p class="rhino-quote-mode__intro">{{ 'sections.cart.quote_mode.intro' | t }}</p>
+
+  <div class="rhino-quote-mode__routes">
+    <section class="rhino-quote-mode__route" aria-labelledby="RhinoShippingQuoteHeading">
+      <h3 id="RhinoShippingQuoteHeading">{{ 'sections.cart.quote_mode.shipping_heading' | t }}</h3>
+      <p>{{ 'sections.cart.quote_mode.shipping_explanation' | t }}</p>
+      <p class="rhino-quote-mode__reference">
+        {{ 'sections.cart.quote_mode.reference_html' | t: reference: quote_reference }}
+      </p>
+
+      {%- form 'contact', id: 'RhinoShippingQuoteForm', class: 'rhino-quote-mode__form' -%}
+        <div
+          data-rhino-quote-form-state
+          data-posted-successfully="{% if form.posted_successfully? %}true{% else %}false{% endif %}"
+        >
+          {%- if form.posted_successfully? -%}
+            <div class="rhino-quote-mode__success" role="status" tabindex="-1" data-rhino-quote-success>
+              <h4>{{ 'sections.cart.quote_mode.success_heading' | t }}</h4>
+              <p>{{ 'sections.cart.quote_mode.success_body_html' | t: reference: quote_reference }}</p>
+            </div>
+          {%- else -%}
+            {{ form.errors | default_errors }}
+            <p class="rhino-quote-mode__required">{{ 'sections.cart.quote_mode.required_note' | t }}</p>
+
+            <input type="hidden" name="contact[request_type]" value="Temporary shipping quotation">
+            <input type="hidden" name="contact[quotation_reference]" value="{{ quote_reference | escape }}" data-rhino-quote-reference>
+            <input type="hidden" name="contact[cart_signature]" value="{{ cart_signature | strip | escape }}">
+            <input type="hidden" name="contact[country]" value="US">
+
+            <div class="rhino-quote-mode__fields">
+              <div class="field">
+                <input class="field__input" autocomplete="name" type="text" id="RhinoQuoteName" name="contact[name]" required>
+                <label class="field__label" for="RhinoQuoteName">{{ 'sections.cart.quote_mode.name' | t }}</label>
+              </div>
+              <div class="field">
+                <input class="field__input" autocomplete="email" type="email" id="RhinoQuoteEmail" name="contact[email]" required>
+                <label class="field__label" for="RhinoQuoteEmail">{{ 'sections.cart.quote_mode.email' | t }}</label>
+              </div>
+              <div class="field">
+                <input class="field__input" autocomplete="tel" type="tel" id="RhinoQuotePhone" name="contact[phone]">
+                <label class="field__label" for="RhinoQuotePhone">{{ 'sections.cart.quote_mode.phone' | t }}</label>
+              </div>
+              <div class="field">
+                <input class="field__input" autocomplete="organization" type="text" id="RhinoQuoteCompany" name="contact[company]">
+                <label class="field__label" for="RhinoQuoteCompany">{{ 'sections.cart.quote_mode.company' | t }}</label>
+              </div>
+              <div class="field rhino-quote-mode__field--wide">
+                <input class="field__input" autocomplete="address-line1" type="text" id="RhinoQuoteAddress1" name="contact[address_line_1]" required>
+                <label class="field__label" for="RhinoQuoteAddress1">{{ 'sections.cart.quote_mode.address_1' | t }}</label>
+              </div>
+              <div class="field rhino-quote-mode__field--wide">
+                <input class="field__input" autocomplete="address-line2" type="text" id="RhinoQuoteAddress2" name="contact[address_line_2]">
+                <label class="field__label" for="RhinoQuoteAddress2">{{ 'sections.cart.quote_mode.address_2' | t }}</label>
+              </div>
+              <div class="field">
+                <input class="field__input" autocomplete="address-level2" type="text" id="RhinoQuoteCity" name="contact[city]" required>
+                <label class="field__label" for="RhinoQuoteCity">{{ 'sections.cart.quote_mode.city' | t }}</label>
+              </div>
+              <div class="rhino-quote-mode__select-field">
+                <label for="RhinoQuoteState">{{ 'sections.cart.quote_mode.state' | t }}</label>
+                <select id="RhinoQuoteState" name="contact[state]" autocomplete="address-level1" required>
+                  <option value="">{{ 'sections.cart.quote_mode.state_prompt' | t }}</option>
+                  <option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option>
+                  <option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option>
+                  <option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option>
+                  <option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option>
+                  <option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option>
+                  <option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option>
+                  <option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option>
+                  <option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option>
+                  <option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option>
+                  <option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option>
+                  <option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option>
+                  <option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option>
+                  <option value="WI">WI</option><option value="WY">WY</option>
+                </select>
+              </div>
+              <div class="field">
+                <input class="field__input" autocomplete="postal-code" type="text" id="RhinoQuotePostalCode" name="contact[postal_code]" required>
+                <label class="field__label" for="RhinoQuotePostalCode">{{ 'sections.cart.quote_mode.postal_code' | t }}</label>
+              </div>
+              <div class="rhino-quote-mode__country">
+                <span>{{ 'sections.cart.quote_mode.country' | t }}</span>
+                <strong>{{ 'sections.cart.quote_mode.united_states' | t }}</strong>
+              </div>
+            </div>
+
+            <fieldset class="rhino-quote-mode__fieldset">
+              <legend>{{ 'sections.cart.quote_mode.delivery_type' | t }}</legend>
+              <label><input type="radio" name="contact[delivery_type]" value="Residential" required> {{ 'sections.cart.quote_mode.residential' | t }}</label>
+              <label><input type="radio" name="contact[delivery_type]" value="Commercial" required> {{ 'sections.cart.quote_mode.commercial' | t }}</label>
+            </fieldset>
+
+            <fieldset class="rhino-quote-mode__fieldset">
+              <legend>{{ 'sections.cart.quote_mode.liftgate' | t }}</legend>
+              <label><input type="radio" name="contact[liftgate_required]" value="Yes" required> {{ 'sections.cart.quote_mode.yes' | t }}</label>
+              <label><input type="radio" name="contact[liftgate_required]" value="No" required> {{ 'sections.cart.quote_mode.no' | t }}</label>
+            </fieldset>
+
+            <div class="field rhino-quote-mode__access">
+              <textarea class="text-area field__input" id="RhinoQuoteAccess" name="contact[access_information]" required></textarea>
+              <label class="field__label" for="RhinoQuoteAccess">{{ 'sections.cart.quote_mode.access_information' | t }}</label>
+            </div>
+            <p class="caption-large">{{ 'sections.cart.quote_mode.access_help' | t }}</p>
+
+            <label class="rhino-quote-mode__checkbox">
+              <input type="checkbox" name="contact[insurance_options_requested]" value="Yes">
+              <span>{{ 'sections.cart.quote_mode.insurance_options' | t }}</span>
+            </label>
+
+            {%- capture quote_body -%}
+Shipping quotation request {{ quote_reference }}
+Complete cart:
+{%- for item in cart.items %}
+- Product: {{ item.product.title }} | Variant: {{ item.variant.title }} | Variant ID: {{ item.variant.id }} | SKU: {{ item.sku | default: 'not supplied' }} | Quantity: {{ item.quantity }} | Merchandise line total: {{ item.final_line_price | money_with_currency }}
+  {%- if item.selling_plan_allocation %}
+  Selling plan: {{ item.selling_plan_allocation.selling_plan.name }}
+  {%- endif %}
+  {%- for property in item.properties %}
+    {%- assign property_name_prefix = property.first | slice: 0, 1 -%}
+    {%- unless property.last == blank or property_name_prefix == '_' %}
+  Line property: {{ property.first }} = {{ property.last }}
+    {%- endunless %}
+  {%- endfor %}
+  {%- for allocation in item.line_level_discount_allocations %}
+  Line discount: {{ allocation.discount_application.title }} (-{{ allocation.amount | money_with_currency }})
+  {%- endfor %}
+{%- endfor %}
+Merchandise cart total: {{ cart.total_price | money_with_currency }}
+{%- for discount in cart.cart_level_discount_applications %}
+Cart discount: {{ discount.title }} (-{{ discount.total_allocated_amount | money_with_currency }})
+{%- endfor %}
+{%- if cart.note != blank %}
+Cart note: {{ cart.note }}
+{%- endif %}
+Shipping charge: pending Rhino staff packaging and carrier quotation.
+Invoice authorization: none. Do not invoice before shipping approval.
+            {%- endcapture -%}
+            <textarea name="contact[body]" hidden>{{ quote_body | strip | escape }}</textarea>
+
+            <p class="rhino-quote-mode__status" role="status" aria-live="polite" data-rhino-quote-status></p>
+            <button class="button button--full-width" type="submit" data-rhino-quote-submit>
+              {{ 'sections.cart.quote_mode.submit_quote' | t }}
+            </button>
+          {%- endif -%}
+        </div>
+      {%- endform -%}
+    </section>
+
+    <section class="rhino-quote-mode__route" aria-labelledby="RhinoPickupHeading">
+      <h3 id="RhinoPickupHeading">{{ 'sections.cart.quote_mode.pickup_heading' | t }}</h3>
+      <p>{{ 'sections.cart.quote_mode.pickup_time' | t }}</p>
+      {%- if pickup_allowed -%}
+        <p class="rhino-quote-mode__available" role="status">{{ 'sections.cart.quote_mode.pickup_available' | t }}</p>
+        <button class="button button--full-width" type="submit" name="checkout" form="cart">
+          {{ 'sections.cart.quote_mode.pickup_checkout' | t }}
+        </button>
+      {%- else -%}
+        <p class="rhino-quote-mode__blocked" role="status">{{ 'sections.cart.quote_mode.pickup_blocked' | t }}</p>
+        <button class="button button--full-width" type="button" disabled>
+          {{ 'sections.cart.quote_mode.pickup_unavailable' | t }}
+        </button>
+      {%- endif -%}
+    </section>
+  </div>
+</rhino-quote-mode>

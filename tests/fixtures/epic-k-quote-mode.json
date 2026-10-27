@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "synthetic": true,
+  "eligibleCart": {
+    "items": [
+      {
+        "variantId": "10000000000001",
+        "quantity": 1,
+        "pickupEligibility": "approved",
+        "graftonPickup": { "enabled": true, "available": true }
+      },
+      {
+        "variantId": "10000000000002",
+        "quantity": 2,
+        "pickupEligibility": "approved",
+        "graftonPickup": { "enabled": true, "available": true }
+      }
+    ]
+  },
+  "mixedCart": {
+    "items": [
+      {
+        "variantId": "20000000000001",
+        "quantity": 1,
+        "pickupEligibility": "missing",
+        "graftonPickup": { "enabled": false, "available": false }
+      },
+      {
+        "variantId": "20000000000002",
+        "quantity": 3,
+        "pickupEligibility": "approved",
+        "graftonPickup": { "enabled": true, "available": true }
+      }
+    ]
+  },
+  "customer": {
+    "name": "Synthetic Customer",
+    "email": "synthetic@example.invalid",
+    "phone": "555-0100",
+    "address1": "100 Test Avenue",
+    "address2": "Suite 2",
+    "city": "Example City",
+    "state": "WI",
+    "postalCode": "53000",
+    "country": "US",
+    "deliveryType": "commercial",
+    "liftgateRequired": false,
+    "accessInformation": "None",
+    "insuranceOptionsRequested": true
+  }
+}

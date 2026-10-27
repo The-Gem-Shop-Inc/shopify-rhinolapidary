@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "contractId": "epic-k-temporary-quote-mode",
+  "version": "1.0.0",
+  "status": "repository_implemented_external_dependencies_blocked",
+  "batch": "K1C-01",
+  "parentPbi": "K-PBI-003",
+  "temporaryUntil": "cartonization_and_calculated_shipping_available",
+  "shipping": {
+    "route": "whole_cart_quote_before_payment",
+    "intake": "shopify_native_contact_form",
+    "payment": "staff_created_shopify_draft_order_invoice_after_shipping_approval",
+    "shippingPriceAtIntake": "not_calculated",
+    "freeShippingAllowed": false,
+    "internationalAllowed": false,
+    "invoiceBeforeApprovalAllowed": false
+  },
+  "pickup": {
+    "locationLabel": "Grafton",
+    "preparationTime": "one_business_day_excluding_weekends",
+    "cartRule": "all_items_require_explicit_variant_eligibility_and_live_grafton_availability",
+    "unknownEligibility": "blocked",
+    "approvedVariantIds": [],
+    "eligibilityEvidenceRequirement": "K-EVID-001",
+    "locationReadinessEvidenceRequirement": "K-EVID-002",
+    "currentReadiness": "blocked_missing_authoritative_receipts"
+  },
+  "storefront": {
+    "acceleratedCheckoutSuppressed": true,
+    "cartNotificationRoutesToCart": true,
+    "cartDrawerRoutesToCart": true,
+    "emptyCartSubmissionAllowed": false,
+    "duplicateProtection": "browser_session_reference_and_cart_signature",
+    "customerDataStorage": "shopify_contact_submission_only"
+  },
+  "authority": {
+    "productOwnerApprovalDate": "2026-10-27",
+    "businessRequirementsAuthorized": true,
+    "operationalEvidencePromoted": false,
+    "shopifyMutationAuthorized": false,
+    "themePublicationAuthorized": false,
+    "liveCheckoutEnforcementVerified": false
+  }
+}

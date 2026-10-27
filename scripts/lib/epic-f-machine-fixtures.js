@@ -16,14 +16,26 @@ function normalize(source) {
   return source.replace(/\{%[-]?\s*schema\s*[-]?%\}[\s\S]*?\{%[-]?\s*endschema\s*[-]?%\}/g, '')
     .replace(/\{%[-]?\s*style\s*[-]?%\}/g, '<style>').replace(/\{%[-]?\s*endstyle\s*[-]?%\}/g, '</style>')
     .replace(/\{%[-]?\s*form\b([\s\S]*?)%\}/g, (_, args) => {
-      const id = args.match(/\bid:\s*([\w]+)/)?.[1];
+      const quotedId = args.match(/\bid:\s*'([^']+)'/)?.[1];
+      const variableId = args.match(/\bid:\s*([\w]+)/)?.[1];
+      const id = quotedId ? `'${quotedId}'` : variableId;
       const cls = args.match(/\bclass:\s*'([^']+)'/)?.[1] || '';
-      return `<form method="post" action="/cart/add" id="{{ ${id} }}" class="${cls}" ${args.includes('novalidate:') ? 'novalidate' : ''}>`;
+      const action = /^\s*'contact'/.test(args) ? '/contact#contact_form' : '/cart/add';
+      return `<form method="post" action="${action}" id="{{ ${id} }}" class="${cls}" ${args.includes('novalidate:') ? 'novalidate' : ''}>`;
     }).replace(/\{%[-]?\s*endform\s*[-]?%\}/g, '</form>');
 }
 function engine(context, translations = {}, overrides = {}) {
   const e = new Liquid({ root: path.resolve('snippets'), extname: '.liquid', globals: context, jsTruthy: false });
   e.options.fs = { ...e.options.fs, readFileSync: p => normalize(overrides[path.basename(p)] ?? read(p)) };
+  e.registerTag('doc', {
+    parse(_token, tokens) {
+      while (tokens.length) {
+        const token = tokens.shift();
+        if (token.name === 'enddoc') break;
+      }
+    },
+    render() { return ''; }
+  });
   const locale = json('locales/en.default.json');
   e.registerFilter('t', (key, ...args) => {
     let value = translations[key] || key.split('.').reduce((v, k) => v?.[k], locale) || key;

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-k-temporary-quote-mode.schema.json",
+  "title": "Epic K temporary shipping quotation checkout",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "version", "status", "batch", "parentPbi", "temporaryUntil", "shipping", "pickup", "storefront", "authority"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-k-temporary-quote-mode" },
+    "version": { "const": "1.0.0" },
+    "status": { "const": "repository_implemented_external_dependencies_blocked" },
+    "batch": { "const": "K1C-01" },
+    "parentPbi": { "const": "K-PBI-003" },
+    "temporaryUntil": { "const": "cartonization_and_calculated_shipping_available" },
+    "shipping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route", "intake", "payment", "shippingPriceAtIntake", "freeShippingAllowed", "internationalAllowed", "invoiceBeforeApprovalAllowed"],
+      "properties": {
+        "route": { "const": "whole_cart_quote_before_payment" },
+        "intake": { "const": "shopify_native_contact_form" },
+        "payment": { "const": "staff_created_shopify_draft_order_invoice_after_shipping_approval" },
+        "shippingPriceAtIntake": { "const": "not_calculated" },
+        "freeShippingAllowed": { "const": false },
+        "internationalAllowed": { "const": false },
+        "invoiceBeforeApprovalAllowed": { "const": false }
+      }
+    },
+    "pickup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locationLabel", "preparationTime", "cartRule", "unknownEligibility", "approvedVariantIds", "eligibilityEvidenceRequirement", "locationReadinessEvidenceRequirement", "currentReadiness"],
+      "properties": {
+        "locationLabel": { "const": "Grafton" },
+        "preparationTime": { "const": "one_business_day_excluding_weekends" },
+        "cartRule": { "const": "all_items_require_explicit_variant_eligibility_and_live_grafton_availability" },
+        "unknownEligibility": { "const": "blocked" },
+        "approvedVariantIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[0-9]+$" } },
+        "eligibilityEvidenceRequirement": { "const": "K-EVID-001" },
+        "locationReadinessEvidenceRequirement": { "const": "K-EVID-002" },
+        "currentReadiness": { "enum": ["blocked_missing_authoritative_receipts", "ready_with_accepted_authoritative_receipts"] }
+      }
+    },
+    "storefront": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["acceleratedCheckoutSuppressed", "cartNotificationRoutesToCart", "cartDrawerRoutesToCart", "emptyCartSubmissionAllowed", "duplicateProtection", "customerDataStorage"],
+      "properties": {
+        "acceleratedCheckoutSuppressed": { "const": true },
+        "cartNotificationRoutesToCart": { "const": true },
+        "cartDrawerRoutesToCart": { "const": true },
+        "emptyCartSubmissionAllowed": { "const": false },
+        "duplicateProtection": { "const": "browser_session_reference_and_cart_signature" },
+        "customerDataStorage": { "const": "shopify_contact_submission_only" }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["productOwnerApprovalDate", "businessRequirementsAuthorized", "operationalEvidencePromoted", "shopifyMutationAuthorized", "themePublicationAuthorized", "liveCheckoutEnforcementVerified"],
+      "properties": {
+        "productOwnerApprovalDate": { "const": "2026-10-27" },
+        "businessRequirementsAuthorized": { "const": true },
+        "operationalEvidencePromoted": { "const": false },
+        "shopifyMutationAuthorized": { "const": false },
+        "themePublicationAuthorized": { "const": false },
+        "liveCheckoutEnforcementVerified": { "const": false }
+      }
+    }
+  }
+}

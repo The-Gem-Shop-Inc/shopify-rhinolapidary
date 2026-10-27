@@ -1,0 +1,139 @@
+.rhino-quote-mode {
+  display: block;
+  margin-top: 2.4rem;
+  text-align: left;
+}
+
+.rhino-quote-mode__heading,
+.rhino-quote-mode__intro {
+  margin-inline: 0;
+}
+
+.rhino-quote-mode__routes {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.rhino-quote-mode__route {
+  border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  border-radius: var(--text-boxes-radius);
+  padding: 2rem;
+}
+
+.rhino-quote-mode__route h3,
+.rhino-quote-mode__route h4 {
+  margin-top: 0;
+}
+
+.rhino-quote-mode__reference {
+  font-weight: 600;
+}
+
+.rhino-quote-mode__fields {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.rhino-quote-mode__fields .field,
+.rhino-quote-mode__access {
+  margin: 0;
+}
+
+.rhino-quote-mode__select-field,
+.rhino-quote-mode__country {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.rhino-quote-mode__select-field select {
+  min-height: 4.8rem;
+  width: 100%;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.55);
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  padding-inline: 1.2rem;
+}
+
+.rhino-quote-mode__fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin: 2rem 0 0;
+  border: 0;
+  padding: 0;
+}
+
+.rhino-quote-mode__fieldset legend {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.rhino-quote-mode__fieldset label,
+.rhino-quote-mode__checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.rhino-quote-mode__fieldset input,
+.rhino-quote-mode__checkbox input {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+}
+
+.rhino-quote-mode__access {
+  margin-top: 2rem;
+}
+
+.rhino-quote-mode__access textarea {
+  min-height: 12rem;
+}
+
+.rhino-quote-mode__checkbox {
+  margin: 1.5rem 0;
+}
+
+.rhino-quote-mode__required,
+.rhino-quote-mode__status,
+.rhino-quote-mode__available,
+.rhino-quote-mode__blocked {
+  margin-block: 1.2rem;
+}
+
+.rhino-quote-mode__available {
+  color: var(--rhino-color-success, #1f6b45);
+}
+
+.rhino-quote-mode__blocked {
+  font-weight: 600;
+}
+
+.rhino-quote-mode__success {
+  border-left: 0.4rem solid var(--rhino-color-success, #1f6b45);
+  padding: 1.2rem 1.6rem;
+}
+
+@media screen and (min-width: 990px) {
+  .rhino-quote-mode__routes {
+    grid-template-columns: minmax(0, 2fr) minmax(28rem, 1fr);
+    align-items: start;
+  }
+
+  .rhino-quote-mode__fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rhino-quote-mode__field--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .rhino-quote-mode__route {
+    padding: 1.5rem;
+  }
+}
