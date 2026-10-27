@@ -22,7 +22,12 @@ function validLine(item) {
 function assessCart(cart) {
     const items = normalizedItems(cart);
     const complete = items.length > 0 && items.every(validLine);
-    const pickupEligible = complete && items.every((item) => item.pickupEligibility === 'approved');
+    const pickupEligible = complete && items.every((item) => (
+        item.productStatus === 'active'
+        && item.pickupExcluded === false
+        && item.requiresInventoryTransfer !== true
+        && item.preparationArrangementAvailable !== false
+    ));
     const graftonAvailable = complete && items.every((item) => item.graftonPickup?.enabled === true && item.graftonPickup?.available === true);
     return {
         itemCount: items.reduce((count, item) => count + (Number.isInteger(item.quantity) ? item.quantity : 0), 0),
@@ -30,7 +35,7 @@ function assessCart(cart) {
         quotationRequestAllowed: complete,
         quotationScope: complete ? 'complete_cart' : 'none',
         pickupCheckoutAllowed: pickupEligible && graftonAvailable,
-        pickupEligibility: pickupEligible ? 'approved_for_every_item' : 'blocked',
+        pickupEligibility: pickupEligible ? 'policy_eligible_for_every_item' : 'blocked',
         graftonAvailability: graftonAvailable ? 'available_for_every_item' : 'blocked',
         liveCheckoutEnforcement: 'UNVERIFIED',
     };

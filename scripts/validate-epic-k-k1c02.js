@@ -17,11 +17,7 @@ function validateStatus(status = readJson(STATUS_PATH)) {
     const quote = validateQuoteMode();
     errors.push(...quote.errors);
     const evidence = quote.evidenceReport.results;
-    const pickupEligibility = evidence.find((entry) => entry.id === 'K-EVID-001');
     const locationReadiness = evidence.find((entry) => entry.id === 'K-EVID-002');
-    if (pickupEligibility?.state !== 'PASS' && status.audit?.pickup?.approvedPickupVariantCount !== 0) {
-        errors.push('No pickup Variant may be counted as approved while K-EVID-001 is blocked.');
-    }
     if (locationReadiness?.state !== 'PASS' && status.activation?.operationalReadiness === 'PASS') {
         errors.push('Operational readiness cannot pass while K-EVID-002 is blocked.');
     }
@@ -29,7 +25,12 @@ function validateStatus(status = readJson(STATUS_PATH)) {
         if (!status.verification?.contactSubmissionConfirmed) errors.push('Activation requires a confirmed quotation contact submission.');
         if (status.activation.liveCheckoutEnforcement !== 'PASS') errors.push('Activation requires a passing live checkout matrix.');
         if (!status.activation.productionThemePublished) errors.push('Activation requires the verified production theme release.');
-        if (status.audit.pickup.approvedPickupVariantCount === 0) errors.push('Activation requires at least one accepted pickup-eligible Variant.');
+        if (!status.audit.pickup.graftonActive || !status.audit.pickup.graftonPickupEnabled) {
+            errors.push('Activation requires the live Grafton location and pickup service to be enabled.');
+        }
+        if (status.audit.pickup.activeVariantsWithPositiveGraftonInventory === 0) {
+            errors.push('Activation requires at least one active Variant with positive live Grafton inventory.');
+        }
     }
     if (!status.activation?.productionThemePublished && status.activation?.shippingRatesRemoved?.length) {
         errors.push('Shipping rates cannot be removed before the quotation storefront is published.');
@@ -51,8 +52,10 @@ function main() {
         process.exitCode = 1;
         return;
     }
-    console.log('Epic K1C-02 activation status: valid BLOCKED handoff; production configuration unchanged.');
+    console.log(`Epic K1C-02 activation status: valid ${resultState()}.`);
 }
+
+function resultState() { return readJson(STATUS_PATH).activation.state; }
 
 if (require.main === module) main();
 

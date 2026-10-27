@@ -37,17 +37,21 @@ function validateQuoteMode() {
     errors.push(...evidence.errors);
     const pickupEvidence = evidence.report?.results.find((entry) => entry.id === 'K-EVID-001');
     const locationEvidence = evidence.report?.results.find((entry) => entry.id === 'K-EVID-002');
-    if (pickupEvidence?.state !== 'PASS' && config.pickup.approvedVariantIds.length !== 0) {
-        errors.push('Pickup Variant IDs require accepted K-EVID-001 evidence.');
-    }
-    if (locationEvidence?.state !== 'PASS' && config.pickup.currentReadiness !== 'blocked_missing_authoritative_receipts') {
-        errors.push('Grafton readiness must remain blocked until K-EVID-002 passes.');
+    if (pickupEvidence?.state === 'PASS' || locationEvidence?.state === 'PASS') {
+        errors.push('K1C activation must not promote K-EVID-001 or K-EVID-002 receipts.');
     }
 
     const eligibility = source(paths.eligibility);
-    const registryIds = [...eligibility.matchAll(/\|([0-9]+)\|/g)].map((match) => match[1]);
-    if (JSON.stringify(registryIds.sort()) !== JSON.stringify([...config.pickup.approvedVariantIds].sort())) {
-        errors.push('Liquid pickup eligibility registry does not match the governed quote-mode contract.');
+    const exclusionTokens = eligibility.split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter((line) => /^\|(variant:[0-9]+|product:[a-z0-9-]+)\|$/.test(line))
+        .map((line) => line.slice(1, -1));
+    const governedTokens = [
+        ...config.pickup.excludedVariantIds.map((id) => `variant:${id}`),
+        ...config.pickup.excludedProductHandles.map((handle) => `product:${handle}`),
+    ];
+    if (JSON.stringify(exclusionTokens.sort()) !== JSON.stringify(governedTokens.sort())) {
+        errors.push('Liquid pickup exclusion registry does not match the governed quote-mode contract.');
     }
 
     const checkout = source(paths.checkout);
@@ -55,8 +59,8 @@ function validateQuoteMode() {
         "form 'contact'", 'contact[quotation_reference]', 'contact[cart_signature]', 'contact[email]',
         'contact[address_line_1]', 'contact[state]', 'contact[postal_code]', 'contact[delivery_type]',
         'contact[liftgate_required]', 'contact[access_information]', 'item.variant.id', 'item.quantity',
-        'item.variant.store_availabilities', 'store_availability.pick_up_enabled', 'store_availability.available',
-        "pickup_location_name contains 'grafton'", 'name="checkout" form="cart"',
+        'variant_exclusion_token', 'product_exclusion_token', 'data-pickup-variants',
+        'data-pickup-location="1411 6th Ave"', 'name="checkout" form="cart"',
     ]) {
         if (!checkout.includes(signal)) errors.push(`Quote checkout is missing required signal: ${signal}`);
     }
@@ -85,17 +89,35 @@ function validateQuoteMode() {
     if (quickOrder.includes('shipping_at_checkout')) errors.push('Quick-order messaging cannot promise shipping calculation at checkout.');
 
     const javascript = source(paths.javascript);
-    for (const signal of ['sessionStorage', "status: 'pending'", "status: 'submitted'", 'submit.disabled = true']) {
+    for (const signal of [
+        'sessionStorage', "status: 'pending'", "status: 'submitted'", 'submit.disabled = true',
+        'variants/${variantId}/?section_id=pickup-availability', '.pickup-availability-list__item h3',
+        'results.every(Boolean)',
+    ]) {
         if (!javascript.includes(signal)) errors.push(`Duplicate submission protection is missing: ${signal}`);
     }
     if (/X-Shopify-Access-Token|shpat_|gid:\/\/shopify\/Customer|Authorization:\s*Bearer/i.test(Object.values(paths).map(source).join('\n'))) {
         errors.push('Credential-bearing or customer-resource data is prohibited in quote-mode files.');
     }
-    if (config.authority.liveCheckoutEnforcementVerified || config.authority.shopifyMutationAuthorized || config.authority.themePublicationAuthorized) {
-        errors.push('Repository quote mode cannot claim live enforcement, Shopify mutation, or publication authority.');
+    if (config.authority.liveCheckoutEnforcementVerified) {
+        errors.push('The contract cannot claim live checkout enforcement before post-activation verification.');
     }
 
-    return { errors, config, evidenceReport: evidence.report, registryIds };
+    const english = readJson('locales/en.default.json');
+    const quoteMode = english?.sections?.cart?.quote_mode;
+    const requiredEnglishKeys = [
+        'heading', 'intro', 'shipping_heading', 'shipping_explanation', 'pickup_heading',
+        'pickup_time', 'pickup_checking', 'pickup_available', 'pickup_blocked', 'pickup_checkout', 'pickup_unavailable',
+        'submit_quote', 'success_heading', 'success_body_html', 'review_delivery_options',
+    ];
+    for (const key of requiredEnglishKeys) {
+        if (typeof quoteMode?.[key] !== 'string' || !quoteMode[key].trim()) errors.push(`Published English quote-mode key is missing: ${key}`);
+    }
+    if (JSON.stringify(config.storefront.publishedLocaleScope) !== JSON.stringify(['en'])) {
+        errors.push('The release locale scope must match the verified published English locale.');
+    }
+
+    return { errors, config, evidenceReport: evidence.report, exclusionTokens };
 }
 
 function main() {
@@ -107,7 +129,8 @@ function main() {
         return;
     }
     console.log('Epic K temporary quote mode contracts and storefront integration: valid.');
-    console.log(`Approved pickup Variant IDs: ${result.registryIds.length}; K-EVID-001 and K-EVID-002 remain BLOCKED.`);
+    console.log(`Explicit pickup exclusions: ${result.exclusionTokens.length}; K-EVID-001 and K-EVID-002 remain BLOCKED.`);
+    console.log('Published locale scope: en; untranslated unpublished locale catalogs remain warnings.');
     console.log('Shipping route: complete-cart quotation; invoice authorization: false; live checkout enforcement: UNVERIFIED.');
 }
 

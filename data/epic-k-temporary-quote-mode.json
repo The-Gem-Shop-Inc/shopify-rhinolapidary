@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "contractId": "epic-k-temporary-quote-mode",
-  "version": "1.0.0",
-  "status": "repository_implemented_external_dependencies_blocked",
-  "batch": "K1C-01",
+  "version": "1.1.0",
+  "status": "activation_authorized_operational_evidence_separate",
+  "batch": "K1C-02-R",
   "parentPbi": "K-PBI-003",
   "temporaryUntil": "cartonization_and_calculated_shipping_available",
   "shipping": {
@@ -17,13 +17,19 @@
   },
   "pickup": {
     "locationLabel": "Grafton",
+    "shopifyLocationName": "1411 6th Ave",
     "preparationTime": "one_business_day_excluding_weekends",
-    "cartRule": "all_items_require_explicit_variant_eligibility_and_live_grafton_availability",
+    "cartRule": "all_items_require_active_product_live_grafton_availability_and_no_explicit_exclusion",
     "unknownEligibility": "blocked",
-    "approvedVariantIds": [],
+    "eligibilityMode": "active_product_live_grafton_availability_with_explicit_exclusions",
+    "explicitExclusionsTakePrecedence": true,
+    "excludedVariantIds": [],
+    "excludedProductHandles": [],
+    "inventoryTransferBehavior": "not_eligible_for_immediate_pickup",
+    "unavailablePreparationBehavior": "not_eligible_for_immediate_pickup",
     "eligibilityEvidenceRequirement": "K-EVID-001",
     "locationReadinessEvidenceRequirement": "K-EVID-002",
-    "currentReadiness": "blocked_missing_authoritative_receipts"
+    "currentReadiness": "live_configuration_must_be_verified_per_cart_operational_receipts_remain_blocked"
   },
   "storefront": {
     "acceleratedCheckoutSuppressed": true,
@@ -31,14 +37,16 @@
     "cartDrawerRoutesToCart": true,
     "emptyCartSubmissionAllowed": false,
     "duplicateProtection": "browser_session_reference_and_cart_signature",
-    "customerDataStorage": "shopify_contact_submission_only"
+    "customerDataStorage": "shopify_contact_submission_only",
+    "publishedLocaleScope": ["en"],
+    "unpublishedLocaleWarningsRetained": true
   },
   "authority": {
     "productOwnerApprovalDate": "2026-10-27",
     "businessRequirementsAuthorized": true,
     "operationalEvidencePromoted": false,
-    "shopifyMutationAuthorized": false,
-    "themePublicationAuthorized": false,
+    "shopifyMutationAuthorized": true,
+    "themePublicationAuthorized": true,
     "liveCheckoutEnforcementVerified": false
   }
 }

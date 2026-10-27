@@ -8,9 +8,9 @@
   "properties": {
     "schemaVersion": { "const": 1 },
     "contractId": { "const": "epic-k-temporary-quote-mode" },
-    "version": { "const": "1.0.0" },
-    "status": { "const": "repository_implemented_external_dependencies_blocked" },
-    "batch": { "const": "K1C-01" },
+    "version": { "const": "1.1.0" },
+    "status": { "const": "activation_authorized_operational_evidence_separate" },
+    "batch": { "const": "K1C-02-R" },
     "parentPbi": { "const": "K-PBI-003" },
     "temporaryUntil": { "const": "cartonization_and_calculated_shipping_available" },
     "shipping": {
@@ -30,29 +30,37 @@
     "pickup": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["locationLabel", "preparationTime", "cartRule", "unknownEligibility", "approvedVariantIds", "eligibilityEvidenceRequirement", "locationReadinessEvidenceRequirement", "currentReadiness"],
+      "required": ["locationLabel", "shopifyLocationName", "preparationTime", "cartRule", "unknownEligibility", "eligibilityMode", "explicitExclusionsTakePrecedence", "excludedVariantIds", "excludedProductHandles", "inventoryTransferBehavior", "unavailablePreparationBehavior", "eligibilityEvidenceRequirement", "locationReadinessEvidenceRequirement", "currentReadiness"],
       "properties": {
         "locationLabel": { "const": "Grafton" },
+        "shopifyLocationName": { "const": "1411 6th Ave" },
         "preparationTime": { "const": "one_business_day_excluding_weekends" },
-        "cartRule": { "const": "all_items_require_explicit_variant_eligibility_and_live_grafton_availability" },
+        "cartRule": { "const": "all_items_require_active_product_live_grafton_availability_and_no_explicit_exclusion" },
         "unknownEligibility": { "const": "blocked" },
-        "approvedVariantIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[0-9]+$" } },
+        "eligibilityMode": { "const": "active_product_live_grafton_availability_with_explicit_exclusions" },
+        "explicitExclusionsTakePrecedence": { "const": true },
+        "excludedVariantIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[0-9]+$" } },
+        "excludedProductHandles": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" } },
+        "inventoryTransferBehavior": { "const": "not_eligible_for_immediate_pickup" },
+        "unavailablePreparationBehavior": { "const": "not_eligible_for_immediate_pickup" },
         "eligibilityEvidenceRequirement": { "const": "K-EVID-001" },
         "locationReadinessEvidenceRequirement": { "const": "K-EVID-002" },
-        "currentReadiness": { "enum": ["blocked_missing_authoritative_receipts", "ready_with_accepted_authoritative_receipts"] }
+        "currentReadiness": { "const": "live_configuration_must_be_verified_per_cart_operational_receipts_remain_blocked" }
       }
     },
     "storefront": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["acceleratedCheckoutSuppressed", "cartNotificationRoutesToCart", "cartDrawerRoutesToCart", "emptyCartSubmissionAllowed", "duplicateProtection", "customerDataStorage"],
+      "required": ["acceleratedCheckoutSuppressed", "cartNotificationRoutesToCart", "cartDrawerRoutesToCart", "emptyCartSubmissionAllowed", "duplicateProtection", "customerDataStorage", "publishedLocaleScope", "unpublishedLocaleWarningsRetained"],
       "properties": {
         "acceleratedCheckoutSuppressed": { "const": true },
         "cartNotificationRoutesToCart": { "const": true },
         "cartDrawerRoutesToCart": { "const": true },
         "emptyCartSubmissionAllowed": { "const": false },
         "duplicateProtection": { "const": "browser_session_reference_and_cart_signature" },
-        "customerDataStorage": { "const": "shopify_contact_submission_only" }
+        "customerDataStorage": { "const": "shopify_contact_submission_only" },
+        "publishedLocaleScope": { "const": ["en"] },
+        "unpublishedLocaleWarningsRetained": { "const": true }
       }
     },
     "authority": {
@@ -63,8 +71,8 @@
         "productOwnerApprovalDate": { "const": "2026-10-27" },
         "businessRequirementsAuthorized": { "const": true },
         "operationalEvidencePromoted": { "const": false },
-        "shopifyMutationAuthorized": { "const": false },
-        "themePublicationAuthorized": { "const": false },
+        "shopifyMutationAuthorized": { "const": true },
+        "themePublicationAuthorized": { "const": true },
         "liveCheckoutEnforcementVerified": { "const": false }
       }
     }

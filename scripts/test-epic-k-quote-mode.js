@@ -18,10 +18,30 @@ function clone(value) { return structuredClone(value); }
 
 test('eligible pickup cart can proceed to native checkout', () => assert.equal(assessCart(fixture.eligibleCart).pickupCheckoutAllowed, true));
 test('ineligible pickup item blocks immediate pickup', () => assert.equal(assessCart(fixture.mixedCart).pickupCheckoutAllowed, false));
-test('unknown pickup eligibility fails closed', () => {
+test('explicit pickup exclusion fails closed', () => {
     const cart = clone(fixture.eligibleCart);
-    cart.items[0].pickupEligibility = 'missing';
+    cart.items[0].pickupExcluded = true;
     assert.equal(assessCart(cart).pickupCheckoutAllowed, false);
+});
+test('inactive product fails closed', () => {
+    const cart = clone(fixture.eligibleCart);
+    cart.items[0].productStatus = 'draft';
+    assert.equal(assessCart(cart).pickupCheckoutAllowed, false);
+});
+test('inventory transfer requirement fails closed', () => {
+    const cart = clone(fixture.eligibleCart);
+    cart.items[0].requiresInventoryTransfer = true;
+    assert.equal(assessCart(cart).pickupCheckoutAllowed, false);
+});
+test('unavailable preparation arrangement fails closed', () => {
+    const cart = clone(fixture.eligibleCart);
+    cart.items[0].preparationArrangementAvailable = false;
+    assert.equal(assessCart(cart).pickupCheckoutAllowed, false);
+});
+test('machinery can use pickup when the same policy and live availability checks pass', () => {
+    const cart = clone(fixture.eligibleCart);
+    cart.items[0].productClass = 'machine';
+    assert.equal(assessCart(cart).pickupCheckoutAllowed, true);
 });
 test('missing Grafton availability fails closed', () => {
     const cart = clone(fixture.eligibleCart);
@@ -150,7 +170,7 @@ test('materially changed cart creates a new submission scope', () => assert.equa
     'NEW',
 ));
 test('repository integration contract passes', () => assert.deepEqual(integration.errors, []));
-test('repository keeps pickup eligibility registry empty until evidence exists', () => assert.deepEqual(integration.registryIds, []));
+test('repository keeps explicit pickup exclusions empty until an exclusion is approved', () => assert.deepEqual(integration.exclusionTokens, []));
 test('repository evidence report keeps operational readiness blocked', () => assert.equal(integration.evidenceReport.operationalReadiness, 'BLOCKED'));
 test('repository evidence report keeps checkout enforcement unverified', () => assert.equal(integration.evidenceReport.liveCheckoutEnforcement, 'UNVERIFIED'));
 

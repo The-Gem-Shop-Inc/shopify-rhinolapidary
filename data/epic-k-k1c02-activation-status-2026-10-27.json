@@ -59,7 +59,9 @@
       "otherPickupEnabledLocationCount": 0,
       "activeVariantsWithPositiveGraftonInventory": 3,
       "machinesWithPositiveGraftonInventory": 0,
-      "approvedPickupVariantCount": 0
+      "approvedPickupVariantCount": 0,
+      "pickupPolicyMode": "active_product_live_grafton_availability_with_explicit_exclusions",
+      "shopifyPickupEndpointEligibleVariantCount": 3
     }
   },
   "verification": {
@@ -67,8 +69,8 @@
     "unpublishedPreviewThemeId": "158631198917",
     "productionThemeId": "158579622085",
     "productionThemePublishedByBatch": false,
-    "quotePreviewAssessment": "BLOCKED_HTTP_429",
-    "contactDestinationConfigured": "UNVERIFIED_QUERY_FIELD",
+    "quotePreviewAssessment": "PASS_DESKTOP_MOBILE_THEME_DEV_PROXY",
+    "contactDestinationConfigured": "VERIFIED_SHOP_CONTACT_EMAIL",
     "contactSubmissionConfirmed": false,
     "draftInvoice": {
       "controlledDraftCreated": true,
@@ -89,15 +91,16 @@
     "productionShippingMutations": [],
     "pickupConfigurationMutations": [],
     "blockers": [
-      "K-EVID-001 has no accepted exact Product or Variant pickup eligibility receipt, so the governed pickup registry is empty.",
-      "K-EVID-002 remains blocked; current Shopify pickup settings and inventory do not establish warehouse operational authority.",
-      "The unpublished storefront preview returned Shopify HTTP 429 during controlled cart verification, so quotation contact delivery and the checkout matrix are not accepted."
+      "Shopify's contact-form anti-bot challenge prevented the controlled browser from issuing the /contact POST, so staff receipt of the complete quotation remains unconfirmed.",
+      "No machine Variant currently has positive Grafton inventory, so a live machinery pickup cart cannot be exercised; the route remains fail closed and the policy path is covered synthetically.",
+      "K-EVID-001 and K-EVID-002 remain blocked operational records even though the approved default policy and current Shopify pickup endpoint permit three active in-stock Variants."
     ],
     "liveCheckoutEnforcement": "UNVERIFIED",
     "operationalReadiness": "BLOCKED"
   },
   "controlledMutations": [
     "unpublished_preview_theme_partial_push",
+    "unpublished_preview_theme_restore_and_sync",
     "draft_order_create",
     "test_customer_create",
     "draft_order_customer_assignment",

@@ -10,9 +10,9 @@ Parent PBI: `K-PBI-003`
 
 ## Outcome
 
-K1C-01 passed its repository tests and was uploaded as a ten-file partial release to unpublished preview theme `158631198917`. Production activation stopped at the required pickup and preview gates. Production theme `158579622085` was not changed or published, and the existing $8 Standard and $15 Express rates were not removed.
+K1C-02-R corrected the pickup policy and preview implementation, then reran the checkout surface against current Shopify data. Production activation stopped at the staff-intake confirmation gate. Production theme `158579622085` was not changed or published, and the existing $8 Standard and $15 Express rates were not removed.
 
-The fail-closed result is required by the accepted K1C-01 contract. The governed pickup registry contains no Variant IDs because no accepted K-EVID-001 receipt defines exact Product or Variant eligibility. Shopify currently has Grafton pickup enabled and three active Variants with positive Grafton inventory, but configuration and inventory do not supply the missing eligibility approval. K-EVID-002 also remains blocked because the repository has no accepted warehouse readiness, inventory ownership, or pickup procedure receipt.
+The Product Owner's governing instruction now uses a default rule: an active Product may use immediate pickup when Shopify's live pickup endpoint confirms the complete cart at the configured Grafton location, unless an explicit Product or Variant exclusion applies. Inventory transfers and unavailable preparation arrangements fail closed. The empty allowlist was removed. This policy change does not create evidence receipts: K-EVID-001 and K-EVID-002 remain blocked operational records.
 
 ## Sanitized live audit
 
@@ -21,7 +21,7 @@ Authenticated Admin GraphQL reads used API version `2026-10` and verified the pe
 - Themes: production theme `158579622085` remains live; preview theme `158631198917` remains unpublished.
 - Shipping: the General profile assigns 114 Variants. Its contiguous-US zone has active $8 Standard and $15 Express rates, while its Alaska/Hawaii quotation zone has no methods. The machinery quotation profile assigns 11 Variants across the 50 states and has no methods.
 - Discounts and Markets: no active discount nodes were returned; the only active Market covers the United States.
-- Pickup: Grafton is active, fulfills online orders, ships inventory, has pickup enabled, and states one-business-day preparation excluding weekends. The other two locations have pickup disabled.
+- Pickup: Shopify location `1411 6th Ave` is the configured Grafton location. It is active, fulfills online orders, ships inventory, has pickup enabled, and states one-business-day preparation excluding weekends. The other two locations have pickup disabled.
 - Inventory: 13 Variants have positive Grafton inventory; three belong to active Products. No audited machine has positive Grafton inventory. These facts do not confer pickup approval.
 
 No unrelated configuration was changed.
@@ -34,23 +34,23 @@ Shopify accepted the two lines and custom shipping charge, reconciled a $4,042.0
 
 This proves that Shopify can represent and expose payment for an approved custom shipping line after staff builds a draft. It does not prove that a real quotation has operations approval, that the tax result generalizes to another address, or that live checkout enforcement is compliant.
 
-## Preview verification
+## Preview verification and rate limiting
 
-The unpublished theme received only the K1C-01 files. Static and fixture-based verification continued to pass. During the authenticated live preview run, Shopify returned HTTP 429 for controlled Product and Ajax-cart requests. The live runner therefore did not submit the contact form, did not accept the desktop/mobile matrix, and did not claim that the designated contact destination received a complete cart.
+The preview runner now respects `Retry-After`, uses bounded 10/20/40-second fallback backoff, serializes browser work, and avoids repeated Product requests. Shopify's password endpoint continued returning HTTP 429, so the same unpublished theme was exercised through Shopify CLI's authenticated theme development proxy with the configured storefront password.
 
-The preview rate limit is recorded separately from the pickup authority blocker. A later rerun must use the committed `verify:epic-k-k1c02-preview` command with controlled environment inputs. It must confirm the complete mixed cart, quotation success acknowledgement, mobile and desktop rendering, and the absence of enabled checkout controls while pickup eligibility remains unresolved.
+Two current active Variants with positive Grafton inventory produced one complete cart. At 1440×1000 and 390×844, the quotation contained both Variant identities and quantities, the Grafton checkout control enabled only after both live pickup endpoint responses named `1411 6th Ave`, accelerated checkout remained absent, and no horizontal overflow occurred. A nonavailable machine remains fail closed; no machine currently has positive Grafton inventory, so an actual machine pickup cart could not be formed.
+
+The controlled contact form reached Shopify's anti-bot site-configuration check, but automation could not complete the challenge and no `/contact` POST occurred. The configured Shopify contact email exists, but delivery of the complete quotation to staff is therefore unconfirmed. The runner did not bypass the challenge or log the address.
 
 ## Production activation gate
 
 The activation sequence requires all of the following before changing the live theme or rates:
 
-1. Attach accepted K-EVID-001 evidence listing exact pickup-eligible Product and Variant identities, then regenerate and validate the governed registry.
-2. Attach accepted K-EVID-002 evidence for Grafton readiness, inventory ownership, and pickup procedures.
-3. Rerun the unpublished preview matrix without HTTP 429 responses and confirm that the complete quotation reaches the Shopify store contact destination.
-4. Confirm at least one all-eligible, in-stock cart reaches native Grafton pickup checkout and that a mixed or ineligible cart cannot.
-5. Publish the verified K1C theme through the normal release workflow.
-6. Remove exactly the $8 Standard and $15 Express definitions from the General Domestic zone. Preserve both profiles, domestic zones, the Alaska/Hawaii separation, the machinery no-rate behavior, Grafton pickup, Markets, and Shopify Payments.
-7. Rerun direct checkout, cart permalink, express-control, pickup, shipping, Alaska/Hawaii, international, and approved draft-invoice scenarios without completing payment.
+1. Complete one controlled human-assisted anti-bot challenge and confirm the complete request reaches the configured staff contact destination.
+2. Confirm the reference, both cart lines and quantities, destination, delivery type, liftgate answer, access statement, and insurance selection in the received staff record.
+3. Publish the verified K1C theme through the normal release workflow.
+4. Remove exactly the $8 Standard and $15 Express definitions from the General Domestic zone. Preserve both profiles, domestic zones, the Alaska/Hawaii separation, the machinery no-rate behavior, Grafton pickup, Markets, and Shopify Payments.
+5. Rerun direct checkout, pickup, shipping, Alaska/Hawaii, international, and approved draft-invoice scenarios without completing payment.
 
 Rates must not be removed before the quotation storefront is live. The quotation storefront must not be published while the approved pickup route cannot be demonstrated.
 
@@ -67,7 +67,7 @@ Rates must not be removed before the quotation storefront is live. The quotation
 
 ## Rollback
 
-Production rollback is not required because neither the production theme nor shipping configuration changed. The raw prechange configuration and controlled-operation responses are in the restricted external directory above. If the unpublished preview needs to be restored, push the corresponding ten files from predecessor commit `e49323d6993f4141c185333fcb49d468fbd195ce` to preview theme `158631198917`; do not publish that rollback implicitly.
+Production rollback is not required because neither the production theme nor shipping configuration changed. Fresh K1C-02-R restricted evidence is under `LocalAppData/RhinoLapidary/restricted-evidence/epic-k-k1c02r-2026-10-27`. The unpublished preview was restored and synchronized after a scoped CLI invocation exposed incomplete remote assets; the full local theme was pushed back with remote deletion disabled before testing resumed.
 
 The exact rate baseline for a future authorized rollback is General / Domestic / Standard $8 USD and Express $15 USD, both unconditional flat rates. A future mutation batch must capture the real Shopify method identifiers outside Git immediately before deletion and verify the profile and zone relationship again.
 
@@ -77,4 +77,4 @@ No customer-facing theme was published. No shipping rate, profile, zone, Market,
 
 ## Status
 
-K1C-02 is `BLOCKED`, not active. K1C-01 remains repository-complete and uploaded to the unpublished preview. `K-PBI-003`, `K-PBI-002`, and Epic K remain incomplete. Operational readiness is `BLOCKED`; live checkout enforcement is `UNVERIFIED`.
+K1C-02 remains `BLOCKED`, not active. Repository and desktop/mobile preview UI acceptance pass; staff intake delivery does not. `K-PBI-003`, `K-PBI-002`, and Epic K remain incomplete. All eight operational evidence requirements remain blocked, and live checkout enforcement remains unverified.

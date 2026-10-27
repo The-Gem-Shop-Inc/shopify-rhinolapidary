@@ -98,12 +98,15 @@
     "pickup": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["location", "eligibilityRule", "cartRule", "unknownEligibility", "decisionIds"],
+      "required": ["location", "eligibilityRule", "cartRule", "unknownEligibility", "explicitExclusionsTakePrecedence", "inventoryTransferBehavior", "preparationTime", "decisionIds"],
       "properties": {
         "location": { "const": "GRAFTON" },
-        "eligibilityRule": { "const": "explicit_product_or_variant_approval_required" },
-        "cartRule": { "const": "every_cart_item_must_be_explicitly_pickup_eligible" },
+        "eligibilityRule": { "const": "active_product_with_live_grafton_availability_unless_explicitly_excluded" },
+        "cartRule": { "const": "every_cart_item_must_pass_live_grafton_availability_and_exclusion_checks" },
         "unknownEligibility": { "const": "not_approved" },
+        "explicitExclusionsTakePrecedence": { "const": true },
+        "inventoryTransferBehavior": { "const": "not_eligible_for_immediate_pickup" },
+        "preparationTime": { "const": "one_business_day_excluding_weekends" },
         "decisionIds": { "$ref": "#/$defs/decisionIds" }
       }
     },

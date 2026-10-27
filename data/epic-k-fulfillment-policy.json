@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "contractId": "epic-k-fulfillment-policy",
-  "version": "1.0.1-provisional",
+  "version": "1.1.0-provisional",
   "status": "provisional",
   "decisionContract": {
     "path": "data/epic-k-provisional-decisions.json",
@@ -54,9 +54,12 @@
   },
   "pickup": {
     "location": "GRAFTON",
-    "eligibilityRule": "explicit_product_or_variant_approval_required",
-    "cartRule": "every_cart_item_must_be_explicitly_pickup_eligible",
+    "eligibilityRule": "active_product_with_live_grafton_availability_unless_explicitly_excluded",
+    "cartRule": "every_cart_item_must_pass_live_grafton_availability_and_exclusion_checks",
     "unknownEligibility": "not_approved",
+    "explicitExclusionsTakePrecedence": true,
+    "inventoryTransferBehavior": "not_eligible_for_immediate_pickup",
+    "preparationTime": "one_business_day_excluding_weekends",
     "decisionIds": ["K-DEC-008", "K-DEC-014"]
   },
   "quotation": {

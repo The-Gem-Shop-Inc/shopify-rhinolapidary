@@ -26,7 +26,7 @@ async function test(name, fn) {
     });
 
     await test('blocked pickup cannot expose native or accelerated checkout', async () => {
-      assert.equal(await desktop.locator('[name="checkout"]').count(), 0);
+      assert.equal(await desktop.locator('[name="checkout"]:not([disabled])').count(), 0);
       assert.equal(await desktop.locator('.additional-checkout-buttons').count(), 0);
       assert.equal(await desktop.locator('.rhino-quote-mode__route button[disabled]').count(), 1);
     });

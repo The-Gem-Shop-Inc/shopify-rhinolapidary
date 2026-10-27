@@ -3,6 +3,7 @@ if (!customElements.get('rhino-quote-mode')) {
     'rhino-quote-mode',
     class RhinoQuoteMode extends HTMLElement {
       connectedCallback() {
+        this.verifyPickupAvailability();
         const form = this.querySelector('#RhinoShippingQuoteForm');
         const state = this.querySelector('[data-rhino-quote-form-state]');
         if (!form || !state) return;
@@ -52,6 +53,35 @@ if (!customElements.get('rhino-quote-mode')) {
           submit.setAttribute('aria-disabled', 'true');
           status.textContent = strings.submitting;
         });
+      }
+
+      async verifyPickupAvailability() {
+        const checkout = this.querySelector('[data-rhino-pickup-checkout]');
+        const status = this.querySelector('[data-rhino-pickup-status]');
+        if (!checkout || !status || this.dataset.pickupPolicyAllowed !== 'true') return;
+        const variants = (this.dataset.pickupVariants || '').split('|').filter((value) => /^[0-9]+$/.test(value));
+        if (!variants.length) return;
+        const locationName = this.dataset.pickupLocation || '';
+        try {
+          const results = await Promise.all(variants.map(async (variantId) => {
+            const root = window.routes?.root_url || '/';
+            const response = await fetch(`${root}variants/${variantId}/?section_id=pickup-availability`, {
+              headers: { Accept: 'text/html' },
+            });
+            if (!response.ok) return false;
+            const document = new DOMParser().parseFromString(await response.text(), 'text/html');
+            return [...document.querySelectorAll('.pickup-availability-list__item h3')]
+              .some((heading) => heading.textContent.trim() === locationName);
+          }));
+          if (!results.every(Boolean)) return;
+          checkout.disabled = false;
+          checkout.removeAttribute('aria-disabled');
+          status.textContent = this.dataset.stringPickupAvailable || '';
+          status.classList.remove('rhino-quote-mode__blocked');
+          status.classList.add('rhino-quote-mode__available');
+        } catch (_error) {
+          status.textContent = this.dataset.stringPickupBlocked || '';
+        }
       }
 
       readStorage(key) {

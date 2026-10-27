@@ -5,10 +5,10 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
 {% enddoc %}
 
 {%- liquid
-  capture pickup_registry
+  capture pickup_exclusions
     render 'rhino-quote-pickup-eligibility'
   endcapture
-  assign pickup_registry = pickup_registry | strip
+  assign pickup_exclusions = pickup_exclusions | strip
   assign pickup_allowed = true
   if cart == empty
     assign pickup_allowed = false
@@ -21,26 +21,27 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
 
 {%- for item in cart.items -%}
   {%- liquid
-    capture variant_token
+    capture variant_exclusion_token
       echo '|'
+      echo 'variant:'
       echo item.variant.id
       echo '|'
     endcapture
-    unless pickup_registry contains variant_token
+    capture product_exclusion_token
+      echo '|'
+      echo 'product:'
+      echo item.product.handle
+      echo '|'
+    endcapture
+    if pickup_exclusions contains variant_exclusion_token or pickup_exclusions contains product_exclusion_token
       assign pickup_allowed = false
-    endunless
-    assign grafton_available = false
-    for store_availability in item.variant.store_availabilities
-      assign pickup_location_name = store_availability.location.name | downcase | strip
-      if store_availability.pick_up_enabled and store_availability.available and pickup_location_name contains 'grafton'
-        assign grafton_available = true
-      endif
-    endfor
-    unless grafton_available
-      assign pickup_allowed = false
-    endunless
+    endif
   -%}
 {%- endfor -%}
+
+{%- capture pickup_variant_ids -%}
+  {%- for item in cart.items -%}{{ item.variant.id }}{% unless forloop.last %}|{% endunless %}{%- endfor -%}
+{%- endcapture -%}
 
 {%- assign quote_reference = cart.token | slice: 0, 8 | upcase | prepend: 'KQ-' | append: '-' | append: cart.item_count -%}
 
@@ -48,6 +49,11 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
   class="rhino-quote-mode"
   data-cart-signature="{{ cart_signature | strip | escape }}"
   data-reference="{{ quote_reference | escape }}"
+  data-pickup-policy-allowed="{{ pickup_allowed }}"
+  data-pickup-variants="{{ pickup_variant_ids | strip | escape }}"
+  data-pickup-location="1411 6th Ave"
+  data-string-pickup-available="{{ 'sections.cart.quote_mode.pickup_available' | t | escape }}"
+  data-string-pickup-blocked="{{ 'sections.cart.quote_mode.pickup_blocked' | t | escape }}"
   data-string-duplicate="{{ 'sections.cart.quote_mode.duplicate' | t | escape }}"
   data-string-invalid-cart="{{ 'sections.cart.quote_mode.invalid_cart' | t | escape }}"
   data-string-submitting="{{ 'sections.cart.quote_mode.submitting' | t | escape }}"
@@ -206,13 +212,13 @@ Invoice authorization: none. Do not invoice before shipping approval.
       <h3 id="RhinoPickupHeading">{{ 'sections.cart.quote_mode.pickup_heading' | t }}</h3>
       <p>{{ 'sections.cart.quote_mode.pickup_time' | t }}</p>
       {%- if pickup_allowed -%}
-        <p class="rhino-quote-mode__available" role="status">{{ 'sections.cart.quote_mode.pickup_available' | t }}</p>
-        <button class="button button--full-width" type="submit" name="checkout" form="cart">
+        <p class="rhino-quote-mode__blocked" role="status" data-rhino-pickup-status>{{ 'sections.cart.quote_mode.pickup_checking' | t }}</p>
+        <button class="button button--full-width" type="submit" name="checkout" form="cart" disabled data-rhino-pickup-checkout>
           {{ 'sections.cart.quote_mode.pickup_checkout' | t }}
         </button>
       {%- else -%}
-        <p class="rhino-quote-mode__blocked" role="status">{{ 'sections.cart.quote_mode.pickup_blocked' | t }}</p>
-        <button class="button button--full-width" type="button" disabled>
+        <p class="rhino-quote-mode__blocked" role="status" data-rhino-pickup-status>{{ 'sections.cart.quote_mode.pickup_blocked' | t }}</p>
+        <button class="button button--full-width" type="submit" name="checkout" form="cart" disabled data-rhino-pickup-checkout>
           {{ 'sections.cart.quote_mode.pickup_unavailable' | t }}
         </button>
       {%- endif -%}

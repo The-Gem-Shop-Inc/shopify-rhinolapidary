@@ -1,5 +1,6 @@
 {% doc %}
-Outputs the pipe-delimited Variant IDs backed by accepted K-EVID-001 pickup eligibility receipts.
-The empty registry fails closed until authoritative Product and Variant eligibility is attached.
+Outputs explicit pickup exclusions. Tokens are `|variant:ID|` or `|product:handle|`.
+The default rule still requires live Grafton pickup availability for every cart line.
+K-EVID-001 and K-EVID-002 remain separate operational evidence gates.
 {% enddoc %}
 ||
