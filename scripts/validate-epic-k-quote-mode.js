@@ -61,6 +61,7 @@ function validateQuoteMode() {
         'contact[liftgate_required]', 'contact[access_information]', 'item.variant.id', 'item.quantity',
         'variant_exclusion_token', 'product_exclusion_token', 'data-pickup-variants',
         'data-pickup-location="1411 6th Ave"', 'name="checkout" form="cart"',
+        'data-rhino-fulfillment-choice', 'id="RhinoShippingQuotePanel"',
     ]) {
         if (!checkout.includes(signal)) errors.push(`Quote checkout is missing required signal: ${signal}`);
     }
@@ -71,6 +72,9 @@ function validateQuoteMode() {
 
     const footer = source(paths.footer);
     if (!footer.includes("render 'rhino-quote-checkout'")) errors.push('Main cart footer must render the quote-mode decision surface.');
+    if (!footer.includes('cart__footer--quote-mode') || !footer.includes('cart__blocks--quote-mode')) {
+        errors.push('Main cart footer must expose the full-width quote-mode layout hooks.');
+    }
     if (footer.includes('content_for_additional_checkout_buttons')) errors.push('Cart accelerated checkout buttons must be suppressed.');
     if (footer.includes("'sections.cart.checkout' | t")) errors.push('Main cart cannot expose unconditional ordinary checkout.');
 
@@ -95,6 +99,16 @@ function validateQuoteMode() {
         'results.every(Boolean)',
     ]) {
         if (!javascript.includes(signal)) errors.push(`Duplicate submission protection is missing: ${signal}`);
+    }
+    if (!javascript.includes('setupFulfillmentChoices') || !javascript.includes("formRegion.hidden = selected !== 'shipping'")) {
+        errors.push('Fulfillment choices must reveal the separate shipping form without resetting its fields.');
+    }
+    const stylesheet = source(paths.stylesheet);
+    for (const signal of ['cart__footer--quote-mode', 'rhino-quote-mode__form-region', 'minmax(min(100%, 32rem), 1fr)']) {
+        if (!stylesheet.includes(signal)) errors.push(`Responsive quote layout is missing required signal: ${signal}`);
+    }
+    if (stylesheet.includes('minmax(0, 2fr) minmax(28rem, 1fr)')) {
+        errors.push('Quote choices cannot restore the fixed 28rem pickup column that compressed the shipping route.');
     }
     if (/X-Shopify-Access-Token|shpat_|gid:\/\/shopify\/Customer|Authorization:\s*Bearer/i.test(Object.values(paths).map(source).join('\n'))) {
         errors.push('Credential-bearing or customer-resource data is prohibited in quote-mode files.');

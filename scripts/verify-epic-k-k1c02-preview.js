@@ -7,6 +7,16 @@ const { chromium } = require('@playwright/test');
 const STORE_ORIGIN = process.env.EPIC_K_STOREFRONT_ORIGIN?.trim() || 'https://sz5dnk-nf.myshopify.com';
 const PREVIEW_THEME_ID = '158631198917';
 const MAX_RATE_LIMIT_ATTEMPTS = 4;
+const OUTPUT_DIR = process.env.EPIC_K_PREVIEW_LAYOUT_EVIDENCE_DIR
+    || 'docs/qa/evidence/epic-k/k1c02-layout-repair-2026-10-28/preview';
+const VIEWPORTS = [
+    { label: '1440-desktop', width: 1440, height: 1000 },
+    { label: '1024-desktop-tablet', width: 1024, height: 900 },
+    { label: '768-tablet', width: 768, height: 900 },
+    { label: '390-mobile', width: 390, height: 844 },
+    { label: '320-mobile', width: 320, height: 800 },
+    { label: '1440-at-200-percent-equivalent', width: 720, height: 900 },
+];
 
 function delay(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); }
 
@@ -43,10 +53,25 @@ async function auth(browser) {
         if (new URL(page.url()).pathname === '/password') {
             password = require('dotenv').parse(fs.readFileSync('.env')).STOREFRONT_PASSWORD;
             assert.ok(password, 'STOREFRONT_PASSWORD is required for controlled preview verification.');
-            const response = await withRateLimitRetry('Storefront password submission', () => context.request.post(`${STORE_ORIGIN}/password`, {
-                form: { password }, maxRedirects: 0,
-            }));
-            assert.ok([200, 302, 303].includes(response.status()), `Storefront password submission failed with HTTP ${response.status()}.`);
+            const response = await withRateLimitRetry('Storefront password submission', async () => {
+                if (new URL(page.url()).pathname !== '/password') {
+                    await page.goto(`${STORE_ORIGIN}/password`, { waitUntil: 'load' });
+                }
+                await page.locator('password-modal summary').click();
+                const passwordInput = page.locator('form[action$="/password"] input[name="password"]');
+                await passwordInput.waitFor({ state: 'visible' });
+                await passwordInput.evaluate((input, value) => {
+                    input.value = value;
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+                    input.dispatchEvent(new Event('change', { bubbles: true }));
+                }, password);
+                const [navigation] = await Promise.all([
+                    page.waitForNavigation({ waitUntil: 'load' }),
+                    page.locator('form[action$="/password"] button[name="commit"]').click(),
+                ]);
+                return navigation;
+            });
+            assert.ok(response?.ok(), `Storefront password submission failed with HTTP ${response?.status()}.`);
             await withRateLimitRetry('Authenticated storefront', () => page.goto(STORE_ORIGIN, { waitUntil: 'load' }));
         }
         assert.notEqual(new URL(page.url()).pathname, '/password');
@@ -126,6 +151,9 @@ async function inspectCart(page, expectedItems, pickupExpected) {
         throw new Error(`Quotation surface missing at ${new URL(page.url()).pathname}; response ${response?.status() ?? 'existing page'}; body: ${body}`);
     }
     if (pickupExpected) await page.locator('[data-rhino-pickup-checkout]:not([disabled])').waitFor({ timeout: 15000 });
+    await page.locator('#RhinoFulfillmentShipping').check();
+    await page.locator('#RhinoShippingQuotePanel').waitFor({ state: 'visible' });
+    await page.locator('#RhinoQuoteName').fill('Preview layout verification');
     const result = await page.evaluate(() => {
         const quote = document.querySelector('rhino-quote-mode');
         const body = quote?.querySelector('textarea[name="contact[body]"]')?.value || '';
@@ -134,6 +162,25 @@ async function inspectCart(page, expectedItems, pickupExpected) {
         const dynamicCheckout = document.querySelectorAll('.shopify-payment-button, [data-shopify-buttoncontainer]');
         const disabledPickup = [...quote.querySelectorAll('button[disabled]')]
             .some((element) => /pickup/i.test(element.textContent));
+        const rect = (element) => {
+            const value = element.getBoundingClientRect();
+            return { left: value.left, right: value.right, top: value.top, bottom: value.bottom, width: value.width };
+        };
+        const cards = [...quote.querySelectorAll('[data-rhino-fulfillment-card]')].map((card) => {
+            const heading = card.querySelector('h3');
+            const range = document.createRange();
+            range.selectNodeContents(heading);
+            return {
+                ...rect(card),
+                headingWidth: rect(heading).width,
+                maximumHeadingLineWidth: Math.max(...[...range.getClientRects()].map((line) => line.width)),
+            };
+        });
+        const controls = [...quote.querySelectorAll(
+            '#RhinoShippingQuotePanel input:not([type="hidden"]):not([type="radio"]):not([type="checkbox"]), '
+            + '#RhinoShippingQuotePanel select, #RhinoShippingQuotePanel textarea:not([hidden]), '
+            + '#RhinoShippingQuotePanel [data-rhino-quote-submit]',
+        )].map((element) => ({ id: element.id, name: element.name, ...rect(element) }));
         return {
             cartSignature: quote.dataset.cartSignature,
             reference: quote.dataset.reference,
@@ -143,6 +190,14 @@ async function inspectCart(page, expectedItems, pickupExpected) {
             dynamicCheckoutCount: dynamicCheckout.length,
             disabledPickup,
             horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+            geometry: {
+                viewport: document.documentElement.clientWidth,
+                content: document.documentElement.scrollWidth,
+                cards,
+                controls,
+                panel: rect(quote.querySelector('#RhinoShippingQuotePanel')),
+                submit: rect(quote.querySelector('[data-rhino-quote-submit]')),
+            },
         };
     });
     assert.equal(result.referencePresent, true, `Unexpected quotation reference format: ${result.reference}`);
@@ -156,6 +211,28 @@ async function inspectCart(page, expectedItems, pickupExpected) {
     assert.equal(result.dynamicCheckoutCount, 0, 'An accelerated checkout control bypasses quotation mode.');
     assert.equal(result.disabledPickup, !pickupExpected, 'Pickup state does not match live whole-cart Grafton availability.');
     assert.equal(result.horizontalOverflow, false, 'Quotation mode overflows the responsive viewport.');
+    const practicalCardWidth = Math.min(320, result.geometry.viewport - 40);
+    assert.equal(result.geometry.cards.length, 2, 'Both fulfillment choices must render.');
+    for (const card of result.geometry.cards) {
+        assert.ok(card.width >= practicalCardWidth, `Fulfillment card collapsed to ${card.width}px.`);
+        assert.ok(card.headingWidth >= Math.min(180, card.width - 70), `Fulfillment heading collapsed to ${card.headingWidth}px.`);
+        assert.ok(card.maximumHeadingLineWidth >= Math.min(150, card.width - 90), 'Fulfillment heading wraps into character-sized lines.');
+    }
+    const cardsBottom = Math.max(...result.geometry.cards.map((card) => card.bottom));
+    assert.ok(result.geometry.panel.top >= cardsBottom, 'Shipping form must render below both fulfillment choices.');
+    const practicalControlWidth = Math.min(240, result.geometry.viewport - 80);
+    assert.ok(result.geometry.controls.length >= 11, 'Complete quotation controls are not visible.');
+    for (const control of result.geometry.controls) {
+        assert.ok(control.width >= practicalControlWidth, `${control.id || control.name} collapsed to ${control.width}px.`);
+        assert.ok(control.left >= -1 && control.right <= result.geometry.viewport + 1, `${control.id || control.name} leaves the viewport.`);
+    }
+    assert.ok(result.geometry.submit.width >= practicalControlWidth, 'Quotation submit button is too narrow.');
+    await page.locator('#RhinoFulfillmentPickup').check();
+    assert.equal(await page.locator('#RhinoShippingQuotePanel').isHidden(), true, 'Pickup selection must hide the shipping form.');
+    assert.equal(await page.locator('[data-rhino-pickup-status]').isVisible(), true, 'Pickup status must remain visible.');
+    assert.equal(await page.locator('[data-rhino-pickup-checkout]').isVisible(), true, 'Pickup checkout control must remain visible.');
+    await page.locator('#RhinoFulfillmentShipping').check();
+    assert.equal(await page.locator('#RhinoQuoteName').inputValue(), 'Preview layout verification', 'Switching fulfillment choices erased entered information.');
     return result;
 }
 
@@ -208,14 +285,13 @@ async function run() {
         assert.match(String(item.id), /^[0-9]+$/);
         assert.ok(Number.isInteger(item.quantity) && item.quantity > 0);
     }
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     const browser = await chromium.launch({ headless: true });
     let cookies;
     const results = { themeId: PREVIEW_THEME_ID, mode: 'unpublished_preview', viewports: [], contact: null };
     try {
         cookies = await auth(browser);
-        const viewports = process.argv.includes('--desktop-only')
-            ? [{ width: 1440, height: 1000 }]
-            : [{ width: 1440, height: 1000 }, { width: 390, height: 844 }];
+        const viewports = process.argv.includes('--desktop-only') ? [VIEWPORTS[0]] : VIEWPORTS;
         for (const viewport of viewports) {
             const context = await browser.newContext({ viewport, acceptDownloads: false });
             await context.addCookies(cookies);
@@ -223,7 +299,17 @@ async function run() {
             await selectPreview(page);
             await replaceCart(page, pickupItems);
             const inspection = await inspectCart(page, pickupItems, true);
-            results.viewports.push({ viewport, pickupAndQuote: { ...inspection, body: undefined, reference: '[SANITIZED]', cartSignature: '[SANITIZED]' } });
+            const shippingScreenshot = `${OUTPUT_DIR}/shipping-${viewport.label}.png`;
+            const pickupScreenshot = `${OUTPUT_DIR}/pickup-${viewport.label}.png`;
+            await page.screenshot({ path: shippingScreenshot, fullPage: true });
+            await page.locator('#RhinoFulfillmentPickup').check();
+            await page.screenshot({ path: pickupScreenshot, fullPage: true });
+            await page.locator('#RhinoFulfillmentShipping').check();
+            results.viewports.push({
+                viewport,
+                screenshots: { shipping: shippingScreenshot, pickup: pickupScreenshot },
+                pickupAndQuote: { ...inspection, body: undefined, reference: '[SANITIZED]', cartSignature: '[SANITIZED]' },
+            });
             if (viewport.width === 1440 && process.argv.includes('--submit-contact')) {
                 results.contact = await submitControlledContact(page, pickupItems);
             }

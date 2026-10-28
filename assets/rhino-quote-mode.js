@@ -3,8 +3,9 @@ if (!customElements.get('rhino-quote-mode')) {
     'rhino-quote-mode',
     class RhinoQuoteMode extends HTMLElement {
       connectedCallback() {
+        this.setupFulfillmentChoices();
         this.verifyPickupAvailability();
-        const form = this.querySelector('#RhinoShippingQuoteForm');
+        const form = this.closest('#RhinoShippingQuoteForm') || this.querySelector('#RhinoShippingQuoteForm');
         const state = this.querySelector('[data-rhino-quote-form-state]');
         if (!form || !state) return;
         const signature = this.dataset.cartSignature || '';
@@ -53,6 +54,35 @@ if (!customElements.get('rhino-quote-mode')) {
           submit.setAttribute('aria-disabled', 'true');
           status.textContent = strings.submitting;
         });
+      }
+
+      setupFulfillmentChoices() {
+        const choices = [...this.querySelectorAll('[data-rhino-fulfillment-choice]')];
+        const formRegion = this.querySelector('#RhinoShippingQuotePanel');
+        if (!choices.length || !formRegion) return;
+
+        const update = () => {
+          const selected = choices.find((choice) => choice.checked)?.value || '';
+          formRegion.hidden = selected !== 'shipping';
+          choices.forEach((choice) => choice.setAttribute('aria-expanded', String(choice.checked)));
+          this.querySelectorAll('[data-rhino-fulfillment-card]').forEach((card) => {
+            const choice = card.querySelector('[data-rhino-fulfillment-choice]');
+            card.toggleAttribute('data-selected', Boolean(choice?.checked));
+          });
+        };
+
+        choices.forEach((choice) => choice.addEventListener('change', update));
+        this.querySelectorAll('[data-rhino-fulfillment-card]').forEach((card) => {
+          card.addEventListener('click', (event) => {
+            if (event.target.closest('button, input, label, a, select, textarea')) return;
+            const choice = card.querySelector('[data-rhino-fulfillment-choice]');
+            if (!choice?.checked) {
+              choice.checked = true;
+              choice.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          });
+        });
+        update();
       }
 
       async verifyPickupAvailability() {

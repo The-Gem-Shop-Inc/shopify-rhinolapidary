@@ -25,7 +25,7 @@
   data-id="{{ section.id }}"
 >
   <div class="page-width">
-    <div class="cart__footer isolate section-{{ section.id }}-padding">
+    <div class="cart__footer cart__footer--quote-mode isolate section-{{ section.id }}-padding">
       {%- if settings.show_cart_note -%}
         <cart-note class="cart__note field">
           <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
@@ -39,7 +39,7 @@
         </cart-note>
       {%- endif -%}
 
-      <div class="cart__blocks">
+      <div class="cart__blocks cart__blocks--quote-mode">
         {% for block in section.blocks %}
           {%- case block.type -%}
             {%- when '@app' -%}

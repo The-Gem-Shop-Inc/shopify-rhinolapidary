@@ -45,6 +45,7 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
 
 {%- assign quote_reference = cart.token | slice: 0, 8 | upcase | prepend: 'KQ-' | append: '-' | append: cart.item_count -%}
 
+{%- form 'contact', id: 'RhinoShippingQuoteForm', class: 'rhino-quote-mode__form' -%}
 <rhino-quote-mode
   class="rhino-quote-mode"
   data-cart-signature="{{ cart_signature | strip | escape }}"
@@ -61,15 +62,69 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
   <h2 class="rhino-quote-mode__heading">{{ 'sections.cart.quote_mode.heading' | t }}</h2>
   <p class="rhino-quote-mode__intro">{{ 'sections.cart.quote_mode.intro' | t }}</p>
 
-  <div class="rhino-quote-mode__routes">
-    <section class="rhino-quote-mode__route" aria-labelledby="RhinoShippingQuoteHeading">
-      <h3 id="RhinoShippingQuoteHeading">{{ 'sections.cart.quote_mode.shipping_heading' | t }}</h3>
-      <p>{{ 'sections.cart.quote_mode.shipping_explanation' | t }}</p>
+  <fieldset class="rhino-quote-mode__routes">
+    <legend class="visually-hidden">{{ 'sections.cart.quote_mode.heading' | t }}</legend>
+    <section class="rhino-quote-mode__route" data-rhino-fulfillment-card>
+      <div class="rhino-quote-mode__choice-heading">
+        <input
+          class="rhino-quote-mode__choice-input"
+          type="radio"
+          id="RhinoFulfillmentShipping"
+          name="fulfillment_choice"
+          value="shipping"
+          aria-controls="RhinoShippingQuotePanel"
+          aria-describedby="RhinoShippingQuoteDescription RhinoShippingQuoteReference"
+          data-rhino-fulfillment-choice
+          required
+          {% if form.posted_successfully? or form.errors %}checked{% endif %}
+        >
+        <h3><label for="RhinoFulfillmentShipping">{{ 'sections.cart.quote_mode.shipping_heading' | t }}</label></h3>
+      </div>
+      <p id="RhinoShippingQuoteDescription">{{ 'sections.cart.quote_mode.shipping_explanation' | t }}</p>
       <p class="rhino-quote-mode__reference">
-        {{ 'sections.cart.quote_mode.reference_html' | t: reference: quote_reference }}
+        <span id="RhinoShippingQuoteReference">{{ 'sections.cart.quote_mode.reference_html' | t: reference: quote_reference }}</span>
       </p>
+    </section>
 
-      {%- form 'contact', id: 'RhinoShippingQuoteForm', class: 'rhino-quote-mode__form' -%}
+    <section class="rhino-quote-mode__route" data-rhino-fulfillment-card>
+      <div class="rhino-quote-mode__choice-heading">
+        <input
+          class="rhino-quote-mode__choice-input"
+          type="radio"
+          id="RhinoFulfillmentPickup"
+          name="fulfillment_choice"
+          value="pickup"
+          aria-controls="RhinoPickupPanel"
+          aria-describedby="RhinoPickupDescription RhinoPickupStatus"
+          data-rhino-fulfillment-choice
+          required
+        >
+        <h3><label for="RhinoFulfillmentPickup">{{ 'sections.cart.quote_mode.pickup_heading' | t }}</label></h3>
+      </div>
+      <div id="RhinoPickupPanel">
+        <p id="RhinoPickupDescription">{{ 'sections.cart.quote_mode.pickup_time' | t }}</p>
+        {%- if pickup_allowed -%}
+          <p id="RhinoPickupStatus" class="rhino-quote-mode__blocked" role="status" data-rhino-pickup-status>{{ 'sections.cart.quote_mode.pickup_checking' | t }}</p>
+          <button class="button button--full-width" type="submit" name="checkout" form="cart" disabled data-rhino-pickup-checkout>
+            {{ 'sections.cart.quote_mode.pickup_checkout' | t }}
+          </button>
+        {%- else -%}
+          <p id="RhinoPickupStatus" class="rhino-quote-mode__blocked" role="status" data-rhino-pickup-status>{{ 'sections.cart.quote_mode.pickup_blocked' | t }}</p>
+          <button class="button button--full-width" type="submit" name="checkout" form="cart" disabled data-rhino-pickup-checkout>
+            {{ 'sections.cart.quote_mode.pickup_unavailable' | t }}
+          </button>
+        {%- endif -%}
+      </div>
+    </section>
+  </fieldset>
+
+  <section
+    class="rhino-quote-mode__form-region"
+    id="RhinoShippingQuotePanel"
+    aria-labelledby="RhinoShippingQuoteFormHeading"
+    {% unless form.posted_successfully? or form.errors %}hidden{% endunless %}
+  >
+    <h3 id="RhinoShippingQuoteFormHeading">{{ 'sections.cart.quote_mode.shipping_heading' | t }}</h3>
         <div
           data-rhino-quote-form-state
           data-posted-successfully="{% if form.posted_successfully? %}true{% else %}false{% endif %}"
@@ -205,23 +260,6 @@ Invoice authorization: none. Do not invoice before shipping approval.
             </button>
           {%- endif -%}
         </div>
-      {%- endform -%}
-    </section>
-
-    <section class="rhino-quote-mode__route" aria-labelledby="RhinoPickupHeading">
-      <h3 id="RhinoPickupHeading">{{ 'sections.cart.quote_mode.pickup_heading' | t }}</h3>
-      <p>{{ 'sections.cart.quote_mode.pickup_time' | t }}</p>
-      {%- if pickup_allowed -%}
-        <p class="rhino-quote-mode__blocked" role="status" data-rhino-pickup-status>{{ 'sections.cart.quote_mode.pickup_checking' | t }}</p>
-        <button class="button button--full-width" type="submit" name="checkout" form="cart" disabled data-rhino-pickup-checkout>
-          {{ 'sections.cart.quote_mode.pickup_checkout' | t }}
-        </button>
-      {%- else -%}
-        <p class="rhino-quote-mode__blocked" role="status" data-rhino-pickup-status>{{ 'sections.cart.quote_mode.pickup_blocked' | t }}</p>
-        <button class="button button--full-width" type="submit" name="checkout" form="cart" disabled data-rhino-pickup-checkout>
-          {{ 'sections.cart.quote_mode.pickup_unavailable' | t }}
-        </button>
-      {%- endif -%}
-    </section>
-  </div>
+  </section>
 </rhino-quote-mode>
+{%- endform -%}
