@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-k-k1d01-draft-order-automation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batch", "asOf", "state", "architecture", "shopify", "safety", "activation", "dependencies"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "batch": { "const": "K1D-01" },
+    "asOf": { "type": "string", "format": "date" },
+    "state": { "enum": ["REPOSITORY_READY_INTEGRATION_BLOCKED", "PREVIEW_ACCEPTED", "PRODUCTION_READY"] },
+    "architecture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "endpointModule", "storefrontPath", "activeSubmissionPath", "durableIdempotencyRequired"],
+      "properties": {
+        "type": { "const": "authenticated_shopify_app_proxy" },
+        "endpointModule": { "const": "server/epic-k-draft-order/endpoint.js" },
+        "storefrontPath": { "const": "/apps/rhino-quote-draft" },
+        "activeSubmissionPath": { "const": "native_shopify_contact_form_fallback" },
+        "durableIdempotencyRequired": { "const": true }
+      }
+    },
+    "shopify": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shop", "apiVersion", "mutation", "requiredScopes", "tag", "sellingPlanHandling"],
+      "properties": {
+        "shop": { "const": "rhino-lapidary.myshopify.com" },
+        "apiVersion": { "const": "2026-10" },
+        "mutation": { "const": "draftOrderCreate" },
+        "requiredScopes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["write_draft_orders", "read_products", "write_app_proxy"] },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "tag": { "const": "Unquoted" },
+        "sellingPlanHandling": { "const": "fail_closed_to_email_fallback_until_2027-01_or_later_is_approved" }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clientPricesAccepted", "shippingLineCreated", "invoiceSent", "paymentCollected", "draftCompleted", "inventoryReserved", "pickupCreatesDraft"],
+      "properties": {
+        "clientPricesAccepted": { "const": false },
+        "shippingLineCreated": { "const": false },
+        "invoiceSent": { "const": false },
+        "paymentCollected": { "const": false },
+        "draftCompleted": { "const": false },
+        "inventoryReserved": { "const": false },
+        "pickupCreatesDraft": { "const": false }
+      }
+    },
+    "activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["storefrontEnabled", "endpointHosted", "appInstalled", "scopesGranted", "durableStoreProvisioned", "protectedCustomerDataApproved", "previewVerified", "productionPublished"],
+      "properties": {
+        "storefrontEnabled": { "type": "boolean" },
+        "endpointHosted": { "type": "boolean" },
+        "appInstalled": { "type": "boolean" },
+        "scopesGranted": { "type": "boolean" },
+        "durableStoreProvisioned": { "type": "boolean" },
+        "protectedCustomerDataApproved": { "type": "boolean" },
+        "previewVerified": { "type": "boolean" },
+        "productionPublished": { "type": "boolean" }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "state", "requirement"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^K1D-DEP-[0-9]{3}$" },
+          "state": { "const": "BLOCKED" },
+          "requirement": { "type": "string", "minLength": 10 }
+        }
+      }
+    }
+  }
+}

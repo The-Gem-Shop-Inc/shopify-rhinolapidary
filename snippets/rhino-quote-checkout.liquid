@@ -143,6 +143,7 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
             <p class="rhino-quote-mode__required">{{ 'sections.cart.quote_mode.required_note' | t }}</p>
 
             <input type="hidden" name="contact[request_type]" value="Temporary shipping quotation">
+            <input type="hidden" name="contact[submission_path]" value="Email fallback - not stored as a Shopify Draft Order">
             <input type="hidden" name="contact[quotation_reference]" value="{{ quote_reference | escape }}" data-rhino-quote-reference>
             <input type="hidden" name="contact[cart_signature]" value="{{ cart_signature | strip | escape }}">
             <input type="hidden" name="contact[country]" value="US">

@@ -456,6 +456,26 @@ function successfulContactDocument() {
       await page.close();
     });
 
+    await test('K1D controlled fallback is truthfully identified and pickup has no draft endpoint', async () => {
+      const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });
+      let draftProxyRequests = 0;
+      await page.route('**/apps/rhino-quote-draft**', (route) => {
+        draftProxyRequests += 1;
+        return route.abort();
+      });
+      await fixtures.mount(page, { mixed: true });
+      assert.match(await page.locator('#RhinoShippingQuoteForm').getAttribute('action'), /contact/);
+      assert.equal(
+        await page.locator('input[name="contact[submission_path]"]').getAttribute('value'),
+        'Email fallback - not stored as a Shopify Draft Order',
+      );
+      assert.match(await page.locator('[data-rhino-fulfillment-card]').first().innerText(), /does not create a Shopify Draft Order/i);
+      await page.locator('#RhinoFulfillmentPickup').check();
+      await page.waitForTimeout(50);
+      assert.equal(draftProxyRequests, 0, 'pickup selection must never call the draft-order app proxy');
+      await page.close();
+    });
+
     await test('cart quantity controls remain present after quote-mode integration', async () => {
       const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });
       await fixtures.mount(page, { mixed: true });

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-01",
+  "asOf": "2026-10-28",
+  "state": "REPOSITORY_READY_INTEGRATION_BLOCKED",
+  "architecture": {
+    "type": "authenticated_shopify_app_proxy",
+    "endpointModule": "server/epic-k-draft-order/endpoint.js",
+    "storefrontPath": "/apps/rhino-quote-draft",
+    "activeSubmissionPath": "native_shopify_contact_form_fallback",
+    "durableIdempotencyRequired": true
+  },
+  "shopify": {
+    "shop": "rhino-lapidary.myshopify.com",
+    "apiVersion": "2026-10",
+    "mutation": "draftOrderCreate",
+    "requiredScopes": ["write_draft_orders", "read_products", "write_app_proxy"],
+    "tag": "Unquoted",
+    "sellingPlanHandling": "fail_closed_to_email_fallback_until_2027-01_or_later_is_approved"
+  },
+  "safety": {
+    "clientPricesAccepted": false,
+    "shippingLineCreated": false,
+    "invoiceSent": false,
+    "paymentCollected": false,
+    "draftCompleted": false,
+    "inventoryReserved": false,
+    "pickupCreatesDraft": false
+  },
+  "activation": {
+    "storefrontEnabled": false,
+    "endpointHosted": false,
+    "appInstalled": false,
+    "scopesGranted": false,
+    "durableStoreProvisioned": false,
+    "protectedCustomerDataApproved": false,
+    "previewVerified": false,
+    "productionPublished": false
+  },
+  "dependencies": [
+    {
+      "id": "K1D-DEP-001",
+      "state": "BLOCKED",
+      "requirement": "Choose and provision an HTTPS application host; this theme repository contains no authenticated backend runtime."
+    },
+    {
+      "id": "K1D-DEP-002",
+      "state": "BLOCKED",
+      "requirement": "Create or identify a Shopify app, configure its app proxy, install it on Rhino Lapidary, and grant write_draft_orders, read_products, and write_app_proxy."
+    },
+    {
+      "id": "K1D-DEP-003",
+      "state": "BLOCKED",
+      "requirement": "Store the app shared secret and offline Admin access token in the selected host's server-side secret manager."
+    },
+    {
+      "id": "K1D-DEP-004",
+      "state": "BLOCKED",
+      "requirement": "Provision a durable database with an atomic unique idempotency claim and a durable per-shop and per-client rate limiter."
+    },
+    {
+      "id": "K1D-DEP-005",
+      "state": "BLOCKED",
+      "requirement": "Configure and obtain the Shopify protected customer data access needed for quotation email, phone, and shipping address fields."
+    },
+    {
+      "id": "K1D-DEP-006",
+      "state": "BLOCKED",
+      "requirement": "Complete preview end-to-end acceptance with a real draft, timeout reconciliation, staff Admin inspection, and proof that no invoice, payment, shipping line, reservation, completion, or pickup draft occurred."
+    }
+  ]
+}
