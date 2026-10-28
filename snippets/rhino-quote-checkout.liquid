@@ -58,6 +58,9 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
   data-string-duplicate="{{ 'sections.cart.quote_mode.duplicate' | t | escape }}"
   data-string-invalid-cart="{{ 'sections.cart.quote_mode.invalid_cart' | t | escape }}"
   data-string-submitting="{{ 'sections.cart.quote_mode.submitting' | t | escape }}"
+  data-string-captcha-failed="{{ 'sections.cart.quote_mode.captcha_failed' | t | escape }}"
+  data-string-submission-failed="{{ 'sections.cart.quote_mode.submission_failed' | t | escape }}"
+  data-string-challenge-waiting="{{ 'sections.cart.quote_mode.challenge_waiting' | t | escape }}"
 >
   <h2 class="rhino-quote-mode__heading">{{ 'sections.cart.quote_mode.heading' | t }}</h2>
   <p class="rhino-quote-mode__intro">{{ 'sections.cart.quote_mode.intro' | t }}</p>
@@ -128,6 +131,7 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
         <div
           data-rhino-quote-form-state
           data-posted-successfully="{% if form.posted_successfully? %}true{% else %}false{% endif %}"
+          data-has-errors="{% if form.errors %}true{% else %}false{% endif %}"
         >
           {%- if form.posted_successfully? -%}
             <div class="rhino-quote-mode__success" role="status" tabindex="-1" data-rhino-quote-success>
@@ -254,7 +258,7 @@ Invoice authorization: none. Do not invoice before shipping approval.
             {%- endcapture -%}
             <textarea name="contact[body]" hidden>{{ quote_body | strip | escape }}</textarea>
 
-            <p class="rhino-quote-mode__status" role="status" aria-live="polite" data-rhino-quote-status></p>
+            <p class="rhino-quote-mode__status" role="status" aria-live="polite" aria-atomic="true" data-rhino-quote-status></p>
             <button class="button button--full-width" type="submit" data-rhino-quote-submit>
               {{ 'sections.cart.quote_mode.submit_quote' | t }}
             </button>

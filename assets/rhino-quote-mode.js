@@ -3,57 +3,198 @@ if (!customElements.get('rhino-quote-mode')) {
     'rhino-quote-mode',
     class RhinoQuoteMode extends HTMLElement {
       connectedCallback() {
+        if (this.initialized) return;
+        this.initialized = true;
         this.setupFulfillmentChoices();
         this.verifyPickupAvailability();
-        const form = this.closest('#RhinoShippingQuoteForm') || this.querySelector('#RhinoShippingQuoteForm');
-        const state = this.querySelector('[data-rhino-quote-form-state]');
-        if (!form || !state) return;
-        const signature = this.dataset.cartSignature || '';
-        const reference = this.dataset.reference || '';
-        const key = `rhino-quote:${signature}`;
-        const pendingKey = 'rhino-quote:pending';
-        const status = this.querySelector('[data-rhino-quote-status]');
-        const submit = this.querySelector('[data-rhino-quote-submit]');
-        const success = this.querySelector('[data-rhino-quote-success]');
-        const strings = {
+        this.form = this.closest('#RhinoShippingQuoteForm') || this.querySelector('#RhinoShippingQuoteForm');
+        this.formState = this.querySelector('[data-rhino-quote-form-state]');
+        if (!this.form || !this.formState) return;
+
+        this.signature = this.dataset.cartSignature || '';
+        this.reference = this.dataset.reference || '';
+        this.completedKey = `rhino-quote:${this.signature}`;
+        this.pendingKey = 'rhino-quote:pending';
+        this.status = this.querySelector('[data-rhino-quote-status]');
+        this.submit = this.querySelector('[data-rhino-quote-submit]');
+        this.success = this.querySelector('[data-rhino-quote-success]');
+        this.submissionState = 'idle';
+        this.captchaResourceFailed = false;
+        this.submissionTimeoutMs = 30000;
+        this.strings = {
           duplicate: this.dataset.stringDuplicate || '',
           invalidCart: this.dataset.stringInvalidCart || '',
           submitting: this.dataset.stringSubmitting || '',
+          captchaFailed: this.dataset.stringCaptchaFailed || '',
+          submissionFailed: this.dataset.stringSubmissionFailed || '',
+          challengeWaiting: this.dataset.stringChallengeWaiting || '',
         };
 
-        if (state.dataset.postedSuccessfully === 'true') {
-          const pending = this.readStorage(pendingKey);
+        this.onResourceError = (event) => this.handleResourceError(event);
+        this.onPageHide = () => {
+          this.navigationStarted = true;
+          this.clearSubmissionTimer();
+        };
+        this.onPageShow = (event) => {
+          if (event.persisted && ['submitting', 'challenge'].includes(this.submissionState)) {
+            this.failSubmission(this.strings.submissionFailed);
+          }
+        };
+        window.addEventListener('error', this.onResourceError, true);
+        window.addEventListener('beforeunload', this.onPageHide);
+        window.addEventListener('pagehide', this.onPageHide);
+        window.addEventListener('pageshow', this.onPageShow);
+
+        if (this.formState.dataset.postedSuccessfully === 'true') {
+          const pending = this.readStorage(this.pendingKey);
           const completed = {
-            cartSignature: signature,
-            reference: pending?.reference || reference,
+            cartSignature: this.signature,
+            reference: pending?.cartSignature === this.signature ? pending.reference : this.reference,
             status: 'submitted',
           };
-          sessionStorage.setItem(key, JSON.stringify(completed));
-          sessionStorage.removeItem(pendingKey);
-          success?.focus();
+          sessionStorage.setItem(this.completedKey, JSON.stringify(completed));
+          this.removeMatchingPending();
+          this.submissionState = 'complete';
+          this.success?.focus();
           return;
         }
 
-        const prior = this.readStorage(key);
-        if (prior?.status === 'submitted' && prior.cartSignature === signature) {
-          submit.disabled = true;
-          status.textContent = `${strings.duplicate} ${prior.reference}`;
+        const prior = this.readStorage(this.completedKey);
+        if (prior?.status === 'submitted' && prior.cartSignature === this.signature) {
+          this.submissionState = 'complete';
+          this.submit.disabled = true;
+          this.submit.setAttribute('aria-disabled', 'true');
+          this.setStatus(`${this.strings.duplicate} ${prior.reference}`);
           return;
         }
 
-        form.addEventListener('submit', (event) => {
-          if (!form.checkValidity()) return;
-          if (!signature || !reference) {
-            event.preventDefault();
-            status.textContent = strings.invalidCart;
+        const pending = this.readStorage(this.pendingKey);
+        const returnedWithErrors = this.formState.dataset.hasErrors === 'true';
+        if (pending?.cartSignature === this.signature || returnedWithErrors) {
+          this.removeMatchingPending();
+          const shippingChoice = this.querySelector('[data-rhino-fulfillment-choice][value="shipping"]');
+          if (shippingChoice && !shippingChoice.checked) {
+            shippingChoice.checked = true;
+            shippingChoice.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+          this.setStatus(this.strings.submissionFailed, true);
+        }
+
+        this.form.addEventListener('submit', (event) => this.handleSubmit(event));
+      }
+
+      disconnectedCallback() {
+        this.clearSubmissionTimer();
+        window.removeEventListener('error', this.onResourceError, true);
+        window.removeEventListener('beforeunload', this.onPageHide);
+        window.removeEventListener('pagehide', this.onPageHide);
+        window.removeEventListener('pageshow', this.onPageShow);
+      }
+
+      handleSubmit(event) {
+        if (!this.form.checkValidity()) return;
+        if (!this.signature || !this.reference) {
+          event.preventDefault();
+          this.setStatus(this.strings.invalidCart, true);
+          return;
+        }
+        if (this.submissionState === 'complete') {
+          event.preventDefault();
+          return;
+        }
+        if (this.captchaResourceFailed) {
+          event.preventDefault();
+          this.failSubmission(this.strings.captchaFailed);
+          return;
+        }
+
+        const pending = {
+          cartSignature: this.signature,
+          reference: this.reference,
+          status: 'pending',
+          startedAt: Date.now(),
+        };
+        sessionStorage.setItem(this.pendingKey, JSON.stringify(pending));
+        this.submissionState = 'submitting';
+        this.navigationStarted = false;
+        this.submit.disabled = true;
+        this.submit.setAttribute('aria-disabled', 'true');
+        this.form.setAttribute('aria-busy', 'true');
+        this.setStatus(this.strings.submitting);
+        this.startSubmissionTimer();
+      }
+
+      startSubmissionTimer() {
+        this.clearSubmissionTimer();
+        this.submissionTimer = window.setTimeout(() => {
+          if (this.navigationStarted || !['submitting', 'challenge'].includes(this.submissionState)) return;
+          if (this.hasVisibleCaptchaChallenge()) {
+            this.submissionState = 'challenge';
+            this.setStatus(this.strings.challengeWaiting);
             return;
           }
-          const pending = { cartSignature: signature, reference, status: 'pending' };
-          sessionStorage.setItem(pendingKey, JSON.stringify(pending));
-          submit.disabled = true;
-          submit.setAttribute('aria-disabled', 'true');
-          status.textContent = strings.submitting;
+          this.failSubmission(this.strings.captchaFailed);
+        }, this.submissionTimeoutMs);
+      }
+
+      clearSubmissionTimer() {
+        if (this.submissionTimer) window.clearTimeout(this.submissionTimer);
+        this.submissionTimer = null;
+      }
+
+      handleResourceError(event) {
+        const target = event.target;
+        if (!(target instanceof HTMLScriptElement) || !this.isCaptchaUrl(target.src)) return;
+        this.captchaResourceFailed = true;
+        if (['submitting', 'challenge'].includes(this.submissionState)) {
+          this.failSubmission(this.strings.captchaFailed);
+        }
+      }
+
+      isCaptchaUrl(value) {
+        if (!value) return false;
+        try {
+          const hostname = new URL(value, window.location.href).hostname.toLowerCase();
+          return hostname === 'hcaptcha.com' || hostname.endsWith('.hcaptcha.com');
+        } catch (_error) {
+          return false;
+        }
+      }
+
+      hasVisibleCaptchaChallenge() {
+        const candidates = [...document.querySelectorAll(
+          'iframe[src*="hcaptcha.com"][src*="challenge"], iframe[title*="hCaptcha"][title*="challenge" i], '
+          + 'iframe[title*="challenge" i][src*="hcaptcha.com"]',
+        )];
+        return candidates.some((element) => {
+          const style = window.getComputedStyle(element);
+          const bounds = element.getBoundingClientRect();
+          return style.display !== 'none' && style.visibility !== 'hidden' && bounds.width > 0 && bounds.height > 0;
         });
+      }
+
+      failSubmission(message) {
+        this.clearSubmissionTimer();
+        this.removeMatchingPending();
+        this.submissionState = 'failed';
+        this.captchaResourceFailed = false;
+        this.form.removeAttribute('aria-busy');
+        this.submit.disabled = false;
+        this.submit.removeAttribute('aria-disabled');
+        this.setStatus(message, true);
+      }
+
+      setStatus(message, isError = false) {
+        if (!this.status) return;
+        this.status.textContent = message;
+        this.status.classList.toggle('rhino-quote-mode__status--error', isError);
+        this.status.setAttribute('role', isError ? 'alert' : 'status');
+        this.status.setAttribute('aria-live', isError ? 'assertive' : 'polite');
+      }
+
+      removeMatchingPending() {
+        const pending = this.readStorage(this.pendingKey);
+        if (!pending || pending.cartSignature === this.signature) sessionStorage.removeItem(this.pendingKey);
       }
 
       setupFulfillmentChoices() {

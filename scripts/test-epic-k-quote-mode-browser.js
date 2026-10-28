@@ -100,6 +100,58 @@ function assertLayout(metrics, viewportWidth) {
   assert.equal(metrics.positiveTabindexCount, 0, 'positive tabindex overrides the natural focus order');
 }
 
+async function fillValidQuote(page, suffix = '') {
+  await page.locator('#RhinoFulfillmentShipping').check();
+  await page.locator('#RhinoQuoteName').fill(`Synthetic Customer${suffix}`);
+  await page.locator('#RhinoQuoteEmail').fill(`fixture${suffix.replace(/\W/g, '')}@example.invalid`);
+  await page.locator('#RhinoQuoteAddress1').fill('100 Fixture Street');
+  await page.locator('#RhinoQuoteCity').fill('Fixture City');
+  await page.locator('#RhinoQuoteState').selectOption('WI');
+  await page.locator('#RhinoQuotePostalCode').fill('53024');
+  await page.locator('input[name="contact[delivery_type]"][value="Commercial"]').check();
+  await page.locator('input[name="contact[liftgate_required]"][value="No"]').check();
+  await page.locator('#RhinoQuoteAccess').fill('No special access limitations.');
+}
+
+async function submissionState(page) {
+  return page.locator('rhino-quote-mode').evaluate((element) => ({
+    state: element.submissionState,
+    disabled: element.querySelector('[data-rhino-quote-submit]')?.disabled ?? null,
+    busy: element.closest('form')?.getAttribute('aria-busy'),
+    status: element.querySelector('[data-rhino-quote-status]')?.textContent || '',
+    statusRole: element.querySelector('[data-rhino-quote-status]')?.getAttribute('role'),
+    pending: sessionStorage.getItem('rhino-quote:pending'),
+    completed: sessionStorage.getItem(`rhino-quote:${element.dataset.cartSignature}`),
+  }));
+}
+
+function returnedContactDocument(values = {}) {
+  let html = fixtures.documentFor({ mixed: true })
+    .replace('data-has-errors="false"', 'data-has-errors="true"');
+  for (const [id, value] of Object.entries(values)) {
+    const escaped = String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('"', '&quot;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+    html = html.replace(new RegExp(`(<input[^>]+id="${id}"[^>]*)(>)`), `$1 value="${escaped}"$2`);
+  }
+  return html;
+}
+
+function successfulContactDocument() {
+  return fixtures.documentFor({ mixed: true })
+    .replace('data-posted-successfully="false"', 'data-posted-successfully="true"')
+    .replace(
+      /(id="RhinoFulfillmentShipping"[\s\S]*?data-rhino-fulfillment-choice\s+required)(\s*>)/,
+      '$1 checked$2',
+    )
+    .replace(
+      /(<div\s+data-rhino-quote-form-state[\s\S]*?data-has-errors="false"\s*>)/,
+      '$1<div class="rhino-quote-mode__success" role="status" tabindex="-1" data-rhino-quote-success><h4>Quotation request received</h4><p>Verified fixture success.</p></div>',
+    );
+}
+
 (async () => {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   const browser = await chromium.launch({ headless: true });
@@ -139,21 +191,20 @@ function assertLayout(metrics, viewportWidth) {
     });
 
     await test('valid customer and delivery inputs submit the complete request without payment', async () => {
-      await desktop.locator('#RhinoQuoteName').fill('Synthetic Customer');
-      await desktop.locator('#RhinoQuoteEmail').fill('fixture@example.invalid');
-      await desktop.locator('#RhinoQuoteAddress1').fill('100 Fixture Street');
-      await desktop.locator('#RhinoQuoteCity').fill('Fixture City');
-      await desktop.locator('#RhinoQuoteState').selectOption('WI');
-      await desktop.locator('#RhinoQuotePostalCode').fill('53024');
-      await desktop.locator('input[name="contact[delivery_type]"][value="Commercial"]').check();
-      await desktop.locator('input[name="contact[liftgate_required]"][value="No"]').check();
-      await desktop.locator('#RhinoQuoteAccess').fill('No special access limitations.');
+      await fillValidQuote(desktop);
       await desktop.locator('[data-rhino-quote-submit]').click();
       const submission = await desktop.evaluate(() => window.fixtureQuoteSubmission);
       assert.equal(submission['contact[email]'], 'fixture@example.invalid');
       assert.match(submission['contact[body]'], /Shipping charge: pending/);
       assert.match(submission['contact[body]'], /Invoice authorization: none/);
       assert.equal(Object.keys(submission).some((key) => /payment|card/i.test(key)), false);
+      assert.equal((await submissionState(desktop)).completed, null, 'an unverified submit cannot be recorded as complete');
+      await desktop.evaluate(() => {
+        const script = document.createElement('script');
+        script.src = 'https://js.hcaptcha.com/1/api.js?fixture-payload-recovery';
+        document.head.append(script);
+      });
+      await desktop.locator('[data-rhino-quote-submit]:not([disabled])').waitFor();
     });
 
     await test('repeat submission for an unchanged cart is blocked in the browser session', async () => {
@@ -206,6 +257,195 @@ function assertLayout(metrics, viewportWidth) {
       });
       await page.close();
     }
+
+    await test('CAPTCHA script failure shows an accessible error and preserves a safe retry', async () => {
+      const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });
+      await fixtures.mount(page, { mixed: true });
+      await fillValidQuote(page, ' Captcha');
+      await page.route('https://analytics.example.invalid/**', (route) => route.abort('blockedbyclient'));
+      await page.route('https://js.hcaptcha.com/**', (route) => route.abort('failed'));
+      await page.evaluate(() => {
+        const analytics = document.createElement('script');
+        analytics.src = 'https://analytics.example.invalid/blocked.js';
+        document.head.append(analytics);
+      });
+      await page.waitForTimeout(25);
+      assert.equal(await page.locator('rhino-quote-mode').evaluate((element) => element.captchaResourceFailed), false);
+      await page.evaluate(() => {
+        const script = document.createElement('script');
+        script.src = 'https://js.hcaptcha.com/1/api.js?fixture-unavailable';
+        document.head.append(script);
+      });
+      await page.waitForFunction(() => document.querySelector('rhino-quote-mode').captchaResourceFailed === true);
+      await page.locator('[data-rhino-quote-submit]').click();
+      const state = await submissionState(page);
+      assert.equal(state.state, 'failed');
+      assert.equal(state.disabled, false);
+      assert.equal(state.busy, null);
+      assert.equal(state.pending, null);
+      assert.equal(state.completed, null);
+      assert.equal(state.statusRole, 'alert');
+      assert.match(state.status, /security verification could not be completed/i);
+      assert.equal(await page.locator('#RhinoQuoteName').inputValue(), 'Synthetic Customer Captcha');
+      await page.close();
+    });
+
+    await test('CAPTCHA initialization timeout is bounded and never leaves the form disabled', async () => {
+      const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });
+      await fixtures.mount(page, { mixed: true });
+      await fillValidQuote(page, ' Timeout');
+      await page.evaluate(() => {
+        const form = document.querySelector('#RhinoShippingQuoteForm');
+        window.fixturePreventSubmit = (event) => event.preventDefault();
+        form.addEventListener('submit', window.fixturePreventSubmit);
+        document.querySelector('rhino-quote-mode').submissionTimeoutMs = 60;
+      });
+      await page.route('https://js.hcaptcha.com/**', async (route) => {
+        await new Promise((resolve) => setTimeout(resolve, 180));
+        await route.fulfill({ contentType: 'application/javascript', body: 'window.fixtureCaptchaEventuallyLoaded=true;' });
+      });
+      await page.evaluate(() => {
+        const script = document.createElement('script');
+        script.src = 'https://js.hcaptcha.com/1/api.js?fixture-timeout';
+        document.head.append(script);
+      });
+      await page.locator('[data-rhino-quote-submit]').click();
+      assert.equal((await submissionState(page)).disabled, true);
+      await page.locator('[data-rhino-quote-submit]:not([disabled])').waitFor({ timeout: 1000 });
+      const state = await submissionState(page);
+      assert.equal(state.state, 'failed');
+      assert.equal(state.pending, null);
+      assert.equal(state.statusRole, 'alert');
+      assert.match(state.status, /security verification could not be completed/i);
+      await page.waitForFunction(() => window.fixtureCaptchaEventuallyLoaded === true);
+      await page.close();
+    });
+
+    await test('contact response failure restores the native form with an alert and retry control', async () => {
+      const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });
+      await fixtures.mount(page, { mixed: true });
+      await fillValidQuote(page, ' Contact');
+      await page.route('**/contact*', async (route) => {
+        const fields = new URLSearchParams(route.request().postData() || '');
+        await route.fulfill({
+          status: 503,
+          contentType: 'text/html',
+          body: returnedContactDocument({
+            RhinoQuoteName: fields.get('contact[name]') || '',
+            RhinoQuoteEmail: fields.get('contact[email]') || '',
+          }),
+        });
+      });
+      await Promise.all([
+        page.waitForURL('**/contact*'),
+        page.locator('[data-rhino-quote-submit]').click(),
+      ]);
+      await page.locator('[data-rhino-quote-status][role="alert"]').waitFor();
+      const state = await submissionState(page);
+      assert.equal(state.disabled, false);
+      assert.equal(state.pending, null);
+      assert.equal(state.completed, null);
+      assert.match(state.status, /request was not confirmed/i);
+      assert.equal(await page.locator('#RhinoShippingQuotePanel').isVisible(), true);
+      assert.equal(await page.locator('#RhinoQuoteName').inputValue(), 'Synthetic Customer Contact');
+      assert.equal(await page.locator('#RhinoQuoteEmail').inputValue(), 'fixtureContact@example.invalid');
+      await page.close();
+    });
+
+    await test('verified native contact success is recorded and prevents a duplicate submission', async () => {
+      const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });
+      await fixtures.mount(page, { mixed: true });
+      await fillValidQuote(page, ' Success');
+      let contactPosts = 0;
+      await page.route('**/contact*', async (route) => {
+        contactPosts += 1;
+        await route.fulfill({ status: 200, contentType: 'text/html', body: successfulContactDocument() });
+      });
+      assert.equal((await submissionState(page)).completed, null);
+      await Promise.all([
+        page.waitForURL('**/contact*'),
+        page.locator('[data-rhino-quote-submit]').click(),
+      ]);
+      await page.locator('[data-rhino-quote-success]').waitFor();
+      const verified = await page.locator('rhino-quote-mode').evaluate((element) => ({
+        completed: JSON.parse(sessionStorage.getItem(`rhino-quote:${element.dataset.cartSignature}`)),
+        pending: sessionStorage.getItem('rhino-quote:pending'),
+      }));
+      assert.equal(verified.completed.status, 'submitted');
+      assert.equal(verified.completed.cartSignature, await page.locator('rhino-quote-mode').getAttribute('data-cart-signature'));
+      assert.equal(verified.pending, null);
+
+      await page.goto('http://j0.local/cart');
+      await page.locator('#RhinoFulfillmentShipping').check();
+      assert.equal(await page.locator('[data-rhino-quote-submit]').isDisabled(), true);
+      assert.match(await page.locator('[data-rhino-quote-status]').innerText(), /already submitted/i);
+      await page.locator('[data-rhino-quote-submit]').click({ force: true });
+      await page.waitForTimeout(50);
+      assert.equal(contactPosts, 1, 'verified success must block a second native POST');
+      await page.close();
+    });
+
+    await test('retry after a confirmed timeout can reach a later verified success', async () => {
+      const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });
+      await fixtures.mount(page, { mixed: true });
+      await fillValidQuote(page, ' Retry');
+      await page.evaluate(() => {
+        const form = document.querySelector('#RhinoShippingQuoteForm');
+        window.fixturePreventFirstSubmit = (event) => event.preventDefault();
+        form.addEventListener('submit', window.fixturePreventFirstSubmit);
+        document.querySelector('rhino-quote-mode').submissionTimeoutMs = 50;
+      });
+      await page.locator('[data-rhino-quote-submit]').click();
+      await page.locator('[data-rhino-quote-submit]:not([disabled])').waitFor({ timeout: 1000 });
+      assert.equal((await submissionState(page)).state, 'failed');
+      await page.route('**/contact*', (route) => route.fulfill({
+        status: 200,
+        contentType: 'text/html',
+        body: successfulContactDocument(),
+      }));
+      await page.evaluate(() => {
+        document.querySelector('#RhinoShippingQuoteForm').removeEventListener('submit', window.fixturePreventFirstSubmit);
+      });
+      await Promise.all([
+        page.waitForURL('**/contact*'),
+        page.locator('[data-rhino-quote-submit]').click(),
+      ]);
+      await page.locator('[data-rhino-quote-success]').waitFor();
+      const completed = await page.locator('rhino-quote-mode').evaluate((element) => (
+        JSON.parse(sessionStorage.getItem(`rhino-quote:${element.dataset.cartSignature}`))
+      ));
+      assert.equal(completed.status, 'submitted');
+      await page.close();
+    });
+
+    await test('interactive CAPTCHA challenge may remain open beyond the recovery timeout', async () => {
+      const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });
+      await fixtures.mount(page, { mixed: true });
+      await fillValidQuote(page, ' Challenge');
+      await page.route('https://newassets.hcaptcha.com/**', (route) => route.fulfill({
+        contentType: 'text/html',
+        body: '<!doctype html><title>Fixture challenge</title>',
+      }));
+      await page.evaluate(() => {
+        const form = document.querySelector('#RhinoShippingQuoteForm');
+        form.addEventListener('submit', (event) => event.preventDefault());
+        document.querySelector('rhino-quote-mode').submissionTimeoutMs = 50;
+        const frame = document.createElement('iframe');
+        frame.title = 'Main content of the hCaptcha challenge';
+        frame.src = 'https://newassets.hcaptcha.com/captcha/v1/fixture/challenge.html';
+        frame.style.cssText = 'display:block;width:400px;height:300px';
+        document.body.append(frame);
+      });
+      await page.locator('[data-rhino-quote-submit]').click();
+      await page.waitForTimeout(150);
+      const state = await submissionState(page);
+      assert.equal(state.state, 'challenge');
+      assert.equal(state.disabled, true);
+      assert.notEqual(state.pending, null);
+      assert.equal(state.statusRole, 'status');
+      assert.match(state.status, /form will wait while the challenge is open/i);
+      await page.close();
+    });
 
     await test('rendered request never invents free shipping or an approved invoice', async () => {
       const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });

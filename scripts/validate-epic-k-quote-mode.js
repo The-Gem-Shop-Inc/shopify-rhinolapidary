@@ -17,6 +17,7 @@ const paths = {
     quickOrder: 'snippets/quick-order-list.liquid',
     javascript: 'assets/rhino-quote-mode.js',
     stylesheet: 'assets/rhino-quote-mode.css',
+    layout: 'layout/theme.liquid',
 };
 
 function source(file) {
@@ -62,6 +63,7 @@ function validateQuoteMode() {
         'variant_exclusion_token', 'product_exclusion_token', 'data-pickup-variants',
         'data-pickup-location="1411 6th Ave"', 'name="checkout" form="cart"',
         'data-rhino-fulfillment-choice', 'id="RhinoShippingQuotePanel"',
+        'data-has-errors=', 'data-string-captcha-failed=', 'aria-atomic="true"',
     ]) {
         if (!checkout.includes(signal)) errors.push(`Quote checkout is missing required signal: ${signal}`);
     }
@@ -96,15 +98,19 @@ function validateQuoteMode() {
     for (const signal of [
         'sessionStorage', "status: 'pending'", "status: 'submitted'", 'submit.disabled = true',
         'variants/${variantId}/?section_id=pickup-availability', '.pickup-availability-list__item h3',
-        'results.every(Boolean)',
+        'results.every(Boolean)', "window.addEventListener('error'", 'submissionTimeoutMs = 30000',
+        'hasVisibleCaptchaChallenge', 'failSubmission', 'removeMatchingPending',
     ]) {
         if (!javascript.includes(signal)) errors.push(`Duplicate submission protection is missing: ${signal}`);
+    }
+    if (/fetch\([^\n]*contact|XMLHttpRequest|Shopify\.captcha\.protect/.test(javascript)) {
+        errors.push('Quotation recovery cannot replace or rewire Shopify native contact/CAPTCHA submission.');
     }
     if (!javascript.includes('setupFulfillmentChoices') || !javascript.includes("formRegion.hidden = selected !== 'shipping'")) {
         errors.push('Fulfillment choices must reveal the separate shipping form without resetting its fields.');
     }
     const stylesheet = source(paths.stylesheet);
-    for (const signal of ['cart__footer--quote-mode', 'rhino-quote-mode__form-region', 'minmax(min(100%, 32rem), 1fr)']) {
+    for (const signal of ['cart__footer--quote-mode', 'rhino-quote-mode__form-region', 'minmax(min(100%, 32rem), 1fr)', 'rhino-quote-mode__status--error']) {
         if (!stylesheet.includes(signal)) errors.push(`Responsive quote layout is missing required signal: ${signal}`);
     }
     if (stylesheet.includes('minmax(0, 2fr) minmax(28rem, 1fr)')) {
@@ -112,6 +118,10 @@ function validateQuoteMode() {
     }
     if (/X-Shopify-Access-Token|shpat_|gid:\/\/shopify\/Customer|Authorization:\s*Bearer/i.test(Object.values(paths).map(source).join('\n'))) {
         errors.push('Credential-bearing or customer-resource data is prohibited in quote-mode files.');
+    }
+    const layout = source(paths.layout);
+    if (!/<head[\s>][\s\S]*{{\s*content_for_header\s*}}[\s\S]*<\/head>/i.test(layout)) {
+        errors.push('theme.liquid must preserve the unmodified content_for_header output inside head for Shopify CAPTCHA.');
     }
     if (config.authority.liveCheckoutEnforcementVerified) {
         errors.push('The contract cannot claim live checkout enforcement before post-activation verification.');
@@ -123,6 +133,7 @@ function validateQuoteMode() {
         'heading', 'intro', 'shipping_heading', 'shipping_explanation', 'pickup_heading',
         'pickup_time', 'pickup_checking', 'pickup_available', 'pickup_blocked', 'pickup_checkout', 'pickup_unavailable',
         'submit_quote', 'success_heading', 'success_body_html', 'review_delivery_options',
+        'captcha_failed', 'submission_failed', 'challenge_waiting',
     ];
     for (const key of requiredEnglishKeys) {
         if (typeof quoteMode?.[key] !== 'string' || !quoteMode[key].trim()) errors.push(`Published English quote-mode key is missing: ${key}`);

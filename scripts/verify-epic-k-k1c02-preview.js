@@ -278,6 +278,54 @@ async function submitControlledContact(page, expectedItems) {
     };
 }
 
+async function verifyCaptchaFailureRecovery(page) {
+    await page.locator('#RhinoQuoteName').fill('Preview recovery verification');
+    await page.locator('#RhinoQuoteEmail').fill('preview-recovery@example.invalid');
+    await page.locator('#RhinoQuoteAddress1').fill('Synthetic QA address');
+    await page.locator('#RhinoQuoteCity').fill('Grafton');
+    await page.locator('#RhinoQuoteState').selectOption('WI');
+    await page.locator('#RhinoQuotePostalCode').fill('53024');
+    await page.locator('input[name="contact[delivery_type]"][value="Commercial"]').check();
+    await page.locator('input[name="contact[liftgate_required]"][value="No"]').check();
+    await page.locator('#RhinoQuoteAccess').fill('Controlled recovery verification; no request is submitted.');
+    assert.equal(await page.locator('#RhinoShippingQuoteForm').evaluate((form) => form.checkValidity()), true);
+
+    const contactPosts = [];
+    const observeRequest = (request) => {
+        if (request.method() === 'POST' && new URL(request.url()).pathname === '/contact') contactPosts.push(request.url());
+    };
+    page.on('request', observeRequest);
+    await page.route('https://js.hcaptcha.com/**', (route) => route.abort('failed'));
+    try {
+        await page.locator('#RhinoShippingQuoteForm').evaluate((form) => {
+            form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+            const script = document.createElement('script');
+            script.src = 'https://js.hcaptcha.com/1/api.js?epic-k-recovery-verification';
+            document.head.append(script);
+        });
+        await page.locator('[data-rhino-quote-status][role="alert"]').waitFor({ timeout: 5000 });
+        const result = await page.locator('rhino-quote-mode').evaluate((element) => ({
+            state: element.submissionState,
+            disabled: element.querySelector('[data-rhino-quote-submit]').disabled,
+            pending: sessionStorage.getItem('rhino-quote:pending'),
+            completed: sessionStorage.getItem(`rhino-quote:${element.dataset.cartSignature}`),
+            status: element.querySelector('[data-rhino-quote-status]').textContent,
+            namePreserved: element.querySelector('#RhinoQuoteName').value === 'Preview recovery verification',
+        }));
+        assert.equal(result.state, 'failed');
+        assert.equal(result.disabled, false);
+        assert.equal(result.pending, null);
+        assert.equal(result.completed, null);
+        assert.equal(result.namePreserved, true);
+        assert.match(result.status, /security verification could not be completed/i);
+        assert.equal(contactPosts.length, 0, 'Recovery verification must not submit a real contact request.');
+        return { ...result, status: 'accessible_error_present', customerDataLoggedByRunner: false, contactPosts: 0 };
+    } finally {
+        page.off('request', observeRequest);
+        await page.unroute('https://js.hcaptcha.com/**');
+    }
+}
+
 async function run() {
     const pickupItems = JSON.parse(requiredEnvironment('EPIC_K_PICKUP_ITEMS_JSON'));
     assert.ok(Array.isArray(pickupItems) && pickupItems.length >= 2, 'EPIC_K_PICKUP_ITEMS_JSON must contain at least two live Grafton-available items.');
@@ -288,7 +336,7 @@ async function run() {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     const browser = await chromium.launch({ headless: true });
     let cookies;
-    const results = { themeId: PREVIEW_THEME_ID, mode: 'unpublished_preview', viewports: [], contact: null };
+    const results = { themeId: PREVIEW_THEME_ID, mode: 'unpublished_preview', viewports: [], recovery: null, contact: null };
     try {
         cookies = await auth(browser);
         const viewports = process.argv.includes('--desktop-only') ? [VIEWPORTS[0]] : VIEWPORTS;
@@ -312,6 +360,9 @@ async function run() {
             });
             if (viewport.width === 1440 && process.argv.includes('--submit-contact')) {
                 results.contact = await submitControlledContact(page, pickupItems);
+            }
+            if (viewport.width === 1440 && process.argv.includes('--verify-recovery')) {
+                results.recovery = await verifyCaptchaFailureRecovery(page);
             }
             await context.close();
         }

@@ -72,6 +72,36 @@ Accessibility checks confirmed explicit labels, natural DOM/focus order with no 
 
 Preview theme `158631198917` remained unpublished after final readback. Production theme `158579622085` remained live; its pre/post `sections/main-cart-footer.liquid` hash stayed `50d68da1aeb8a1e7c736fbe6a04ae0f56eabe6aa14b3f331e503e944b19f197d`, and it does not contain the three Epic K quote assets. The Product Owner's verified October 27 rate removal was not repeated. A fresh Admin delivery-profile read was unavailable in this checkout because no Admin API token was present; the read-only collector failed closed before issuing a Shopify request.
 
+## K1C-02-R-SUBMIT recovery — October 28, 2026
+
+The indefinite pending state was caused by one-way client state. The quotation submit listener wrote `rhino-quote:pending`, disabled the button, and displayed the submitting message as soon as the native `submit` event passed browser validation. It released that state only when a later Shopify render set `form.posted_successfully?`. A failed or timed-out hCaptcha script, a returned contact-form error, or a restored page therefore had no path back to an enabled control. The blocked analytics requests were unrelated; the recovery code filters specifically for hCaptcha script hosts.
+
+The repair retains Shopify's native `{% form 'contact' %}` action, generated `form_type` input, and normal browser submission. It adds no `fetch`, XHR, third-party form system, CAPTCHA bypass, or custom CAPTCHA protection call. `layout/theme.liquid` still emits the unmodified `{{ content_for_header }}` inside `<head>`, so Shopify continues to own CAPTCHA initialization and verification.
+
+The client now treats submission as a small state machine. A completed marker is written only after Shopify renders `form.posted_successfully?`. Confirmed hCaptcha script failures and a bounded 30-second initialization stall clear the matching pending marker, remove `aria-busy`, present an assertive alert beside the submit button, preserve the live form fields, and re-enable a retry. A returned native form error or an unverified pending marker on the next render reveals the shipping form and provides the same recovery. `beforeunload` and `pagehide` stop the recovery timer once native navigation starts, which avoids enabling a second request while a contact navigation is in progress. A visible interactive hCaptcha challenge is exempt from the timeout and may remain open as long as the customer needs.
+
+Changed storefront files:
+
+- `assets/rhino-quote-mode.js`
+- `assets/rhino-quote-mode.css`
+- `snippets/rhino-quote-checkout.liquid`
+- `locales/en.default.json`
+
+Regression tooling changed in `scripts/test-epic-k-quote-mode-browser.js`, `scripts/validate-epic-k-quote-mode.js`, and `scripts/verify-epic-k-k1c02-preview.js`. The browser suite now simulates a blocked hCaptcha script, initialization timeout, returned contact failure, verified success, retry after confirmed failure, duplicate prevention after verified success, and an interactive challenge that remains open beyond the recovery timeout. Network interception is used for the provider and contact conditions. A separately blocked analytics script is ignored. The six layout viewports remain in the same suite.
+
+Repository validation passed: Epic K quote policy 40/40; browser 19/19; K1C-02 safety 10/10; quote-mode contract validation; cart configuration; Product purchase architecture; theme architecture; JSON registers; JavaScript syntax; and the approved English Theme Check projection (165 files, zero offenses). The aggregate production-activation validator remains intentionally blocked because human staff email delivery is not yet confirmed.
+
+The unpublished preview received only the four storefront files above with `--only`, `--nodelete`, `--strict`, and no publish flag. The first repository-root invocation stopped before upload on the already-governed unpublished-language translation findings; the successful invocation used the passing English projection. Readback produced these exact hashes, except that Shopify prepended its standard generated-file comment to the semantically exact English locale body:
+
+- `assets/rhino-quote-mode.css`: `43fa1ef83bc1d1afe7cf4758ead6c889f876cddcb311b3168dcdbc20adecaf3e`
+- `assets/rhino-quote-mode.js`: `aea002f0901b64e7938d20f3048a40ea5b320d4f47642a029605033d65c8019e`
+- `snippets/rhino-quote-checkout.liquid`: `e7e9d9dede50b14065842f74a59c190efc99c4ffaec59ef86c1edfc722477c8f`
+- `locales/en.default.json`: semantic body exact; deployed body hash `90b7ee1c90796fb6febb43f6f28956379ee390e2526562310a64ccd1dfa40034`
+
+Deployed preview verification passed at 1440, 1024, 768, 390, 320, and a 720px 200%-zoom equivalent. Every viewport retained the layout-repair geometry, zero horizontal overflow, the complete form, and the Grafton pickup workflow; one native pickup checkout enabled only after both live availability checks and accelerated checkout remained absent. At 320px, the card, form, and minimum control widths remained 286px, 290px, and 256px. A deployed, intercepted hCaptcha failure produced an accessible alert, re-enabled submit, cleared pending state, preserved the entered name, recorded no completion, and made zero `/contact` POSTs. Screenshots and the sanitized summary are under `docs/qa/evidence/epic-k/k1c02-submit-recovery-2026-10-28/preview/`.
+
+Preview theme `158631198917` remains unpublished. Production theme `158579622085` remains live and unchanged; its `sections/main-cart-footer.liquid` hash stayed `50d68da1aeb8a1e7c736fbe6a04ae0f56eabe6aa14b3f331e503e944b19f197d`. Shipping profiles and rates were not read, written, recreated, or deleted in this batch. No real contact request, checkout, invoice, payment, order, or customer record was created. Human quotation delivery remains unaccepted.
+
 ## Production activation gate
 
 The activation sequence requires all of the following before changing the live theme or rates:
@@ -82,7 +112,7 @@ The activation sequence requires all of the following before changing the live t
 4. Treat the Product Owner's October 27 removal of the $8 Standard and $15 Express definitions as complete. Do not repeat the deletion or recreate either rate; preserve both profiles, domestic zones, the Alaska/Hawaii separation, the machinery no-rate behavior, Grafton pickup, Markets, and Shopify Payments.
 5. Rerun direct checkout, pickup, shipping, Alaska/Hawaii, international, and approved draft-invoice scenarios without completing payment.
 
-The historical rate-removal gate has been completed outside this repository batch. Production publication remains blocked until the human contact submission succeeds; K1C-02-R-UI stops at the verified unpublished preview.
+The historical rate-removal gate has been completed outside this repository batch. Production publication remains blocked until the human contact submission succeeds; K1C-02-R-SUBMIT stops at the verified unpublished preview.
 
 ## Staff procedure
 
@@ -103,8 +133,8 @@ The historical pre-removal rate baseline was General / Domestic / Standard $8 US
 
 ## Customer and merchant impact
 
-No customer-facing theme was published. K1C-02-R-UI changed no shipping rate, profile, zone, Market, pickup setting, inventory, Product, payment configuration, order, or customer record. The unpublished preview theme changed. The Product Owner's separate October 27 removal of the obsolete rates remains in force. A controlled draft and controlled customer existed temporarily during the earlier activation preflight and were deleted. No invoice was sent and no customer payment was processed.
+No customer-facing theme was published. K1C-02-R-SUBMIT changed no shipping rate, profile, zone, Market, pickup setting, inventory, Product, payment configuration, order, or customer record. The unpublished preview theme changed. The Product Owner's separate October 27 removal of the obsolete rates remains in force. A controlled draft and controlled customer existed temporarily during the earlier activation preflight and were deleted. No invoice was sent and no customer payment was processed.
 
 ## Status
 
-K1C-02-R-UI is complete on the unpublished preview. K1C-02 production activation remains `BLOCKED`, not active, only at the human staff-intake confirmation and later release gates. Repository and full responsive preview UI acceptance pass; staff intake delivery does not. `K-PBI-003`, `K-PBI-002`, and Epic K remain incomplete. All eight operational evidence requirements remain blocked, and production checkout enforcement remains unverified.
+K1C-02-R-SUBMIT is complete on the unpublished preview. K1C-02 production activation remains `BLOCKED`, not active, only at the human staff-intake confirmation and later release gates. Repository, responsive preview UI, and recoverable submission-state acceptance pass; staff intake delivery does not. `K-PBI-003`, `K-PBI-002`, and Epic K remain incomplete. All eight operational evidence requirements remain blocked, and production checkout enforcement remains unverified.
