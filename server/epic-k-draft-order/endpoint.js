@@ -86,14 +86,16 @@ function publicError(error) {
   }, 503);
 }
 
-function successBody(reference, duplicate = false) {
+function successBody(reference, staffIdentifier, duplicate = false) {
+  if (!staffIdentifier) throw new Error('A confirmed Shopify Draft Order staff identifier is required.');
   return {
     ok: true,
     storedInShopifyAdmin: true,
     status: 'draft_created',
     reference,
+    staffIdentifier,
     duplicate,
-    message: `Quotation ${reference} is stored in Shopify Admin as an Unquoted draft. No invoice was sent and no payment was collected.`,
+    message: `Quotation ${reference} is stored in Shopify Admin as Unquoted draft ${staffIdentifier}. No invoice was sent and no payment was collected.`,
   };
 }
 
@@ -105,7 +107,7 @@ function requireDependencies(options) {
   if (!options?.idempotencyStore) missing.push('idempotencyStore');
   if (!options?.rateLimiter) missing.push('rateLimiter');
   if (missing.length) throw new Error(`K1D-01 endpoint is not configured: ${missing.join(', ')}`);
-  for (const method of ['claim', 'complete', 'markRetryableFailure', 'markUncertain']) {
+  for (const method of ['claim', 'markMutationStarted', 'complete', 'markRetryableFailure', 'markUncertain']) {
     if (typeof options.idempotencyStore[method] !== 'function') throw new Error(`Durable idempotency store must implement ${method}().`);
   }
   if (typeof options.rateLimiter.consume !== 'function') throw new Error('Durable rate limiter must implement consume().');
@@ -183,7 +185,7 @@ function createDraftOrderEndpoint(options) {
         now: now(),
       });
 
-      if (claim?.state === 'COMPLETED') return json(successBody(payload.quoteReference, true));
+      if (claim?.state === 'COMPLETED') return json(successBody(payload.quoteReference, claim.record?.draftName, true));
       if (claim?.state === 'CONFLICT') {
         return json({ ok: false, code: 'IDEMPOTENCY_CONFLICT', message: 'This quotation reference is already associated with different cart details.' }, 409);
       }
@@ -202,8 +204,8 @@ function createDraftOrderEndpoint(options) {
             reference: payload.quoteReference,
           }, 503, { 'retry-after': '10' });
         }
-        await options.idempotencyStore.complete({ key: identity.key, payloadHash: hash, draftId: recovered.id, now: now() });
-        return json(successBody(payload.quoteReference, true));
+        await options.idempotencyStore.complete({ key: identity.key, payloadHash: hash, draftId: recovered.id, draftName: recovered.name, now: now() });
+        return json(successBody(payload.quoteReference, recovered.name, true));
       }
       if (claim?.state !== 'ACQUIRED') throw new Error('Durable idempotency store returned an unsupported claim state.');
 
@@ -212,14 +214,15 @@ function createDraftOrderEndpoint(options) {
         const variantNodes = await options.adminClient.verifyVariants(uniqueIds);
         verifyVariantNodes(payload.items, variantNodes);
         const draftInput = buildDraftOrderInput(payload, identity.tag);
+        await options.idempotencyStore.markMutationStarted({ key: identity.key, payloadHash: hash, now: now() });
         const result = await options.adminClient.createDraft(draftInput);
         if (result.userErrors?.length) {
           const message = result.userErrors.map((entry) => entry.message).join(' ');
           throw new AdminRequestError(message || 'Shopify rejected the draft order.', { confirmedFailure: true });
         }
         const draft = assertCreatedDraft(result.draftOrder, identity.tag);
-        await options.idempotencyStore.complete({ key: identity.key, payloadHash: hash, draftId: draft.id, now: now() });
-        return json(successBody(payload.quoteReference));
+        await options.idempotencyStore.complete({ key: identity.key, payloadHash: hash, draftId: draft.id, draftName: draft.name, now: now() });
+        return json(successBody(payload.quoteReference, draft.name));
       } catch (error) {
         if (error instanceof QuoteRequestError || error?.confirmedFailure === true) {
           await options.idempotencyStore.markRetryableFailure({ key: identity.key, payloadHash: hash, code: error.code || 'ADMIN_REJECTED', now: now() });
@@ -240,19 +243,57 @@ function createDraftOrderEndpoint(options) {
   };
 }
 
-function createShopifyAdminClient({ shopDomain, accessToken, apiVersion = API_VERSION, fetchImpl = fetch }) {
-  if (!shopDomain || !accessToken) throw new Error('A shop domain and offline Admin API access token are required server-side.');
+function createShopifyClientCredentialsProvider({
+  shopDomain,
+  clientId,
+  clientSecret,
+  requiredScopes = ['read_products', 'write_draft_orders', 'write_app_proxy'],
+  fetchImpl = fetch,
+}) {
+  if (!shopDomain || !clientId || !clientSecret) throw new Error('Shop domain, client ID, and client secret are required server-side.');
+  let requestToken;
+  return async function accessToken() {
+    if (!requestToken) {
+      requestToken = (async () => {
+        let response;
+        try {
+          response = await fetchImpl(`https://${shopDomain}/admin/oauth/access_token`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ client_id: clientId, client_secret: clientSecret, grant_type: 'client_credentials' }),
+          });
+        } catch {
+          throw new AdminRequestError('Shopify authentication is temporarily unavailable.', { confirmedFailure: true });
+        }
+        if (!response.ok) throw new AdminRequestError('Shopify rejected the application credentials.', { confirmedFailure: true });
+        let body;
+        try { body = await response.json(); } catch { throw new AdminRequestError('Shopify returned an invalid authentication result.', { confirmedFailure: true }); }
+        const grantedScopes = new Set(String(body.scope || '').split(',').map((scope) => scope.trim()).filter(Boolean));
+        if (!body.access_token || requiredScopes.some((scope) => !grantedScopes.has(scope))) {
+          throw new AdminRequestError('The installed app is missing a required access scope.', { confirmedFailure: true });
+        }
+        return body.access_token;
+      })();
+    }
+    return requestToken;
+  };
+}
+
+function createShopifyAdminClient({ shopDomain, accessToken, accessTokenProvider, apiVersion = API_VERSION, fetchImpl = fetch }) {
+  if (!shopDomain || (!accessToken && !accessTokenProvider)) throw new Error('A shop domain and server-side Admin API token provider are required.');
   const endpoint = `https://${shopDomain}/admin/api/${apiVersion}/graphql.json`;
 
   async function execute(query, variables) {
     let response;
     try {
+      const resolvedAccessToken = accessTokenProvider ? await accessTokenProvider() : accessToken;
       response = await fetchImpl(endpoint, {
         method: 'POST',
-        headers: { 'content-type': 'application/json', 'x-shopify-access-token': accessToken },
+        headers: { 'content-type': 'application/json', 'x-shopify-access-token': resolvedAccessToken },
         body: JSON.stringify({ query, variables }),
       });
     } catch (error) {
+      if (error instanceof AdminRequestError) throw error;
       throw new AdminRequestError('The Shopify Admin API result is uncertain.');
     }
     const retryAfter = response.headers.get('retry-after');
@@ -293,4 +334,5 @@ module.exports = {
   VERIFY_VARIANTS_QUERY,
   createDraftOrderEndpoint,
   createShopifyAdminClient,
+  createShopifyClientCredentialsProvider,
 };

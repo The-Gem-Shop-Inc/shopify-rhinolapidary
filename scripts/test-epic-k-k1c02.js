@@ -23,6 +23,7 @@ test('active state rejects an unconfirmed contact route', () => rejects((value) 
     value.activation.state = 'ACTIVE';
     value.activation.productionThemePublished = true;
     value.activation.liveCheckoutEnforcement = 'PASS';
+    value.verification.contactSubmissionConfirmed = false;
 }, /confirmed quotation contact submission/));
 test('rate removal rejects an unpublished quotation theme', () => rejects((value) => {
     value.activation.shippingRatesRemoved = ['Standard'];

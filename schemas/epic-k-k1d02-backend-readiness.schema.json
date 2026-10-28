@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-k-k1d02-backend-readiness.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batch", "asOf", "state", "hosting", "shopify", "runtime", "evidence", "activation", "blockers"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "batch": { "const": "K1D-02" },
+    "asOf": { "type": "string", "format": "date" },
+    "state": { "enum": ["REPOSITORY_READY_PROVISIONING_BLOCKED", "PREVIEW_ACCEPTED", "PRODUCTION_READY"] },
+    "hosting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "existingRhinoHostReused", "workerConfig", "entrypoint", "migration", "d1Binding", "compatibilityDate"],
+      "properties": {
+        "decision": { "const": "cloudflare_workers_d1" },
+        "existingRhinoHostReused": { "const": false },
+        "workerConfig": { "const": "config/wrangler.epic-k-draft-order.jsonc" },
+        "entrypoint": { "const": "server/epic-k-draft-order/worker.mjs" },
+        "migration": { "const": "migrations/epic-k-draft-order/0001_quote_backend.sql" },
+        "d1Binding": { "const": "QUOTE_DB" },
+        "compatibilityDate": { "const": "2026-10-28" }
+      }
+    },
+    "shopify": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shop", "apiVersion", "appConfigurationTemplate", "proxyStorefrontPath", "proxyDestinationPath", "requiredScopes", "protectedCustomerDataLevel", "protectedCustomerFields"],
+      "properties": {
+        "shop": { "const": "rhino-lapidary.myshopify.com" },
+        "apiVersion": { "const": "2026-10" },
+        "appConfigurationTemplate": { "const": "config/shopify.app.epic-k-draft-order.template.toml" },
+        "proxyStorefrontPath": { "const": "/apps/rhino-quote-draft" },
+        "proxyDestinationPath": { "const": "/shopify/app-proxy/quote" },
+        "requiredScopes": { "type": "array", "uniqueItems": true, "minItems": 3, "maxItems": 3, "items": { "enum": ["read_products", "write_draft_orders", "write_app_proxy"] } },
+        "protectedCustomerDataLevel": { "const": 2 },
+        "protectedCustomerFields": { "type": "array", "uniqueItems": true, "minItems": 4, "maxItems": 4, "items": { "enum": ["name", "email", "phone", "address"] } }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredSecrets", "nonSecretVariables", "durableIdempotency", "durableRateLimiting", "ambiguousMutationReconciliation", "clientCredentialsExposed"],
+      "properties": {
+        "requiredSecrets": { "type": "array", "minItems": 1, "maxItems": 1, "uniqueItems": true, "items": { "const": "SHOPIFY_API_SECRET" } },
+        "nonSecretVariables": { "type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": { "enum": ["SHOPIFY_SHOP_DOMAIN", "SHOPIFY_API_VERSION", "SHOPIFY_APP_CLIENT_ID"] } },
+        "durableIdempotency": { "const": true },
+        "durableRateLimiting": { "const": true },
+        "ambiguousMutationReconciliation": { "const": true },
+        "clientCredentialsExposed": { "const": false }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manualContactEmailHumanConfirmed", "automatedDraftPreviewAccepted", "mockedTestsClassifiedAsLiveAcceptance", "productionThemePublished"],
+      "properties": {
+        "manualContactEmailHumanConfirmed": { "const": true },
+        "automatedDraftPreviewAccepted": { "type": "boolean" },
+        "mockedTestsClassifiedAsLiveAcceptance": { "const": false },
+        "productionThemePublished": { "const": false }
+      }
+    },
+    "activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cloudflareAccountAuthorized", "d1Provisioned", "workerDeployed", "shopifyAppCreated", "shopifyAppInstalled", "scopesGranted", "protectedCustomerDataApproved", "appProxyReleased", "storefrontClientEnabled", "controlledDraftCreated", "previewAccepted"],
+      "properties": {
+        "cloudflareAccountAuthorized": { "type": "boolean" },
+        "d1Provisioned": { "type": "boolean" },
+        "workerDeployed": { "type": "boolean" },
+        "shopifyAppCreated": { "type": "boolean" },
+        "shopifyAppInstalled": { "type": "boolean" },
+        "scopesGranted": { "type": "boolean" },
+        "protectedCustomerDataApproved": { "type": "boolean" },
+        "appProxyReleased": { "type": "boolean" },
+        "storefrontClientEnabled": { "type": "boolean" },
+        "controlledDraftCreated": { "type": "boolean" },
+        "previewAccepted": { "type": "boolean" }
+      }
+    },
+    "blockers": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 20 } }
+  }
+}

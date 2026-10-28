@@ -10,6 +10,7 @@ const {
 const {
   CREATE_DRAFT_MUTATION,
   createDraftOrderEndpoint,
+  createShopifyClientCredentialsProvider,
 } = require('../server/epic-k-draft-order/endpoint');
 
 const SECRET = 'synthetic-app-secret';
@@ -37,9 +38,9 @@ function basePayload(overrides = {}) {
   };
 }
 
-function signedUrl({ timestamp = Math.floor(NOW / 1000), extra = {} } = {}) {
+function signedUrl({ timestamp = Math.floor(NOW / 1000), shop = SHOP, extra = {} } = {}) {
   const params = new URLSearchParams({
-    shop: SHOP,
+    shop,
     logged_in_customer_id: '',
     path_prefix: '/apps/rhino-quote-draft',
     timestamp: String(timestamp),
@@ -69,16 +70,17 @@ class MemoryStore {
   async claim(input) {
     const prior = this.records.get(input.key);
     if (!prior) {
-      this.records.set(input.key, { ...input, state: 'IN_PROGRESS' });
+      this.records.set(input.key, { ...input, state: 'CLAIMED' });
       return { state: 'ACQUIRED' };
     }
     if (prior.payloadHash !== input.payloadHash) return { state: 'CONFLICT' };
     if (prior.state === 'FAILED_RETRYABLE') {
-      prior.state = 'IN_PROGRESS';
+      prior.state = 'CLAIMED';
       return { state: 'ACQUIRED' };
     }
-    return { state: prior.state };
+    return { state: ['CLAIMED', 'MUTATING'].includes(prior.state) ? 'IN_PROGRESS' : prior.state, record: { ...prior } };
   }
+  async markMutationStarted(input) { this.records.set(input.key, { ...this.records.get(input.key), ...input, state: 'MUTATING' }); }
   async complete(input) { this.records.set(input.key, { ...this.records.get(input.key), ...input, state: 'COMPLETED' }); }
   async markRetryableFailure(input) { this.records.set(input.key, { ...this.records.get(input.key), ...input, state: 'FAILED_RETRYABLE' }); }
   async markUncertain(input) { this.records.set(input.key, { ...this.records.get(input.key), ...input, state: 'UNCERTAIN' }); }
@@ -150,6 +152,7 @@ async function main() {
     assert.equal(response.status, 200);
     assert.equal(result.storedInShopifyAdmin, true);
     assert.equal(result.reference, 'KQ-ABC12345-2');
+    assert.equal(result.staffIdentifier, '#D9001');
     assert.equal(harness.admin.calls.create, 1);
     const input = harness.admin.calls.inputs[0];
     assert.deepEqual(input.tags.slice(0, 1), ['Unquoted']);
@@ -232,6 +235,27 @@ async function main() {
     const duplicate = await harness.handle(request(basePayload()));
     assert.equal(duplicate.status, 200);
     assert.equal((await body(duplicate)).duplicate, true);
+    assert.equal((await body(await harness.handle(request(basePayload())))).staffIdentifier, '#D9001');
+    assert.equal(harness.admin.calls.create, 1);
+  });
+
+  await test('duplicate quote references with changed cart data are rejected without another draft', async () => {
+    const harness = endpoint();
+    assert.equal((await harness.handle(request(basePayload()))).status, 200);
+    const conflict = await harness.handle(request(basePayload({ cartNote: 'Changed after success.' })));
+    assert.equal(conflict.status, 409);
+    assert.equal((await body(conflict)).code, 'IDEMPOTENCY_CONFLICT');
+    assert.equal(harness.admin.calls.create, 1);
+  });
+
+  await test('concurrent identical submissions cannot execute two draft mutations', async () => {
+    const harness = endpoint();
+    const responses = await Promise.all([
+      harness.handle(request(basePayload())),
+      harness.handle(request(basePayload())),
+    ]);
+    assert.equal(responses.some((response) => response.status === 200), true);
+    assert.equal(responses.every((response) => [200, 202].includes(response.status)), true);
     assert.equal(harness.admin.calls.create, 1);
   });
 
@@ -280,10 +304,39 @@ async function main() {
     const unsigned = new URL(signedUrl());
     unsigned.searchParams.set('signature', '0'.repeat(64));
     assert.equal((await harness.handle(request(basePayload(), unsigned.toString()))).status, 401);
+    assert.equal((await harness.handle(request(basePayload(), signedUrl({ shop: 'other-shop.myshopify.com' })))).status, 401);
     assert.equal((await harness.handle(request(basePayload(), signedUrl({ timestamp: Math.floor(NOW / 1000) - 301 })))).status, 401);
     assert.equal((await endpoint({ rateAllowed: false }).handle(request(basePayload()))).status, 429);
     const huge = basePayload({ cartNote: 'x'.repeat(33000) });
     assert.equal((await harness.handle(request(huge))).status, 413);
+  });
+
+  await test('current client-credentials grant validates scopes and reuses one token per request client', async () => {
+    let calls = 0;
+    const provider = createShopifyClientCredentialsProvider({
+      shopDomain: SHOP,
+      clientId: 'synthetic-client-id',
+      clientSecret: SECRET,
+      fetchImpl: async () => {
+        calls += 1;
+        return new Response(JSON.stringify({
+          access_token: 'synthetic-access-token',
+          scope: 'read_products,write_draft_orders,write_app_proxy',
+          expires_in: 86399,
+        }), { status: 200, headers: { 'content-type': 'application/json' } });
+      },
+    });
+    assert.equal(await provider(), 'synthetic-access-token');
+    assert.equal(await provider(), 'synthetic-access-token');
+    assert.equal(calls, 1);
+
+    const missingScope = createShopifyClientCredentialsProvider({
+      shopDomain: SHOP,
+      clientId: 'synthetic-client-id',
+      clientSecret: SECRET,
+      fetchImpl: async () => new Response(JSON.stringify({ access_token: 'token', scope: 'read_products' }), { status: 200 }),
+    });
+    await assert.rejects(missingScope(), (error) => error.confirmedFailure === true);
   });
 
   await test('the only mutation is draftOrderCreate and it cannot send invoices, complete orders, or process payments', async () => {

@@ -69,9 +69,9 @@
     "unpublishedPreviewThemeId": "158631198917",
     "productionThemeId": "158579622085",
     "productionThemePublishedByBatch": false,
-    "quotePreviewAssessment": "PASS_DESKTOP_MOBILE_THEME_DEV_PROXY",
+    "quotePreviewAssessment": "PASS_DESKTOP_MOBILE_THEME_DEV_PROXY_AND_HUMAN_CONTACT_EMAIL",
     "contactDestinationConfigured": "VERIFIED_SHOP_CONTACT_EMAIL",
-    "contactSubmissionConfirmed": false,
+    "contactSubmissionConfirmed": true,
     "draftInvoice": {
       "controlledDraftCreated": true,
       "representativeLineCount": 2,
@@ -91,7 +91,6 @@
     "productionShippingMutations": [],
     "pickupConfigurationMutations": [],
     "blockers": [
-      "Shopify's contact-form anti-bot challenge prevented the controlled browser from issuing the /contact POST, so staff receipt of the complete quotation remains unconfirmed.",
       "No machine Variant currently has positive Grafton inventory, so a live machinery pickup cart cannot be exercised; the route remains fail closed and the policy path is covered synthetically.",
       "K-EVID-001 and K-EVID-002 remain blocked operational records even though the approved default policy and current Shopify pickup endpoint permit three active in-stock Variants."
     ],
@@ -105,7 +104,8 @@
     "test_customer_create",
     "draft_order_customer_assignment",
     "draft_order_delete",
-    "test_customer_delete"
+    "test_customer_delete",
+    "human_contact_form_submission"
   ],
   "rollback": {
     "restrictedArtifactLabel": "LocalAppData/RhinoLapidary/restricted-evidence/epic-k-k1c02-2026-10-27",

@@ -21,6 +21,7 @@ const targets = [
     { name: 'Epic K temporary quotation checkout', schemaPath: 'schemas/epic-k-temporary-quote-mode.schema.json', dataPath: 'data/epic-k-temporary-quote-mode.json' },
     { name: 'Epic K1C-02 activation status', schemaPath: 'schemas/epic-k-k1c02-activation-status.schema.json', dataPath: 'data/epic-k-k1c02-activation-status-2026-10-27.json' },
     { name: 'Epic K1D-01 draft-order automation', schemaPath: 'schemas/epic-k-k1d01-draft-order-automation.schema.json', dataPath: 'data/epic-k-k1d01-draft-order-automation.json' },
+    { name: 'Epic K1D-02 backend readiness', schemaPath: 'schemas/epic-k-k1d02-backend-readiness.schema.json', dataPath: 'data/epic-k-k1d02-backend-readiness.json' },
     { name: 'Epic K synthetic policy scenarios', schemaPath: 'schemas/epic-k-policy-scenarios.schema.json', dataPath: 'tests/fixtures/epic-k-policy-scenarios.json' },
     { name: 'Epic G isolated foundation fixture', schemaPath: 'schemas/epic-g-foundation-fixture.schema.json', dataPath: 'tests/fixtures/epic-g-foundation.json' },
     { name: 'Epic F machine-page repository readiness', schemaPath: 'schemas/epic-f-machine-page-readiness.schema.json', dataPath: 'data/epic-f-machine-page-readiness.json' },

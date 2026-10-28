@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-02",
+  "asOf": "2026-10-28",
+  "state": "REPOSITORY_READY_PROVISIONING_BLOCKED",
+  "hosting": {
+    "decision": "cloudflare_workers_d1",
+    "existingRhinoHostReused": false,
+    "workerConfig": "config/wrangler.epic-k-draft-order.jsonc",
+    "entrypoint": "server/epic-k-draft-order/worker.mjs",
+    "migration": "migrations/epic-k-draft-order/0001_quote_backend.sql",
+    "d1Binding": "QUOTE_DB",
+    "compatibilityDate": "2026-10-28"
+  },
+  "shopify": {
+    "shop": "rhino-lapidary.myshopify.com",
+    "apiVersion": "2026-10",
+    "appConfigurationTemplate": "config/shopify.app.epic-k-draft-order.template.toml",
+    "proxyStorefrontPath": "/apps/rhino-quote-draft",
+    "proxyDestinationPath": "/shopify/app-proxy/quote",
+    "requiredScopes": ["read_products", "write_draft_orders", "write_app_proxy"],
+    "protectedCustomerDataLevel": 2,
+    "protectedCustomerFields": ["name", "email", "phone", "address"]
+  },
+  "runtime": {
+    "requiredSecrets": ["SHOPIFY_API_SECRET"],
+    "nonSecretVariables": ["SHOPIFY_SHOP_DOMAIN", "SHOPIFY_API_VERSION", "SHOPIFY_APP_CLIENT_ID"],
+    "durableIdempotency": true,
+    "durableRateLimiting": true,
+    "ambiguousMutationReconciliation": true,
+    "clientCredentialsExposed": false
+  },
+  "evidence": {
+    "manualContactEmailHumanConfirmed": true,
+    "automatedDraftPreviewAccepted": false,
+    "mockedTestsClassifiedAsLiveAcceptance": false,
+    "productionThemePublished": false
+  },
+  "activation": {
+    "cloudflareAccountAuthorized": false,
+    "d1Provisioned": false,
+    "workerDeployed": false,
+    "shopifyAppCreated": false,
+    "shopifyAppInstalled": false,
+    "scopesGranted": false,
+    "protectedCustomerDataApproved": false,
+    "appProxyReleased": false,
+    "storefrontClientEnabled": false,
+    "controlledDraftCreated": false,
+    "previewAccepted": false
+  },
+  "blockers": [
+    "Owner authorization is required before creating a Cloudflare D1 database or deploying a Worker.",
+    "A Rhino-owned Shopify app must be created in the Dev Dashboard, configured, released, and installed on the store.",
+    "The app must receive read_products, write_draft_orders, and write_app_proxy and the required protected customer data access.",
+    "The Shopify Client ID and secret must be configured for a current client-credentials token exchange, and the app and store must be confirmed in the same Shopify organization.",
+    "The app proxy and deployed endpoint must pass signed preview verification before storefront automation is enabled.",
+    "One owner-authorized controlled preview submission and Admin inspection remain required for live acceptance."
+  ]
+}
