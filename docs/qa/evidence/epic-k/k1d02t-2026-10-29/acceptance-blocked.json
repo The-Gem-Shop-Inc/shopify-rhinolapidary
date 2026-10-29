@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-02T",
+  "status": "BLOCKED",
+  "verifiedAt": "2026-10-29T17:12:36.373Z",
+  "authorization": {
+    "owner": "Tobi",
+    "scope": "one synthetic unpaid uninvoiced Draft Order",
+    "confirmed": true
+  },
+  "fixture": {
+    "quotationReference": "KQ-K1D02T20261029-1",
+    "syntheticEmailDomain": "example.invalid",
+    "shippingCountryCode": "US",
+    "itemCount": 2,
+    "items": [
+      {
+        "variantId": "gid://shopify/ProductVariant/46484249903301",
+        "quantity": 1,
+        "propertyKeys": [
+          "Acceptance",
+          "Requested preparation"
+        ]
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/46484250001605",
+        "quantity": 2,
+        "propertyKeys": [
+          "Acceptance",
+          "Packaging note"
+        ]
+      }
+    ],
+    "discountCodes": []
+  },
+  "proxy": {
+    "storefrontPath": "/apps/rhino-quote-draft",
+    "firstResponse": {
+      "status": 422,
+      "code": "SHOPIFY_REJECTED"
+    },
+    "authenticatedUrlRecorded": false
+  },
+  "draft": null,
+  "admin": {
+    "draftCountForReference": 0,
+    "appearsInOrdersDrafts": false
+  },
+  "d1": {
+    "state": "FAILED_RETRYABLE",
+    "attemptCount": 1,
+    "draftId": null,
+    "draftName": null,
+    "quotationReference": "KQ-K1D02T20261029-1",
+    "payloadHashMatched": true,
+    "reconciliationComplete": false,
+    "createdAt": "2026-10-29T17:12:34.063Z",
+    "updatedAt": "2026-10-29T17:12:36.373Z"
+  },
+  "safety": {
+    "draftsCreated": 0,
+    "duplicateRequestAttempted": false,
+    "invoiceSent": false,
+    "paymentCollectedOrAuthorized": false,
+    "shippingLineCreated": false,
+    "inventoryReserved": false,
+    "orderCompleted": false,
+    "fulfillmentCreated": false,
+    "customerCreatedOrAttached": false,
+    "themeChanged": false,
+    "storefrontClientEnabled": false,
+    "emailFallbackActive": true
+  },
+  "blocker": {
+    "code": "SHOPIFY_REJECTED_WITHOUT_PUBLIC_USER_ERROR",
+    "nextAction": "Supply an owner-controlled test email address and authorize a corrected fixture with a new unique quotation reference."
+  },
+  "deterministicIdentity": {
+    "reconciliationTag": "K1D-e1dc123a1a160094e8314dc7"
+  },
+  "validation": {
+    "acceptanceRunnerTests": "7/7 PASS",
+    "endpointTests": "16/16 PASS",
+    "d1AdapterTests": "6/6 PASS",
+    "workerRouterTests": "15/15 PASS",
+    "epicKPolicyTests": "73/73 PASS",
+    "quoteModePolicyTests": "40/40 PASS",
+    "quoteModeBrowserTests": "20/20 PASS",
+    "k1cSafetyTests": "10/10 PASS",
+    "readinessContract": "PASS CONTROLLED_DRAFT_TEST_BLOCKED",
+    "workerDryRun": "PASS",
+    "workerHealth": "HTTP 200",
+    "d1Tables": "PASS",
+    "encryptedSecretBinding": "PASS",
+    "jsonRegisters": "PASS",
+    "cartConfiguration": "PASS",
+    "productPurchaseArchitecture": "PASS",
+    "themeArchitecture": "PASS",
+    "themeCheck": "2 relevant files, zero offenses",
+    "scopedDiffCheck": "PASS",
+    "credentialValueScan": "10 files, zero findings"
+  }
+}

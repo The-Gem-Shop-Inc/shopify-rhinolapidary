@@ -8,7 +8,7 @@ Source: `Rhino Lapidary Storefront Backlog and Epics.md`
 |---:|---|---|---|---|
 | 1 | K-PBI-001 | Fulfillment policy governance and decision traceability | Complete for repository governance | K1A contracts and Product Owner decisions are versioned and validated. |
 | 2 | K-PBI-002 | Policy, operational evidence, and configuration validation | Partial | Offline policy, evidence intake, source mapping, October 24 audit, and drift/preflight gates exist. Eight operational evidence requirements remain blocked and live checkout enforcement remains unverified. |
-| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-02V-R proxy verified; ready for K1D-02T authorization | K1C native contact-form email delivery remains the active fallback. Both exact Worker paths are authenticated; the authentic Shopify-generated request to `/shopify/app-proxy/quote/` reached policy enforcement and returned `409 PICKUP_NOT_ALLOWED`. Client credentials, scopes, protected data, Worker/D1 health, encrypted secret binding, and negative signature controls pass. No live draft was authorized or created. Production theme `158579622085` remains unchanged and unpublished. |
+| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-02T blocked after confirmed Shopify rejection | Tobi authorized one controlled draft. The authentic shipping request reached `draftOrderCreate`, but Shopify returned `422 SHOPIFY_REJECTED`; Admin reconciliation found zero matching drafts and D1 holds one `FAILED_RETRYABLE` attempt with no draft ID/name. No duplicate request was sent. An owner-controlled test email and confirmation of a corrected new-reference fixture are required. The native email fallback remains active; storefront automation and K1D-03 remain disabled. Production theme `158579622085` remains unchanged and unpublished. |
 
 ## K1C-01 acceptance
 
@@ -80,3 +80,13 @@ The English storefront workflow is implemented. The repository's 50 non-default 
 - Only Worker `rhino-quotation-drafts` was redeployed, as version `e5183957-a0b4-43ab-bf31-744b0492548d`. No Shopify app configuration or theme was changed.
 - The authentic storefront POST through `/apps/rhino-quote-draft` reached `/shopify/app-proxy/quote/` with Shopify's signed canonical-shop parameters and returned `409 PICKUP_NOT_ALLOWED` from the existing policy layer. Sanitized evidence is retained under `docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/`.
 - K1D-02T is ready only for explicit owner authorization. No Draft Order has been created; storefront automation remains disabled and the native email fallback remains active.
+
+## K1D-02T controlled Draft Order acceptance checkpoint
+
+- Tobi explicitly authorized creation of one synthetic unpaid and uninvoiced Draft Order. The runner requires the exact authorization phrase, an external evidence path, the installed app project, and an in-memory storefront password before it can submit.
+- The committed fixture used two real active/available Variants, valid quantities, public line properties, a synthetic US destination, delivery notes, liftgate/insurance selections supported by the existing contract, and no discount code, selling plan, price override, or customer ID.
+- Read-only preflight verified the canonical shop, required scopes, Variant eligibility, full Admin readback schema, zero matching drafts, and no existing D1 claim.
+- The authentic storefront POST through `/apps/rhino-quote-draft` reached the existing Admin mutation path and returned `422 SHOPIFY_REJECTED`. Admin reconciliation found zero matching drafts. D1 records `FAILED_RETRYABLE`, attempt count `1`, no draft ID/name, and the expected payload hash.
+- No retry or duplicate request was sent. The failed reference remains fenced; it was not deleted or rewritten. Draft content, Admin staff inspection, and completed-claim idempotency remain unproven because no Draft Order exists.
+- The `.invalid` email is the most likely rejection cause, but the exact field is not proven because the public endpoint intentionally suppresses Shopify `userErrors`. The next owner action is to supply an owner-controlled test email and confirm its use in a corrected fixture under a new unique quotation reference.
+- Sanitized blocked evidence contains no contact values, credentials, access token, application secret, signature, or authenticated request URL. Storefront automation remains disabled, the native email fallback remains active, and K1D-03 has not started.

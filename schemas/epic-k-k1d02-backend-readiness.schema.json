@@ -3,12 +3,12 @@
   "$id": "https://rhinolapidary.com/schemas/epic-k-k1d02-backend-readiness.schema.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "batch", "asOf", "state", "hosting", "shopify", "runtime", "evidence", "activation", "blockers"],
+  "required": ["schemaVersion", "batch", "asOf", "state", "hosting", "shopify", "runtime", "evidence", "activation", "readiness", "blockers"],
   "properties": {
-    "schemaVersion": { "const": 4 },
-    "batch": { "const": "K1D-02V-R" },
+    "schemaVersion": { "const": 5 },
+    "batch": { "const": "K1D-02T" },
     "asOf": { "type": "string", "format": "date" },
-    "state": { "enum": ["READY_FOR_CONTROLLED_DRAFT_TEST", "PREVIEW_ACCEPTED", "PRODUCTION_READY"] },
+    "state": { "enum": ["CONTROLLED_DRAFT_TEST_BLOCKED", "CONTROLLED_DRAFT_ACCEPTED", "PREVIEW_ACCEPTED", "PRODUCTION_READY"] },
     "hosting": {
       "type": "object",
       "additionalProperties": false,
@@ -85,16 +85,35 @@
     "evidence": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["manualContactEmailHumanConfirmed", "automatedDraftPreviewAccepted", "mockedTestsClassifiedAsLiveAcceptance", "controlledDraftAuthorizationReceived", "controlledDraftCreated", "productionThemePublished", "authenticProxyVerificationAt", "authenticProxyEvidence"],
+      "required": ["manualContactEmailHumanConfirmed", "automatedDraftPreviewAccepted", "mockedTestsClassifiedAsLiveAcceptance", "controlledDraftAuthorizationReceived", "controlledDraftAttempted", "controlledDraftCreated", "productionThemePublished", "authenticProxyVerificationAt", "authenticProxyEvidence", "controlledDraftAttemptAt", "controlledDraftResult", "controlledDraftEvidence", "shopifyDraftCountForReference", "d1ClaimState", "d1AttemptCount"],
       "properties": {
         "manualContactEmailHumanConfirmed": { "const": true },
         "automatedDraftPreviewAccepted": { "type": "boolean" },
         "mockedTestsClassifiedAsLiveAcceptance": { "const": false },
         "controlledDraftAuthorizationReceived": { "type": "boolean" },
+        "controlledDraftAttempted": { "type": "boolean" },
         "controlledDraftCreated": { "type": "boolean" },
         "productionThemePublished": { "const": false },
         "authenticProxyVerificationAt": { "type": "string", "format": "date-time" },
-        "authenticProxyEvidence": { "const": "docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/proxy-verification.json" }
+        "authenticProxyEvidence": { "const": "docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/proxy-verification.json" },
+        "controlledDraftAttemptAt": { "type": "string", "format": "date-time" },
+        "controlledDraftResult": { "enum": ["SHOPIFY_REJECTED", "ACCEPTED"] },
+        "controlledDraftEvidence": { "const": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-blocked.json" },
+        "shopifyDraftCountForReference": { "type": "integer", "minimum": 0 },
+        "d1ClaimState": { "enum": ["FAILED_RETRYABLE", "COMPLETED"] },
+        "d1AttemptCount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryValidation", "authenticProxyAcceptance", "shopifyAdminAcceptance", "operationalReadiness", "productionReadiness"],
+      "properties": {
+        "repositoryValidation": { "enum": ["PASS", "FAIL"] },
+        "authenticProxyAcceptance": { "enum": ["PASS", "BLOCKED_SHOPIFY_REJECTED"] },
+        "shopifyAdminAcceptance": { "enum": ["PASS", "BLOCKED_NO_DRAFT"] },
+        "operationalReadiness": { "enum": ["READY", "BLOCKED"] },
+        "productionReadiness": { "enum": ["READY", "BLOCKED"] }
       }
     },
     "activation": {

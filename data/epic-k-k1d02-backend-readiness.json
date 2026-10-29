@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 4,
-  "batch": "K1D-02V-R",
+  "schemaVersion": 5,
+  "batch": "K1D-02T",
   "asOf": "2026-10-29",
-  "state": "READY_FOR_CONTROLLED_DRAFT_TEST",
+  "state": "CONTROLLED_DRAFT_TEST_BLOCKED",
   "hosting": {
     "decision": "cloudflare_workers_d1",
     "existingRhinoHostReused": false,
@@ -65,11 +65,18 @@
     "manualContactEmailHumanConfirmed": true,
     "automatedDraftPreviewAccepted": false,
     "mockedTestsClassifiedAsLiveAcceptance": false,
-    "controlledDraftAuthorizationReceived": false,
+    "controlledDraftAuthorizationReceived": true,
+    "controlledDraftAttempted": true,
     "controlledDraftCreated": false,
     "productionThemePublished": false,
     "authenticProxyVerificationAt": "2026-10-29T16:19:45.000Z",
-    "authenticProxyEvidence": "docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/proxy-verification.json"
+    "authenticProxyEvidence": "docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/proxy-verification.json",
+    "controlledDraftAttemptAt": "2026-10-29T17:12:34.063Z",
+    "controlledDraftResult": "SHOPIFY_REJECTED",
+    "controlledDraftEvidence": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-blocked.json",
+    "shopifyDraftCountForReference": 0,
+    "d1ClaimState": "FAILED_RETRYABLE",
+    "d1AttemptCount": 1
   },
   "activation": {
     "cloudflareAccountAuthorized": true,
@@ -95,7 +102,15 @@
     "controlledDraftCreated": false,
     "previewAccepted": false
   },
+  "readiness": {
+    "repositoryValidation": "PASS",
+    "authenticProxyAcceptance": "BLOCKED_SHOPIFY_REJECTED",
+    "shopifyAdminAcceptance": "BLOCKED_NO_DRAFT",
+    "operationalReadiness": "BLOCKED",
+    "productionReadiness": "BLOCKED"
+  },
   "blockers": [
-    "A controlled synthetic Draft Order remains prohibited until the owner explicitly authorizes that separate live acceptance action."
+    "Shopify rejected the authorized synthetic fixture and the existing public endpoint intentionally does not expose the Admin user-error detail.",
+    "The owner must supply an owner-controlled test email address and authorize a corrected fixture with a new unique quotation reference; the failed payload remains fenced in D1."
   ]
 }

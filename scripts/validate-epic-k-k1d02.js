@@ -25,6 +25,9 @@ function validateK1d02() {
     'server/epic-k-draft-order/core.js',
     'server/epic-k-draft-order/endpoint.js',
     'server/epic-k-draft-order/d1-adapters.js',
+    'data/epic-k-k1d02t-acceptance-fixture.json',
+    'scripts/run-epic-k-k1d02t-acceptance.js',
+    'scripts/test-epic-k-k1d02t-acceptance-runner.js',
   ];
   requiredFiles.forEach((file) => { if (!fs.existsSync(path.join(ROOT, file))) errors.push(`Missing ${file}.`); });
   if (errors.length) return { errors, contract };
@@ -61,18 +64,30 @@ function validateK1d02() {
   if (!shopify.includes('[app_proxy]') || !shopify.includes(`${contract.hosting.workerUrl}${contract.shopify.proxyDestinationPath}`)) errors.push('Shopify app config lacks the provisioned app proxy destination.');
   if (/shpat_|SHOPIFY_API_SECRET\s*[:=]\s*["'][^"']+/i.test(`${worker}\n${browserSources}`)) errors.push('A committed Admin credential appears in runtime or storefront source.');
   if (browserSources.includes('/apps/rhino-quote-draft')) errors.push('Storefront automation must remain disabled until the provisioned backend is verified.');
-  if (contract.state === 'READY_FOR_CONTROLLED_DRAFT_TEST') {
+  if (contract.state === 'CONTROLLED_DRAFT_TEST_BLOCKED') {
     const requiredTrue = ['cloudflareAccountAuthorized', 'd1Provisioned', 'migrationApplied', 'workerDeployed', 'shopifyAppCreated', 'shopifyAppVersionReleased', 'shopifyAppInstalled', 'scopesConfigured', 'scopesGranted', 'protectedCustomerDataApproved', 'secretBound', 'appProxyReleased', 'clientCredentialsVerified', 'directSignedRequestVerified', 'invalidSignatureRejected', 'expiredSignatureRejected', 'shopifyProxyForwardingVerified', 'shopifyGeneratedProxyRequestVerified', 'proxyPathCompatibilityVerified'];
     const requiredFalse = ['storefrontClientEnabled', 'controlledDraftCreated', 'previewAccepted'];
-    requiredTrue.forEach((key) => { if (contract.activation[key] !== true) errors.push(`Verified K1D-02V-R milestone ${key} must be true.`); });
-    requiredFalse.forEach((key) => { if (contract.activation[key] !== false) errors.push(`Inactive K1D-02V-R milestone ${key} must remain false.`); });
+    requiredTrue.forEach((key) => { if (contract.activation[key] !== true) errors.push(`Verified K1D-02T prerequisite ${key} must be true.`); });
+    requiredFalse.forEach((key) => { if (contract.activation[key] !== false) errors.push(`Inactive K1D-02T milestone ${key} must remain false.`); });
     contract.shopify.requiredScopes.forEach((scope) => { if (!contract.shopify.grantedScopes.includes(scope)) errors.push(`Installed app is missing ${scope}.`); });
     for (const scope of ['read_customer_address', 'read_customer_email', 'read_customer_name', 'read_customer_personal_data', 'read_customer_phone']) {
       if (!contract.shopify.protectedCustomerScopeHandles.includes(scope)) errors.push(`Protected customer data configuration is missing ${scope}.`);
     }
     if (!contract.shopify.acceptedProxyDestinationPaths.includes(contract.shopify.proxyDestinationPath) || !contract.shopify.acceptedProxyDestinationPaths.includes(contract.shopify.observedProxyDestinationPath)) errors.push('Approved proxy paths must include both the configured and Shopify-observed exact paths.');
     if (!fs.existsSync(path.join(ROOT, contract.evidence.authenticProxyEvidence))) errors.push('Sanitized authentic proxy evidence is missing.');
-    if (contract.evidence.controlledDraftAuthorizationReceived || contract.evidence.controlledDraftCreated) errors.push('K1D-02V-R must not record Draft Order authorization or creation.');
+    if (!contract.evidence.controlledDraftAuthorizationReceived || !contract.evidence.controlledDraftAttempted) errors.push('K1D-02T must record the bounded owner authorization and authentic attempt.');
+    if (contract.evidence.controlledDraftCreated || contract.evidence.controlledDraftResult !== 'SHOPIFY_REJECTED') errors.push('Blocked K1D-02T must not claim a Draft Order was created or accepted.');
+    if (contract.evidence.shopifyDraftCountForReference !== 0 || contract.evidence.d1ClaimState !== 'FAILED_RETRYABLE' || contract.evidence.d1AttemptCount !== 1) errors.push('Blocked K1D-02T must retain the zero-draft, one-attempt FAILED_RETRYABLE result.');
+    if (!fs.existsSync(path.join(ROOT, contract.evidence.controlledDraftEvidence))) errors.push('Sanitized controlled Draft Order evidence is missing.');
+    else {
+      const acceptance = json(contract.evidence.controlledDraftEvidence);
+      if (acceptance.status !== 'BLOCKED' || acceptance.draft !== null || acceptance.admin?.draftCountForReference !== 0) errors.push('Controlled acceptance evidence must retain the blocked zero-draft result.');
+      if (acceptance.d1?.state !== 'FAILED_RETRYABLE' || acceptance.d1?.attemptCount !== 1 || acceptance.d1?.draftId !== null) errors.push('Controlled acceptance evidence does not match the failed D1 claim.');
+      if (acceptance.safety?.draftsCreated !== 0 || acceptance.safety?.duplicateRequestAttempted !== false) errors.push('Controlled acceptance evidence must prove no draft and no duplicate attempt.');
+      const serializedAcceptance = JSON.stringify(acceptance);
+      if (/access_token|client_secret|SHOPIFY_API_SECRET|signature=|100 Test Avenue|\+12025550100|k1d02t-20261029@example\.invalid/i.test(serializedAcceptance)) errors.push('Controlled acceptance evidence contains prohibited credential, URL-signature, or full synthetic contact data.');
+    }
+    if (contract.readiness.repositoryValidation !== 'PASS' || contract.readiness.authenticProxyAcceptance !== 'BLOCKED_SHOPIFY_REJECTED' || contract.readiness.shopifyAdminAcceptance !== 'BLOCKED_NO_DRAFT' || contract.readiness.operationalReadiness !== 'BLOCKED' || contract.readiness.productionReadiness !== 'BLOCKED') errors.push('K1D-02T readiness dimensions do not match the blocked zero-draft result.');
   }
 
   const contact = json('data/epic-k-k1c02-activation-status-2026-10-27.json');
