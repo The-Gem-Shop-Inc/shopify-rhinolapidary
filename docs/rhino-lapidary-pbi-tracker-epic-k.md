@@ -8,7 +8,7 @@ Source: `Rhino Lapidary Storefront Backlog and Epics.md`
 |---:|---|---|---|---|
 | 1 | K-PBI-001 | Fulfillment policy governance and decision traceability | Complete for repository governance | K1A contracts and Product Owner decisions are versioned and validated. |
 | 2 | K-PBI-002 | Policy, operational evidence, and configuration validation | Partial | Offline policy, evidence intake, source mapping, October 24 audit, and drift/preflight gates exist. Eight operational evidence requirements remain blocked and live checkout enforcement remains unverified. |
-| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-02V installation verified; authentic proxy path blocked | K1C native contact-form email delivery is human-confirmed and remains the active fallback. Client credentials, canonical shop identity, the three required Admin scopes, all five protected-customer-data handles, Worker health, D1 schema, encrypted secret binding, and direct signature controls pass. Shopify forwards the authentic proxy request to `/shopify/app-proxy/quote/`, but the deployed Worker accepts only the path without the trailing slash and returns `404 NOT_FOUND` before signature validation. No live draft was authorized or created. Production theme `158579622085` remains unchanged and unpublished. |
+| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-02V-R proxy verified; ready for K1D-02T authorization | K1C native contact-form email delivery remains the active fallback. Both exact Worker paths are authenticated; the authentic Shopify-generated request to `/shopify/app-proxy/quote/` reached policy enforcement and returned `409 PICKUP_NOT_ALLOWED`. Client credentials, scopes, protected data, Worker/D1 health, encrypted secret binding, and negative signature controls pass. No live draft was authorized or created. Production theme `158579622085` remains unchanged and unpublished. |
 
 ## K1C-01 acceptance
 
@@ -57,7 +57,7 @@ The English storefront workflow is implemented. The repository's 50 non-default 
 - The app secret is bound only as Cloudflare encrypted secret `SHOPIFY_API_SECRET`. Public configuration records the real D1 ID, canonical shop, and app client ID; no Admin credential is present in the repository or storefront.
 - Shopify app **Rhino Quotation Drafts** and version `k1d02p-provisioned-2` were created/released with `read_products`, `write_draft_orders`, `write_app_proxy`, and `/apps/rhino-quote-draft`.
 - A correctly signed direct request passed the deployed HMAC gate and reached pickup policy enforcement. This is not classified as Shopify-generated app-proxy evidence.
-- Client-credentials verification is blocked precisely by Shopify's `app_not_installed` response. Human Dev Dashboard verification, direct installation from the store-organization app's Installs card, Level 2 protected customer fields (name, email, phone, address), granted-scope verification, and a real Shopify-signed proxy request remain required. Custom distribution is not used for this store-organization app.
+- At initial provisioning, client-credentials verification was blocked by Shopify's `app_not_installed` response. Installation, Level 2 protected customer fields, granted scopes, and the real Shopify-signed proxy were subsequently verified in K1D-02V and K1D-02V-R. Custom distribution is not used for this store-organization app.
 - The Product Owner has human-confirmed staff receipt of the native contact-form quotation. Storefront automation stays disabled and the email fallback remains active.
 - No controlled Draft Order was authorized or created. No preview/production theme mutation, publication, invoice, payment, completion, inventory reservation, shipping rate, or pickup-setting change occurred in K1D-02P.
 
@@ -70,4 +70,13 @@ The English storefront workflow is implemented. The repository's 50 non-default 
 - Direct controls remain safe: valid signed pickup returns `409 PICKUP_NOT_ALLOWED`, invalid signature returns `401 UNAUTHORIZED`, and a correctly signed stale request returns `401 EXPIRED_REQUEST`.
 - Worker health, both D1 operational tables, the encrypted `SHOPIFY_API_SECRET` binding, and the real-binding dry-run pass. The read-only D1 schema query made zero writes.
 - Storefront automation remains disabled and the native email fallback remains active. No theme, Draft Order, customer, invoice, payment, completion, inventory, shipping rate, or pickup setting was changed.
-- The smallest remaining integration repair is to accept the exact Shopify-forwarded trailing slash, redeploy only the Worker, and rerun the authentic proxy pickup rejection. A synthetic Draft Order remains separately owner-authorized.
+- The diagnosed trailing-slash repair was completed in K1D-02V-R. A synthetic Draft Order remains separately owner-authorized.
+
+## K1D-02V-R app-proxy routing repair checkpoint
+
+- Root cause was the Worker route guard's single exact comparison: Shopify forwarded the configured destination as `/shopify/app-proxy/quote/`, while the Worker allowed only `/shopify/app-proxy/quote`.
+- Worker routing now allows exactly those two paths. Additional segments, repeated separators, and encoded path variants remain rejected; HMAC, canonical-shop, timestamp, rate-limit, idempotency, Draft Order, and customer-data code did not change.
+- Automated router verification passes 15/15 across both approved paths, valid/invalid/stale signatures, malformed paths, and zero-Admin/zero-mutation assertions. K1D endpoint tests remain 16/16 and D1 adapter tests remain 6/6.
+- Only Worker `rhino-quotation-drafts` was redeployed, as version `e5183957-a0b4-43ab-bf31-744b0492548d`. No Shopify app configuration or theme was changed.
+- The authentic storefront POST through `/apps/rhino-quote-draft` reached `/shopify/app-proxy/quote/` with Shopify's signed canonical-shop parameters and returned `409 PICKUP_NOT_ALLOWED` from the existing policy layer. Sanitized evidence is retained under `docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/`.
+- K1D-02T is ready only for explicit owner authorization. No Draft Order has been created; storefront automation remains disabled and the native email fallback remains active.

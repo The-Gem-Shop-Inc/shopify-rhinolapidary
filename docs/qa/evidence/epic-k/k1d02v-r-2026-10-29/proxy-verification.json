@@ -1,0 +1,32 @@
+{
+  "batch": "K1D-02V-R",
+  "verifiedAt": "2026-10-29T16:19:45.000Z",
+  "sanitized": true,
+  "cloudflare": {
+    "worker": "rhino-quotation-drafts",
+    "workerVersionId": "e5183957-a0b4-43ab-bf31-744b0492548d",
+    "workerUrl": "https://rhino-quotation-drafts.mayhemmojomeister.workers.dev",
+    "deploymentSucceeded": true
+  },
+  "shopifyProxy": {
+    "storefrontAlias": "rhino-lapidary.myshopify.com",
+    "storefrontPath": "/apps/rhino-quote-draft",
+    "forwardedPath": "/shopify/app-proxy/quote/",
+    "canonicalShop": "sz5dnk-nf.myshopify.com",
+    "signaturePresent": true,
+    "signatureRedacted": true,
+    "requestMethod": "POST",
+    "testPayloadClassification": "deliberately invalid pickup quotation payload",
+    "responseStatus": 409,
+    "responseCode": "PICKUP_NOT_ALLOWED",
+    "cacheControl": "no-store"
+  },
+  "safety": {
+    "draftOrderMutationAttempted": false,
+    "customerRecordRead": false,
+    "themeChanged": false,
+    "shopifyAppConfigurationChanged": false,
+    "shippingOrPickupConfigurationChanged": false,
+    "credentialsRecorded": false
+  }
+}

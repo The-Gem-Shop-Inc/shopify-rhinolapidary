@@ -14,7 +14,7 @@ function json(relativePath) { return JSON.parse(read(relativePath)); }
 function validateK1d02() {
   const errors = [];
   const contract = json(CONTRACT_PATH);
-  const validate = new Ajv2020({ allErrors: true, strict: true, formats: { date: /^\d{4}-\d{2}-\d{2}$/ } }).compile(json(SCHEMA_PATH));
+  const validate = new Ajv2020({ allErrors: true, strict: true, formats: { date: /^\d{4}-\d{2}-\d{2}$/, 'date-time': /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/ } }).compile(json(SCHEMA_PATH));
   if (!validate(contract)) errors.push(...validate.errors.map((entry) => `${entry.instancePath || '/'} ${entry.message}`));
 
   const requiredFiles = [
@@ -48,6 +48,8 @@ function validateK1d02() {
   if (packageJson.devDependencies?.wrangler !== '4.155.0') errors.push('The validated Wrangler version must remain exact.');
   if (!worker.includes("from './endpoint.js'") || !worker.includes('createDraftOrderEndpoint')) errors.push('Worker must reuse the host-neutral K1D-01 endpoint.');
   if (!worker.includes("from './d1-adapters.js'") || !worker.includes('QUOTE_DB')) errors.push('Worker must bind the D1 adapters.');
+  if (!worker.includes("url.pathname !== '/shopify/app-proxy/quote' && url.pathname !== '/shopify/app-proxy/quote/'")) errors.push('Worker must allow exactly the configured app-proxy path with or without one trailing slash.');
+  if (/url\.pathname\.startsWith\([^\n]*app-proxy/i.test(worker)) errors.push('Worker app-proxy routing must not use permissive prefix matching.');
   for (const method of ['claim', 'markMutationStarted', 'complete', 'markRetryableFailure', 'markUncertain', 'consume']) {
     if (!adapters.includes(`async ${method}`)) errors.push(`D1 adapter is missing ${method}().`);
   }
@@ -59,16 +61,18 @@ function validateK1d02() {
   if (!shopify.includes('[app_proxy]') || !shopify.includes(`${contract.hosting.workerUrl}${contract.shopify.proxyDestinationPath}`)) errors.push('Shopify app config lacks the provisioned app proxy destination.');
   if (/shpat_|SHOPIFY_API_SECRET\s*[:=]\s*["'][^"']+/i.test(`${worker}\n${browserSources}`)) errors.push('A committed Admin credential appears in runtime or storefront source.');
   if (browserSources.includes('/apps/rhino-quote-draft')) errors.push('Storefront automation must remain disabled until the provisioned backend is verified.');
-  if (contract.state === 'INSTALLATION_VERIFIED_PROXY_PATH_BLOCKED') {
-    const requiredTrue = ['cloudflareAccountAuthorized', 'd1Provisioned', 'migrationApplied', 'workerDeployed', 'shopifyAppCreated', 'shopifyAppVersionReleased', 'shopifyAppInstalled', 'scopesConfigured', 'scopesGranted', 'protectedCustomerDataApproved', 'secretBound', 'appProxyReleased', 'clientCredentialsVerified', 'directSignedRequestVerified', 'invalidSignatureRejected', 'expiredSignatureRejected', 'shopifyProxyForwardingVerified'];
-    const requiredFalse = ['shopifyGeneratedProxyRequestVerified', 'proxyPathCompatibilityVerified', 'storefrontClientEnabled', 'controlledDraftCreated', 'previewAccepted'];
-    requiredTrue.forEach((key) => { if (contract.activation[key] !== true) errors.push(`Verified K1D-02V milestone ${key} must be true.`); });
-    requiredFalse.forEach((key) => { if (contract.activation[key] !== false) errors.push(`Blocked K1D-02V milestone ${key} must remain false.`); });
+  if (contract.state === 'READY_FOR_CONTROLLED_DRAFT_TEST') {
+    const requiredTrue = ['cloudflareAccountAuthorized', 'd1Provisioned', 'migrationApplied', 'workerDeployed', 'shopifyAppCreated', 'shopifyAppVersionReleased', 'shopifyAppInstalled', 'scopesConfigured', 'scopesGranted', 'protectedCustomerDataApproved', 'secretBound', 'appProxyReleased', 'clientCredentialsVerified', 'directSignedRequestVerified', 'invalidSignatureRejected', 'expiredSignatureRejected', 'shopifyProxyForwardingVerified', 'shopifyGeneratedProxyRequestVerified', 'proxyPathCompatibilityVerified'];
+    const requiredFalse = ['storefrontClientEnabled', 'controlledDraftCreated', 'previewAccepted'];
+    requiredTrue.forEach((key) => { if (contract.activation[key] !== true) errors.push(`Verified K1D-02V-R milestone ${key} must be true.`); });
+    requiredFalse.forEach((key) => { if (contract.activation[key] !== false) errors.push(`Inactive K1D-02V-R milestone ${key} must remain false.`); });
     contract.shopify.requiredScopes.forEach((scope) => { if (!contract.shopify.grantedScopes.includes(scope)) errors.push(`Installed app is missing ${scope}.`); });
     for (const scope of ['read_customer_address', 'read_customer_email', 'read_customer_name', 'read_customer_personal_data', 'read_customer_phone']) {
       if (!contract.shopify.protectedCustomerScopeHandles.includes(scope)) errors.push(`Protected customer data configuration is missing ${scope}.`);
     }
-    if (contract.shopify.observedProxyDestinationPath !== `${contract.shopify.proxyDestinationPath}/`) errors.push('Observed Shopify proxy destination must retain the diagnosed trailing-slash mismatch.');
+    if (!contract.shopify.acceptedProxyDestinationPaths.includes(contract.shopify.proxyDestinationPath) || !contract.shopify.acceptedProxyDestinationPaths.includes(contract.shopify.observedProxyDestinationPath)) errors.push('Approved proxy paths must include both the configured and Shopify-observed exact paths.');
+    if (!fs.existsSync(path.join(ROOT, contract.evidence.authenticProxyEvidence))) errors.push('Sanitized authentic proxy evidence is missing.');
+    if (contract.evidence.controlledDraftAuthorizationReceived || contract.evidence.controlledDraftCreated) errors.push('K1D-02V-R must not record Draft Order authorization or creation.');
   }
 
   const contact = json('data/epic-k-k1c02-activation-status-2026-10-27.json');

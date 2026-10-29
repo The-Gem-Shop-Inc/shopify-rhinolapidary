@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 3,
-  "batch": "K1D-02V",
+  "schemaVersion": 4,
+  "batch": "K1D-02V-R",
   "asOf": "2026-10-29",
-  "state": "INSTALLATION_VERIFIED_PROXY_PATH_BLOCKED",
+  "state": "READY_FOR_CONTROLLED_DRAFT_TEST",
   "hosting": {
     "decision": "cloudflare_workers_d1",
     "existingRhinoHostReused": false,
@@ -14,7 +14,7 @@
     "d1DatabaseId": "2a63307d-b07f-43f1-a6be-85418781fb6c",
     "d1Region": "ENAM",
     "workerUrl": "https://rhino-quotation-drafts.mayhemmojomeister.workers.dev",
-    "workerVersionId": "2579729f-46fe-403d-9d6b-b0f74270805f",
+    "workerVersionId": "e5183957-a0b4-43ab-bf31-744b0492548d",
     "compatibilityDate": "2026-10-28",
     "healthVerified": true,
     "d1SchemaVerified": true
@@ -35,6 +35,7 @@
     "installationGid": "gid://shopify/AppInstallation/778440605893",
     "proxyStorefrontPath": "/apps/rhino-quote-draft",
     "proxyDestinationPath": "/shopify/app-proxy/quote",
+    "acceptedProxyDestinationPaths": ["/shopify/app-proxy/quote", "/shopify/app-proxy/quote/"],
     "requiredScopes": ["read_products", "write_draft_orders", "write_app_proxy"],
     "grantedScopes": ["read_app_proxy", "read_draft_orders", "read_products", "write_app_proxy", "write_draft_orders"],
     "protectedCustomerDataLevel": 2,
@@ -57,8 +58,8 @@
     "invalidSignatureRejected": true,
     "expiredSignatureRejected": true,
     "shopifyProxyForwardingVerified": true,
-    "shopifyGeneratedProxyRequestVerified": false,
-    "proxyPathCompatibilityVerified": false
+    "shopifyGeneratedProxyRequestVerified": true,
+    "proxyPathCompatibilityVerified": true
   },
   "evidence": {
     "manualContactEmailHumanConfirmed": true,
@@ -66,7 +67,9 @@
     "mockedTestsClassifiedAsLiveAcceptance": false,
     "controlledDraftAuthorizationReceived": false,
     "controlledDraftCreated": false,
-    "productionThemePublished": false
+    "productionThemePublished": false,
+    "authenticProxyVerificationAt": "2026-10-29T16:19:45.000Z",
+    "authenticProxyEvidence": "docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/proxy-verification.json"
   },
   "activation": {
     "cloudflareAccountAuthorized": true,
@@ -86,15 +89,13 @@
     "invalidSignatureRejected": true,
     "expiredSignatureRejected": true,
     "shopifyProxyForwardingVerified": true,
-    "shopifyGeneratedProxyRequestVerified": false,
-    "proxyPathCompatibilityVerified": false,
+    "shopifyGeneratedProxyRequestVerified": true,
+    "proxyPathCompatibilityVerified": true,
     "storefrontClientEnabled": false,
     "controlledDraftCreated": false,
     "previewAccepted": false
   },
   "blockers": [
-    "Shopify forwards /apps/rhino-quote-draft to /shopify/app-proxy/quote/ with a trailing slash, but the deployed Worker accepts only /shopify/app-proxy/quote and returns NOT_FOUND before signature validation.",
-    "The Worker route must accept the configured destination with Shopify's trailing slash, be redeployed, and then pass one new Shopify-generated signed pickup rejection before storefront activation.",
     "A controlled synthetic Draft Order remains prohibited until the owner explicitly authorizes that separate live acceptance action."
   ]
 }

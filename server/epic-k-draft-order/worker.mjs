@@ -28,7 +28,9 @@ export default {
     if (url.pathname === '/health') {
       return json({ ok: configured(env), service: 'rhino-quotation-drafts' }, configured(env) ? 200 : 503);
     }
-    if (url.pathname !== '/shopify/app-proxy/quote') return json({ ok: false, code: 'NOT_FOUND' }, 404);
+    if (url.pathname !== '/shopify/app-proxy/quote' && url.pathname !== '/shopify/app-proxy/quote/') {
+      return json({ ok: false, code: 'NOT_FOUND' }, 404);
+    }
     if (!configured(env)) return json({ ok: false, code: 'SERVICE_NOT_CONFIGURED' }, 503);
 
     const startedAt = Date.now();

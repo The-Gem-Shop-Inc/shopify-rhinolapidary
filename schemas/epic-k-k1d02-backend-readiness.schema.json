@@ -5,10 +5,10 @@
   "additionalProperties": false,
   "required": ["schemaVersion", "batch", "asOf", "state", "hosting", "shopify", "runtime", "evidence", "activation", "blockers"],
   "properties": {
-    "schemaVersion": { "const": 3 },
-    "batch": { "const": "K1D-02V" },
+    "schemaVersion": { "const": 4 },
+    "batch": { "const": "K1D-02V-R" },
     "asOf": { "type": "string", "format": "date" },
-    "state": { "enum": ["INSTALLATION_VERIFIED_PROXY_PATH_BLOCKED", "PREVIEW_ACCEPTED", "PRODUCTION_READY"] },
+    "state": { "enum": ["READY_FOR_CONTROLLED_DRAFT_TEST", "PREVIEW_ACCEPTED", "PRODUCTION_READY"] },
     "hosting": {
       "type": "object",
       "additionalProperties": false,
@@ -33,7 +33,7 @@
     "shopify": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["canonicalShop", "storefrontAlias", "organizationId", "organizationName", "organizationMatchVerified", "apiVersion", "appName", "appGid", "clientId", "appConfiguration", "releasedVersion", "releasedVersionId", "installationGid", "proxyStorefrontPath", "proxyDestinationPath", "requiredScopes", "grantedScopes", "protectedCustomerDataLevel", "protectedCustomerFields", "protectedCustomerScopeHandles", "observedProxyDestinationPath"],
+      "required": ["canonicalShop", "storefrontAlias", "organizationId", "organizationName", "organizationMatchVerified", "apiVersion", "appName", "appGid", "clientId", "appConfiguration", "releasedVersion", "releasedVersionId", "installationGid", "proxyStorefrontPath", "proxyDestinationPath", "acceptedProxyDestinationPaths", "requiredScopes", "grantedScopes", "protectedCustomerDataLevel", "protectedCustomerFields", "protectedCustomerScopeHandles", "observedProxyDestinationPath"],
       "properties": {
         "canonicalShop": { "const": "sz5dnk-nf.myshopify.com" },
         "storefrontAlias": { "const": "rhino-lapidary.myshopify.com" },
@@ -50,6 +50,7 @@
         "installationGid": { "type": "string", "pattern": "^gid://shopify/AppInstallation/[0-9]+$" },
         "proxyStorefrontPath": { "const": "/apps/rhino-quote-draft" },
         "proxyDestinationPath": { "const": "/shopify/app-proxy/quote" },
+        "acceptedProxyDestinationPaths": { "type": "array", "uniqueItems": true, "minItems": 2, "maxItems": 2, "items": { "enum": ["/shopify/app-proxy/quote", "/shopify/app-proxy/quote/"] } },
         "requiredScopes": { "type": "array", "uniqueItems": true, "minItems": 3, "maxItems": 3, "items": { "enum": ["read_products", "write_draft_orders", "write_app_proxy"] } },
         "grantedScopes": { "type": "array", "uniqueItems": true, "minItems": 3, "items": { "type": "string", "minLength": 3 } },
         "protectedCustomerDataLevel": { "const": 2 },
@@ -77,21 +78,23 @@
         "invalidSignatureRejected": { "const": true },
         "expiredSignatureRejected": { "const": true },
         "shopifyProxyForwardingVerified": { "const": true },
-        "shopifyGeneratedProxyRequestVerified": { "const": false },
-        "proxyPathCompatibilityVerified": { "const": false }
+        "shopifyGeneratedProxyRequestVerified": { "const": true },
+        "proxyPathCompatibilityVerified": { "const": true }
       }
     },
     "evidence": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["manualContactEmailHumanConfirmed", "automatedDraftPreviewAccepted", "mockedTestsClassifiedAsLiveAcceptance", "controlledDraftAuthorizationReceived", "controlledDraftCreated", "productionThemePublished"],
+      "required": ["manualContactEmailHumanConfirmed", "automatedDraftPreviewAccepted", "mockedTestsClassifiedAsLiveAcceptance", "controlledDraftAuthorizationReceived", "controlledDraftCreated", "productionThemePublished", "authenticProxyVerificationAt", "authenticProxyEvidence"],
       "properties": {
         "manualContactEmailHumanConfirmed": { "const": true },
         "automatedDraftPreviewAccepted": { "type": "boolean" },
         "mockedTestsClassifiedAsLiveAcceptance": { "const": false },
         "controlledDraftAuthorizationReceived": { "type": "boolean" },
         "controlledDraftCreated": { "type": "boolean" },
-        "productionThemePublished": { "const": false }
+        "productionThemePublished": { "const": false },
+        "authenticProxyVerificationAt": { "type": "string", "format": "date-time" },
+        "authenticProxyEvidence": { "const": "docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/proxy-verification.json" }
       }
     },
     "activation": {

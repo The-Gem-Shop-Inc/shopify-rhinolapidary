@@ -245,7 +245,7 @@
     "validate:epic-k-k1d01": "node scripts/validate-epic-k-draft-order.js",
     "test:epic-k-k1d01": "node scripts/test-epic-k-draft-order.js",
     "validate:epic-k-k1d02": "node scripts/validate-epic-k-k1d02.js",
-    "test:epic-k-k1d02": "node scripts/test-epic-k-draft-order.js && node scripts/test-epic-k-d1-adapters.js",
+    "test:epic-k-k1d02": "node scripts/test-epic-k-draft-order.js && node scripts/test-epic-k-d1-adapters.js && node scripts/test-epic-k-k1d02-worker-router.js",
     "build:epic-k-k1d02-worker": "wrangler deploy --dry-run --config config/wrangler.epic-k-draft-order.jsonc --outdir test-results/k1d02-worker-dry-run",
     "test:epic-j-cart": "playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1",
     "validate:epic-j-j0": "node scripts/run-epic-j-j0.js"
