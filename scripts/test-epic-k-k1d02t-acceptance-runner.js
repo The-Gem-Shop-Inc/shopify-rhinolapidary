@@ -1,12 +1,19 @@
 'use strict';
 
 const assert = require('assert/strict');
+const fs = require('fs');
 const {
   AUTHORIZATION_PHRASE,
+  AUTHORIZATION_UNCONSUMED_CONFIRMATION,
+  PASSWORD_ROTATION_CONFIRMATION,
+  assertAuthorizationUnconsumed,
   assertExecutionAuthorization,
+  assertPasswordRotation,
   buildBlockedEvidence,
   buildEvidence,
+  materializeAcceptanceFixture,
   matchingDrafts,
+  redactSecrets,
   verifyDraft,
 } = require('./run-epic-k-k1d02t-acceptance');
 const {
@@ -16,8 +23,10 @@ const {
 } = require('../server/epic-k-draft-order/core');
 
 const SHOP = 'sz5dnk-nf.myshopify.com';
+const OWNER_EMAIL = 'owner-controlled@rhino-acceptance.co';
 const rawFixture = require('../data/epic-k-k1d02t-acceptance-fixture.json');
-const fixture = validatePayload(rawFixture);
+const materializedFixture = materializeAcceptanceFixture(rawFixture, OWNER_EMAIL);
+const fixture = validatePayload(materializedFixture);
 const identity = idempotencyIdentity(SHOP, fixture);
 
 function draft() {
@@ -77,9 +86,24 @@ function main() {
     assert.doesNotThrow(() => assertExecutionAuthorization(AUTHORIZATION_PHRASE));
   });
 
+  test('password rotation and unconsumed authorization confirmations are mandatory', () => {
+    assert.throws(() => assertPasswordRotation('yes'));
+    assert.doesNotThrow(() => assertPasswordRotation(PASSWORD_ROTATION_CONFIRMATION));
+    assert.throws(() => assertAuthorizationUnconsumed('yes'));
+    assert.doesNotThrow(() => assertAuthorizationUnconsumed(AUTHORIZATION_UNCONSUMED_CONFIRMATION));
+  });
+
+  test('reserved test email domains are rejected while an owner-controlled email is accepted', () => {
+    for (const email of ['test@example.invalid', 'test@example.com', 'test@subdomain.test', 'test@localhost']) {
+      assert.throws(() => materializeAcceptanceFixture(rawFixture, email));
+    }
+    assert.equal(materializeAcceptanceFixture(rawFixture, OWNER_EMAIL).customer.email, OWNER_EMAIL);
+    assert.equal('email' in rawFixture.customer, false);
+  });
+
   test('the committed fixture retains the external property shape accepted by the endpoint', () => {
     assert.equal(Array.isArray(rawFixture.items[0].properties), false);
-    assert.deepEqual(validatePayload(rawFixture), fixture);
+    assert.deepEqual(validatePayload(materializedFixture), fixture);
   });
 
   test('the acceptance draft must preserve fixture data and every safety boundary', () => {
@@ -119,7 +143,9 @@ function main() {
     const serialized = JSON.stringify(evidence);
     assert.equal(evidence.safety.draftsCreated, 1);
     assert.equal(evidence.d1.reconciliationComplete, true);
-    assert.doesNotMatch(serialized, /k1d02t-20261029@example\.invalid|100 Test Avenue|\+12025550100|access_token|signature=/i);
+    assert.equal(evidence.fixture.emailSource, 'secure_runtime_variable');
+    assert.equal(evidence.fixture.emailDomainRecorded, false);
+    assert.doesNotMatch(serialized, /owner-controlled@rhino-acceptance\.co|1 Acceptance Way|access_token|signature=/i);
   });
 
   test('a confirmed Shopify rejection produces sanitized blocked evidence without permitting a retry', () => {
@@ -138,7 +164,17 @@ function main() {
     assert.equal(evidence.safety.draftsCreated, 0);
     assert.equal(evidence.safety.duplicateRequestAttempted, false);
     assert.equal(evidence.d1.state, 'FAILED_RETRYABLE');
-    assert.doesNotMatch(serialized, /k1d02t-20261029@example\.invalid|100 Test Avenue|\+12025550100|access_token|signature=/i);
+    assert.doesNotMatch(serialized, /owner-controlled@rhino-acceptance\.co|1 Acceptance Way|access_token|signature=/i);
+  });
+
+  test('credential, email, URL, and password values are redacted from failures', () => {
+    const secret = 'replacement-password-value';
+    const message = redactSecrets(`password=${secret} email=${OWNER_EMAIL} https://store.invalid/?access_token=abc`, [secret, OWNER_EMAIL]);
+    assert.doesNotMatch(message, /replacement-password-value|owner-controlled@rhino-acceptance\.co|https:\/\//);
+    assert.match(message, /\[redacted\]/);
+    const runnerSource = fs.readFileSync(require.resolve('./run-epic-k-k1d02t-acceptance'), 'utf8');
+    assert.doesNotMatch(runnerSource, /\.screenshot\(|tracing\.start\(|recordVideo/);
+    assert.match(runnerSource, /process\.env\.STOREFRONT_PASSWORD/);
   });
 
   console.log(`Epic K K1D-02T acceptance-runner tests passed: ${passed}/${passed}.`);

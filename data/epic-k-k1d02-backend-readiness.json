@@ -1,23 +1,25 @@
 {
-  "schemaVersion": 5,
-  "batch": "K1D-02T",
+  "schemaVersion": 6,
+  "batch": "K1D-02T-R",
   "asOf": "2026-10-29",
-  "state": "CONTROLLED_DRAFT_TEST_BLOCKED",
+  "state": "CORRECTED_ACCEPTANCE_AWAITING_SECURE_INPUTS",
   "hosting": {
     "decision": "cloudflare_workers_d1",
     "existingRhinoHostReused": false,
     "workerConfig": "config/wrangler.epic-k-draft-order.jsonc",
     "entrypoint": "server/epic-k-draft-order/worker.mjs",
     "migration": "migrations/epic-k-draft-order/0001_quote_backend.sql",
+    "diagnosticMigration": "migrations/epic-k-draft-order/0002_draft_diagnostics.sql",
     "d1Binding": "QUOTE_DB",
     "d1DatabaseName": "rhino-quotation-drafts",
     "d1DatabaseId": "2a63307d-b07f-43f1-a6be-85418781fb6c",
     "d1Region": "ENAM",
     "workerUrl": "https://rhino-quotation-drafts.mayhemmojomeister.workers.dev",
-    "workerVersionId": "e5183957-a0b4-43ab-bf31-744b0492548d",
+    "workerVersionId": "9aadbca9-4711-46fc-8279-3be8051cf3e0",
     "compatibilityDate": "2026-10-28",
     "healthVerified": true,
-    "d1SchemaVerified": true
+    "d1SchemaVerified": true,
+    "diagnosticSchemaVerified": true
   },
   "shopify": {
     "canonicalShop": "sz5dnk-nf.myshopify.com",
@@ -59,7 +61,12 @@
     "expiredSignatureRejected": true,
     "shopifyProxyForwardingVerified": true,
     "shopifyGeneratedProxyRequestVerified": true,
-    "proxyPathCompatibilityVerified": true
+    "proxyPathCompatibilityVerified": true,
+    "sanitizedDiagnosticsDeployed": true,
+    "deterministicRejectionFenced": true,
+    "rawShopifyMessagesPersisted": false,
+    "publicDiagnosticEndpointAdded": false,
+    "browserSecretRedactionEnabled": true
   },
   "evidence": {
     "manualContactEmailHumanConfirmed": true,
@@ -76,7 +83,15 @@
     "controlledDraftEvidence": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-blocked.json",
     "shopifyDraftCountForReference": 0,
     "d1ClaimState": "FAILED_RETRYABLE",
-    "d1AttemptCount": 1
+    "d1AttemptCount": 1,
+    "failedReferenceReconciledAt": "2026-10-29T20:21:21.776Z",
+    "failedReferencePreserved": true,
+    "repairEvidence": "docs/qa/evidence/epic-k/k1d02t-r-2026-10-29/repair-deployment.json",
+    "nextQuotationReference": "KQ-K1D02TR20261029-2",
+    "ownerControlledEmailProvided": false,
+    "storefrontPasswordRotationConfirmed": false,
+    "authorizationLimitUnconsumed": true,
+    "correctedMutationAttempted": false
   },
   "activation": {
     "cloudflareAccountAuthorized": true,
@@ -104,13 +119,13 @@
   },
   "readiness": {
     "repositoryValidation": "PASS",
-    "authenticProxyAcceptance": "BLOCKED_SHOPIFY_REJECTED",
+    "authenticProxyAcceptance": "AWAITING_SECURE_INPUTS",
     "shopifyAdminAcceptance": "BLOCKED_NO_DRAFT",
     "operationalReadiness": "BLOCKED",
     "productionReadiness": "BLOCKED"
   },
   "blockers": [
-    "Shopify rejected the authorized synthetic fixture and the existing public endpoint intentionally does not expose the Admin user-error detail.",
-    "The owner must supply an owner-controlled test email address and authorize a corrected fixture with a new unique quotation reference; the failed payload remains fenced in D1."
+    "The owner must confirm that the storefront password exposed during the first acceptance attempt has been rotated before browser authentication resumes.",
+    "The Product Owner must supply the owner-controlled deliverable email through the secure runtime variable before the corrected preflight and one controlled mutation."
   ]
 }

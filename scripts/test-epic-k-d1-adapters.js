@@ -12,6 +12,7 @@ class FakeD1 {
     this.claims = new Map();
     this.references = new Map();
     this.rates = new Map();
+    this.diagnostics = [];
   }
 
   prepare(sql) {
@@ -31,6 +32,14 @@ class FakeD1 {
 
   run(sql, values) {
     if (sql.startsWith('DELETE FROM quote_rate_windows')) return this.result(0);
+    if (sql.startsWith('INSERT INTO quote_submission_diagnostics')) {
+      this.diagnostics.push({
+        idempotency_key: values[0], quote_reference: values[1], reconciliation_tag: values[2],
+        outcome_category: values[3], field_paths_json: values[4], classifications_json: values[5],
+        http_status: values[6], assessed_at: values[7],
+      });
+      return this.result(1);
+    }
     if (sql.startsWith('INSERT INTO quote_submission_claims')) {
       const [key, hash, reference, lease, now] = values;
       if (this.claims.has(key)) return this.result(0);
@@ -125,6 +134,37 @@ async function main() {
     assert.equal((await store.claim({ ...input, now: 1001 })).state, 'IN_PROGRESS');
     await store.markRetryableFailure({ key: input.key, payloadHash: input.payloadHash, code: 'REJECTED', now: 1002 });
     assert.equal((await store.claim({ ...input, now: 1003 })).state, 'ACQUIRED');
+  });
+
+  await test('deterministic Shopify input rejection is fenced from reacquisition', async () => {
+    const store = createD1IdempotencyStore(new FakeD1());
+    const input = { key: 'claim-final', payloadHash: 'hash-a', reference: 'KQ-FINAL001-1', now: 1000 };
+    await store.claim(input);
+    await store.markMutationStarted({ key: input.key, payloadHash: input.payloadHash, now: 1001 });
+    await store.markFinalRejection({ key: input.key, payloadHash: input.payloadHash, code: 'INVALID_EMAIL', now: 1002 });
+    const rejected = await store.claim({ ...input, now: 1003 });
+    assert.equal(rejected.state, 'REJECTED');
+    assert.equal(rejected.record.errorCode, 'FINAL_INVALID_EMAIL');
+    assert.equal(rejected.record.attemptCount, 1);
+  });
+
+  await test('diagnostic persistence accepts only sanitized classifications and field paths', async () => {
+    const db = new FakeD1();
+    const store = createD1IdempotencyStore(db);
+    await store.recordDiagnostic({
+      key: `epic-k:k1d01:${'a'.repeat(64)}`,
+      reference: 'KQ-DIAG001-1',
+      reconciliationTag: `K1D-${'a'.repeat(24)}`,
+      outcomeCategory: 'SHOPIFY_INPUT_REJECTED',
+      fieldPaths: ['input.email', 'input.email', 'customer@example.invalid'],
+      classifications: ['INVALID_EMAIL', 'message with spaces'],
+      httpStatus: 200,
+      now: 1000,
+    });
+    assert.equal(db.diagnostics.length, 1);
+    assert.equal(db.diagnostics[0].field_paths_json, '["input.email"]');
+    assert.equal(db.diagnostics[0].classifications_json, '["INVALID_EMAIL"]');
+    assert.doesNotMatch(JSON.stringify(db.diagnostics[0]), /customer@example\.invalid|message with spaces/);
   });
 
   await test('expired mutation leases become uncertain and never reacquire blindly', async () => {

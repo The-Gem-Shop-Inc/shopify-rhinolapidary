@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-02T-R",
+  "status": "DEPLOYED_AWAITING_CONTROLLED_INPUTS",
+  "verifiedAt": "2026-10-29T20:25:27.747Z",
+  "failedAttempt": {
+    "quotationReference": "KQ-K1D02T20261029-1",
+    "reconciliationTag": "K1D-e1dc123a1a160094e8314dc7",
+    "shopifyDraftCount": 0,
+    "d1State": "FAILED_RETRYABLE",
+    "d1AttemptCount": 1,
+    "draftId": null,
+    "draftName": null,
+    "claimModified": false,
+    "historicalDiagnosticBackfilled": false
+  },
+  "diagnostics": {
+    "migration": "migrations/epic-k-draft-order/0002_draft_diagnostics.sql",
+    "table": "quote_submission_diagnostics",
+    "tableVerified": true,
+    "recordsQuotationReference": true,
+    "recordsReconciliationTag": true,
+    "recordsOutcomeCategory": true,
+    "recordsSanitizedFieldPaths": true,
+    "recordsSafeClassifications": true,
+    "recordsHttpStatus": true,
+    "recordsAssessmentTimestamp": true,
+    "rawMessagesPersisted": false,
+    "customerDataPersisted": false,
+    "publicDiagnosticEndpointAdded": false,
+    "publicErrorResponseRemainsGeneric": true,
+    "deterministicRejectionFenced": true,
+    "uncertainResultRemainsReconciled": true
+  },
+  "fixture": {
+    "nextQuotationReference": "KQ-K1D02TR20261029-2",
+    "cartTokenChanged": true,
+    "emailSource": "secure_runtime_variable",
+    "emailRecorded": false,
+    "reservedTestDomainsRejected": true,
+    "variantIdsUnchanged": true,
+    "quantitiesUnchanged": true,
+    "optionalPhoneCompanyAndAddress2Removed": true
+  },
+  "browserSecrets": {
+    "replacementPasswordRecorded": false,
+    "replacementPasswordTransmitted": false,
+    "tracingEnabled": false,
+    "screenshotsEnabled": false,
+    "videoEnabled": false,
+    "errorRedactionEnabled": true,
+    "rotationConfirmationRequired": true
+  },
+  "deployment": {
+    "worker": "rhino-quotation-drafts",
+    "workerVersionId": "9aadbca9-4711-46fc-8279-3be8051cf3e0",
+    "workerUrlRecordedWithoutAuthentication": "https://rhino-quotation-drafts.mayhemmojomeister.workers.dev",
+    "healthStatus": 200,
+    "d1Database": "rhino-quotation-drafts",
+    "migrationApplied": true,
+    "shopifyAppConfigurationChanged": false,
+    "themeChanged": false
+  },
+  "liveVerification": {
+    "workerHealthStatus": 200,
+    "workerVersionTrafficPercent": 100,
+    "operationalTablesPresent": 3,
+    "failedClaimRowsWritten": 0,
+    "failedClaimStateUnchanged": true,
+    "failedClaimDiagnosticCount": 0
+  },
+  "validation": {
+    "endpointTests": "18/18",
+    "d1AdapterTests": "8/8",
+    "routerSecurityTests": "15/15",
+    "acceptanceRunnerTests": "10/10",
+    "epicKPolicyTests": "73/73",
+    "quoteModePolicyTests": "40/40",
+    "quoteModeBrowserTests": "20/20",
+    "k1cSafetyTests": "10/10",
+    "readinessContract": "PASS",
+    "registerValidation": "PASS",
+    "cartConfiguration": "PASS",
+    "productPurchase": "PASS",
+    "themeArchitecture": "PASS",
+    "workerDryRun": "PASS",
+    "relevantThemeCheckOffenses": 0
+  },
+  "prerequisites": {
+    "storefrontPasswordRotationConfirmed": false,
+    "ownerControlledEmailProvided": false,
+    "newReferenceAdminReconciliation": "PENDING_EMAIL_AND_PREFLIGHT",
+    "authorizationLimitUnconsumed": true,
+    "controlledMutationAttempted": false
+  }
+}

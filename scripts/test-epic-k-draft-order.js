@@ -10,7 +10,10 @@ const {
 const {
   CREATE_DRAFT_MUTATION,
   createDraftOrderEndpoint,
+  createShopifyAdminClient,
   createShopifyClientCredentialsProvider,
+  graphqlErrorDiagnostic,
+  userErrorDiagnostic,
 } = require('../server/epic-k-draft-order/endpoint');
 
 const SECRET = 'synthetic-app-secret';
@@ -66,7 +69,7 @@ function request(payload, url = signedUrl()) {
 }
 
 class MemoryStore {
-  constructor() { this.records = new Map(); }
+  constructor() { this.records = new Map(); this.diagnostics = []; }
   async claim(input) {
     const prior = this.records.get(input.key);
     if (!prior) {
@@ -74,6 +77,7 @@ class MemoryStore {
       return { state: 'ACQUIRED' };
     }
     if (prior.payloadHash !== input.payloadHash) return { state: 'CONFLICT' };
+    if (prior.state === 'FAILED_RETRYABLE' && prior.errorCode?.startsWith('FINAL_')) return { state: 'REJECTED', record: prior };
     if (prior.state === 'FAILED_RETRYABLE') {
       prior.state = 'CLAIMED';
       return { state: 'ACQUIRED' };
@@ -83,7 +87,9 @@ class MemoryStore {
   async markMutationStarted(input) { this.records.set(input.key, { ...this.records.get(input.key), ...input, state: 'MUTATING' }); }
   async complete(input) { this.records.set(input.key, { ...this.records.get(input.key), ...input, state: 'COMPLETED' }); }
   async markRetryableFailure(input) { this.records.set(input.key, { ...this.records.get(input.key), ...input, state: 'FAILED_RETRYABLE' }); }
+  async markFinalRejection(input) { this.records.set(input.key, { ...this.records.get(input.key), ...input, errorCode: `FINAL_${input.code}`, state: 'FAILED_RETRYABLE' }); }
   async markUncertain(input) { this.records.set(input.key, { ...this.records.get(input.key), ...input, state: 'UNCERTAIN' }); }
+  async recordDiagnostic(input) { this.diagnostics.push(structuredClone(input)); }
 }
 
 function draftFor(input) {
@@ -110,8 +116,8 @@ function adminClient(options = {}) {
       calls.create += 1;
       calls.inputs.push(input);
       if (options.throwOnCreate) throw new Error('synthetic network timeout');
-      if (options.rejectOnce && calls.create === 1) return { draftOrder: null, userErrors: [{ field: ['lineItems'], message: 'Synthetic rejection' }] };
-      return { draftOrder: draftFor(input), userErrors: [] };
+      if (options.rejectOnce && calls.create === 1) return { draftOrder: null, userErrors: [{ field: ['input', 'email'], message: 'Synthetic Customer synthetic@example.invalid is invalid' }], httpStatus: 200 };
+      return { draftOrder: draftFor(input), userErrors: [], httpStatus: 200 };
     },
     async findDraftsByTag(tag) {
       calls.find += 1;
@@ -217,16 +223,70 @@ async function main() {
     assert.equal(admin.calls.create, 0);
   });
 
-  await test('confirmed Shopify API rejection is recoverable and a corrected retry can succeed', async () => {
+  await test('field-specific Shopify rejection is sanitized, final, and cannot blindly retry', async () => {
     const store = new MemoryStore();
     const admin = adminClient({ rejectOnce: true });
     const harness = endpoint({ store, admin });
     const first = await harness.handle(request(basePayload()));
     assert.equal(first.status, 422);
-    assert.equal((await body(first)).code, 'SHOPIFY_REJECTED');
+    const publicBody = await body(first);
+    assert.equal(publicBody.code, 'SHOPIFY_REJECTED');
+    assert.equal(publicBody.retryable, false);
+    assert.doesNotMatch(JSON.stringify(publicBody), /synthetic@example\.invalid|Customer|input\.email/i);
+    assert.deepEqual(store.diagnostics[0].fieldPaths, ['input.email']);
+    assert.deepEqual(store.diagnostics[0].classifications, ['INVALID_EMAIL']);
+    assert.equal(store.diagnostics[0].outcomeCategory, 'SHOPIFY_INPUT_REJECTED');
+    assert.doesNotMatch(JSON.stringify(store.diagnostics[0]), /synthetic@example\.invalid|Synthetic Customer/i);
     const retry = await harness.handle(request(basePayload()));
-    assert.equal(retry.status, 200);
+    assert.equal(retry.status, 422);
+    assert.equal((await body(retry)).retryable, false);
+    assert.equal(admin.calls.create, 1);
+    const changedSameReference = await harness.handle(request(basePayload({ cartNote: 'Corrected payload under old reference.' })));
+    assert.equal(changedSameReference.status, 409);
+    assert.equal((await body(changedSameReference)).code, 'IDEMPOTENCY_CONFLICT');
+    const correctedNewReference = await harness.handle(request(basePayload({ quoteReference: 'KQ-CORRECT2-1' })));
+    assert.equal(correctedNewReference.status, 200);
     assert.equal(admin.calls.create, 2);
+  });
+
+  await test('sanitizers retain safe Shopify fields and codes without messages or customer data', async () => {
+    const userDiagnostic = userErrorDiagnostic([{ field: ['input', 'shippingAddress', 'address1'], message: '100 Test Avenue rejected' }], 200);
+    assert.deepEqual(userDiagnostic.fieldPaths, ['input.shippingAddress.address1']);
+    assert.deepEqual(userDiagnostic.classifications, ['INVALID_ADDRESS']);
+    assert.doesNotMatch(JSON.stringify(userDiagnostic), /100 Test Avenue/);
+    const graphqlDiagnostic = graphqlErrorDiagnostic([{ message: 'secret detail', extensions: { code: 'ACCESS_DENIED' } }], 200);
+    assert.deepEqual(graphqlDiagnostic.classifications, ['ACCESS_DENIED']);
+    assert.doesNotMatch(JSON.stringify(graphqlDiagnostic), /secret detail/);
+  });
+
+  await test('deterministic top-level GraphQL rejection differs from an uncertain transport failure', async () => {
+    const rejectedClient = createShopifyAdminClient({
+      shopDomain: SHOP,
+      accessToken: 'synthetic-token',
+      fetchImpl: async () => new Response(JSON.stringify({
+        errors: [{ message: 'private Shopify detail', extensions: { code: 'GRAPHQL_VALIDATION_FAILED' } }],
+      }), { status: 200, headers: { 'content-type': 'application/json' } }),
+    });
+    await assert.rejects(rejectedClient.createDraft({}), (error) => {
+      assert.equal(error.confirmedFailure, true);
+      assert.equal(error.finalRejection, true);
+      assert.deepEqual(error.diagnostic.classifications, ['GRAPHQL_VALIDATION_FAILED']);
+      assert.doesNotMatch(JSON.stringify(error.diagnostic), /private Shopify detail/);
+      return true;
+    });
+
+    const uncertainClient = createShopifyAdminClient({
+      shopDomain: SHOP,
+      accessToken: 'synthetic-token',
+      fetchImpl: async () => { throw new Error('network timeout with customer@example.invalid'); },
+    });
+    await assert.rejects(uncertainClient.createDraft({}), (error) => {
+      assert.equal(error.confirmedFailure, false);
+      assert.equal(error.finalRejection, false);
+      assert.equal(error.diagnostic.outcomeCategory, 'ADMIN_RESULT_UNCERTAIN');
+      assert.doesNotMatch(JSON.stringify(error.diagnostic), /customer@example\.invalid/);
+      return true;
+    });
   });
 
   await test('repeated submissions return the durable result and create only one draft', async () => {

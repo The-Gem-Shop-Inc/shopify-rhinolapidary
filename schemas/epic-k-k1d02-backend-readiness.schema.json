@@ -5,20 +5,21 @@
   "additionalProperties": false,
   "required": ["schemaVersion", "batch", "asOf", "state", "hosting", "shopify", "runtime", "evidence", "activation", "readiness", "blockers"],
   "properties": {
-    "schemaVersion": { "const": 5 },
-    "batch": { "const": "K1D-02T" },
+    "schemaVersion": { "const": 6 },
+    "batch": { "const": "K1D-02T-R" },
     "asOf": { "type": "string", "format": "date" },
-    "state": { "enum": ["CONTROLLED_DRAFT_TEST_BLOCKED", "CONTROLLED_DRAFT_ACCEPTED", "PREVIEW_ACCEPTED", "PRODUCTION_READY"] },
+    "state": { "enum": ["CORRECTED_ACCEPTANCE_AWAITING_SECURE_INPUTS", "CONTROLLED_DRAFT_ACCEPTED", "PREVIEW_ACCEPTED", "PRODUCTION_READY"] },
     "hosting": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["decision", "existingRhinoHostReused", "workerConfig", "entrypoint", "migration", "d1Binding", "d1DatabaseName", "d1DatabaseId", "d1Region", "workerUrl", "workerVersionId", "compatibilityDate", "healthVerified", "d1SchemaVerified"],
+      "required": ["decision", "existingRhinoHostReused", "workerConfig", "entrypoint", "migration", "diagnosticMigration", "d1Binding", "d1DatabaseName", "d1DatabaseId", "d1Region", "workerUrl", "workerVersionId", "compatibilityDate", "healthVerified", "d1SchemaVerified", "diagnosticSchemaVerified"],
       "properties": {
         "decision": { "const": "cloudflare_workers_d1" },
         "existingRhinoHostReused": { "const": false },
         "workerConfig": { "const": "config/wrangler.epic-k-draft-order.jsonc" },
         "entrypoint": { "const": "server/epic-k-draft-order/worker.mjs" },
         "migration": { "const": "migrations/epic-k-draft-order/0001_quote_backend.sql" },
+        "diagnosticMigration": { "const": "migrations/epic-k-draft-order/0002_draft_diagnostics.sql" },
         "d1Binding": { "const": "QUOTE_DB" },
         "d1DatabaseName": { "const": "rhino-quotation-drafts" },
         "d1DatabaseId": { "type": "string", "pattern": "^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$" },
@@ -27,7 +28,8 @@
         "workerVersionId": { "type": "string", "pattern": "^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$" },
         "compatibilityDate": { "const": "2026-10-28" },
         "healthVerified": { "const": true },
-        "d1SchemaVerified": { "const": true }
+        "d1SchemaVerified": { "const": true },
+        "diagnosticSchemaVerified": { "const": true }
       }
     },
     "shopify": {
@@ -62,7 +64,7 @@
     "runtime": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["requiredSecrets", "secretManager", "secretConfigured", "nonSecretVariables", "durableIdempotency", "durableRateLimiting", "ambiguousMutationReconciliation", "clientCredentialsExposed", "clientCredentialsVerified", "tokenLifetimeSeconds", "directSignedRequestVerified", "invalidSignatureRejected", "expiredSignatureRejected", "shopifyProxyForwardingVerified", "shopifyGeneratedProxyRequestVerified", "proxyPathCompatibilityVerified"],
+      "required": ["requiredSecrets", "secretManager", "secretConfigured", "nonSecretVariables", "durableIdempotency", "durableRateLimiting", "ambiguousMutationReconciliation", "clientCredentialsExposed", "clientCredentialsVerified", "tokenLifetimeSeconds", "directSignedRequestVerified", "invalidSignatureRejected", "expiredSignatureRejected", "shopifyProxyForwardingVerified", "shopifyGeneratedProxyRequestVerified", "proxyPathCompatibilityVerified", "sanitizedDiagnosticsDeployed", "deterministicRejectionFenced", "rawShopifyMessagesPersisted", "publicDiagnosticEndpointAdded", "browserSecretRedactionEnabled"],
       "properties": {
         "requiredSecrets": { "type": "array", "minItems": 1, "maxItems": 1, "uniqueItems": true, "items": { "const": "SHOPIFY_API_SECRET" } },
         "secretManager": { "const": "cloudflare_workers_secret" },
@@ -79,13 +81,18 @@
         "expiredSignatureRejected": { "const": true },
         "shopifyProxyForwardingVerified": { "const": true },
         "shopifyGeneratedProxyRequestVerified": { "const": true },
-        "proxyPathCompatibilityVerified": { "const": true }
+        "proxyPathCompatibilityVerified": { "const": true },
+        "sanitizedDiagnosticsDeployed": { "const": true },
+        "deterministicRejectionFenced": { "const": true },
+        "rawShopifyMessagesPersisted": { "const": false },
+        "publicDiagnosticEndpointAdded": { "const": false },
+        "browserSecretRedactionEnabled": { "const": true }
       }
     },
     "evidence": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["manualContactEmailHumanConfirmed", "automatedDraftPreviewAccepted", "mockedTestsClassifiedAsLiveAcceptance", "controlledDraftAuthorizationReceived", "controlledDraftAttempted", "controlledDraftCreated", "productionThemePublished", "authenticProxyVerificationAt", "authenticProxyEvidence", "controlledDraftAttemptAt", "controlledDraftResult", "controlledDraftEvidence", "shopifyDraftCountForReference", "d1ClaimState", "d1AttemptCount"],
+      "required": ["manualContactEmailHumanConfirmed", "automatedDraftPreviewAccepted", "mockedTestsClassifiedAsLiveAcceptance", "controlledDraftAuthorizationReceived", "controlledDraftAttempted", "controlledDraftCreated", "productionThemePublished", "authenticProxyVerificationAt", "authenticProxyEvidence", "controlledDraftAttemptAt", "controlledDraftResult", "controlledDraftEvidence", "shopifyDraftCountForReference", "d1ClaimState", "d1AttemptCount", "failedReferenceReconciledAt", "failedReferencePreserved", "repairEvidence", "nextQuotationReference", "ownerControlledEmailProvided", "storefrontPasswordRotationConfirmed", "authorizationLimitUnconsumed", "correctedMutationAttempted"],
       "properties": {
         "manualContactEmailHumanConfirmed": { "const": true },
         "automatedDraftPreviewAccepted": { "type": "boolean" },
@@ -101,7 +108,15 @@
         "controlledDraftEvidence": { "const": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-blocked.json" },
         "shopifyDraftCountForReference": { "type": "integer", "minimum": 0 },
         "d1ClaimState": { "enum": ["FAILED_RETRYABLE", "COMPLETED"] },
-        "d1AttemptCount": { "type": "integer", "minimum": 1 }
+        "d1AttemptCount": { "const": 1 },
+        "failedReferenceReconciledAt": { "type": "string", "format": "date-time" },
+        "failedReferencePreserved": { "const": true },
+        "repairEvidence": { "const": "docs/qa/evidence/epic-k/k1d02t-r-2026-10-29/repair-deployment.json" },
+        "nextQuotationReference": { "const": "KQ-K1D02TR20261029-2" },
+        "ownerControlledEmailProvided": { "const": false },
+        "storefrontPasswordRotationConfirmed": { "const": false },
+        "authorizationLimitUnconsumed": { "const": true },
+        "correctedMutationAttempted": { "const": false }
       }
     },
     "readiness": {
@@ -110,7 +125,7 @@
       "required": ["repositoryValidation", "authenticProxyAcceptance", "shopifyAdminAcceptance", "operationalReadiness", "productionReadiness"],
       "properties": {
         "repositoryValidation": { "enum": ["PASS", "FAIL"] },
-        "authenticProxyAcceptance": { "enum": ["PASS", "BLOCKED_SHOPIFY_REJECTED"] },
+        "authenticProxyAcceptance": { "enum": ["PASS", "AWAITING_SECURE_INPUTS"] },
         "shopifyAdminAcceptance": { "enum": ["PASS", "BLOCKED_NO_DRAFT"] },
         "operationalReadiness": { "enum": ["READY", "BLOCKED"] },
         "productionReadiness": { "enum": ["READY", "BLOCKED"] }

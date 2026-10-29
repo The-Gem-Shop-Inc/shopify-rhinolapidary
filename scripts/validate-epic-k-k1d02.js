@@ -21,6 +21,7 @@ function validateK1d02() {
     contract.hosting.workerConfig,
     contract.hosting.entrypoint,
     contract.hosting.migration,
+    contract.hosting.diagnosticMigration,
     contract.shopify.appConfiguration,
     'server/epic-k-draft-order/core.js',
     'server/epic-k-draft-order/endpoint.js',
@@ -36,7 +37,11 @@ function validateK1d02() {
   const packageJson = json('package.json');
   const worker = read(contract.hosting.entrypoint);
   const adapters = read('server/epic-k-draft-order/d1-adapters.js');
+  const endpoint = read('server/epic-k-draft-order/endpoint.js');
   const migration = read(contract.hosting.migration);
+  const diagnosticMigration = read(contract.hosting.diagnosticMigration);
+  const acceptanceFixture = json('data/epic-k-k1d02t-acceptance-fixture.json');
+  const acceptanceRunner = read('scripts/run-epic-k-k1d02t-acceptance.js');
   const shopify = read(contract.shopify.appConfiguration);
   const browserSources = `${read('assets/rhino-quote-mode.js')}\n${read('snippets/rhino-quote-checkout.liquid')}`;
 
@@ -53,22 +58,29 @@ function validateK1d02() {
   if (!worker.includes("from './d1-adapters.js'") || !worker.includes('QUOTE_DB')) errors.push('Worker must bind the D1 adapters.');
   if (!worker.includes("url.pathname !== '/shopify/app-proxy/quote' && url.pathname !== '/shopify/app-proxy/quote/'")) errors.push('Worker must allow exactly the configured app-proxy path with or without one trailing slash.');
   if (/url\.pathname\.startsWith\([^\n]*app-proxy/i.test(worker)) errors.push('Worker app-proxy routing must not use permissive prefix matching.');
-  for (const method of ['claim', 'markMutationStarted', 'complete', 'markRetryableFailure', 'markUncertain', 'consume']) {
+  for (const method of ['claim', 'markMutationStarted', 'complete', 'markFinalRejection', 'markRetryableFailure', 'markUncertain', 'recordDiagnostic', 'consume']) {
     if (!adapters.includes(`async ${method}`)) errors.push(`D1 adapter is missing ${method}().`);
   }
   if (!migration.includes('idempotency_key TEXT PRIMARY KEY') || !migration.includes('quote_reference TEXT NOT NULL UNIQUE')) errors.push('Migration lacks atomic unique idempotency constraints.');
   if (!migration.includes("'MUTATING'") || !migration.includes("'UNCERTAIN'")) errors.push('Migration lacks safe ambiguous-mutation states.');
+  if (!diagnosticMigration.includes('CREATE TABLE quote_submission_diagnostics') || !diagnosticMigration.includes('field_paths_json') || !diagnosticMigration.includes('classifications_json')) errors.push('Diagnostic migration lacks the sanitized Shopify outcome table.');
+  if (/\bmessage\b/i.test(diagnosticMigration)) errors.push('Diagnostic migration must not persist arbitrary Shopify messages.');
+  if (!endpoint.includes('userErrorDiagnostic') || !endpoint.includes('graphqlErrorDiagnostic') || !endpoint.includes("finalRejection: true")) errors.push('Endpoint lacks sanitized deterministic Shopify rejection handling.');
+  if (!adapters.includes("prior.errorCode?.startsWith('FINAL_')") || !adapters.includes("state: 'REJECTED'")) errors.push('D1 idempotency adapter does not fence deterministic rejection from reacquisition.');
+  if (Object.hasOwn(acceptanceFixture.customer || {}, 'email')) errors.push('Acceptance fixture must not commit the owner-controlled email.');
+  if (acceptanceFixture.quoteReference !== contract.evidence.nextQuotationReference) errors.push('Acceptance fixture does not use the contracted corrected quotation reference.');
+  if (!acceptanceRunner.includes('K1D02T_OWNER_EMAIL') || !acceptanceRunner.includes('K1D02T_PASSWORD_ROTATED') || !acceptanceRunner.includes('Reserved test email domains')) errors.push('Acceptance runner lacks secure email, rotation, or reserved-domain gates.');
   contract.shopify.requiredScopes.forEach((scope) => { if (!shopify.includes(scope)) errors.push(`Shopify app config lacks ${scope}.`); });
   if (!shopify.includes(`client_id = "${contract.shopify.clientId}"`)) errors.push('Shopify app config has the wrong Client ID.');
   if (!shopify.includes(`${contract.hosting.workerUrl}/health`)) errors.push('Shopify app config lacks the verified Worker health URL.');
   if (!shopify.includes('[app_proxy]') || !shopify.includes(`${contract.hosting.workerUrl}${contract.shopify.proxyDestinationPath}`)) errors.push('Shopify app config lacks the provisioned app proxy destination.');
   if (/shpat_|SHOPIFY_API_SECRET\s*[:=]\s*["'][^"']+/i.test(`${worker}\n${browserSources}`)) errors.push('A committed Admin credential appears in runtime or storefront source.');
   if (browserSources.includes('/apps/rhino-quote-draft')) errors.push('Storefront automation must remain disabled until the provisioned backend is verified.');
-  if (contract.state === 'CONTROLLED_DRAFT_TEST_BLOCKED') {
+  if (contract.state === 'CORRECTED_ACCEPTANCE_AWAITING_SECURE_INPUTS') {
     const requiredTrue = ['cloudflareAccountAuthorized', 'd1Provisioned', 'migrationApplied', 'workerDeployed', 'shopifyAppCreated', 'shopifyAppVersionReleased', 'shopifyAppInstalled', 'scopesConfigured', 'scopesGranted', 'protectedCustomerDataApproved', 'secretBound', 'appProxyReleased', 'clientCredentialsVerified', 'directSignedRequestVerified', 'invalidSignatureRejected', 'expiredSignatureRejected', 'shopifyProxyForwardingVerified', 'shopifyGeneratedProxyRequestVerified', 'proxyPathCompatibilityVerified'];
     const requiredFalse = ['storefrontClientEnabled', 'controlledDraftCreated', 'previewAccepted'];
-    requiredTrue.forEach((key) => { if (contract.activation[key] !== true) errors.push(`Verified K1D-02T prerequisite ${key} must be true.`); });
-    requiredFalse.forEach((key) => { if (contract.activation[key] !== false) errors.push(`Inactive K1D-02T milestone ${key} must remain false.`); });
+    requiredTrue.forEach((key) => { if (contract.activation[key] !== true) errors.push(`Verified K1D-02T-R prerequisite ${key} must be true.`); });
+    requiredFalse.forEach((key) => { if (contract.activation[key] !== false) errors.push(`Inactive K1D-02T-R milestone ${key} must remain false.`); });
     contract.shopify.requiredScopes.forEach((scope) => { if (!contract.shopify.grantedScopes.includes(scope)) errors.push(`Installed app is missing ${scope}.`); });
     for (const scope of ['read_customer_address', 'read_customer_email', 'read_customer_name', 'read_customer_personal_data', 'read_customer_phone']) {
       if (!contract.shopify.protectedCustomerScopeHandles.includes(scope)) errors.push(`Protected customer data configuration is missing ${scope}.`);
@@ -87,7 +99,18 @@ function validateK1d02() {
       const serializedAcceptance = JSON.stringify(acceptance);
       if (/access_token|client_secret|SHOPIFY_API_SECRET|signature=|100 Test Avenue|\+12025550100|k1d02t-20261029@example\.invalid/i.test(serializedAcceptance)) errors.push('Controlled acceptance evidence contains prohibited credential, URL-signature, or full synthetic contact data.');
     }
-    if (contract.readiness.repositoryValidation !== 'PASS' || contract.readiness.authenticProxyAcceptance !== 'BLOCKED_SHOPIFY_REJECTED' || contract.readiness.shopifyAdminAcceptance !== 'BLOCKED_NO_DRAFT' || contract.readiness.operationalReadiness !== 'BLOCKED' || contract.readiness.productionReadiness !== 'BLOCKED') errors.push('K1D-02T readiness dimensions do not match the blocked zero-draft result.');
+    if (!contract.evidence.failedReferencePreserved || !contract.evidence.authorizationLimitUnconsumed || contract.evidence.correctedMutationAttempted) errors.push('K1D-02T-R must preserve the failed claim and retain the unused one-draft authorization.');
+    if (contract.evidence.ownerControlledEmailProvided || contract.evidence.storefrontPasswordRotationConfirmed) errors.push('K1D-02T-R must remain blocked until secure email and password-rotation confirmations are supplied.');
+    if (!fs.existsSync(path.join(ROOT, contract.evidence.repairEvidence))) errors.push('Sanitized K1D-02T-R repair evidence is missing.');
+    else {
+      const repair = json(contract.evidence.repairEvidence);
+      if (repair.status !== 'DEPLOYED_AWAITING_CONTROLLED_INPUTS' || repair.failedAttempt?.shopifyDraftCount !== 0 || repair.failedAttempt?.claimModified !== false) errors.push('Repair evidence does not preserve the zero-draft failed attempt.');
+      if (!repair.diagnostics?.tableVerified || repair.diagnostics?.rawMessagesPersisted || repair.diagnostics?.publicDiagnosticEndpointAdded) errors.push('Repair evidence does not prove safe diagnostic deployment.');
+      if (repair.deployment?.workerVersionId !== contract.hosting.workerVersionId || repair.deployment?.healthStatus !== 200) errors.push('Repair deployment evidence differs from the Worker readiness contract.');
+      if (repair.prerequisites?.controlledMutationAttempted || repair.prerequisites?.ownerControlledEmailProvided || repair.prerequisites?.storefrontPasswordRotationConfirmed) errors.push('Repair evidence must not claim the corrected controlled mutation prerequisites passed.');
+      if (/password\s*[:=]|access_token|client_secret|signature=/i.test(JSON.stringify(repair))) errors.push('Repair evidence contains prohibited credential material.');
+    }
+    if (contract.readiness.repositoryValidation !== 'PASS' || contract.readiness.authenticProxyAcceptance !== 'AWAITING_SECURE_INPUTS' || contract.readiness.shopifyAdminAcceptance !== 'BLOCKED_NO_DRAFT' || contract.readiness.operationalReadiness !== 'BLOCKED' || contract.readiness.productionReadiness !== 'BLOCKED') errors.push('K1D-02T-R readiness dimensions do not match the deployed-but-blocked result.');
   }
 
   const contact = json('data/epic-k-k1c02-activation-status-2026-10-27.json');

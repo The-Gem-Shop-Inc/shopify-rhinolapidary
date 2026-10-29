@@ -1,6 +1,14 @@
 'use strict';
 
 const CLAIM_LEASE_MS = 60 * 1000;
+const DIAGNOSTIC_OUTCOMES = new Set([
+  'DRAFT_CREATED',
+  'SHOPIFY_INPUT_REJECTED',
+  'SHOPIFY_GRAPHQL_REJECTED',
+  'SHOPIFY_HTTP_REJECTED',
+  'SHOPIFY_RATE_LIMITED',
+  'ADMIN_RESULT_UNCERTAIN',
+]);
 
 function changes(result) {
   return Number(result?.meta?.changes || 0);
@@ -51,6 +59,7 @@ function createD1IdempotencyStore(db, { leaseMs = CLAIM_LEASE_MS } = {}) {
       if (prior.payloadHash !== payloadHash || prior.reference !== reference) return { state: 'CONFLICT' };
       if (prior.state === 'COMPLETED') return { state: 'COMPLETED', record: prior };
       if (prior.state === 'UNCERTAIN') return { state: 'UNCERTAIN', record: prior };
+      if (prior.state === 'FAILED_RETRYABLE' && prior.errorCode?.startsWith('FINAL_')) return { state: 'REJECTED', record: prior };
 
       if (prior.state === 'MUTATING' && prior.leaseExpiresAt <= now) {
         const uncertain = await db.prepare(`
@@ -115,6 +124,17 @@ function createD1IdempotencyStore(db, { leaseMs = CLAIM_LEASE_MS } = {}) {
       if (changes(result) !== 1) throw new Error('The retryable failure state could not be recorded.');
     },
 
+    async markFinalRejection({ key, payloadHash, code, now }) {
+      const safeCode = String(code || 'ADMIN_INPUT_REJECTED').toUpperCase().replace(/[^A-Z0-9_]/g, '_').slice(0, 64);
+      const result = await db.prepare(`
+        UPDATE quote_submission_claims
+        SET state = 'FAILED_RETRYABLE', error_code = ?3,
+            lease_expires_at = 0, updated_at = ?4
+        WHERE idempotency_key = ?1 AND payload_hash = ?2 AND state IN ('CLAIMED', 'MUTATING')
+      `).bind(key, payloadHash, `FINAL_${safeCode}`, now).run();
+      if (changes(result) !== 1) throw new Error('The final rejection fence could not be recorded.');
+    },
+
     async markUncertain({ key, payloadHash, code, now }) {
       const result = await db.prepare(`
         UPDATE quote_submission_claims
@@ -123,6 +143,23 @@ function createD1IdempotencyStore(db, { leaseMs = CLAIM_LEASE_MS } = {}) {
         WHERE idempotency_key = ?1 AND payload_hash = ?2 AND state = 'MUTATING'
       `).bind(key, payloadHash, code, now).run();
       if (changes(result) !== 1) throw new Error('The uncertain mutation state could not be recorded.');
+    },
+
+    async recordDiagnostic({ key, reference, reconciliationTag, outcomeCategory, fieldPaths, classifications, httpStatus, now }) {
+      if (!DIAGNOSTIC_OUTCOMES.has(outcomeCategory)) throw new Error('Unsupported diagnostic outcome category.');
+      if (!/^epic-k:k1d01:[a-f0-9]{64}$/.test(key)) throw new Error('Invalid diagnostic idempotency key.');
+      if (!/^KQ-[A-Z0-9]{6,32}-[1-9][0-9]{0,4}$/.test(reference)) throw new Error('Invalid diagnostic quotation reference.');
+      if (!/^K1D-[a-f0-9]{24}$/.test(reconciliationTag)) throw new Error('Invalid diagnostic reconciliation tag.');
+      const safeFields = [...new Set(fieldPaths || [])].map((value) => String(value)).filter((value) => /^(?:unknown|(?:[A-Za-z_][A-Za-z0-9_]{0,63}|[0-9]{1,4})(?:\.(?:[A-Za-z_][A-Za-z0-9_]{0,63}|[0-9]{1,4})){0,7})$/.test(value)).sort();
+      const safeClasses = [...new Set(classifications || [])].map((value) => String(value).toUpperCase()).filter((value) => /^[A-Z0-9_]{1,64}$/.test(value)).sort();
+      const status = httpStatus === null || httpStatus === undefined ? null : Number(httpStatus);
+      if (status !== null && (!Number.isInteger(status) || status < 100 || status > 599)) throw new Error('Invalid diagnostic HTTP status.');
+      await db.prepare(`
+        INSERT INTO quote_submission_diagnostics (
+          idempotency_key, quote_reference, reconciliation_tag, outcome_category,
+          field_paths_json, classifications_json, http_status, assessed_at
+        ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)
+      `).bind(key, reference, reconciliationTag, outcomeCategory, JSON.stringify(safeFields), JSON.stringify(safeClasses), status, now).run();
     },
   };
 }
@@ -161,4 +198,4 @@ function createD1RateLimiter(db) {
   };
 }
 
-module.exports = { CLAIM_LEASE_MS, createD1IdempotencyStore, createD1RateLimiter };
+module.exports = { CLAIM_LEASE_MS, DIAGNOSTIC_OUTCOMES, createD1IdempotencyStore, createD1RateLimiter };

@@ -51,6 +51,13 @@ export default {
         }),
         idempotencyStore: createD1IdempotencyStore(env.QUOTE_DB),
         rateLimiter: createD1RateLimiter(env.QUOTE_DB),
+        onDiagnosticFailure({ outcomeCategory }) {
+          console.error(JSON.stringify({
+            event: 'quote_diagnostic_write_failed',
+            requestId,
+            outcomeCategory,
+          }));
+        },
       });
       response = await handler(request);
       return response;

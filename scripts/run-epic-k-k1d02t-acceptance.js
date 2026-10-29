@@ -16,6 +16,9 @@ const ROOT = path.resolve(__dirname, '..');
 const FIXTURE_PATH = path.join(ROOT, 'data/epic-k-k1d02t-acceptance-fixture.json');
 const READINESS_PATH = path.join(ROOT, 'data/epic-k-k1d02-backend-readiness.json');
 const AUTHORIZATION_PHRASE = 'Tobi-authorized-one-draft-K1D-02T-2026-10-29';
+const PASSWORD_ROTATION_CONFIRMATION = 'confirmed-storefront-password-rotated-after-2026-10-29-exposure';
+const AUTHORIZATION_UNCONSUMED_CONFIRMATION = 'confirmed-zero-drafts-authorization-unconsumed';
+const FAILED_REFERENCE = 'KQ-K1D02T20261029-1';
 const DATABASE = 'rhino-quotation-drafts';
 const WRANGLER_CONFIG = path.join(ROOT, 'config/wrangler.epic-k-draft-order.jsonc');
 
@@ -108,16 +111,50 @@ class AcceptanceBlockedError extends Error {
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
 
 function parseArgs(argv) {
-  const execute = argv.includes('--execute');
-  const preflight = argv.includes('--preflight');
-  if (execute === preflight) throw new Error('Choose exactly one of --preflight or --execute.');
-  return { execute };
+  const modes = ['--execute', '--preflight', '--reconcile-failed'].filter((flag) => argv.includes(flag));
+  if (modes.length !== 1) throw new Error('Choose exactly one of --preflight, --execute, or --reconcile-failed.');
+  return { mode: modes[0].slice(2) };
 }
 
 function assertExecutionAuthorization(value) {
   if (value !== AUTHORIZATION_PHRASE) {
     throw new AcceptanceBlockedError('Exact K1D-02T owner authorization is required before the single live write.');
   }
+}
+
+function assertPasswordRotation(value) {
+  if (value !== PASSWORD_ROTATION_CONFIRMATION) {
+    throw new AcceptanceBlockedError('Confirmation that the exposed storefront password was rotated is required before browser authentication.');
+  }
+}
+
+function assertAuthorizationUnconsumed(value) {
+  if (value !== AUTHORIZATION_UNCONSUMED_CONFIRMATION) {
+    throw new AcceptanceBlockedError('Confirmation that the one-Draft-Order authorization remains unconsumed is required before the live mutation.');
+  }
+}
+
+function materializeAcceptanceFixture(rawFixture, ownerEmail) {
+  const email = String(ownerEmail || '').trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    throw new AcceptanceBlockedError('K1D02T_OWNER_EMAIL must contain the owner-controlled deliverable test email.');
+  }
+  const domain = email.split('@').pop();
+  const reserved = ['invalid', 'test', 'example', 'localhost'].some((suffix) => domain === suffix || domain.endsWith(`.${suffix}`))
+    || ['example.com', 'example.net', 'example.org'].includes(domain);
+  if (reserved) throw new AcceptanceBlockedError('Reserved test email domains are prohibited for the controlled live acceptance fixture.');
+  return {
+    ...rawFixture,
+    customer: { ...rawFixture.customer, email },
+  };
+}
+
+function redactSecrets(value, secrets = []) {
+  let text = String(value || '');
+  for (const secret of secrets.filter(Boolean)) text = text.split(String(secret)).join('[redacted]');
+  return text
+    .replace(/https?:\/\/\S+/g, '[redacted-url]')
+    .replace(/(password|access[_-]?token|client[_-]?secret)\s*[:=]\s*\S+/gi, '$1=[redacted]');
 }
 
 function appCredentials(projectDir) {
@@ -181,6 +218,28 @@ function d1Claim(idempotencyKey) {
   return rows[0] || null;
 }
 
+function d1LatestDiagnostic(idempotencyKey) {
+  if (!/^epic-k:k1d01:[a-f0-9]{64}$/.test(idempotencyKey)) throw new Error('Unexpected idempotency key format.');
+  const sql = `SELECT outcome_category, field_paths_json, classifications_json, http_status, assessed_at FROM quote_submission_diagnostics WHERE idempotency_key = '${idempotencyKey}' ORDER BY assessed_at DESC, diagnostic_id DESC LIMIT 1`;
+  const wranglerCli = path.join(ROOT, 'node_modules/wrangler/bin/wrangler.js');
+  const result = spawnSync(process.execPath, [wranglerCli, 'd1', 'execute', DATABASE, '--remote', '--config', WRANGLER_CONFIG, '--command', sql, '--json', '--yes'], {
+    cwd: ROOT, encoding: 'utf8', windowsHide: true, maxBuffer: 2 * 1024 * 1024,
+  });
+  if (result.status !== 0) throw new AcceptanceBlockedError('Remote D1 diagnostic read failed.');
+  let output;
+  try { output = JSON.parse(result.stdout); } catch { throw new AcceptanceBlockedError('Remote D1 returned an unreadable diagnostic result.'); }
+  const rows = output?.[0]?.results || output?.[0]?.result?.[0]?.results || [];
+  const row = rows[0];
+  if (!row) return null;
+  return {
+    outcomeCategory: row.outcome_category,
+    fieldPaths: JSON.parse(row.field_paths_json || '[]'),
+    classifications: JSON.parse(row.classifications_json || '[]'),
+    httpStatus: row.http_status,
+    assessedAt: new Date(Number(row.assessed_at)).toISOString(),
+  };
+}
+
 function matchingDrafts(nodes, reference, tag) {
   return (nodes || []).filter((draft) => (
     draft.tags?.includes(tag)
@@ -223,7 +282,8 @@ function verifyDraft(draft, fixture, tag) {
   const address = draft.shippingAddress;
   assert.ok(address, 'Draft Order shipping address is missing.');
   for (const field of ['firstName', 'lastName', 'company', 'address1', 'address2', 'city', 'provinceCode', 'zip']) {
-    assert.equal(address[field], fixture.shippingAddress[field] ?? fixture.customer[field], `Shipping address field ${field} differs.`);
+    const expected = fixture.shippingAddress[field] || fixture.customer[field] || null;
+    assert.equal(address[field] || null, expected, `Shipping address field ${field} differs.`);
   }
   assert.equal(address.countryCodeV2, 'US');
   assert.equal(phoneDigits(address.phone), phoneDigits(fixture.customer.phone));
@@ -277,7 +337,9 @@ function buildEvidence({ fixture, identity, firstResponse, duplicateResponse, dr
     authorization: { owner: 'Tobi', scope: 'one synthetic unpaid uninvoiced Draft Order', confirmed: true },
     fixture: {
       quotationReference: fixture.quoteReference,
-      syntheticEmailDomain: 'example.invalid',
+      emailSource: 'secure_runtime_variable',
+      emailDomainRecorded: false,
+      reservedTestDomain: false,
       shippingCountryCode: fixture.shippingAddress.countryCode,
       itemCount: fixture.items.length,
       items: fixture.items.map((item) => ({ variantId: item.variantId, quantity: item.quantity, propertyKeys: normalizedAttributes(item.properties).map((entry) => entry.key) })),
@@ -317,7 +379,7 @@ function buildEvidence({ fixture, identity, firstResponse, duplicateResponse, dr
   };
 }
 
-function buildBlockedEvidence({ fixture, identity, firstResponse, claim, adminCount }) {
+function buildBlockedEvidence({ fixture, identity, firstResponse, claim, adminCount, diagnostic = null }) {
   return {
     schemaVersion: 1,
     batch: 'K1D-02T',
@@ -326,7 +388,9 @@ function buildBlockedEvidence({ fixture, identity, firstResponse, claim, adminCo
     authorization: { owner: 'Tobi', scope: 'one synthetic unpaid uninvoiced Draft Order', confirmed: true },
     fixture: {
       quotationReference: fixture.quoteReference,
-      syntheticEmailDomain: 'example.invalid',
+      emailSource: 'secure_runtime_variable',
+      emailDomainRecorded: false,
+      reservedTestDomain: false,
       shippingCountryCode: fixture.shippingAddress.countryCode,
       itemCount: fixture.items.length,
       items: fixture.items.map((item) => ({ variantId: item.variantId, quantity: item.quantity, propertyKeys: normalizedAttributes(item.properties).map((entry) => entry.key) })),
@@ -348,6 +412,7 @@ function buildBlockedEvidence({ fixture, identity, firstResponse, claim, adminCo
       payloadHashMatched: claim?.payload_hash === payloadHash(fixture),
       reconciliationComplete: false,
     },
+    internalDiagnostic: diagnostic,
     safety: {
       draftsCreated: 0,
       duplicateRequestAttempted: false,
@@ -363,8 +428,8 @@ function buildBlockedEvidence({ fixture, identity, firstResponse, claim, adminCo
       emailFallbackActive: true,
     },
     blocker: {
-      code: 'SHOPIFY_REJECTED_WITHOUT_PUBLIC_USER_ERROR',
-      nextAction: 'Supply an owner-controlled test email address and authorize a corrected fixture with a new unique quotation reference.',
+      code: 'SHOPIFY_REJECTED',
+      nextAction: 'Inspect the sanitized internal diagnostic and stop; do not issue another discovery mutation.',
     },
     deterministicIdentity: { reconciliationTag: identity.tag },
   };
@@ -412,14 +477,15 @@ async function unlockStorefront(storefrontAlias, storefrontPassword, context) {
 }
 
 async function main() {
-  const { execute } = parseArgs(process.argv.slice(2));
+  const { mode } = parseArgs(process.argv.slice(2));
+  const execute = mode === 'execute';
   const readiness = readJson(READINESS_PATH);
   const rawFixture = readJson(FIXTURE_PATH);
-  const fixture = validatePayload(rawFixture);
-  const identity = idempotencyIdentity(readiness.shopify.canonicalShop, fixture);
   const evidencePath = process.env.K1D02T_EVIDENCE_PATH;
   if (execute) {
     assertExecutionAuthorization(process.env.K1D02T_OWNER_AUTHORIZATION);
+    assertPasswordRotation(process.env.K1D02T_PASSWORD_ROTATED);
+    assertAuthorizationUnconsumed(process.env.K1D02T_AUTHORIZATION_UNCONSUMED);
     if (!evidencePath) throw new AcceptanceBlockedError('K1D02T_EVIDENCE_PATH is required for the sanitized result.');
     if (fs.existsSync(evidencePath)) throw new AcceptanceBlockedError('The configured evidence path already exists; refusing an accidental rerun.');
   }
@@ -428,6 +494,23 @@ async function main() {
   assert.equal(clientId, readiness.shopify.clientId, 'Shopify CLI app identity differs from the readiness contract.');
   const token = await accessToken({ shop: readiness.shopify.canonicalShop, clientId, clientSecret });
   const admin = { shop: readiness.shopify.canonicalShop, apiVersion: readiness.shopify.apiVersion, token };
+  if (mode === 'reconcile-failed') {
+    const failedIdentity = idempotencyIdentity(readiness.shopify.canonicalShop, { quoteReference: FAILED_REFERENCE });
+    const failedDrafts = await findAcceptanceDrafts(admin, FAILED_REFERENCE, failedIdentity.tag);
+    const failedClaim = d1Claim(failedIdentity.key);
+    assert.equal(failedDrafts.length, 0, 'The preserved failed reference unexpectedly matches a Shopify Draft Order.');
+    assert.equal(failedClaim?.quote_reference, FAILED_REFERENCE);
+    assert.equal(failedClaim?.state, 'FAILED_RETRYABLE');
+    assert.equal(Number(failedClaim?.attempt_count), 1);
+    assert.equal(failedClaim?.draft_id, null);
+    assert.equal(failedClaim?.draft_name, null);
+    console.log(`K1D-02T-R failed-reference reconciliation PASS: zero Shopify drafts; preserved D1 FAILED_RETRYABLE attempt 1.`);
+    return;
+  }
+
+  const materializedFixture = materializeAcceptanceFixture(rawFixture, process.env.K1D02T_OWNER_EMAIL);
+  const fixture = validatePayload(materializedFixture);
+  const identity = idempotencyIdentity(readiness.shopify.canonicalShop, fixture);
   const variantIds = fixture.items.map((item) => item.variantId);
   const variantData = await adminGraphql(admin, VERIFY_VARIANTS_QUERY, { ids: variantIds });
   assert.equal(variantData.shop.myshopifyDomain, readiness.shopify.canonicalShop);
@@ -458,7 +541,7 @@ async function main() {
     const context = await browser.newContext();
     await unlockStorefront(readiness.shopify.storefrontAlias, storefrontPassword, context);
     try {
-      firstResponse = await proxyPost(readiness.shopify.storefrontAlias, rawFixture, context);
+      firstResponse = await proxyPost(readiness.shopify.storefrontAlias, materializedFixture, context);
     } catch {
       firstResponse = { status: 0, cacheControl: null, body: null };
     }
@@ -477,12 +560,14 @@ async function main() {
       && afterFirstClaim?.state === 'FAILED_RETRYABLE'
       && !afterFirstClaim?.draft_id;
     if (rejectionConfirmed) {
+      const diagnostic = d1LatestDiagnostic(identity.key);
       writeExclusiveEvidence(evidencePath, buildBlockedEvidence({
         fixture,
         identity,
         firstResponse,
         claim: afterFirstClaim,
         adminCount: afterFirstDrafts.length,
+        diagnostic,
       }));
       throw new AcceptanceBlockedError(`Shopify confirmed rejection; no retry was attempted (HTTP 422, code SHOPIFY_REJECTED, drafts 0, D1 FAILED_RETRYABLE).`);
     }
@@ -500,7 +585,7 @@ async function main() {
     assert.equal(afterFirstClaim.quote_reference, fixture.quoteReference);
     assert.equal(afterFirstClaim.payload_hash, payloadHash(fixture));
 
-    duplicateResponse = await proxyPost(readiness.shopify.storefrontAlias, rawFixture, context);
+    duplicateResponse = await proxyPost(readiness.shopify.storefrontAlias, materializedFixture, context);
     assert.equal(duplicateResponse.status, 200);
     assert.equal(duplicateResponse.body?.duplicate, true);
     assert.equal(duplicateResponse.body?.staffIdentifier, verifiedDraft.name);
@@ -525,17 +610,30 @@ if (require.main === module) {
   require('dotenv').config({ quiet: true });
   main().catch((error) => {
     const label = error instanceof AcceptanceBlockedError ? 'BLOCKED' : 'FAIL';
-    console.error(`K1D-02T ${label}: ${String(error.message || error).replace(/https?:\/\/\S+/g, '[redacted-url]')}`);
+    const message = redactSecrets(error.message || error, [
+      process.env.STOREFRONT_PASSWORD,
+      process.env.K1D02T_OWNER_EMAIL,
+      process.env.SHOPIFY_API_SECRET,
+      process.env.SHOPIFY_ADMIN_ACCESS_TOKEN,
+    ]);
+    console.error(`K1D-02T ${label}: ${message}`);
     process.exitCode = 1;
   });
 }
 
 module.exports = {
   AUTHORIZATION_PHRASE,
+  AUTHORIZATION_UNCONSUMED_CONFIRMATION,
   AcceptanceBlockedError,
+  FAILED_REFERENCE,
+  PASSWORD_ROTATION_CONFIRMATION,
+  assertAuthorizationUnconsumed,
   assertExecutionAuthorization,
+  assertPasswordRotation,
   buildBlockedEvidence,
   buildEvidence,
+  materializeAcceptanceFixture,
   matchingDrafts,
+  redactSecrets,
   verifyDraft,
 };

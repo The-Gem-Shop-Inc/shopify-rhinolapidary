@@ -59,12 +59,86 @@ const FIND_DRAFT_QUERY = `#graphql
 `;
 
 class AdminRequestError extends Error {
-  constructor(message, { confirmedFailure = false, retryAfter = null } = {}) {
+  constructor(message, {
+    confirmedFailure = false,
+    finalRejection = false,
+    retryAfter = null,
+    diagnostic = null,
+  } = {}) {
     super(message);
     this.name = 'AdminRequestError';
     this.confirmedFailure = confirmedFailure;
+    this.finalRejection = finalRejection;
     this.retryAfter = retryAfter;
+    this.diagnostic = diagnostic;
   }
+}
+
+const SAFE_GRAPHQL_CODES = new Set([
+  'ACCESS_DENIED',
+  'GRAPHQL_VALIDATION_FAILED',
+  'THROTTLED',
+  'INTERNAL_SERVER_ERROR',
+]);
+
+function sanitizeFieldPath(field) {
+  if (!Array.isArray(field) || field.length === 0) return 'unknown';
+  const tokens = field.slice(0, 8).map((token) => {
+    const value = String(token);
+    return /^[A-Za-z_][A-Za-z0-9_]{0,63}$/.test(value) || /^[0-9]{1,4}$/.test(value) ? value : 'redacted';
+  });
+  return tokens.join('.').slice(0, 255) || 'unknown';
+}
+
+function classifyFieldPath(fieldPath) {
+  const path = String(fieldPath).toLowerCase();
+  if (path.endsWith('.email') || path === 'email' || path.includes('email')) return 'INVALID_EMAIL';
+  if (path.includes('phone')) return 'INVALID_PHONE';
+  if (path.includes('shippingaddress') || path.includes('billingaddress')) return 'INVALID_ADDRESS';
+  if (path.includes('lineitems')) return 'INVALID_LINE_ITEM';
+  if (path.includes('discount')) return 'INVALID_DISCOUNT';
+  return 'INVALID_INPUT_OTHER';
+}
+
+function userErrorDiagnostic(userErrors, httpStatus = 200) {
+  const fieldPaths = [...new Set((userErrors || []).map((entry) => sanitizeFieldPath(entry?.field)))].sort();
+  return {
+    outcomeCategory: 'SHOPIFY_INPUT_REJECTED',
+    fieldPaths,
+    classifications: [...new Set(fieldPaths.map(classifyFieldPath))].sort(),
+    httpStatus,
+  };
+}
+
+function graphqlErrorDiagnostic(errors, httpStatus = 200) {
+  const codes = [...new Set((errors || []).map((entry) => {
+    const code = String(entry?.extensions?.code || 'UNKNOWN_GRAPHQL_ERROR').toUpperCase();
+    return SAFE_GRAPHQL_CODES.has(code) ? code : 'UNKNOWN_GRAPHQL_ERROR';
+  }))].sort();
+  return {
+    outcomeCategory: codes.includes('THROTTLED') ? 'SHOPIFY_RATE_LIMITED' : 'SHOPIFY_GRAPHQL_REJECTED',
+    fieldPaths: [],
+    classifications: codes,
+    httpStatus,
+  };
+}
+
+function httpErrorDiagnostic(httpStatus) {
+  return {
+    outcomeCategory: httpStatus === 429 ? 'SHOPIFY_RATE_LIMITED' : 'SHOPIFY_HTTP_REJECTED',
+    fieldPaths: [],
+    classifications: [`HTTP_${httpStatus}`],
+    httpStatus,
+  };
+}
+
+function uncertainDiagnostic(httpStatus = null) {
+  return {
+    outcomeCategory: 'ADMIN_RESULT_UNCERTAIN',
+    fieldPaths: [],
+    classifications: ['ADMIN_RESULT_UNCERTAIN'],
+    httpStatus,
+  };
 }
 
 function json(body, status = 200, headers = {}) {
@@ -107,10 +181,28 @@ function requireDependencies(options) {
   if (!options?.idempotencyStore) missing.push('idempotencyStore');
   if (!options?.rateLimiter) missing.push('rateLimiter');
   if (missing.length) throw new Error(`K1D-01 endpoint is not configured: ${missing.join(', ')}`);
-  for (const method of ['claim', 'markMutationStarted', 'complete', 'markRetryableFailure', 'markUncertain']) {
+  for (const method of ['claim', 'markMutationStarted', 'complete', 'markFinalRejection', 'markRetryableFailure', 'markUncertain', 'recordDiagnostic']) {
     if (typeof options.idempotencyStore[method] !== 'function') throw new Error(`Durable idempotency store must implement ${method}().`);
   }
   if (typeof options.rateLimiter.consume !== 'function') throw new Error('Durable rate limiter must implement consume().');
+}
+
+async function recordDiagnostic(options, { identity, reference, diagnostic, now }) {
+  const safe = diagnostic || uncertainDiagnostic();
+  try {
+    await options.idempotencyStore.recordDiagnostic({
+      key: identity.key,
+      reference,
+      reconciliationTag: identity.tag,
+      outcomeCategory: safe.outcomeCategory,
+      fieldPaths: safe.fieldPaths || [],
+      classifications: safe.classifications || [],
+      httpStatus: safe.httpStatus ?? null,
+      now,
+    });
+  } catch {
+    options.onDiagnosticFailure?.({ outcomeCategory: safe.outcomeCategory });
+  }
 }
 
 function clientAddress(request) {
@@ -189,6 +281,14 @@ function createDraftOrderEndpoint(options) {
       if (claim?.state === 'CONFLICT') {
         return json({ ok: false, code: 'IDEMPOTENCY_CONFLICT', message: 'This quotation reference is already associated with different cart details.' }, 409);
       }
+      if (claim?.state === 'REJECTED') {
+        return json({
+          ok: false,
+          code: 'SHOPIFY_REJECTED',
+          message: 'Shopify rejected the draft order. Your cart and entered details remain available; correct the issue or use the email quotation fallback.',
+          retryable: false,
+        }, 422);
+      }
       if (claim?.state === 'IN_PROGRESS') {
         return json({ ok: false, code: 'SUBMISSION_IN_PROGRESS', message: 'This quotation is still being confirmed. Wait before retrying.', retryable: true }, 202, { 'retry-after': '3' });
       }
@@ -217,23 +317,44 @@ function createDraftOrderEndpoint(options) {
         await options.idempotencyStore.markMutationStarted({ key: identity.key, payloadHash: hash, now: now() });
         const result = await options.adminClient.createDraft(draftInput);
         if (result.userErrors?.length) {
-          const message = result.userErrors.map((entry) => entry.message).join(' ');
-          throw new AdminRequestError(message || 'Shopify rejected the draft order.', { confirmedFailure: true });
+          throw new AdminRequestError('Shopify rejected the draft order input.', {
+            confirmedFailure: true,
+            finalRejection: true,
+            diagnostic: userErrorDiagnostic(result.userErrors, result.httpStatus || 200),
+          });
         }
         const draft = assertCreatedDraft(result.draftOrder, identity.tag);
         await options.idempotencyStore.complete({ key: identity.key, payloadHash: hash, draftId: draft.id, draftName: draft.name, now: now() });
+        await recordDiagnostic(options, {
+          identity,
+          reference: payload.quoteReference,
+          diagnostic: { outcomeCategory: 'DRAFT_CREATED', fieldPaths: [], classifications: ['SUCCESS'], httpStatus: result.httpStatus || 200 },
+          now: now(),
+        });
         return json(successBody(payload.quoteReference, draft.name));
       } catch (error) {
         if (error instanceof QuoteRequestError || error?.confirmedFailure === true) {
-          await options.idempotencyStore.markRetryableFailure({ key: identity.key, payloadHash: hash, code: error.code || 'ADMIN_REJECTED', now: now() });
+          const diagnostic = error?.diagnostic || {
+            outcomeCategory: 'SHOPIFY_HTTP_REJECTED',
+            fieldPaths: [],
+            classifications: [error.code || 'ADMIN_REJECTED'],
+            httpStatus: error.status || null,
+          };
+          await recordDiagnostic(options, { identity, reference: payload.quoteReference, diagnostic, now: now() });
+          if (error?.finalRejection === true) {
+            await options.idempotencyStore.markFinalRejection({ key: identity.key, payloadHash: hash, code: diagnostic.classifications[0] || 'ADMIN_INPUT_REJECTED', now: now() });
+          } else {
+            await options.idempotencyStore.markRetryableFailure({ key: identity.key, payloadHash: hash, code: error.code || diagnostic.classifications[0] || 'ADMIN_REJECTED', now: now() });
+          }
           if (error instanceof QuoteRequestError) throw error;
           return json({
             ok: false,
             code: 'SHOPIFY_REJECTED',
             message: 'Shopify rejected the draft order. Your cart and entered details remain available; correct the issue or use the email quotation fallback.',
-            retryable: true,
+            retryable: error?.finalRejection !== true,
           }, 422);
         }
+        await recordDiagnostic(options, { identity, reference: payload.quoteReference, diagnostic: error?.diagnostic || uncertainDiagnostic(), now: now() });
         await options.idempotencyStore.markUncertain({ key: identity.key, payloadHash: hash, code: 'ADMIN_RESULT_UNCERTAIN', now: now() });
         throw error;
       }
@@ -294,34 +415,51 @@ function createShopifyAdminClient({ shopDomain, accessToken, accessTokenProvider
       });
     } catch (error) {
       if (error instanceof AdminRequestError) throw error;
-      throw new AdminRequestError('The Shopify Admin API result is uncertain.');
+      throw new AdminRequestError('The Shopify Admin API result is uncertain.', { diagnostic: uncertainDiagnostic() });
     }
     const retryAfter = response.headers.get('retry-after');
-    if (response.status === 429) throw new AdminRequestError('Shopify rate limited the request.', { confirmedFailure: true, retryAfter });
-    if (response.status === 401 || response.status === 403 || response.status === 400) {
-      throw new AdminRequestError('Shopify rejected the Admin API request.', { confirmedFailure: true });
+    if (response.status === 429) {
+      throw new AdminRequestError('Shopify rate limited the request.', {
+        confirmedFailure: true,
+        retryAfter,
+        diagnostic: httpErrorDiagnostic(response.status),
+      });
     }
-    if (!response.ok) throw new AdminRequestError('The Shopify Admin API result is uncertain.');
+    if ([400, 401, 403, 422].includes(response.status)) {
+      throw new AdminRequestError('Shopify rejected the Admin API request.', {
+        confirmedFailure: true,
+        finalRejection: true,
+        diagnostic: httpErrorDiagnostic(response.status),
+      });
+    }
+    if (!response.ok) throw new AdminRequestError('The Shopify Admin API result is uncertain.', { diagnostic: uncertainDiagnostic(response.status) });
     let body;
-    try { body = await response.json(); } catch { throw new AdminRequestError('The Shopify Admin API result is uncertain.'); }
+    try { body = await response.json(); } catch { throw new AdminRequestError('The Shopify Admin API result is uncertain.', { diagnostic: uncertainDiagnostic(response.status) }); }
     if (body.errors?.length) {
-      const confirmedFailure = body.errors.every((entry) => ['ACCESS_DENIED', 'GRAPHQL_VALIDATION_FAILED'].includes(entry.extensions?.code));
-      throw new AdminRequestError('Shopify returned a GraphQL error.', { confirmedFailure });
+      const diagnostic = graphqlErrorDiagnostic(body.errors, response.status);
+      const codes = diagnostic.classifications;
+      const throttled = codes.length > 0 && codes.every((code) => code === 'THROTTLED');
+      const finalRejection = codes.length > 0 && codes.every((code) => ['ACCESS_DENIED', 'GRAPHQL_VALIDATION_FAILED'].includes(code));
+      throw new AdminRequestError('Shopify returned a GraphQL error.', {
+        confirmedFailure: throttled || finalRejection,
+        finalRejection,
+        diagnostic,
+      });
     }
-    return body.data;
+    return { data: body.data, httpStatus: response.status };
   }
 
   return {
     async verifyVariants(ids) {
-      const data = await execute(VERIFY_VARIANTS_QUERY, { ids });
+      const { data } = await execute(VERIFY_VARIANTS_QUERY, { ids });
       return data?.nodes || [];
     },
     async createDraft(input) {
-      const data = await execute(CREATE_DRAFT_MUTATION, { input });
-      return data?.draftOrderCreate || { draftOrder: null, userErrors: [{ message: 'Missing Shopify mutation result.' }] };
+      const { data, httpStatus } = await execute(CREATE_DRAFT_MUTATION, { input });
+      return { ...(data?.draftOrderCreate || { draftOrder: null, userErrors: [{ field: null }] }), httpStatus };
     },
     async findDraftsByTag(tag) {
-      const data = await execute(FIND_DRAFT_QUERY, { query: `tag:${tag}` });
+      const { data } = await execute(FIND_DRAFT_QUERY, { query: `tag:${tag}` });
       return data?.draftOrders?.nodes || [];
     },
   };
@@ -335,4 +473,7 @@ module.exports = {
   createDraftOrderEndpoint,
   createShopifyAdminClient,
   createShopifyClientCredentialsProvider,
+  graphqlErrorDiagnostic,
+  sanitizeFieldPath,
+  userErrorDiagnostic,
 };
