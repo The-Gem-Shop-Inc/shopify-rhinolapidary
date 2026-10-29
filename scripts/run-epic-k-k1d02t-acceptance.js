@@ -59,8 +59,6 @@ const READ_DRAFT_QUERY = `#graphql
       totalDiscountsSet { shopMoney { amount currencyCode } }
       customAttributes { key value }
       shippingLine { id title }
-      customer { id }
-      order { id name }
       shippingAddress {
         firstName
         lastName
@@ -111,8 +109,8 @@ class AcceptanceBlockedError extends Error {
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
 
 function parseArgs(argv) {
-  const modes = ['--execute', '--preflight', '--reconcile-failed'].filter((flag) => argv.includes(flag));
-  if (modes.length !== 1) throw new Error('Choose exactly one of --preflight, --execute, or --reconcile-failed.');
+  const modes = ['--execute', '--preflight', '--reconcile-failed', '--resume-completed'].filter((flag) => argv.includes(flag));
+  if (modes.length !== 1) throw new Error('Choose exactly one of --preflight, --execute, --reconcile-failed, or --resume-completed.');
   return { mode: modes[0].slice(2) };
 }
 
@@ -261,6 +259,7 @@ function phoneDigits(value) { return String(value || '').replace(/\D/g, '').slic
 
 function verifyDraft(draft, fixture, tag) {
   assert.ok(draft, 'Shopify did not return the created Draft Order.');
+  const expectedInput = buildDraftOrderInput(fixture, tag);
   assert.match(draft.id, /^gid:\/\/shopify\/DraftOrder\/[1-9][0-9]*$/);
   assert.match(draft.name, /^#D[1-9][0-9]*$/);
   assert.equal(draft.status, 'OPEN');
@@ -270,8 +269,6 @@ function verifyDraft(draft, fixture, tag) {
   assert.equal(draft.invoiceSentAt, null);
   assert.equal(draft.completedAt, null);
   assert.equal(draft.reserveInventoryUntil, null);
-  assert.equal(draft.order, null);
-  assert.equal(draft.customer, null);
   assert.equal(draft.allVariantPricesOverridden, false);
   assert.equal(draft.email, fixture.customer.email);
   assert.equal(phoneDigits(draft.phone), phoneDigits(fixture.customer.phone));
@@ -288,7 +285,11 @@ function verifyDraft(draft, fixture, tag) {
   assert.equal(address.countryCodeV2, 'US');
   assert.equal(phoneDigits(address.phone), phoneDigits(fixture.customer.phone));
 
-  const expectedInput = buildDraftOrderInput(fixture, tag);
+  assert.equal(Object.hasOwn(expectedInput, 'customerId'), false);
+  assert.equal(Object.hasOwn(expectedInput, 'purchasingEntity'), false);
+  assert.equal(Object.hasOwn(expectedInput, 'reserveInventoryUntil'), false);
+  assert.equal(Object.hasOwn(expectedInput, 'shippingLine'), false);
+  assert.equal(Object.hasOwn(expectedInput, 'paymentTerms'), false);
   assert.equal(draft.note2, expectedInput.note);
   assert.deepEqual(normalizedAttributes(draft.customAttributes), normalizedAttributes(expectedInput.customAttributes));
   assert.equal(draft.lineItems.nodes.length, fixture.items.length);
@@ -325,10 +326,22 @@ function verifyDraft(draft, fixture, tag) {
     paymentAbsent: true,
     fulfillmentAbsent: true,
     customerRecordAbsent: true,
+    customerCreateOrAttachInputAbsent: true,
+    restrictedCustomerAndOrderObjectsQueried: false,
   };
 }
 
-function buildEvidence({ fixture, identity, firstResponse, duplicateResponse, draft, claim, adminCount }) {
+function assertCompletedReconciliation(drafts, claim, fixture, identity) {
+  assert.equal(drafts.length, 1, 'Completed acceptance must reconcile to exactly one Shopify Draft Order.');
+  assert.equal(claim?.state, 'COMPLETED', 'D1 must contain a completed acceptance claim.');
+  assert.equal(claim?.draft_id, drafts[0].id, 'D1 and Shopify Draft Order IDs differ.');
+  assert.equal(Number(claim?.attempt_count), 1, 'The completed acceptance claim must have exactly one mutation attempt.');
+  assert.equal(claim?.quote_reference, fixture.quoteReference, 'D1 quotation reference differs from the fixture.');
+  assert.equal(claim?.payload_hash, payloadHash(fixture), 'D1 payload hash differs from the unchanged fixture.');
+  return drafts[0];
+}
+
+function buildEvidence({ fixture, identity, firstResponse, duplicateResponse, draft, claim, adminCount, creationReconciledAfterImmediateAdminLag = false }) {
   return {
     schemaVersion: 1,
     batch: 'K1D-02T',
@@ -349,6 +362,7 @@ function buildEvidence({ fixture, identity, firstResponse, duplicateResponse, dr
       storefrontPath: '/apps/rhino-quote-draft',
       firstResponse: { status: firstResponse.status, code: firstResponse.body?.status || null, duplicate: firstResponse.body?.duplicate === true },
       duplicateResponse: { status: duplicateResponse.status, code: duplicateResponse.body?.status || null, duplicate: duplicateResponse.body?.duplicate === true },
+      creationReconciledAfterImmediateAdminLag,
       authenticatedUrlRecorded: false,
     },
     draft,
@@ -479,16 +493,17 @@ async function unlockStorefront(storefrontAlias, storefrontPassword, context) {
 async function main() {
   const { mode } = parseArgs(process.argv.slice(2));
   const execute = mode === 'execute';
+  const resumeCompleted = mode === 'resume-completed';
   const readiness = readJson(READINESS_PATH);
   const rawFixture = readJson(FIXTURE_PATH);
   const evidencePath = process.env.K1D02T_EVIDENCE_PATH;
-  if (execute) {
+  if (execute || resumeCompleted) {
     assertExecutionAuthorization(process.env.K1D02T_OWNER_AUTHORIZATION);
     assertPasswordRotation(process.env.K1D02T_PASSWORD_ROTATED);
-    assertAuthorizationUnconsumed(process.env.K1D02T_AUTHORIZATION_UNCONSUMED);
     if (!evidencePath) throw new AcceptanceBlockedError('K1D02T_EVIDENCE_PATH is required for the sanitized result.');
     if (fs.existsSync(evidencePath)) throw new AcceptanceBlockedError('The configured evidence path already exists; refusing an accidental rerun.');
   }
+  if (execute) assertAuthorizationUnconsumed(process.env.K1D02T_AUTHORIZATION_UNCONSUMED);
 
   const { clientId, clientSecret } = appCredentials(process.env.SHOPIFY_APP_PROJECT_DIR);
   assert.equal(clientId, readiness.shopify.clientId, 'Shopify CLI app identity differs from the readiness contract.');
@@ -524,6 +539,45 @@ async function main() {
 
   const beforeDrafts = await findAcceptanceDrafts(admin, fixture.quoteReference, identity.tag);
   const beforeClaim = d1Claim(identity.key);
+  if (resumeCompleted) {
+    const reconciledDraft = assertCompletedReconciliation(beforeDrafts, beforeClaim, fixture, identity);
+    const created = await adminGraphql(admin, READ_DRAFT_QUERY, { id: reconciledDraft.id });
+    const verifiedDraft = verifyDraft(created.draftOrder, fixture, identity.tag);
+    assert.equal(beforeClaim.draft_name, verifiedDraft.name);
+
+    const storefrontPassword = process.env.STOREFRONT_PASSWORD;
+    if (!storefrontPassword) throw new AcceptanceBlockedError('STOREFRONT_PASSWORD is required in process memory.');
+    const browser = await chromium.launch({ headless: true });
+    try {
+      const context = await browser.newContext();
+      await unlockStorefront(readiness.shopify.storefrontAlias, storefrontPassword, context);
+      const duplicateResponse = await proxyPost(readiness.shopify.storefrontAlias, materializedFixture, context);
+      assert.equal(duplicateResponse.status, 200);
+      assert.equal(duplicateResponse.body?.duplicate, true);
+      assert.equal(duplicateResponse.body?.staffIdentifier, verifiedDraft.name);
+
+      const finalDrafts = await findAcceptanceDrafts(admin, fixture.quoteReference, identity.tag);
+      const finalClaim = d1Claim(identity.key);
+      assertCompletedReconciliation(finalDrafts, finalClaim, fixture, identity);
+      assert.equal(finalDrafts[0].id, verifiedDraft.id);
+
+      const evidence = buildEvidence({
+        fixture,
+        identity,
+        firstResponse: { status: 200, body: { status: 'draft_created', duplicate: false } },
+        duplicateResponse,
+        draft: verifiedDraft,
+        claim: finalClaim,
+        adminCount: finalDrafts.length,
+        creationReconciledAfterImmediateAdminLag: true,
+      });
+      writeExclusiveEvidence(evidencePath, evidence);
+      console.log(`K1D-02T PASS: ${verifiedDraft.name} ${verifiedDraft.id}; completed creation reconciled; duplicate suppressed; D1 COMPLETED.`);
+      return;
+    } finally {
+      await browser.close();
+    }
+  }
   if (beforeDrafts.length || beforeClaim) {
     throw new AcceptanceBlockedError('The fixed acceptance reference already has Shopify or D1 state; refusing another live submission.');
   }
@@ -628,12 +682,14 @@ module.exports = {
   FAILED_REFERENCE,
   PASSWORD_ROTATION_CONFIRMATION,
   assertAuthorizationUnconsumed,
+  assertCompletedReconciliation,
   assertExecutionAuthorization,
   assertPasswordRotation,
   buildBlockedEvidence,
   buildEvidence,
   materializeAcceptanceFixture,
   matchingDrafts,
+  parseArgs,
   redactSecrets,
   verifyDraft,
 };

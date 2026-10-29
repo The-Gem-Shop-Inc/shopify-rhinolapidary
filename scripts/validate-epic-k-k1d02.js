@@ -111,6 +111,34 @@ function validateK1d02() {
       if (/password\s*[:=]|access_token|client_secret|signature=/i.test(JSON.stringify(repair))) errors.push('Repair evidence contains prohibited credential material.');
     }
     if (contract.readiness.repositoryValidation !== 'PASS' || contract.readiness.authenticProxyAcceptance !== 'AWAITING_SECURE_INPUTS' || contract.readiness.shopifyAdminAcceptance !== 'BLOCKED_NO_DRAFT' || contract.readiness.operationalReadiness !== 'BLOCKED' || contract.readiness.productionReadiness !== 'BLOCKED') errors.push('K1D-02T-R readiness dimensions do not match the deployed-but-blocked result.');
+  } else if (contract.state === 'CONTROLLED_DRAFT_ACCEPTED') {
+    const requiredTrue = ['cloudflareAccountAuthorized', 'd1Provisioned', 'migrationApplied', 'workerDeployed', 'shopifyAppCreated', 'shopifyAppVersionReleased', 'shopifyAppInstalled', 'scopesConfigured', 'scopesGranted', 'protectedCustomerDataApproved', 'secretBound', 'appProxyReleased', 'clientCredentialsVerified', 'directSignedRequestVerified', 'invalidSignatureRejected', 'expiredSignatureRejected', 'shopifyProxyForwardingVerified', 'shopifyGeneratedProxyRequestVerified', 'proxyPathCompatibilityVerified', 'controlledDraftCreated', 'previewAccepted'];
+    requiredTrue.forEach((key) => { if (contract.activation[key] !== true) errors.push(`Accepted K1D-02T milestone ${key} must be true.`); });
+    if (contract.activation.storefrontClientEnabled !== false) errors.push('K1D-03 storefront automation must remain disabled after K1D-02T acceptance.');
+    if (!contract.evidence.failedReferencePreserved) errors.push('Accepted K1D-02T must preserve the original failed reference.');
+    if (!contract.evidence.ownerControlledEmailProvided || !contract.evidence.storefrontPasswordRotationConfirmed || !contract.evidence.correctedMutationAttempted) errors.push('Accepted K1D-02T must record its secure runtime prerequisites and corrected attempt.');
+    if (contract.evidence.authorizationLimitUnconsumed) errors.push('The one-Draft-Order authorization must be recorded as consumed after acceptance.');
+    if (!contract.evidence.controlledDraftCreated || contract.evidence.controlledDraftResult !== 'ACCEPTED' || contract.evidence.shopifyDraftCountForReference !== 1) errors.push('Accepted K1D-02T must record exactly one created Draft Order.');
+    if (contract.evidence.d1ClaimState !== 'COMPLETED' || contract.evidence.d1AttemptCount !== 1 || !contract.evidence.duplicateSuppressed) errors.push('Accepted K1D-02T must prove one completed D1 attempt and duplicate suppression.');
+    if (!acceptanceRunner.includes('resume-completed') || acceptanceRunner.includes('customer { id }') || acceptanceRunner.includes('order { id name }')) errors.push('Acceptance continuation must reconcile the completed claim without requesting ungranted nested customer/order objects.');
+    if (!fs.existsSync(path.join(ROOT, contract.evidence.controlledDraftEvidence))) errors.push('Sanitized successful Draft Order evidence is missing.');
+    else {
+      const acceptance = json(contract.evidence.controlledDraftEvidence);
+      if (acceptance.status !== 'PASS' || acceptance.fixture?.quotationReference !== contract.evidence.acceptedQuotationReference) errors.push('Successful acceptance evidence has the wrong status or quotation reference.');
+      if (acceptance.draft?.id !== contract.evidence.acceptedDraftId || acceptance.draft?.name !== contract.evidence.acceptedDraftName || acceptance.draft?.status !== 'OPEN') errors.push('Successful acceptance evidence differs from the accepted Shopify Draft Order.');
+      if (!acceptance.draft?.tags?.includes('Unquoted') || !acceptance.draft?.tags?.includes(contract.evidence.acceptedReconciliationTag)) errors.push('Accepted Draft Order evidence lacks the required tags.');
+      if (acceptance.admin?.draftCountForReference !== 1 || acceptance.admin?.appearsInOrdersDrafts !== true) errors.push('Admin acceptance evidence must show exactly one discoverable draft.');
+      if (acceptance.d1?.state !== 'COMPLETED' || acceptance.d1?.attemptCount !== 1 || acceptance.d1?.draftId !== contract.evidence.acceptedDraftId || acceptance.d1?.payloadHashMatched !== true) errors.push('Successful acceptance evidence differs from the completed D1 claim.');
+      if (acceptance.proxy?.firstResponse?.status !== 200 || acceptance.proxy?.firstResponse?.duplicate || acceptance.proxy?.duplicateResponse?.status !== 200 || acceptance.proxy?.duplicateResponse?.duplicate !== true || acceptance.proxy?.creationReconciledAfterImmediateAdminLag !== true) errors.push('Authentic proxy evidence does not prove reconciled creation and duplicate suppression.');
+      const safety = acceptance.safety || {};
+      if (safety.draftsCreated !== 1 || safety.invoiceSent || safety.paymentCollectedOrAuthorized || safety.shippingLineCreated || safety.inventoryReserved || safety.orderCompleted || safety.fulfillmentCreated || safety.customerCreatedOrAttached || safety.themeChanged || safety.storefrontClientEnabled || safety.emailFallbackActive !== true) errors.push('Successful acceptance safety boundaries are incomplete.');
+      if (acceptance.draft?.shippingLineAbsent !== true || acceptance.draft?.invoiceAbsent !== true || acceptance.draft?.inventoryReservationAbsent !== true || acceptance.draft?.completedOrderAbsent !== true || acceptance.draft?.paymentAbsent !== true || acceptance.draft?.fulfillmentAbsent !== true || acceptance.draft?.customerCreateOrAttachInputAbsent !== true) errors.push('Draft readback does not prove every required non-action boundary.');
+      const serializedAcceptance = JSON.stringify(acceptance);
+      if (/access_token|client_secret|SHOPIFY_API_SECRET|signature=|password\s*[:=]|@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|1 Acceptance Way/i.test(serializedAcceptance)) errors.push('Successful acceptance evidence contains prohibited credential or contact data.');
+    }
+    if (!fs.existsSync(path.join(ROOT, contract.evidence.historicalBlockedEvidence))) errors.push('Historical failed-attempt evidence was not preserved.');
+    if (!fs.existsSync(path.join(ROOT, contract.evidence.repairEvidence))) errors.push('K1D-02T-R repair evidence was not preserved.');
+    if (contract.readiness.repositoryValidation !== 'PASS' || contract.readiness.authenticProxyAcceptance !== 'PASS' || contract.readiness.shopifyAdminAcceptance !== 'PASS' || contract.readiness.operationalReadiness !== 'READY' || contract.readiness.productionReadiness !== 'BLOCKED') errors.push('K1D-02T readiness dimensions do not match accepted backend and disabled production activation.');
   }
 
   const contact = json('data/epic-k-k1c02-activation-status-2026-10-27.json');

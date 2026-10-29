@@ -2,7 +2,7 @@
 
 ## Outcome
 
-Rhino-specific infrastructure and Shopify installation are verified, but the automated Draft Order path remains inactive. Shopify issued a client-credentials token for **Rhino Quotation Drafts**, and read-only Admin GraphQL returned installation `gid://shopify/AppInstallation/778440605893`, canonical domain `sz5dnk-nf.myshopify.com`, and primary storefront alias `rhino-lapidary.myshopify.com`. The token and `currentAppInstallation` both grant `read_products`, `write_draft_orders`, and `write_app_proxy`.
+Rhino-specific infrastructure, Shopify installation, and the controlled Draft Order acceptance are verified. The automated storefront client remains inactive pending K1D-03. Shopify issued a client-credentials token for **Rhino Quotation Drafts**, and read-only Admin GraphQL returned installation `gid://shopify/AppInstallation/778440605893`, canonical domain `sz5dnk-nf.myshopify.com`, and primary storefront alias `rhino-lapidary.myshopify.com`. The token and `currentAppInstallation` both grant `read_products`, `write_draft_orders`, and `write_app_proxy`.
 
 Cloudflare D1 database `rhino-quotation-drafts` was created in ENAM, migration `0001_quote_backend.sql` was applied, and Worker `rhino-quotation-drafts` was deployed. The Worker reports healthy at `https://rhino-quotation-drafts.mayhemmojomeister.workers.dev/health`. The Shopify app secret exists only as the encrypted Cloudflare `SHOPIFY_API_SECRET` binding. It is absent from source, Liquid, browser JavaScript, command output, and committed configuration.
 
@@ -10,18 +10,18 @@ Shopify app version `k1d02p-provisioned-2` is released and installed with Admin 
 
 The authentic app proxy is now verified. The route guard accepts exactly `/shopify/app-proxy/quote` and `/shopify/app-proxy/quote/`; it does not normalize or prefix-match other paths. Shopify forwarded `/apps/rhino-quote-draft` to the trailing-slash destination with signed canonical-shop parameters, the Worker authenticated the request, and the existing quotation policy returned `409 PICKUP_NOT_ALLOWED` for the deliberately invalid pickup payload. Direct invalid-signature and expired-request controls continue to return `401`.
 
-K1D-02T is **BLOCKED**. Tobi explicitly authorized one synthetic unpaid and uninvoiced Draft Order. The controlled shipping fixture passed the read-only store, scope, Variant, and zero-prior-state preflight, then an authentic storefront request reached the existing `draftOrderCreate` path. Shopify returned `422 SHOPIFY_REJECTED`. Admin reconciliation found zero drafts with the deterministic tag and reference; D1 records one `FAILED_RETRYABLE` attempt with no draft ID or name. No duplicate request was sent.
+K1D-02T is **ACCEPTED**. After the preserved failed reference was reverified at zero drafts, Tobi confirmed password rotation and authorized the owner-controlled runtime email. The corrected fixture passed canonical-shop, scope, Variant, and zero-prior-state preflight. An authentic storefront request created exactly one Shopify Draft Order: `#D2`, `gid://shopify/DraftOrder/1267908313285`. Immediate Admin tag search lagged the successful proxy response, so the runner stopped without a duplicate, reconciled the completed D1 claim, then positively read and verified the draft before sending the unchanged request once. That request returned `duplicate: true`; D1 remains `COMPLETED`, attempt count `1`.
 
 K1D-02T-R deployed the diagnostic correction without issuing another Draft Order mutation. Worker version `9aadbca9-4711-46fc-8279-3be8051cf3e0` now distinguishes mutation `userErrors`, deterministic top-level GraphQL/HTTP rejection, throttling, and uncertain transport outcomes. D1 migration `0002_draft_diagnostics.sql` adds a private diagnostic table containing only the quotation identity, outcome category, allowlisted field paths/classifications, HTTP status, and timestamp. Raw Shopify messages and customer data are not persisted or exposed, and no public diagnostic route exists. Deterministic input rejection is final-fenced from reacquisition; ambiguous mutation outcomes retain reconciliation behavior.
 
-No Draft Order, customer, invoice, payment, completion, inventory reservation, shipping line, theme upload, production publication, shipping-rate change, or pickup-setting change occurred. The working native contact-form email path remains the only active quotation intake and is still truthfully distinguished from Admin storage.
+The accepted draft remains `OPEN` with `Unquoted` and deterministic tag `K1D-d4a71c89ba75fd8252a0abe4`. Its two Variant lines, quantities, public properties, approved runtime contact, US shipping destination, delivery instructions, liftgate/insurance selections, and quotation reference match the fixture. No customer create/attach input, shipping line, invoice, payment, completion, inventory reservation, completed Order, fulfillment, theme upload, production publication, shipping-rate change, or pickup-setting change occurred. The working native contact-form email path remains active and truthfully distinguished from Admin storage.
 
 ## Provisioned resources
 
-- Cloudflare Worker: `rhino-quotation-drafts`; deployed version `e5183957-a0b4-43ab-bf31-744b0492548d`.
+- Cloudflare Worker: `rhino-quotation-drafts`; deployed version `9aadbca9-4711-46fc-8279-3be8051cf3e0`.
 - Worker URL: `https://rhino-quotation-drafts.mayhemmojomeister.workers.dev`.
 - D1 database: `rhino-quotation-drafts`; ID `2a63307d-b07f-43f1-a6be-85418781fb6c`; region `ENAM`.
-- D1 schema: `quote_submission_claims`, `quote_rate_windows`, and Cloudflare migration metadata.
+- D1 schema: `quote_submission_claims`, `quote_rate_windows`, `quote_submission_diagnostics`, and Cloudflare migration metadata.
 - Shopify organization: `224843363`, **Rhino Lapidary**.
 - Shopify app: `gid://shopify/App/441243762689`, **Rhino Quotation Drafts**; public client ID `9c9b22ce5705afd68d8d934744223857`.
 - Released Shopify app version: `k1d02p-provisioned-2`; version ID `1185803927553`.
@@ -44,7 +44,7 @@ No Draft Order, customer, invoice, payment, completion, inventory reservation, s
 
 ## Required next implementation action
 
-No Shopify owner configuration action remains for installation, scopes, protected customer fields, or app-proxy routing. To resume K1D-02T, the owner must confirm that the previously exposed storefront password was rotated and supply an owner-controlled deliverable email through `K1D02T_OWNER_EMAIL`. The runner then performs a clean read-only preflight for new reference `KQ-K1D02TR20261029-2` before it can submit. The original rejection reason is not recoverable: migration `0002` was deployed after the failed request, and the historical row deliberately contains only `ADMIN_REJECTED`. The `.invalid` email remains a plausible inference, not an established fact.
+K1D-02T is complete. K1D-03 may begin as a separate implementation and preview-acceptance batch; it must not automatically enable or publish storefront automation. No Shopify owner configuration action remains for installation, scopes, protected customer fields, app-proxy routing, or the controlled backend acceptance. The historical rejection reason remains unrecoverable because migration `0002` was deployed after that failed request.
 
 Official references checked October 29, 2026:
 
@@ -59,15 +59,15 @@ Official references checked October 29, 2026:
 
 ## K1D-02T controlled acceptance result
 
-- Authorization: pass; limited to one synthetic unpaid, uninvoiced Draft Order.
-- Repository/live preflight: pass; both Variants were active and available, canonical shop and scopes matched, and no prior Shopify draft or D1 claim existed.
-- Authentic proxy submission: reached the production handler; Shopify returned `422 SHOPIFY_REJECTED`.
-- Shopify Admin reconciliation: zero drafts for quotation reference `KQ-K1D02T20261029-1` and deterministic tag `K1D-e1dc123a1a160094e8314dc7`.
-- D1 reconciliation: `FAILED_RETRYABLE`, attempt count `1`, no draft ID/name, matching payload hash.
-- Duplicate/idempotency acceptance: not run because the first creation failed; sending a duplicate after a confirmed failure would not prove completed-claim reuse.
-- Draft content and Admin inspection: blocked because no Draft Order exists.
-- Safety: no draft, customer, shipping line, invoice, payment, inventory reservation, completion, Order, or fulfillment was created. Storefront automation remains disabled and the email fallback remains active.
-- Sanitized evidence: `docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-blocked.json`.
+- Authorization: pass and consumed by exactly one successful synthetic unpaid, uninvoiced Draft Order creation.
+- Failed-reference reconciliation: `KQ-K1D02T20261029-1` remains zero-draft, `FAILED_RETRYABLE`, attempt `1`, without modification or backfill.
+- Corrected preflight: pass; both Variants were active/available, canonical shop and scopes matched, and reference `KQ-K1D02TR20261029-2` had no Shopify draft or D1 claim.
+- Authentic proxy creation: HTTP `200`; created `#D2`, `gid://shopify/DraftOrder/1267908313285`, at `2026-10-29T21:14:01Z`.
+- Shopify Admin readback: exactly one `OPEN` draft with tags `Unquoted` and `K1D-d4a71c89ba75fd8252a0abe4`; the approved runtime contact, address, note, attributes, two Variant lines, quantities, and public properties matched.
+- Safety: shipping line, invoice timestamp, completion timestamp, and inventory reservation are null. The mutation input contains no customer ID/purchasing entity, shipping line, payment terms, or reservation. No completion, payment, customer, order, or fulfillment mutation exists in the endpoint.
+- Duplicate/idempotency acceptance: after positive Admin/D1 reconciliation, the unchanged authentic proxy request returned HTTP `200`, `duplicate: true`, and `#D2`; Shopify still contained exactly one matching draft and D1 remained `COMPLETED`, attempt `1`.
+- Immediate Admin search lag: the creation response and D1 completion succeeded before the first tag search returned the new draft. The runner stopped without retry, then used the explicit completed-claim continuation to verify the draft before the duplicate request.
+- Sanitized evidence: `docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-success.json`; historical blocked evidence remains unchanged.
 
 ## K1D-02T-R diagnostic repair
 
@@ -78,7 +78,7 @@ Official references checked October 29, 2026:
 - The corrected fixture commits no email, uses a new reference/cart token, retains both Variants/quantities/properties, removes optional phone/company/address2, and accepts the email only from a secure runtime variable. Reserved `.invalid`, `.test`, `.example`, localhost, and example domains are rejected only by the acceptance runner, not by production customer validation.
 - The runner requires exact password-rotation and unused-authorization confirmations before browser launch. Error output redacts the password, controlled email, tokens, secrets, and authenticated URLs; it starts no trace, screenshot, or video recording.
 - Migration `0002_draft_diagnostics.sql` and Worker version `9aadbca9-4711-46fc-8279-3be8051cf3e0` are live. Health is HTTP `200`; all three D1 tables are present. Sanitized deployment evidence: `docs/qa/evidence/epic-k/k1d02t-r-2026-10-29/repair-deployment.json`.
-- No corrected Draft Order mutation ran because password rotation and the owner-controlled email have not been confirmed.
+- Password rotation and the owner-controlled runtime email were confirmed. The corrected mutation ran once and passed; the one-Draft-Order authorization is consumed.
 
 The following acceptance requirements remain unproven until a corrected authorized fixture succeeds:
 
@@ -95,7 +95,7 @@ The following acceptance requirements remain unproven until a corrected authoriz
 The October 29 K1D-02V-R and K1D-02T validation produced these results:
 
 - K1D-02 readiness validator: pass in `CORRECTED_ACCEPTANCE_AWAITING_SECURE_INPUTS`.
-- K1D-02T acceptance-runner tests: 10/10, including reserved domains, secure email injection, password rotation, unused authorization, and secret redaction.
+- K1D-02T acceptance-runner tests: 12/12, including reserved domains, secure email injection, password rotation, unused authorization, completed-claim continuation, and secret redaction.
 - K1D endpoint tests: 18/18; D1 adapter tests: 8/8; exact Worker router tests: 15/15.
 - Wrangler `4.155.0` dry-run: pass against the real D1 ID, canonical shop, API `2026-10`, and public app client ID.
 - Epic K policy: valid; policy fixtures 73/73.
@@ -119,7 +119,7 @@ Mocked tests remain automated evidence only and are not classified as live accep
 ## Readiness disposition
 
 - Repository validation: **PASS** after the K1D-02T runner and blocked-state contract updates.
-- Authentic proxy acceptance: **AWAITING SECURE INPUTS**; proxy authentication/routing and the diagnostic repair pass, but no corrected mutation was authorized without the rotated-password confirmation and owner-controlled email.
-- Shopify Admin acceptance: **BLOCKED** because no Draft Order exists to inspect.
-- Operational readiness: **BLOCKED** until one controlled draft succeeds and duplicate suppression is demonstrated.
+- Authentic proxy acceptance: **PASS**; the corrected request created exactly one draft and the unchanged duplicate returned it.
+- Shopify Admin acceptance: **PASS** for `OPEN` draft `#D2` and the approved readback fields under the granted scopes.
+- Operational readiness: **READY FOR K1D-03**; the backend acceptance and durable duplicate suppression pass.
 - Production readiness: **BLOCKED**. K1D-03 is not started, production theme `158579622085` remains unchanged and unpublished, storefront automation remains disabled, and the native email fallback remains active.

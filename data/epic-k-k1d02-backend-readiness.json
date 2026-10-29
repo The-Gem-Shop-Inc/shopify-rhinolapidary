@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 6,
-  "batch": "K1D-02T-R",
+  "schemaVersion": 7,
+  "batch": "K1D-02T",
   "asOf": "2026-10-29",
-  "state": "CORRECTED_ACCEPTANCE_AWAITING_SECURE_INPUTS",
+  "state": "CONTROLLED_DRAFT_ACCEPTED",
   "hosting": {
     "decision": "cloudflare_workers_d1",
     "existingRhinoHostReused": false,
@@ -70,28 +70,36 @@
   },
   "evidence": {
     "manualContactEmailHumanConfirmed": true,
-    "automatedDraftPreviewAccepted": false,
+    "automatedDraftPreviewAccepted": true,
     "mockedTestsClassifiedAsLiveAcceptance": false,
     "controlledDraftAuthorizationReceived": true,
     "controlledDraftAttempted": true,
-    "controlledDraftCreated": false,
+    "controlledDraftCreated": true,
     "productionThemePublished": false,
     "authenticProxyVerificationAt": "2026-10-29T16:19:45.000Z",
     "authenticProxyEvidence": "docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/proxy-verification.json",
-    "controlledDraftAttemptAt": "2026-10-29T17:12:34.063Z",
-    "controlledDraftResult": "SHOPIFY_REJECTED",
-    "controlledDraftEvidence": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-blocked.json",
-    "shopifyDraftCountForReference": 0,
-    "d1ClaimState": "FAILED_RETRYABLE",
+    "controlledDraftAttemptAt": "2026-10-29T21:14:01.000Z",
+    "controlledDraftResult": "ACCEPTED",
+    "controlledDraftEvidence": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-success.json",
+    "historicalBlockedEvidence": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-blocked.json",
+    "shopifyDraftCountForReference": 1,
+    "d1ClaimState": "COMPLETED",
     "d1AttemptCount": 1,
     "failedReferenceReconciledAt": "2026-10-29T20:21:21.776Z",
     "failedReferencePreserved": true,
     "repairEvidence": "docs/qa/evidence/epic-k/k1d02t-r-2026-10-29/repair-deployment.json",
     "nextQuotationReference": "KQ-K1D02TR20261029-2",
-    "ownerControlledEmailProvided": false,
-    "storefrontPasswordRotationConfirmed": false,
-    "authorizationLimitUnconsumed": true,
-    "correctedMutationAttempted": false
+    "ownerControlledEmailProvided": true,
+    "storefrontPasswordRotationConfirmed": true,
+    "authorizationLimitUnconsumed": false,
+    "correctedMutationAttempted": true,
+    "acceptedQuotationReference": "KQ-K1D02TR20261029-2",
+    "acceptedReconciliationTag": "K1D-d4a71c89ba75fd8252a0abe4",
+    "acceptedDraftId": "gid://shopify/DraftOrder/1267908313285",
+    "acceptedDraftName": "#D2",
+    "acceptedDraftCreatedAt": "2026-10-29T21:14:01.000Z",
+    "duplicateSuppressed": true,
+    "creationReconciledAfterImmediateAdminLag": true
   },
   "activation": {
     "cloudflareAccountAuthorized": true,
@@ -114,18 +122,18 @@
     "shopifyGeneratedProxyRequestVerified": true,
     "proxyPathCompatibilityVerified": true,
     "storefrontClientEnabled": false,
-    "controlledDraftCreated": false,
-    "previewAccepted": false
+    "controlledDraftCreated": true,
+    "previewAccepted": true
   },
   "readiness": {
     "repositoryValidation": "PASS",
-    "authenticProxyAcceptance": "AWAITING_SECURE_INPUTS",
-    "shopifyAdminAcceptance": "BLOCKED_NO_DRAFT",
-    "operationalReadiness": "BLOCKED",
+    "authenticProxyAcceptance": "PASS",
+    "shopifyAdminAcceptance": "PASS",
+    "operationalReadiness": "READY",
     "productionReadiness": "BLOCKED"
   },
   "blockers": [
-    "The owner must confirm that the storefront password exposed during the first acceptance attempt has been rotated before browser authentication resumes.",
-    "The Product Owner must supply the owner-controlled deliverable email through the secure runtime variable before the corrected preflight and one controlled mutation."
+    "K1D-03 storefront automation remains intentionally disabled and requires a separate implementation and activation batch.",
+    "Production readiness remains blocked until K1D-03 is implemented, preview-accepted, and separately authorized for activation."
   ]
 }

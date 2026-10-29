@@ -5,8 +5,8 @@
   "additionalProperties": false,
   "required": ["schemaVersion", "batch", "asOf", "state", "hosting", "shopify", "runtime", "evidence", "activation", "readiness", "blockers"],
   "properties": {
-    "schemaVersion": { "const": 6 },
-    "batch": { "const": "K1D-02T-R" },
+    "schemaVersion": { "const": 7 },
+    "batch": { "const": "K1D-02T" },
     "asOf": { "type": "string", "format": "date" },
     "state": { "enum": ["CORRECTED_ACCEPTANCE_AWAITING_SECURE_INPUTS", "CONTROLLED_DRAFT_ACCEPTED", "PREVIEW_ACCEPTED", "PRODUCTION_READY"] },
     "hosting": {
@@ -92,7 +92,7 @@
     "evidence": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["manualContactEmailHumanConfirmed", "automatedDraftPreviewAccepted", "mockedTestsClassifiedAsLiveAcceptance", "controlledDraftAuthorizationReceived", "controlledDraftAttempted", "controlledDraftCreated", "productionThemePublished", "authenticProxyVerificationAt", "authenticProxyEvidence", "controlledDraftAttemptAt", "controlledDraftResult", "controlledDraftEvidence", "shopifyDraftCountForReference", "d1ClaimState", "d1AttemptCount", "failedReferenceReconciledAt", "failedReferencePreserved", "repairEvidence", "nextQuotationReference", "ownerControlledEmailProvided", "storefrontPasswordRotationConfirmed", "authorizationLimitUnconsumed", "correctedMutationAttempted"],
+      "required": ["manualContactEmailHumanConfirmed", "automatedDraftPreviewAccepted", "mockedTestsClassifiedAsLiveAcceptance", "controlledDraftAuthorizationReceived", "controlledDraftAttempted", "controlledDraftCreated", "productionThemePublished", "authenticProxyVerificationAt", "authenticProxyEvidence", "controlledDraftAttemptAt", "controlledDraftResult", "controlledDraftEvidence", "historicalBlockedEvidence", "shopifyDraftCountForReference", "d1ClaimState", "d1AttemptCount", "failedReferenceReconciledAt", "failedReferencePreserved", "repairEvidence", "nextQuotationReference", "ownerControlledEmailProvided", "storefrontPasswordRotationConfirmed", "authorizationLimitUnconsumed", "correctedMutationAttempted", "acceptedQuotationReference", "acceptedReconciliationTag", "acceptedDraftId", "acceptedDraftName", "acceptedDraftCreatedAt", "duplicateSuppressed", "creationReconciledAfterImmediateAdminLag"],
       "properties": {
         "manualContactEmailHumanConfirmed": { "const": true },
         "automatedDraftPreviewAccepted": { "type": "boolean" },
@@ -105,7 +105,8 @@
         "authenticProxyEvidence": { "const": "docs/qa/evidence/epic-k/k1d02v-r-2026-10-29/proxy-verification.json" },
         "controlledDraftAttemptAt": { "type": "string", "format": "date-time" },
         "controlledDraftResult": { "enum": ["SHOPIFY_REJECTED", "ACCEPTED"] },
-        "controlledDraftEvidence": { "const": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-blocked.json" },
+        "controlledDraftEvidence": { "const": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-success.json" },
+        "historicalBlockedEvidence": { "const": "docs/qa/evidence/epic-k/k1d02t-2026-10-29/acceptance-blocked.json" },
         "shopifyDraftCountForReference": { "type": "integer", "minimum": 0 },
         "d1ClaimState": { "enum": ["FAILED_RETRYABLE", "COMPLETED"] },
         "d1AttemptCount": { "const": 1 },
@@ -113,10 +114,17 @@
         "failedReferencePreserved": { "const": true },
         "repairEvidence": { "const": "docs/qa/evidence/epic-k/k1d02t-r-2026-10-29/repair-deployment.json" },
         "nextQuotationReference": { "const": "KQ-K1D02TR20261029-2" },
-        "ownerControlledEmailProvided": { "const": false },
-        "storefrontPasswordRotationConfirmed": { "const": false },
-        "authorizationLimitUnconsumed": { "const": true },
-        "correctedMutationAttempted": { "const": false }
+        "ownerControlledEmailProvided": { "const": true },
+        "storefrontPasswordRotationConfirmed": { "const": true },
+        "authorizationLimitUnconsumed": { "const": false },
+        "correctedMutationAttempted": { "const": true },
+        "acceptedQuotationReference": { "const": "KQ-K1D02TR20261029-2" },
+        "acceptedReconciliationTag": { "type": "string", "pattern": "^K1D-[0-9a-f]{24}$" },
+        "acceptedDraftId": { "type": "string", "pattern": "^gid://shopify/DraftOrder/[1-9][0-9]*$" },
+        "acceptedDraftName": { "type": "string", "pattern": "^#D[1-9][0-9]*$" },
+        "acceptedDraftCreatedAt": { "type": "string", "format": "date-time" },
+        "duplicateSuppressed": { "const": true },
+        "creationReconciledAfterImmediateAdminLag": { "const": true }
       }
     },
     "readiness": {

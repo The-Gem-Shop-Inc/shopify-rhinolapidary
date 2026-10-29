@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-02T",
+  "status": "PASS",
+  "verifiedAt": "2026-10-29T21:16:29.082Z",
+  "authorization": {
+    "owner": "Tobi",
+    "scope": "one synthetic unpaid uninvoiced Draft Order",
+    "confirmed": true
+  },
+  "fixture": {
+    "quotationReference": "KQ-K1D02TR20261029-2",
+    "emailSource": "secure_runtime_variable",
+    "emailDomainRecorded": false,
+    "reservedTestDomain": false,
+    "shippingCountryCode": "US",
+    "itemCount": 2,
+    "items": [
+      {
+        "variantId": "gid://shopify/ProductVariant/46484249903301",
+        "quantity": 1,
+        "propertyKeys": [
+          "Acceptance",
+          "Requested preparation"
+        ]
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/46484250001605",
+        "quantity": 2,
+        "propertyKeys": [
+          "Acceptance",
+          "Packaging note"
+        ]
+      }
+    ],
+    "discountCodes": []
+  },
+  "proxy": {
+    "storefrontPath": "/apps/rhino-quote-draft",
+    "firstResponse": {
+      "status": 200,
+      "code": "draft_created",
+      "duplicate": false
+    },
+    "duplicateResponse": {
+      "status": 200,
+      "code": "draft_created",
+      "duplicate": true
+    },
+    "creationReconciledAfterImmediateAdminLag": true,
+    "authenticatedUrlRecorded": false
+  },
+  "draft": {
+    "id": "gid://shopify/DraftOrder/1267908313285",
+    "name": "#D2",
+    "createdAt": "2026-10-29T21:14:01Z",
+    "status": "OPEN",
+    "tags": [
+      "K1D-d4a71c89ba75fd8252a0abe4",
+      "Unquoted"
+    ],
+    "reconciliationTag": "K1D-d4a71c89ba75fd8252a0abe4",
+    "lineItems": [
+      {
+        "variantId": "gid://shopify/ProductVariant/46484249903301",
+        "quantity": 1,
+        "propertyKeys": [
+          "Acceptance",
+          "Requested preparation"
+        ]
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/46484250001605",
+        "quantity": 2,
+        "propertyKeys": [
+          "Acceptance",
+          "Packaging note"
+        ]
+      }
+    ],
+    "discountCodes": [],
+    "automaticDiscountsAccepted": true,
+    "totalDiscount": {
+      "amount": "0.0",
+      "currencyCode": "USD"
+    },
+    "syntheticContactMatched": true,
+    "shippingAddressMatched": true,
+    "staffNoteMatched": true,
+    "shippingLineAbsent": true,
+    "invoiceAbsent": true,
+    "inventoryReservationAbsent": true,
+    "completedOrderAbsent": true,
+    "paymentAbsent": true,
+    "fulfillmentAbsent": true,
+    "customerRecordAbsent": true,
+    "customerCreateOrAttachInputAbsent": true,
+    "restrictedCustomerAndOrderObjectsQueried": false
+  },
+  "admin": {
+    "draftCountForReference": 1,
+    "appearsInOrdersDrafts": true
+  },
+  "d1": {
+    "state": "COMPLETED",
+    "attemptCount": 1,
+    "draftId": "gid://shopify/DraftOrder/1267908313285",
+    "draftName": "#D2",
+    "quotationReference": "KQ-K1D02TR20261029-2",
+    "payloadHashMatched": true,
+    "reconciliationComplete": true
+  },
+  "safety": {
+    "draftsCreated": 1,
+    "invoiceSent": false,
+    "paymentCollectedOrAuthorized": false,
+    "shippingLineCreated": false,
+    "inventoryReserved": false,
+    "orderCompleted": false,
+    "fulfillmentCreated": false,
+    "customerCreatedOrAttached": false,
+    "themeChanged": false,
+    "storefrontClientEnabled": false,
+    "emailFallbackActive": true
+  },
+  "deterministicIdentity": {
+    "reconciliationTag": "K1D-d4a71c89ba75fd8252a0abe4"
+  }
+}

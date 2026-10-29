@@ -7,12 +7,14 @@ const {
   AUTHORIZATION_UNCONSUMED_CONFIRMATION,
   PASSWORD_ROTATION_CONFIRMATION,
   assertAuthorizationUnconsumed,
+  assertCompletedReconciliation,
   assertExecutionAuthorization,
   assertPasswordRotation,
   buildBlockedEvidence,
   buildEvidence,
   materializeAcceptanceFixture,
   matchingDrafts,
+  parseArgs,
   redactSecrets,
   verifyDraft,
 } = require('./run-epic-k-k1d02t-acceptance');
@@ -93,6 +95,11 @@ function main() {
     assert.doesNotThrow(() => assertAuthorizationUnconsumed(AUTHORIZATION_UNCONSUMED_CONFIRMATION));
   });
 
+  test('completed-claim continuation is explicit and cannot be combined with creation mode', () => {
+    assert.deepEqual(parseArgs(['--resume-completed']), { mode: 'resume-completed' });
+    assert.throws(() => parseArgs(['--execute', '--resume-completed']));
+  });
+
   test('reserved test email domains are rejected while an owner-controlled email is accepted', () => {
     for (const email of ['test@example.invalid', 'test@example.com', 'test@subdomain.test', 'test@localhost']) {
       assert.throws(() => materializeAcceptanceFixture(rawFixture, email));
@@ -112,6 +119,8 @@ function main() {
     assert.equal(result.shippingLineAbsent, true);
     assert.equal(result.inventoryReservationAbsent, true);
     assert.equal(result.paymentAbsent, true);
+    assert.equal(result.customerCreateOrAttachInputAbsent, true);
+    assert.equal(result.restrictedCustomerAndOrderObjectsQueried, false);
   });
 
   test('a variant or quantity mismatch fails acceptance', () => {
@@ -124,6 +133,18 @@ function main() {
     const candidates = [{ ...draft(), customAttributes: [{ key: 'Quotation reference', value: fixture.quoteReference }] }];
     assert.equal(matchingDrafts(candidates, fixture.quoteReference, identity.tag).length, 1);
     assert.equal(matchingDrafts(candidates, 'KQ-OTHER00-1', identity.tag).length, 0);
+  });
+
+  test('completed continuation requires exactly one matching draft and one completed mutation attempt', () => {
+    const candidate = draft();
+    const claim = {
+      state: 'COMPLETED', attempt_count: 1, draft_id: candidate.id, draft_name: candidate.name,
+      quote_reference: fixture.quoteReference, payload_hash: require('../server/epic-k-draft-order/core').payloadHash(fixture),
+    };
+    assert.equal(assertCompletedReconciliation([candidate], claim, fixture, identity).id, candidate.id);
+    assert.throws(() => assertCompletedReconciliation([], claim, fixture, identity));
+    assert.throws(() => assertCompletedReconciliation([candidate], { ...claim, attempt_count: 2 }, fixture, identity));
+    assert.throws(() => assertCompletedReconciliation([candidate], { ...claim, state: 'PROCESSING' }, fixture, identity));
   });
 
   test('machine evidence is sanitized and proves one completed D1 claim', () => {
@@ -145,6 +166,7 @@ function main() {
     assert.equal(evidence.d1.reconciliationComplete, true);
     assert.equal(evidence.fixture.emailSource, 'secure_runtime_variable');
     assert.equal(evidence.fixture.emailDomainRecorded, false);
+    assert.equal(evidence.proxy.creationReconciledAfterImmediateAdminLag, false);
     assert.doesNotMatch(serialized, /owner-controlled@rhino-acceptance\.co|1 Acceptance Way|access_token|signature=/i);
   });
 
@@ -175,6 +197,7 @@ function main() {
     const runnerSource = fs.readFileSync(require.resolve('./run-epic-k-k1d02t-acceptance'), 'utf8');
     assert.doesNotMatch(runnerSource, /\.screenshot\(|tracing\.start\(|recordVideo/);
     assert.match(runnerSource, /process\.env\.STOREFRONT_PASSWORD/);
+    assert.match(runnerSource, /resume-completed/);
   });
 
   console.log(`Epic K K1D-02T acceptance-runner tests passed: ${passed}/${passed}.`);
