@@ -8,7 +8,7 @@ Source: `Rhino Lapidary Storefront Backlog and Epics.md`
 |---:|---|---|---|---|
 | 1 | K-PBI-001 | Fulfillment policy governance and decision traceability | Complete for repository governance | K1A contracts and Product Owner decisions are versioned and validated. |
 | 2 | K-PBI-002 | Policy, operational evidence, and configuration validation | Partial | Offline policy, evidence intake, source mapping, October 24 audit, and drift/preflight gates exist. Eight operational evidence requirements remain blocked and live checkout enforcement remains unverified. |
-| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-02 repository backend ready; provisioning and preview acceptance blocked | K1C native contact-form email delivery is human-confirmed and remains the active fallback. K1D-02 packages the K1D-01 endpoint as an isolated Cloudflare Worker with D1-backed atomic idempotency, mutation fencing/reconciliation, and rate limiting, plus current Dev Dashboard/Shopify CLI configuration templates. No Cloudflare resource or Shopify app has been provisioned, installed, or authorized; storefront automation therefore remains disabled. Production theme `158579622085` was unchanged and the obsolete rates were not recreated. |
+| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-02V installation verified; authentic proxy path blocked | K1C native contact-form email delivery is human-confirmed and remains the active fallback. Client credentials, canonical shop identity, the three required Admin scopes, all five protected-customer-data handles, Worker health, D1 schema, encrypted secret binding, and direct signature controls pass. Shopify forwards the authentic proxy request to `/shopify/app-proxy/quote/`, but the deployed Worker accepts only the path without the trailing slash and returns `404 NOT_FOUND` before signature validation. No live draft was authorized or created. Production theme `158579622085` remains unchanged and unpublished. |
 
 ## K1C-01 acceptance
 
@@ -49,13 +49,25 @@ The English storefront workflow is implemented. The repository's 50 non-default 
 - Integration remains blocked on an HTTPS host, installed Shopify app and proxy, granted `write_draft_orders`, `read_products`, and `write_app_proxy`, protected-customer-data approval, server-side secrets, a durable database/idempotency adapter, and a durable rate limiter. Real preview/browser/Admin verification cannot start before those exist.
 - No preview or production deployment, app installation, Admin mutation, real draft, invoice, payment, customer, order, inventory reservation, rate change, pickup-setting change, or theme publication occurred in K1D-01 repository preparation.
 
-## K1D-02 backend provisioning checkpoint
+## K1D-02 / K1D-02P backend provisioning checkpoint
 
-- No existing Rhino-owned host or Shopify app could be reused. The selected isolated runtime is Cloudflare Workers plus D1; existing operator audit scripts and unrelated infrastructure remain untouched.
-- The Worker reuses the K1D-01 core and endpoint. Wrangler `4.155.0` successfully bundles Node crypto, standard Request/Response, Shopify GraphQL fetch, and the D1 adapters under compatibility date `2026-10-28`; the migration applies locally.
-- D1 provides atomic unique claims, duplicate-reference rejection, mutation fencing, durable confirmed/uncertain/retryable states, stored Shopify Draft IDs/names, and an atomic fixed-window rate limiter. An expired or timed-out mutation is reconciled by deterministic tag and exact reference and is never blindly repeated.
-- Automated success now requires Shopify's confirmed Draft Order name as a linkable staff identifier. Email-only fallback success cannot claim Admin storage.
-- Current Dev Dashboard configuration templates request `read_products`, `write_draft_orders`, and `write_app_proxy`. Level 2 protected customer data for name, email, phone, and address remains a required owner/app configuration step.
-- The Product Owner has human-confirmed staff receipt of the native contact-form quotation. The K1C evidence record now reflects that result, while explicitly keeping automated Draft Order acceptance false.
-- External activation remains blocked: no Cloudflare account was authorized, no D1 database was provisioned, no Worker was deployed, no Shopify app was created/released/installed, no Client ID or secret was configured, and no protected customer data access or scope grant was verified.
-- Storefront automation remains disabled and the native contact form remains active. No preview or production theme upload, publication, Draft Order, invoice, payment, rate change, or pickup mutation occurred in K1D-02 repository preparation.
+- The selected isolated runtime remains Cloudflare Workers plus D1 and reuses the K1D-01 core/endpoint. D1 retains atomic unique claims, mutation fencing, reconciliation, and fixed-window rate limiting without storing the submitted customer payload.
+- Authenticated Shopify CLI organization/store queries verified that app organization `224843363` (**Rhino Lapidary**) contains the target Basic store. The canonical Admin/API domain is `sz5dnk-nf.myshopify.com`; `rhino-lapidary.myshopify.com` is its primary storefront alias.
+- D1 database `rhino-quotation-drafts` was created in ENAM and migration `0001_quote_backend.sql` was applied. Worker `rhino-quotation-drafts` is deployed and returns HTTP 200 from `/health`.
+- The app secret is bound only as Cloudflare encrypted secret `SHOPIFY_API_SECRET`. Public configuration records the real D1 ID, canonical shop, and app client ID; no Admin credential is present in the repository or storefront.
+- Shopify app **Rhino Quotation Drafts** and version `k1d02p-provisioned-2` were created/released with `read_products`, `write_draft_orders`, `write_app_proxy`, and `/apps/rhino-quote-draft`.
+- A correctly signed direct request passed the deployed HMAC gate and reached pickup policy enforcement. This is not classified as Shopify-generated app-proxy evidence.
+- Client-credentials verification is blocked precisely by Shopify's `app_not_installed` response. Human Dev Dashboard verification, direct installation from the store-organization app's Installs card, Level 2 protected customer fields (name, email, phone, address), granted-scope verification, and a real Shopify-signed proxy request remain required. Custom distribution is not used for this store-organization app.
+- The Product Owner has human-confirmed staff receipt of the native contact-form quotation. Storefront automation stays disabled and the email fallback remains active.
+- No controlled Draft Order was authorized or created. No preview/production theme mutation, publication, invoice, payment, completion, inventory reservation, shipping rate, or pickup-setting change occurred in K1D-02P.
+
+## K1D-02V installed-app verification checkpoint
+
+- Client credentials now succeed with a 24-hour token retained only in process memory. Admin GraphQL confirms installation `gid://shopify/AppInstallation/778440605893`, canonical domain `sz5dnk-nf.myshopify.com`, and primary alias `rhino-lapidary.myshopify.com`.
+- The token and `currentAppInstallation` include `read_products`, `write_draft_orders`, and `write_app_proxy`; no required scope is missing.
+- App metadata includes `read_customer_name`, `read_customer_email`, `read_customer_phone`, `read_customer_address`, and `read_customer_personal_data`. No customer record was queried.
+- Shopify forwards `/apps/rhino-quote-draft` to the deployed Worker with signed canonical-shop parameters, but appends a trailing slash to `/shopify/app-proxy/quote/`. The Worker route guard accepts only `/shopify/app-proxy/quote`, so the authentic request returns `404 NOT_FOUND` before HMAC validation.
+- Direct controls remain safe: valid signed pickup returns `409 PICKUP_NOT_ALLOWED`, invalid signature returns `401 UNAUTHORIZED`, and a correctly signed stale request returns `401 EXPIRED_REQUEST`.
+- Worker health, both D1 operational tables, the encrypted `SHOPIFY_API_SECRET` binding, and the real-binding dry-run pass. The read-only D1 schema query made zero writes.
+- Storefront automation remains disabled and the native email fallback remains active. No theme, Draft Order, customer, invoice, payment, completion, inventory, shipping rate, or pickup setting was changed.
+- The smallest remaining integration repair is to accept the exact Shopify-forwarded trailing slash, redeploy only the Worker, and rerun the authentic proxy pickup rejection. A synthetic Draft Order remains separately owner-authorized.

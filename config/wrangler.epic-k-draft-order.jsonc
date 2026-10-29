@@ -1,6 +1,7 @@
 {
   "$schema": "../node_modules/wrangler/config-schema.json",
   "name": "rhino-quotation-drafts",
+  "account_id": "5730081da21c60a5171a41dc792371cd",
   "main": "../server/epic-k-draft-order/worker.mjs",
   "compatibility_date": "2026-10-28",
   "workers_dev": true,
@@ -11,15 +12,18 @@
     "traces": { "enabled": true, "head_sampling_rate": 1 }
   },
   "vars": {
-    "SHOPIFY_SHOP_DOMAIN": "rhino-lapidary.myshopify.com",
+    "SHOPIFY_SHOP_DOMAIN": "sz5dnk-nf.myshopify.com",
     "SHOPIFY_API_VERSION": "2026-10",
-    "SHOPIFY_APP_CLIENT_ID": "REPLACE_WITH_DEV_DASHBOARD_CLIENT_ID"
+    "SHOPIFY_APP_CLIENT_ID": "9c9b22ce5705afd68d8d934744223857"
+  },
+  "secrets": {
+    "required": ["SHOPIFY_API_SECRET"]
   },
   "d1_databases": [
     {
       "binding": "QUOTE_DB",
       "database_name": "rhino-quotation-drafts",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "database_id": "2a63307d-b07f-43f1-a6be-85418781fb6c",
       "migrations_dir": "../migrations/epic-k-draft-order"
     }
   ]

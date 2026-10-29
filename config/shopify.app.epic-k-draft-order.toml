@@ -1,0 +1,20 @@
+# Rhino Lapidary K1D-02P — deployed app configuration (no secrets).
+
+client_id = "9c9b22ce5705afd68d8d934744223857"
+name = "Rhino Quotation Drafts"
+application_url = "https://rhino-quotation-drafts.mayhemmojomeister.workers.dev/health"
+embedded = false
+
+[access_scopes]
+scopes = "read_products,write_draft_orders,write_app_proxy"
+
+[webhooks]
+api_version = "2026-10"
+
+[auth]
+redirect_urls = ["https://rhino-quotation-drafts.mayhemmojomeister.workers.dev/auth/callback"]
+
+[app_proxy]
+url = "https://rhino-quotation-drafts.mayhemmojomeister.workers.dev/shopify/app-proxy/quote"
+prefix = "apps"
+subpath = "rhino-quote-draft"

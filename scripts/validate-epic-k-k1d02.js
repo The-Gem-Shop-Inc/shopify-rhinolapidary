@@ -21,7 +21,7 @@ function validateK1d02() {
     contract.hosting.workerConfig,
     contract.hosting.entrypoint,
     contract.hosting.migration,
-    contract.shopify.appConfigurationTemplate,
+    contract.shopify.appConfiguration,
     'server/epic-k-draft-order/core.js',
     'server/epic-k-draft-order/endpoint.js',
     'server/epic-k-draft-order/d1-adapters.js',
@@ -34,12 +34,16 @@ function validateK1d02() {
   const worker = read(contract.hosting.entrypoint);
   const adapters = read('server/epic-k-draft-order/d1-adapters.js');
   const migration = read(contract.hosting.migration);
-  const shopify = read(contract.shopify.appConfigurationTemplate);
+  const shopify = read(contract.shopify.appConfiguration);
   const browserSources = `${read('assets/rhino-quote-mode.js')}\n${read('snippets/rhino-quote-checkout.liquid')}`;
 
   if (wrangler.compatibility_date !== contract.hosting.compatibilityDate) errors.push('Worker compatibility date differs from the readiness contract.');
-  if (!wrangler.d1_databases?.some((binding) => binding.binding === 'QUOTE_DB')) errors.push('Worker config lacks the QUOTE_DB binding.');
-  if (wrangler.d1_databases?.some((binding) => binding.database_id !== 'REPLACE_WITH_D1_DATABASE_ID')) errors.push('Repository config must not claim an unverified remote D1 ID.');
+  const d1 = wrangler.d1_databases?.find((binding) => binding.binding === contract.hosting.d1Binding);
+  if (!d1) errors.push('Worker config lacks the contracted D1 binding.');
+  if (d1?.database_name !== contract.hosting.d1DatabaseName || d1?.database_id !== contract.hosting.d1DatabaseId) errors.push('Worker D1 binding differs from the provisioned database evidence.');
+  if (wrangler.vars?.SHOPIFY_SHOP_DOMAIN !== contract.shopify.canonicalShop) errors.push('Worker must target the canonical Shopify Admin domain.');
+  if (wrangler.vars?.SHOPIFY_APP_CLIENT_ID !== contract.shopify.clientId) errors.push('Worker Client ID differs from the provisioned Shopify app.');
+  if (!wrangler.secrets?.required?.includes('SHOPIFY_API_SECRET')) errors.push('Worker config must declare SHOPIFY_API_SECRET as a required secret binding.');
   if (!wrangler.observability?.logs?.enabled || !wrangler.observability?.traces?.enabled) errors.push('Worker logs and traces must be explicitly enabled.');
   if (packageJson.devDependencies?.wrangler !== '4.155.0') errors.push('The validated Wrangler version must remain exact.');
   if (!worker.includes("from './endpoint.js'") || !worker.includes('createDraftOrderEndpoint')) errors.push('Worker must reuse the host-neutral K1D-01 endpoint.');
@@ -49,11 +53,23 @@ function validateK1d02() {
   }
   if (!migration.includes('idempotency_key TEXT PRIMARY KEY') || !migration.includes('quote_reference TEXT NOT NULL UNIQUE')) errors.push('Migration lacks atomic unique idempotency constraints.');
   if (!migration.includes("'MUTATING'") || !migration.includes("'UNCERTAIN'")) errors.push('Migration lacks safe ambiguous-mutation states.');
-  contract.shopify.requiredScopes.forEach((scope) => { if (!shopify.includes(scope)) errors.push(`Shopify template lacks ${scope}.`); });
-  if (!shopify.includes('[app_proxy]') || !shopify.includes(contract.shopify.proxyDestinationPath)) errors.push('Shopify template lacks the expected app proxy destination.');
+  contract.shopify.requiredScopes.forEach((scope) => { if (!shopify.includes(scope)) errors.push(`Shopify app config lacks ${scope}.`); });
+  if (!shopify.includes(`client_id = "${contract.shopify.clientId}"`)) errors.push('Shopify app config has the wrong Client ID.');
+  if (!shopify.includes(`${contract.hosting.workerUrl}/health`)) errors.push('Shopify app config lacks the verified Worker health URL.');
+  if (!shopify.includes('[app_proxy]') || !shopify.includes(`${contract.hosting.workerUrl}${contract.shopify.proxyDestinationPath}`)) errors.push('Shopify app config lacks the provisioned app proxy destination.');
   if (/shpat_|SHOPIFY_API_SECRET\s*[:=]\s*["'][^"']+/i.test(`${worker}\n${browserSources}`)) errors.push('A committed Admin credential appears in runtime or storefront source.');
   if (browserSources.includes('/apps/rhino-quote-draft')) errors.push('Storefront automation must remain disabled until the provisioned backend is verified.');
-  if (contract.state === 'REPOSITORY_READY_PROVISIONING_BLOCKED' && Object.values(contract.activation).some(Boolean)) errors.push('Blocked readiness cannot claim activation milestones.');
+  if (contract.state === 'INSTALLATION_VERIFIED_PROXY_PATH_BLOCKED') {
+    const requiredTrue = ['cloudflareAccountAuthorized', 'd1Provisioned', 'migrationApplied', 'workerDeployed', 'shopifyAppCreated', 'shopifyAppVersionReleased', 'shopifyAppInstalled', 'scopesConfigured', 'scopesGranted', 'protectedCustomerDataApproved', 'secretBound', 'appProxyReleased', 'clientCredentialsVerified', 'directSignedRequestVerified', 'invalidSignatureRejected', 'expiredSignatureRejected', 'shopifyProxyForwardingVerified'];
+    const requiredFalse = ['shopifyGeneratedProxyRequestVerified', 'proxyPathCompatibilityVerified', 'storefrontClientEnabled', 'controlledDraftCreated', 'previewAccepted'];
+    requiredTrue.forEach((key) => { if (contract.activation[key] !== true) errors.push(`Verified K1D-02V milestone ${key} must be true.`); });
+    requiredFalse.forEach((key) => { if (contract.activation[key] !== false) errors.push(`Blocked K1D-02V milestone ${key} must remain false.`); });
+    contract.shopify.requiredScopes.forEach((scope) => { if (!contract.shopify.grantedScopes.includes(scope)) errors.push(`Installed app is missing ${scope}.`); });
+    for (const scope of ['read_customer_address', 'read_customer_email', 'read_customer_name', 'read_customer_personal_data', 'read_customer_phone']) {
+      if (!contract.shopify.protectedCustomerScopeHandles.includes(scope)) errors.push(`Protected customer data configuration is missing ${scope}.`);
+    }
+    if (contract.shopify.observedProxyDestinationPath !== `${contract.shopify.proxyDestinationPath}/`) errors.push('Observed Shopify proxy destination must retain the diagnosed trailing-slash mismatch.');
+  }
 
   const contact = json('data/epic-k-k1c02-activation-status-2026-10-27.json');
   if (!contact.verification?.contactSubmissionConfirmed) errors.push('Human-confirmed native contact email evidence has not been recorded.');
