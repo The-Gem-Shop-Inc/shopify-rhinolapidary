@@ -11,13 +11,18 @@ if (!customElements.get('rhino-quote-mode')) {
         this.formState = this.querySelector('[data-rhino-quote-form-state]');
         if (!this.form || !this.formState) return;
 
+        this.automationEnabled = this.dataset.automationEnabled === 'true';
+        this.draftClient = window.RhinoQuoteDraftClient;
         this.signature = this.dataset.cartSignature || '';
         this.reference = this.dataset.reference || '';
         this.completedKey = `rhino-quote:${this.signature}`;
         this.pendingKey = 'rhino-quote:pending';
         this.status = this.querySelector('[data-rhino-quote-status]');
         this.submit = this.querySelector('[data-rhino-quote-submit]');
+        this.draftSubmit = this.querySelector('[data-rhino-draft-submit]');
+        this.emailSubmit = this.querySelector('[data-rhino-email-submit]') || this.submit;
         this.success = this.querySelector('[data-rhino-quote-success]');
+        this.emailBodyTemplate = this.form.elements.namedItem('contact[body]')?.value || '';
         this.submissionState = 'idle';
         this.captchaResourceFailed = false;
         this.submissionTimeoutMs = 30000;
@@ -28,6 +33,13 @@ if (!customElements.get('rhino-quote-mode')) {
           captchaFailed: this.dataset.stringCaptchaFailed || '',
           submissionFailed: this.dataset.stringSubmissionFailed || '',
           challengeWaiting: this.dataset.stringChallengeWaiting || '',
+          automationUnavailable: this.dataset.stringAutomationUnavailable || '',
+          cartChanged: this.dataset.stringCartChanged || '',
+          confirmed: this.dataset.stringConfirmed || '',
+          fallbackRequired: this.dataset.stringFallbackRequired || '',
+          uncertain: this.dataset.stringUncertain || '',
+          rejected: this.dataset.stringRejected || '',
+          referenceTemplate: this.dataset.stringReferenceTemplate || 'Quotation reference: {reference}',
         };
 
         this.onResourceError = (event) => this.handleResourceError(event);
@@ -49,10 +61,14 @@ if (!customElements.get('rhino-quote-mode')) {
           const pending = this.readStorage(this.pendingKey);
           const completed = {
             cartSignature: this.signature,
-            reference: pending?.cartSignature === this.signature ? pending.reference : this.reference,
+            reference: pending?.cartSignature === this.signature ? pending.reference : (this.reference || 'Email reference unavailable'),
             status: 'submitted',
           };
           sessionStorage.setItem(this.completedKey, JSON.stringify(completed));
+          this.reference = completed.reference;
+          this.updateReferenceDisplay(completed.reference);
+          const confirmedReference = this.querySelector('[data-rhino-email-confirmed-reference]');
+          if (confirmedReference) confirmedReference.textContent = completed.reference;
           this.removeMatchingPending();
           this.submissionState = 'complete';
           this.success?.focus();
@@ -81,6 +97,18 @@ if (!customElements.get('rhino-quote-mode')) {
         }
 
         this.form.addEventListener('submit', (event) => this.handleSubmit(event));
+        this.draftSubmit?.addEventListener('click', () => this.submitDraftOrder());
+        if (this.automationEnabled) {
+          const active = this.readActiveRequest();
+          if (active && ['submitting', 'uncertain'].includes(active.state)) {
+            this.reference = active.reference || '';
+            this.updateReferenceDisplay(this.reference);
+            this.submissionState = 'uncertain';
+            this.setSubmissionControls({ draftDisabled: true, emailDisabled: true });
+            this.setStatus(this.strings.uncertain, true);
+          }
+          this.baselinePromise = this.captureCartBaseline();
+        }
       }
 
       disconnectedCallback() {
@@ -93,6 +121,18 @@ if (!customElements.get('rhino-quote-mode')) {
 
       handleSubmit(event) {
         if (!this.form.checkValidity()) return;
+        const active = this.automationEnabled ? this.readActiveRequest() : null;
+        if (active && ['submitting', 'uncertain'].includes(active.state)) {
+          event.preventDefault();
+          this.setSubmissionControls({ draftDisabled: true, emailDisabled: true });
+          this.setStatus(this.strings.uncertain, true);
+          return;
+        }
+        if (!this.reference && this.draftClient) {
+          this.reference = this.draftClient.createReference(this.dataset.cartQuantity || 1);
+        }
+        this.updateReferenceDisplay(this.reference);
+        this.syncFallbackFields();
         if (!this.signature || !this.reference) {
           event.preventDefault();
           this.setStatus(this.strings.invalidCart, true);
@@ -122,6 +162,235 @@ if (!customElements.get('rhino-quote-mode')) {
         this.form.setAttribute('aria-busy', 'true');
         this.setStatus(this.strings.submitting);
         this.startSubmissionTimer();
+      }
+
+      async captureCartBaseline() {
+        if (!this.automationEnabled || !this.draftClient) return false;
+        try {
+          const cart = await this.fetchCart();
+          this.cartBaseline = this.draftClient.canonicalJson(this.draftClient.cartMaterial(cart));
+          const active = this.readActiveRequest();
+          if (active?.state === 'confirmed' && active.cartMaterial === this.cartBaseline && active.staffIdentifier) {
+            this.showConfirmed(active.reference, active.staffIdentifier, true);
+          }
+          return true;
+        } catch (_error) {
+          this.cartBaseline = null;
+          return false;
+        }
+      }
+
+      async fetchCart() {
+        const root = window.Shopify?.routes?.root || window.routes?.root_url || '/';
+        const response = await fetch(`${root}cart.js`, {
+          credentials: 'same-origin',
+          cache: 'no-store',
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error('CART_UNAVAILABLE');
+        return response.json();
+      }
+
+      formValues() {
+        const value = (name) => this.form.elements.namedItem(name)?.value || '';
+        return {
+          firstName: value('contact[first_name]'),
+          lastName: value('contact[last_name]'),
+          email: value('contact[email]'),
+          phone: value('contact[phone]'),
+          company: value('contact[company]'),
+          address1: value('contact[address_line_1]'),
+          address2: value('contact[address_line_2]'),
+          city: value('contact[city]'),
+          provinceCode: value('contact[state]'),
+          zip: value('contact[postal_code]'),
+          addressType: value('contact[delivery_type]'),
+          liftgateRequired: value('contact[liftgate_required]') === 'Yes',
+          accessInformation: value('contact[access_information]'),
+          insuranceRequested: Boolean(this.form.elements.namedItem('contact[insurance_options_requested]')?.checked),
+        };
+      }
+
+      syncFallbackFields(reference = this.reference) {
+        const values = this.formValues();
+        const combinedName = `${values.firstName} ${values.lastName}`.trim();
+        const nameInput = this.form.elements.namedItem('contact[name]');
+        if (nameInput) nameInput.value = combinedName;
+        const referenceInput = this.querySelector('[data-rhino-quote-reference]');
+        if (referenceInput && reference) referenceInput.value = reference;
+        const body = this.form.elements.namedItem('contact[body]');
+        if (body && reference) body.value = this.emailBodyTemplate.replaceAll('REFERENCE_PENDING', reference);
+      }
+
+      updateReferenceDisplay(reference) {
+        if (!reference) return;
+        const display = this.querySelector('[data-rhino-reference-display]');
+        if (display) display.textContent = this.strings.referenceTemplate.replace('{reference}', reference);
+      }
+
+      readActiveRequest() {
+        try {
+          return JSON.parse(localStorage.getItem(this.draftClient.ACTIVE_REQUEST_KEY));
+        } catch (_error) {
+          return null;
+        }
+      }
+
+      writeActiveRequest(value) {
+        try {
+          localStorage.setItem(this.draftClient.ACTIVE_REQUEST_KEY, JSON.stringify(value));
+          return true;
+        } catch (_error) {
+          return false;
+        }
+      }
+
+      setSubmissionControls({ draftDisabled, emailDisabled = false, busy = false }) {
+        if (this.draftSubmit) {
+          this.draftSubmit.disabled = draftDisabled;
+          this.draftSubmit.toggleAttribute('aria-disabled', draftDisabled);
+        }
+        if (this.emailSubmit) {
+          this.emailSubmit.disabled = emailDisabled;
+          this.emailSubmit.toggleAttribute('aria-disabled', emailDisabled);
+        }
+        this.form.toggleAttribute('aria-busy', busy);
+      }
+
+      showConfirmed(reference, staffIdentifier, duplicate = false) {
+        this.submissionState = 'confirmed';
+        this.reference = reference;
+        this.updateReferenceDisplay(reference);
+        this.syncFallbackFields(reference);
+        this.setSubmissionControls({ draftDisabled: true, emailDisabled: true });
+        const template = this.strings.confirmed || 'Quotation {reference} is confirmed as {draft}.';
+        this.setStatus(template.replace('{reference}', reference).replace('{draft}', staffIdentifier));
+        const confirmation = this.querySelector('[data-rhino-draft-confirmation]');
+        if (confirmation) {
+          confirmation.hidden = false;
+          confirmation.querySelector('[data-rhino-confirmed-reference]').textContent = reference;
+          confirmation.querySelector('[data-rhino-confirmed-draft]').textContent = staffIdentifier;
+          confirmation.dataset.duplicate = String(duplicate);
+          confirmation.focus();
+        }
+      }
+
+      async submitDraftOrder() {
+        if (!this.automationEnabled || !this.draftClient) {
+          this.setStatus(this.strings.automationUnavailable, true);
+          return;
+        }
+        if (!this.form.reportValidity()) return;
+
+        const values = this.formValues();
+        let cart;
+        let proxyStarted = false;
+        try {
+          this.submissionState = 'validating';
+          this.setSubmissionControls({ draftDisabled: true, busy: true });
+          this.setStatus(this.strings.submitting);
+          const baselineReady = await this.baselinePromise;
+          if (!baselineReady || !this.cartBaseline) {
+            this.submissionState = 'failed';
+            this.setSubmissionControls({ draftDisabled: false });
+            this.setStatus(this.strings.automationUnavailable, true);
+            return;
+          }
+          cart = await this.fetchCart();
+          const currentCart = this.draftClient.canonicalJson(this.draftClient.cartMaterial(cart));
+          if (this.cartBaseline && currentCart !== this.cartBaseline) {
+            this.submissionState = 'failed';
+            this.setSubmissionControls({ draftDisabled: false });
+            this.setStatus(this.strings.cartChanged, true);
+            return;
+          }
+          const discount = this.draftClient.discountRepresentation(cart);
+          if (!discount.supported || this.draftClient.normalizeItems(cart).some((item) => item.sellingPlanId)) {
+            this.submissionState = 'fallback';
+            this.setSubmissionControls({ draftDisabled: true });
+            this.setStatus(this.strings.fallbackRequired, true);
+            return;
+          }
+          const nextFingerprint = await this.draftClient.fingerprint(cart, values);
+          const totalQuantity = cart.items.reduce((total, item) => total + item.quantity, 0);
+          const identity = this.draftClient.decideIdentity(this.readActiveRequest(), nextFingerprint, totalQuantity);
+          if (identity.blocked) {
+            this.submissionState = 'uncertain';
+            this.setSubmissionControls({ draftDisabled: true, emailDisabled: true });
+            this.setStatus(this.strings.uncertain, true);
+            return;
+          }
+          this.reference = identity.reference;
+          this.updateReferenceDisplay(this.reference);
+          this.syncFallbackFields(this.reference);
+          const active = this.readActiveRequest();
+          if (identity.reuse && active?.state === 'confirmed' && active.staffIdentifier) {
+            this.showConfirmed(identity.reference, active.staffIdentifier, true);
+            return;
+          }
+          const cartToken = await this.draftClient.safeCartToken(cart.token);
+          const payload = this.draftClient.buildPayload({ cart, values, quoteReference: this.reference, cartToken });
+          if (!this.writeActiveRequest({
+            fingerprint: nextFingerprint,
+            cartMaterial: currentCart,
+            reference: this.reference,
+            state: 'submitting',
+            startedAt: Date.now(),
+          })) {
+            throw new Error('STORAGE_UNAVAILABLE');
+          }
+          this.submissionState = 'submitting';
+          proxyStarted = true;
+          const response = await fetch(this.dataset.proxyEndpoint || '/apps/rhino-quote-draft', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          let body = null;
+          try { body = await response.json(); } catch (_error) { body = null; }
+          const result = this.draftClient.classifyResponse(response.status, body);
+          if (result.kind === 'confirmed' && result.reference === this.reference) {
+            this.writeActiveRequest({
+              fingerprint: nextFingerprint,
+              cartMaterial: currentCart,
+              reference: this.reference,
+              state: 'confirmed',
+              staffIdentifier: result.staffIdentifier,
+              confirmedAt: Date.now(),
+            });
+            this.showConfirmed(this.reference, result.staffIdentifier, result.duplicate);
+            return;
+          }
+          if (result.kind === 'rejected' || result.kind === 'recoverable') {
+            this.writeActiveRequest({
+              fingerprint: nextFingerprint,
+              cartMaterial: currentCart,
+              reference: this.reference,
+              state: result.kind === 'recoverable' ? 'retryable' : 'rejected',
+              code: result.code,
+            });
+            this.submissionState = result.kind === 'recoverable' ? 'failed' : 'fallback';
+            this.setSubmissionControls({ draftDisabled: result.kind === 'rejected' });
+            this.setStatus(result.kind === 'rejected' ? this.strings.rejected : this.strings.submissionFailed, true);
+            return;
+          }
+          throw new Error('UNCONFIRMED_RESULT');
+        } catch (_error) {
+          if (!proxyStarted) {
+            this.submissionState = 'failed';
+            this.setSubmissionControls({ draftDisabled: false });
+            this.setStatus(this.strings.automationUnavailable || this.strings.submissionFailed, true);
+            return;
+          }
+          const active = this.readActiveRequest();
+          if (active?.state === 'submitting') this.writeActiveRequest({ ...active, state: 'uncertain', uncertainAt: Date.now() });
+          this.submissionState = 'uncertain';
+          this.setSubmissionControls({ draftDisabled: true, emailDisabled: true });
+          this.setStatus(this.strings.uncertain, true);
+        } finally {
+          this.form.removeAttribute('aria-busy');
+        }
       }
 
       startSubmissionTimer() {

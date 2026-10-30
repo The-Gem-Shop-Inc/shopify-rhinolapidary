@@ -60,7 +60,7 @@ async function layoutMetrics(page) {
       submit: rect(submit),
       choiceTargets,
       focusOrderMatchesVisualOrder: Boolean(
-        document.querySelector('#RhinoFulfillmentPickup').compareDocumentPosition(document.querySelector('#RhinoQuoteName'))
+        document.querySelector('#RhinoFulfillmentPickup').compareDocumentPosition(document.querySelector('#RhinoQuoteFirstName'))
           & Node.DOCUMENT_POSITION_FOLLOWING,
       ),
       positiveTabindexCount: document.querySelectorAll('#RhinoShippingQuoteForm [tabindex]:not([tabindex="0"]):not([tabindex="-1"])').length,
@@ -102,7 +102,8 @@ function assertLayout(metrics, viewportWidth) {
 
 async function fillValidQuote(page, suffix = '') {
   await page.locator('#RhinoFulfillmentShipping').check();
-  await page.locator('#RhinoQuoteName').fill(`Synthetic Customer${suffix}`);
+  await page.locator('#RhinoQuoteFirstName').fill('Synthetic');
+  await page.locator('#RhinoQuoteLastName').fill(`Customer${suffix}`);
   await page.locator('#RhinoQuoteEmail').fill(`fixture${suffix.replace(/\W/g, '')}@example.invalid`);
   await page.locator('#RhinoQuoteAddress1').fill('100 Fixture Street');
   await page.locator('#RhinoQuoteCity').fill('Fixture City');
@@ -185,8 +186,8 @@ function successfulContactDocument() {
       });
       await desktop.locator('[data-rhino-quote-submit]').click();
       assert.equal(await desktop.evaluate(() => window.fixtureQuoteSubmission), null);
-      assert.equal(await desktop.locator('#RhinoQuoteName:invalid').count(), 1);
-      assert.notEqual(await desktop.locator('#RhinoQuoteName').evaluate((input) => input.validationMessage), '');
+      assert.equal(await desktop.locator('#RhinoQuoteFirstName:invalid').count(), 1);
+      assert.notEqual(await desktop.locator('#RhinoQuoteFirstName').evaluate((input) => input.validationMessage), '');
       assert.equal(await desktop.locator('#RhinoShippingQuotePanel').isVisible(), true);
     });
 
@@ -242,7 +243,7 @@ function successfulContactDocument() {
           elements.map((label) => ({ for: label.htmlFor, text: label.textContent.trim() }))
         ));
         assert(labels.length >= 9 && labels.every((label) => label.for && label.text), 'text inputs must retain readable labels');
-        await page.locator('#RhinoQuoteName').fill(`Preserved at ${viewport.width}px`);
+        await page.locator('#RhinoQuoteFirstName').fill(`Preserved at ${viewport.width}px`);
         await page.screenshot({ path: path.join(OUTPUT_DIR, `shipping-${viewport.label}.png`), fullPage: true });
 
         await page.locator('#RhinoFulfillmentPickup').check();
@@ -252,7 +253,7 @@ function successfulContactDocument() {
         await page.screenshot({ path: path.join(OUTPUT_DIR, `pickup-${viewport.label}.png`), fullPage: true });
 
         await page.locator('#RhinoFulfillmentShipping').check();
-        assert.equal(await page.locator('#RhinoQuoteName').inputValue(), `Preserved at ${viewport.width}px`);
+        assert.equal(await page.locator('#RhinoQuoteFirstName').inputValue(), `Preserved at ${viewport.width}px`);
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1), true);
       });
       await page.close();
@@ -286,7 +287,7 @@ function successfulContactDocument() {
       assert.equal(state.completed, null);
       assert.equal(state.statusRole, 'alert');
       assert.match(state.status, /security verification could not be completed/i);
-      assert.equal(await page.locator('#RhinoQuoteName').inputValue(), 'Synthetic Customer Captcha');
+      assert.equal(await page.locator('#RhinoQuoteLastName').inputValue(), 'Customer Captcha');
       await page.close();
     });
 
@@ -331,7 +332,8 @@ function successfulContactDocument() {
           status: 503,
           contentType: 'text/html',
           body: returnedContactDocument({
-            RhinoQuoteName: fields.get('contact[name]') || '',
+            RhinoQuoteFirstName: fields.get('contact[first_name]') || '',
+            RhinoQuoteLastName: fields.get('contact[last_name]') || '',
             RhinoQuoteEmail: fields.get('contact[email]') || '',
           }),
         });
@@ -347,7 +349,8 @@ function successfulContactDocument() {
       assert.equal(state.completed, null);
       assert.match(state.status, /request was not confirmed/i);
       assert.equal(await page.locator('#RhinoShippingQuotePanel').isVisible(), true);
-      assert.equal(await page.locator('#RhinoQuoteName').inputValue(), 'Synthetic Customer Contact');
+      assert.equal(await page.locator('#RhinoQuoteFirstName').inputValue(), 'Synthetic');
+      assert.equal(await page.locator('#RhinoQuoteLastName').inputValue(), 'Customer Contact');
       assert.equal(await page.locator('#RhinoQuoteEmail').inputValue(), 'fixtureContact@example.invalid');
       await page.close();
     });

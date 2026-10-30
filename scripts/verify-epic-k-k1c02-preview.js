@@ -153,7 +153,8 @@ async function inspectCart(page, expectedItems, pickupExpected) {
     if (pickupExpected) await page.locator('[data-rhino-pickup-checkout]:not([disabled])').waitFor({ timeout: 15000 });
     await page.locator('#RhinoFulfillmentShipping').check();
     await page.locator('#RhinoShippingQuotePanel').waitFor({ state: 'visible' });
-    await page.locator('#RhinoQuoteName').fill('Preview layout verification');
+    await page.locator('#RhinoQuoteFirstName').fill('Preview');
+    await page.locator('#RhinoQuoteLastName').fill('Layout verification');
     const result = await page.evaluate(() => {
         const quote = document.querySelector('rhino-quote-mode');
         const body = quote?.querySelector('textarea[name="contact[body]"]')?.value || '';
@@ -184,7 +185,7 @@ async function inspectCart(page, expectedItems, pickupExpected) {
         return {
             cartSignature: quote.dataset.cartSignature,
             reference: quote.dataset.reference,
-            referencePresent: /^KQ-[A-Z0-9_-]*-[1-9][0-9]*$/.test(quote.dataset.reference || ''),
+            referencePending: /assigned when you submit/i.test(quote.querySelector('[data-rhino-reference-display]')?.textContent || ''),
             body,
             enabledCheckoutCount: enabledCheckout.length,
             dynamicCheckoutCount: dynamicCheckout.length,
@@ -200,7 +201,8 @@ async function inspectCart(page, expectedItems, pickupExpected) {
             },
         };
     });
-    assert.equal(result.referencePresent, true, `Unexpected quotation reference format: ${result.reference}`);
+    assert.equal(result.reference, '', 'A raw cart-derived reference must not be rendered before intentional submission.');
+    assert.equal(result.referencePending, true, 'The pending quotation-reference explanation is missing.');
     assert.equal(result.cartSignature.split('|').length, expectedItems.length);
     assert.match(result.body, /Shipping charge: pending Rhino staff packaging and carrier quotation\./);
     assert.match(result.body, /Invoice authorization: none\. Do not invoice before shipping approval\./);
@@ -232,13 +234,15 @@ async function inspectCart(page, expectedItems, pickupExpected) {
     assert.equal(await page.locator('[data-rhino-pickup-status]').isVisible(), true, 'Pickup status must remain visible.');
     assert.equal(await page.locator('[data-rhino-pickup-checkout]').isVisible(), true, 'Pickup checkout control must remain visible.');
     await page.locator('#RhinoFulfillmentShipping').check();
-    assert.equal(await page.locator('#RhinoQuoteName').inputValue(), 'Preview layout verification', 'Switching fulfillment choices erased entered information.');
+    assert.equal(await page.locator('#RhinoQuoteFirstName').inputValue(), 'Preview', 'Switching fulfillment choices erased entered information.');
+    assert.equal(await page.locator('#RhinoQuoteLastName').inputValue(), 'Layout verification', 'Switching fulfillment choices erased entered information.');
     return result;
 }
 
 async function submitControlledContact(page, expectedItems) {
     const email = requiredEnvironment('EPIC_K_QA_EMAIL');
-    await page.locator('#RhinoQuoteName').fill('Epic K QA');
+    await page.locator('#RhinoQuoteFirstName').fill('Epic K');
+    await page.locator('#RhinoQuoteLastName').fill('QA');
     await page.locator('#RhinoQuoteEmail').fill(email);
     await page.locator('#RhinoQuoteAddress1').fill('Synthetic QA address');
     await page.locator('#RhinoQuoteCity').fill('Grafton');
@@ -279,7 +283,8 @@ async function submitControlledContact(page, expectedItems) {
 }
 
 async function verifyCaptchaFailureRecovery(page) {
-    await page.locator('#RhinoQuoteName').fill('Preview recovery verification');
+    await page.locator('#RhinoQuoteFirstName').fill('Preview');
+    await page.locator('#RhinoQuoteLastName').fill('Recovery verification');
     await page.locator('#RhinoQuoteEmail').fill('preview-recovery@example.invalid');
     await page.locator('#RhinoQuoteAddress1').fill('Synthetic QA address');
     await page.locator('#RhinoQuoteCity').fill('Grafton');
@@ -310,7 +315,8 @@ async function verifyCaptchaFailureRecovery(page) {
             pending: sessionStorage.getItem('rhino-quote:pending'),
             completed: sessionStorage.getItem(`rhino-quote:${element.dataset.cartSignature}`),
             status: element.querySelector('[data-rhino-quote-status]').textContent,
-            namePreserved: element.querySelector('#RhinoQuoteName').value === 'Preview recovery verification',
+            namePreserved: element.querySelector('#RhinoQuoteFirstName').value === 'Preview'
+              && element.querySelector('#RhinoQuoteLastName').value === 'Recovery verification',
         }));
         assert.equal(result.state, 'failed');
         assert.equal(result.disabled, false);

@@ -10,6 +10,7 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
   endcapture
   assign pickup_exclusions = pickup_exclusions | strip
   assign pickup_allowed = true
+  assign automation_enabled = settings.rhino_quote_draft_automation_enabled
   if cart == empty
     assign pickup_allowed = false
   endif
@@ -43,13 +44,16 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
   {%- for item in cart.items -%}{{ item.variant.id }}{% unless forloop.last %}|{% endunless %}{%- endfor -%}
 {%- endcapture -%}
 
-{%- assign quote_reference = cart.token | slice: 0, 8 | upcase | prepend: 'KQ-' | append: '-' | append: cart.item_count -%}
+{%- assign quote_reference = 'REFERENCE_PENDING' -%}
 
 {%- form 'contact', id: 'RhinoShippingQuoteForm', class: 'rhino-quote-mode__form' -%}
 <rhino-quote-mode
   class="rhino-quote-mode"
   data-cart-signature="{{ cart_signature | strip | escape }}"
-  data-reference="{{ quote_reference | escape }}"
+  data-reference=""
+  data-cart-quantity="{{ cart.item_count }}"
+  data-automation-enabled="{{ automation_enabled }}"
+  data-proxy-endpoint="/apps/rhino-quote-draft"
   data-pickup-policy-allowed="{{ pickup_allowed }}"
   data-pickup-variants="{{ pickup_variant_ids | strip | escape }}"
   data-pickup-location="1411 6th Ave"
@@ -61,6 +65,13 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
   data-string-captcha-failed="{{ 'sections.cart.quote_mode.captcha_failed' | t | escape }}"
   data-string-submission-failed="{{ 'sections.cart.quote_mode.submission_failed' | t | escape }}"
   data-string-challenge-waiting="{{ 'sections.cart.quote_mode.challenge_waiting' | t | escape }}"
+  data-string-automation-unavailable="{{ 'sections.cart.quote_mode.automation_unavailable' | t | escape }}"
+  data-string-cart-changed="{{ 'sections.cart.quote_mode.cart_changed' | t | escape }}"
+  data-string-confirmed="{{ 'sections.cart.quote_mode.draft_confirmed_status' | t | escape }}"
+  data-string-fallback-required="{{ 'sections.cart.quote_mode.fallback_required' | t | escape }}"
+  data-string-uncertain="{{ 'sections.cart.quote_mode.uncertain' | t | escape }}"
+  data-string-rejected="{{ 'sections.cart.quote_mode.rejected' | t | escape }}"
+  data-string-reference-template="{{ 'sections.cart.quote_mode.reference_status' | t | escape }}"
 >
   <h2 class="rhino-quote-mode__heading">{{ 'sections.cart.quote_mode.heading' | t }}</h2>
   <p class="rhino-quote-mode__intro">{{ 'sections.cart.quote_mode.intro' | t }}</p>
@@ -83,9 +94,15 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
         >
         <h3><label for="RhinoFulfillmentShipping">{{ 'sections.cart.quote_mode.shipping_heading' | t }}</label></h3>
       </div>
-      <p id="RhinoShippingQuoteDescription">{{ 'sections.cart.quote_mode.shipping_explanation' | t }}</p>
+      <p id="RhinoShippingQuoteDescription">
+        {%- if automation_enabled -%}
+          {{ 'sections.cart.quote_mode.shipping_explanation' | t }}
+        {%- else -%}
+          {{ 'sections.cart.quote_mode.shipping_explanation_email_only' | t }}
+        {%- endif -%}
+      </p>
       <p class="rhino-quote-mode__reference">
-        <span id="RhinoShippingQuoteReference">{{ 'sections.cart.quote_mode.reference_html' | t: reference: quote_reference }}</span>
+        <span id="RhinoShippingQuoteReference" data-rhino-reference-display>{{ 'sections.cart.quote_mode.reference_pending' | t }}</span>
       </p>
     </section>
 
@@ -136,7 +153,7 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
           {%- if form.posted_successfully? -%}
             <div class="rhino-quote-mode__success" role="status" tabindex="-1" data-rhino-quote-success>
               <h4>{{ 'sections.cart.quote_mode.success_heading' | t }}</h4>
-              <p>{{ 'sections.cart.quote_mode.success_body_html' | t: reference: quote_reference }}</p>
+              <p>{{ 'sections.cart.quote_mode.success_body' | t }} <strong data-rhino-email-confirmed-reference>{{ quote_reference }}</strong></p>
             </div>
           {%- else -%}
             {{ form.errors | default_errors }}
@@ -144,14 +161,19 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
 
             <input type="hidden" name="contact[request_type]" value="Temporary shipping quotation">
             <input type="hidden" name="contact[submission_path]" value="Email fallback - not stored as a Shopify Draft Order">
-            <input type="hidden" name="contact[quotation_reference]" value="{{ quote_reference | escape }}" data-rhino-quote-reference>
+            <input type="hidden" name="contact[quotation_reference]" value="" data-rhino-quote-reference>
             <input type="hidden" name="contact[cart_signature]" value="{{ cart_signature | strip | escape }}">
             <input type="hidden" name="contact[country]" value="US">
+            <input type="hidden" name="contact[name]" value="">
 
             <div class="rhino-quote-mode__fields">
               <div class="field">
-                <input class="field__input" autocomplete="name" type="text" id="RhinoQuoteName" name="contact[name]" required>
-                <label class="field__label" for="RhinoQuoteName">{{ 'sections.cart.quote_mode.name' | t }}</label>
+                <input class="field__input" autocomplete="given-name" type="text" id="RhinoQuoteFirstName" name="contact[first_name]" required>
+                <label class="field__label" for="RhinoQuoteFirstName">{{ 'sections.cart.quote_mode.first_name' | t }}</label>
+              </div>
+              <div class="field">
+                <input class="field__input" autocomplete="family-name" type="text" id="RhinoQuoteLastName" name="contact[last_name]" required>
+                <label class="field__label" for="RhinoQuoteLastName">{{ 'sections.cart.quote_mode.last_name' | t }}</label>
               </div>
               <div class="field">
                 <input class="field__input" autocomplete="email" type="email" id="RhinoQuoteEmail" name="contact[email]" required>
@@ -230,7 +252,7 @@ Renders the temporary Epic K shipping quotation and conditional Grafton pickup c
             </label>
 
             {%- capture quote_body -%}
-Shipping quotation request {{ quote_reference }}
+Shipping quotation request REFERENCE_PENDING
 Complete cart:
 {%- for item in cart.items %}
 - Product: {{ item.product.title }} | Variant: {{ item.variant.title }} | Variant ID: {{ item.variant.id }} | SKU: {{ item.sku | default: 'not supplied' }} | Quantity: {{ item.quantity }} | Merchandise line total: {{ item.final_line_price | money_with_currency }}
@@ -260,9 +282,32 @@ Invoice authorization: none. Do not invoice before shipping approval.
             <textarea name="contact[body]" hidden>{{ quote_body | strip | escape }}</textarea>
 
             <p class="rhino-quote-mode__status" role="status" aria-live="polite" aria-atomic="true" data-rhino-quote-status></p>
-            <button class="button button--full-width" type="submit" data-rhino-quote-submit>
-              {{ 'sections.cart.quote_mode.submit_quote' | t }}
-            </button>
+            <div class="rhino-quote-mode__success" role="status" tabindex="-1" data-rhino-draft-confirmation hidden>
+              <h4>{{ 'sections.cart.quote_mode.draft_success_heading' | t }}</h4>
+              <p>
+                {{ 'sections.cart.quote_mode.draft_success_intro' | t }}
+                <strong data-rhino-confirmed-reference></strong>
+                {{ 'sections.cart.quote_mode.draft_success_staff_label' | t }}
+                <strong data-rhino-confirmed-draft></strong>.
+              </p>
+              <p>{{ 'sections.cart.quote_mode.draft_success_next' | t }}</p>
+            </div>
+
+            <div class="rhino-quote-mode__submission-actions">
+              {%- if automation_enabled -%}
+                <button class="button button--full-width" type="button" data-rhino-draft-submit>
+                  {{ 'sections.cart.quote_mode.submit_draft' | t }}
+                </button>
+                <p class="caption-large">{{ 'sections.cart.quote_mode.email_fallback_explanation' | t }}</p>
+              {%- endif -%}
+              <button class="button button--secondary button--full-width" type="submit" data-rhino-email-submit data-rhino-quote-submit>
+                {%- if automation_enabled -%}
+                  {{ 'sections.cart.quote_mode.submit_email_fallback' | t }}
+                {%- else -%}
+                  {{ 'sections.cart.quote_mode.submit_quote' | t }}
+                {%- endif -%}
+              </button>
+            </div>
           {%- endif -%}
         </div>
   </section>

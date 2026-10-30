@@ -75,7 +75,19 @@ function validateK1d02() {
   if (!shopify.includes(`${contract.hosting.workerUrl}/health`)) errors.push('Shopify app config lacks the verified Worker health URL.');
   if (!shopify.includes('[app_proxy]') || !shopify.includes(`${contract.hosting.workerUrl}${contract.shopify.proxyDestinationPath}`)) errors.push('Shopify app config lacks the provisioned app proxy destination.');
   if (/shpat_|SHOPIFY_API_SECRET\s*[:=]\s*["'][^"']+/i.test(`${worker}\n${browserSources}`)) errors.push('A committed Admin credential appears in runtime or storefront source.');
-  if (browserSources.includes('/apps/rhino-quote-draft')) errors.push('Storefront automation must remain disabled until the provisioned backend is verified.');
+  if (browserSources.includes('/apps/rhino-quote-draft')) {
+    const themeSettings = json('config/settings_schema.json').flatMap((group) => group.settings || []);
+    const activation = themeSettings.find((setting) => setting.id === 'rhino_quote_draft_automation_enabled');
+    const k1d03Path = path.join(ROOT, 'data/epic-k-k1d03-storefront-readiness.json');
+    const k1d03 = fs.existsSync(k1d03Path) ? json('data/epic-k-k1d03-storefront-readiness.json') : null;
+    if (!activation || activation.default !== false) errors.push('K1D-03 storefront automation must default to disabled.');
+    if (!k1d03?.acceptance?.backendIntegrationAccepted || !k1d03?.acceptance?.customerStorefrontFormIntegrated) {
+      errors.push('The app-proxy storefront path requires an explicit K1D-03 integration-readiness contract.');
+    }
+    if (k1d03?.acceptance?.actualBrowserSubmissionAccepted !== false || k1d03?.production?.activated !== false) {
+      errors.push('K1D-03 cannot promote live browser or production acceptance through the historical K1D-02 contract.');
+    }
+  }
   if (contract.state === 'CORRECTED_ACCEPTANCE_AWAITING_SECURE_INPUTS') {
     const requiredTrue = ['cloudflareAccountAuthorized', 'd1Provisioned', 'migrationApplied', 'workerDeployed', 'shopifyAppCreated', 'shopifyAppVersionReleased', 'shopifyAppInstalled', 'scopesConfigured', 'scopesGranted', 'protectedCustomerDataApproved', 'secretBound', 'appProxyReleased', 'clientCredentialsVerified', 'directSignedRequestVerified', 'invalidSignatureRejected', 'expiredSignatureRejected', 'shopifyProxyForwardingVerified', 'shopifyGeneratedProxyRequestVerified', 'proxyPathCompatibilityVerified'];
     const requiredFalse = ['storefrontClientEnabled', 'controlledDraftCreated', 'previewAccepted'];
