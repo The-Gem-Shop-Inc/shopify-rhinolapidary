@@ -8,7 +8,7 @@ Source: `Rhino Lapidary Storefront Backlog and Epics.md`
 |---:|---|---|---|---|
 | 1 | K-PBI-001 | Fulfillment policy governance and decision traceability | Complete for repository governance | K1A contracts and Product Owner decisions are versioned and validated. |
 | 2 | K-PBI-002 | Policy, operational evidence, and configuration validation | Partial | Offline policy, evidence intake, source mapping, October 24 audit, and drift/preflight gates exist. Eight operational evidence requirements remain blocked and live checkout enforcement remains unverified. |
-| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-03A real storefront acceptance passed; ready for separately authorized K1D-04 production activation | One genuine preview-form submission created exactly one `OPEN`, `Unquoted` Draft Order `#D3` for reference `KQ-6D418804E7DCD1FEEAAAC48E-3`. Shopify Admin and D1 match at `COMPLETED`, attempt `1`; refresh recovery generated zero additional proxy requests or drafts. A confirmation-visibility defect found after refresh was repaired and verified on unpublished preview theme `158631198917`. Draft `#D2` and production theme `158579622085` remain unchanged. Production automation and publication are not accepted. |
+| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-04P release package prepared; production activation blocked | K1D-03A remains accepted. K1D-04P adds a hash-pinned 11-file MAIN manifest, generated live-file merges, exact backup/rollback procedure, checkout matrix, and employee checklist. Current read-only evidence confirms MAIN/preview roles, zero Requires-shipping Variant flags, and untouched drafts `#D2`/`#D3`, but the narrow app cannot read current profiles/Markets/pickup and direct `/checkout` remains reachable without a server validation Function. Production mutation is not authorized or complete. |
 
 ## K1C-01 acceptance
 
@@ -124,3 +124,13 @@ The English storefront workflow is implemented. The repository's 50 non-default 
 - `#D3` has no shipping line, invoice, payment, completed Order, fulfillment, or inventory reservation. Draft `#D2` remains unchanged. Shipping and pickup settings were not modified.
 - Production readback remains historical: cart-footer hash `50d68da1aeb8a1e7c736fbe6a04ae0f56eabe6aa14b3f331e503e944b19f197d`, no Draft Order client, and no automation setting. K1D-03A is accepted; production activation remains a separate K1D-04 authorization and is not complete.
 - Sanitized live evidence is `docs/qa/evidence/epic-k/k1d03a-storefront-2026-10-30/acceptance-success.json`; the confirmation-only screenshot contains no contact data or authenticated URL.
+
+## K1D-04P production release readiness checkpoint
+
+- Authenticated read-only checks on November 5 reverified canonical store `sz5dnk-nf.myshopify.com`, MAIN theme `158579622085`, unpublished preview `158631198917`, 125 current Variants with zero non-gift-card `requiresShipping: false` records, and unchanged accepted drafts `#D2` and `#D3`.
+- The quotation app's intentionally narrow scopes cannot read delivery profiles, Markets, locations/pickup, or discounts. The October configuration snapshot remains historical and is not current proof. A current Shopify Functions query returns zero installed Functions.
+- Production still reaches direct Shopify checkout and exposes current cart checkout surfaces. Bounded Ajax probes on the accepted two-Variant cart found no Wisconsin, Alaska, Hawaii, or Canada rate, but this does not prove all profiles or entry points. Current Admin configuration readback and complete checkout enforcement are release blockers.
+- The minimal release manifest contains 11 files. Four production-divergent files are generated as narrow merges from a fresh MAIN pull; preview/repository `settings_data.json`, cart drawer, locale, and settings schema are never copied wholesale.
+- Exact rollback restores six byte-for-byte backups and deletes the five paths that were absent before release. Operator file-deletion capability is a release precondition.
+- `K-PBI-002` remains partial and separate. Employee carrier/packaging/insurance/tagging evidence can continue after quotation-code preparation, but complete current shipping configuration and no-payment bypass proof block activation.
+- K1D-04P performed zero theme, shipping, Draft Order, invoice, payment, order, or publication mutations. Product Owner production authorization has not been requested or consumed; production activation is not complete.

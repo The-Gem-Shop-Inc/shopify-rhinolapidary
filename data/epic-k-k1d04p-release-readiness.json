@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-04P",
+  "asOf": "2026-11-05",
+  "state": "PREPARED_NOT_AUTHORIZED_OR_READY_FOR_PRODUCTION_MUTATION",
+  "store": "sz5dnk-nf.myshopify.com",
+  "productionThemeId": "158579622085",
+  "previewThemeId": "158631198917",
+  "productionThemeRole": "live",
+  "previewThemeRole": "unpublished",
+  "productionActivationComplete": false,
+  "productionMutationPerformed": false,
+  "acceptedBaseline": {
+    "k1d02tPreserved": true,
+    "k1d03aPreserved": true,
+    "draftD2Untouched": true,
+    "draftD3Untouched": true,
+    "previewBehaviorAccepted": true
+  },
+  "currentAudit": {
+    "evidence": "docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/current-shopify-audit.json",
+    "canonicalStoreVerified": true,
+    "themeRolesVerified": true,
+    "allPhysicalVariantsRequireShipping": true,
+    "activeVariantCount": 79,
+    "potentialRequiresShippingBypassVariantCount": 0,
+    "deliveryProfilesCurrentAdminReadback": "BLOCKED_BY_CURRENT_APP_SCOPE",
+    "marketsCurrentAdminReadback": "BLOCKED_BY_CURRENT_APP_SCOPE",
+    "locationsCurrentAdminReadback": "BLOCKED_BY_CURRENT_APP_SCOPE",
+    "discountsCurrentAdminReadback": "BLOCKED_BY_CURRENT_APP_SCOPE",
+    "serverValidationFunctionCount": 0,
+    "directCheckoutReachable": true,
+    "historicalOctoberSnapshotUsedAsCurrentProof": false
+  },
+  "release": {
+    "manifest": "data/epic-k-k1d04p-release-manifest.json",
+    "fileCount": 11,
+    "repositorySettingsDefaultEnabled": false,
+    "productionSettingActivation": "single-key merge only",
+    "fullSettingsDataReplacement": false,
+    "fullThemePublication": false,
+    "englishOnly": true
+  },
+  "blockingPreconditions": [
+    {
+      "id": "K1D04-B01",
+      "summary": "Capture a same-window authenticated Admin readback of delivery profiles, zones, rates, Markets shipping, locations, pickup, and applicable backup rates.",
+      "reason": "The installed quotation app intentionally lacks the Admin scopes required for those objects; the historical October snapshot is not current proof.",
+      "requiredBeforeActivation": true
+    },
+    {
+      "id": "K1D04-B02",
+      "summary": "Prove that every shipped cart has no payable checkout path before quotation, including direct /checkout and other installed entry points.",
+      "reason": "MAIN currently reaches native checkout and no Shopify validation Function is installed. Hidden theme buttons alone are not enforcement.",
+      "requiredBeforeActivation": true
+    },
+    {
+      "id": "K1D04-B03",
+      "summary": "Verify or remediate any current shipping rate/profile that allows payment, while retaining eligible Grafton pickup.",
+      "reason": "A complete live profile audit is unavailable under the current narrow app scope; no rate mutation is authorized in K1D-04P.",
+      "requiredBeforeActivation": true
+    },
+    {
+      "id": "K1D04-B04",
+      "summary": "Confirm the release operator can delete the five newly created theme files during rollback.",
+      "reason": "Restoring changed files alone would not restore their prior absence; the app has no write_themes scope and no scope change is proposed.",
+      "requiredBeforeActivation": true
+    }
+  ],
+  "trackedAfterQuotationRelease": [
+    "K-PBI-002 operational carrier, packaging, insurance, pickup, restricted-item, and staff evidence remains separate and incomplete.",
+    "Non-English quotation localization remains out of release scope."
+  ],
+  "authorization": {
+    "developmentAndReadOnlyAuditAuthorized": true,
+    "productionThemeMutationAuthorized": false,
+    "productionSettingMutationAuthorized": false,
+    "shippingConfigurationMutationAuthorized": false,
+    "draftOrderMutationAuthorized": false,
+    "requiredReleaseAuthorizationScope": "The exact hash-pinned 11-file MAIN change, single settings-data key enablement, and only any separately enumerated shipping-profile remediation proven necessary by the same-window preflight."
+  }
+}

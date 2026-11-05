@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-04P",
+  "store": "sz5dnk-nf.myshopify.com",
+  "sourceThemeId": "158631198917",
+  "destinationThemeId": "158579622085",
+  "destinationRole": "live",
+  "preparedAt": "2026-11-05",
+  "activationAuthorized": false,
+  "publishCommandAllowed": false,
+  "fullThemePushAllowed": false,
+  "settingsDataReplacementAllowed": false,
+  "files": [
+    {
+      "path": "assets/rhino-quote-draft-client.js",
+      "operation": "create_from_repository",
+      "expectedProductionSha256": null,
+      "sourceSha256": "f3edb075e5d402b78408c1bab01f81a596d90ab41d89ca32dd5c669f5961f936"
+    },
+    {
+      "path": "assets/rhino-quote-mode.js",
+      "operation": "create_from_repository",
+      "expectedProductionSha256": null,
+      "sourceSha256": "e0fafee0f67f0edf2f5ee0de6ec0586cb3d236f7966ebd4c8e051b5fbfff6837"
+    },
+    {
+      "path": "assets/rhino-quote-mode.css",
+      "operation": "create_from_repository",
+      "expectedProductionSha256": null,
+      "sourceSha256": "ff039143b33db5480b180bc9dc443e9950349925256ba0a546cb6d705795a187"
+    },
+    {
+      "path": "snippets/rhino-quote-checkout.liquid",
+      "operation": "create_from_repository",
+      "expectedProductionSha256": null,
+      "sourceSha256": "0bbf9cf2617b8f448d76fc88165cdac48a30844083e64cee6db50b8b723c046e"
+    },
+    {
+      "path": "snippets/rhino-quote-pickup-eligibility.liquid",
+      "operation": "create_from_repository",
+      "expectedProductionSha256": null,
+      "sourceSha256": "91443dcf5315e2889123394522b425c71b55065333f9e69e474132432abc37c8"
+    },
+    {
+      "path": "sections/main-cart-footer.liquid",
+      "operation": "replace_from_repository",
+      "expectedProductionSha256": "50d68da1aeb8a1e7c736fbe6a04ae0f56eabe6aa14b3f331e503e944b19f197d",
+      "sourceSha256": "27673350e8386e73b9a8a26f82f7af63a7a30b056137da77fc4f9664d2f6c391"
+    },
+    {
+      "path": "snippets/buy-buttons.liquid",
+      "operation": "replace_from_repository",
+      "expectedProductionSha256": "3a8f658b979919a8d8552966cdbaaee87390f79f8e88c7384bcf392f73fdea82",
+      "sourceSha256": "1bb1022dc249bf662e8bbd40210c48171d6096db7559715fc851ab934719fc2c"
+    },
+    {
+      "path": "snippets/cart-drawer.liquid",
+      "operation": "merge_k1d_controls_into_live",
+      "expectedProductionSha256": "c1091354befbffa1bc0ed114d978377c436b8dc47e8e9eb348a843845d619c9a",
+      "sourceSha256": null
+    },
+    {
+      "path": "locales/en.default.json",
+      "operation": "merge_english_quote_mode_into_live",
+      "expectedProductionSha256": "8582cd842717eae5f2e2f56c6e0337711246d82c75899c3362a8372f63f5fbcb",
+      "sourceSha256": null
+    },
+    {
+      "path": "config/settings_schema.json",
+      "operation": "insert_single_disabled_checkbox_into_live",
+      "expectedProductionSha256": "a46a21688a4e42a34c16c8a8037795562b9b1b56259cb9f3b616adbd0ad055d9",
+      "sourceSha256": null
+    },
+    {
+      "path": "config/settings_data.json",
+      "operation": "set_single_current_key_true_on_live_copy",
+      "expectedProductionSha256": "74de2b23899b7db09eac0a27ee66e43fcaa2fad01ede7bd1724ab1a1996e4db5",
+      "sourceSha256": null,
+      "allowedMutation": "current.rhino_quote_draft_automation_enabled: absent -> true"
+    }
+  ],
+  "uploadOrder": [
+    "assets/rhino-quote-draft-client.js",
+    "assets/rhino-quote-mode.js",
+    "assets/rhino-quote-mode.css",
+    "snippets/rhino-quote-checkout.liquid",
+    "snippets/rhino-quote-pickup-eligibility.liquid",
+    "snippets/buy-buttons.liquid",
+    "snippets/cart-drawer.liquid",
+    "locales/en.default.json",
+    "config/settings_schema.json",
+    "sections/main-cart-footer.liquid",
+    "config/settings_data.json"
+  ],
+  "rollback": {
+    "restoreExistingFromExactBackup": [
+      "sections/main-cart-footer.liquid",
+      "snippets/buy-buttons.liquid",
+      "snippets/cart-drawer.liquid",
+      "locales/en.default.json",
+      "config/settings_schema.json",
+      "config/settings_data.json"
+    ],
+    "deleteFilesAbsentBeforeRelease": [
+      "assets/rhino-quote-draft-client.js",
+      "assets/rhino-quote-mode.js",
+      "assets/rhino-quote-mode.css",
+      "snippets/rhino-quote-checkout.liquid",
+      "snippets/rhino-quote-pickup-eligibility.liquid"
+    ]
+  }
+}

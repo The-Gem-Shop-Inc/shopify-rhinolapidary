@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-04P",
+  "asOf": "2026-11-05",
+  "productionThemeId": "158579622085",
+  "writeScenariosMocked": true,
+  "paymentSubmitted": false,
+  "orderCompleted": false,
+  "cases": [
+    { "case": "one_shippable_product", "automation": "live storefront cart plus Ajax rates and direct /checkout; no payment", "releaseExpectation": "quotation only unless whole-cart Grafton pickup is eligible", "status": "PARTIAL_CURRENT_EVIDENCE" },
+    { "case": "multiple_shippable_products", "automation": "live accepted two-Variant cart plus Ajax rates and direct /checkout; no payment", "releaseExpectation": "quotation only unless every line is pickup eligible", "status": "PARTIAL_CURRENT_EVIDENCE" },
+    { "case": "mixed_machine_and_accessory", "automation": "live storefront cart/rate probe selected from current active Admin variants", "releaseExpectation": "quotation; pickup only if every line is eligible", "status": "REQUIRES_SAME_WINDOW_RERUN" },
+    { "case": "discounted_merchandise", "automation": "K1D-03 mocked discount preservation/explicit exception regression", "releaseExpectation": "supported code preserved; unsupported representation deliberately falls back", "status": "MOCKED_PASS_LIVE_PROFILE_AUDIT_REQUIRED" },
+    { "case": "residential_destination", "automation": "K1D-03 payload regression", "releaseExpectation": "addressType residential preserved; no shipping payment", "status": "MOCKED_PASS" },
+    { "case": "commercial_destination", "automation": "K1D-03 and K1D-03A", "releaseExpectation": "addressType commercial preserved; no shipping payment", "status": "LIVE_QUOTATION_ACCEPTED" },
+    { "case": "alaska", "automation": "live Ajax rate probe plus mocked quotation mapping", "releaseExpectation": "quotation, never legacy flat-rate payment", "status": "PARTIAL_CURRENT_EVIDENCE" },
+    { "case": "hawaii", "automation": "live Ajax rate probe plus mocked quotation mapping", "releaseExpectation": "quotation, never legacy flat-rate payment", "status": "PARTIAL_CURRENT_EVIDENCE" },
+    { "case": "international", "automation": "live Canada Ajax rate probe", "releaseExpectation": "no checkout shipping option and no international fulfillment promise", "status": "PARTIAL_CURRENT_EVIDENCE" },
+    { "case": "requires_shipping_misconfiguration", "automation": "current Admin read of all 125 Variants", "releaseExpectation": "zero non-gift-card Variants with requiresShipping false", "status": "PASS_ZERO_FLAGGED" },
+    { "case": "unavailable_pickup_inventory", "automation": "K1C/K1D mocked pickup endpoint regression", "releaseExpectation": "no pickup checkout", "status": "MOCKED_PASS_CURRENT_LOCATION_AUDIT_BLOCKED" },
+    { "case": "eligible_grafton_pickup", "automation": "live pickup endpoint probe plus K1C/K1D regression", "releaseExpectation": "native checkout and immediate payment remain available", "status": "PARTIAL_CURRENT_EVIDENCE" },
+    { "case": "cart_drawer_checkout", "automation": "MAIN source readback and release-candidate merge test", "releaseExpectation": "review cart link; no direct checkout control", "status": "MAIN_CURRENTLY_BYPASSES_CANDIDATE_FIX_PREPARED" },
+    { "case": "product_buy_it_now", "automation": "MAIN browser/source readback and release candidate", "releaseExpectation": "dynamic checkout disabled", "status": "CANDIDATE_FIX_PREPARED" },
+    { "case": "dynamic_and_accelerated_checkout", "automation": "MAIN cart/product browser readback and K1D regression", "releaseExpectation": "not rendered by released theme", "status": "MAIN_CART_SURFACE_PRESENT_CANDIDATE_FIX_PREPARED" },
+    { "case": "direct_checkout_navigation", "automation": "live GET /checkout; no payment", "releaseExpectation": "must still have no payable shipping route", "status": "BLOCKER_REACHABLE_NO_SERVER_VALIDATION_FUNCTION" },
+    { "case": "other_app_or_checkout_entry", "automation": "current Shopify Functions query and source inspection", "releaseExpectation": "no entry point can produce payable shipped checkout", "status": "BLOCKED_REQUIRES_STAFF_ADMIN_INVENTORY_AND_MANUAL_TEST" }
+  ],
+  "conclusion": "Theme controls are necessary but insufficient. Activation is blocked until a same-window Admin profile/Markets/pickup audit and no-payment checkout test prove that direct or app-originated checkout cannot obtain a shippable payment path."
+}

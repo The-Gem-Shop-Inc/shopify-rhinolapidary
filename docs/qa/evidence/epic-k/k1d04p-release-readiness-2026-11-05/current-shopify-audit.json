@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-04P",
+  "collectedAt": "2026-11-05T16:02:13.044Z",
+  "store": {
+    "canonicalDomain": "sz5dnk-nf.myshopify.com",
+    "identityVerified": true,
+    "currency": "USD",
+    "timezone": "America/Chicago",
+    "plan": "Basic",
+    "shopifyPlus": false
+  },
+  "authorization": {
+    "readOnlyAuditAuthorized": true,
+    "productionThemeMutationAuthorized": false,
+    "shippingConfigurationMutationAuthorized": false,
+    "draftOrderMutationAuthorized": false
+  },
+  "app": {
+    "scopes": [
+      "read_app_proxy",
+      "read_draft_orders",
+      "read_products",
+      "write_app_proxy",
+      "write_draft_orders"
+    ],
+    "scopeChanged": false
+  },
+  "themes": [
+    {
+      "id": "158579622085",
+      "name": "shopify-rhinolapidary/main",
+      "role": "live",
+      "processing": false
+    },
+    {
+      "id": "158572150981",
+      "name": "Horizon",
+      "role": "unpublished",
+      "processing": false
+    },
+    {
+      "id": "158572347589",
+      "name": "Trade",
+      "role": "unpublished",
+      "processing": false
+    },
+    {
+      "id": "158631198917",
+      "name": "Rhino Lapidary - Preview",
+      "role": "unpublished",
+      "processing": false
+    },
+    {
+      "id": "160251707589",
+      "name": "shopify-rhinolapidary/dev",
+      "role": "unpublished",
+      "processing": true
+    }
+  ],
+  "variants": {
+    "queryStatus": "complete",
+    "variantCount": 125,
+    "activeVariantCount": 79,
+    "requiresShippingTrueCount": 125,
+    "nonGiftCardRequiresShippingFalseCount": 0,
+    "potentialBypassVariants": [],
+    "testVariants": [
+      {
+        "variantId": "46484249903301",
+        "quantity": 1,
+        "handle": "bonded-diamond-wheel-220",
+        "active": true,
+        "availableForSale": true,
+        "requiresShipping": true
+      },
+      {
+        "variantId": "46484250001605",
+        "quantity": 2,
+        "handle": "bonded-diamond-wheel-80",
+        "active": true,
+        "availableForSale": true,
+        "requiresShipping": true
+      }
+    ]
+  },
+  "configuration": {
+    "deliveryProfiles": {
+      "queryStatus": "inaccessible_current_app_scope",
+      "recordCount": null
+    },
+    "markets": {
+      "queryStatus": "inaccessible_current_app_scope",
+      "recordCount": null
+    },
+    "locations": {
+      "queryStatus": "inaccessible_current_app_scope",
+      "recordCount": null
+    },
+    "discounts": {
+      "queryStatus": "inaccessible_current_app_scope",
+      "recordCount": null
+    },
+    "shopifyFunctions": {
+      "queryStatus": "complete",
+      "recordCount": 0
+    }
+  },
+  "storefront": {
+    "cart": {
+      "lineCount": 2,
+      "totalQuantity": 3,
+      "discountsPresent": false,
+      "sellingPlansPresent": false
+    },
+    "rates": [
+      {
+        "destination": "contiguous_us_wisconsin",
+        "httpStatus": 200,
+        "rates": [],
+        "available": false
+      },
+      {
+        "destination": "alaska",
+        "httpStatus": 200,
+        "rates": [],
+        "available": false
+      },
+      {
+        "destination": "hawaii",
+        "httpStatus": 200,
+        "rates": [],
+        "available": false
+      },
+      {
+        "destination": "international_canada",
+        "httpStatus": 200,
+        "rates": [],
+        "available": false
+      }
+    ],
+    "pickup": [
+      {
+        "variantId": "46484249903301",
+        "httpStatus": 200,
+        "graftonMentioned": true,
+        "pickupAvailableTextPresent": true
+      },
+      {
+        "variantId": "46484250001605",
+        "httpStatus": 200,
+        "graftonMentioned": true,
+        "pickupAvailableTextPresent": true
+      }
+    ],
+    "product": {
+      "nativeAddToCartPresent": true,
+      "acceleratedCheckoutCount": 0,
+      "cartDrawerCheckoutCount": 0,
+      "cartDrawerReviewCartLinkCount": 0
+    },
+    "cartPage": {
+      "quoteComponentCount": 0,
+      "enabledNativeCheckoutCount": 1,
+      "acceleratedCheckoutCount": 2,
+      "draftAutomationEnabledCount": 0
+    },
+    "directCheckout": {
+      "reachedShopifyCheckout": true,
+      "authenticatedUrlPersisted": false,
+      "paymentSubmitted": false,
+      "orderCompleted": false
+    },
+    "observed": {
+      "proxyPosts": 0,
+      "contactPosts": 0,
+      "paymentOrCompletionPosts": 0
+    }
+  },
+  "acceptedDrafts": [
+    {
+      "name": "#D2",
+      "status": "OPEN",
+      "unquotedTagPresent": true,
+      "modifiedSinceCreation": false,
+      "shippingLineAbsent": true,
+      "invoiceAbsent": true,
+      "completionAbsent": true,
+      "reservationAbsent": true
+    },
+    {
+      "name": "#D3",
+      "status": "OPEN",
+      "unquotedTagPresent": true,
+      "modifiedSinceCreation": false,
+      "shippingLineAbsent": true,
+      "invoiceAbsent": true,
+      "completionAbsent": true,
+      "reservationAbsent": true
+    }
+  ],
+  "conclusions": {
+    "obsoleteEightDollarRateExposed": false,
+    "obsoleteFifteenDollarRateExposed": false,
+    "internationalRateExposed": false,
+    "directCheckoutBypassExists": true,
+    "serverSideValidationFunctionObserved": false,
+    "currentAdminConfigurationFullyAudited": false
+  },
+  "safety": {
+    "adminGraphqlMutations": 0,
+    "productionThemeWrites": 0,
+    "shippingConfigurationWrites": 0,
+    "draftOrdersCreatedOrModified": 0,
+    "proxyPosts": 0,
+    "contactPosts": 0,
+    "paymentOrCompletionPosts": 0,
+    "invoicesSent": 0,
+    "paymentsCollected": 0,
+    "ordersCompleted": 0,
+    "customerValuesPersisted": false,
+    "credentialsPersisted": false,
+    "authenticatedUrlsPersisted": false
+  }
+}
