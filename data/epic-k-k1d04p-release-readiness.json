@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "batch": "K1D-04P-R",
+  "batch": "K1D-04P-S",
   "asOf": "2026-11-05",
-  "state": "PUBLISHED_PREPARATION_BLOCKED_ACCESS_AND_BLOCKED_TEST",
+  "state": "READY_FOR_OWNER_RELEASE_AUTHORIZATION",
   "store": "sz5dnk-nf.myshopify.com",
   "productionThemeId": "158579622085",
   "previewThemeId": "158631198917",
@@ -13,7 +13,7 @@
   "gitPublication": {
     "status": "PASS",
     "branch": "epic-k/k1d02p-provision-quotation-infrastructure",
-    "sha": "7aea10667b7f7f7f2ed7e30c0b2fa12a617f95a5",
+    "sha": "8d46b87fd452d7585357984bf9057a3c101531ff",
     "remoteVerified": true,
     "forcePushUsed": false
   },
@@ -26,10 +26,13 @@
   },
   "currentAudit": {
     "evidence": "docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/current-shopify-audit.json",
+    "connectedAdminEvidence": "docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/connected-shopify-delivery-evidence-2026-11-05.json",
     "enforcementEvidence": "docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/shipping-enforcement-audit.json",
+    "checkoutEvidence": "docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/checkout-enforcement-2026-11-05.json",
     "canonicalStoreVerified": true,
     "themeRolesVerified": true,
     "allPhysicalVariantsRequireShipping": true,
+    "variantCount": 125,
     "activeVariantCount": 79,
     "potentialRequiresShippingBypassVariantCount": 0,
     "configurationModel": "LEGACY_DELIVERY_PROFILES_WITH_MARKETS_COUNTRY_COVERAGE",
@@ -37,16 +40,24 @@
     "deliveryProfilesFeature": true,
     "unifiedMarkets": true,
     "configurationModelStatus": "PASS",
-    "deliveryProfilesCurrentAdminReadback": "BLOCKED_ACCESS",
-    "marketsCurrentAdminReadback": "BLOCKED_ACCESS",
-    "locationsCurrentAdminReadback": "BLOCKED_ACCESS",
-    "discountsCurrentAdminReadback": "BLOCKED_ACCESS",
-    "expandedCheckoutMatrix": "BLOCKED_TEST",
-    "payableShippingBypassConclusion": "UNKNOWN_BLOCKED_TEST",
-    "rollbackProductionRestorePermission": "BLOCKED_ACCESS",
-    "rollbackProductionDeletePermission": "BLOCKED_ACCESS",
+    "configurationEvidenceStatus": "PASS_RELAYED_CONNECTED_INTEGRATION",
+    "configurationEvidenceIndependentlyReproduced": false,
+    "profileCount": 2,
+    "zoneCount": 3,
+    "activeMarketCount": 1,
+    "shippingMethodCount": 0,
+    "rateDefinitionCount": 0,
+    "carrierParticipantDefinitionCount": 0,
+    "shippingDiscountCount": 0,
+    "checkoutMatrix": "PASS",
+    "payableShippingBypassConclusion": "NO_BYPASS_VERIFIED",
+    "eligibleGraftonPickup": "PASS",
+    "unavailablePickupCurrentState": "NOT_APPLICABLE_CURRENT_STATE",
+    "rollbackProductionRestorePermission": "PASS",
+    "rollbackProductionDeletePermission": "PASS",
     "serverValidationFunctionCount": 0,
     "directCheckoutReachable": true,
+    "directCheckoutShippingPaymentAvailable": false,
     "historicalOctoberSnapshotUsedAsCurrentProof": false
   },
   "release": {
@@ -58,30 +69,27 @@
     "fullThemePublication": false,
     "englishOnly": true
   },
-  "blockingPreconditions": [
+  "blockingPreconditions": [],
+  "activationPreconditions": [
     {
-      "id": "K1D04-B01",
-      "summary": "Capture a same-window authenticated Admin readback of delivery profiles, zones, rates, Markets shipping, locations, pickup, and applicable backup rates.",
-      "reason": "The installed quotation app intentionally lacks the Admin scopes required for those objects; the historical October snapshot is not current proof.",
-      "requiredBeforeActivation": true
+      "id": "K1D04-A01",
+      "summary": "Obtain explicit Product Owner authorization for the hash-pinned 11-path MAIN release and one-key automation enablement.",
+      "requiredBeforeProductionMutation": true
     },
     {
-      "id": "K1D04-B02",
-      "summary": "Prove that every shipped cart has no payable checkout path before quotation, including direct /checkout and other installed entry points.",
-      "reason": "MAIN currently reaches native checkout and no Shopify validation Function is installed. Hidden theme buttons alone are not enforcement.",
-      "requiredBeforeActivation": true
+      "id": "K1D04-A02",
+      "summary": "Capture a same-window connected-Admin refresh confirming two profiles, zero methods/rates/participants, one US Market, zero discounts, and unchanged locations.",
+      "requiredBeforeProductionMutation": true
     },
     {
-      "id": "K1D04-B03",
-      "summary": "Verify or remediate any current shipping rate/profile that allows payment, while retaining eligible Grafton pickup.",
-      "reason": "A complete live profile audit is unavailable under the current narrow app scope; no rate mutation is authorized in K1D-04P.",
-      "requiredBeforeActivation": true
+      "id": "K1D04-A03",
+      "summary": "Pull MAIN immediately before release and require every existing-file hash and prior-absence check to match the manifest.",
+      "requiredBeforeProductionMutation": true
     },
     {
-      "id": "K1D04-B04",
-      "summary": "Confirm the release operator can delete the five newly created theme files during rollback.",
-      "reason": "Restoring changed files alone would not restore their prior absence; the app has no write_themes scope and no scope change is proposed.",
-      "requiredBeforeActivation": true
+      "id": "K1D04-A04",
+      "summary": "Have a second person verify the candidate, exact backup, rollback targets, and production destination before the selective push.",
+      "requiredBeforeProductionMutation": true
     }
   ],
   "trackedAfterQuotationRelease": [
@@ -94,6 +102,6 @@
     "productionSettingMutationAuthorized": false,
     "shippingConfigurationMutationAuthorized": false,
     "draftOrderMutationAuthorized": false,
-    "requiredReleaseAuthorizationScope": "The exact hash-pinned 11-file MAIN change, single settings-data key enablement, and only any separately enumerated shipping-profile remediation proven necessary by the same-window preflight."
+    "requiredReleaseAuthorizationScope": "The exact hash-pinned 11-file MAIN change and single settings-data key enablement. No shipping-profile remediation is currently required."
   }
 }

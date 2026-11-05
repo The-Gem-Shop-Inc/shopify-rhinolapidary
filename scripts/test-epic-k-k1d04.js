@@ -102,8 +102,11 @@ after`;
   assert.match(validateEnforcementGate(unidentified, readiness, manifest, now).join('\n'), /not identified/);
   const falseReadyState = clone(readiness);
   falseReadyState.state = 'READY_FOR_PRODUCTION';
-  assert.match(validateEnforcementGate(enforcement, falseReadyState, manifest, now).join('\n'), /explicitly blocked/);
+  const unresolvedEnforcement = clone(enforcement);
+  unresolvedEnforcement.authoritativeConfigurationInventory.profiles.status = 'BLOCKED_ACCESS';
+  assert.match(validateEnforcementGate(unresolvedEnforcement, falseReadyState, manifest, now).join('\n'), /explicitly blocked/);
   const falseReadyClaim = clone(enforcement);
+  falseReadyClaim.authoritativeConfigurationInventory.rates.status = 'BLOCKED_ACCESS';
   falseReadyClaim.releaseDisposition.productionReady = true;
   assert.match(validateEnforcementGate(falseReadyClaim, readiness, manifest, now).join('\n'), /unsupported/);
   const bypass = clone(enforcement);
@@ -113,7 +116,12 @@ after`;
   unpublished.gitPublication.remoteSha = '0000000000000000000000000000000000000000';
   assert.match(validateEnforcementGate(unpublished, readiness, manifest, now).join('\n'), /not proven published/);
 
-  console.log('Epic K1D-04 release, rollback, and evidence-gate tests: 12/12 passed.');
+  const pickupPayment = clone(enforcement);
+  pickupPayment.storefrontEvidence.completedRepresentativeMatrix.domesticDirectCheckoutContext = 'GRAFTON_PICKUP_ONLY';
+  pickupPayment.storefrontEvidence.payableShippingBypassConclusion = 'NO_BYPASS_VERIFIED';
+  assert.equal(validateEnforcementGate(pickupPayment, readiness, manifest, now).length, 0);
+
+  console.log('Epic K1D-04 release, rollback, and evidence-gate tests: 13/13 passed.');
 }
 
 run();

@@ -4,15 +4,15 @@ Date: 2026-11-05
 Store: `sz5dnk-nf.myshopify.com`  
 MAIN theme: `158579622085`  
 Accepted preview theme: `158631198917`  
-State: **prepared; production mutation not authorized; blocking preconditions remain**
+State: **READY_FOR_OWNER_RELEASE_AUTHORIZATION; production mutation not authorized or performed**
 
 ## Current production assessment
 
 Authenticated read-only operations reverified the canonical Basic-plan store, MAIN and unpublished theme roles, all 125 current Variants, and Draft Orders `#D2` and `#D3`. All 125 Variants currently report `requiresShipping: true`; 79 belong to active Products, and no non-gift-card Variant is flagged as a Requires-shipping bypass. `#D2` and `#D3` remain `OPEN`, `Unquoted`, uninvoiced, uncompleted, unreserved, and without a shipping line.
 
-The quotation app intentionally has only its narrow proxy, Product, and Draft Order scopes. It cannot read delivery profiles, Markets, locations/pickup, or discounts. Consequently, the October 27 snapshot is preserved as history but is not treated as proof of current configuration. A current Shopify Functions query is accessible and returns zero functions.
+The quotation app intentionally retains only its narrow proxy, Product, and Draft Order scopes. Its access-denied result remains historical evidence of that scope boundary. On November 5, the Product Owner supplied a current read-only Admin GraphQL snapshot from the separately connected Rhino Lapidary Shopify integration. This environment did not independently execute those scoped queries. The snapshot records two delivery profiles, three zones, all 125 assigned Variants, one active US Market, zero discounts, and zero shipping methods, carrier participant definitions, or rate definitions. The October 27 snapshot is not used as current proof. The separately accessible Shopify Functions query returns zero functions.
 
-The production storefront still exposes native cart checkout surfaces and direct `/checkout` reaches Shopify checkout. The accepted two-Variant cart returned no Ajax shipping rates for Wisconsin, Alaska, Hawaii, or Canada, but this bounded result cannot prove every delivery profile or app entry point safe. Hidden buttons are not server-side enforcement. On this Basic store, a custom app cannot supply a Shopify Function as the missing validation layer; the same-window profile/Markets audit must prove that shipped carts cannot receive a payable rate while eligible Grafton pickup remains available.
+Five fresh checkout sessions then covered a General-profile accessory in Wisconsin, machinery in Illinois, a mixed two-profile cart, General-profile Alaska, and Canada. Every cart line reported `requires_shipping=true`, every Ajax rate result contained zero methods, and no checkout exposed shipped-cart payment. The four domestic checkouts selected only the explicitly permitted 1411 6th Ave Grafton pickup method before enabling payment; Canada exposed neither a delivery context nor an enabled payment/order control. Direct `/checkout` being reachable is therefore not a bypass under the current configuration. No unavailable-pickup candidate exists among the 71 currently published, available, shippable Products, so that current-state row is not applicable and the future unavailable behavior remains covered by the accepted mocked regression.
 
 ## Minimal release manifest
 
@@ -50,9 +50,9 @@ Activation must stop unless all conditions hold in the same release window:
 
 1. Product Owner release authorization names MAIN theme `158579622085`, the 11-file manifest, the one-key automation enablement, and any separately enumerated shipping-profile remediation found by preflight.
 2. A fresh selective MAIN pull exactly matches every `expectedProductionSha256` in the manifest and confirms all five new files are absent.
-3. Staff-authenticated Admin inspection records all delivery profiles, assigned products/locations, zones and rates, applicable backup rates, Markets shipping, Grafton pickup, and installed checkout entry apps.
-4. No `$8 Standard`, `$15 Express`, international shipping, or other payable shipped rate exists for any covered cart. Alaska/Hawaii remain quotation-only; the contiguous 48-state policy remains quotation-only; eligible Grafton pickup remains native checkout.
-5. The operator can delete the five files that were absent before release, which is required for exact rollback.
+3. A same-window connected-Admin refresh matches the accepted two-profile, three-zone, zero-method/rate/participant, one-US-Market, zero-discount, and three-location snapshot.
+4. No `$8 Standard`, `$15 Express`, international shipping, or other payable shipped rate appears in the refresh or smoke tests. Alaska/Hawaii and the contiguous states remain quotation-only; eligible Grafton pickup remains native checkout.
+5. The authenticated operator identity and Theme Access/write capability remain valid for restoring six files and deleting the five files that were absent before release.
 6. All K1D-04 and regression gates pass, and a second person verifies the candidate/backup manifests and hashes.
 
 ## Exact backup and candidate preparation
@@ -119,12 +119,12 @@ The single release decision should authorize, in one statement:
 
 > Deploy the hash-verified K1D-04 candidate described by `data/epic-k-k1d04p-release-manifest.json` to MAIN theme `158579622085`, including the single merged setting `current.rhino_quote_draft_automation_enabled=true`, after all K1D-04 preconditions and gates pass. Do not publish another theme, overwrite unrelated settings, create a test Draft Order, send an invoice, collect payment, or alter shipping configuration except for any separately itemized remediation included in this authorization. Use the recorded exact-backup rollback on any trigger.
 
-This package is not yet eligible for that authorization: the complete current Admin configuration audit, direct-checkout enforcement proof, and rollback delete capability remain blocking preconditions. Production activation is not complete.
+This package is now eligible for one explicit Product Owner release authorization. The same-window connected-Admin refresh, fresh MAIN hashes, and second-person package check remain execution preconditions after authorization. Production activation is not complete.
 
 ## Validation result
 
-- `test:epic-k-k1d04`: pass, 12/12 focused merge, exact rollback, publication, freshness, store-identity, model-identification, checkout-conclusion, and readiness-claim cases.
-- `validate:epic-k-k1d04`: pass; correctly reports zero production mutations and the remaining blockers.
+- `test:epic-k-k1d04`: pass, 13/13 focused merge, exact rollback, publication, freshness, store-identity, model-identification, checkout-conclusion, and readiness-claim cases.
+- `validate:epic-k-k1d04`: pass; reports `READY_FOR_OWNER_RELEASE_AUTHORIZATION` with zero production mutations.
 - K1D-03: pass, client 20/20 and mocked browser 13/13; validator pass.
 - K1D-02: pass, endpoint 18/18, D1 8/8, Worker router 15/15; validator pass.
 - Quote mode/K1C: pass, policy 40/40, browser 20/20, K1C-02 safety 10/10; both validators pass.
@@ -136,7 +136,7 @@ The expanded live accessory/machine/mixed-cart probe could not replace the succe
 
 ## K1D-04P-R publication and shipping-enforcement addendum
 
-Git publication is resolved. The authorized fetch showed both local and remote branch tips at `7aea10667b7f7f7f2ed7e30c0b2fa12a617f95a5`; ancestry passed, the single ordinary push returned `Everything up-to-date`, and a final `ls-remote` readback returned the same SHA. No rebase, amend, force push, alternate branch, or ruleset change occurred. GitHub's status history records Git Operations degradation on November 4, while current Git Operations are operational; the prior `commit_refs_rules` responses are therefore not treated as a repository rule finding.
+Git publication is resolved. The initial authorized fetch showed both local and remote branch tips at `7aea10667b7f7f7f2ed7e30c0b2fa12a617f95a5`; the scoped enforcement-blocker follow-up then published normally as `8d46b87fd452d7585357984bf9057a3c101531ff`, which is the K1D-04P-S starting SHA. Ancestry and final `ls-remote` readback passed. No rebase, amend, force push, alternate branch, or ruleset change occurred. GitHub's status history records Git Operations degradation on November 4, while current Git Operations are operational; the prior `commit_refs_rules` responses are therefore not treated as a repository rule finding.
 
 The current `Shop.features` read identifies Rhino's shipping model without broadening app scopes:
 
@@ -152,7 +152,23 @@ Fresh storefront attempts corrected the earlier authentication diagnosis: the ro
 
 Rollback preparation improved without touching Shopify: the automated test now creates a local release fixture, restores the six previously existing files byte-for-byte, deletes the five files previously absent, and verifies unrelated settings survive. Selective production pull proves backup read access. Production restore and code-file deletion permission remain `BLOCKED_ACCESS` because neither a write nor an authenticated Admin permission check was authorized or available.
 
-Disposition remains `BLOCKED_ACCESS_AND_BLOCKED_TEST`. No exact shipping remediation can be proposed until the active profiles and rates are inspected. If a payable method is found, a later proposal must name its profile, location group, zone, method, present condition/value, intended state, checkout consequence, rollback, validation, and Product Owner authorization; no speculative rate change is included here.
+That addendum's disposition was `BLOCKED_ACCESS_AND_BLOCKED_TEST` at capture time. It was superseded by the K1D-04P-S evidence below; its historical access and throttling results remain unchanged.
+
+## K1D-04P-S enforcement and rollback closure
+
+The Product Owner's separately connected integration evidence is preserved at `connected-shopify-delivery-evidence-2026-11-05.json` with explicit provenance and `independentlyReproducedByThisEnvironment: false`. It establishes:
+
+- General profile `gid://shopify/DeliveryProfile/107424874693`: 114 Variants, contiguous-US and AK/HI zones, Grafton origin, zero methods/participants/rates.
+- Machinery profile `gid://shopify/DeliveryProfile/118208200901`: 11 Variants, all-50-state zone, Grafton origin, zero methods/participants/rates.
+- One active US Market, zero configured discounts, and three active locations; only 1411 6th Ave ships inventory and exposes 24-hour pickup preparation.
+
+The new sequential browser harness starts every case with a fresh cart cookie, verifies exact Variant identities and `requires_shipping` flags, records Ajax methods, and inspects the actual native checkout context without clicking payment. Accessory, machinery, mixed, Alaska, and Canada cases passed. Domestic payment controls were enabled only when Shopify explicitly selected `Pickup in store` at 1411 6th Ave; no shipping address or shipping method was offered. Canada exposed no enabled payment/order control. Zero quotation-proxy, contact, payment, completion, Draft Order, or Order writes occurred.
+
+An unavailable-pickup search checked all 71 currently published, available, shippable Products and found no unavailable candidate. This row is `NOT_APPLICABLE_CURRENT_STATE`; the accepted mocked unavailable/mixed-cart regression remains mandatory for future inventory states.
+
+Rollback permission is distinct from rollback execution. Current Shopify CLI 4.9.4 authenticates to the canonical store and resolves MAIN and preview roles. The intended operator previously created and replaced the accepted K1D files on preview. Shopify documents Theme Access as `write_themes` access and documents `--nodelete` as the flag that prevents deletion of remote files absent locally. Together with the passing exact local restoration/deletion rehearsal, this is sufficient operator capability evidence. No restore or deletion was attempted on MAIN.
+
+K1D-04 is `READY_FOR_OWNER_RELEASE_AUTHORIZATION`. No shipping remediation is required under the current snapshot. Immediately before any authorized mutation, refresh the connected Admin snapshot, pull and hash MAIN, verify the five prior absences, and complete second-person review.
 
 ## References
 

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-04P-S",
+  "evidenceDate": "2026-11-05",
+  "store": "sz5dnk-nf.myshopify.com",
+  "provenance": {
+    "suppliedBy": "Product Owner",
+    "acquisition": "Read-only Shopify Admin GraphQL through the separately connected Rhino Lapidary Shopify integration",
+    "canonicalStoreVerifiedByConnectedIntegration": true,
+    "independentlyReproducedByThisEnvironment": false,
+    "quotationAppScopeWasBroadened": false,
+    "sameWindowRefreshRequiredBeforeProductionMutation": true
+  },
+  "configurationModel": {
+    "marketDrivenShipping": false,
+    "deliveryProfiles": true,
+    "unifiedMarkets": true,
+    "classification": "LEGACY_DELIVERY_PROFILES_WITH_MARKETS_COUNTRY_COVERAGE"
+  },
+  "deliveryProfiles": [
+    {
+      "id": "gid://shopify/DeliveryProfile/107424874693",
+      "name": "General profile",
+      "assignedVariantCount": 114,
+      "assignedShippingLocations": ["Grafton"],
+      "zones": [
+        {
+          "scope": "contiguous_48_states",
+          "countryCodes": ["US"],
+          "activeShippingMethodCount": 0,
+          "carrierParticipantDefinitionCount": 0,
+          "rateDefinitionCount": 0
+        },
+        {
+          "scope": "alaska_and_hawaii",
+          "countryCodes": ["US"],
+          "subdivisionCodes": ["AK", "HI"],
+          "activeShippingMethodCount": 0,
+          "carrierParticipantDefinitionCount": 0,
+          "rateDefinitionCount": 0
+        }
+      ]
+    },
+    {
+      "id": "gid://shopify/DeliveryProfile/118208200901",
+      "name": "Machinery: approved freight quotation required",
+      "assignedVariantCount": 11,
+      "assignedShippingLocations": ["Grafton"],
+      "zones": [
+        {
+          "scope": "all_50_states",
+          "countryCodes": ["US"],
+          "activeShippingMethodCount": 0,
+          "carrierParticipantDefinitionCount": 0,
+          "rateDefinitionCount": 0
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "deliveryProfileCount": 2,
+    "zoneCount": 3,
+    "assignedVariantCount": 125,
+    "activeShippingMethodCount": 0,
+    "carrierParticipantDefinitionCount": 0,
+    "rateDefinitionCount": 0
+  },
+  "markets": {
+    "activeCount": 1,
+    "additionalPages": false,
+    "nodes": [
+      {
+        "id": "gid://shopify/Market/48735715525",
+        "name": "United States",
+        "countryCodes": ["US"]
+      }
+    ]
+  },
+  "discounts": {
+    "configuredCount": 0,
+    "additionalPages": false
+  },
+  "locations": [
+    {
+      "name": "1411 6th Ave",
+      "active": true,
+      "shipsInventory": true,
+      "pickupPreparationTime": "TWENTY_FOUR_HOURS"
+    },
+    {
+      "name": "Show Stock",
+      "active": true,
+      "shipsInventory": false,
+      "pickupPreparationTime": null
+    },
+    {
+      "name": "Vejdi Booth",
+      "active": true,
+      "shipsInventory": false,
+      "pickupPreparationTime": null
+    }
+  ],
+  "historicalRates": {
+    "standardEightDollarPresent": false,
+    "expressFifteenDollarPresent": false
+  },
+  "interpretationBoundary": {
+    "browserCheckoutEnforcementProvenByThisRecord": false,
+    "installedApplicationInventorySeparatelyEnumerated": false,
+    "note": "Zero methods, carrier participant definitions, and rate definitions establish the profile configuration. Live checkout behavior is recorded separately."
+  }
+}

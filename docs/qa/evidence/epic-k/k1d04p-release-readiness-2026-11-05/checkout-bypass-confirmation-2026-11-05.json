@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-04P-S",
+  "capturedAt": "2026-11-05T21:41:01.429Z",
+  "store": "sz5dnk-nf.myshopify.com",
+  "sessionPolicy": "fresh cart cookie per checkout scenario; sequential execution; no retry after ambiguous mutation",
+  "scenarios": [
+    {
+      "id": "general_accessory_wisconsin",
+      "destination": "wisconsin",
+      "cart": {
+        "lineCount": 1,
+        "itemCount": 1,
+        "variantIds": [
+          "46484252754117"
+        ],
+        "discountCodesPresent": false,
+        "sellingPlansPresent": false,
+        "requiresShippingByVariant": {
+          "46484252754117": true
+        }
+      },
+      "rates": {
+        "httpStatus": 200,
+        "methodCount": 0,
+        "methods": []
+      },
+      "checkout": {
+        "reachable": true,
+        "noDeliveryMessagePresent": false,
+        "deliveryMethodControlCount": 0,
+        "paymentControlCount": 3,
+        "paymentStageTextPresent": true,
+        "payButtonPresent": true,
+        "payButtonEnabled": true,
+        "payButtonLabel": "Pay now $49.99",
+        "sanitizedTextSignals": {
+          "shippingAddressHeading": false,
+          "billingAddressHeading": true,
+          "deliveryHeading": true,
+          "shippingHeading": true,
+          "freeShippingText": false,
+          "noShippingAvailableText": false
+        },
+        "sanitizedDeliveryLines": [
+          "Delivery",
+          "1411 6th Ave, Grafton WI",
+          "Billing address",
+          "Pay now",
+          "Pickup in store",
+          "Updated shipping method: 1411 6th AveSaved"
+        ],
+        "selectedDeliveryContext": "GRAFTON_PICKUP",
+        "pickupSelected": true,
+        "shippingAddressPresented": false,
+        "payableShippingBypassObserved": false,
+        "checkoutUrlPersisted": false
+      }
+    }
+  ],
+  "mode": "single_case_delivery_context_confirmation",
+  "selectedProducts": {
+    "screw-on-flat-lap": {
+      "handle": "screw-on-flat-lap",
+      "variantId": "46484252754117",
+      "quantity": 1,
+      "requiresShipping": true,
+      "classification": "general_profile_accessory"
+    },
+    "beadmaster": {
+      "handle": "lapmaster-12",
+      "variantId": "46484255637701",
+      "quantity": 1,
+      "requiresShipping": true,
+      "classification": "machinery_profile"
+    }
+  },
+  "pickup": null,
+  "unavailablePickupSearch": null,
+  "operations": {
+    "cartAddPosts": 1,
+    "quotationProxyPosts": 0,
+    "contactPosts": 0,
+    "paymentOrCompletionPosts": 0,
+    "paymentSubmitted": false,
+    "orderCompleted": false,
+    "draftOrderCreatedOrModified": false
+  },
+  "privacy": {
+    "customerValuesPersisted": false,
+    "credentialsPersisted": false,
+    "checkoutUrlsPersisted": false
+  }
+}

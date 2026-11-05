@@ -12,6 +12,10 @@ const AUDIT = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/curre
 const MATRIX = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/checkout-bypass-matrix.json';
 const PREPARED = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/prepared-candidate-hashes.json';
 const ENFORCEMENT = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/shipping-enforcement-audit.json';
+const CONNECTED_ADMIN = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/connected-shopify-delivery-evidence-2026-11-05.json';
+const CHECKOUT = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/checkout-enforcement-2026-11-05.json';
+const CHECKOUT_CONFIRMATION = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/checkout-bypass-confirmation-2026-11-05.json';
+const UNAVAILABLE_PICKUP = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/unavailable-pickup-checkout-2026-11-05.json';
 const RECORD = 'docs/project/implementation-records/epic-k1d04p-production-release-readiness.md';
 
 function readJson(relative) { return JSON.parse(fs.readFileSync(path.join(ROOT, relative), 'utf8')); }
@@ -60,7 +64,8 @@ function validateEnforcementGate(enforcement, readiness, manifest, now = Date.no
 
 function validateK1d04() {
   const errors = [];
-  for (const file of [MANIFEST, READINESS, AUDIT, MATRIX, PREPARED, ENFORCEMENT, RECORD]) {
+  for (const file of [MANIFEST, READINESS, AUDIT, MATRIX, PREPARED, ENFORCEMENT, CONNECTED_ADMIN,
+    CHECKOUT, CHECKOUT_CONFIRMATION, UNAVAILABLE_PICKUP, RECORD]) {
     if (!fs.existsSync(path.join(ROOT, file))) errors.push(`Missing K1D-04 artifact: ${file}`);
   }
   if (errors.length) return { errors };
@@ -71,6 +76,10 @@ function validateK1d04() {
   const matrix = readJson(MATRIX);
   const prepared = readJson(PREPARED);
   const enforcement = readJson(ENFORCEMENT);
+  const connectedAdmin = readJson(CONNECTED_ADMIN);
+  const checkout = readJson(CHECKOUT);
+  const checkoutConfirmation = readJson(CHECKOUT_CONFIRMATION);
+  const unavailablePickup = readJson(UNAVAILABLE_PICKUP);
   const record = source(RECORD);
   const packageJson = readJson('package.json');
 
@@ -99,6 +108,11 @@ function validateK1d04() {
     errors.push('Rollback manifest must restore six prior files and delete five previously absent files.');
   }
   errors.push(...validateEnforcementGate(enforcement, readiness, manifest));
+  if (readiness.state !== 'READY_FOR_OWNER_RELEASE_AUTHORIZATION'
+    || enforcement.releaseDisposition?.state !== 'READY_FOR_OWNER_RELEASE_AUTHORIZATION'
+    || enforcement.releaseDisposition?.productionReady !== true) {
+    errors.push('Closed preparation gates must report READY_FOR_OWNER_RELEASE_AUTHORIZATION without claiming activation.');
+  }
   if (prepared.productionMutationPerformed || prepared.destinationThemeId !== manifest.destinationThemeId
     || prepared.files.length !== manifest.files.length
     || prepared.files.some((entry) => !/^[a-f0-9]{64}$/.test(entry.sha256))) {
@@ -114,8 +128,48 @@ function validateK1d04() {
     || !readiness.acceptedBaseline.draftD2Untouched || !readiness.acceptedBaseline.draftD3Untouched) {
     errors.push('Accepted K1D-02T/K1D-03A evidence must remain preserved.');
   }
-  if (!readiness.blockingPreconditions.every((entry) => entry.requiredBeforeActivation)) {
-    errors.push('Every recorded release blocker must remain a required activation precondition.');
+  if (readiness.blockingPreconditions.length !== 0
+    || readiness.activationPreconditions?.length !== 4
+    || !readiness.activationPreconditions.every((entry) => entry.requiredBeforeProductionMutation)) {
+    errors.push('Readiness must distinguish closed preparation blockers from four production-window preconditions.');
+  }
+
+  const profileAssignments = connectedAdmin.deliveryProfiles?.reduce((sum, profile) => sum + profile.assignedVariantCount, 0);
+  const zones = connectedAdmin.deliveryProfiles?.flatMap((profile) => profile.zones || []) || [];
+  if (connectedAdmin.store !== manifest.store
+    || connectedAdmin.provenance?.independentlyReproducedByThisEnvironment !== false
+    || connectedAdmin.provenance?.canonicalStoreVerifiedByConnectedIntegration !== true
+    || connectedAdmin.totals?.deliveryProfileCount !== 2
+    || connectedAdmin.totals?.zoneCount !== 3
+    || profileAssignments !== 125
+    || zones.some((zone) => zone.activeShippingMethodCount !== 0
+      || zone.carrierParticipantDefinitionCount !== 0 || zone.rateDefinitionCount !== 0)
+    || connectedAdmin.markets?.activeCount !== 1
+    || connectedAdmin.markets?.nodes?.[0]?.countryCodes?.join(',') !== 'US'
+    || connectedAdmin.discounts?.configuredCount !== 0
+    || connectedAdmin.discounts?.additionalPages !== false) {
+    errors.push('Connected Shopify evidence provenance or zero-method profile/Market/discount inventory is incomplete.');
+  }
+
+  if (checkout.store !== manifest.store || checkout.scenarios?.length !== 5
+    || checkout.scenarios.some((scenario) => scenario.rates?.methodCount !== 0
+      || !Object.values(scenario.cart?.requiresShippingByVariant || {}).every(Boolean)
+      || scenario.checkout?.payableShippingBypassObserved !== false)
+    || checkout.scenarios.filter((scenario) => scenario.destination !== 'canada')
+      .some((scenario) => scenario.checkout?.selectedDeliveryContext !== 'GRAFTON_PICKUP')
+    || checkout.scenarios.find((scenario) => scenario.destination === 'canada')?.checkout?.payButtonEnabled !== false
+    || checkout.operations?.quotationProxyPosts !== 0 || checkout.operations?.contactPosts !== 0
+    || checkout.operations?.paymentOrCompletionPosts !== 0 || checkout.operations?.paymentSubmitted
+    || checkout.operations?.orderCompleted || checkout.operations?.draftOrderCreatedOrModified) {
+    errors.push('Live checkout evidence does not prove zero shipping methods with payment limited to Grafton pickup.');
+  }
+  if (checkoutConfirmation.scenarios?.length !== 1
+    || checkoutConfirmation.scenarios[0].checkout?.selectedDeliveryContext !== 'GRAFTON_PICKUP'
+    || checkoutConfirmation.scenarios[0].checkout?.payableShippingBypassObserved !== false
+    || unavailablePickup.unavailablePickupDisposition !== 'NOT_APPLICABLE_CURRENT_STATE'
+    || unavailablePickup.unavailablePickupSearch?.checkedCount !== 71
+    || unavailablePickup.unavailablePickupSearch?.line !== null) {
+    errors.push('Pickup-context confirmation or unavailable-inventory current-state evidence is incomplete.');
   }
 
   if (audit.store?.canonicalDomain !== 'sz5dnk-nf.myshopify.com' || audit.store?.identityVerified !== true
@@ -139,16 +193,18 @@ function validateK1d04() {
     && draft.shippingLineAbsent && draft.invoiceAbsent && draft.completionAbsent && draft.reservationAbsent)) {
     errors.push('Accepted Draft Orders #D2/#D3 are not proven preserved.');
   }
-  if (!matrix.cases?.some((entry) => entry.case === 'direct_checkout_navigation' && entry.status === 'BLOCKED_TEST')
+  if (!matrix.cases?.some((entry) => entry.case === 'direct_checkout_navigation' && entry.status === 'PASS')
     || !matrix.cases?.some((entry) => entry.case === 'requires_shipping_misconfiguration' && entry.status === 'PASS_ZERO_FLAGGED')) {
-    errors.push('Checkout matrix must distinguish direct-checkout blocking from the zero-Variant configuration finding.');
+    errors.push('Checkout matrix must preserve direct-checkout and Requires-shipping enforcement findings.');
   }
 
   for (const signal of ['--allow-live', '--nodelete', 'rollback.deleteFilesAbsentBeforeRelease', 'Do not use `theme publish`',
     'current.rhino_quote_draft_automation_enabled=true', 'Production activation is not complete']) {
     if (!record.includes(signal)) errors.push(`Release procedure is missing: ${signal}`);
   }
-  if (/shpat_|SHOPIFY_API_SECRET\s*=|password\s*=\s*["'][^"']+/i.test([record, source(MANIFEST), source(READINESS), source(AUDIT)].join('\n'))) {
+  if (/shpat_|SHOPIFY_API_SECRET\s*=|password\s*=\s*["'][^"']+/i.test([
+    record, source(MANIFEST), source(READINESS), source(AUDIT), source(CONNECTED_ADMIN), source(CHECKOUT),
+  ].join('\n'))) {
     errors.push('K1D-04 artifacts appear to contain a secret.');
   }
   if (!packageJson.scripts['validate:epic-k-k1d04'] || !packageJson.scripts['test:epic-k-k1d04']) {
@@ -168,7 +224,7 @@ function main() {
     return;
   }
   console.log('Epic K1D-04 production readiness: valid preparation, 0 production mutations.');
-  console.log('Activation remains blocked by current Admin configuration and checkout-enforcement preconditions.');
+  console.log('K1D-04 is READY_FOR_OWNER_RELEASE_AUTHORIZATION; production activation remains unperformed and unauthorized.');
 }
 
 if (require.main === module) main();
