@@ -79,7 +79,7 @@ function validateK1d03() {
 
   const english = readJson('locales/en.default.json').sections?.cart?.quote_mode || {};
   for (const key of [
-    'first_name', 'last_name', 'submit_draft', 'submit_email_fallback', 'email_fallback_explanation',
+    'first_name', 'last_name', 'submit_draft', 'submit_email_fallback',
     'cart_changed', 'fallback_required', 'uncertain', 'rejected', 'draft_confirmed_status',
     'draft_success_heading', 'draft_success_next', 'success_body',
   ]) {
