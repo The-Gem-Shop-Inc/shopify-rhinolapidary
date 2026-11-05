@@ -142,6 +142,14 @@ async function test(name, run) {
       assert.equal(Object.hasOwn(payload, 'price'), false);
       assert.equal(await page.locator('[data-rhino-confirmed-draft]').innerText(), '#D9001');
       assert.match(await page.locator('[data-rhino-draft-confirmation]').innerText(), /before any payment is requested/i);
+      await page.reload();
+      await page.locator('rhino-quote-mode').waitFor();
+      await page.waitForFunction(() => Boolean(document.querySelector('rhino-quote-mode').cartBaseline));
+      await page.locator('[data-rhino-draft-confirmation]').waitFor({ state: 'visible' });
+      assert.equal(await page.locator('#RhinoFulfillmentShipping').isChecked(), true);
+      assert.equal(await page.locator('[data-rhino-confirmed-draft]').innerText(), '#D9001');
+      assert.equal(state.proxyRequests.length, 1);
+      assert.equal(state.contactRequests, 0);
       await page.close();
     });
 

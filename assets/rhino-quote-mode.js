@@ -260,6 +260,11 @@ if (!customElements.get('rhino-quote-mode')) {
       showConfirmed(reference, staffIdentifier, duplicate = false) {
         this.submissionState = 'confirmed';
         this.reference = reference;
+        const shippingChoice = this.querySelector('[data-rhino-fulfillment-choice][value="shipping"]');
+        if (shippingChoice && !shippingChoice.checked) {
+          shippingChoice.checked = true;
+          shippingChoice.dispatchEvent(new Event('change', { bubbles: true }));
+        }
         this.updateReferenceDisplay(reference);
         this.syncFallbackFields(reference);
         this.setSubmissionControls({ draftDisabled: true, emailDisabled: true });

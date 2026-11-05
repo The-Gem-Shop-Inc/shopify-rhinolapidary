@@ -8,7 +8,7 @@
     "schemaVersion": { "const": 1 },
     "batch": { "const": "K1D-03" },
     "asOf": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
-    "state": { "enum": ["IMPLEMENTED_AWAITING_PREVIEW", "PREVIEW_DEPLOYED_AWAITING_LIVE_BROWSER_ACCEPTANCE"] },
+    "state": { "enum": ["IMPLEMENTED_AWAITING_PREVIEW", "PREVIEW_DEPLOYED_AWAITING_LIVE_BROWSER_ACCEPTANCE", "LIVE_BROWSER_ACCEPTED_AWAITING_PRODUCTION_ACTIVATION"] },
     "acceptance": {
       "type": "object",
       "additionalProperties": false,
@@ -19,7 +19,7 @@
         "controlledDraftOrderAccepted": { "const": true },
         "customerStorefrontFormIntegrated": { "const": true },
         "mockedBrowserSubmissionAccepted": { "const": true },
-        "actualBrowserSubmissionAccepted": { "const": false }
+        "actualBrowserSubmissionAccepted": { "type": "boolean" }
       }
     },
     "preview": {
@@ -30,7 +30,7 @@
         "themeId": { "const": "158631198917" },
         "automationEnabled": { "type": "boolean" },
         "published": { "const": false },
-        "mockedOnly": { "const": true }
+        "mockedOnly": { "type": "boolean" }
       }
     },
     "production": {
@@ -47,9 +47,10 @@
     "authorization": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["liveDraftOrderCreationAuthorized", "invoiceAuthorized", "paymentAuthorized", "productionPublicationAuthorized"],
+      "required": ["liveDraftOrderCreationAuthorized", "liveDraftOrderAuthorizationConsumed", "invoiceAuthorized", "paymentAuthorized", "productionPublicationAuthorized"],
       "properties": {
         "liveDraftOrderCreationAuthorized": { "const": false },
+        "liveDraftOrderAuthorizationConsumed": { "type": "boolean" },
         "invoiceAuthorized": { "const": false },
         "paymentAuthorized": { "const": false },
         "productionPublicationAuthorized": { "const": false }

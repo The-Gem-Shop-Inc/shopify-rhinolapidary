@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-03A",
+  "reference": "KQ-6D418804E7DCD1FEEAAAC48E-3",
+  "fixture": {
+    "quoteReference": "KQ-6D418804E7DCD1FEEAAAC48E-3",
+    "contactSource": "ignored_secure_runtime_configuration",
+    "contactValuesPersisted": false,
+    "itemCount": 2,
+    "totalQuantity": 3,
+    "items": [
+      {
+        "variantId": "gid://shopify/ProductVariant/46484250001605",
+        "quantity": 2,
+        "propertyKeys": [
+          "Acceptance",
+          "Packaging note"
+        ]
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/46484249903301",
+        "quantity": 1,
+        "propertyKeys": [
+          "Acceptance",
+          "Requested preparation"
+        ]
+      }
+    ],
+    "addressType": "commercial",
+    "liftgateRequired": true,
+    "insuranceRequested": true,
+    "discountCodes": [],
+    "sellingPlansPresent": false
+  },
+  "deterministicIdentity": {
+    "reconciliationTag": "K1D-39cdf268c2679815a90475fc"
+  },
+  "preflight": {
+    "preparedAt": "2026-10-30T18:57:10.343Z",
+    "exactCartVerified": true,
+    "variantsActiveAndAvailable": true,
+    "noPriorShopifyDraft": true,
+    "noPriorD1Claim": true,
+    "draftOrderD2Untouched": true,
+    "signedAppProxyOperational": true,
+    "previewUnpublished": true,
+    "previewAutomationEnabled": true,
+    "productionChanged": false,
+    "passwordRotationBasis": "accepted_k1d02t_confirmation_no_subsequent_exposure"
+  },
+  "status": "PASS",
+  "acceptedAt": "2026-10-30T19:46:05.717Z",
+  "refreshFixVerifiedAt": "2026-11-05T14:34:43.416Z",
+  "authorization": {
+    "scope": "exactly_one_synthetic_unpaid_uninvoiced_draft",
+    "confirmed": true
+  },
+  "customerExperience": {
+    "displayedReference": "KQ-6D418804E7DCD1FEEAAAC48E-3",
+    "displayedDraftName": "#D3",
+    "matchedShopify": true,
+    "initialConfirmationObservedBeforeRefreshDefect": true,
+    "refreshVisibilityDefectReproduced": true,
+    "refreshVisibilityFixVerified": true,
+    "confirmationRestoredAfterRefresh": true,
+    "additionalProxyPostsDuringRecoveryAndRefresh": 0,
+    "emailFallbackPostsDuringRecoveryAndRefresh": 0
+  },
+  "proxy": {
+    "liveSubmissionPostCount": 1,
+    "recoveryAndRefreshPostCount": 0,
+    "httpStatus": 200,
+    "mocked": false,
+    "intercepted": false
+  },
+  "admin": {
+    "matchingDraftCount": 1,
+    "draft": {
+      "id": "gid://shopify/DraftOrder/1268053901509",
+      "name": "#D3",
+      "createdAt": "2026-10-30T19:46:05Z",
+      "status": "OPEN",
+      "tags": [
+        "K1D-39cdf268c2679815a90475fc",
+        "Unquoted"
+      ],
+      "reconciliationTag": "K1D-39cdf268c2679815a90475fc",
+      "lineItems": [
+        {
+          "variantId": "gid://shopify/ProductVariant/46484250001605",
+          "quantity": 2,
+          "propertyKeys": [
+            "Acceptance",
+            "Packaging note"
+          ]
+        },
+        {
+          "variantId": "gid://shopify/ProductVariant/46484249903301",
+          "quantity": 1,
+          "propertyKeys": [
+            "Acceptance",
+            "Requested preparation"
+          ]
+        }
+      ],
+      "discountCodes": [],
+      "automaticDiscountsAccepted": true,
+      "totalDiscount": {
+        "amount": "0.0",
+        "currencyCode": "USD"
+      },
+      "syntheticContactMatched": true,
+      "shippingAddressMatched": true,
+      "staffNoteMatched": true,
+      "shippingLineAbsent": true,
+      "invoiceAbsent": true,
+      "inventoryReservationAbsent": true,
+      "completedOrderAbsent": true,
+      "paymentAbsent": true,
+      "fulfillmentAbsent": true,
+      "customerRecordAbsent": true,
+      "customerCreateOrAttachInputAbsent": true,
+      "restrictedCustomerAndOrderObjectsQueried": false
+    }
+  },
+  "d1": {
+    "state": "COMPLETED",
+    "attemptCount": 1,
+    "draftId": "gid://shopify/DraftOrder/1268053901509",
+    "draftName": "#D3",
+    "outcomeCategory": "DRAFT_CREATED",
+    "payloadHashMatched": true
+  },
+  "defect": {
+    "classification": "STOREFRONT_CONFIRMATION_VISIBILITY_AFTER_REFRESH",
+    "backendAffected": false,
+    "duplicateCreated": false,
+    "fix": "Selecting the persisted shipping mode before showing a restored confirmation keeps its parent panel visible."
+  },
+  "safety": {
+    "draftOrdersCreated": 1,
+    "shippingLineCreated": false,
+    "invoiceSent": false,
+    "paymentCollected": false,
+    "orderCompleted": false,
+    "fulfillmentCreated": false,
+    "inventoryReserved": false,
+    "fallbackSubmitted": false,
+    "productionThemePublishedOrChanged": false,
+    "shippingOrPickupConfigurationChanged": false
+  },
+  "screenshot": "customer-confirmation.png",
+  "contactValuesPersisted": false,
+  "credentialsPersisted": false,
+  "authenticatedUrlsPersisted": false
+}

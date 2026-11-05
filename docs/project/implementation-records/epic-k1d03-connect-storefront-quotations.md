@@ -2,7 +2,7 @@
 
 Date: October 30, 2026
 
-## Outcome
+## K1D-03 implementation outcome before live acceptance
 
 The existing complete-cart shipping quotation form is integrated with the accepted `/apps/rhino-quote-draft` app proxy on unpublished preview theme `158631198917`. The repository setting defaults disabled; preview alone is configured enabled. Production theme `158579622085` was not changed or published. No live Draft Order, invoice, payment, completion, reservation, fulfillment, customer, shipping-rate, pickup-setting, or app-configuration mutation occurred.
 
@@ -45,6 +45,20 @@ Production readback retained the historical cart-footer hash `50d68da1aeb8a1e7c7
 
 Evidence is under `docs/qa/evidence/epic-k/k1d03-storefront-2026-10-30/`. Mocked evidence is not live acceptance.
 
-## Remaining gate
+## Historical remaining gate before K1D-03A
 
-Actual customer-browser acceptance requires a new, explicit authorization for exactly one real unpaid, uninvoiced Draft Order after staff agree on the controlled cart/contact inputs. Run it only on preview, capture the returned reference and `#D*` identifier, verify one `OPEN` `Unquoted` Admin draft and unchanged duplicate recovery, and confirm no invoice, payment, shipping line, reservation, completion, Order, or fulfillment. Production activation remains blocked until that separate acceptance and release authorization occur.
+At the original K1D-03 handoff, actual customer-browser acceptance still required a new, explicit authorization for exactly one real unpaid, uninvoiced Draft Order after staff agreed on the controlled cart/contact inputs. That gate was subsequently completed by K1D-03A as recorded below. Production activation remains separate and was not authorized by K1D-03A.
+
+## K1D-03A live acceptance addendum
+
+The remaining customer-browser gate was completed under a separate Product Owner authorization. The actual preview storefront assembled the two accepted Variants through Shopify's Ajax cart, generated reference `KQ-6D418804E7DCD1FEEAAAC48E-3` in the deployed K1D-03 client, and sent exactly one unmocked POST through `/apps/rhino-quote-draft`.
+
+Shopify created `#D3` (`gid://shopify/DraftOrder/1268053901509`). Admin and D1 reconciliation found exactly one matching `OPEN`, `Unquoted` draft and a `COMPLETED` claim with attempt count `1`, the deterministic `K1D-39cdf268c2679815a90475fc` tag, and matching payload hash. Both Variant identities, quantities, public properties, contact, destination, commercial delivery type, liftgate, insurance, access instructions, and cart note matched. No shipping line, invoice, payment, completed Order, fulfillment, or inventory reservation exists.
+
+The customer-visible response initially displayed the correct reference and `#D3`. Refresh then exposed a presentation-only defect: confirmed local state was recovered, but the enclosing shipping panel reset hidden. The fix makes `showConfirmed` select the shipping fulfillment choice before exposing the confirmation. A new mocked regression reproduces the refresh path and asserts that no second proxy or contact request occurs.
+
+Only `assets/rhino-quote-mode.js` was uploaded to unpublished preview theme `158631198917`. Exact remote readback matched SHA-256 `e0fafee0f67f0edf2f5ee0de6ec0586cb3d236f7966ebd4c8e051b5fbfff6837`. Recovery of the existing `#D3` browser state and a further refresh both displayed the confirmation with zero additional proxy POSTs and zero contact submissions. Production theme `158579622085` remained unchanged and published production activation was not attempted.
+
+Final regression passed: K1D-03 client 20/20 and browser 13/13; quote-mode policy 40/40 and browser 20/20; K1C-02 10/10; K1D-02 endpoint 18/18, D1 8/8, and Worker router 15/15. K1D-03, K1D-02, registers, cart configuration, Product purchase, and theme-architecture validators all passed. The approved English Theme Check projection inspected 165 files with zero offenses.
+
+K1D-03A is accepted. K1D-04 may proceed only under its separate production-activation authorization. Sanitized evidence is under `docs/qa/evidence/epic-k/k1d03a-storefront-2026-10-30/`.

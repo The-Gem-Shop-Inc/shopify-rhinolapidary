@@ -86,14 +86,40 @@ function validateK1d03() {
     if (typeof english[key] !== 'string' || !english[key].trim()) errors.push(`English K1D-03 copy is missing: ${key}`);
   }
 
-  if (readiness.acceptance.actualBrowserSubmissionAccepted !== false) {
-    errors.push('Actual customer browser submission cannot be accepted without a separately authorized live Draft Order.');
+  if (readiness.state !== 'LIVE_BROWSER_ACCEPTED_AWAITING_PRODUCTION_ACTIVATION'
+    || readiness.acceptance.actualBrowserSubmissionAccepted !== true || readiness.preview.mockedOnly !== false) {
+    errors.push('K1D-03A must record accepted live browser submission separately from mocked preview acceptance.');
   }
   if (readiness.production.activated || readiness.production.themeChanged || readiness.production.automationEnabled) {
     errors.push('K1D-03 must not claim or perform production activation.');
   }
   if (readiness.authorization.liveDraftOrderCreationAuthorized) {
     errors.push('K1D-03 must preserve the consumed live Draft Order authorization boundary.');
+  }
+  if (readiness.authorization.liveDraftOrderAuthorizationConsumed !== true) {
+    errors.push('K1D-03A must record the one-Draft-Order authorization as consumed.');
+  }
+
+  const liveEvidencePath = 'docs/qa/evidence/epic-k/k1d03a-storefront-2026-10-30/acceptance-success.json';
+  if (!fs.existsSync(liveEvidencePath)) errors.push('K1D-03A live browser acceptance evidence is missing.');
+  else {
+    const live = readJson(liveEvidencePath);
+    if (live.status !== 'PASS' || live.reference !== 'KQ-6D418804E7DCD1FEEAAAC48E-3'
+      || live.admin?.matchingDraftCount !== 1 || live.admin?.draft?.name !== '#D3' || live.admin?.draft?.status !== 'OPEN') {
+      errors.push('K1D-03A evidence must identify the one accepted OPEN Draft Order and reference.');
+    }
+    if (live.proxy?.liveSubmissionPostCount !== 1 || live.proxy?.recoveryAndRefreshPostCount !== 0
+      || live.proxy?.mocked !== false || live.proxy?.intercepted !== false) {
+      errors.push('K1D-03A evidence must prove one genuine proxy submission and zero recovery/refresh submissions.');
+    }
+    if (live.d1?.state !== 'COMPLETED' || live.d1?.attemptCount !== 1 || live.d1?.payloadHashMatched !== true) {
+      errors.push('K1D-03A evidence must prove one completed D1 mutation attempt for the matching payload.');
+    }
+    if (live.customerExperience?.confirmationRestoredAfterRefresh !== true
+      || live.customerExperience?.refreshVisibilityFixVerified !== true
+      || live.safety?.draftOrdersCreated !== 1 || Object.entries(live.safety || {}).some(([key, value]) => key !== 'draftOrdersCreated' && value !== false)) {
+      errors.push('K1D-03A evidence must prove restored confirmation and every no-side-effect boundary.');
+    }
   }
 
   for (const viewport of VIEWPORTS) {
@@ -150,8 +176,8 @@ function main() {
     return;
   }
   console.log(`Epic K1D-03 storefront integration: valid ${result.readiness.state}.`);
-  console.log('Backend/proxy/controlled draft: accepted; storefront: integrated with mocked browser acceptance.');
-  console.log('Actual browser Draft Order submission and production activation: not accepted.');
+  console.log('Backend, authentic proxy, controlled draft, and real storefront browser submission: accepted.');
+  console.log('Production activation: not accepted.');
 }
 
 if (require.main === module) main();

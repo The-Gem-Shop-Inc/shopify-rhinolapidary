@@ -84,8 +84,16 @@ function validateK1d02() {
     if (!k1d03?.acceptance?.backendIntegrationAccepted || !k1d03?.acceptance?.customerStorefrontFormIntegrated) {
       errors.push('The app-proxy storefront path requires an explicit K1D-03 integration-readiness contract.');
     }
-    if (k1d03?.acceptance?.actualBrowserSubmissionAccepted !== false || k1d03?.production?.activated !== false) {
-      errors.push('K1D-03 cannot promote live browser or production acceptance through the historical K1D-02 contract.');
+    const liveEvidencePath = path.join(ROOT, 'docs/qa/evidence/epic-k/k1d03a-storefront-2026-10-30/acceptance-success.json');
+    const liveAccepted = k1d03?.acceptance?.actualBrowserSubmissionAccepted === true
+      && k1d03?.state === 'LIVE_BROWSER_ACCEPTED_AWAITING_PRODUCTION_ACTIVATION'
+      && fs.existsSync(liveEvidencePath)
+      && JSON.parse(fs.readFileSync(liveEvidencePath, 'utf8')).status === 'PASS';
+    if (k1d03?.acceptance?.actualBrowserSubmissionAccepted !== false && !liveAccepted) {
+      errors.push('K1D-03 live browser acceptance requires its separate accepted K1D-03A evidence.');
+    }
+    if (k1d03?.production?.activated !== false) {
+      errors.push('K1D-03 cannot promote production activation through the historical K1D-02 contract.');
     }
   }
   if (contract.state === 'CORRECTED_ACCEPTANCE_AWAITING_SECURE_INPUTS') {

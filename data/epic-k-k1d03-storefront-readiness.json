@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
   "batch": "K1D-03",
-  "asOf": "2026-10-30",
-  "state": "PREVIEW_DEPLOYED_AWAITING_LIVE_BROWSER_ACCEPTANCE",
+  "asOf": "2026-11-05",
+  "state": "LIVE_BROWSER_ACCEPTED_AWAITING_PRODUCTION_ACTIVATION",
   "acceptance": {
     "backendIntegrationAccepted": true,
     "authenticAppProxyAccepted": true,
     "controlledDraftOrderAccepted": true,
     "customerStorefrontFormIntegrated": true,
     "mockedBrowserSubmissionAccepted": true,
-    "actualBrowserSubmissionAccepted": false
+    "actualBrowserSubmissionAccepted": true
   },
   "preview": {
     "themeId": "158631198917",
     "automationEnabled": true,
     "published": false,
-    "mockedOnly": true
+    "mockedOnly": false
   },
   "production": {
     "themeId": "158579622085",
@@ -25,6 +25,7 @@
   },
   "authorization": {
     "liveDraftOrderCreationAuthorized": false,
+    "liveDraftOrderAuthorizationConsumed": true,
     "invoiceAuthorized": false,
     "paymentAuthorized": false,
     "productionPublicationAuthorized": false
