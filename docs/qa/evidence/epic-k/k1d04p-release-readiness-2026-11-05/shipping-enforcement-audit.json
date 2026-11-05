@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "batch": "K1D-04P-R",
+  "capturedAt": "2026-11-05T20:02:02.210Z",
+  "store": {
+    "canonicalDomain": "sz5dnk-nf.myshopify.com",
+    "identityStatus": "PASS"
+  },
+  "gitPublication": {
+    "status": "PASS",
+    "branch": "epic-k/k1d02p-provision-quotation-infrastructure",
+    "localSha": "7aea10667b7f7f7f2ed7e30c0b2fa12a617f95a5",
+    "remoteSha": "7aea10667b7f7f7f2ed7e30c0b2fa12a617f95a5",
+    "remoteContainedLocalHistory": true,
+    "ordinaryPushResult": "Everything up-to-date",
+    "forcePushUsed": false,
+    "alternateBranchCreated": false
+  },
+  "configurationModel": {
+    "status": "PASS",
+    "evidenceSource": "Admin GraphQL shop.features on API 2026-10",
+    "marketDrivenShipping": false,
+    "deliveryProfilesFeature": true,
+    "unifiedMarkets": true,
+    "classification": "LEGACY_DELIVERY_PROFILES_WITH_MARKETS_COUNTRY_COVERAGE",
+    "authoritativeMerchantRateSurface": "Shopify Admin > Settings > Shipping and delivery > Shipping profiles",
+    "secondaryCoverageSurface": "Shopify Admin > Markets",
+    "mixedModel": false,
+    "note": "Merchant-owned rates remain authoritative in legacy delivery profiles. Markets must still be inspected for active country and region coverage."
+  },
+  "authoritativeConfigurationInventory": {
+    "overallStatus": "BLOCKED_ACCESS",
+    "credentialBoundary": "The existing quotation app was not broadened and returns access denied for deliveryProfiles, markets, locations, and discountNodes.",
+    "staffAdminSessionAvailable": false,
+    "profiles": { "status": "BLOCKED_ACCESS", "inspectedCount": null, "activeCount": null },
+    "locationGroups": { "status": "BLOCKED_ACCESS", "inspectedCount": null },
+    "zones": { "status": "BLOCKED_ACCESS", "inspectedCount": null },
+    "markets": { "status": "BLOCKED_ACCESS", "inspectedCount": null, "activeCount": null },
+    "rates": {
+      "status": "BLOCKED_ACCESS",
+      "inspectedCount": null,
+      "manual": null,
+      "conditional": null,
+      "carrierCalculated": null,
+      "thirdParty": null,
+      "backupOrFallback": null,
+      "freeShipping": null,
+      "obsoleteEightDollarStandardPresent": null,
+      "obsoleteFifteenDollarExpressPresent": null
+    },
+    "shippingDiscounts": { "status": "BLOCKED_ACCESS", "inspectedCount": null },
+    "pickupLocations": { "status": "BLOCKED_ACCESS", "inspectedCount": null },
+    "productAndVariantAssignments": { "status": "BLOCKED_ACCESS", "inspectedProfileAssignmentCount": null },
+    "requiresShippingAttributeAudit": {
+      "status": "PASS",
+      "variantCount": 125,
+      "requiresShippingTrueCount": 125,
+      "potentialPhysicalBypassCount": 0
+    }
+  },
+  "storefrontEvidence": {
+    "acceptedTwoVariantCart": {
+      "status": "PASS_BOUNDED",
+      "freshSessionAtEvidenceTime": true,
+      "destinationsWithNoAjaxShippingRate": [
+        "Wisconsin",
+        "Alaska",
+        "Hawaii",
+        "Canada"
+      ],
+      "payableShippingBypassObserved": false,
+      "scopeWarning": "This cart does not establish behavior for other profiles, locations, values, discounts, or destinations."
+    },
+    "expandedRepresentativeMatrix": {
+      "status": "BLOCKED_TEST",
+      "plannedCarts": [
+        "accessory",
+        "machine",
+        "consumable",
+        "replacement_part",
+        "mixed_machine_accessory",
+        "low_value",
+        "high_value"
+      ],
+      "plannedDestinations": [
+        "Wisconsin",
+        "Illinois",
+        "Alaska",
+        "Hawaii",
+        "Canada",
+        "United Kingdom"
+      ],
+      "blocker": "Fresh authenticated attempts encountered Shopify storefront/Ajax throttling and one HTTP 422 cart-add rejection before a complete matrix could be recorded. The harness now honors 429 retry semantics and stops on partial cart outcomes.",
+      "paymentSubmitted": false,
+      "orderCompleted": false,
+      "draftOrderCreatedOrModified": false
+    },
+    "entryPaths": {
+      "nativeCartCheckout": "BLOCKED_TEST",
+      "cartDrawer": "BLOCKED_TEST",
+      "productPurchaseButton": "BLOCKED_TEST",
+      "dynamicCheckout": "BLOCKED_TEST",
+      "directCheckout": "BLOCKED_TEST_REACHABLE_URL_ONLY",
+      "installedAppsAndSalesChannels": "BLOCKED_ACCESS"
+    },
+    "pickup": {
+      "acceptedVariantEndpointEvidence": "PASS_BOUNDED",
+      "wholeCartAvailableAndUnavailableMatrix": "BLOCKED_TEST"
+    },
+    "payableShippingBypassConclusion": "UNKNOWN_BLOCKED_TEST",
+    "policyDisposition": "BLOCKED_TEST"
+  },
+  "rollbackAuthority": {
+    "selectiveProductionBackupRead": "PASS",
+    "freshHashGate": "PASS_IMPLEMENTED",
+    "localRestoreAndDeleteDryRun": "PASS",
+    "unrelatedSettingsPreservation": "PASS_TESTED",
+    "productionRestorePermission": "BLOCKED_ACCESS",
+    "productionDeleteFiveNewFilesPermission": "BLOCKED_ACCESS",
+    "overallStatus": "BLOCKED_ACCESS",
+    "note": "Theme list and selective pull prove backup read access. No production write was attempted, and no authenticated Admin session was available to prove restore/delete authority."
+  },
+  "manualEvidenceRequired": {
+    "profiles": [
+      "Shopify Admin > Settings > Shipping and delivery > Shipping profiles.",
+      "Open every active profile and record its name, assigned products/Variants, fulfillment locations, zones, methods, conditions, providers, and fallback/backup behavior.",
+      "Expand every United States zone and explicitly capture contiguous states, Alaska, and Hawaii.",
+      "Record every international zone and confirm whether Canada or any other country can receive a method.",
+      "For every rate, record type, name, price or carrier, minimum/maximum cart conditions, weight conditions, free-delivery threshold, and applicable locations/products."
+    ],
+    "marketsAndDiscounts": [
+      "Shopify Admin > Markets: open every active market and record included countries/subdivisions and sell-to status.",
+      "Shopify Admin > Discounts: inspect active automatic and code discounts for shipping discounts or free-shipping effects."
+    ],
+    "pickupAndApps": [
+      "Shopify Admin > Settings > Locations and Shipping and delivery > Pickup in store: record every enabled pickup location and preparation time.",
+      "Shopify Admin > Settings > Apps and sales channels: identify any app or channel that can inject rates or create a checkout entry path."
+    ],
+    "rollbackPermission": [
+      "With the intended release operator signed in, confirm permission to Edit code on MAIN, restore all six prior files/settings, and delete the five manifest paths that were previously absent. Do not execute a change during this check."
+    ]
+  },
+  "releaseDisposition": {
+    "state": "BLOCKED_ACCESS_AND_BLOCKED_TEST",
+    "productionReady": false,
+    "failPolicyConfirmed": false,
+    "remediationRequiredConfirmed": false,
+    "reason": "Authoritative profiles/rates/Markets/discounts/pickup are uninspected, the representative delivery-method matrix is incomplete, and production rollback write/delete authority is unverified."
+  },
+  "safety": {
+    "appScopesChanged": false,
+    "productionThemeWrites": 0,
+    "shippingConfigurationWrites": 0,
+    "inventoryWrites": 0,
+    "draftOrderWrites": 0,
+    "invoiceWrites": 0,
+    "paymentSubmissions": 0,
+    "ordersCompleted": 0,
+    "customerDataPersisted": false,
+    "credentialsPersisted": false,
+    "authenticatedUrlsPersisted": false
+  }
+}

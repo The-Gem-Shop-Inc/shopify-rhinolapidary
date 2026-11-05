@@ -123,7 +123,7 @@ This package is not yet eligible for that authorization: the complete current Ad
 
 ## Validation result
 
-- `test:epic-k-k1d04`: pass, 4/4 focused merge and preservation cases.
+- `test:epic-k-k1d04`: pass, 12/12 focused merge, exact rollback, publication, freshness, store-identity, model-identification, checkout-conclusion, and readiness-claim cases.
 - `validate:epic-k-k1d04`: pass; correctly reports zero production mutations and the remaining blockers.
 - K1D-03: pass, client 20/20 and mocked browser 13/13; validator pass.
 - K1D-02: pass, endpoint 18/18, D1 8/8, Worker router 15/15; validator pass.
@@ -133,6 +133,26 @@ This package is not yet eligible for that authorization: the complete current Ad
 - Unrestricted multilingual Theme Check: expected governed failure, 1,890 `MatchingTranslations` errors in 30 unapproved locale files. No non-English translations were invented or released.
 
 The expanded live accessory/machine/mixed-cart probe could not replace the successful current snapshot because a later browser session was rejected at Shopify's storefront password gate. It issued no quotation, contact, payment, or Admin mutation. Those matrix rows remain explicitly marked for a same-window rerun rather than being inferred from the accepted two-Variant result.
+
+## K1D-04P-R publication and shipping-enforcement addendum
+
+Git publication is resolved. The authorized fetch showed both local and remote branch tips at `7aea10667b7f7f7f2ed7e30c0b2fa12a617f95a5`; ancestry passed, the single ordinary push returned `Everything up-to-date`, and a final `ls-remote` readback returned the same SHA. No rebase, amend, force push, alternate branch, or ruleset change occurred. GitHub's status history records Git Operations degradation on November 4, while current Git Operations are operational; the prior `commit_refs_rules` responses are therefore not treated as a repository rule finding.
+
+The current `Shop.features` read identifies Rhino's shipping model without broadening app scopes:
+
+- `marketDrivenShipping: false`
+- `deliveryProfiles: true`
+- `unifiedMarkets: true`
+
+The authoritative merchant-rate surface is therefore the legacy hierarchy **delivery profile → location group → zone → method**. Markets remain necessary to audit active countries and subdivisions, but Market shipping options are not Rhino's active merchant-rate model. App-owned delivery profiles would still require separate inspection if any exist.
+
+The existing quotation app returns access denied for `deliveryProfiles`, `markets`, `locations`, and `discountNodes`. The persisted browser has no authenticated staff Admin session. Profile, zone, market, method, fallback-rate, shipping-discount, pickup-location, and profile-assignment counts are therefore `BLOCKED_ACCESS`, not zero. Exact staff navigation and evidence requirements are recorded in `shipping-enforcement-audit.json`; the application scopes remain unchanged.
+
+Fresh storefront attempts corrected the earlier authentication diagnosis: the rotated password can authenticate, but repeated Ajax cart setup encountered Shopify `429` throttling and a later `422` cart-add response before the complete representative matrix could be captured. The harness now honors `Retry-After`, checks the cart before any rate-limited add retry, starts scenarios from fresh carts, and stops on partial or rejected outcomes. Accessory, machine, consumable, replacement-part, mixed, low/high value, Illinois, United Kingdom, discount, multi-location, and whole-cart pickup cases remain `BLOCKED_TEST` or `BLOCKED_ACCESS`. A reachable `/checkout` URL alone is not classified as a policy failure, and no payable bypass is claimed without a delivery method.
+
+Rollback preparation improved without touching Shopify: the automated test now creates a local release fixture, restores the six previously existing files byte-for-byte, deletes the five files previously absent, and verifies unrelated settings survive. Selective production pull proves backup read access. Production restore and code-file deletion permission remain `BLOCKED_ACCESS` because neither a write nor an authenticated Admin permission check was authorized or available.
+
+Disposition remains `BLOCKED_ACCESS_AND_BLOCKED_TEST`. No exact shipping remediation can be proposed until the active profiles and rates are inspected. If a payable method is found, a later proposal must name its profile, location group, zone, method, present condition/value, intended state, checkout consequence, rollback, validation, and Product Owner authorization; no speculative rate change is included here.
 
 ## References
 

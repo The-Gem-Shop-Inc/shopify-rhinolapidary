@@ -11,15 +11,56 @@ const READINESS = 'data/epic-k-k1d04p-release-readiness.json';
 const AUDIT = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/current-shopify-audit.json';
 const MATRIX = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/checkout-bypass-matrix.json';
 const PREPARED = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/prepared-candidate-hashes.json';
+const ENFORCEMENT = 'docs/qa/evidence/epic-k/k1d04p-release-readiness-2026-11-05/shipping-enforcement-audit.json';
 const RECORD = 'docs/project/implementation-records/epic-k1d04p-production-release-readiness.md';
 
 function readJson(relative) { return JSON.parse(fs.readFileSync(path.join(ROOT, relative), 'utf8')); }
 function source(relative) { return fs.readFileSync(path.join(ROOT, relative), 'utf8'); }
 function sha(relative) { return crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex'); }
 
+function validateEnforcementGate(enforcement, readiness, manifest, now = Date.now()) {
+  const errors = [];
+  if (enforcement.store?.canonicalDomain !== manifest.store || enforcement.store?.identityStatus !== 'PASS') {
+    errors.push('Shipping enforcement audit belongs to the wrong or unverified Shopify store.');
+  }
+  const capturedAt = Date.parse(enforcement.capturedAt);
+  if (!Number.isFinite(capturedAt) || now - capturedAt > 24 * 60 * 60 * 1000 || capturedAt - now > 5 * 60 * 1000) {
+    errors.push('Shipping configuration-model identification is missing, stale, or future-dated.');
+  }
+  const model = enforcement.configurationModel;
+  if (model?.status !== 'PASS' || !['LEGACY_DELIVERY_PROFILES_WITH_MARKETS_COUNTRY_COVERAGE', 'MARKET_DRIVEN_WITH_APP_PROFILE_SURFACE'].includes(model.classification)) {
+    errors.push('Active Shopify shipping configuration model is not identified from a current ShopFeatures read.');
+  }
+  const inventory = enforcement.authoritativeConfigurationInventory;
+  const profilePass = inventory?.profiles?.status === 'PASS';
+  const marketPass = inventory?.markets?.status === 'PASS';
+  const ratesPass = inventory?.rates?.status === 'PASS';
+  const discountsPass = inventory?.shippingDiscounts?.status === 'PASS';
+  const pickupPass = inventory?.pickupLocations?.status === 'PASS';
+  const checkoutPass = enforcement.storefrontEvidence?.policyDisposition === 'PASS';
+  const noBypass = enforcement.storefrontEvidence?.payableShippingBypassConclusion === 'NO_BYPASS_VERIFIED';
+  const rollbackPass = enforcement.rollbackAuthority?.productionRestorePermission === 'PASS'
+    && enforcement.rollbackAuthority?.productionDeleteFiveNewFilesPermission === 'PASS';
+  const publicationPass = enforcement.gitPublication?.status === 'PASS'
+    && enforcement.gitPublication?.remoteSha === manifest.publishedPreparationCommit;
+  if (!publicationPass) errors.push('Release preparation commit is not proven published on the authorized branch.');
+  const unresolved = !profilePass || !marketPass || !ratesPass || !discountsPass || !pickupPass || !checkoutPass || !noBypass || !rollbackPass;
+  if (unresolved && !/BLOCKED|FAIL|REMEDIATION/.test(readiness.state)) {
+    errors.push('Uninspected profiles/Markets, unsupported checkout conclusions, or rollback gaps must keep readiness explicitly blocked.');
+  }
+  if (enforcement.releaseDisposition?.productionReady === true && unresolved) {
+    errors.push('Production readiness is unsupported while configuration, checkout, bypass, or rollback evidence is unresolved.');
+  }
+  if (enforcement.storefrontEvidence?.payableShippingBypassConclusion === 'PAYABLE_BYPASS_VERIFIED'
+    && enforcement.releaseDisposition?.state !== 'FAIL_POLICY') {
+    errors.push('A verified payable shipping bypass must be classified FAIL_POLICY.');
+  }
+  return errors;
+}
+
 function validateK1d04() {
   const errors = [];
-  for (const file of [MANIFEST, READINESS, AUDIT, MATRIX, PREPARED, RECORD]) {
+  for (const file of [MANIFEST, READINESS, AUDIT, MATRIX, PREPARED, ENFORCEMENT, RECORD]) {
     if (!fs.existsSync(path.join(ROOT, file))) errors.push(`Missing K1D-04 artifact: ${file}`);
   }
   if (errors.length) return { errors };
@@ -29,6 +70,7 @@ function validateK1d04() {
   const audit = readJson(AUDIT);
   const matrix = readJson(MATRIX);
   const prepared = readJson(PREPARED);
+  const enforcement = readJson(ENFORCEMENT);
   const record = source(RECORD);
   const packageJson = readJson('package.json');
 
@@ -56,6 +98,7 @@ function validateK1d04() {
     || manifest.rollback.deleteFilesAbsentBeforeRelease.length !== 5) {
     errors.push('Rollback manifest must restore six prior files and delete five previously absent files.');
   }
+  errors.push(...validateEnforcementGate(enforcement, readiness, manifest));
   if (prepared.productionMutationPerformed || prepared.destinationThemeId !== manifest.destinationThemeId
     || prepared.files.length !== manifest.files.length
     || prepared.files.some((entry) => !/^[a-f0-9]{64}$/.test(entry.sha256))) {
@@ -96,7 +139,7 @@ function validateK1d04() {
     && draft.shippingLineAbsent && draft.invoiceAbsent && draft.completionAbsent && draft.reservationAbsent)) {
     errors.push('Accepted Draft Orders #D2/#D3 are not proven preserved.');
   }
-  if (!matrix.cases?.some((entry) => entry.case === 'direct_checkout_navigation' && entry.status.startsWith('BLOCKER'))
+  if (!matrix.cases?.some((entry) => entry.case === 'direct_checkout_navigation' && entry.status === 'BLOCKED_TEST')
     || !matrix.cases?.some((entry) => entry.case === 'requires_shipping_misconfiguration' && entry.status === 'PASS_ZERO_FLAGGED')) {
     errors.push('Checkout matrix must distinguish direct-checkout blocking from the zero-Variant configuration finding.');
   }
@@ -129,4 +172,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = { validateK1d04 };
+module.exports = { validateEnforcementGate, validateK1d04 };

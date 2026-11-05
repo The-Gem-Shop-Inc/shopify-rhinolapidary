@@ -8,7 +8,7 @@ Source: `Rhino Lapidary Storefront Backlog and Epics.md`
 |---:|---|---|---|---|
 | 1 | K-PBI-001 | Fulfillment policy governance and decision traceability | Complete for repository governance | K1A contracts and Product Owner decisions are versioned and validated. |
 | 2 | K-PBI-002 | Policy, operational evidence, and configuration validation | Partial | Offline policy, evidence intake, source mapping, October 24 audit, and drift/preflight gates exist. Eight operational evidence requirements remain blocked and live checkout enforcement remains unverified. |
-| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-04P release package prepared; production activation blocked | K1D-03A remains accepted. K1D-04P adds a hash-pinned 11-file MAIN manifest, generated live-file merges, exact backup/rollback procedure, checkout matrix, and employee checklist. Current read-only evidence confirms MAIN/preview roles, zero Requires-shipping Variant flags, and untouched drafts `#D2`/`#D3`, but the narrow app cannot read current profiles/Markets/pickup and direct `/checkout` remains reachable without a server validation Function. Production mutation is not authorized or complete. |
+| 3 | K-PBI-003 | Temporary shipping quotation checkout | K1D-04P-R preparation published; production activation blocked by access and checkout evidence | Commit `7aea106` is published on the authorized branch. Current ShopFeatures identify legacy delivery profiles as the authoritative rate model, with Markets still governing country coverage. The narrow app and available browser session cannot inventory profiles, Markets, rates, discounts, locations, pickup, or rollback write/delete permission; the expanded fresh-cart checkout matrix was interrupted by Shopify throttling/rejection. No payable bypass is proven safe or present. Production mutation is not authorized or complete. |
 
 ## K1C-01 acceptance
 
@@ -134,3 +134,12 @@ The English storefront workflow is implemented. The repository's 50 non-default 
 - Exact rollback restores six byte-for-byte backups and deletes the five paths that were absent before release. Operator file-deletion capability is a release precondition.
 - `K-PBI-002` remains partial and separate. Employee carrier/packaging/insurance/tagging evidence can continue after quotation-code preparation, but complete current shipping configuration and no-payment bypass proof block activation.
 - K1D-04P performed zero theme, shipping, Draft Order, invoice, payment, order, or publication mutations. Product Owner production authorization has not been requested or consumed; production activation is not complete.
+
+## K1D-04P-R publication and enforcement checkpoint
+
+- The remote authorized branch now resolves to `7aea10667b7f7f7f2ed7e30c0b2fa12a617f95a5`. Fetch, ancestry, ordinary push, and `ls-remote` verification pass; no history rewrite or security-rule change occurred.
+- Current Admin GraphQL ShopFeatures report `marketDrivenShipping=false`, `deliveryProfiles=true`, and `unifiedMarkets=true`. Rhino uses legacy delivery profiles for merchant rates; Markets remain a required coverage audit rather than the active Market-driven rate surface.
+- The existing quotation app correctly remains narrow and receives access denied for delivery profiles, Markets, locations/pickup, and discounts. No authenticated staff Admin session was available. All counts and fallback-rate conclusions for those surfaces remain `BLOCKED_ACCESS`.
+- Fresh representative storefront attempts authenticated but encountered Shopify Ajax `429` throttling and a later `422` cart-add rejection before the full cart/destination matrix completed. The audit now retries rate limits only after cart-state verification and fails closed on partial outcomes. Untested cases remain `BLOCKED_TEST`; direct checkout reachability alone is not classified as a policy failure.
+- Local exact rollback passes: six previous files restore and five previously absent files delete in an isolated fixture, while unrelated settings remain. Production restore/delete authority remains `BLOCKED_ACCESS` and was not exercised.
+- Release disposition is `BLOCKED_ACCESS_AND_BLOCKED_TEST`. K-PBI-002 remains separately partial, production readiness is false, and no Shopify mutation occurred.
