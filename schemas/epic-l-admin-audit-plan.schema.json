@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-admin-audit-plan.schema.json",
+  "title": "Epic L Shopify Admin audit plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "planId", "planVersion", "preparedAt", "status", "target", "api", "authorization", "requiredPermissions", "operations", "completionRules", "sanitization"],
+  "properties": {
+    "$schema": { "const": "../schemas/epic-l-admin-audit-plan.schema.json" },
+    "schemaVersion": { "const": 1 },
+    "planId": { "const": "epic-l-admin-audit-plan" },
+    "planVersion": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+-prepared$" },
+    "preparedAt": { "type": "string", "format": "date-time" },
+    "status": { "const": "prepared_not_authorized" },
+    "target": {
+      "type": "object", "additionalProperties": false,
+      "required": ["expectedMyshopifyDomain", "expectedShopId", "identityMustBeVerifiedBeforeEvidence"],
+      "properties": {
+        "expectedMyshopifyDomain": { "const": "sz5dnk-nf.myshopify.com" },
+        "expectedShopId": { "type": "null" },
+        "identityMustBeVerifiedBeforeEvidence": { "const": true }
+      }
+    },
+    "api": {
+      "type": "object", "additionalProperties": false,
+      "required": ["plannedVersion", "endpointPattern", "reverifyVersionAtExecution"],
+      "properties": {
+        "plannedVersion": { "const": "2026-10" },
+        "endpointPattern": { "const": "https://{shop}.myshopify.com/admin/api/{version}/graphql.json" },
+        "reverifyVersionAtExecution": { "const": true }
+      }
+    },
+    "authorization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["executionAuthorized", "connectedQueriesExecuted", "mutationsAuthorized", "configurationChangesAuthorized", "customerRecordAccessAuthorized"],
+      "properties": {
+        "executionAuthorized": { "const": false },
+        "connectedQueriesExecuted": { "const": false },
+        "mutationsAuthorized": { "const": false },
+        "configurationChangesAuthorized": { "const": false },
+        "customerRecordAccessAuthorized": { "const": false }
+      }
+    },
+    "requiredPermissions": {
+      "type": "array", "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^read_[a-z_]+$" }
+    },
+    "operations": {
+      "type": "array", "minItems": 12, "uniqueItems": true,
+      "items": { "$ref": "#/$defs/operation" }
+    },
+    "completionRules": { "type": "array", "minItems": 6, "uniqueItems": true, "items": { "type": "string", "minLength": 5 } },
+    "sanitization": { "type": "array", "minItems": 7, "uniqueItems": true, "items": { "type": "string", "minLength": 3 } }
+  },
+  "$defs": {
+    "pagination": {
+      "type": "object", "additionalProperties": false,
+      "required": ["required", "connectionPath", "pageSize", "completionRule"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "connectionPath": { "type": ["string", "null"] },
+        "pageSize": { "type": ["integer", "null"], "minimum": 1, "maximum": 250 },
+        "completionRule": { "type": "string", "minLength": 5 }
+      }
+    },
+    "operation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["operationId", "domain", "transport", "operationType", "queryName", "queryDocument", "manualPath", "requiredScopes", "pagination", "identityChecks", "redactionRules", "plannedEvidenceFields", "failureDisposition", "executionState", "writeOperation"],
+      "properties": {
+        "operationId": { "type": "string", "pattern": "^L-AUD-[0-9]{3}$" },
+        "domain": { "enum": ["permissions", "shop_and_accounts", "pages", "files", "policies", "applications", "themes", "app_embeds", "forms", "flow", "inbox", "messaging"] },
+        "transport": { "enum": ["admin_graphql", "manual_admin_ui"] },
+        "operationType": { "enum": ["query", "read_only_review"] },
+        "queryName": { "type": ["string", "null"] },
+        "queryDocument": { "type": ["string", "null"] },
+        "manualPath": { "type": ["string", "null"] },
+        "requiredScopes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^read_[a-z_]+$" } },
+        "pagination": { "$ref": "#/$defs/pagination" },
+        "identityChecks": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3 } },
+        "redactionRules": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3 } },
+        "plannedEvidenceFields": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "failureDisposition": { "type": "string", "minLength": 10 },
+        "executionState": { "const": "not_executed" },
+        "writeOperation": { "const": false }
+      }
+    }
+  }
+}

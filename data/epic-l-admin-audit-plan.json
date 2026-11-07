@@ -1,0 +1,84 @@
+{
+  "$schema": "../schemas/epic-l-admin-audit-plan.schema.json",
+  "schemaVersion": 1,
+  "planId": "epic-l-admin-audit-plan",
+  "planVersion": "1.0.0-prepared",
+  "preparedAt": "2026-11-07T17:27:13.043Z",
+  "status": "prepared_not_authorized",
+  "target": { "expectedMyshopifyDomain": "sz5dnk-nf.myshopify.com", "expectedShopId": null, "identityMustBeVerifiedBeforeEvidence": true },
+  "api": { "plannedVersion": "2026-10", "endpointPattern": "https://{shop}.myshopify.com/admin/api/{version}/graphql.json", "reverifyVersionAtExecution": true },
+  "authorization": { "executionAuthorized": false, "connectedQueriesExecuted": false, "mutationsAuthorized": false, "configurationChangesAuthorized": false, "customerRecordAccessAuthorized": false },
+  "requiredPermissions": ["read_apps", "read_content", "read_files", "read_legal_policies", "read_themes"],
+  "operations": [
+    {
+      "operationId": "L-AUD-001", "domain": "permissions", "transport": "admin_graphql", "operationType": "query", "queryName": "EpicLCurrentAppScopes", "queryDocument": "query EpicLCurrentAppScopes { currentAppInstallation { id accessScopes { handle } } }", "manualPath": null, "requiredScopes": [],
+      "pagination": { "required": false, "connectionPath": null, "pageSize": null, "completionRule": "A single successful response is complete." },
+      "identityChecks": ["Do not treat scopes as store identity; run shop identity operation before accepting evidence."], "redactionRules": ["Record scope handles only; omit tokens, headers, and environment values."], "plannedEvidenceFields": ["currentAppInstallation.id", "accessScopes.handle"], "failureDisposition": "Record inaccessible or query failure; do not infer scopes or continue as complete.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-002", "domain": "shop_and_accounts", "transport": "admin_graphql", "operationType": "query", "queryName": "EpicLShopIdentityAccountsPlan", "queryDocument": "query EpicLShopIdentityAccountsPlan { shop { id name myshopifyDomain ianaTimezone plan { publicDisplayName shopifyPlus partnerDevelopment } customerAccounts customerAccountsV2 { customerAccountsVersion loginLinksVisibleOnStorefrontAndCheckout loginRequiredAtCheckout url } } }", "manualPath": null, "requiredScopes": [],
+      "pagination": { "required": false, "connectionPath": null, "pageSize": null, "completionRule": "A single successful response matching the expected domain is complete." },
+      "identityChecks": ["Require shop.myshopifyDomain to equal sz5dnk-nf.myshopify.com before retaining any other audit evidence.", "Record shop.id as the future immutable target identifier."], "redactionRules": ["Do not record customer identities, login tokens, or authenticated account URLs containing secrets."], "plannedEvidenceFields": ["shop.id", "shop.name", "shop.myshopifyDomain", "shop.ianaTimezone", "shop.plan", "shop.customerAccounts", "shop.customerAccountsV2"], "failureDisposition": "Stop the audit on an identity mismatch; record failure without retaining evidence from the wrong shop.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-003", "domain": "pages", "transport": "admin_graphql", "operationType": "query", "queryName": "EpicLPages", "queryDocument": "query EpicLPages($first: Int!, $after: String) { pages(first: $first, after: $after, sortKey: UPDATED_AT) { nodes { id title handle isPublished createdAt updatedAt } pageInfo { hasNextPage endCursor } } }", "manualPath": null, "requiredScopes": ["read_content"],
+      "pagination": { "required": true, "connectionPath": "data.pages", "pageSize": 100, "completionRule": "Follow endCursor until hasNextPage is false; any missing or repeated cursor is failure." },
+      "identityChecks": ["Shop identity must already be verified."], "redactionRules": ["Do not persist page bodies or form submissions; retain only identity and publication metadata."], "plannedEvidenceFields": ["id", "title", "handle", "isPublished", "createdAt", "updatedAt"], "failureDisposition": "Mark the Pages capability incomplete on scope, transport, GraphQL, or pagination failure.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-004", "domain": "files", "transport": "admin_graphql", "operationType": "query", "queryName": "EpicLFiles", "queryDocument": "query EpicLFiles($first: Int!, $after: String) { files(first: $first, after: $after, sortKey: UPDATED_AT) { nodes { id alt fileStatus createdAt updatedAt ... on GenericFile { url originalFileSize } } pageInfo { hasNextPage endCursor } } }", "manualPath": null, "requiredScopes": ["read_files"],
+      "pagination": { "required": true, "connectionPath": "data.files", "pageSize": 100, "completionRule": "Follow endCursor until hasNextPage is false; any missing or repeated cursor is failure." },
+      "identityChecks": ["Shop identity must already be verified."], "redactionRules": ["Do not download files or retain signed URLs, customer uploads, or document contents; inventory metadata only."], "plannedEvidenceFields": ["id", "alt", "fileStatus", "createdAt", "updatedAt", "GenericFile.originalFileSize", "redacted URL classification"], "failureDisposition": "Mark the Files capability incomplete on scope, transport, GraphQL, type, or pagination failure.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-005", "domain": "policies", "transport": "admin_graphql", "operationType": "query", "queryName": "EpicLPolicies", "queryDocument": "query EpicLPolicies { shop { shopPolicies { id type title url createdAt updatedAt } } }", "manualPath": null, "requiredScopes": ["read_legal_policies"],
+      "pagination": { "required": false, "connectionPath": null, "pageSize": null, "completionRule": "A single successful response is complete because shopPolicies is a list, not a connection." },
+      "identityChecks": ["Shop identity must already be verified."], "redactionRules": ["Do not treat policy metadata or historical warranty-looking text as approved warranty authority; omit body text from the sanitized inventory."], "plannedEvidenceFields": ["id", "type", "title", "url", "createdAt", "updatedAt"], "failureDisposition": "Record policy metadata as inaccessible; do not infer policy absence or content.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-006", "domain": "applications", "transport": "admin_graphql", "operationType": "query", "queryName": "EpicLAppInstallations", "queryDocument": "query EpicLAppInstallations($first: Int!, $after: String) { appInstallations(first: $first, after: $after, sortKey: INSTALLED_AT) { nodes { id app { id title handle shopifyDeveloped } accessScopes { handle } } pageInfo { hasNextPage endCursor } } }", "manualPath": null, "requiredScopes": ["read_apps"],
+      "pagination": { "required": true, "connectionPath": "data.appInstallations", "pageSize": 100, "completionRule": "Follow endCursor until hasNextPage is false; any missing or repeated cursor is failure." },
+      "identityChecks": ["Shop identity must already be verified."], "redactionRules": ["Record app identity and scope handles only; omit tokens, launch URLs, billing data, and app-owned customer records."], "plannedEvidenceFields": ["installation.id", "app.id", "app.title", "app.handle", "app.shopifyDeveloped", "accessScopes.handle"], "failureDisposition": "Mark application inventory incomplete on scope, transport, GraphQL, or pagination failure.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-007", "domain": "themes", "transport": "admin_graphql", "operationType": "query", "queryName": "EpicLThemes", "queryDocument": "query EpicLThemes($first: Int!, $after: String) { themes(first: $first, after: $after) { nodes { id name role updatedAt } pageInfo { hasNextPage endCursor } } }", "manualPath": null, "requiredScopes": ["read_themes"],
+      "pagination": { "required": true, "connectionPath": "data.themes", "pageSize": 50, "completionRule": "Follow endCursor until hasNextPage is false; any missing or repeated cursor is failure." },
+      "identityChecks": ["Shop identity must already be verified.", "Expected production and preview theme IDs are context only until observed."], "redactionRules": ["Retain theme identity, role, name, and timestamp only; do not download or change theme files."], "plannedEvidenceFields": ["id", "name", "role", "updatedAt"], "failureDisposition": "Mark theme inventory incomplete on scope, transport, GraphQL, or pagination failure.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-008", "domain": "app_embeds", "transport": "manual_admin_ui", "operationType": "read_only_review", "queryName": null, "queryDocument": null, "manualPath": "Online Store > Themes > Customize > App embeds", "requiredScopes": [],
+      "pagination": { "required": false, "connectionPath": null, "pageSize": null, "completionRule": "Capture a sanitized inventory or explicitly record inaccessible; do not toggle anything." },
+      "identityChecks": ["Confirm store and theme IDs before review."], "redactionRules": ["Record app embed name and enabled state only; omit configuration values and credentials."], "plannedEvidenceFields": ["themeId", "embedName", "enabled", "observedAt"], "failureDisposition": "Record inaccessible or incomplete; do not infer disabled state.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-009", "domain": "forms", "transport": "manual_admin_ui", "operationType": "read_only_review", "queryName": null, "queryDocument": null, "manualPath": "Apps > Forms", "requiredScopes": [],
+      "pagination": { "required": false, "connectionPath": null, "pageSize": null, "completionRule": "Inventory all visible forms and settings or explicitly record inaccessible; do not open submissions." },
+      "identityChecks": ["Confirm store identity in Admin before review."], "redactionRules": ["Record form identity, status, field definitions, consent configuration, and automation links only; no submissions or customer values."], "plannedEvidenceFields": ["installed", "formId", "name", "status", "field definitions", "consent settings", "automation links", "observedAt"], "failureDisposition": "Record inaccessible or incomplete; do not infer absence or feasibility.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-010", "domain": "flow", "transport": "manual_admin_ui", "operationType": "read_only_review", "queryName": null, "queryDocument": null, "manualPath": "Apps > Shopify Flow", "requiredScopes": [],
+      "pagination": { "required": false, "connectionPath": null, "pageSize": null, "completionRule": "Inventory all workflows or explicitly record inaccessible; do not enable, disable, or run workflows." },
+      "identityChecks": ["Confirm store identity in Admin before review."], "redactionRules": ["Record workflow name, status, trigger/action types, and app dependencies only; omit run payloads and customer data."], "plannedEvidenceFields": ["installed", "workflowId", "name", "status", "trigger types", "action types", "app dependencies", "observedAt"], "failureDisposition": "Record inaccessible or incomplete; do not infer workflow coverage.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-011", "domain": "inbox", "transport": "manual_admin_ui", "operationType": "read_only_review", "queryName": null, "queryDocument": null, "manualPath": "Apps > Shopify Inbox", "requiredScopes": [],
+      "pagination": { "required": false, "connectionPath": null, "pageSize": null, "completionRule": "Inventory capability and sanitized settings or explicitly record inaccessible; do not open conversations." },
+      "identityChecks": ["Confirm store identity in Admin before review."], "redactionRules": ["Do not access or retain conversation transcripts, customer profiles, contact details, or message contents."], "plannedEvidenceFields": ["installed", "availability", "chat enabled", "instant answer identities", "staffing settings", "observedAt"], "failureDisposition": "Record inaccessible or incomplete; do not infer support-channel readiness.", "executionState": "not_executed", "writeOperation": false
+    },
+    {
+      "operationId": "L-AUD-012", "domain": "messaging", "transport": "manual_admin_ui", "operationType": "read_only_review", "queryName": null, "queryDocument": null, "manualPath": "Marketing > Automations", "requiredScopes": [],
+      "pagination": { "required": false, "connectionPath": null, "pageSize": null, "completionRule": "Inventory all relevant automations or explicitly record inaccessible; do not activate or send." },
+      "identityChecks": ["Confirm store identity in Admin before review."], "redactionRules": ["Record automation identity, status, trigger, audience rule, consent dependency, and channel only; omit recipients and message bodies."], "plannedEvidenceFields": ["automationId", "name", "status", "trigger", "audience rule", "consent dependency", "channel", "observedAt"], "failureDisposition": "Record inaccessible or incomplete; do not infer messaging or onboarding feasibility.", "executionState": "not_executed", "writeOperation": false
+    }
+  ],
+  "completionRules": [
+    "Verify the exact myshopify domain before accepting any capability evidence.",
+    "Record observed time, API version or manual path, responsible auditor, and sanitized source reference for every operation.",
+    "Every required connection must end with hasNextPage false; cursor failure or a repeated cursor is an incomplete audit.",
+    "HTTP, GraphQL, permission, schema, identity, and manual-access failures remain failures and cannot be converted to empty successful results.",
+    "A missing operation or missing evidence reference prevents an overall successful audit disposition.",
+    "No query, review, or artifact may mutate Shopify, configure an app, access customer records, or approve a policy.",
+    "Plan and API version must be revalidated against current official Shopify documentation immediately before separately authorized execution."
+  ],
+  "sanitization": ["access tokens", "authorization headers", "environment variables", "customer names and contact details", "serial numbers", "order and draft order identifiers", "uploads and purchase documents", "conversation and notification contents", "signed or private URLs"]
+}

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "epic": "L",
+  "title": "Warranty, Service, Repairs, and Support",
+  "preparedAt": "2026-11-07",
+  "source": "docs/Rhino Lapidary Storefront Backlog and Epics.md#epic-l--warranty-service-repairs-and-support",
+  "branch": "epic-k/k1d02p-provision-quotation-infrastructure",
+  "headAtDiscovery": "ef76e02aa023616b0f7e70ed05f59f9bd16b4cf3",
+  "planningOnly": true,
+  "implementationAuthorized": false,
+  "shopifyMutationAuthorized": false,
+  "publicationAuthorized": false,
+  "authorizedRepositoryBatch": {
+    "id": "L1A",
+    "scope": "Schemas, evidence contracts, decision packets, validators, deterministic fixtures, sanitized reports, and scoped tracker updates only.",
+    "shopifyAdminReadAuthorized": false,
+    "shopifyMutationAuthorized": false,
+    "customerDataCollectionAuthorized": false,
+    "customerFacingChangeAuthorized": false,
+    "implementationRecord": "docs/project/implementation-records/epic-l-l1a-foundation.md"
+  },
+  "statusVocabulary": [
+    "Proposed",
+    "Ready for Product Owner review",
+    "Approved",
+    "Ready for implementation",
+    "In progress",
+    "Blocked",
+    "Implemented, awaiting verification",
+    "Complete",
+    "Deferred"
+  ],
+  "batches": [
+    {"id": "L1", "title": "Discovery, policies, and source governance", "pbiIds": ["L-PBI-001", "L-PBI-002", "L-PBI-003", "L-PBI-004", "L-PBI-005"]},
+    {"id": "L2", "title": "Support information architecture", "pbiIds": ["L-PBI-006", "L-PBI-007", "L-PBI-008", "L-PBI-009", "L-PBI-010"]},
+    {"id": "L3", "title": "Machine resources and troubleshooting", "pbiIds": ["L-PBI-011", "L-PBI-012", "L-PBI-013", "L-PBI-014", "L-PBI-015", "L-PBI-016"]},
+    {"id": "L4", "title": "Service and warranty intake", "pbiIds": ["L-PBI-017", "L-PBI-018", "L-PBI-019", "L-PBI-020", "L-PBI-021"]},
+    {"id": "L5", "title": "Ownership support and operational extensions", "pbiIds": ["L-PBI-022", "L-PBI-023", "L-PBI-024", "L-PBI-025", "L-PBI-026"]},
+    {"id": "L6", "title": "Acceptance, measurement, and release", "pbiIds": ["L-PBI-027", "L-PBI-028"]}
+  ],
+  "items": [
+    {"id":"L-PBI-001","title":"Establish the Epic L current-state and authority baseline","priority":"P0","effort":"M","status":"Implemented, awaiting verification","evidenceState":"l1a_contract_implemented_owner_verification_pending","batch":"L1","ownerClass":"Engineering and data governance","dependencies":[]},
+    {"id":"L-PBI-002","title":"Approve versioned warranty terms, roles, and product mappings","priority":"P0","effort":"L","status":"Proposed","evidenceState":"warranty_packet_prepared_all_approvals_and_mappings_missing","batch":"L1","ownerClass":"Business, Legal, Product Data, and Support","dependencies":["L-PBI-001"]},
+    {"id":"L-PBI-003","title":"Approve the service, repair, and repair-shipment operating model","priority":"P0","effort":"L","status":"Proposed","evidenceState":"service_packet_prepared_owner_approvals_and_k_evid_007_missing","batch":"L1","ownerClass":"Support, Operations, Finance, and Legal","dependencies":["L-PBI-001","K-EVID-007"]},
+    {"id":"L-PBI-004","title":"Approve support-intake privacy, retention, and access rules","priority":"P0","effort":"M","status":"Proposed","evidenceState":"privacy_contract_prepared_all_lifecycle_decisions_missing","batch":"L1","ownerClass":"Privacy, Security, Support, and Legal","dependencies":["L-PBI-001"]},
+    {"id":"L-PBI-005","title":"Audit current Shopify support, forms, account, and app capabilities","priority":"P1","effort":"M","status":"Ready for Product Owner review","evidenceState":"audit_plan_prepared_execution_not_authorized","batch":"L1","ownerClass":"Shopify Admin and Engineering","dependencies":["L-PBI-001"]},
+    {"id":"L-PBI-006","title":"Define additive support-resource and knowledge contracts","priority":"P0","effort":"L","status":"Proposed","evidenceState":"existing_contract_extension","batch":"L2","ownerClass":"Engineering, Product Data, Technical, and Content","dependencies":["L-PBI-001","L-PBI-002","L-PBI-003","L-PBI-004"]},
+    {"id":"L-PBI-007","title":"Define support navigation and route ownership","priority":"P1","effort":"M","status":"Proposed","evidenceState":"partial_routes_exist","batch":"L2","ownerClass":"Content, Support, Shopify Admin, and Engineering","dependencies":["L-PBI-006"]},
+    {"id":"L-PBI-008","title":"Publish governed warranty landing and product-specific warranty paths","priority":"P1","effort":"L","status":"Proposed","evidenceState":"blocked_on_warranty_authority","batch":"L2","ownerClass":"Content, Legal, Product Data, Shopify Admin, and Engineering","dependencies":["L-PBI-002","L-PBI-006","L-PBI-007"]},
+    {"id":"L-PBI-009","title":"Publish approved support channels, hours, and response expectations","priority":"P1","effort":"M","status":"Proposed","evidenceState":"blocked_on_staffing_decisions","batch":"L2","ownerClass":"Support, Business, Content, and Shopify Admin","dependencies":["L-PBI-003","L-PBI-007"]},
+    {"id":"L-PBI-010","title":"Add machine-page support-resource entry points","priority":"P1","effort":"M","status":"Proposed","evidenceState":"fixture_only_renderer_exists","batch":"L2","ownerClass":"Engineering, Content, and Product Data","dependencies":["L-PBI-006","L-PBI-007","L-PBI-008"]},
+    {"id":"L-PBI-011","title":"Canonicalize manuals, diagrams, and setup-resource inventory","priority":"P0","effort":"L","status":"Proposed","evidenceState":"110_candidates_zero_approved","batch":"L3","ownerClass":"Technical, Media, Content, Product Data, and Support","dependencies":["L-PBI-006"]},
+    {"id":"L-PBI-012","title":"Deliver an accessible machine-resource library and identification path","priority":"P1","effort":"L","status":"Proposed","evidenceState":"partial_manual_pages_exist","batch":"L3","ownerClass":"Engineering, Content, Shopify Admin, and Technical","dependencies":["L-PBI-007","L-PBI-011"]},
+    {"id":"L-PBI-013","title":"Publish governed maintenance, cleaning, and setup guidance","priority":"P1","effort":"L","status":"Proposed","evidenceState":"approved_content_absent","batch":"L3","ownerClass":"Technical, Safety, Content, and Support","dependencies":["L-PBI-011","L-PBI-012"]},
+    {"id":"L-PBI-014","title":"Deliver symptom-based troubleshooting with safety escalation","priority":"P0","effort":"XL","status":"Proposed","evidenceState":"approved_diagnostics_absent","batch":"L3","ownerClass":"Technical, Safety, Legal, Support, Content, and Engineering","dependencies":["L-PBI-003","L-PBI-006","L-PBI-011"]},
+    {"id":"L-PBI-015","title":"Integrate replacement-parts lookup with approved compatibility","priority":"P1","effort":"M","status":"Proposed","evidenceState":"reuse_epic_g_contracts","batch":"L3","ownerClass":"Product Data, Support, and Engineering","dependencies":["L-PBI-006","L-PBI-007","G-PBI-003","G-PBI-005"]},
+    {"id":"L-PBI-016","title":"Define support treatment for legacy and discontinued machines","priority":"P2","effort":"L","status":"Proposed","evidenceState":"lifecycle_policy_absent","batch":"L3","ownerClass":"Business, Product Data, Technical, Support, and Content","dependencies":["L-PBI-003","L-PBI-006","L-PBI-011"]},
+    {"id":"L-PBI-017","title":"Select and prove a native-first service-intake architecture","priority":"P0","effort":"M","status":"Proposed","evidenceState":"native_feasibility_supported_admin_audit_required","batch":"L4","ownerClass":"Engineering, Shopify Admin, Privacy, and Support","dependencies":["L-PBI-004","L-PBI-005","L-PBI-006"]},
+    {"id":"L-PBI-018","title":"Implement structured warranty, repair, and technical-support intake","priority":"P1","effort":"L","status":"Proposed","evidenceState":"blocked_on_policy_and_architecture","batch":"L4","ownerClass":"Engineering, Shopify Admin, Support, Content, and Privacy","dependencies":["L-PBI-002","L-PBI-003","L-PBI-004","L-PBI-017"]},
+    {"id":"L-PBI-019","title":"Implement secure purchase-evidence and diagnostic uploads","priority":"P0","effort":"L","status":"Proposed","evidenceState":"privacy_and_storage_decisions_required","batch":"L4","ownerClass":"Privacy, Security, Support, Shopify Admin, and Engineering","dependencies":["L-PBI-004","L-PBI-017","L-PBI-018"]},
+    {"id":"L-PBI-020","title":"Implement staff categorization, routing, deduplication, and recovery","priority":"P1","effort":"L","status":"Proposed","evidenceState":"workflow_owner_required","batch":"L4","ownerClass":"Support Operations, Shopify Admin, and Engineering","dependencies":["L-PBI-003","L-PBI-017","L-PBI-018","L-PBI-019"]},
+    {"id":"L-PBI-021","title":"Implement warranty registration after policy approval","priority":"P2","effort":"L","status":"Proposed","evidenceState":"registration_policy_unapproved","batch":"L4","ownerClass":"Business, Legal, Support, Privacy, Shopify Admin, and Engineering","dependencies":["L-PBI-002","L-PBI-004","L-PBI-017","L-PBI-019"]},
+    {"id":"L-PBI-022","title":"Evaluate and govern Shopify Inbox and common-question automation","priority":"P2","effort":"M","status":"Proposed","evidenceState":"current_configuration_unverified","batch":"L5","ownerClass":"Support, Content, Shopify Admin, Privacy, and Engineering","dependencies":["L-PBI-005","L-PBI-009","L-PBI-020"]},
+    {"id":"L-PBI-023","title":"Define the customer-account owned-machine and service-resource interface","priority":"P3","effort":"XL","status":"Deferred","evidenceState":"epic_o_interface_custom_app_likely","batch":"L5","ownerClass":"Epic O, Engineering, Privacy, Support, and Product Data","dependencies":["L-PBI-005","L-PBI-006","L-PBI-017","L-PBI-021"]},
+    {"id":"L-PBI-024","title":"Deliver approved post-purchase support onboarding","priority":"P2","effort":"L","status":"Proposed","evidenceState":"epic_x_interface_content_and_consent_required","batch":"L5","ownerClass":"Epic X, Content, Support, Legal, Privacy, and Shopify Admin","dependencies":["L-PBI-009","L-PBI-011","L-PBI-013"]},
+    {"id":"L-PBI-025","title":"Evaluate a dealer and service-center directory","priority":"P3","effort":"L","status":"Deferred","evidenceState":"program_and_eligibility_unapproved","batch":"L5","ownerClass":"Business, Support, Legal, Content, and Shopify Admin","dependencies":["L-PBI-003","L-PBI-006"]},
+    {"id":"L-PBI-026","title":"Establish recall and safety-notice capability","priority":"P1","effort":"L","status":"Proposed","evidenceState":"ownership_and_process_absent","batch":"L5","ownerClass":"Safety, Legal, Business, Product Data, Support, and Engineering","dependencies":["L-PBI-003","L-PBI-006","L-PBI-009"]},
+    {"id":"L-PBI-027","title":"Define privacy-aware support measurement and event governance","priority":"P2","effort":"M","status":"Proposed","evidenceState":"epic_u_interface_required","batch":"L6","ownerClass":"Epic U, Privacy, Support, Product, and Engineering","dependencies":["L-PBI-007","L-PBI-017","L-PBI-020"]},
+    {"id":"L-PBI-028","title":"Run integrated Epic L acceptance and release readiness","priority":"P0","effort":"XL","status":"Proposed","evidenceState":"final_gate_not_started","batch":"L6","ownerClass":"QA, Security, Accessibility, Performance, Operations, and Product Owner","dependencies":["L-PBI-008","L-PBI-009","L-PBI-010","L-PBI-012","L-PBI-014","L-PBI-015","L-PBI-018","L-PBI-019","L-PBI-020","L-PBI-026","L-PBI-027"]}
+  ],
+  "externalDependencies": [
+    "K-EVID-007",
+    "G-PBI-003",
+    "G-PBI-005"
+  ],
+  "initialSafeBatch": {
+    "batchId": "L1",
+    "implementationBoundary": "Repository-only discovery, contracts, decision packets, and read-only audits. No customer-facing claims, Shopify mutations, app installs, form activation, email, or publication.",
+    "recommendedPbiIds": ["L-PBI-001", "L-PBI-002", "L-PBI-003", "L-PBI-004", "L-PBI-005"]
+  }
+}

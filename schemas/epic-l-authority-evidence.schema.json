@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-l-authority-evidence.schema.json",
+  "title": "Epic L authority and current-state evidence contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "contractId",
+    "preparedAt",
+    "repositoryBaseline",
+    "planningOnly",
+    "authorization",
+    "lifecycleStates",
+    "evidenceStates",
+    "rules",
+    "identityReuse",
+    "domains"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-l-authority-evidence" },
+    "preparedAt": { "type": "string", "format": "date-time" },
+    "repositoryBaseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["branch", "commit"],
+      "properties": {
+        "branch": { "type": "string", "minLength": 1 },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      }
+    },
+    "planningOnly": { "const": true },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["implementation", "shopifyAdminRead", "shopifyMutation", "publication", "customerDataCollection"],
+      "properties": {
+        "implementation": { "const": true },
+        "shopifyAdminRead": { "const": false },
+        "shopifyMutation": { "const": false },
+        "publication": { "const": false },
+        "customerDataCollection": { "const": false }
+      }
+    },
+    "lifecycleStates": {
+      "const": ["observed", "proposed", "approved", "implemented", "verified", "released", "retired"]
+    },
+    "evidenceStates": {
+      "const": ["current", "missing", "conflicting", "expired", "revoked", "unresolved", "blocked"]
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 20 }
+    },
+    "identityReuse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["productVariant", "machine", "compatibility", "resources", "operationalEvidence"],
+      "properties": {
+        "productVariant": { "$ref": "#/$defs/reuse" },
+        "machine": { "$ref": "#/$defs/reuse" },
+        "compatibility": { "$ref": "#/$defs/reuse" },
+        "resources": { "$ref": "#/$defs/reuse" },
+        "operationalEvidence": { "$ref": "#/$defs/reuse" }
+      }
+    },
+    "domains": {
+      "type": "array",
+      "minItems": 12,
+      "items": { "$ref": "#/$defs/domain" }
+    }
+  },
+  "$defs": {
+    "reuse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonicalPath", "reuseOnly", "newRegistryAuthorized"],
+      "properties": {
+        "canonicalPath": { "type": "string", "minLength": 5 },
+        "reuseOnly": { "const": true },
+        "newRegistryAuthorized": { "const": false }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidenceRef", "requiredRoles"],
+      "properties": {
+        "status": { "enum": ["approved", "unresolved", "not_required", "expired", "revoked"] },
+        "evidenceRef": { "type": ["string", "null"] },
+        "requiredRoles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 2 }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "kind", "path", "revision", "observedAt", "approval"],
+      "properties": {
+        "sourceId": { "type": "string", "pattern": "^L-SRC-[0-9]{3}$" },
+        "kind": { "enum": ["repository", "shopify_admin", "business_policy", "operational_evidence", "official_platform_documentation"] },
+        "path": { "type": "string", "minLength": 5 },
+        "revision": { "type": "string", "minLength": 3 },
+        "observedAt": { "type": ["string", "null"], "format": "date-time" },
+        "approval": { "$ref": "#/$defs/approval" }
+      }
+    },
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domainId",
+        "domain",
+        "responsibleRole",
+        "lifecycleState",
+        "evidenceState",
+        "sources",
+        "conflictRefs",
+        "dependencies",
+        "freshness",
+        "publicClaimGate"
+      ],
+      "properties": {
+        "domainId": { "type": "string", "pattern": "^L-AUTH-[0-9]{3}$" },
+        "domain": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "responsibleRole": { "type": "string", "minLength": 3 },
+        "lifecycleState": { "enum": ["observed", "proposed", "approved", "implemented", "verified", "released", "retired"] },
+        "evidenceState": { "enum": ["current", "missing", "conflicting", "expired", "revoked", "unresolved", "blocked"] },
+        "sources": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/source" } },
+        "conflictRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 3 } },
+        "dependencies": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 3 } },
+        "freshness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "validThrough"],
+          "properties": {
+            "kind": { "enum": ["commit_bound", "explicit_interval", "not_established"] },
+            "validThrough": { "type": ["string", "null"], "format": "date-time" }
+          }
+        },
+        "publicClaimGate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["authorized", "disposition", "reason", "requiredEvidence"],
+          "properties": {
+            "authorized": { "const": false },
+            "disposition": { "enum": ["blocked", "conditional", "not_applicable"] },
+            "reason": { "type": "string", "minLength": 10 },
+            "requiredEvidence": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 3 } }
+          }
+        }
+      }
+    }
+  }
+}

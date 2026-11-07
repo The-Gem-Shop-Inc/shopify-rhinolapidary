@@ -1,0 +1,42 @@
+{
+  "$schema": "../schemas/epic-l-warranty-decision-packet.schema.json",
+  "schemaVersion": 1,
+  "packetId": "epic-l-warranty-decision-packet",
+  "packetVersion": "1.0.0-unresolved",
+  "preparedAt": "2026-11-07T17:27:13.043Z",
+  "status": "unresolved",
+  "authorityEffect": "none_until_owner_approval",
+  "publicationAuthorized": false,
+  "historicalTextApproved": false,
+  "decisionFields": {
+    "issuer": { "decisionId": "L-WAR-001", "status": "unresolved", "value": null, "requiredOwners": ["Business", "Legal", "Product Owner"], "evidenceRefs": [], "blockingReason": "Current warranty issuer is not approved." },
+    "administrator": { "decisionId": "L-WAR-002", "status": "unresolved", "value": null, "requiredOwners": ["Business", "Legal", "Support"], "evidenceRefs": [], "blockingReason": "Current warranty administrator is not approved." },
+    "manufacturerSellerRoles": { "decisionId": "L-WAR-003", "status": "unresolved", "value": null, "requiredOwners": ["Business", "Legal", "Support"], "evidenceRefs": [], "blockingReason": "Manufacturer and seller responsibilities are unresolved." },
+    "coveredScope": { "decisionId": "L-WAR-004", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Product Data", "Product Owner"], "evidenceRefs": [], "blockingReason": "Covered Products, components, and classes are unresolved." },
+    "coverageTrigger": { "decisionId": "L-WAR-005", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Business"], "evidenceRefs": [], "blockingReason": "Coverage start event is unresolved." },
+    "duration": { "decisionId": "L-WAR-006", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Business", "Product Owner"], "evidenceRefs": [], "blockingReason": "No duration is approved for any Product or class." },
+    "effectiveDates": { "decisionId": "L-WAR-007", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Product Owner"], "evidenceRefs": [], "blockingReason": "No current policy version or effective period is approved." },
+    "remedies": { "decisionId": "L-WAR-008", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Business", "Support"], "evidenceRefs": [], "blockingReason": "Repair, replacement, refund, and other remedies are unresolved." },
+    "exclusions": { "decisionId": "L-WAR-009", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Technical", "Support"], "evidenceRefs": [], "blockingReason": "Exclusions and limitations are unresolved." },
+    "transferability": { "decisionId": "L-WAR-010", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Business"], "evidenceRefs": [], "blockingReason": "Transfer and used-equipment treatment are unresolved." },
+    "geography": { "decisionId": "L-WAR-011", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Business", "Support"], "evidenceRefs": [], "blockingReason": "Covered geography and regional responsibility are unresolved." },
+    "proofRequirements": { "decisionId": "L-WAR-012", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Support", "Privacy"], "evidenceRefs": [], "blockingReason": "Proof requirements and exceptions are unresolved." },
+    "registrationEffect": { "decisionId": "L-WAR-013", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Business", "Support"], "evidenceRefs": [], "blockingReason": "Registration requirement and legal effect are unresolved." },
+    "transportResponsibility": { "decisionId": "L-WAR-014", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Operations", "Support"], "evidenceRefs": [], "blockingReason": "Warranty transport cost and risk responsibilities are unresolved." },
+    "supersessionAndReview": { "decisionId": "L-WAR-015", "status": "unresolved", "value": null, "requiredOwners": ["Legal", "Product Owner"], "evidenceRefs": [], "blockingReason": "Policy review, supersession, retirement, and notice rules are unresolved." }
+  },
+  "policyVersions": [],
+  "productMappings": [],
+  "unmappedDisposition": {
+    "state": "blocked",
+    "publicClaimAllowed": false,
+    "customerSafeBehavior": "Do not publish a warranty duration, eligibility, coverage, remedy, or registration claim for an unmapped Product."
+  },
+  "requiredApprovals": [
+    { "approvalId": "L-WAPP-001", "role": "Business", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null },
+    { "approvalId": "L-WAPP-002", "role": "Legal", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null },
+    { "approvalId": "L-WAPP-003", "role": "Product Data", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null },
+    { "approvalId": "L-WAPP-004", "role": "Support", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null },
+    { "approvalId": "L-WAPP-005", "role": "Product Owner", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null }
+  ]
+}

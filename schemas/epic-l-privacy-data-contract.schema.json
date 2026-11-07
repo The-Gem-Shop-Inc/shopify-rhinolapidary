@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-privacy-data-contract.schema.json",
+  "title": "Epic L privacy data decision contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "contractId", "contractVersion", "preparedAt", "status", "collectionAuthorized", "processorSelected", "privateRecordsCreated", "customerDataPresent", "elements", "dataFlows", "publicEvidenceProhibitions", "requiredApprovals"],
+  "properties": {
+    "$schema": { "const": "../schemas/epic-l-privacy-data-contract.schema.json" },
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "epic-l-privacy-data-contract" },
+    "contractVersion": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+-unresolved$" },
+    "preparedAt": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["unresolved", "approved", "retired"] },
+    "collectionAuthorized": { "const": false },
+    "processorSelected": { "const": false },
+    "privateRecordsCreated": { "const": false },
+    "customerDataPresent": { "const": false },
+    "elements": {
+      "type": "array",
+      "minItems": 12,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/dataElement" }
+    },
+    "dataFlows": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/dataFlow" }
+    },
+    "publicEvidenceProhibitions": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 3 }
+    },
+    "requiredApprovals": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/approval" }
+    }
+  },
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "value", "evidenceRefs", "blockingReason"],
+      "properties": {
+        "status": { "enum": ["unresolved", "proposed", "approved", "rejected", "retired"] },
+        "value": { "type": ["string", "number", "boolean", "array", "object", "null"] },
+        "evidenceRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "blockingReason": { "type": ["string", "null"], "minLength": 3 }
+      }
+    },
+    "dataElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["elementId", "name", "classification", "collectionState", "collectionAllowed", "purpose", "necessity", "processor", "owner", "access", "retention", "deletionExport", "recovery"],
+      "properties": {
+        "elementId": { "type": "string", "pattern": "^L-DATA-[0-9]{3}$" },
+        "name": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "classification": { "enum": ["contact", "product_identity", "sensitive_identifier", "purchase_evidence", "upload", "diagnostic", "service_record", "notification", "audit"] },
+        "collectionState": { "enum": ["not_collected", "proposed", "approved", "retired"] },
+        "collectionAllowed": { "type": "boolean" },
+        "purpose": { "$ref": "#/$defs/decision" },
+        "necessity": { "$ref": "#/$defs/decision" },
+        "processor": { "$ref": "#/$defs/decision" },
+        "owner": { "$ref": "#/$defs/decision" },
+        "access": { "$ref": "#/$defs/decision" },
+        "retention": { "$ref": "#/$defs/decision" },
+        "deletionExport": { "$ref": "#/$defs/decision" },
+        "recovery": { "$ref": "#/$defs/decision" }
+      }
+    },
+    "dataFlow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["flowId", "name", "status", "source", "processor", "destination", "elementRefs", "failureBehavior", "evidenceRefs"],
+      "properties": {
+        "flowId": { "type": "string", "pattern": "^L-FLOW-[0-9]{3}$" },
+        "name": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "status": { "enum": ["unresolved", "proposed", "approved", "retired"] },
+        "source": { "type": ["string", "null"] },
+        "processor": { "type": ["string", "null"] },
+        "destination": { "type": ["string", "null"] },
+        "elementRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^L-DATA-[0-9]{3}$" } },
+        "failureBehavior": { "type": ["string", "null"] },
+        "evidenceRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approvalId", "role", "status", "approvedBy", "approvedAt", "evidenceRef"],
+      "properties": {
+        "approvalId": { "type": "string", "pattern": "^L-PAPP-[0-9]{3}$" },
+        "role": { "type": "string", "minLength": 2 },
+        "status": { "enum": ["missing", "proposed", "approved", "rejected", "revoked", "expired"] },
+        "approvedBy": { "type": ["string", "null"] },
+        "approvedAt": { "type": ["string", "null"], "format": "date-time" },
+        "evidenceRef": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

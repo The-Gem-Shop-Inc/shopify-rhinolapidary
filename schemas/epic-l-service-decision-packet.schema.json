@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "epic-l-service-decision-packet.schema.json",
+  "title": "Epic L service and repair decision packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packetId",
+    "packetVersion",
+    "preparedAt",
+    "status",
+    "authorityEffect",
+    "customerClaimsAuthorized",
+    "shopifyMutationAuthorized",
+    "lifecycle",
+    "responsibilities",
+    "repairShipment",
+    "requiredApprovals"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "packetId": { "const": "epic-l-service-decision-packet" },
+    "packetVersion": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+-unresolved$" },
+    "preparedAt": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["unresolved", "partially_approved", "approved", "retired"] },
+    "authorityEffect": { "const": "none_until_owner_approval" },
+    "customerClaimsAuthorized": { "const": false },
+    "shopifyMutationAuthorized": { "const": false },
+    "lifecycle": {
+      "type": "array",
+      "minItems": 9,
+      "items": { "$ref": "#/$defs/lifecycleState" }
+    },
+    "responsibilities": {
+      "type": "array",
+      "minItems": 10,
+      "items": { "$ref": "#/$defs/responsibility" }
+    },
+    "repairShipment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kEvidenceBinding", "decisions"],
+      "properties": {
+        "kEvidenceBinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["requirementId", "requirementPath", "receiptPath", "acceptanceState", "acceptedReceiptIds"],
+          "properties": {
+            "requirementId": { "const": "K-EVID-007" },
+            "requirementPath": { "const": "data/epic-k-operational-evidence-requirements.json" },
+            "receiptPath": { "const": "data/epic-k-evidence-receipts.json" },
+            "acceptanceState": { "enum": ["missing", "accepted", "rejected", "expired", "revoked"] },
+            "acceptedReceiptIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^K-REC-[0-9]{3}$" } }
+          }
+        },
+        "decisions": {
+          "type": "array",
+          "minItems": 8,
+          "items": { "$ref": "#/$defs/responsibility" }
+        }
+      }
+    },
+    "requiredApprovals": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "$ref": "#/$defs/approval" }
+    }
+  },
+  "$defs": {
+    "lifecycleState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stateId", "name", "decisionStatus", "owner", "entryRule", "exitRule", "customerMessage", "recoveryPath", "evidenceRefs"],
+      "properties": {
+        "stateId": { "type": "string", "pattern": "^L-SVC-STATE-[0-9]{3}$" },
+        "name": { "enum": ["intake", "triage", "remote_diagnostics", "estimate", "awaiting_authorization", "repair", "awaiting_return", "closed", "recovery"] },
+        "decisionStatus": { "enum": ["unresolved", "proposed", "approved", "rejected", "retired"] },
+        "owner": { "type": ["string", "null"] },
+        "entryRule": { "type": ["string", "null"] },
+        "exitRule": { "type": ["string", "null"] },
+        "customerMessage": { "type": ["string", "null"] },
+        "recoveryPath": { "type": ["string", "null"] },
+        "evidenceRefs": { "type": "array", "items": { "type": "string", "minLength": 3 } }
+      }
+    },
+    "responsibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decisionId", "topic", "decisionStatus", "value", "responsibleRoles", "evidenceRefs", "blockingReason"],
+      "properties": {
+        "decisionId": { "type": "string", "pattern": "^L-SVC-[0-9]{3}$" },
+        "topic": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "decisionStatus": { "enum": ["unresolved", "proposed", "approved", "rejected", "retired"] },
+        "value": { "type": ["string", "number", "boolean", "array", "object", "null"] },
+        "responsibleRoles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
+        "evidenceRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 3 } },
+        "blockingReason": { "type": ["string", "null"] }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approvalId", "role", "status", "approvedBy", "approvedAt", "evidenceRef"],
+      "properties": {
+        "approvalId": { "type": "string", "pattern": "^L-SAPP-[0-9]{3}$" },
+        "role": { "enum": ["Support", "Operations", "Finance", "Legal", "Product Owner"] },
+        "status": { "enum": ["missing", "approved", "rejected", "expired", "revoked"] },
+        "approvedBy": { "type": ["string", "null"] },
+        "approvedAt": { "type": ["string", "null"], "format": "date-time" },
+        "evidenceRef": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

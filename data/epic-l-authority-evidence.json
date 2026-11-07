@@ -1,0 +1,184 @@
+{
+  "$schema": "../schemas/epic-l-authority-evidence.schema.json",
+  "schemaVersion": 1,
+  "contractId": "epic-l-authority-evidence",
+  "preparedAt": "2026-11-07T17:27:13.043Z",
+  "repositoryBaseline": {
+    "branch": "epic-k/k1d02p-provision-quotation-infrastructure",
+    "commit": "ef76e02aa023616b0f7e70ed05f59f9bd16b4cf3"
+  },
+  "planningOnly": true,
+  "authorization": {
+    "implementation": true,
+    "shopifyAdminRead": false,
+    "shopifyMutation": false,
+    "publication": false,
+    "customerDataCollection": false
+  },
+  "lifecycleStates": ["observed", "proposed", "approved", "implemented", "verified", "released", "retired"],
+  "evidenceStates": ["current", "missing", "conflicting", "expired", "revoked", "unresolved", "blocked"],
+  "rules": [
+    "Lifecycle state and evidence state are independent and must never be collapsed into a single completion flag.",
+    "Observed or implemented evidence does not become approved, verified, or released without the named authority evidence.",
+    "Missing, conflicting, expired, or revoked authority blocks the affected public claim and cannot be replaced by inference.",
+    "Repository paths and Shopify identifiers establish identity only within their explicit source revision and observation boundary.",
+    "Historical policy text, filenames, routes, snippets, fixtures, and deployed code do not approve warranty or service promises.",
+    "Exact Product, Variant, machine, compatibility, resource, and operational-evidence identities are reused from E, F, G, and K.",
+    "No public claim may be authorized by this planning contract, validator output, synthetic fixture, or missing owner response.",
+    "A current Shopify observation requires a separately authorized complete read with identity, pagination, error, and freshness evidence.",
+    "Retired authority remains available for audit history but is forbidden as authority for new customer-facing use."
+  ],
+  "identityReuse": {
+    "productVariant": { "canonicalPath": "data/epic-e-product-identity.json", "reuseOnly": true, "newRegistryAuthorized": false },
+    "machine": { "canonicalPath": "data/epic-e-product-classification.json", "reuseOnly": true, "newRegistryAuthorized": false },
+    "compatibility": { "canonicalPath": "data/epic-e-relationship-matrix.json", "reuseOnly": true, "newRegistryAuthorized": false },
+    "resources": { "canonicalPath": "data/epic-e-resource-catalog.json", "reuseOnly": true, "newRegistryAuthorized": false },
+    "operationalEvidence": { "canonicalPath": "data/epic-k-operational-evidence-requirements.json", "reuseOnly": true, "newRegistryAuthorized": false }
+  },
+  "domains": [
+    {
+      "domainId": "L-AUTH-001",
+      "domain": "product_variant_identity",
+      "responsibleRole": "Product Data Owner",
+      "lifecycleState": "approved",
+      "evidenceState": "current",
+      "sources": [{ "sourceId": "L-SRC-001", "kind": "repository", "path": "data/epic-e-product-identity.json", "revision": "schemaVersion 2 at repository baseline", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "approved", "evidenceRef": "data/epic-e-product-owner-decisions.json", "requiredRoles": ["Product Data Owner", "Product Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["Epic E"],
+      "freshness": { "kind": "commit_bound", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "not_applicable", "reason": "Identity reuse is internal and does not authorize a warranty or service claim.", "requiredEvidence": [] }
+    },
+    {
+      "domainId": "L-AUTH-002",
+      "domain": "machine_classification_and_family",
+      "responsibleRole": "Product Data Owner and Technical Owner",
+      "lifecycleState": "observed",
+      "evidenceState": "unresolved",
+      "sources": [{ "sourceId": "L-SRC-002", "kind": "repository", "path": "data/epic-e-product-classification.json", "revision": "repository baseline with machine class; family instances not established", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Product Data Owner", "Technical Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["Epic E", "L-DEP-002"],
+      "freshness": { "kind": "commit_bound", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "conditional", "reason": "Machine class is reusable, but family membership requires fresh exact evidence.", "requiredEvidence": ["L-DEP-002"] }
+    },
+    {
+      "domainId": "L-AUTH-003",
+      "domain": "compatibility",
+      "responsibleRole": "Technical Owner and Product Data Owner",
+      "lifecycleState": "observed",
+      "evidenceState": "blocked",
+      "sources": [{ "sourceId": "L-SRC-003", "kind": "repository", "path": "data/epic-e-relationship-matrix.json", "revision": "repository baseline; Epic G production and revocation acceptance partial", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Technical Owner", "Product Data Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["Epic E", "Epic G", "G-PBI-003", "G-PBI-005"],
+      "freshness": { "kind": "commit_bound", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "Epic L cannot infer fit or bypass Epic G acceptance and revocation evidence.", "requiredEvidence": ["G-PBI-003", "G-PBI-005"] }
+    },
+    {
+      "domainId": "L-AUTH-004",
+      "domain": "support_resources",
+      "responsibleRole": "Technical, Media, Content, Product Data, and Support Owners",
+      "lifecycleState": "observed",
+      "evidenceState": "blocked",
+      "sources": [{ "sourceId": "L-SRC-004", "kind": "repository", "path": "data/epic-e-resource-catalog.json", "revision": "110 candidates and zero canonical publication approvals at repository baseline", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Technical Owner", "Media Owner", "Content Owner", "Support Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["Epic E", "Epic F", "L-DEC-011", "L-DEC-012"],
+      "freshness": { "kind": "commit_bound", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "Candidate resource identity does not establish current technical or publication approval.", "requiredEvidence": ["L-DEC-011", "L-DEC-012"] }
+    },
+    {
+      "domainId": "L-AUTH-005",
+      "domain": "warranty_policy_and_mapping",
+      "responsibleRole": "Business, Legal, Product Data, Support, and Product Owner",
+      "lifecycleState": "proposed",
+      "evidenceState": "missing",
+      "sources": [{ "sourceId": "L-SRC-005", "kind": "repository", "path": "data/epic-e-warranty-support-evidence.json", "revision": "zero approved policy versions, classes, or Product mappings", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Business Owner", "Legal Owner", "Product Data Owner", "Support Owner", "Product Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["L-DEC-001", "L-DEC-002", "L-DEC-003", "L-DEC-004"],
+      "freshness": { "kind": "not_established", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "No current approved warranty authority or exact applicability exists.", "requiredEvidence": ["L-DEC-001", "L-DEC-002", "L-DEC-003", "L-DEC-004"] }
+    },
+    {
+      "domainId": "L-AUTH-006",
+      "domain": "service_and_repair_operations",
+      "responsibleRole": "Support, Operations, Finance, and Legal Owners",
+      "lifecycleState": "proposed",
+      "evidenceState": "missing",
+      "sources": [{ "sourceId": "L-SRC-006", "kind": "repository", "path": "docs/project/epic-l-decision-and-dependency-register.md", "revision": "L-DEC-005 through L-DEC-008 unresolved", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Support Owner", "Operations Owner", "Finance Owner", "Legal Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["L-DEC-005", "L-DEC-006", "L-DEC-007", "L-DEC-008"],
+      "freshness": { "kind": "not_established", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "A repository worksheet cannot approve an operating model or customer commitment.", "requiredEvidence": ["L-DEC-005", "L-DEC-006", "L-DEC-007", "L-DEC-008"] }
+    },
+    {
+      "domainId": "L-AUTH-007",
+      "domain": "repair_shipping_and_claims",
+      "responsibleRole": "Shipping Operations, Customer Service, and Epic L Owner",
+      "lifecycleState": "proposed",
+      "evidenceState": "blocked",
+      "sources": [{ "sourceId": "L-SRC-007", "kind": "operational_evidence", "path": "data/epic-k-operational-evidence-requirements.json#K-EVID-007", "revision": "missing external evidence with zero accepted receipt", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Shipping Operations", "Customer Service", "Epic L Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["K-EVID-007", "L-DEP-005"],
+      "freshness": { "kind": "not_established", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "Claims contacts and filing responsibility lack an accepted K-EVID-007 receipt.", "requiredEvidence": ["K-EVID-007"] }
+    },
+    {
+      "domainId": "L-AUTH-008",
+      "domain": "privacy_and_service_records",
+      "responsibleRole": "Privacy, Security, Legal, and Support Owners",
+      "lifecycleState": "proposed",
+      "evidenceState": "missing",
+      "sources": [{ "sourceId": "L-SRC-008", "kind": "repository", "path": "docs/privacy/security-privacy-review-checklist.md", "revision": "requirements only; no Epic L data lifecycle approval", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Privacy Owner", "Security Owner", "Legal Owner", "Support Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["L-DEC-010"],
+      "freshness": { "kind": "not_established", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "No collection, processor, access, retention, deletion, export, or recovery approval exists.", "requiredEvidence": ["L-DEC-010"] }
+    },
+    {
+      "domainId": "L-AUTH-009",
+      "domain": "support_channels_and_response_expectations",
+      "responsibleRole": "Support, Business, and Legal Owners",
+      "lifecycleState": "proposed",
+      "evidenceState": "missing",
+      "sources": [{ "sourceId": "L-SRC-009", "kind": "repository", "path": "data/footer-support-resources.json", "revision": "neutral Contact route only; support commitments blocked", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Support Owner", "Business Owner", "Legal Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["L-DEC-007"],
+      "freshness": { "kind": "not_established", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "A neutral contact route does not establish staffing, hours, or response commitments.", "requiredEvidence": ["L-DEC-007"] }
+    },
+    {
+      "domainId": "L-AUTH-010",
+      "domain": "shopify_support_capabilities",
+      "responsibleRole": "Shopify Admin Owner and Engineering",
+      "lifecycleState": "proposed",
+      "evidenceState": "missing",
+      "sources": [{ "sourceId": "L-SRC-010", "kind": "shopify_admin", "path": "authorized future read-only Epic L Admin snapshot", "revision": "not collected", "observedAt": null, "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Product Owner", "Shopify Admin Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["L-DEP-001", "L-DEC-014"],
+      "freshness": { "kind": "not_established", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "Repository and documentation evidence do not prove current store configuration.", "requiredEvidence": ["L-DEP-001"] }
+    },
+    {
+      "domainId": "L-AUTH-011",
+      "domain": "customer_accounts_and_ownership",
+      "responsibleRole": "Epic O, Engineering, Privacy, and Support Owners",
+      "lifecycleState": "proposed",
+      "evidenceState": "unresolved",
+      "sources": [{ "sourceId": "L-SRC-011", "kind": "repository", "path": "sections/main-account.liquid", "revision": "legacy theme account presentation only; configured account mode unknown", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Epic O Owner", "Privacy Owner", "Support Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["Epic O", "L-DEC-015", "L-DEP-001"],
+      "freshness": { "kind": "commit_bound", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "Theme templates do not prove account mode, ownership, or service-record authorization.", "requiredEvidence": ["L-DEC-015", "L-DEP-001"] }
+    },
+    {
+      "domainId": "L-AUTH-012",
+      "domain": "safety_notices_and_recalls",
+      "responsibleRole": "Safety, Legal, Business, and Support Owners",
+      "lifecycleState": "proposed",
+      "evidenceState": "missing",
+      "sources": [{ "sourceId": "L-SRC-012", "kind": "repository", "path": "docs/Rhino Lapidary Storefront Backlog and Epics.md#epic-l--warranty-service-repairs-and-support", "revision": "investigation scope only", "observedAt": "2026-11-07T17:27:13.043Z", "approval": { "status": "unresolved", "evidenceRef": null, "requiredRoles": ["Safety Owner", "Legal Owner", "Business Owner", "Support Owner"] } }],
+      "conflictRefs": [],
+      "dependencies": ["L-DEC-019"],
+      "freshness": { "kind": "not_established", "validThrough": null },
+      "publicClaimGate": { "authorized": false, "disposition": "blocked", "reason": "Backlog scope is not evidence of an active notice, owner, or approved process.", "requiredEvidence": ["L-DEC-019"] }
+    }
+  ]
+}

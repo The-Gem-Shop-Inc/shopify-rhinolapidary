@@ -1,0 +1,60 @@
+{
+  "$schema": "../schemas/epic-l-service-decision-packet.schema.json",
+  "schemaVersion": 1,
+  "packetId": "epic-l-service-decision-packet",
+  "packetVersion": "1.0.0-unresolved",
+  "preparedAt": "2026-11-07T17:27:13.043Z",
+  "status": "unresolved",
+  "authorityEffect": "none_until_owner_approval",
+  "customerClaimsAuthorized": false,
+  "shopifyMutationAuthorized": false,
+  "lifecycle": [
+    { "stateId": "L-SVC-STATE-001", "name": "intake", "decisionStatus": "unresolved", "owner": null, "entryRule": null, "exitRule": null, "customerMessage": null, "recoveryPath": null, "evidenceRefs": [] },
+    { "stateId": "L-SVC-STATE-002", "name": "triage", "decisionStatus": "unresolved", "owner": null, "entryRule": null, "exitRule": null, "customerMessage": null, "recoveryPath": null, "evidenceRefs": [] },
+    { "stateId": "L-SVC-STATE-003", "name": "remote_diagnostics", "decisionStatus": "unresolved", "owner": null, "entryRule": null, "exitRule": null, "customerMessage": null, "recoveryPath": null, "evidenceRefs": [] },
+    { "stateId": "L-SVC-STATE-004", "name": "estimate", "decisionStatus": "unresolved", "owner": null, "entryRule": null, "exitRule": null, "customerMessage": null, "recoveryPath": null, "evidenceRefs": [] },
+    { "stateId": "L-SVC-STATE-005", "name": "awaiting_authorization", "decisionStatus": "unresolved", "owner": null, "entryRule": null, "exitRule": null, "customerMessage": null, "recoveryPath": null, "evidenceRefs": [] },
+    { "stateId": "L-SVC-STATE-006", "name": "repair", "decisionStatus": "unresolved", "owner": null, "entryRule": null, "exitRule": null, "customerMessage": null, "recoveryPath": null, "evidenceRefs": [] },
+    { "stateId": "L-SVC-STATE-007", "name": "awaiting_return", "decisionStatus": "unresolved", "owner": null, "entryRule": null, "exitRule": null, "customerMessage": null, "recoveryPath": null, "evidenceRefs": [] },
+    { "stateId": "L-SVC-STATE-008", "name": "closed", "decisionStatus": "unresolved", "owner": null, "entryRule": null, "exitRule": null, "customerMessage": null, "recoveryPath": null, "evidenceRefs": [] },
+    { "stateId": "L-SVC-STATE-009", "name": "recovery", "decisionStatus": "unresolved", "owner": null, "entryRule": null, "exitRule": null, "customerMessage": null, "recoveryPath": null, "evidenceRefs": [] }
+  ],
+  "responsibilities": [
+    { "decisionId": "L-SVC-001", "topic": "service_eligibility", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Support", "Legal"], "evidenceRefs": [], "blockingReason": "Eligibility rules are not approved." },
+    { "decisionId": "L-SVC-002", "topic": "diagnostic_boundary", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Technical", "Safety", "Support"], "evidenceRefs": [], "blockingReason": "Safe remote diagnostic boundaries are not approved." },
+    { "decisionId": "L-SVC-003", "topic": "repair_authorization", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Support", "Operations", "Legal"], "evidenceRefs": [], "blockingReason": "Repair authorization or RMA procedure is not approved." },
+    { "decisionId": "L-SVC-004", "topic": "estimate_and_customer_approval", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Support", "Finance", "Operations"], "evidenceRefs": [], "blockingReason": "Estimate and customer approval process is not approved." },
+    { "decisionId": "L-SVC-005", "topic": "labor_and_parts_pricing", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Finance", "Operations"], "evidenceRefs": [], "blockingReason": "Pricing responsibility and disclosure are not approved." },
+    { "decisionId": "L-SVC-006", "topic": "turnaround_communication", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Support", "Operations"], "evidenceRefs": [], "blockingReason": "No turnaround statement or communication cadence is approved." },
+    { "decisionId": "L-SVC-007", "topic": "declined_repair", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Support", "Operations", "Finance", "Legal"], "evidenceRefs": [], "blockingReason": "Declined repair, storage, return, and abandonment treatment is not approved." },
+    { "decisionId": "L-SVC-008", "topic": "customer_communication", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Support"], "evidenceRefs": [], "blockingReason": "Channels, messages, recipients, and ownership are not approved." },
+    { "decisionId": "L-SVC-009", "topic": "safety_escalation", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Safety", "Technical", "Support", "Legal"], "evidenceRefs": [], "blockingReason": "Safety stop and escalation authority are not approved." },
+    { "decisionId": "L-SVC-010", "topic": "closure_and_recovery", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Support", "Operations"], "evidenceRefs": [], "blockingReason": "Closure, reopening, failure recovery, and record reconciliation are not approved." }
+  ],
+  "repairShipment": {
+    "kEvidenceBinding": {
+      "requirementId": "K-EVID-007",
+      "requirementPath": "data/epic-k-operational-evidence-requirements.json",
+      "receiptPath": "data/epic-k-evidence-receipts.json",
+      "acceptanceState": "missing",
+      "acceptedReceiptIds": []
+    },
+    "decisions": [
+      { "decisionId": "L-SVC-011", "topic": "safe_packaging", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Technical", "Shipping Operations", "Support"], "evidenceRefs": [], "blockingReason": "No approved repair packaging instruction exists." },
+      { "decisionId": "L-SVC-012", "topic": "inbound_shipping", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Shipping Operations", "Support", "Finance"], "evidenceRefs": [], "blockingReason": "Inbound service, payment, and risk responsibility are unresolved." },
+      { "decisionId": "L-SVC-013", "topic": "return_shipping", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Shipping Operations", "Support", "Finance"], "evidenceRefs": [], "blockingReason": "Return service, payment, and risk responsibility are unresolved." },
+      { "decisionId": "L-SVC-014", "topic": "insurance", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Shipping Operations", "Finance"], "evidenceRefs": [], "blockingReason": "Insurance availability, cost, applicability, and selection are unresolved." },
+      { "decisionId": "L-SVC-015", "topic": "loss_responsibility", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Shipping Operations", "Support", "Legal"], "evidenceRefs": [], "blockingReason": "Loss responsibility is unresolved." },
+      { "decisionId": "L-SVC-016", "topic": "damage_responsibility", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Shipping Operations", "Support", "Legal"], "evidenceRefs": [], "blockingReason": "Damage responsibility is unresolved." },
+      { "decisionId": "L-SVC-017", "topic": "carrier_claim_filing", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Shipping Operations", "Customer Service", "Epic L Owner"], "evidenceRefs": ["K-EVID-007"], "blockingReason": "K-EVID-007 has no accepted receipt for carrier-specific filing responsibility." },
+      { "decisionId": "L-SVC-018", "topic": "internal_claims_process", "decisionStatus": "unresolved", "value": null, "responsibleRoles": ["Shipping Operations", "Customer Service", "Epic L Owner"], "evidenceRefs": ["K-EVID-007"], "blockingReason": "K-EVID-007 has no accepted receipt for the designated Rhino contact and internal process." }
+    ]
+  },
+  "requiredApprovals": [
+    { "approvalId": "L-SAPP-001", "role": "Support", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null },
+    { "approvalId": "L-SAPP-002", "role": "Operations", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null },
+    { "approvalId": "L-SAPP-003", "role": "Finance", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null },
+    { "approvalId": "L-SAPP-004", "role": "Legal", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null },
+    { "approvalId": "L-SAPP-005", "role": "Product Owner", "status": "missing", "approvedBy": null, "approvedAt": null, "evidenceRef": null }
+  ]
+}
