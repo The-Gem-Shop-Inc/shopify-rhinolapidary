@@ -203,12 +203,21 @@ if (!customElements.get('quick-order-list')) {
 
       renderSections(parsedState) {
         const { items, sections } = parsedState;
+        const missingSections = [];
 
         this.getSectionsToRender().forEach(({ id, selector, section }) => {
           const sectionElement = document.getElementById(id);
           if (!sectionElement) return;
 
-          const newSection = new DOMParser().parseFromString(sections[section], 'text/html').querySelector(selector);
+          const sectionHtml = sections?.[section];
+          const newSection =
+            typeof sectionHtml === 'string' && sectionHtml.trim()
+              ? new DOMParser().parseFromString(sectionHtml, 'text/html').querySelector(selector)
+              : null;
+          if (!newSection) {
+            missingSections.push(section);
+            return;
+          }
 
           if (section === this.dataset.section) {
             if (this.queue.length > 0 || this.hasPendingQuantityUpdate) return;
@@ -248,6 +257,9 @@ if (!customElements.get('quick-order-list')) {
             sectionElement.innerHTML = newSection.innerHTML;
           }
         });
+
+        window.CollectionCartCoordinator?.applyConfirmedCart(parsedState);
+        return missingSections;
       }
 
       getTotalBar() {
@@ -309,6 +321,57 @@ if (!customElements.get('quick-order-list')) {
         });
       }
 
+      get productTitle() {
+        return this.dataset.productTitle || '';
+      }
+
+      getConfirmedProductQuantity(cart) {
+        if (!window.CollectionCartCoordinator?.isCartState(cart)) return 0;
+        const productId = Number(this.dataset.productId);
+        const visibleVariantIds = new Set(
+          Array.from(this.querySelectorAll('[data-quantity-variant-id]'), (input) =>
+            Number(input.dataset.quantityVariantId)
+          )
+        );
+
+        return cart.items.reduce((quantity, item) => {
+          const isProduct = Number(item.product_id) === productId;
+          const isVisibleVariant = visibleVariantIds.has(Number(item.variant_id ?? item.id));
+          return isProduct || isVisibleVariant ? quantity + (Number(item.quantity) || 0) : quantity;
+        }, 0);
+      }
+
+      getCurrentProductQuantity() {
+        return Array.from(this.querySelectorAll('[data-cart-quantity]')).reduce(
+          (quantity, input) => quantity + (Number(input.dataset.cartQuantity) || 0),
+          0
+        );
+      }
+
+      desiredQuantitiesMatch(cart, items) {
+        return Object.entries(items).every(
+          ([variantId, quantity]) =>
+            window.CollectionCartCoordinator?.quantityForVariant(cart, variantId) === Number(quantity)
+        );
+      }
+
+      async recoverSections(cart) {
+        const url = new URL(this.dataset.url || window.location.pathname, window.location.origin);
+        url.searchParams.set(
+          'sections',
+          [...new Set(this.getSectionsToRender().map(({ section }) => section))].join(',')
+        );
+
+        try {
+          const response = await fetch(`${url.pathname}${url.search}`, { headers: { Accept: 'application/json' } });
+          if (!response.ok) return;
+          const sections = await response.json();
+          this.renderSections({ ...cart, sections });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
       handleScrollIntoView(event) {
         if ((event.key === 'Tab' || event.key === 'Enter') && this.allInputsArray.length !== 1) {
           this.scrollQuickOrderListTable(event.target);
@@ -336,6 +399,7 @@ if (!customElements.get('quick-order-list')) {
         this.toggleLoading(true);
         const url = this.dataset.url || window.location.pathname;
         const linesUpdate = this.startCartLinesUpdate(items);
+        const previousQuantity = this.getCurrentProductQuantity();
 
         const body = JSON.stringify({
           updates: items,
@@ -345,29 +409,83 @@ if (!customElements.get('quick-order-list')) {
 
         this.updateMessage();
         this.setErrorMessage();
+        window.CollectionCartCoordinator?.showFeedback('pending', {
+          productTitle: this.productTitle,
+          announce: false,
+        });
 
-        fetch(`${routes.cart_update_url}`, { ...fetchConfig(), ...{ body } })
-          .then((response) => response.json())
-          .then((parsedState) => {
-            if (parsedState.errors) {
-              throw Object.assign(new Error(parsedState.errors), { code: 'INVALID' });
-            }
+        const request = async () => {
+          const response = await fetch(`${routes.cart_update_url}`, { ...fetchConfig(), body });
+          let parsedState;
+          try {
+            parsedState = await response.json();
+          } catch {
+            throw Object.assign(new Error(window.cartStrings.error), { code: 'UNCERTAIN' });
+          }
 
+          const errorMessage = parsedState?.errors || parsedState?.description || parsedState?.message;
+          if (!response.ok || errorMessage) {
+            const rejected = response.status === 404 || response.status === 422 || Boolean(parsedState?.errors);
+            throw Object.assign(
+              new Error(typeof errorMessage === 'string' ? errorMessage : window.cartStrings.error),
+              { code: rejected ? 'INVALID' : 'UNCERTAIN' }
+            );
+          }
+          if (!window.CollectionCartCoordinator?.isCartState(parsedState)) {
+            throw Object.assign(new Error(window.cartStrings.error), { code: 'UNCERTAIN' });
+          }
+          return parsedState;
+        };
+
+        const pendingRequest = window.CollectionCartCoordinator?.enqueueMutation
+          ? window.CollectionCartCoordinator.enqueueMutation(request)
+          : request();
+
+        pendingRequest
+          .then(async (parsedState) => {
             linesUpdate?.resolve(parsedState);
-            this.renderSections(parsedState);
+            const missingSections = this.renderSections(parsedState);
+            if (missingSections.length > 0) await this.recoverSections(parsedState);
             publish(PUB_SUB_EVENTS.cartUpdate, {
               source: this.id,
               cartData: parsedState,
+              collectionCartConfirmed: true,
             });
-          })
-          .catch((e) => {
-            if (e.code !== 'INVALID') console.error(e);
-            this.dispatchCartErrorEvent(
-              e.code === 'INVALID' ? e.message : window.cartStrings.error,
-              e.code || 'SERVICE_UNAVAILABLE'
+            window.CollectionCartCoordinator?.announceConfirmedChange(
+              this.productTitle,
+              previousQuantity,
+              this.getConfirmedProductQuantity(parsedState)
             );
+          })
+          .catch(async (e) => {
+            const reconciledCart = await window.CollectionCartCoordinator?.reconcileFromShopify?.();
+            await this.refresh();
+            const confirmed = reconciledCart && this.desiredQuantitiesMatch(reconciledCart, items);
+            if (confirmed) {
+              linesUpdate?.resolve(reconciledCart);
+              publish(PUB_SUB_EVENTS.cartUpdate, {
+                source: this.id,
+                cartData: reconciledCart,
+                collectionCartConfirmed: true,
+              });
+              window.CollectionCartCoordinator?.announceConfirmedChange(
+                this.productTitle,
+                previousQuantity,
+                this.getConfirmedProductQuantity(reconciledCart)
+              );
+              return;
+            }
+
+            if (e.code !== 'INVALID') console.error(e);
+            const message = e.code === 'INVALID' ? e.message : window.cartStrings.error;
+            this.dispatchCartErrorEvent(message, e.code || 'SERVICE_UNAVAILABLE');
             linesUpdate?.reject(e);
-            this.setErrorMessage(e.code === 'INVALID' ? e.message : window.cartStrings.error);
+            this.setErrorMessage(message);
+            window.CollectionCartCoordinator?.showFeedback(reconciledCart ? 'rejected' : 'uncertain', {
+              productTitle: this.productTitle,
+              error: message,
+              announce: true,
+            });
           })
           .finally(() => {
             this.queue.length === 0 && this.toggleLoading(false);

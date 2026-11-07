@@ -1,0 +1,32 @@
+<cart-feedback-toast
+  class="color-{{ color_scheme }}"
+  data-pending="{{ 'sections.cart_feedback.pending' | t | escape }}"
+  data-added="{{ 'sections.cart_feedback.added' | t | escape }}"
+  data-updated="{{ 'sections.cart_feedback.updated' | t | escape }}"
+  data-removed="{{ 'sections.cart_feedback.removed' | t | escape }}"
+  data-rejected="{{ 'sections.cart_feedback.rejected' | t | escape }}"
+  data-uncertain="{{ 'sections.cart_feedback.uncertain' | t | escape }}"
+  data-cart-count-one="{{ 'sections.header.cart_count' | t: count: 1 | escape }}"
+  data-cart-count-other="{{ 'sections.header.cart_count' | t: count: '[count]' | escape }}"
+  hidden
+>
+  <div class="cart-feedback-toast__surface" data-cart-feedback-surface>
+    <p class="cart-feedback-toast__message" data-cart-feedback-message></p>
+    <span
+      class="visually-hidden"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      data-cart-feedback-live
+    ></span>
+    <button
+      type="button"
+      class="cart-feedback-toast__dismiss"
+      aria-label="{{ 'sections.cart_feedback.dismiss' | t | escape }}"
+      data-cart-feedback-dismiss
+    >
+      <span class="svg-wrapper">{{ 'icon-close.svg' | inline_asset_content }}</span>
+    </button>
+    <span class="cart-feedback-toast__progress" aria-hidden="true"></span>
+  </div>
+</cart-feedback-toast>

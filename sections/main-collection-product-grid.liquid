@@ -24,6 +24,8 @@
 {%- endif -%}
 
 {%- if section.settings.quick_add == 'bulk' -%}
+  {{ 'component-cart-feedback-toast.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'cart-feedback-toast.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -213,6 +215,9 @@
     {%- endif -%}
   </div>
 </collection-component>
+{%- if section.settings.quick_add == 'bulk' -%}
+  {% render 'cart-feedback-toast', color_scheme: section.settings.color_scheme %}
+{%- endif -%}
 
 {% schema %}
 {

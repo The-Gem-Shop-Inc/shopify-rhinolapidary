@@ -264,6 +264,7 @@
     "resume:epic-k-k1d02t-completed": "node scripts/run-epic-k-k1d02t-acceptance.js --resume-completed",
     "build:epic-k-k1d02-worker": "wrangler deploy --dry-run --config config/wrangler.epic-k-draft-order.jsonc --outdir test-results/k1d02-worker-dry-run",
     "test:epic-j-cart": "playwright test tests/epic-j-cart.spec.js --project=desktop-chromium --workers=1",
+    "test:epic-j-j2-collection": "playwright test --config=playwright.epic-j-j2.config.js",
     "validate:epic-j-j0": "node scripts/run-epic-j-j0.js"
   },
   "repository": {
