@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "identity": "EPIC_G_G4_ROUTE_SUCCESSOR_REPOSITORY_BINDING_2026_11_08",
+  "preparedAt": "2026-11-08T04:08:38.9269609Z",
+  "scope": "REPOSITORY_ONLY_PREVIEW_PREFLIGHT",
+  "integrationCommit": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
+  "j2Commit": "0edacc2799be0be8592b424799e2af2be5a1a165",
+  "g4SourceCommit": "a53daec8ffbbbdcd6c5acba1da7770fa23ec3a12",
+  "foundationCommit": "414288a16fe7123b06c3433f0063ba402fc35e83",
+  "shopifyObservation": "NOT_PERFORMED_IN_THIS_BATCH",
+  "shopifyMutations": 0,
+  "publicationChanges": 0,
+  "historicalSeals": [
+    {
+      "id": "G3A_MACHINE_ROUTES_2026_10_19",
+      "path": "data/epic-g-machine-routes.json",
+      "sha256": "7154d499d10437ff199309787f223e65ed42fb7096e0e1ab42bd52f6ea2388cb",
+      "semanticSha256": "fe0cbde02f7ed8a18c0e677be065e39cc0b071c52bd06f0bcf822f42ebbfc274",
+      "expiresAt": "2026-10-22T20:26:37.102Z",
+      "status": "SEALED_EXPIRED_NOT_RENEWED",
+      "historicalNavigationSpecSha256": "cbc6b653606b597b007c4e311b2cd2d4e556f03669fd061a004ec5a308aa0461"
+    },
+    {
+      "id": "G3B_CATALOG_ROLE_RELEASE_2026_10_19",
+      "path": "data/epic-g-catalog-release.json",
+      "sha256": "910d0d64535d79cefb5210515d0f47988e49a7cf4e8cb5ee7a74c7a5d2d20624",
+      "semanticSha256": "32bd309ccd47819292aca0909b0b1ff2ff8510dd782aafbe07d7efd9dbb716d2",
+      "expiresAt": "2026-10-22T20:26:37.102Z",
+      "status": "SEALED_EXPIRED_NOT_RENEWED"
+    },
+    {
+      "id": "G3B_CATALOG_ARCHITECTURE_CONTRACT",
+      "path": "docs/architecture/epic-g-catalog-index-contract.md",
+      "sha256": "3ebb9a68899f525bb4f643cf338ef15bf9c97ebf670ff27094b495f7474306bb",
+      "status": "SEALED_HISTORICAL_REQUIREMENT_RECORD"
+    }
+  ],
+  "supersededPresentationAssertions": [
+    {
+      "id": "G3B_DEFAULT_TEXT_DIRECTORY",
+      "formerBehavior": "An unfiltered and unsorted /collections/all request substitutes the 150-item text directory.",
+      "successor": "The native photographic Product grid is the default /collections/all presentation."
+    },
+    {
+      "id": "G3B_SORT_PARAMETER_VIEW_ESCAPE",
+      "formerBehavior": "A sort_by query exposes the photographic grid and therefore doubles as a view switch.",
+      "successor": "sort_by controls ordering only and never selects the directory."
+    },
+    {
+      "id": "G3B_PRIMARY_150_ITEM_PAGE",
+      "formerBehavior": "The canonical catalog page uses the text directory's 150-item page size.",
+      "successor": "The default catalog uses its configured native 20-Product page; the 150-item directory pager exists only in collection.directory."
+    },
+    {
+      "id": "G3B_PRIMARY_NO_PHOTOS_OR_QUICK_ADD",
+      "formerBehavior": "The default catalog omits Product cards, images, prices, and purchase controls.",
+      "successor": "The default catalog retains native cards, images or text fallback, prices, availability, and bulk quick-add."
+    },
+    {
+      "id": "G3B_PARTS_AND_SUPPLIES_ENTRY_LABEL",
+      "formerBehavior": "The duplicate-suppressed theme child is labeled Parts and supplies.",
+      "successor": "The explicit photographic catalog child is labeled All Products."
+    }
+  ],
+  "retainedAuthorityAssertions": [
+    "Product roles and compatibility are consumed only from existing Epic E/F/G authority and are never inferred from navigation, titles, tags, prices, or collection nesting.",
+    "The directory uses one native pager, fails closed when authority is expired or drifted, and retains neutral Product browsing.",
+    "Historical G3A machine route semantics, Product identities, fragments, and omission reasons remain sealed and are not renewed by this successor.",
+    "Missing aggregate collection handles remain suppressed; directory anchors are not Shopify collection identities.",
+    "No source receipt, Product classification, compatibility edge, collection membership, or publication state is created by this binding."
+  ],
+  "successorRoutes": [
+    {
+      "route": "/collections/all",
+      "purpose": "primary-photographic-catalog",
+      "repositoryStatus": "IMPLEMENTED_AND_INTEGRATION_TESTED",
+      "currentShopifyStatus": "NOT_REOBSERVED_IN_THIS_BATCH"
+    },
+    {
+      "route": "/collections/all?view=directory",
+      "purpose": "secondary-governed-text-directory",
+      "repositoryStatus": "IMPLEMENTED_AND_INTEGRATION_TESTED",
+      "currentShopifyStatus": "NOT_REOBSERVED_IN_THIS_BATCH"
+    },
+    {
+      "route": "/collections/all?sort_by=price-ascending",
+      "purpose": "photographic-catalog-sorting-only",
+      "repositoryStatus": "IMPLEMENTED_AND_INTEGRATION_TESTED",
+      "currentShopifyStatus": "NOT_REOBSERVED_IN_THIS_BATCH"
+    },
+    {
+      "route": "/collections/machines",
+      "purpose": "verified-photographic-machine-collection-destination",
+      "repositoryStatus": "RETAINED_VERIFIED_IDENTITY",
+      "currentShopifyStatus": "HISTORICALLY_OBSERVED_CURRENT_ROLE_REVERIFICATION_REQUIRED"
+    }
+  ],
+  "authority": {
+    "sourceBindingSha256": "b90bf2089788e77c04fbdd5bd1766bc4d03cfb9e358179884a47b74095be949b",
+    "catalogAuthorityPath": "snippets/rhino-g-catalog-authority.liquid",
+    "catalogAuthoritySha256": "3879702532c4c36da9e3b94c8362ad96b4ca25fb16660ee2aefcbdd121de5ea2",
+    "currentStatus": "EXPIRED_FAILS_CLOSED",
+    "renewed": false,
+    "previewImplication": "Photographic catalog and cart testing may proceed after authorization, but current governed role and machine-context claims require a fresh authorized source reconciliation."
+  },
+  "bindings": [
+    {
+      "path": "data/epic-g-g4-catalog-navigation.json",
+      "sha256": "c10f59b6792a8d2394227c68bf7ca18c548391eb215b8b2cf441d0cb2eee7999"
+    },
+    {
+      "path": "data/navigation-spec.json",
+      "sha256": "e23ba1eaff622d5588829924bfd9afd723955ff8401c08650e514e7253f4b526"
+    },
+    {
+      "path": "data/global-navigation-ia.json",
+      "sha256": "bebe1eab51fbd53353433b59ac06b5363b753f4abc5f6c66ee4584f96985c449"
+    },
+    {
+      "path": "sections/main-collection-product-grid.liquid",
+      "sha256": "f37e1a219a9e7f3f6d9fc5a86be44bacc9275158e642939a4215ffdcd85240df"
+    },
+    {
+      "path": "templates/collection.json",
+      "sha256": "d94ded71fe171c5a131a1ef45c1861067d4864673c6da3cf08738ea10450e653"
+    },
+    {
+      "path": "templates/collection.directory.json",
+      "sha256": "400aadbbf12a0d32072a764f400175602cf441cded428122dcb84457d27ea6e5"
+    },
+    {
+      "path": "sections/rhino-g-catalog-directory.liquid",
+      "sha256": "a9a31d951ccd4e679a3b9e29d7f6dad01025fca39f8115ed942eb7006fcb3914"
+    },
+    {
+      "path": "sections/rhino-g-catalog-navigation.liquid",
+      "sha256": "e17388eae9cc3a6bb9311e024b7507ff437ecf96108f420145eaf3f6226e7c86"
+    },
+    {
+      "path": "snippets/rhino-g-catalog-index.liquid",
+      "sha256": "7efdf3623fb626fb8f0ce20b77705194ac6fbd58531b368758fe8956243e7b63"
+    }
+  ]
+}

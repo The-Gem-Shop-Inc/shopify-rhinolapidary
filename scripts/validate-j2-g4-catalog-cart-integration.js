@@ -10,6 +10,7 @@ const J2 = 'origin/epic-j/j2-collection-cart-feedback';
 const G4 = 'origin/epic-g/g4-photo-catalog-navigation';
 const BRANCH = 'integration/catalog-cart-preview';
 const SHARED = 'sections/main-collection-product-grid.liquid';
+const INTEGRATION = '64ddfaadbcea98175940fd54d9cf198c443e39c3';
 
 const normalize = (value) => String(value).replace(/\r\n/g, '\n').trimEnd();
 const read = (file) => fs.readFileSync(file, 'utf8');
@@ -48,11 +49,25 @@ function validateSchema(file) {
 
 function validate({ requireManifest = false } = {}) {
   assert.equal(git('branch', '--show-current'), BRANCH, 'Wrong integration branch');
-  assert.equal(git('rev-parse', 'HEAD'), git('rev-parse', J2), 'Integration HEAD must remain the committed J2 base');
+  assert.equal(git('rev-parse', 'HEAD'), INTEGRATION, 'Unexpected committed integration HEAD');
   assert.equal(cp.spawnSync('git', ['merge-base', '--is-ancestor', J2, 'HEAD']).status, 0, 'J2 is not an ancestor');
   assert.equal(git('rev-parse', G4), 'a53daec8ffbbbdcd6c5acba1da7770fa23ec3a12', 'Unexpected G4 commit');
   assert.equal(git('config', '--get', 'core.longpaths'), 'true', 'Git long paths must remain enabled');
   assert.equal(git('diff', '--cached', '--name-only'), '', 'Integration changes must not be staged');
+  const allowedEvidenceChanges = [
+    'data/epic-g-g4-route-successor-evidence.json',
+    'data/j2-g4-preview-deployment-manifest.json',
+    'docs/project/implementation-records/j2-g4-integrated-evidence-reconciliation.md',
+    'scripts/validate-epic-g-g4-route-successor-evidence.js',
+    'scripts/validate-j2-g4-catalog-cart-integration.js',
+  ];
+  const workingChanges = cp.execFileSync('git', ['status', '--porcelain', '-uall'], { encoding: 'utf8' })
+    .trimEnd()
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => line.slice(3).replace(/\\/g, '/'))
+    .sort();
+  assert.deepEqual(workingChanges, allowedEvidenceChanges.slice().sort(), 'Unexpected evidence reconciliation file set');
 
   const j2Files = files(`${FOUNDATION}...${J2}`);
   const g4Files = files(`${FOUNDATION}...${G4}`);
@@ -135,23 +150,43 @@ function validate({ requireManifest = false } = {}) {
     assert.equal(manifest.uploadPolicy.deleteRemoteFilesAllowed, false);
     assert.equal(manifest.source.j2Commit, git('rev-parse', J2));
     assert.equal(manifest.source.g4Commit, git('rev-parse', G4));
+    assert.equal(manifest.source.head, INTEGRATION);
+    assert.equal(manifest.source.integrationCommit, INTEGRATION);
     assert.deepEqual(manifest.themeFiles.map(({ path: file }) => file), expectedThemeFiles);
     assert.equal(new Set(expectedThemeFiles).size, expectedThemeFiles.length);
-    for (const row of manifest.themeFiles) assert.equal(sha256(row.path), row.sha256, `${row.path}: manifest hash drift`);
+    assert.equal(manifest.themeFiles.length, 17);
+    assert(manifest.themeFiles.every(({ path: file }) => /^(assets|locales|sections|snippets|templates)\//.test(file)), 'Non-theme path entered upload manifest');
+    assert.equal(manifest.themeFiles.filter(({ path: file }) => file === 'assets/cart-feedback-toast.js').length, 1);
+    assert.equal(manifest.themeFiles.filter(({ path: file }) => file === 'snippets/cart-feedback-toast.liquid').length, 1);
+    assert(manifest.themeFiles.some(({ path: file }) => file === 'templates/collection.json'));
+    assert(manifest.themeFiles.some(({ path: file }) => file === 'templates/collection.directory.json'));
+    assert(!manifest.themeFiles.some(({ path: file }) => manifest.repositoryOnlyFiles.includes(file)), 'Repository evidence entered theme upload');
+    assert(!manifest.themeFiles.some(({ path: file }) => /(?:secret|token|credential|private|evidence|test|plan)/i.test(file)), 'Private or development path entered theme upload');
+    for (const row of manifest.themeFiles) {
+      assert.equal(sha256(row.path), row.sha256, `${row.path}: manifest hash drift`);
+      assert.equal(cp.spawnSync('git', ['diff', '--quiet', INTEGRATION, '--', row.path]).status, 0, `${row.path}: differs from committed integration`);
+    }
     for (const row of manifest.unchangedRuntimeDependencies) {
       assert.equal(sha256(row.path), row.sha256, `${row.path}: dependency hash drift`);
     }
+    assert.equal(manifest.rollback.verifyAfterRollback, true);
+    assert.match(manifest.rollback.precondition, /exact bodies, and hashes/);
+    assert.match(manifest.rollback.previouslyAbsentFiles, /proved absent/);
     for (const file of [
       'playwright.j2-g4-integration.config.js',
       'scripts/lib/j2-g4-catalog-cart-fixtures.js',
       'tests/j2-g4-catalog-cart-integration.spec.js',
       'docs/project/implementation-records/j2-g4-tiered-navigation-gap-report.md',
+      'data/epic-g-g4-route-successor-evidence.json',
+      'scripts/validate-epic-g-g4-route-successor-evidence.js',
+      'docs/project/implementation-records/j2-g4-integrated-evidence-reconciliation.md',
     ]) assert(fs.existsSync(file), `${file}: integration evidence missing`);
+    require('./validate-epic-g-g4-route-successor-evidence').validate();
   }
 
   return {
     branch: BRANCH,
-    head: git('rev-parse', 'HEAD'),
+    head: INTEGRATION,
     j2Commit: git('rev-parse', J2),
     g4Commit: git('rev-parse', G4),
     sharedFiles: [SHARED],

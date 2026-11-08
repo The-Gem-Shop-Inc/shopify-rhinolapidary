@@ -1,18 +1,20 @@
 {
   "schemaVersion": 1,
   "batch": "J2-G4-CATALOG-CART-PREVIEW",
-  "preparedAt": "2026-11-08T02:36:28.8494171Z",
-  "status": "PREPARED_NOT_AUTHORIZED",
-  "previewPushReadiness": "CONDITIONAL_ON_AUTHORIZATION_AND_THEME_CHECK_DISPOSITION",
+  "preparedAt": "2026-11-08T04:08:38.9269609Z",
+  "status": "EVIDENCE_RECONCILED_NOT_AUTHORIZED",
+  "previewPushReadiness": "CONDITIONAL_ON_AUTHORIZATION_THEME_CHECK_DISPOSITION_AND_FRESH_AUTHORITY_READ",
   "source": {
     "repository": "https://github.com/The-Gem-Shop-Inc/shopify-rhinolapidary.git",
     "worktree": "C:\\rlcc",
     "branch": "integration/catalog-cart-preview",
-    "head": "0edacc2799be0be8592b424799e2af2be5a1a165",
+    "head": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
+    "integrationCommit": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
+    "integrationCommitStatus": "COMMITTED_SINGLE_PARENT_J2_G4_CONTENT_VERIFIED",
     "foundationCommit": "414288a16fe7123b06c3433f0063ba402fc35e83",
     "j2Commit": "0edacc2799be0be8592b424799e2af2be5a1a165",
     "g4Commit": "a53daec8ffbbbdcd6c5acba1da7770fa23ec3a12",
-    "composition": "Committed J2 HEAD plus the exact committed G4 tree delta and the deterministic shared-section resolution; all integration changes remain unstaged and uncommitted."
+    "composition": "Committed integration with J2 as its single parent, exact G4 nonshared content, and the deterministic shared-section successor. Additive evidence reconciliation remains unstaged and uncommitted."
   },
   "target": {
     "store": null,
@@ -195,10 +197,14 @@
     "tests/j2-g4-catalog-cart-integration.spec.js",
     "data/j2-g4-preview-deployment-manifest.json",
     "docs/project/implementation-records/j2-g4-catalog-cart-preview-integration.md",
-    "docs/project/implementation-records/j2-g4-tiered-navigation-gap-report.md"
+    "docs/project/implementation-records/j2-g4-tiered-navigation-gap-report.md",
+    "data/epic-g-g4-route-successor-evidence.json",
+    "scripts/validate-epic-g-g4-route-successor-evidence.js",
+    "docs/project/implementation-records/j2-g4-integrated-evidence-reconciliation.md"
   ],
   "validation": {
     "integrationStructure": "PASS",
+    "routeSuccessorEvidence": "PASS_REPOSITORY_ONLY_HISTORICAL_RECEIPTS_SEALED",
     "integratedRuntimePlaywright": "PASS_6_OF_6",
     "j2DesktopAndMobilePlaywright": "PASS_20_OF_20",
     "g4BrowserFixtures": "PASS_8_OF_8",
@@ -211,22 +217,32 @@
     "gitDiffCheck": "PASS",
     "themeCheck": {
       "status": "FAIL_REPOSITORY_WIDE_BASELINE",
-      "errors": 2100,
-      "warnings": 3,
+      "freshRepositoryRun": {
+        "errors": 2100,
+        "warnings": 0,
+        "filesWithOffenses": 30
+      },
+      "isolatedThemeCopyRetainedRun": {
+        "errors": 2100,
+        "warnings": 3,
+        "filesWithOffenses": 33
+      },
       "checks": {
         "MatchingTranslations": 2100,
-        "OrphanedSnippet": 3
+        "OrphanedSnippetOnIsolatedThemeCopy": 3
       },
       "directOffensesInThemeFiles": 0,
       "dispositionRequiredBeforeAuthorizedUpload": true
     },
+    "governedDirectoryAuthority": "EXPIRED_FAILS_CLOSED_FRESH_AUTHORIZED_RECONCILIATION_REQUIRED",
     "livePreview": "NOT_RUN_NO_DEPLOYMENT_AUTHORIZATION"
   },
   "evidenceAndApprovalGates": [
     "Separate written authorization identifies the exact unpublished preview target and selective upload scope.",
     "Fresh theme inventory proves preview 158631198917 is UNPUBLISHED and production 158579622085 is excluded.",
     "Repository integration validator, integrated Playwright, J2, G4, navigation, JSON, and diff checks pass from the unchanged candidate.",
-    "The repository-wide Theme Check failure has an explicit Product Owner disposition; no rule or threshold is weakened.",
+    "The repository-wide Theme Check failure has an explicit Product Owner disposition; the root and isolated-theme scan boundaries are both retained and no rule or threshold is weakened.",
+    "A fresh authorized source reconciliation is available if current governed directory roles or machine-context claims are acceptance requirements.",
     "Exact target before-bodies and hashes are retained for rollback.",
     "Only themeFiles are uploaded with no-delete and strict behavior; repositoryOnlyFiles are excluded.",
     "Every uploaded file is read back and SHA-256 compared before browser smoke testing.",
@@ -235,18 +251,18 @@
   "knownSourceBindingFailures": [
     {
       "command": "npm run validate:epic-g-catalog",
-      "status": "FAIL_RETAINED",
-      "reason": "The historical catalog validator rejects the authorized G4 navigation-register changes as route provenance drift."
+      "status": "FAIL_HISTORICAL_RECEIPT_RETAINED_SUCCESSOR_PASS",
+      "reason": "The sealed expired catalog chain consumes the sealed G3A route receipt, which hashes the pre-G4 navigation register. The additive G4 successor binding validates current repository routes without renewing the historical observation."
     },
     {
       "command": "npm run validate:epic-g-machine-routes",
-      "status": "FAIL_RETAINED",
-      "reason": "The historical machine-route receipt rejects the authorized G4 navigation-register changes as route provenance drift."
+      "status": "FAIL_HISTORICAL_RECEIPT_RETAINED_SUCCESSOR_PASS",
+      "reason": "The sealed expired G3A receipt rejects the authorized G4 navigation-register hash. Its route semantics remain byte-sealed and the additive successor records that current Shopify state is not reobserved."
     },
     {
       "command": "npm run validate:epic-g-products",
       "status": "FAIL_RETAINED",
-      "reason": "The G2 presentation lease is expired; this integration does not renew authority."
+      "reason": "G2 presentation authority is expired; G3A/G3B source receipts are also expired. Native catalog/cart behavior remains testable, but current governed fit, role, and machine-context claims require separate authority maintenance."
     },
     {
       "command": "npm run validate:epic-f-machine",
@@ -265,9 +281,14 @@
     {
       "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary-epic-o",
       "branch": "epic-o/o0-discovery-and-planning",
-      "head": "414288a16fe7123b06c3433f0063ba402fc35e83",
-      "statusEntryCountBeforeAndAfter": 8,
-      "statusSha256BeforeAndAfter": "fe1e04052dd9caf3025597128cf285c1ec57e2cff475bca27311d9f781b42034"
+      "historicalPreparationHead": "414288a16fe7123b06c3433f0063ba402fc35e83",
+      "historicalPreparationStatusEntryCount": 8,
+      "historicalPreparationStatusSha256": "fe1e04052dd9caf3025597128cf285c1ec57e2cff475bca27311d9f781b42034",
+      "currentObservedHead": "00634d04984b7fe58ba2eb2e7fa870a38b674fcd",
+      "currentObservedStatusEntryCount": 0,
+      "currentObservedStatusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "changedOutsideThisBatch": true,
+      "touchedByThisBatch": false
     },
     {
       "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary-epic-j2",
