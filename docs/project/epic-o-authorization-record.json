@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "recordId": "O-AUTH-001",
+  "recordedAt": "2026-11-07",
+  "authority": "Product Owner prompt in the authorized Epic O execution session",
+  "supersedesPlanningAuthorizationFlags": false,
+  "planningSnapshotRemainsHistorical": true,
+  "authorized": {
+    "boundedReadOnlyAdminAudit": true,
+    "repositoryImplementationForOPbi004And005WhenPrerequisitesSatisfied": true,
+    "nonproductionVerification": true,
+    "scopedCommitAndBranchPushAfterValidation": true
+  },
+  "notAuthorized": {
+    "shopifyAdminMutation": true,
+    "customerRecordAccess": true,
+    "realCustomerAuthentication": true,
+    "appInstallationOrConfiguration": true,
+    "themeOrAccountConfigurationPublication": true,
+    "deployment": true,
+    "productionRelease": true,
+    "merge": true
+  },
+  "approvedMvpDecision": "The Rhino Lapidary Epic O MVP uses native Shopify accounts for orders, account/profile/addresses, navigation, accessibility/mobile usability, and Buy again. Machine ownership, registration, service, resource personalization, and optional retention capabilities remain available for future development but are excluded from this MVP."
+}

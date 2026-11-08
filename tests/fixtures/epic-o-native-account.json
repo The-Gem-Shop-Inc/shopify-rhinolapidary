@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "classification": "synthetic-no-customer-data",
+  "accountStates": [
+    {
+      "id": "anonymous-entry",
+      "authenticated": false,
+      "accountLinkVisible": true,
+      "label": "Log in",
+      "destination": "/customer_authentication/redirect",
+      "expected": "shopify-hosted-sign-in-no-loop"
+    },
+    {
+      "id": "authenticated-empty-orders",
+      "authenticated": true,
+      "heading": "Orders",
+      "orders": [],
+      "emptyAction": {"label": "Shop now", "destination": "/collections/all"},
+      "profile": {"name": "Synthetic Customer", "addresses": []}
+    },
+    {
+      "id": "authenticated-multiple-order-pages",
+      "authenticated": true,
+      "heading": "Orders",
+      "orders": [
+        {"reference": "SYNTH-ORDER-A", "status": "Fulfilled"},
+        {"reference": "SYNTH-ORDER-B", "status": "Processing"}
+      ],
+      "pagination": {"currentPage": 2, "totalPages": 3, "previous": true, "next": true}
+    },
+    {
+      "id": "address-actions",
+      "authenticated": true,
+      "profile": {
+        "name": "Synthetic Customer",
+        "addresses": [
+          {"id": "SYNTH-ADDRESS-A", "label": "Default address", "default": true},
+          {"id": "SYNTH-ADDRESS-B", "label": "Workshop address", "default": false}
+        ]
+      },
+      "actions": ["Add address", "Edit address", "Delete address", "Set as default"]
+    },
+    {
+      "id": "unavailable-destination",
+      "authenticated": true,
+      "error": "Account destination is temporarily unavailable.",
+      "recovery": [{"label": "Try again"}, {"label": "Return to store", "destination": "/"}],
+      "focusTarget": "error-summary"
+    },
+    {
+      "id": "account-link-hidden-by-platform",
+      "authenticated": false,
+      "accountLinkVisible": false,
+      "reason": "shop.customer_accounts_enabled is false"
+    }
+  ],
+  "buyAgainScenarios": [
+    {
+      "id": "fully-available-previous-order",
+      "lines": [
+        {"key": "A", "state": "available", "requestedQuantity": 2, "maxAllowed": 5, "historicalPrice": 1000, "currentPrice": 1200},
+        {"key": "B", "state": "available", "requestedQuantity": 1, "maxAllowed": 3, "historicalPrice": 2500, "currentPrice": 2500}
+      ],
+      "expected": {"added": {"A": 2, "B": 1}, "failed": [], "status": "complete"}
+    },
+    {
+      "id": "mixed-available-unavailable",
+      "lines": [
+        {"key": "A", "state": "available", "requestedQuantity": 1, "maxAllowed": 5, "historicalPrice": 1000, "currentPrice": 1200},
+        {"key": "B", "state": "sold-out", "requestedQuantity": 1, "maxAllowed": 0, "historicalPrice": 2500, "currentPrice": 2500}
+      ],
+      "expected": {"added": {"A": 1}, "failed": ["B"], "status": "partial"}
+    },
+    {
+      "id": "deleted-or-unpublished-variants",
+      "lines": [
+        {"key": "A", "state": "deleted", "requestedQuantity": 1, "maxAllowed": 0, "historicalPrice": 1000, "currentPrice": null},
+        {"key": "B", "state": "unpublished", "requestedQuantity": 1, "maxAllowed": 0, "historicalPrice": 2500, "currentPrice": null}
+      ],
+      "expected": {"added": {}, "failed": ["A", "B"], "status": "failed"}
+    },
+    {
+      "id": "changed-current-prices",
+      "lines": [
+        {"key": "A", "state": "available", "requestedQuantity": 1, "maxAllowed": 5, "historicalPrice": 1000, "currentPrice": 1350}
+      ],
+      "expected": {"added": {"A": 1}, "failed": [], "status": "complete", "priceUsed": {"A": 1350}}
+    },
+    {
+      "id": "changed-quantity-limits",
+      "lines": [
+        {"key": "A", "state": "available", "requestedQuantity": 5, "maxAllowed": 2, "historicalPrice": 1000, "currentPrice": 1000}
+      ],
+      "expected": {"added": {"A": 2}, "failed": [], "adjusted": ["A"], "status": "adjusted"}
+    },
+    {
+      "id": "sold-out-variants",
+      "lines": [
+        {"key": "A", "state": "sold-out", "requestedQuantity": 1, "maxAllowed": 0, "historicalPrice": 1000, "currentPrice": 1000}
+      ],
+      "expected": {"added": {}, "failed": ["A"], "status": "failed"}
+    },
+    {
+      "id": "duplicate-activation",
+      "activationCount": 2,
+      "lines": [
+        {"key": "A", "state": "available", "requestedQuantity": 1, "maxAllowed": 5, "historicalPrice": 1000, "currentPrice": 1000}
+      ],
+      "expected": {"acceptedActivations": 1, "added": {"A": 1}, "failed": [], "status": "complete"}
+    },
+    {
+      "id": "partial-cart-additions",
+      "lines": [
+        {"key": "A", "state": "available", "requestedQuantity": 2, "maxAllowed": 2, "historicalPrice": 1000, "currentPrice": 1000},
+        {"key": "B", "state": "deleted", "requestedQuantity": 1, "maxAllowed": 0, "historicalPrice": 2500, "currentPrice": null}
+      ],
+      "expected": {"added": {"A": 2}, "failed": ["B"], "status": "partial"}
+    },
+    {
+      "id": "network-failure",
+      "networkFailure": true,
+      "lines": [
+        {"key": "A", "state": "available", "requestedQuantity": 1, "maxAllowed": 5, "historicalPrice": 1000, "currentPrice": 1000}
+      ],
+      "expected": {"added": {}, "failed": ["A"], "status": "network-error", "recoverable": true}
+    },
+    {
+      "id": "navigation-recovery",
+      "lines": [],
+      "navigationInterrupted": true,
+      "expected": {"added": {}, "failed": [], "status": "navigation-recovery", "returnDestination": "order-detail"}
+    },
+    {
+      "id": "accessible-failure-status-reporting",
+      "lines": [
+        {"key": "A", "state": "sold-out", "requestedQuantity": 1, "maxAllowed": 0, "historicalPrice": 1000, "currentPrice": 1000}
+      ],
+      "expected": {"added": {}, "failed": ["A"], "status": "failed", "liveRegion": "polite", "focusTarget": "reorder-status"}
+    }
+  ]
+}

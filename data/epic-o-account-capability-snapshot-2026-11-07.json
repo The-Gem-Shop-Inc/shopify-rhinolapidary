@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "O-EVID-001",
+  "observedAt": "2026-11-08T03:46:23.810Z",
+  "expiresAt": "2026-11-15T03:46:23.810Z",
+  "canonicalStore": {
+    "expectedMyshopifyDomain": "sz5dnk-nf.myshopify.com",
+    "observedMyshopifyDomain": "sz5dnk-nf.myshopify.com",
+    "identityVerified": true,
+    "shopIdType": "Shop GID",
+    "rawShopIdStored": false
+  },
+  "api": {
+    "transport": "existing-authorized-shopify-connector",
+    "schemaValidatedBeforeExecution": true,
+    "exactAdminApiVersion": null,
+    "versionEvidenceState": "unverified",
+    "documentationBaseline": "2026-07-or-later-field-contract"
+  },
+  "minimumQuery": {
+    "operationName": "RhinoEpicOAccountAudit",
+    "success": true,
+    "permissionState": "permitted",
+    "allRequestedFieldsReturned": true
+  },
+  "configuration": {
+    "accountMode": {"value": "NEW_CUSTOMER_ACCOUNTS", "evidenceState": "verified"},
+    "loginLinksVisible": {"value": true, "evidenceState": "verified"},
+    "loginRequiredAtCheckout": {"value": false, "evidenceState": "verified"},
+    "plan": {
+      "publicDisplayName": "Basic",
+      "shopifyPlus": false,
+      "partnerDevelopment": false,
+      "evidenceState": "verified"
+    },
+    "accountUrl": {
+      "present": true,
+      "host": "shopify.com",
+      "type": "shopify-hosted",
+      "privateComponentsStored": false,
+      "evidenceState": "verified"
+    }
+  },
+  "additionalInventory": {
+    "buyAgain": {
+      "platformCapability": "supported-and-on-by-default-for-new-customer-accounts",
+      "rhinoVisibility": "unverified",
+      "reason": "The setting can be hidden and the authorized API fields do not expose its current visibility."
+    },
+    "ordersProfileAddresses": {
+      "platformCapability": "supported",
+      "rhinoIntegrationState": "pending-synthetic-and-manual-integration-verification"
+    },
+    "savedPaymentMethods": {
+      "platformCapability": "enterprise-only",
+      "rhinoEligibility": "not-eligible-on-verified-basic-plan",
+      "rhinoActivation": "not-applicable"
+    },
+    "customerAccountMenu": {
+      "platformCapability": "supported",
+      "rhinoConfiguration": "unverified"
+    },
+    "checkoutAndAccountsConfiguration": {
+      "activeOrDraftState": "unverified",
+      "publicationState": "unverified"
+    },
+    "installedAppsAndExtensions": {
+      "queryAttempted": true,
+      "permissionState": "access-denied",
+      "paginationComplete": false,
+      "itemCount": null
+    },
+    "customerSegments": {
+      "queryAttempted": true,
+      "permissionState": "permitted",
+      "paginationComplete": true,
+      "pages": 1,
+      "itemCount": 9,
+      "accountLoginPasswordSignalCount": 0,
+      "orderSignalCount": 3,
+      "companyB2bWholesaleDealerSignalCount": 0,
+      "subscriptionSignalCount": 1,
+      "customerMembersRead": false,
+      "rawNamesOrQueriesStored": false
+    },
+    "shopifyFlow": {
+      "workflowInventory": "unverified",
+      "reason": "No read-only workflow inventory was exposed by the authorized connection."
+    }
+  },
+  "completeness": {
+    "minimumQueryComplete": true,
+    "additionalInventoryComplete": false,
+    "implementationPathConfirmed": true,
+    "oPbi001Complete": false
+  },
+  "dataHandling": {
+    "classification": "sanitized-store-configuration",
+    "containsCustomerPii": false,
+    "containsSecrets": false,
+    "containsPrivateUrls": false,
+    "rawApiResponseStored": false
+  },
+  "zeroMutationAssertion": true,
+  "revalidationTriggers": [
+    "evidence expiry",
+    "customer account mode or sign-in setting change",
+    "checkout and accounts configuration publication",
+    "app or customer account extension installation or removal",
+    "Shopify plan change",
+    "Buy again visibility change",
+    "release acceptance immediately before publication"
+  ]
+}

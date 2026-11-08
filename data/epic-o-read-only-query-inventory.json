@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "O-EVID-001",
+  "canonicalStore": "sz5dnk-nf.myshopify.com",
+  "zeroMutationAssertion": true,
+  "operations": [
+    {
+      "id": "O-QUERY-001",
+      "operationType": "query",
+      "operationName": "RhinoEpicOAccountAudit",
+      "purpose": "Canonical store identity, customer account version, sign-in settings, account URL classification, and plan",
+      "result": "success",
+      "pagination": "not-applicable",
+      "customerRecordsRead": false,
+      "rawResponseStored": false
+    },
+    {
+      "id": "O-QUERY-002",
+      "operationType": "query",
+      "operationName": "RhinoEpicOAppInventory",
+      "purpose": "Installed app and account-relevant scope inventory",
+      "result": "access-denied",
+      "pagination": "incomplete-no-pages-returned",
+      "customerRecordsRead": false,
+      "rawResponseStored": false
+    },
+    {
+      "id": "O-QUERY-003",
+      "operationType": "query",
+      "operationName": "RhinoEpicOSegmentInventory",
+      "purpose": "Aggregate account-migration keyword signals in segment definitions without reading members",
+      "result": "success",
+      "pagination": "complete-one-page",
+      "customerRecordsRead": false,
+      "rawResponseStored": false
+    },
+    {
+      "id": "O-QUERY-004",
+      "operationType": "query",
+      "operationName": "RhinoEpicOApiVersionProbe",
+      "purpose": "Confirm canonical store access while inspecting transport metadata for an exact API version",
+      "result": "success-version-metadata-not-exposed",
+      "pagination": "not-applicable",
+      "customerRecordsRead": false,
+      "rawResponseStored": false
+    }
+  ],
+  "schemaDiscovery": [
+    "QueryRoot.shop",
+    "Shop",
+    "CustomerAccountsV2",
+    "CustomerAccountsVersion",
+    "ShopPlan",
+    "QueryRoot.appInstallations",
+    "AppInstallationConnection",
+    "AppInstallation",
+    "App",
+    "AccessScope",
+    "QueryRoot.segments",
+    "Segment"
+  ]
+}

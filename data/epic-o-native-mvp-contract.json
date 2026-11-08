@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "contractId": "O-NATIVE-MVP-001",
+  "approvedScope": [
+    "native Shopify authentication",
+    "order history and order status",
+    "profile and saved addresses",
+    "account entry, navigation, and return behavior",
+    "native Shopify Buy again",
+    "Epic J cart reconciliation",
+    "accessibility, responsive behavior, and privacy safeguards"
+  ],
+  "accountModeEvidence": {
+    "evidenceId": "O-EVID-001",
+    "requiredMode": "NEW_CUSTOMER_ACCOUNTS",
+    "loginLinksVisible": true
+  },
+  "architecture": {
+    "mvp": "native-shopify-no-new-application",
+    "themeChangesRequired": false,
+    "reason": "The current header and drawer already use Shopify account route objects, while new customer account pages are hosted outside theme Liquid.",
+    "renderNewAccountPagesInLiquid": false,
+    "customAuthentication": false,
+    "customSessionManagement": false,
+    "customOrderFetching": false,
+    "customAddressPersistence": false,
+    "customReorderEngine": false
+  },
+  "themeEntryContract": {
+    "guard": "shop.customer_accounts_enabled",
+    "desktopSource": "sections/header.liquid",
+    "mobileSource": "snippets/header-drawer.liquid",
+    "signedOutDestination": "routes.account_login_url",
+    "signedInDestination": "routes.account_url",
+    "signedOutLabel": "customer.log_in",
+    "signedInLabel": "customer.account_fallback",
+    "rel": "nofollow",
+    "returnBehaviorOwner": "Shopify customer accounts configuration"
+  },
+  "nativeCapabilities": {
+    "orders": "platform-supported",
+    "orderStatus": "platform-supported",
+    "profile": "platform-supported",
+    "addresses": "platform-supported",
+    "buyAgain": "platform-supported-on-by-default-visibility-unverified",
+    "savedPaymentMethods": "not-eligible-on-basic-plan",
+    "accountNavigation": "platform-supported-rhino-configuration-unverified"
+  },
+  "buyAgainInvariant": "Reorder uses current catalog, variant, price, availability, and quantity constraints; historical terms are never promised.",
+  "epicJContract": {
+    "singleServerCart": true,
+    "currentVariantIdentity": true,
+    "partialSuccessPreserved": true,
+    "failuresVisibleAndRecoverable": true,
+    "cartRemainsEditable": true,
+    "historicalPriceAuthority": false
+  },
+  "privacyInvariants": {
+    "purchaseDoesNotEstablishOwnership": true,
+    "orderHistoryDoesNotEstablishCompatibility": true,
+    "orderHistoryDoesNotEstablishRegistration": true,
+    "orderHistoryDoesNotEstablishWarrantyEligibility": true,
+    "syntheticFixturesOnly": true,
+    "customerPiiInRepository": false
+  },
+  "integrationVerificationPending": [
+    "Buy again visibility in active customer account configuration",
+    "active versus draft checkout/accounts configuration",
+    "customer account menu contents and return destination",
+    "installed customer account apps and extensions",
+    "authenticated native orders/profile/addresses behavior",
+    "native Buy again partial-failure and duplicate-activation behavior",
+    "screen reader review on Shopify-hosted account pages"
+  ],
+  "officialSources": [
+    "https://shopify.dev/docs/api/admin-graphql/latest/objects/CustomerAccountsV2",
+    "https://help.shopify.com/en/manual/customers/customer-accounts/upgrade/compare-features",
+    "https://help.shopify.com/en/manual/customers/customer-accounts/upgrade/customization-options",
+    "https://help.shopify.com/en/manual/customers/customer-accounts/customize-customer-accounts/customize",
+    "https://help.shopify.com/en/manual/customers/customer-accounts/manage"
+  ]
+}

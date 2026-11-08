@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-o-account-capability-snapshot.schema.json",
+  "title": "Epic O sanitized customer account capability snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "evidenceId",
+    "observedAt",
+    "expiresAt",
+    "canonicalStore",
+    "api",
+    "minimumQuery",
+    "configuration",
+    "additionalInventory",
+    "completeness",
+    "dataHandling",
+    "zeroMutationAssertion",
+    "revalidationTriggers"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "evidenceId": {"const": "O-EVID-001"},
+    "observedAt": {"type": "string", "format": "date-time"},
+    "expiresAt": {"type": "string", "format": "date-time"},
+    "canonicalStore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expectedMyshopifyDomain", "observedMyshopifyDomain", "identityVerified", "shopIdType", "rawShopIdStored"],
+      "properties": {
+        "expectedMyshopifyDomain": {"const": "sz5dnk-nf.myshopify.com"},
+        "observedMyshopifyDomain": {"const": "sz5dnk-nf.myshopify.com"},
+        "identityVerified": {"const": true},
+        "shopIdType": {"const": "Shop GID"},
+        "rawShopIdStored": {"const": false}
+      }
+    },
+    "api": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["transport", "schemaValidatedBeforeExecution", "exactAdminApiVersion", "versionEvidenceState", "documentationBaseline"],
+      "properties": {
+        "transport": {"const": "existing-authorized-shopify-connector"},
+        "schemaValidatedBeforeExecution": {"const": true},
+        "exactAdminApiVersion": {"type": ["string", "null"]},
+        "versionEvidenceState": {"enum": ["verified", "unverified"]},
+        "documentationBaseline": {"const": "2026-07-or-later-field-contract"}
+      }
+    },
+    "minimumQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operationName", "success", "permissionState", "allRequestedFieldsReturned"],
+      "properties": {
+        "operationName": {"const": "RhinoEpicOAccountAudit"},
+        "success": {"const": true},
+        "permissionState": {"const": "permitted"},
+        "allRequestedFieldsReturned": {"const": true}
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["accountMode", "loginLinksVisible", "loginRequiredAtCheckout", "plan", "accountUrl"],
+      "properties": {
+        "accountMode": {"$ref": "#/$defs/verifiedAccountMode"},
+        "loginLinksVisible": {"$ref": "#/$defs/verifiedBoolean"},
+        "loginRequiredAtCheckout": {"$ref": "#/$defs/verifiedBoolean"},
+        "plan": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["publicDisplayName", "shopifyPlus", "partnerDevelopment", "evidenceState"],
+          "properties": {
+            "publicDisplayName": {"const": "Basic"},
+            "shopifyPlus": {"const": false},
+            "partnerDevelopment": {"const": false},
+            "evidenceState": {"const": "verified"}
+          }
+        },
+        "accountUrl": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["present", "host", "type", "privateComponentsStored", "evidenceState"],
+          "properties": {
+            "present": {"const": true},
+            "host": {"const": "shopify.com"},
+            "type": {"const": "shopify-hosted"},
+            "privateComponentsStored": {"const": false},
+            "evidenceState": {"const": "verified"}
+          }
+        }
+      }
+    },
+    "additionalInventory": {"type": "object"},
+    "completeness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimumQueryComplete", "additionalInventoryComplete", "implementationPathConfirmed", "oPbi001Complete"],
+      "properties": {
+        "minimumQueryComplete": {"const": true},
+        "additionalInventoryComplete": {"const": false},
+        "implementationPathConfirmed": {"const": true},
+        "oPbi001Complete": {"const": false}
+      }
+    },
+    "dataHandling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classification", "containsCustomerPii", "containsSecrets", "containsPrivateUrls", "rawApiResponseStored"],
+      "properties": {
+        "classification": {"const": "sanitized-store-configuration"},
+        "containsCustomerPii": {"const": false},
+        "containsSecrets": {"const": false},
+        "containsPrivateUrls": {"const": false},
+        "rawApiResponseStored": {"const": false}
+      }
+    },
+    "zeroMutationAssertion": {"const": true},
+    "revalidationTriggers": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 3}
+    }
+  },
+  "$defs": {
+    "verifiedBoolean": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "evidenceState"],
+      "properties": {
+        "value": {"type": "boolean"},
+        "evidenceState": {"const": "verified"}
+      }
+    },
+    "verifiedAccountMode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "evidenceState"],
+      "properties": {
+        "value": {"enum": ["CLASSIC", "NEW_CUSTOMER_ACCOUNTS"]},
+        "evidenceState": {"const": "verified"}
+      }
+    }
+  }
+}
