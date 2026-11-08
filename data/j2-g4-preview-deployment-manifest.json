@@ -9,12 +9,13 @@
     "worktree": "C:\\rlcc",
     "branch": "integration/catalog-cart-preview",
     "head": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
+    "headMeaning": "Immutable runtime snapshot whose deployable file bodies and hashes are recorded by this manifest; later evidence-only descendant commits do not rebind it.",
     "integrationCommit": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
     "integrationCommitStatus": "COMMITTED_SINGLE_PARENT_J2_G4_CONTENT_VERIFIED",
     "foundationCommit": "414288a16fe7123b06c3433f0063ba402fc35e83",
     "j2Commit": "0edacc2799be0be8592b424799e2af2be5a1a165",
     "g4Commit": "a53daec8ffbbbdcd6c5acba1da7770fa23ec3a12",
-    "composition": "Committed integration with J2 as its single parent, exact G4 nonshared content, and the deterministic shared-section successor. Additive evidence reconciliation remains unstaged and uncommitted."
+    "composition": "Committed runtime integration with J2 as its single parent, exact G4 nonshared content, and the deterministic shared-section successor. Evidence and validator commits may descend from this immutable runtime snapshot without changing its deployment hashes."
   },
   "target": {
     "store": null,
@@ -200,7 +201,10 @@
     "docs/project/implementation-records/j2-g4-tiered-navigation-gap-report.md",
     "data/epic-g-g4-route-successor-evidence.json",
     "scripts/validate-epic-g-g4-route-successor-evidence.js",
-    "docs/project/implementation-records/j2-g4-integrated-evidence-reconciliation.md"
+    "docs/project/implementation-records/j2-g4-integrated-evidence-reconciliation.md",
+    "scripts/lib/j2-g4-validator-repository.js",
+    "scripts/test-j2-g4-preflight-validators.js",
+    "docs/project/implementation-records/j2-g4-preflight-validator-repair.md"
   ],
   "validation": {
     "integrationStructure": "PASS",
