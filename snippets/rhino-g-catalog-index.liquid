@@ -37,7 +37,7 @@
         {%- assign first_page = first_page | strip -%}
         {%- assign needle = ':' | append: role | append: '|' -%}
         {%- if first_page != blank -%}
-          <a href="{%- unless g_members contains needle -%}{{ collection.url }}?page={{ first_page }}{%- endunless -%}#{{ g_fragments[forloop.index0] }}">{{ g_labels[forloop.index0] }}</a>
+          <a href="{%- unless g_members contains needle -%}{{ collection.url }}?view=directory&amp;page={{ first_page }}{%- endunless -%}#{{ g_fragments[forloop.index0] }}">{{ g_labels[forloop.index0] }}</a>
         {%- endif -%}
       {%- endfor -%}
     </nav>
@@ -86,5 +86,5 @@
     </ul>
   {%- endif -%}
   {%- if paginate.pages > 1 -%}<p>Page {{ paginate.current_page }} of {{ paginate.pages }}. Groups may continue on another page.</p>{%- render 'pagination', paginate: paginate, anchor: '#g-catalog' -%}{%- endif -%}
-  <p><a href="{{ collection.url }}?sort_by=title-ascending">View the photo catalog</a></p>
+  <p><a href="{{ collection.url }}">View all Products with photos</a></p>
 </div>

@@ -1,0 +1,46 @@
+{{ 'rhino-g-catalog-navigation.css' | asset_url | stylesheet_tag }}
+
+{%- assign rhino_g_directory_view = false -%}
+{%- if template.suffix == 'directory' -%}
+  {%- assign rhino_g_directory_view = true -%}
+{%- endif -%}
+
+<nav
+  class="rhino-g-catalog-navigation page-width"
+  aria-labelledby="RhinoGCatalogNavigation-{{ section.id }}"
+  data-rhino-g-catalog-navigation
+>
+  <h2 id="RhinoGCatalogNavigation-{{ section.id }}" class="rhino-g-catalog-navigation__title">
+    Shop the catalog
+  </h2>
+  <ul class="rhino-g-catalog-navigation__list" role="list">
+    <li>
+      <a
+        href="{{ routes.all_products_collection_url }}"
+        {% if collection.handle == 'all' and rhino_g_directory_view == false %}aria-current="page"{% endif %}
+      >All Products</a>
+    </li>
+    <li>
+      <a
+        href="{{ routes.collections_url }}/machines"
+        {% if collection.handle == 'machines' %}aria-current="page"{% endif %}
+      >Machines</a>
+    </li>
+    <li><a href="{{ routes.all_products_collection_url }}?view=directory#g-replacement-parts">Replacement Parts</a></li>
+    <li><a href="{{ routes.all_products_collection_url }}?view=directory#g-consumables">Consumables</a></li>
+    <li><a href="{{ routes.all_products_collection_url }}?view=directory#g-accessories">Accessories</a></li>
+  </ul>
+  <p class="rhino-g-catalog-navigation__directory">
+    <a
+      href="{{ routes.all_products_collection_url }}?view=directory"
+      {% if rhino_g_directory_view %}aria-current="page"{% endif %}
+    >Browse the text Product directory</a>
+  </p>
+</nav>
+
+{% schema %}
+{
+  "name": "Catalog navigation",
+  "class": "section"
+}
+{% endschema %}
