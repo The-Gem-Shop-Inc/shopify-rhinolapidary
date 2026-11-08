@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "status": "REPOSITORY_IMPLEMENTED_PREVIEW_UNVERIFIED",
+  "branch": "epic-g/g4-photo-catalog-navigation",
+  "baseRef": "origin/feat/epic-l-l1a-foundation",
+  "baseCommit": "414288a16fe7123b06c3433f0063ba402fc35e83",
+  "catalog": {
+    "primary": {
+      "label": "All Products",
+      "route": "/collections/all",
+      "template": "collection.json",
+      "presentation": "native-photographic-product-grid",
+      "viewSelector": null
+    },
+    "secondaryDirectory": {
+      "label": "Product directory",
+      "route": "/collections/all?view=directory",
+      "template": "collection.directory.json",
+      "presentation": "governed-text-directory",
+      "authority": "snippets/rhino-g-catalog-authority.liquid"
+    }
+  },
+  "verifiedCollectionDestinations": [
+    {
+      "label": "All Products",
+      "route": "/collections/all",
+      "identity": "native-collection:all",
+      "evidence": "G3B native catalog baseline and data/navigation-spec.json#g-catalog-entry"
+    },
+    {
+      "label": "Machines",
+      "route": "/collections/machines",
+      "identity": "collection:machines",
+      "evidence": "data/navigation-spec.json#machines"
+    }
+  ],
+  "directoryDestinations": [
+    {
+      "label": "Replacement Parts",
+      "route": "/collections/all?view=directory#g-replacement-parts",
+      "identity": "governed-directory-anchor",
+      "collection": false
+    },
+    {
+      "label": "Consumables",
+      "route": "/collections/all?view=directory#g-consumables",
+      "identity": "governed-directory-anchor",
+      "collection": false
+    },
+    {
+      "label": "Accessories",
+      "route": "/collections/all?view=directory#g-accessories",
+      "identity": "governed-directory-anchor",
+      "collection": false
+    }
+  ],
+  "suppressedUnverifiedCollectionRoutes": [
+    {
+      "route": "/collections/replacement-parts",
+      "reason": "Preview route probe returned 404; no collection identity approved."
+    },
+    {
+      "route": "/collections/parts",
+      "reason": "Preview route probe returned 404; no collection identity approved."
+    },
+    {
+      "route": "/collections/consumables",
+      "reason": "Preview route probe returned 404; no collection identity approved."
+    },
+    {
+      "route": "/collections/accessories",
+      "reason": "Preview route probe returned 404; no collection identity approved."
+    },
+    {
+      "route": "/collections/em-1-parts",
+      "reason": "Existing route is not approved compatibility or complete role-membership authority."
+    }
+  ],
+  "adminMenuPlan": {
+    "execute": false,
+    "targetHandle": "preview-primary-navigation-menu",
+    "productionHandle": "main-menu",
+    "productionMutationAllowed": false,
+    "before": [
+      {
+        "label": "Home",
+        "route": "/"
+      },
+      {
+        "label": "Catalog",
+        "disclosure": true,
+        "children": [
+          {
+            "label": "Parts and supplies",
+            "route": "/collections/all"
+          },
+          {
+            "label": "Saws",
+            "route": "/collections/machines"
+          },
+          {
+            "label": "Laps",
+            "route": "/collections/machines"
+          },
+          {
+            "label": "Shaping",
+            "route": "/collections/machines"
+          }
+        ]
+      },
+      {
+        "label": "Manuals",
+        "route": "/pages/em-1-manual"
+      },
+      {
+        "label": "Contact",
+        "route": "/pages/contact"
+      }
+    ],
+    "after": [
+      {
+        "label": "Home",
+        "route": "/"
+      },
+      {
+        "label": "Catalog",
+        "disclosure": true,
+        "children": [
+          {
+            "label": "All Products",
+            "route": "/collections/all"
+          },
+          {
+            "label": "Machines",
+            "route": "/collections/machines"
+          },
+          {
+            "label": "Replacement Parts",
+            "route": "/collections/all?view=directory#g-replacement-parts"
+          },
+          {
+            "label": "Consumables",
+            "route": "/collections/all?view=directory#g-consumables"
+          },
+          {
+            "label": "Accessories",
+            "route": "/collections/all?view=directory#g-accessories"
+          }
+        ]
+      },
+      {
+        "label": "Manuals",
+        "route": "/pages/em-1-manual"
+      },
+      {
+        "label": "Contact",
+        "route": "/pages/contact"
+      }
+    ],
+    "rollback": "Restore the recorded before tree on preview-primary-navigation-menu. Do not alter main-menu."
+  },
+  "j2Integration": {
+    "branch": "epic-j/j2-collection-cart-feedback",
+    "sharedFiles": [
+      "sections/main-collection-product-grid.liquid"
+    ],
+    "g4MustPreserve": [
+      "J2 bulk quick-add toast stylesheet and deferred script includes",
+      "J2 cart-feedback-toast snippet render",
+      "J2 quick-add-bulk and quick-order-list initialization order",
+      "J2 data-product-title attribute in snippets/card-product.liquid",
+      "J2 cart reconciliation and toast JavaScript unchanged"
+    ],
+    "acceptance": "After integration, /collections/all must render photographic cards with bulk quantity controls, and add/increment/decrement/remove must retain confirmed quantities and J2 toast feedback."
+  }
+}

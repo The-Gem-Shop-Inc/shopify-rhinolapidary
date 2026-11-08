@@ -1,0 +1,337 @@
+{
+  "schemaVersion": 1,
+  "batch": "J2-G4-CATALOG-CART-PREVIEW",
+  "preparedAt": "2026-11-08T02:36:28.8494171Z",
+  "status": "PREPARED_NOT_AUTHORIZED",
+  "previewPushReadiness": "CONDITIONAL_ON_AUTHORIZATION_AND_THEME_CHECK_DISPOSITION",
+  "source": {
+    "repository": "https://github.com/The-Gem-Shop-Inc/shopify-rhinolapidary.git",
+    "worktree": "C:\\rlcc",
+    "branch": "integration/catalog-cart-preview",
+    "head": "0edacc2799be0be8592b424799e2af2be5a1a165",
+    "foundationCommit": "414288a16fe7123b06c3433f0063ba402fc35e83",
+    "j2Commit": "0edacc2799be0be8592b424799e2af2be5a1a165",
+    "g4Commit": "a53daec8ffbbbdcd6c5acba1da7770fa23ec3a12",
+    "composition": "Committed J2 HEAD plus the exact committed G4 tree delta and the deterministic shared-section resolution; all integration changes remain unstaged and uncommitted."
+  },
+  "target": {
+    "store": null,
+    "themeId": null,
+    "previouslyKnownPreviewThemeId": "158631198917",
+    "previouslyKnownProductionThemeId": "158579622085",
+    "identityVerificationStatus": "NOT_RUN_NO_SHOPIFY_READ_AUTHORIZED",
+    "requiredRole": "UNPUBLISHED",
+    "productionThemeAllowed": false,
+    "productionMenuAllowed": false,
+    "targetReadRequiredBeforeUpload": true,
+    "targetIdentityRequiredBeforeUpload": true,
+    "identityVerificationInstructions": [
+      "Perform a fresh authenticated theme inventory read immediately before any authorized upload.",
+      "Confirm theme 158631198917 still exists and has role UNPUBLISHED; bind themeId only after this succeeds.",
+      "Confirm theme 158579622085 is the production theme and exclude it from every upload or publication command.",
+      "Abort if either ID, role, store identity, or preview ownership differs from the retained evidence.",
+      "Read and retain the target preview bodies and hashes for every manifest path before writing."
+    ]
+  },
+  "authorization": {
+    "stage": false,
+    "commit": false,
+    "push": false,
+    "deploy": false,
+    "publish": false,
+    "shopifyAdminMutation": false,
+    "menuMutation": false,
+    "collectionMutation": false
+  },
+  "sharedFiles": [
+    {
+      "path": "sections/main-collection-product-grid.liquid",
+      "owners": [
+        "J2",
+        "G4"
+      ],
+      "resolution": "G4 native photographic collection grid and pagination, with J2 bulk quick-add assets, coordinator, toast initialization, and toast render retained exactly once."
+    }
+  ],
+  "themeFiles": [
+    {
+      "path": "assets/cart-feedback-toast.js",
+      "owner": "J2",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "8d5fbfaa8751675f161bee3e36eeba165825baf7b7150f1c6dde72c43b123169"
+    },
+    {
+      "path": "assets/component-cart-feedback-toast.css",
+      "owner": "J2",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "49ed07eb30514171de93278ed9f48acc3f153c76da7e33e914ea696ef01f16c6"
+    },
+    {
+      "path": "assets/quick-add-bulk.js",
+      "owner": "J2",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "42478470a48a131bdbfb74deb167abe931f2b36a83a6caee9404ce67403aea17"
+    },
+    {
+      "path": "assets/quick-order-list.js",
+      "owner": "J2",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "ed162be6c84b41d689dd130da54d1036f68d5485fdf0370bb9904ec6e41b3b0c"
+    },
+    {
+      "path": "locales/en.default.json",
+      "owner": "J2",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "c98d55ec32f51f7ad082b1c575de923b63825f3f34f73d8160b546263a8062e7"
+    },
+    {
+      "path": "sections/main-collection-product-grid.liquid",
+      "owner": "J2+G4",
+      "operation": "upsert_resolved_successor_after_target_preflight",
+      "sha256": "f37e1a219a9e7f3f6d9fc5a86be44bacc9275158e642939a4215ffdcd85240df"
+    },
+    {
+      "path": "snippets/card-product.liquid",
+      "owner": "J2",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "363744c12b25cdd3e92d120c1b751f8c3b6a976535b36998c0720ee7072f73f5"
+    },
+    {
+      "path": "snippets/cart-feedback-toast.liquid",
+      "owner": "J2",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "0c58155a59463e61ed770bd68f46b7ed6ca0fa62430a3ae6d342ada11fcc9226"
+    },
+    {
+      "path": "snippets/quick-order-list.liquid",
+      "owner": "J2",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "a7237c7a328711cfd35af11f8f720755ea5ddf32e145782eac4765a3d34cf12c"
+    },
+    {
+      "path": "assets/rhino-g-catalog-navigation.css",
+      "owner": "G4",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "c39555609d9498a5a49cfdd9c2b7922a7880bdd6c3c3b3ca24e633d91438148d"
+    },
+    {
+      "path": "sections/rhino-g-catalog-directory.liquid",
+      "owner": "G4",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "a9a31d951ccd4e679a3b9e29d7f6dad01025fca39f8115ed942eb7006fcb3914"
+    },
+    {
+      "path": "sections/rhino-g-catalog-navigation.liquid",
+      "owner": "G4",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "e17388eae9cc3a6bb9311e024b7507ff437ecf96108f420145eaf3f6226e7c86"
+    },
+    {
+      "path": "snippets/header-drawer.liquid",
+      "owner": "G4",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "80856862f08ad7cbb11f0638e64ef489eb646f08c0f456904c2d840f5674042b"
+    },
+    {
+      "path": "snippets/header-mega-menu.liquid",
+      "owner": "G4",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "23fb66e89bc08bf32c66c7a6256ad1913684c501592dd6cb3aca08dbac9f915f"
+    },
+    {
+      "path": "snippets/rhino-g-catalog-index.liquid",
+      "owner": "G4",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "7efdf3623fb626fb8f0ce20b77705194ac6fbd58531b368758fe8956243e7b63"
+    },
+    {
+      "path": "templates/collection.directory.json",
+      "owner": "G4",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "400aadbbf12a0d32072a764f400175602cf441cded428122dcb84457d27ea6e5"
+    },
+    {
+      "path": "templates/collection.json",
+      "owner": "G4",
+      "operation": "upsert_after_target_preflight",
+      "sha256": "d94ded71fe171c5a131a1ef45c1861067d4864673c6da3cf08738ea10450e653"
+    }
+  ],
+  "unchangedRuntimeDependencies": [
+    {
+      "path": "assets/rhino-g-catalog.css",
+      "sha256": "7bc9186a84626b5f2dde3bfedcf525587575fc3192f9c257d7f0114c3cfb3aee"
+    },
+    {
+      "path": "assets/rhino-g-catalog.js",
+      "sha256": "67a35d7d31755f70c61e084b8e723895209e7043d121642450cae08bc6368018"
+    },
+    {
+      "path": "snippets/rhino-g-catalog-authority.liquid",
+      "sha256": "3879702532c4c36da9e3b94c8362ad96b4ca25fb16660ee2aefcbdd121de5ea2"
+    },
+    {
+      "path": "assets/quantity-popover.js",
+      "sha256": "406e3bb4beb2226c7afd9896eb32d8a5d3b53d84705e8f8de29c8d36455c6669"
+    },
+    {
+      "path": "assets/price-per-item.js",
+      "sha256": "5868f07a006a4f88540808d6d3cdff8f97a8f87f91c2688e6050dacab25f9b0a"
+    }
+  ],
+  "uploadPolicy": {
+    "mode": "selective_files_only",
+    "fullThemePushAllowed": false,
+    "deleteRemoteFilesAllowed": false,
+    "nodeleteRequired": true,
+    "strictRequired": true,
+    "readBackAndHashCompareRequired": true,
+    "files": "themeFiles"
+  },
+  "repositoryOnlyFiles": [
+    "playwright.j2-g4-integration.config.js",
+    "scripts/lib/j2-g4-catalog-cart-fixtures.js",
+    "scripts/validate-j2-g4-catalog-cart-integration.js",
+    "tests/j2-g4-catalog-cart-integration.spec.js",
+    "data/j2-g4-preview-deployment-manifest.json",
+    "docs/project/implementation-records/j2-g4-catalog-cart-preview-integration.md",
+    "docs/project/implementation-records/j2-g4-tiered-navigation-gap-report.md"
+  ],
+  "validation": {
+    "integrationStructure": "PASS",
+    "integratedRuntimePlaywright": "PASS_6_OF_6",
+    "j2DesktopAndMobilePlaywright": "PASS_20_OF_20",
+    "g4BrowserFixtures": "PASS_8_OF_8",
+    "g4CatalogUnits": "PASS_41_OF_41_INTEGRATION_ORACLE",
+    "g4HeaderDrawerUnits": "PASS_14_OF_14",
+    "jsonRegisters": "PASS",
+    "epicGOfflineFoundationFixture": "PASS",
+    "themeArchitectureAndNavigationValidators": "PASS",
+    "productTemplateAndPurchaseValidators": "PASS",
+    "gitDiffCheck": "PASS",
+    "themeCheck": {
+      "status": "FAIL_REPOSITORY_WIDE_BASELINE",
+      "errors": 2100,
+      "warnings": 3,
+      "checks": {
+        "MatchingTranslations": 2100,
+        "OrphanedSnippet": 3
+      },
+      "directOffensesInThemeFiles": 0,
+      "dispositionRequiredBeforeAuthorizedUpload": true
+    },
+    "livePreview": "NOT_RUN_NO_DEPLOYMENT_AUTHORIZATION"
+  },
+  "evidenceAndApprovalGates": [
+    "Separate written authorization identifies the exact unpublished preview target and selective upload scope.",
+    "Fresh theme inventory proves preview 158631198917 is UNPUBLISHED and production 158579622085 is excluded.",
+    "Repository integration validator, integrated Playwright, J2, G4, navigation, JSON, and diff checks pass from the unchanged candidate.",
+    "The repository-wide Theme Check failure has an explicit Product Owner disposition; no rule or threshold is weakened.",
+    "Exact target before-bodies and hashes are retained for rollback.",
+    "Only themeFiles are uploaded with no-delete and strict behavior; repositoryOnlyFiles are excluded.",
+    "Every uploaded file is read back and SHA-256 compared before browser smoke testing.",
+    "Publication and preview-menu mutation remain separately authorized operations."
+  ],
+  "knownSourceBindingFailures": [
+    {
+      "command": "npm run validate:epic-g-catalog",
+      "status": "FAIL_RETAINED",
+      "reason": "The historical catalog validator rejects the authorized G4 navigation-register changes as route provenance drift."
+    },
+    {
+      "command": "npm run validate:epic-g-machine-routes",
+      "status": "FAIL_RETAINED",
+      "reason": "The historical machine-route receipt rejects the authorized G4 navigation-register changes as route provenance drift."
+    },
+    {
+      "command": "npm run validate:epic-g-products",
+      "status": "FAIL_RETAINED",
+      "reason": "The G2 presentation lease is expired; this integration does not renew authority."
+    },
+    {
+      "command": "npm run validate:epic-f-machine",
+      "status": "FAIL_RETAINED",
+      "reason": "Inherited native baseline drift remains in assets/product-form.js and snippets/buy-buttons.liquid."
+    }
+  ],
+  "protectedWorktrees": [
+    {
+      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary",
+      "branch": "feat/epic-l-l1a-foundation",
+      "head": "414288a16fe7123b06c3433f0063ba402fc35e83",
+      "statusEntryCountBeforeAndAfter": 759,
+      "statusSha256BeforeAndAfter": "b131a64c239a6dc4618cc65632ac086b16cea753f69e057bb55a17e2f072c133"
+    },
+    {
+      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary-epic-o",
+      "branch": "epic-o/o0-discovery-and-planning",
+      "head": "414288a16fe7123b06c3433f0063ba402fc35e83",
+      "statusEntryCountBeforeAndAfter": 8,
+      "statusSha256BeforeAndAfter": "fe1e04052dd9caf3025597128cf285c1ec57e2cff475bca27311d9f781b42034"
+    },
+    {
+      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary-epic-j2",
+      "branch": "epic-j/j2-collection-cart-feedback",
+      "head": "0edacc2799be0be8592b424799e2af2be5a1a165",
+      "statusEntryCountBeforeAndAfter": 0,
+      "statusSha256BeforeAndAfter": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\Users\\dajem\\WebstormProjects\\shopify-rhinolapidary-epic-g4",
+      "branch": "epic-g/g4-photo-catalog-navigation",
+      "head": "a53daec8ffbbbdcd6c5acba1da7770fa23ec3a12",
+      "statusEntryCountBeforeAndAfter": 0,
+      "statusSha256BeforeAndAfter": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "previewVerificationPlan": {
+    "widthsPx": [
+      320,
+      390,
+      768,
+      1024,
+      1440
+    ],
+    "catalogRoutes": [
+      "/collections/all",
+      "/collections/all?sort_by=price-ascending",
+      "/collections/all?view=directory",
+      "/collections/machines"
+    ],
+    "requiredChecks": [
+      "Photographic cards appear by default without sort_by.",
+      "Filtering, sorting, pagination, empty state, and missing-image fallback remain functional.",
+      "Bulk quick-add quantity add, increment, decrement, remove, confirmed input state, and cart badge remain synchronized.",
+      "J2 toast initializes once, reports confirmed outcomes, is keyboard dismissible, and respects reduced motion.",
+      "Catalog disclosure and explicit All Products child work by keyboard and touch in desktop header and mobile drawer.",
+      "Directory anchors remain secondary and make no unsupported membership or compatibility claims.",
+      "At 200 percent text zoom, focus remains visible and no critical horizontal overflow occurs.",
+      "Axe critical and serious findings are zero on representative catalog and directory states."
+    ]
+  },
+  "adminMenuPlan": {
+    "authorized": false,
+    "targetHandle": "preview-primary-navigation-menu",
+    "productionHandleForbidden": "main-menu",
+    "before": [
+      "Parts and supplies -> /collections/all",
+      "Saws -> /collections/machines",
+      "Laps -> /collections/machines",
+      "Shaping -> /collections/machines"
+    ],
+    "after": [
+      "All Products -> /collections/all",
+      "Machines -> /collections/machines",
+      "Replacement Parts -> /collections/all?view=directory#g-replacement-parts",
+      "Consumables -> /collections/all?view=directory#g-consumables",
+      "Accessories -> /collections/all?view=directory#g-accessories"
+    ],
+    "rollback": "Restore the exact four-child before tree after a fresh pre-mutation read confirms it is unchanged."
+  },
+  "rollback": {
+    "precondition": "Before any separately authorized upload, read and retain the target theme identity, role, exact bodies, and hashes for every themeFiles path.",
+    "existingFiles": "Restore exact pre-upload bodies and verify hashes.",
+    "previouslyAbsentFiles": "Delete only files proved absent by the retained pre-upload read.",
+    "verifyAfterRollback": true
+  }
+}

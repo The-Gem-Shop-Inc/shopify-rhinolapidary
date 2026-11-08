@@ -1709,19 +1709,139 @@
       "notes": "These items preserve required route categories and future destinations without inventing handles or URLs."
     },
     {
+      "id": "g4-catalog-admin-plan",
+      "label": "G4 Catalog hierarchy Admin plan",
+      "owner": "Product Owner and Shopify Admin",
+      "sourceType": "shopify_navigation",
+      "adminHandle": "preview-primary-navigation-menu",
+      "items": [
+        {
+          "id": "g4-admin-catalog",
+          "label": "Catalog",
+          "status": "planned",
+          "owner": "Product Owner and Shopify Admin",
+          "targetPath": null,
+          "source": "G4 approved navigation architecture and current preview-primary-navigation-menu",
+          "sourceType": "shopify_navigation",
+          "requiredForLaunch": false,
+          "dependencies": [],
+          "expectedInRenderedChrome": false,
+          "expectedLocations": [
+            "header",
+            "drawer",
+            "mega-menu"
+          ],
+          "notes": "Disclosure parent. Its children carry every destination so customers never need to activate the parent to reach All Products.",
+          "items": [
+            {
+              "id": "g4-admin-all-products",
+              "label": "All Products",
+              "status": "approved",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/collections/all",
+              "source": "G4 photographic catalog contract",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "routeContractId": "g-catalog-entry",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Explicit destination for the primary photographic catalog."
+            },
+            {
+              "id": "g4-admin-machines",
+              "label": "Machines",
+              "status": "approved_for_launch",
+              "owner": "Product Owner and Shopify Admin",
+              "targetPath": "/collections/machines",
+              "source": "Verified published Machines collection route",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": true,
+              "dependencies": [],
+              "routeContractId": "machines",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "The only verified published role collection available for this hierarchy."
+            },
+            {
+              "id": "g4-admin-replacement-parts",
+              "label": "Replacement Parts",
+              "status": "approved",
+              "owner": "Epic G / G4 and Shopify Admin",
+              "targetPath": "/collections/all?view=directory#g-replacement-parts",
+              "source": "G4 secondary governed directory route",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "routeContractId": "g-catalog-replacement-part",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Theme directory anchor, not a collection handle or inferred membership."
+            },
+            {
+              "id": "g4-admin-consumables",
+              "label": "Consumables",
+              "status": "approved",
+              "owner": "Epic G / G4 and Shopify Admin",
+              "targetPath": "/collections/all?view=directory#g-consumables",
+              "source": "G4 secondary governed directory route",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "routeContractId": "g-catalog-consumable",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Theme directory anchor, not a collection handle or inferred membership."
+            },
+            {
+              "id": "g4-admin-accessories",
+              "label": "Accessories",
+              "status": "approved",
+              "owner": "Epic G / G4 and Shopify Admin",
+              "targetPath": "/collections/all?view=directory#g-accessories",
+              "source": "G4 secondary governed directory route",
+              "sourceType": "shopify_navigation",
+              "requiredForLaunch": false,
+              "dependencies": [],
+              "routeContractId": "g-catalog-accessory",
+              "expectedInRenderedChrome": false,
+              "expectedLocations": [
+                "mega-menu",
+                "drawer"
+              ],
+              "notes": "Theme directory anchor, not a collection handle or inferred membership."
+            }
+          ]
+        }
+      ],
+      "notes": "Exact proposed successor for preview-primary-navigation-menu. No Admin mutation, production main-menu change, publication, or deployment is authorized in G4."
+    },
+    {
       "id": "g-catalog-role-directory",
-      "label": "Catalog Product groups (in-page)",
-      "owner": "Epic G / G-PBI-005",
+      "label": "Catalog Product groups (secondary directory)",
+      "owner": "Epic G / G4",
       "sourceType": "theme_route",
       "adminHandle": null,
       "items": [
         {
           "id": "g-catalog-replacement-part",
           "label": "Replacement Parts",
-          "status": "verified_current",
-          "owner": "Epic G / G-PBI-005",
-          "targetPath": "/collections/all#g-replacement-parts",
-          "source": "G3B collection index; docs/qa/evidence/epic-g/g3b-2026-10-19/deployed-browser.json",
+          "status": "approved",
+          "owner": "Epic G / G4",
+          "targetPath": "/collections/all?view=directory#g-replacement-parts",
+          "source": "G4 alternate collection directory preserving the G3B governed index",
           "sourceType": "theme_route",
           "requiredForLaunch": false,
           "dependencies": [],
@@ -1730,15 +1850,15 @@
           "expectedLocations": [
             "utility"
           ],
-          "notes": "G3B actual preview verified. Preview 158631198917 only; MAIN 158579622085 unchanged and does not have the role fragments. Existing Catalog entry retained. No Shopify Admin menu or homepage edit."
+          "notes": "Repository implemented; preview verification pending. This remains a governed theme anchor, not a collection."
         },
         {
           "id": "g-catalog-consumable",
           "label": "Consumables",
-          "status": "verified_current",
-          "owner": "Epic G / G-PBI-005",
-          "targetPath": "/collections/all#g-consumables",
-          "source": "G3B collection index; docs/qa/evidence/epic-g/g3b-2026-10-19/deployed-browser.json",
+          "status": "approved",
+          "owner": "Epic G / G4",
+          "targetPath": "/collections/all?view=directory#g-consumables",
+          "source": "G4 alternate collection directory preserving the G3B governed index",
           "sourceType": "theme_route",
           "requiredForLaunch": false,
           "dependencies": [],
@@ -1747,15 +1867,15 @@
           "expectedLocations": [
             "utility"
           ],
-          "notes": "G3B actual preview verified. Preview 158631198917 only; MAIN 158579622085 unchanged and does not have the role fragments. Existing Catalog entry retained. No Shopify Admin menu or homepage edit."
+          "notes": "Repository implemented; preview verification pending. This remains a governed theme anchor, not a collection."
         },
         {
           "id": "g-catalog-accessory",
           "label": "Accessories",
-          "status": "verified_current",
-          "owner": "Epic G / G-PBI-005",
-          "targetPath": "/collections/all#g-accessories",
-          "source": "G3B collection index; docs/qa/evidence/epic-g/g3b-2026-10-19/deployed-browser.json",
+          "status": "approved",
+          "owner": "Epic G / G4",
+          "targetPath": "/collections/all?view=directory#g-accessories",
+          "source": "G4 alternate collection directory preserving the G3B governed index",
           "sourceType": "theme_route",
           "requiredForLaunch": false,
           "dependencies": [],
@@ -1764,10 +1884,10 @@
           "expectedLocations": [
             "utility"
           ],
-          "notes": "G3B actual preview verified. Preview 158631198917 only; MAIN 158579622085 unchanged and does not have the role fragments. Existing Catalog entry retained. No Shopify Admin menu or homepage edit."
+          "notes": "Repository implemented; preview verification pending. This remains a governed theme anchor, not a collection."
         }
       ],
-      "notes": "In-page role choices on the existing native catalog, not new global menu items. Historical unavailable aggregate collection routes remain unavailable."
+      "notes": "G3B role choices retained on the explicit secondary directory template. Historical unavailable aggregate collection routes remain unavailable."
     }
   ],
   "unresolvedDependencies": [
