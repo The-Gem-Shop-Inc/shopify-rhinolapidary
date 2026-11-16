@@ -1,28 +1,47 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "batch": "J2-G4-CATALOG-CART-PREVIEW",
   "preparedAt": "2026-11-08T04:08:38.9269609Z",
-  "status": "EVIDENCE_RECONCILED_NOT_AUTHORIZED",
-  "previewPushReadiness": "CONDITIONAL_ON_AUTHORIZATION_THEME_CHECK_DISPOSITION_AND_FRESH_AUTHORITY_READ",
+  "status": "LOCALE_RECONCILED_PHASE_A_NOT_AUTHORIZED_FOR_UPLOAD",
+  "previewPushReadiness": "PLAN_READY_APPLY_REQUIRES_EXACT_PRODUCT_OWNER_AUTHORIZATION",
   "source": {
     "repository": "https://github.com/The-Gem-Shop-Inc/shopify-rhinolapidary.git",
     "worktree": "C:\\rlcc",
     "branch": "integration/catalog-cart-preview",
     "head": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
-    "headMeaning": "Immutable runtime snapshot whose deployable file bodies and hashes are recorded by this manifest; later evidence-only descendant commits do not rebind it.",
+    "headMeaning": "Historical immutable integration snapshot and provenance anchor. The current deployment candidate is an explicitly recorded one-leaf successor and is not byte-identical to this commit.",
+    "originalIntegrationCommit": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
     "integrationCommit": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
     "integrationCommitStatus": "COMMITTED_SINGLE_PARENT_J2_G4_CONTENT_VERIFIED",
     "foundationCommit": "414288a16fe7123b06c3433f0063ba402fc35e83",
     "j2Commit": "0edacc2799be0be8592b424799e2af2be5a1a165",
     "g4Commit": "a53daec8ffbbbdcd6c5acba1da7770fa23ec3a12",
-    "composition": "Committed runtime integration with J2 as its single parent, exact G4 nonshared content, and the deterministic shared-section successor. Evidence and validator commits may descend from this immutable runtime snapshot without changing its deployment hashes."
+    "composition": "Committed runtime integration with J2 as its single parent, exact G4 nonshared content, and the deterministic shared-section successor. The deployment candidate preserves this composition and adds only the approved locale reconciliation recorded below."
+  },
+  "deploymentCandidate": {
+    "state": "COMMIT_INDEPENDENT_SUCCESSOR_CANDIDATE",
+    "baseCommit": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
+    "futureCommittedCandidate": null,
+    "digestAlgorithm": "SHA-256",
+    "digestInput": "JSON.stringify(themeFiles.map(({path,sha256,size}) => ({path,sha256,size})))",
+    "digest": "c59f3d8ea6a9c4d62cf477e698ef341845066715b2a1007069c5402d745500ec",
+    "approvedRuntimeDelta": [
+      {
+        "path": "locales/en.default.json",
+        "jsonPath": "sections.cart.quote_mode.email_fallback_explanation",
+        "originalValue": "",
+        "candidateValue": "The email alternative uses Shopify's contact form and security check. It does not create a Draft Order. Use it deliberately when automated submission is unavailable or cannot preserve the cart's purchasing terms.",
+        "rationale": "Preserve the exact existing unpublished preview customization while retaining the seven J2 toast translations."
+      }
+    ]
   },
   "target": {
-    "store": null,
-    "themeId": null,
+    "shopGid": "gid://shopify/Shop/79279947973",
+    "store": "sz5dnk-nf.myshopify.com",
+    "themeId": "158631198917",
     "previouslyKnownPreviewThemeId": "158631198917",
     "previouslyKnownProductionThemeId": "158579622085",
-    "identityVerificationStatus": "NOT_RUN_NO_SHOPIFY_READ_AUTHORIZED",
+    "identityVerificationStatus": "PASS_READ_ONLY_REVERIFY_REQUIRED_BEFORE_APPLY",
     "requiredRole": "UNPUBLISHED",
     "productionThemeAllowed": false,
     "productionMenuAllowed": false,
@@ -61,103 +80,120 @@
       "path": "assets/cart-feedback-toast.js",
       "owner": "J2",
       "operation": "upsert_after_target_preflight",
-      "sha256": "8d5fbfaa8751675f161bee3e36eeba165825baf7b7150f1c6dde72c43b123169"
+      "sha256": "8d5fbfaa8751675f161bee3e36eeba165825baf7b7150f1c6dde72c43b123169",
+      "size": 4107
     },
     {
       "path": "assets/component-cart-feedback-toast.css",
       "owner": "J2",
       "operation": "upsert_after_target_preflight",
-      "sha256": "49ed07eb30514171de93278ed9f48acc3f153c76da7e33e914ea696ef01f16c6"
+      "sha256": "49ed07eb30514171de93278ed9f48acc3f153c76da7e33e914ea696ef01f16c6",
+      "size": 2746
     },
     {
       "path": "assets/quick-add-bulk.js",
       "owner": "J2",
       "operation": "upsert_after_target_preflight",
-      "sha256": "42478470a48a131bdbfb74deb167abe931f2b36a83a6caee9404ce67403aea17"
+      "sha256": "42478470a48a131bdbfb74deb167abe931f2b36a83a6caee9404ce67403aea17",
+      "size": 15904
     },
     {
       "path": "assets/quick-order-list.js",
       "owner": "J2",
       "operation": "upsert_after_target_preflight",
-      "sha256": "ed162be6c84b41d689dd130da54d1036f68d5485fdf0370bb9904ec6e41b3b0c"
+      "sha256": "ed162be6c84b41d689dd130da54d1036f68d5485fdf0370bb9904ec6e41b3b0c",
+      "size": 23101
     },
     {
       "path": "locales/en.default.json",
       "owner": "J2",
       "operation": "upsert_after_target_preflight",
-      "sha256": "c98d55ec32f51f7ad082b1c575de923b63825f3f34f73d8160b546263a8062e7"
+      "sha256": "4ae6abd1bddabb80aa33866759b939b9c4b4860ab98e42ef345f2d49ac0379aa",
+      "size": 29651
     },
     {
       "path": "sections/main-collection-product-grid.liquid",
       "owner": "J2+G4",
       "operation": "upsert_resolved_successor_after_target_preflight",
-      "sha256": "f37e1a219a9e7f3f6d9fc5a86be44bacc9275158e642939a4215ffdcd85240df"
+      "sha256": "f37e1a219a9e7f3f6d9fc5a86be44bacc9275158e642939a4215ffdcd85240df",
+      "size": 15594
     },
     {
       "path": "snippets/card-product.liquid",
       "owner": "J2",
       "operation": "upsert_after_target_preflight",
-      "sha256": "363744c12b25cdd3e92d120c1b751f8c3b6a976535b36998c0720ee7072f73f5"
+      "sha256": "363744c12b25cdd3e92d120c1b751f8c3b6a976535b36998c0720ee7072f73f5",
+      "size": 34808
     },
     {
       "path": "snippets/cart-feedback-toast.liquid",
       "owner": "J2",
       "operation": "upsert_after_target_preflight",
-      "sha256": "0c58155a59463e61ed770bd68f46b7ed6ca0fa62430a3ae6d342ada11fcc9226"
+      "sha256": "0c58155a59463e61ed770bd68f46b7ed6ca0fa62430a3ae6d342ada11fcc9226",
+      "size": 1381
     },
     {
       "path": "snippets/quick-order-list.liquid",
       "owner": "J2",
       "operation": "upsert_after_target_preflight",
-      "sha256": "a7237c7a328711cfd35af11f8f720755ea5ddf32e145782eac4765a3d34cf12c"
+      "sha256": "a7237c7a328711cfd35af11f8f720755ea5ddf32e145782eac4765a3d34cf12c",
+      "size": 11099
     },
     {
       "path": "assets/rhino-g-catalog-navigation.css",
       "owner": "G4",
       "operation": "upsert_after_target_preflight",
-      "sha256": "c39555609d9498a5a49cfdd9c2b7922a7880bdd6c3c3b3ca24e633d91438148d"
+      "sha256": "c39555609d9498a5a49cfdd9c2b7922a7880bdd6c3c3b3ca24e633d91438148d",
+      "size": 945
     },
     {
       "path": "sections/rhino-g-catalog-directory.liquid",
       "owner": "G4",
       "operation": "upsert_after_target_preflight",
-      "sha256": "a9a31d951ccd4e679a3b9e29d7f6dad01025fca39f8115ed942eb7006fcb3914"
+      "sha256": "a9a31d951ccd4e679a3b9e29d7f6dad01025fca39f8115ed942eb7006fcb3914",
+      "size": 588
     },
     {
       "path": "sections/rhino-g-catalog-navigation.liquid",
       "owner": "G4",
       "operation": "upsert_after_target_preflight",
-      "sha256": "e17388eae9cc3a6bb9311e024b7507ff437ecf96108f420145eaf3f6226e7c86"
+      "sha256": "e17388eae9cc3a6bb9311e024b7507ff437ecf96108f420145eaf3f6226e7c86",
+      "size": 1684
     },
     {
       "path": "snippets/header-drawer.liquid",
       "owner": "G4",
       "operation": "upsert_after_target_preflight",
-      "sha256": "80856862f08ad7cbb11f0638e64ef489eb646f08c0f456904c2d840f5674042b"
+      "sha256": "80856862f08ad7cbb11f0638e64ef489eb646f08c0f456904c2d840f5674042b",
+      "size": 15875
     },
     {
       "path": "snippets/header-mega-menu.liquid",
       "owner": "G4",
       "operation": "upsert_after_target_preflight",
-      "sha256": "23fb66e89bc08bf32c66c7a6256ad1913684c501592dd6cb3aca08dbac9f915f"
+      "sha256": "23fb66e89bc08bf32c66c7a6256ad1913684c501592dd6cb3aca08dbac9f915f",
+      "size": 4074
     },
     {
       "path": "snippets/rhino-g-catalog-index.liquid",
       "owner": "G4",
       "operation": "upsert_after_target_preflight",
-      "sha256": "7efdf3623fb626fb8f0ce20b77705194ac6fbd58531b368758fe8956243e7b63"
+      "sha256": "7efdf3623fb626fb8f0ce20b77705194ac6fbd58531b368758fe8956243e7b63",
+      "size": 5840
     },
     {
       "path": "templates/collection.directory.json",
       "owner": "G4",
       "operation": "upsert_after_target_preflight",
-      "sha256": "400aadbbf12a0d32072a764f400175602cf441cded428122dcb84457d27ea6e5"
+      "sha256": "400aadbbf12a0d32072a764f400175602cf441cded428122dcb84457d27ea6e5",
+      "size": 539
     },
     {
       "path": "templates/collection.json",
       "owner": "G4",
       "operation": "upsert_after_target_preflight",
-      "sha256": "d94ded71fe171c5a131a1ef45c1861067d4864673c6da3cf08738ea10450e653"
+      "sha256": "d94ded71fe171c5a131a1ef45c1861067d4864673c6da3cf08738ea10450e653",
+      "size": 997
     }
   ],
   "unchangedRuntimeDependencies": [
@@ -187,7 +223,9 @@
     "fullThemePushAllowed": false,
     "deleteRemoteFilesAllowed": false,
     "nodeleteRequired": true,
-    "strictRequired": true,
+    "strictRequired": false,
+    "strictOmissionPolicy": "Omit --strict only after Product Owner authorization of the exact candidate-bound English-only unpublished-preview exception.",
+    "strictOmissionRequiresSeparateAuthorization": true,
     "readBackAndHashCompareRequired": true,
     "files": "themeFiles"
   },
@@ -204,7 +242,18 @@
     "docs/project/implementation-records/j2-g4-integrated-evidence-reconciliation.md",
     "scripts/lib/j2-g4-validator-repository.js",
     "scripts/test-j2-g4-preflight-validators.js",
-    "docs/project/implementation-records/j2-g4-preflight-validator-repair.md"
+    "docs/project/implementation-records/j2-g4-preflight-validator-repair.md",
+    "data/j2-g4-preview-deployment-preparation.json",
+    "docs/project/implementation-records/j2-g4-preview-deployment-preparation.md",
+    "scripts/validate-j2-g4-preview-deployment-preparation.js",
+    "scripts/validate-j2-g4-rollback-archive.js",
+    "scripts/validate-j2-g4-theme-readback.js",
+    "scripts/validate-j2-g4-locale-reconciliation.js",
+    "scripts/test-j2-g4-locale-reconciliation.js",
+    "scripts/deploy-j2-g4-preview.ps1",
+    "scripts/new-j2-g4-preview-live-evidence.ps1",
+    "scripts/test-j2-g4-deployment-authorization.js",
+    "data/j2-g4-preview-theme-check-exception.json"
   ],
   "validation": {
     "integrationStructure": "PASS",

@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "identity": "J2_G4_PREVIEW_DEPLOYMENT_PREPARATION_2026_11_16",
+  "observedAt": "2026-11-16T21:24:43.0991862Z",
+  "status": "PHASE_A_LOCALE_RECONCILED_PLAN_READY_APPLY_NOT_AUTHORIZED",
+  "authorization": {
+    "shopifyReads": true,
+    "repositoryEvidenceUpdates": true,
+    "shopifyWrites": false,
+    "deploymentExecuted": false,
+    "rollbackExecuted": false,
+    "menuMutationExecuted": false,
+    "collectionMutationExecuted": false,
+    "publicationExecuted": false
+  },
+  "repository": {
+    "path": "C:\\rlcc",
+    "branch": "integration/catalog-cart-preview",
+    "head": "2040122f2eb9eb428c7cf15dd9d328890d2ac271",
+    "headMeaning": "Validator repair descendant and provenance checkout. The worktree contains the one explicitly approved, uncommitted locale reconciliation; no future candidate commit is invented.",
+    "validatorRepairCommit": "2040122f2eb9eb428c7cf15dd9d328890d2ac271",
+    "immutableRuntimeCommit": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
+    "immutableRuntimeAncestor": true,
+    "evidenceReconciliationCommit": "b37c0ebf1bc5238e7d8b95a20325e4c76ec392b6",
+    "foundationCommit": "414288a16fe7123b06c3433f0063ba402fc35e83",
+    "j2Commit": "0edacc2799be0be8592b424799e2af2be5a1a165",
+    "g4SourceCommit": "a53daec8ffbbbdcd6c5acba1da7770fa23ec3a12",
+    "g4SourceIsDirectAncestor": false,
+    "g4ProvenanceDisposition": "Source commit exists in its protected worktree; integration validator proves exact nonshared G4 content plus the deterministic shared-section successor.",
+    "origin": "https://github.com/The-Gem-Shop-Inc/shopify-rhinolapidary.git",
+    "baselineWorkingTree": "DIRTY_WITH_PRESERVED_PREPARATION_ARTIFACTS_AND_ONE_APPROVED_RUNTIME_DELTA",
+    "runtimeDiffAfterImmutableCommit": [
+      {
+        "path": "locales/en.default.json",
+        "jsonPath": "sections.cart.quote_mode.email_fallback_explanation",
+        "disposition": "AUTHORIZED_EXACT_SUCCESSOR_DELTA"
+      }
+    ]
+  },
+  "shopify": {
+    "apiVersion": "2026-10",
+    "shop": {
+      "id": "gid://shopify/Shop/79279947973",
+      "name": "Rhino Lapidary",
+      "myshopifyDomain": "sz5dnk-nf.myshopify.com",
+      "primaryDomain": "rhino-lapidary.myshopify.com"
+    },
+    "previewTheme": {
+      "id": "gid://shopify/OnlineStoreTheme/158631198917",
+      "numericId": "158631198917",
+      "name": "Rhino Lapidary - Preview",
+      "role": "UNPUBLISHED",
+      "updatedAt": "2026-11-05T14:31:24Z",
+      "processing": false,
+      "processingFailed": false
+    },
+    "productionTheme": {
+      "id": "gid://shopify/OnlineStoreTheme/158579622085",
+      "numericId": "158579622085",
+      "name": "shopify-rhinolapidary/main",
+      "role": "MAIN",
+      "access": "READ_ONLY_IDENTITY_ONLY_EXCLUDED_FROM_COMMANDS"
+    },
+    "identityGate": "PASS"
+  },
+  "runtimePackage": {
+    "manifestPath": "data/j2-g4-preview-deployment-manifest.json",
+    "candidateDigest": "c59f3d8ea6a9c4d62cf477e698ef341845066715b2a1007069c5402d745500ec",
+    "fileCount": 17,
+    "j2Count": 8,
+    "g4Count": 8,
+    "sharedCount": 1,
+    "toastInitializationCount": 1,
+    "toastMountCount": 1,
+    "repositoryOnlyFilesExcluded": true,
+    "comparisons": [
+      {"path":"assets/cart-feedback-toast.js","owner":"J2","remoteExists":false,"remoteSize":null,"remoteSha256":null,"candidateSize":4107,"candidateSha256":"8d5fbfaa8751675f161bee3e36eeba165825baf7b7150f1c6dde72c43b123169","operation":"ADDITION"},
+      {"path":"assets/component-cart-feedback-toast.css","owner":"J2","remoteExists":false,"remoteSize":null,"remoteSha256":null,"candidateSize":2746,"candidateSha256":"49ed07eb30514171de93278ed9f48acc3f153c76da7e33e914ea696ef01f16c6","operation":"ADDITION"},
+      {"path":"assets/quick-add-bulk.js","owner":"J2","remoteExists":true,"remoteSize":7028,"remoteSha256":"254650488c356af10a3770db1db907580c2ba2f4703a54a57f78a540e44de081","candidateSize":15904,"candidateSha256":"42478470a48a131bdbfb74deb167abe931f2b36a83a6caee9404ce67403aea17","operation":"REPLACEMENT"},
+      {"path":"assets/quick-order-list.js","owner":"J2","remoteExists":true,"remoteSize":18255,"remoteSha256":"d6f4330e498d62e0de783dc351f2aab3361c6e4cdb190da7168bd1ea95ced028","candidateSize":23101,"candidateSha256":"ed162be6c84b41d689dd130da54d1036f68d5485fdf0370bb9904ec6e41b3b0c","operation":"REPLACEMENT"},
+      {"path":"locales/en.default.json","owner":"J2","remoteExists":true,"remoteSize":29563,"remoteSha256":"ffbd309756db371c1e08ceee2b6821c82eefcbe93190f3cce762e7c625bd745e","candidateSize":29651,"candidateSha256":"4ae6abd1bddabb80aa33866759b939b9c4b4860ab98e42ef345f2d49ac0379aa","operation":"REPLACEMENT","shopifyMetadataSize":29197,"metadataSizeAuthoritative":false},
+      {"path":"sections/main-collection-product-grid.liquid","owner":"J2+G4","remoteExists":true,"remoteSize":15986,"remoteSha256":"239d6ca6cac9179b5d2aa3bd210c62cc4bd88ae38b1306dcf2407ae14d44a7e4","candidateSize":15594,"candidateSha256":"f37e1a219a9e7f3f6d9fc5a86be44bacc9275158e642939a4215ffdcd85240df","operation":"REPLACEMENT"},
+      {"path":"snippets/card-product.liquid","owner":"J2","remoteExists":true,"remoteSize":34736,"remoteSha256":"633af81940909ae416624abd638b3c6d9b491ff53f8de5f77c816fb53403aae1","candidateSize":34808,"candidateSha256":"363744c12b25cdd3e92d120c1b751f8c3b6a976535b36998c0720ee7072f73f5","operation":"REPLACEMENT"},
+      {"path":"snippets/cart-feedback-toast.liquid","owner":"J2","remoteExists":false,"remoteSize":null,"remoteSha256":null,"candidateSize":1381,"candidateSha256":"0c58155a59463e61ed770bd68f46b7ed6ca0fa62430a3ae6d342ada11fcc9226","operation":"ADDITION"},
+      {"path":"snippets/quick-order-list.liquid","owner":"J2","remoteExists":true,"remoteSize":11045,"remoteSha256":"914ce252c9af38bbd6f32e4d682b8287db47c11f35f41963ab99a4212d4122f2","candidateSize":11099,"candidateSha256":"a7237c7a328711cfd35af11f8f720755ea5ddf32e145782eac4765a3d34cf12c","operation":"REPLACEMENT"},
+      {"path":"assets/rhino-g-catalog-navigation.css","owner":"G4","remoteExists":false,"remoteSize":null,"remoteSha256":null,"candidateSize":945,"candidateSha256":"c39555609d9498a5a49cfdd9c2b7922a7880bdd6c3c3b3ca24e633d91438148d","operation":"ADDITION"},
+      {"path":"sections/rhino-g-catalog-directory.liquid","owner":"G4","remoteExists":false,"remoteSize":null,"remoteSha256":null,"candidateSize":588,"candidateSha256":"a9a31d951ccd4e679a3b9e29d7f6dad01025fca39f8115ed942eb7006fcb3914","operation":"ADDITION"},
+      {"path":"sections/rhino-g-catalog-navigation.liquid","owner":"G4","remoteExists":false,"remoteSize":null,"remoteSha256":null,"candidateSize":1684,"candidateSha256":"e17388eae9cc3a6bb9311e024b7507ff437ecf96108f420145eaf3f6226e7c86","operation":"ADDITION"},
+      {"path":"snippets/header-drawer.liquid","owner":"G4","remoteExists":true,"remoteSize":15881,"remoteSha256":"ca8a119916dec6c0e4ea2343215bf80fea8a41f836799bb49c6cc3411d4659dd","candidateSize":15875,"candidateSha256":"80856862f08ad7cbb11f0638e64ef489eb646f08c0f456904c2d840f5674042b","operation":"REPLACEMENT"},
+      {"path":"snippets/header-mega-menu.liquid","owner":"G4","remoteExists":true,"remoteSize":4080,"remoteSha256":"e32f7b5159fbc423356314124ecdc71f7504296877e646ca0129e2962805e596","candidateSize":4074,"candidateSha256":"23fb66e89bc08bf32c66c7a6256ad1913684c501592dd6cb3aca08dbac9f915f","operation":"REPLACEMENT"},
+      {"path":"snippets/rhino-g-catalog-index.liquid","owner":"G4","remoteExists":true,"remoteSize":5838,"remoteSha256":"075b61276f802340d2bdd2259ef961bc2360ce88d5d46e5d929490f0df52810e","candidateSize":5840,"candidateSha256":"7efdf3623fb626fb8f0ce20b77705194ac6fbd58531b368758fe8956243e7b63","operation":"REPLACEMENT"},
+      {"path":"templates/collection.directory.json","owner":"G4","remoteExists":false,"remoteSize":null,"remoteSha256":null,"candidateSize":539,"candidateSha256":"400aadbbf12a0d32072a764f400175602cf441cded428122dcb84457d27ea6e5","operation":"ADDITION"},
+      {"path":"templates/collection.json","owner":"G4","remoteExists":true,"remoteSize":1234,"remoteSha256":"6b2f573d818311af57d7ac3535b77b14b3dec2bbd0fb7dcd0c3bbe6bb601f0b2","candidateSize":997,"candidateSha256":"d94ded71fe171c5a131a1ef45c1861067d4864673c6da3cf08738ea10450e653","operation":"REPLACEMENT","shopifyMetadataSize":871,"metadataSizeAuthoritative":false}
+    ],
+    "counts": {"additions":7,"replacements":10,"unchanged":0},
+    "priorAuditComparison": {
+      "existenceAndOperationDrift": [],
+      "dependencyDrift": [],
+      "bodyLevelComparison": "NOT_COMPARABLE_TO_PRIOR_AUDIT_BECAUSE_PRIOR_17_FILE_SHA256_VALUES_ARE_NOT_PRESENT_IN_THE_TASK_INPUT_OR_CURRENT_PREPARATION_BRANCH"
+    },
+    "unchangedDependencies": [
+      {"path":"assets/rhino-g-catalog.css","size":928,"expectedSha256":"7bc9186a84626b5f2dde3bfedcf525587575fc3192f9c257d7f0114c3cfb3aee","remoteSha256":"7bc9186a84626b5f2dde3bfedcf525587575fc3192f9c257d7f0114c3cfb3aee","status":"MATCH"},
+      {"path":"assets/rhino-g-catalog.js","size":1370,"expectedSha256":"67a35d7d31755f70c61e084b8e723895209e7043d121642450cae08bc6368018","remoteSha256":"67a35d7d31755f70c61e084b8e723895209e7043d121642450cae08bc6368018","status":"MATCH"},
+      {"path":"snippets/rhino-g-catalog-authority.liquid","size":11427,"expectedSha256":"3879702532c4c36da9e3b94c8362ad96b4ca25fb16660ee2aefcbdd121de5ea2","remoteSha256":"3879702532c4c36da9e3b94c8362ad96b4ca25fb16660ee2aefcbdd121de5ea2","status":"MATCH"},
+      {"path":"assets/quantity-popover.js","size":3549,"expectedSha256":"406e3bb4beb2226c7afd9896eb32d8a5d3b53d84705e8f8de29c8d36455c6669","remoteSha256":"406e3bb4beb2226c7afd9896eb32d8a5d3b53d84705e8f8de29c8d36455c6669","status":"MATCH"},
+      {"path":"assets/price-per-item.js","size":4416,"expectedSha256":"5868f07a006a4f88540808d6d3cdff8f97a8f87f91c2688e6050dacab25f9b0a","remoteSha256":"5868f07a006a4f88540808d6d3cdff8f97a8f87f91c2688e6050dacab25f9b0a","status":"MATCH"}
+    ]
+  },
+  "rollback": {
+    "archiveRoot": "C:\\Users\\dajem\\AppData\\Local\\RhinoLapidary\\rollback\\shop-79279947973\\theme-158631198917\\2026-11-16T18-31-49.6370986Z",
+    "outsideRepository": true,
+    "existingBodies": 10,
+    "missingMarkers": 7,
+    "exactBodySha256Verified": true,
+    "credentialsStored": false,
+    "customerInformationStored": false,
+    "validator": "scripts/validate-j2-g4-rollback-archive.js",
+    "status": "COMPLETE_VALIDATED"
+  },
+  "collections": {
+    "onlineStorePublicationId": "gid://shopify/Publication/207345582277",
+    "records": [
+      {"title":"Machines","handle":"machines","id":"gid://shopify/Collection/355080962245","count":11,"active":8,"draft":3,"published":true,"membershipPaginationComplete":true,"disposition":"APPROVED_G4_PHOTOGRAPHIC_DESTINATION"},
+      {"title":"Saws","handle":"saws","id":"gid://shopify/Collection/364020531397","count":6,"active":4,"draft":2,"published":true,"membershipPaginationComplete":true,"disposition":"EXISTING_PHOTOGRAPHIC_ROUTE_CURRENT_MENU_NOT_COMPATIBILITY_AUTHORITY"},
+      {"title":"Flat Laps","handle":"flat-laps","id":"gid://shopify/Collection/364020564165","count":2,"active":2,"draft":0,"published":true,"membershipPaginationComplete":true,"disposition":"EXISTING_PHOTOGRAPHIC_ROUTE_CURRENT_MENU_NOT_COMPATIBILITY_AUTHORITY"},
+      {"title":"Shaping Machines","handle":"shaping","id":"gid://shopify/Collection/364020596933","count":4,"active":3,"draft":1,"published":true,"membershipPaginationComplete":true,"disposition":"EXISTING_PHOTOGRAPHIC_ROUTE_CURRENT_MENU_NOT_COMPATIBILITY_AUTHORITY"},
+      {"title":"EM-1 Parts","handle":"em-1-parts","id":"gid://shopify/Collection/355081584837","count":49,"active":45,"draft":4,"published":true,"membershipPaginationComplete":true,"disposition":"NONEMPTY_BUT_MEMBERSHIP_AND_COMPATIBILITY_UNAPPROVED_FOR_G4_PROMOTION"},
+      {"title":"Blades & Wheels","handle":"blades-wheels","id":"gid://shopify/Collection/355082010821","count":11,"active":10,"draft":1,"published":true,"membershipPaginationComplete":true,"disposition":"NONEMPTY_BUT_CATEGORY_MEMBERSHIP_UNAPPROVED_FOR_G4_PROMOTION"},
+      {"title":"Nuts & Screws","handle":"nuts-screws","id":"gid://shopify/Collection/355082207429","count":18,"active":11,"draft":7,"published":true,"membershipPaginationComplete":true,"disposition":"NONEMPTY_BUT_CATEGORY_AND_COMPATIBILITY_MEMBERSHIP_UNAPPROVED_FOR_G4_PROMOTION"},
+      {"title":"Flexible Shaft Accessories","handle":"flexible-shaft-accessories","id":"gid://shopify/Collection/366292107461","count":24,"active":24,"draft":0,"published":true,"membershipPaginationComplete":true,"disposition":"NONEMPTY_PHOTOGRAPHIC_ROUTE_BUT_NOT_APPROVED_AS_BROAD_ACCESSORIES_TAXONOMY"},
+      {"title":"TrimMaster Parts","handle":"trimmaster-parts","id":"gid://shopify/Collection/355081224389","count":0,"active":0,"draft":0,"published":true,"membershipPaginationComplete":true,"disposition":"EMPTY_DO_NOT_PROMOTE"},
+      {"title":"JadeMaster Parts","handle":"jademaster-parts","id":"gid://shopify/Collection/355081355461","count":0,"active":0,"draft":0,"published":true,"membershipPaginationComplete":true,"disposition":"EMPTY_DO_NOT_PROMOTE"},
+      {"title":"18\" LapMaster Parts","handle":"18-lapmaster-parts","id":"gid://shopify/Collection/355081486533","count":0,"active":0,"draft":0,"published":true,"membershipPaginationComplete":true,"disposition":"EMPTY_DO_NOT_PROMOTE"}
+    ],
+    "missingHandles": ["replacement-parts","parts","consumables","accessories"],
+    "authorityBoundary": "Collection membership is observational evidence only. It does not approve Product role, fit, machine context, or compatibility."
+  },
+  "menu": {
+    "id": "gid://shopify/Menu/257402405061",
+    "handle": "preview-primary-navigation-menu",
+    "productionHandleExcluded": "main-menu",
+    "current": [
+      {"title":"Home","type":"FRONTPAGE","url":"/","resourceId":null},
+      {"title":"Catalog","type":"COLLECTIONS","url":"/collections","resourceId":null,"children":[
+        {"title":"Saws","type":"COLLECTION","url":"/collections/saws","resourceId":"gid://shopify/Collection/364020531397"},
+        {"title":"Laps","type":"COLLECTION","url":"/collections/flat-laps","resourceId":"gid://shopify/Collection/364020564165"},
+        {"title":"Shaping","type":"COLLECTION","url":"/collections/shaping","resourceId":"gid://shopify/Collection/364020596933"}
+      ]},
+      {"title":"Manuals","type":"PAGE","url":"/pages/manuals","resourceId":"gid://shopify/Page/129898545349"},
+      {"title":"Contact","type":"PAGE","url":"/pages/contact","resourceId":"gid://shopify/Page/127975358661"}
+    ],
+    "proposed": [
+      {"title":"Home","type":"FRONTPAGE","url":"/","resourceId":null},
+      {"title":"Catalog","type":"COLLECTIONS","url":"/collections","resourceId":null,"children":[
+        {"title":"All Products","type":"CATALOG","url":"/collections/all","resourceId":null},
+        {"title":"Machines","type":"COLLECTION","url":"/collections/machines","resourceId":"gid://shopify/Collection/355080962245"},
+        {"title":"Replacement Parts","type":"HTTP","url":"/collections/all?view=directory#g-replacement-parts","resourceId":null},
+        {"title":"Consumables","type":"HTTP","url":"/collections/all?view=directory#g-consumables","resourceId":null},
+        {"title":"Accessories","type":"HTTP","url":"/collections/all?view=directory#g-accessories","resourceId":null}
+      ]},
+      {"title":"Manuals","type":"PAGE","url":"/pages/manuals","resourceId":"gid://shopify/Page/129898545349"},
+      {"title":"Contact","type":"PAGE","url":"/pages/contact","resourceId":"gid://shopify/Page/127975358661"}
+    ],
+    "rollback": "Restore the exact current tree above only if an immediately pre-mutation read still matches it.",
+    "contractComparison": "The repository G4 contract's historical before tree is stale relative to Shopify. This fresh tree supersedes it for preparation without changing or renewing the sealed contract.",
+    "duplicateSuppression": "Desktop and drawer Liquid inject All Products only when Catalog has no child whose URL equals routes.all_products_collection_url; the explicit proposed child suppresses the injection in both renderers.",
+    "disclosure": {"desktop":"Native details-based mega menu with keyboard-operable summary.","mobile":"Native nested details drawer with summary and back button."}
+  },
+  "localization": {
+    "publishedLocales": [{"locale":"en","name":"English","primary":true,"published":true}],
+    "toastKeys": ["pending","added","updated","removed","rejected","uncertain","dismiss"],
+    "englishToastKeysNonempty": 7,
+    "remoteLeafCount": 526,
+    "candidateLeafCount": 533,
+    "remoteLeavesPreserved": 526,
+    "remoteValuesModified": 0,
+    "quoteExplanationRestoredExactly": true,
+    "exceptionEvidence": "data/j2-g4-preview-theme-check-exception.json",
+    "themeCheck": {"exitCode":1,"errors":2100,"warnings":0,"filesWithOffenses":30,"matchingTranslations":2100,"toastKeyErrors":210,"toastKeyFiles":30},
+    "disposition": "The complete 2,100-error failure remains preserved. A candidate-bound exception may omit --strict only after separate Product Owner authorization for this unpublished English-only preview; this is not production localization approval."
+  },
+  "authority": {
+    "g2G3Receipts": "EXPIRED_FAILS_CLOSED",
+    "renewed": false,
+    "freshObservations": "Shopify collection identities, Online Store publication booleans, exact counts, and membership status counts only.",
+    "notApproved": ["Product role classification","machine-context claims","compatibility or fit claims","collection membership as Product Owner authority"]
+  },
+  "deploymentTransaction": {
+    "target": "gid://shopify/OnlineStoreTheme/158631198917",
+    "cliObservedVersion": "4.9.4",
+    "liveEvidence": {
+      "storage": "EXTERNAL_LOCALAPPDATA_ONLY",
+      "collector": "scripts/new-j2-g4-preview-live-evidence.ps1",
+      "adminEvidenceMaximumAgeMinutes": 5,
+      "planAndApplyMaximumAgeMinutes": 15,
+      "trackedSnapshotRequired": false
+    },
+    "authorizationBinding": {
+      "value": "J2G4-PREVIEW-APPLY-652f19f217978fbaa62c383e468c5d936b94523b9d85f325e807aa64894a3a0c",
+      "previousValuesInvalidated": [
+        "J2G4-PREVIEW-APPLY-fdbc70207ed4577129b39c404c9fb4131b2718dc46935d8c0dc12886c22656ba",
+        "J2G4-PREVIEW-APPLY-8117c027ca79c74a30c912c7149a10a2fd792270d1ff473f44d80f49ed7b8dcb"
+      ],
+      "nodeleteBound": true,
+      "productionThemeAllowed": false
+    },
+    "currentOfficialFlagsVerified": ["--store","--theme","--path","--only","--nodelete","--strict","--json","--no-input"],
+    "uploadCommand": {
+      "executable": "shopify",
+      "args": ["theme","push","--store","sz5dnk-nf.myshopify.com","--theme","158631198917","--path","C:\\rlcc","--only","assets/cart-feedback-toast.js","--only","assets/component-cart-feedback-toast.css","--only","assets/quick-add-bulk.js","--only","assets/quick-order-list.js","--only","locales/en.default.json","--only","sections/main-collection-product-grid.liquid","--only","snippets/card-product.liquid","--only","snippets/cart-feedback-toast.liquid","--only","snippets/quick-order-list.liquid","--only","assets/rhino-g-catalog-navigation.css","--only","sections/rhino-g-catalog-directory.liquid","--only","sections/rhino-g-catalog-navigation.liquid","--only","snippets/header-drawer.liquid","--only","snippets/header-mega-menu.liquid","--only","snippets/rhino-g-catalog-index.liquid","--only","templates/collection.directory.json","--only","templates/collection.json","--nodelete","--json","--no-input"],
+      "executed": false,
+      "currentGate": "APPLY_NOT_AUTHORIZED; OMITTING_STRICT_REQUIRES_EXACT_CANDIDATE_BOUND_PRODUCT_OWNER_EXCEPTION_AUTHORIZATION"
+    },
+    "readbackCommand": {
+      "executable": "shopify",
+      "purpose": "Pull the same 17 paths to a new empty external directory with --only, --nodelete, --no-input, then SHA-256 compare every body to the manifest.",
+      "executed": false
+    },
+    "sequence": ["reverify shop and theme role","fresh 17-file inventory","validate external rollback archive","verify 17 candidate hashes","run selective push only","read back all 17 bodies","compare SHA-256","recheck five dependencies and unrelated inventory","browser acceptance","separately authorized preview-menu mutation only after acceptance"],
+    "wholeThemeUploadRejected": true,
+    "remoteDeletionRejected": true,
+    "exitCodeAloneSufficient": false,
+    "apiAlternative": "themeFilesUpsert supports 17 files in one request but requires write_themes plus Shopify exemption; CLI selective push is the prepared interface."
+  },
+  "browserAcceptance": {
+    "fixtureCoverage": {"integration":"6/6 PASS","j2DesktopMobile":"20/20 PASS","g4":"8/8 PASS"},
+    "livePreviewStatus": "NOT_RUN_NO_DEPLOYMENT",
+    "widths": [320,390,768,1024,1440],
+    "routes": ["/collections/all","/collections/all?view=directory","/collections/machines"],
+    "checks": ["photographic default","sorting","filtering","pagination","category navigation","bulk quick-add","increment","decrement","removal","rapid multi-Product serialization","header badge total","cart drawer/page consistency","success/rejected/uncertain toast","keyboard focus and polite announcements","reduced motion","desktop and mobile disclosure","200 percent zoom","critical horizontal overflow","axe critical/serious","expired-authority fail-closed behavior"]
+  },
+  "validation": {
+    "integration":"PASS","successorEvidence":"PASS","preflightRegression":"11/11 PASS","localeRegression":"9/9 PASS","authorizationRegression":"2/2 PASS","planMode":"PASS_NO_SHOPIFY_CHANGES","navigation":"PASS","globalNavigation":"PASS","jsonRegisters":"PASS","themeArchitecture":"PASS_WITH_TWO_INFORMATIONAL_NO_PRESET_WARNINGS","productPurchase":"PASS","integrationBrowser":"6/6 PASS","j2Browser":"20/20 PASS","g4Browser":"8/8 PASS","themeCheck":"FAIL_RETAINED_2100_ERRORS"
+  },
+  "blockers": [
+    "No deployment or Shopify mutation authorization exists.",
+    "Apply mode and every Shopify write remain unauthorized. The prepared exception may omit --strict only after exact candidate-bound Product Owner authorization.",
+    "Live browser acceptance cannot begin until a separately authorized upload succeeds and readback hashes match.",
+    "Preview-menu mutation requires separate authorization and must follow browser acceptance.",
+    "Expired Epic G authority blocks renewed role, machine-context, fit, and compatibility claims."
+  ]
+}

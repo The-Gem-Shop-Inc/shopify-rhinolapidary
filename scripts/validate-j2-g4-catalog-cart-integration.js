@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
 const { createRepository } = require('./lib/j2-g4-validator-repository');
 
 const FOUNDATION = '414288a16fe7123b06c3433f0063ba402fc35e83';
@@ -9,8 +10,51 @@ const G4 = 'a53daec8ffbbbdcd6c5acba1da7770fa23ec3a12';
 const BRANCH = 'integration/catalog-cart-preview';
 const SHARED = 'sections/main-collection-product-grid.liquid';
 const INTEGRATION = '64ddfaadbcea98175940fd54d9cf198c443e39c3';
+const LOCALE = 'locales/en.default.json';
+const QUOTE_KEY = 'sections.cart.quote_mode.email_fallback_explanation';
+const AUTHORIZED_QUOTE = "The email alternative uses Shopify's contact form and security check. It does not create a Draft Order. Use it deliberately when automated submission is unavailable or cannot preserve the cart's purchasing terms.";
+const TOAST_KEYS = ['pending', 'added', 'updated', 'removed', 'rejected', 'uncertain', 'dismiss'];
 
 const normalize = (value) => String(value).replace(/\r\n/g, '\n').trimEnd();
+
+const flattenLeaves = (value, prefix = '', result = {}) => {
+  for (const [key, child] of Object.entries(value)) {
+    const path = prefix ? `${prefix}.${key}` : key;
+    if (child && typeof child === 'object' && !Array.isArray(child)) flattenLeaves(child, path, result);
+    else result[path] = child;
+  }
+  return result;
+};
+
+function validateLocaleReconciliation(repository) {
+  const original = JSON.parse(repository.show(INTEGRATION, LOCALE));
+  const candidate = JSON.parse(repository.read(LOCALE));
+  const originalLeaves = flattenLeaves(original);
+  const candidateLeaves = flattenLeaves(candidate);
+  assert.equal(Object.keys(candidateLeaves).length, 533, 'English locale leaf count must remain 533');
+  assert.deepEqual(Object.keys(candidateLeaves).sort(), Object.keys(originalLeaves).sort(), 'English locale key set changed');
+  assert.equal(originalLeaves[QUOTE_KEY], '', 'Immutable integration quote baseline changed');
+  assert.equal(candidateLeaves[QUOTE_KEY], AUTHORIZED_QUOTE, 'Authorized quote explanation mismatch');
+  for (const key of Object.keys(originalLeaves)) {
+    if (key === QUOTE_KEY) continue;
+    assert.deepEqual(candidateLeaves[key], originalLeaves[key], `${key}: unauthorized locale value change`);
+  }
+  const toastTranslations = candidate.sections?.cart_feedback;
+  assert(toastTranslations, 'English cart feedback translations missing');
+  assert.deepEqual(Object.keys(toastTranslations), TOAST_KEYS);
+  for (const key of TOAST_KEYS) {
+    assert.equal(typeof toastTranslations[key] === 'string' && toastTranslations[key].trim() !== '', true, `Empty cart feedback translation: ${key}`);
+  }
+  return { originalLeaves: Object.keys(originalLeaves).length, candidateLeaves: Object.keys(candidateLeaves).length };
+}
+
+function validateRuntimeStatus(repository) {
+  const entries = repository.runtimeStatus().split('\0').filter(Boolean);
+  if (entries.length === 0) return 0;
+  assert.equal(entries.length, 1, 'Unexpected uncommitted theme runtime change');
+  assert.match(entries[0], /^ M locales\/en\.default\.json$/, 'Unexpected uncommitted theme runtime change');
+  return entries.length;
+}
 
 function expectedCombinedSection(repository = createRepository()) {
   let source = repository.show(J2, SHARED);
@@ -47,13 +91,17 @@ function validate({ repository = createRepository() } = {}) {
   assert(repository.isAncestor(J2, 'HEAD'), 'J2 is not an ancestor');
   for (const commit of [FOUNDATION, J2, G4]) assert(repository.commitExists(commit), `${commit}: approved source commit is missing`);
   assert.equal(repository.git('config', '--get', 'core.longpaths'), 'true', 'Git long paths must remain enabled');
-  assert.equal(repository.runtimeStatus(), '', 'Unexpected uncommitted theme runtime change');
+  const runtimeWorkingChanges = validateRuntimeStatus(repository);
 
   const j2Files = repository.files(`${FOUNDATION}...${J2}`);
   const g4Files = repository.files(`${FOUNDATION}...${G4}`);
   assert.deepEqual(j2Files.filter((file) => g4Files.includes(file)), [SHARED], 'Unexpected J2/G4 overlap');
 
   for (const file of j2Files.filter((file) => file !== SHARED)) {
+    if (file === LOCALE) {
+      validateLocaleReconciliation(repository);
+      continue;
+    }
     assert.equal(normalize(repository.read(file)), normalize(repository.show(J2, file)), `${file}: J2 source drift`);
   }
   for (const file of g4Files.filter((file) => file !== SHARED)) {
@@ -85,13 +133,12 @@ function validate({ repository = createRepository() } = {}) {
   assert(repository.read('templates/collection.directory.json').includes('"product-directory"'));
   assert(repository.read('snippets/rhino-g-catalog-index.liquid').includes('?view=directory'));
 
-  const english = JSON.parse(repository.read('locales/en.default.json'));
+  const english = JSON.parse(repository.read(LOCALE));
   const toastTranslations = english.sections?.cart_feedback;
   assert(toastTranslations, 'English cart feedback translations missing');
-  const toastKeys = ['pending', 'added', 'updated', 'removed', 'rejected', 'uncertain', 'dismiss'];
-  assert.deepEqual(Object.keys(toastTranslations), toastKeys);
-  for (const key of toastKeys) assert.equal(typeof toastTranslations[key] === 'string' && toastTranslations[key].trim() !== '', true, `Empty cart feedback translation: ${key}`);
-  for (const key of toastKeys) assert(repository.read('snippets/cart-feedback-toast.liquid').includes(`'sections.cart_feedback.${key}' | t`), `Toast does not bind translation: ${key}`);
+  assert.deepEqual(Object.keys(toastTranslations), TOAST_KEYS);
+  for (const key of TOAST_KEYS) assert.equal(typeof toastTranslations[key] === 'string' && toastTranslations[key].trim() !== '', true, `Empty cart feedback translation: ${key}`);
+  for (const key of TOAST_KEYS) assert(repository.read('snippets/cart-feedback-toast.liquid').includes(`'sections.cart_feedback.${key}' | t`), `Toast does not bind translation: ${key}`);
   const toastSnippet = repository.read('snippets/cart-feedback-toast.liquid');
   assert(toastSnippet.includes('role="status"'));
   assert(toastSnippet.includes('aria-live="polite"'));
@@ -138,7 +185,10 @@ function validate({ repository = createRepository() } = {}) {
     assert.equal(manifest.target.previouslyKnownPreviewThemeId, '158631198917');
     assert.equal(manifest.target.previouslyKnownProductionThemeId, '158579622085');
     assert.notEqual(manifest.target.previouslyKnownPreviewThemeId, manifest.target.previouslyKnownProductionThemeId);
-    assert.equal(manifest.target.identityVerificationStatus, 'NOT_RUN_NO_SHOPIFY_READ_AUTHORIZED');
+    assert.equal(manifest.target.identityVerificationStatus, 'PASS_READ_ONLY_REVERIFY_REQUIRED_BEFORE_APPLY');
+    assert.equal(manifest.target.shopGid, 'gid://shopify/Shop/79279947973');
+    assert.equal(manifest.target.store, 'sz5dnk-nf.myshopify.com');
+    assert.equal(manifest.target.themeId, '158631198917');
     assert.equal(manifest.target.productionThemeAllowed, false);
     assert.equal(manifest.target.productionMenuAllowed, false);
     assert.equal(manifest.uploadPolicy.fullThemePushAllowed, false);
@@ -147,8 +197,21 @@ function validate({ repository = createRepository() } = {}) {
     assert.equal(manifest.source.j2Commit, J2);
     assert.equal(manifest.source.g4Commit, G4);
     assert.equal(manifest.source.head, INTEGRATION);
-    assert.match(manifest.source.headMeaning, /immutable runtime snapshot/i);
+    assert.match(manifest.source.headMeaning, /immutable .*snapshot/i);
     assert.equal(manifest.source.integrationCommit, INTEGRATION);
+    assert.equal(manifest.source.originalIntegrationCommit, INTEGRATION);
+    assert.equal(manifest.deploymentCandidate.baseCommit, INTEGRATION);
+    assert.equal(manifest.deploymentCandidate.futureCommittedCandidate, null);
+    assert.equal(manifest.deploymentCandidate.approvedRuntimeDelta.length, 1);
+    assert.deepEqual(manifest.deploymentCandidate.approvedRuntimeDelta[0], {
+      path: LOCALE,
+      jsonPath: QUOTE_KEY,
+      originalValue: '',
+      candidateValue: AUTHORIZED_QUOTE,
+      rationale: 'Preserve the exact existing unpublished preview customization while retaining the seven J2 toast translations.',
+    });
+    const digestInput = JSON.stringify(manifest.themeFiles.map(({ path: file, sha256, size }) => ({ path: file, sha256, size })));
+    assert.equal(crypto.createHash('sha256').update(digestInput).digest('hex'), manifest.deploymentCandidate.digest, 'Deployment candidate digest mismatch');
     assert.deepEqual(manifest.themeFiles.map(({ path: file }) => file), expectedThemeFiles);
     assert.equal(new Set(expectedThemeFiles).size, expectedThemeFiles.length);
     assert.equal(manifest.themeFiles.length, 17);
@@ -161,7 +224,9 @@ function validate({ repository = createRepository() } = {}) {
     assert(!manifest.themeFiles.some(({ path: file }) => /(?:secret|token|credential|private|evidence|test|plan)/i.test(file)), 'Private or development path entered theme upload');
     for (const row of manifest.themeFiles) {
       assert.equal(repository.hash(row.path), row.sha256, `${row.path}: manifest hash drift`);
-      assert(repository.diffQuiet(INTEGRATION, row.path), `${row.path}: differs from committed integration`);
+      assert.equal(repository.readBuffer(row.path).length, row.size, `${row.path}: manifest size drift`);
+      if (row.path === LOCALE) validateLocaleReconciliation(repository);
+      else assert(repository.diffQuiet(INTEGRATION, row.path), `${row.path}: differs from committed integration`);
     }
     for (const row of manifest.unchangedRuntimeDependencies) {
       assert.equal(repository.hash(row.path), row.sha256, `${row.path}: dependency hash drift`);
@@ -194,7 +259,7 @@ function validate({ repository = createRepository() } = {}) {
     sharedFiles: [SHARED],
     photographicCatalog: true,
     j2ToastInitialization: true,
-    runtimeWorkingChanges: 0,
+    runtimeWorkingChanges,
     manifestValidated: true,
   };
 }
@@ -208,4 +273,20 @@ if (require.main === module) {
   }
 }
 
-module.exports = { BRANCH, FOUNDATION, G4, INTEGRATION, J2, SHARED, createRepository, expectedCombinedSection, validate };
+module.exports = {
+  AUTHORIZED_QUOTE,
+  BRANCH,
+  FOUNDATION,
+  G4,
+  INTEGRATION,
+  J2,
+  LOCALE,
+  QUOTE_KEY,
+  SHARED,
+  TOAST_KEYS,
+  createRepository,
+  expectedCombinedSection,
+  flattenLeaves,
+  validate,
+  validateLocaleReconciliation,
+};

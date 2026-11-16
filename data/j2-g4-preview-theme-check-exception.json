@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "identity": "J2_G4_ENGLISH_PREVIEW_THEME_CHECK_EXCEPTION_V1",
+  "status": "PREPARED_REQUIRES_SEPARATE_PRODUCT_OWNER_AUTHORIZATION",
+  "scope": "ONE_UNPUBLISHED_ENGLISH_PREVIEW_UPLOAD_ONLY",
+  "target": {
+    "shopGid": "gid://shopify/Shop/79279947973",
+    "store": "sz5dnk-nf.myshopify.com",
+    "themeGid": "gid://shopify/OnlineStoreTheme/158631198917",
+    "themeId": "158631198917",
+    "requiredRole": "UNPUBLISHED",
+    "productionThemeId": "158579622085"
+  },
+  "candidate": {
+    "originalIntegrationCommit": "64ddfaadbcea98175940fd54d9cf198c443e39c3",
+    "futureCommittedCandidate": null,
+    "digest": "c59f3d8ea6a9c4d62cf477e698ef341845066715b2a1007069c5402d745500ec",
+    "manifestFileSha256": "c7836d2c0990095317f729ce1cdd80d2e502e97c07b120a68d00fe6b127fba30",
+    "localeSha256": "4ae6abd1bddabb80aa33866759b939b9c4b4860ab98e42ef345f2d49ac0379aa"
+  },
+  "rollback": {
+    "archiveRoot": "C:\\Users\\dajem\\AppData\\Local\\RhinoLapidary\\rollback\\shop-79279947973\\theme-158631198917\\2026-11-16T18-31-49.6370986Z",
+    "inventorySha256": "93005b5e818e22e34544d6fa5057214fc76397a052b5b9ab055fae870c68d53d",
+    "existingBodies": 10,
+    "absenceMarkers": 7
+  },
+  "themeCheck": {
+    "status": "FAIL_RETAINED_NOT_PASSED",
+    "exitCode": 1,
+    "errors": 2100,
+    "warnings": 0,
+    "filesWithOffenses": 30,
+    "matchingTranslations": 2100,
+    "inheritedErrors": 1890,
+    "toastKeyErrorsInUnpublishedLocales": 210,
+    "completeReportPath": "C:\\Users\\dajem\\AppData\\Local\\RhinoLapidary\\evidence\\j2-g4-preview\\2026-11-16-locale-reconciliation\\theme-check-2100-errors.json",
+    "completeReportSha256": "a45c2c0da3ede5dff2f248c37743e5f19faa0814c94f552a5992c61743ec3785",
+    "configurationChanged": false,
+    "matchingTranslationsSuppressed": false
+  },
+  "localizationPremises": {
+    "publishedLocales": ["en"],
+    "englishToastKeysVerified": 7,
+    "englishLeafCount": 533,
+    "originalPreviewLeavesPreserved": 526,
+    "quoteExplanationRestoredExactly": true,
+    "productionLocalizationApproval": false
+  },
+  "transport": {
+    "omitStrictPermittedOnlyAfterExactAuthorization": true,
+    "requiredFlags": ["--store", "--theme", "--path", "--only", "--nodelete", "--json", "--no-input"],
+    "forbiddenFlags": ["--allow-live", "--live", "--publish", "--unpublished"],
+    "wholeThemePushAllowed": false,
+    "remoteDeletionAllowed": false
+  },
+  "deploymentScope": {
+    "mode": "selective_files_only",
+    "themeFileCount": 17,
+    "candidateDigest": "c59f3d8ea6a9c4d62cf477e698ef341845066715b2a1007069c5402d745500ec",
+    "nodeleteRequired": true,
+    "remoteDeletionAllowed": false,
+    "productionThemeAllowed": false,
+    "digestAlgorithm": "SHA-256",
+    "digestInput": "mode|themeFileCount|candidateDigest|nodelete=true|remoteDeletionAllowed=false|productionThemeAllowed=false",
+    "digest": "bfbadd551950dbf7b87f5e6ad806f068f721dd1982ccbe448c1fca9d4c4204b6"
+  },
+  "binding": {
+    "algorithm": "SHA-256",
+    "input": "identity|shopGid|themeGid|candidateDigest|manifestFileSha256|rollbackInventorySha256|themeCheckReportSha256|deploymentScopeDigest",
+    "digest": "652f19f217978fbaa62c383e468c5d936b94523b9d85f325e807aa64894a3a0c",
+    "authorizationValue": "J2G4-PREVIEW-APPLY-652f19f217978fbaa62c383e468c5d936b94523b9d85f325e807aa64894a3a0c",
+    "invalidatedAuthorizationValues": [
+      "J2G4-PREVIEW-APPLY-fdbc70207ed4577129b39c404c9fb4131b2718dc46935d8c0dc12886c22656ba",
+      "J2G4-PREVIEW-APPLY-8117c027ca79c74a30c912c7149a10a2fd792270d1ff473f44d80f49ed7b8dcb"
+    ]
+  },
+  "invalidatedBy": [
+    "Any candidate file hash or size change",
+    "Any manifest file hash change",
+    "Any rollback inventory change",
+    "Any Theme Check report change",
+    "Any additional published storefront locale",
+    "Any shop or target theme identity or role change",
+    "Any remote predecessor change",
+    "Any production publication or target substitution"
+  ],
+  "authorized": false
+}

@@ -76,7 +76,7 @@ test('mismatched manifest hash fails', () => {
   const file = 'data/j2-g4-preview-deployment-manifest.json';
   const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
   manifest.themeFiles[0].sha256 = '0'.repeat(64);
-  assert.throws(() => integration.validate({ repository: repositoryFixture({ files: { [file]: JSON.stringify(manifest) } }) }), /manifest hash drift/);
+  assert.throws(() => integration.validate({ repository: repositoryFixture({ files: { [file]: JSON.stringify(manifest) } }) }), /Deployment candidate digest mismatch|manifest hash drift/);
 });
 
 test('missing historical receipt fails', () => {
