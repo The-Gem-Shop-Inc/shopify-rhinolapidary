@@ -7,6 +7,13 @@
 
 .active-facets-mobile {
   margin-bottom: 0.5rem;
+  margin-left: 0;
+  margin-right: 0;
+  min-width: 0;
+}
+
+.active-facets-mobile .active-facets__button-inner {
+  overflow-wrap: anywhere;
 }
 
 .mobile-facets__list {
@@ -164,7 +171,7 @@
 .facets__form {
   display: grid;
   gap: 0 3.5rem;
-  grid-template-columns: 1fr max-content max-content;
+  grid-template-columns: minmax(0, 1fr) minmax(0, max-content) minmax(0, max-content);
   margin-bottom: 0.5rem;
 }
 
@@ -1106,6 +1113,69 @@ input.mobile-facets__checkbox {
   font-size: 1.4rem;
   line-height: calc(1 + 0.5 / var(--font-body-scale));
   margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.facets-container > .active-facets.active-facets-mobile {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@media screen and (min-width: 990px) and (max-width: 1199px) {
+  .facets__form {
+    column-gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, max-content);
+  }
+
+  .facets__form .product-count {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: end;
+    max-width: 100%;
+    text-align: end;
+  }
+
+  .facets__form .active-facets {
+    grid-row: 3;
+  }
+
+  .facets__disclosure {
+    margin-right: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .facets-container > .facets.small-hide {
+    display: none !important;
+  }
+
+  .facets-container > .mobile-facets__wrapper.medium-hide.large-up-hide {
+    display: flex !important;
+    min-width: 0;
+  }
+
+  .facets-container > .active-facets-mobile.medium-hide.large-up-hide {
+    display: flex !important;
+  }
+
+  .facets-container > .product-count.medium-hide.large-up-hide {
+    display: block !important;
+    min-width: 0;
+    text-align: end;
+  }
+
+  .mobile-facets__open-label.medium-hide.large-up-hide {
+    display: inline !important;
+  }
+
+  .mobile-facets__heading.medium-hide.large-up-hide {
+    display: block !important;
+  }
+
+  .mobile-facets__open-label.small-hide,
+  .mobile-facets__heading.small-hide {
+    display: none !important;
+  }
 }
 
 #ProductCountDesktop.loading,

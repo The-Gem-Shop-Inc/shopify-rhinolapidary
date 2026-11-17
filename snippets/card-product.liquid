@@ -35,7 +35,21 @@
 {%- assign rhino_legacy_content = false -%}
 {%- if rhino_consumer_route == 'replacement_part' or rhino_consumer_route == 'consumable' or rhino_consumer_route == 'accessory' -%}{%- assign rhino_legacy_content = true -%}{%- endif -%}
 {%- assign rhino_card_media = nil -%}
-{%- if rhino_legacy_content and rhino_owner_customer_context != true -%}{%- assign rhino_card_media = card_product.featured_media -%}{%- endif -%}
+{%- assign rhino_card_media_fallback = false -%}
+{%- if rhino_owner_customer_context != true -%}
+  {%- if rhino_legacy_content -%}
+    {%- assign rhino_card_media = card_product.featured_media -%}
+  {%- elsif rhino_consumer_route == 'machine' -%}
+    {%- capture rhino_card_media_eligibility -%}{%- render 'rhino-product-card-media-eligibility', product: card_product, media: card_product.featured_media -%}{%- endcapture -%}
+    {%- if card_product.featured_media and rhino_card_media_eligibility == 'eligible' -%}
+      {%- assign rhino_card_media = card_product.featured_media -%}
+    {%- else -%}
+      {%- assign rhino_card_media_fallback = true -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign rhino_card_has_visual = false -%}
+{%- if rhino_card_media or rhino_card_media_fallback -%}{%- assign rhino_card_has_visual = true -%}{%- endif -%}
   {%- liquid
     assign ratio = 1
     if rhino_card_media and media_aspect_ratio == 'portrait'
@@ -53,17 +67,17 @@
       <div
         class="
           card card--{{ settings.card_style }}
-          {% if rhino_card_media %} card--media{% else %} card--text{% endif %}
+          {% if rhino_card_has_visual %} card--media{% else %} card--text{% endif %}
           {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
           {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
           {% if extend_height %} card--extend-height{% endif %}
-          {% if rhino_card_media == nil and settings.card_style == 'card' %} ratio{% endif %}
+          {% if rhino_card_has_visual == false and settings.card_style == 'card' %} ratio{% endif %}
           {% if horizontal_class %} card--horizontal{% endif %}
         "
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         <div
-          class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if rhino_card_media or settings.card_style == 'standard' %} ratio{% endif %}"
+          class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if rhino_card_has_visual or settings.card_style == 'standard' %} ratio{% endif %}"
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
         >
           {%- if rhino_card_media -%}
@@ -82,7 +96,7 @@
                   "
                   src="{{ rhino_card_media | image_url: width: 533 }}"
                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                  alt="{{ rhino_card_media.alt | escape }}"
+                  alt="{{ rhino_card_media.alt | default: card_product.title | escape }}"
                   class="motion-reduce"
                   {% unless lazy_load == false %}
                     loading="lazy"
@@ -92,7 +106,7 @@
                 >
                 {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
-                {%- if card_product.media[1] != null and show_secondary_image -%}
+                {%- if rhino_legacy_content and card_product.media[1] != null and show_secondary_image -%}
                   <img
                     srcset="
                       {%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
@@ -105,7 +119,7 @@
                     "
                     src="{{ card_product.media[1] | image_url: width: 533 }}"
                     sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                    alt="{{ card_product.media[1].alt | escape }}"
+                    alt="{{ card_product.media[1].alt | default: card_product.title | escape }}"
                     class="motion-reduce"
                     loading="lazy"
                     width="{{ card_product.media[1].width }}"
@@ -114,12 +128,20 @@
                 {%- endif -%}
               </div>
             </div>
+          {%- elsif rhino_card_media_fallback -%}
+            <div class="card__media rhino-card-media-fallback" role="img" aria-label="{{ card_product.title | escape }}">
+              <div class="media media--transparent">
+                <span class="rhino-card-media-fallback__icon" aria-hidden="true">
+                  {{- 'rhino-icon-machine.svg' | inline_asset_content -}}
+                </span>
+              </div>
+            </div>
           {%- endif -%}
           <div class="card__content">
             <div class="card__information">
               <{{ rhino_card_heading }}
                 class="card__heading"
-                {% if rhino_card_media == null and settings.card_style == 'standard' %}
+                {% if rhino_card_has_visual == false and settings.card_style == 'standard' %}
                   id="title-{{ section_id }}-{{ card_product.id }}"
                 {% endif %}
               >
@@ -155,8 +177,8 @@
         <div class="card__content">
           <div class="card__information">
             <{{ rhino_card_heading }}
-              class="card__heading{% if rhino_card_media or settings.card_style == 'standard' %} h5{% endif %}"
-              {% if rhino_card_media or settings.card_style == 'card' %}
+              class="card__heading{% if rhino_card_has_visual or settings.card_style == 'standard' %} h5{% endif %}"
+              {% if rhino_card_has_visual or settings.card_style == 'card' %}
                 id="title-{{ section_id }}-{{ card_product.id }}"
               {% endif %}
             >

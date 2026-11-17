@@ -144,7 +144,7 @@ function successfulContactDocument() {
   return fixtures.documentFor({ mixed: true })
     .replace('data-posted-successfully="false"', 'data-posted-successfully="true"')
     .replace(
-      /(id="RhinoFulfillmentShipping"[\s\S]*?data-rhino-fulfillment-choice\s+required)(\s*>)/,
+      /(id="RhinoFulfillmentShipping"[\s\S]*?data-rhino-fulfillment-choice[\s\S]*?\srequired)(\s*>)/,
       '$1 checked$2',
     )
     .replace(

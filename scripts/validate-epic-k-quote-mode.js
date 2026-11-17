@@ -106,8 +106,13 @@ function validateQuoteMode() {
     if (/fetch\([^\n]*contact|XMLHttpRequest|Shopify\.captcha\.protect/.test(javascript)) {
         errors.push('Quotation recovery cannot replace or rewire Shopify native contact/CAPTCHA submission.');
     }
-    if (!javascript.includes('setupFulfillmentChoices') || !javascript.includes("formRegion.hidden = selected !== 'shipping'")) {
-        errors.push('Fulfillment choices must reveal the separate shipping form without resetting its fields.');
+    if (!javascript.includes('setupFulfillmentChoices')
+        || !javascript.includes("[data-rhino-fulfillment-panel]")
+        || !javascript.includes('panel.hidden = panel.dataset.rhinoFulfillmentPanel !== selected')) {
+        errors.push('Fulfillment choices must reveal only the selected native-radio panel without resetting its fields.');
+    }
+    if (/aria-controls=/.test(checkout) || /setAttribute\(['"]aria-expanded['"]/.test(javascript)) {
+        errors.push('Native fulfillment radios cannot carry disclosure-only ARIA state.');
     }
     const stylesheet = source(paths.stylesheet);
     for (const signal of ['cart__footer--quote-mode', 'rhino-quote-mode__form-region', 'minmax(min(100%, 32rem), 1fr)', 'rhino-quote-mode__status--error']) {

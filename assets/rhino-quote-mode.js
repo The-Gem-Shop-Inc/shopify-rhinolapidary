@@ -473,13 +473,14 @@ if (!customElements.get('rhino-quote-mode')) {
 
       setupFulfillmentChoices() {
         const choices = [...this.querySelectorAll('[data-rhino-fulfillment-choice]')];
-        const formRegion = this.querySelector('#RhinoShippingQuotePanel');
-        if (!choices.length || !formRegion) return;
+        const panels = [...this.querySelectorAll('[data-rhino-fulfillment-panel]')];
+        if (!choices.length || !panels.length) return;
 
         const update = () => {
-          const selected = choices.find((choice) => choice.checked)?.value || '';
-          formRegion.hidden = selected !== 'shipping';
-          choices.forEach((choice) => choice.setAttribute('aria-expanded', String(choice.checked)));
+          const selected = choices.find((choice) => choice.checked)?.dataset.rhinoFulfillmentTarget || '';
+          panels.forEach((panel) => {
+            panel.hidden = panel.dataset.rhinoFulfillmentPanel !== selected;
+          });
           this.querySelectorAll('[data-rhino-fulfillment-card]').forEach((card) => {
             const choice = card.querySelector('[data-rhino-fulfillment-choice]');
             card.toggleAttribute('data-selected', Boolean(choice?.checked));

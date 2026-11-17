@@ -1,11 +1,14 @@
 [CmdletBinding()]
 param(
-  [ValidateSet('Plan', 'Apply')]
+  [ValidateSet('Plan', 'Apply', 'VerifyExistingDeployment')]
   [string]$Mode = 'Plan',
   [string]$AuthorizationValue = '',
   [switch]$ApproveThemeCheckException,
   [string]$RollbackArchive = 'C:\Users\dajem\AppData\Local\RhinoLapidary\rollback\shop-79279947973\theme-158631198917\2026-11-16T18-31-49.6370986Z',
   [string]$LiveEvidencePath = '',
+  [string]$ExistingReadbackRoot = '',
+  [string]$PreUploadInventoryPath = 'C:\Users\dajem\AppData\Local\RhinoLapidary\deployment-evidence\shop-79279947973\theme-158631198917\2026-11-16T22-39-36.2351367Z\pre-upload-inventory.json',
+  [string]$FailureRecordPath = 'C:\Users\dajem\AppData\Local\RhinoLapidary\deployment-evidence\shop-79279947973\theme-158631198917\2026-11-16T22-39-36.2351367Z\phase-b-failure.json',
   [int]$MaxLiveEvidenceAgeMinutes = 15
 )
 
@@ -114,6 +117,48 @@ try {
   Assert-Gate ($bindingDigest -eq $exception.binding.digest) "Theme Check exception binding digest mismatch"
   Assert-Gate ($exception.binding.authorizationValue -eq "J2G4-PREVIEW-APPLY-$bindingDigest") "Apply authorization binding value mismatch"
   Assert-Gate (-not $exception.authorized) "Repository evidence must not pre-authorize Apply mode"
+
+  if ($Mode -eq 'VerifyExistingDeployment') {
+    Assert-Gate ([string]::IsNullOrWhiteSpace($AuthorizationValue)) "Verify Existing Deployment rejects Apply authorization values"
+    Assert-Gate (-not $ApproveThemeCheckException.IsPresent) "Verify Existing Deployment does not consume the Apply Theme Check exception"
+    Assert-Gate (-not [string]::IsNullOrWhiteSpace($LiveEvidencePath)) "Verify Existing Deployment requires fresh external read-only Admin GraphQL evidence"
+    $resolvedVerifyEvidence = (Resolve-Path -LiteralPath $LiveEvidencePath).Path
+    Assert-Gate (-not $resolvedVerifyEvidence.StartsWith($RepositoryRoot, [StringComparison]::OrdinalIgnoreCase)) "Identity evidence must be external to the Git repository"
+    $verifyEvidence = Read-Json $resolvedVerifyEvidence
+    $verifyAge = [DateTimeOffset]::UtcNow - [DateTimeOffset]$verifyEvidence.observedAt
+    $verifyAllowedAge = [Math]::Min($MaxLiveEvidenceAgeMinutes, 15)
+    Assert-Gate ($verifyAge.TotalMinutes -ge 0 -and $verifyAge.TotalMinutes -le $verifyAllowedAge) "Verify Existing Deployment identity evidence is stale"
+    Assert-Gate ($verifyEvidence.readOnly -and $verifyEvidence.shopifyMutations -eq 0) "Verify Existing Deployment identity evidence is not read-only"
+
+    $verifyThemeList = Invoke-NativeChecked 'shopify' @('theme', 'list', '--store', $Store, '--json', '--no-input') | ConvertFrom-Json -Depth 20
+    $verifyPreview = @($verifyThemeList | Where-Object { [string]$_.id -eq $PreviewThemeId })
+    $verifyProduction = @($verifyThemeList | Where-Object { [string]$_.id -eq $ProductionThemeId })
+    Assert-Gate ($verifyPreview.Count -eq 1 -and $verifyPreview[0].name -eq $PreviewThemeName -and $verifyPreview[0].role -eq 'unpublished') "CLI preview theme selector mismatch"
+    Assert-Gate ($verifyProduction.Count -eq 1 -and $verifyProduction[0].role -eq 'live') "CLI production identity mismatch"
+
+    if ([string]::IsNullOrWhiteSpace($ExistingReadbackRoot)) {
+      $planTemp = Join-Path ([IO.Path]::GetTempPath()) ("rhino-j2-g4-{0}" -f [Guid]::NewGuid().ToString('N'))
+      New-Item -ItemType Directory -Path $planTemp | Out-Null
+      Invoke-NativeChecked 'shopify' @('theme', 'pull', '--store', $Store, '--theme', $PreviewThemeId, '--path', $planTemp, '--nodelete', '--no-input') | Out-Null
+      $resolvedReadbackRoot = $planTemp
+    } else {
+      $resolvedReadbackRoot = (Resolve-Path -LiteralPath $ExistingReadbackRoot).Path
+    }
+
+    $successorArguments = @(
+      'scripts/validate-j2-g4-theme-readback-successor.js',
+      $resolvedReadbackRoot,
+      "--identity-evidence=$resolvedVerifyEvidence",
+      "--pre-upload-inventory=$((Resolve-Path -LiteralPath $PreUploadInventoryPath).Path)",
+      "--rollback-archive=$((Resolve-Path -LiteralPath $RollbackArchive).Path)",
+      "--failure-record=$((Resolve-Path -LiteralPath $FailureRecordPath).Path)"
+    )
+    $successorResult = Invoke-NativeChecked 'node' $successorArguments
+    Write-Output 'VERIFY EXISTING DEPLOYMENT PASS (successor contract; proposed policy only)'
+    Write-Output $successorResult
+    Write-Output 'Historical Phase B result remains FAILED_EXACT_READBACK. No Shopify changes were made.'
+    return
+  }
 
   if ([string]::IsNullOrWhiteSpace($LiveEvidencePath)) {
     $liveDirectory = Join-Path $env:LOCALAPPDATA 'RhinoLapidary\evidence\j2-g4-preview\live'
@@ -250,6 +295,6 @@ try {
   Write-Output "Controlled rollback option only: restore the ten exact archived bodies and delete only the seven proven-absent paths after separate rollback authorization, then independently read back SHA-256/absence. Archive: $RollbackArchive"
   exit 1
 } finally {
-  if ($Mode -eq 'Plan' -and $planTemp) { Remove-SafePlanTemp $planTemp }
+  if (($Mode -eq 'Plan' -or $Mode -eq 'VerifyExistingDeployment') -and $planTemp) { Remove-SafePlanTemp $planTemp }
   Pop-Location
 }

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "J2-G4-PHASE-C-CORRECTIVE-RC1",
+  "releaseClass": "CORRECTIVE_PREVIEW_CANDIDATE",
+  "generatedAt": "2026-11-17T20:43:52.1189189Z",
+  "repository": {
+    "branch": "integration/catalog-cart-preview",
+    "baseHead": "6135ce719e8bcda2cf4e174437c6cb8a36fcb31f",
+    "immutableIntegrationAncestor": "64ddfaadbcea98175940fd54d9cf198c443e39c3"
+  },
+  "target": {
+    "shopId": "gid://shopify/Shop/79279947973",
+    "previewThemeId": "158631198917",
+    "requiredPreviewRole": "UNPUBLISHED",
+    "productionThemeId": "158579622085",
+    "productionExcluded": true
+  },
+  "historicalEvidence": {
+    "phaseBTransport": "FAILED_EXACT_READBACK",
+    "successorIntegrity": "PASS_SUCCESSOR_SEMANTIC_READBACK",
+    "firstLiveCatalog": "FAIL",
+    "firstLiveCart": "PARTIAL",
+    "firstLiveAccessibility": "FAIL",
+    "phaseBCandidateDigest": "c59f3d8ea6a9c4d62cf477e698ef341845066715b2a1007069c5402d745500ec",
+    "phaseBApplyBindingConsumed": true,
+    "reclassificationPermitted": false
+  },
+  "candidateDigestAlgorithm": "SHA-256 of UTF-8 tuples sorted by path: path + NUL + lowercase candidate SHA-256 + NUL + decimal byte length + LF",
+  "candidateDigest": "78e435cf53ef09e96a78e567c2d90fb39c76c37e7fd31ca5d04a7ab4e3510efe",
+  "currentPreviewSnapshot": "C:\\Users\\dajem\\AppData\\Local\\RhinoLapidary\\evidence\\j2-g4-json-integrity\\2026-11-17T15-27-06.7593529Z\\cli-preview-theme",
+  "runtimeFiles": [
+    {
+      "path": "assets/component-card.css",
+      "operation": "MODIFY",
+      "deployedSha256": "024f5628fb870bfdf69f924fcd6848ea6b662ba930fff34bedcc34cd8022845d",
+      "deployedBytes": 14067,
+      "candidateSha256": "94fa12a3665c8144afb9de39c0ceef7dd06fa469533a455c369c1a0e3650ab7d",
+      "candidateBytes": 14462,
+      "difference": "Add neutral governed Product-card fallback layout and icon sizing."
+    },
+    {
+      "path": "assets/component-facets.css",
+      "operation": "MODIFY",
+      "deployedSha256": "31db628964456df3e01c1ff7fc22ea2d03432bcc24f0b5f9a09bf42d910c360f",
+      "deployedBytes": 25694,
+      "candidateSha256": "8f4dce0e345f7c26a5f26c3596405835c7bc142fcca6ce4346f467c7fe60e367",
+      "candidateBytes": 27236,
+      "difference": "Use shrink-safe facet tracks, wrap Product count, transition tablet facets to the existing mobile disclosure, and contain long active labels."
+    },
+    {
+      "path": "assets/component-menu-drawer.css",
+      "operation": "MODIFY",
+      "deployedSha256": "606cb24ee96d7e0f50e0843a0aaa2863d6e390eb183361f057179672fce53987",
+      "deployedBytes": 5411,
+      "candidateSha256": "23b51f50e406ccb63c526d6d5543c1d38330fd039c9e8c74a8fdb74354777ab5",
+      "candidateBytes": 5451,
+      "difference": "Constrain the 40rem offcanvas drawer to 100vw with border-box geometry."
+    },
+    {
+      "path": "assets/rhino-quote-mode.js",
+      "operation": "MODIFY",
+      "deployedSha256": "e0fafee0f67f0edf2f5ee0de6ec0586cb3d236f7966ebd4c8e051b5fbfff6837",
+      "deployedBytes": 24733,
+      "candidateSha256": "bdd7b79d9e398e106e0228429a590f0247e5e75c541f710d89b902f062389bf2",
+      "candidateBytes": 25286,
+      "difference": "Replace radio aria-expanded mutation with explicit data-target panel visibility."
+    },
+    {
+      "path": "snippets/card-product.liquid",
+      "operation": "MODIFY",
+      "deployedSha256": "363744c12b25cdd3e92d120c1b751f8c3b6a976535b36998c0720ee7072f73f5",
+      "deployedBytes": 34808,
+      "candidateSha256": "a6a71efb0af2e52f498b3fb97dd2243503b7b3340eb2f4d98d49fb6c154da5d7",
+      "candidateBytes": 36076,
+      "difference": "Render only exactly authorized machine featured media; otherwise render an accessible neutral fallback; preserve legacy media and prevent unapproved machine secondary images."
+    },
+    {
+      "path": "snippets/rhino-quote-checkout.liquid",
+      "operation": "MODIFY",
+      "deployedSha256": "0bbf9cf2617b8f448d76fc88165cdac48a30844083e64cee6db50b8b723c046e",
+      "deployedBytes": 18395,
+      "candidateSha256": "f1c30713b121992d3681d3c2053d885bf48629d88dab73a7d586d7e2af168782",
+      "candidateBytes": 18697,
+      "difference": "Remove disclosure-only ARIA from native radios and add stable data relationships for shipping and pickup panels."
+    },
+    {
+      "path": "snippets/rhino-product-card-media-eligibility.liquid",
+      "operation": "ADD",
+      "deployedSha256": null,
+      "deployedBytes": null,
+      "candidateSha256": "734ff710c7c4dafbce26debba3b43f4c870b5c0d883812f88cc5c2b10f377eec",
+      "candidateBytes": 4820,
+      "difference": "Add a collection-card projection containing exactly the six protected F machine-media grant predicates and no additional authority."
+    }
+  ],
+  "newDependencies": [
+    "snippets/rhino-product-card-media-eligibility.liquid"
+  ],
+  "modifiedExistingDependencies": [
+    "assets/component-card.css",
+    "assets/component-facets.css",
+    "assets/component-menu-drawer.css",
+    "assets/rhino-quote-mode.js",
+    "snippets/rhino-quote-checkout.liquid"
+  ],
+  "cartAcceptance": {
+    "retainedCartType": "notification",
+    "notificationBehaviorRequiredWhenConfigured": true,
+    "drawerSynchronizationRequiredWhenConfiguredAsDrawer": true,
+    "liveDrawerCoverageClaimedForThisPreview": false,
+    "cartPageSynchronizationRequiredForAllConfigurations": true
+  },
+  "rollback": {
+    "requiredBeforeAnyFutureApply": true,
+    "source": "fresh complete read-only pull of current preview theme 158631198917 immediately before Apply",
+    "mustIncludeAllCurrentThemeAssets": true,
+    "mustRecordInventoryAndExactSha256": true,
+    "mustUseNewTimestampedArchive": true,
+    "historicalArchiveMayBeOverwritten": false,
+    "historicalArchive": "C:\\Users\\dajem\\AppData\\Local\\RhinoLapidary\\rollback\\shop-79279947973\\theme-158631198917\\2026-11-16T18-31-49.6370986Z"
+  },
+  "authorization": {
+    "uploadAuthorized": false,
+    "phaseBApplyTokenReusable": false,
+    "freshCandidateBoundProductOwnerApprovalRequired": true,
+    "publicationAuthorized": false,
+    "rollbackAuthorized": false
+  },
+  "requiredTests": [
+    "node scripts/test-j2-g4-phase-c-remediation.js",
+    "node scripts/test-j2-g4-phase-c-remediation-browser.js",
+    "node scripts/validate-j2-g4-phase-c-corrective-release.js",
+    "node scripts/validate-j2-g4-catalog-cart-integration.js",
+    "node scripts/validate-epic-g-g4-route-successor-evidence.js",
+    "npm run test:epic-j-cart",
+    "npm run test:epic-g-catalog:browser",
+    "node scripts/test-j2-g4-locale-reconciliation.js",
+    "node scripts/test-j2-g4-theme-readback-successor.js",
+    "npm run validate:theme-architecture",
+    "npm run validate:navigation",
+    "git diff --check"
+  ]
+}

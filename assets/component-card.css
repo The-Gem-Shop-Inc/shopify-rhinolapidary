@@ -296,6 +296,25 @@
   width: 100%;
 }
 
+.rhino-card-media-fallback .media {
+  align-items: center;
+  background: rgba(var(--color-foreground), 0.04);
+  display: flex;
+  justify-content: center;
+}
+
+.rhino-card-media-fallback__icon {
+  color: rgba(var(--color-foreground), 0.58);
+  display: block;
+  width: clamp(4.8rem, 32%, 9.6rem);
+}
+
+.rhino-card-media-fallback__icon .rhino-icon {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
 .card__inner:not(.ratio) > .card__content {
   height: 100%;
 }
