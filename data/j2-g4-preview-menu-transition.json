@@ -1,0 +1,312 @@
+{
+  "$schema": "../schemas/j2-g4-preview-menu-transition.schema.json",
+  "schemaVersion": 1,
+  "transitionId": "J2-G4-PHASE-D-PREVIEW-NAVIGATION-RC1",
+  "capturedAt": "2026-11-18T15:47:38.2524874Z",
+  "shop": {
+    "gid": "gid://shopify/Shop/79279947973",
+    "myshopifyDomain": "sz5dnk-nf.myshopify.com"
+  },
+  "target": {
+    "previewMenu": {
+      "gid": "gid://shopify/Menu/257402405061",
+      "handle": "preview-primary-navigation-menu",
+      "title": "Preview Primary Navigation Menu"
+    },
+    "previewTheme": {
+      "gid": "gid://shopify/OnlineStoreTheme/158631198917",
+      "numericId": "158631198917",
+      "requiredRole": "UNPUBLISHED",
+      "assignedMenuHandle": "preview-primary-navigation-menu"
+    },
+    "protectedProductionTheme": {
+      "gid": "gid://shopify/OnlineStoreTheme/158579622085",
+      "numericId": "158579622085",
+      "requiredRole": "MAIN"
+    },
+    "protectedProductionMenu": {
+      "gid": "gid://shopify/Menu/254120886469",
+      "handle": "main-menu"
+    },
+    "productionMutationAllowed": false
+  },
+  "api": {
+    "apiVersion": "2026-07",
+    "mutation": "menuUpdate",
+    "requiredScope": "write_online_store_navigation",
+    "mutationDocument": "mutation J2G4PhaseDMenuUpdate($id: ID!, $title: String!, $handle: String!, $items: [MenuItemUpdateInput!]!) { menuUpdate(id: $id, title: $title, handle: $handle, items: $items) { menu { id handle title items { id title type url resourceId items { id title type url resourceId items { id title type url resourceId } } } } userErrors { field message code } } }",
+    "verifiedSchema": true
+  },
+  "predecessor": {
+    "title": "Preview Primary Navigation Menu",
+    "handle": "preview-primary-navigation-menu",
+    "tree": [
+      {
+        "id": "gid://shopify/MenuItem/629834121413",
+        "title": "Home",
+        "type": "FRONTPAGE",
+        "url": "/",
+        "resourceId": null,
+        "tags": [],
+        "items": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/629834154181",
+        "title": "Catalog",
+        "type": "COLLECTIONS",
+        "url": "/collections",
+        "resourceId": null,
+        "tags": [],
+        "items": [
+          {
+            "id": "gid://shopify/MenuItem/629834186949",
+            "title": "Saws",
+            "type": "COLLECTION",
+            "url": "/collections/saws",
+            "resourceId": "gid://shopify/Collection/364020531397",
+            "tags": [],
+            "items": []
+          },
+          {
+            "id": "gid://shopify/MenuItem/629834219717",
+            "title": "Laps",
+            "type": "COLLECTION",
+            "url": "/collections/flat-laps",
+            "resourceId": "gid://shopify/Collection/364020564165",
+            "tags": [],
+            "items": []
+          },
+          {
+            "id": "gid://shopify/MenuItem/629834252485",
+            "title": "Shaping",
+            "type": "COLLECTION",
+            "url": "/collections/shaping",
+            "resourceId": "gid://shopify/Collection/364020596933",
+            "tags": [],
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/MenuItem/629841330373",
+        "title": "Manuals",
+        "type": "PAGE",
+        "url": "/pages/manuals",
+        "resourceId": "gid://shopify/Page/129898545349",
+        "tags": [],
+        "items": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/629834285253",
+        "title": "Contact",
+        "type": "PAGE",
+        "url": "/pages/contact",
+        "resourceId": "gid://shopify/Page/127975358661",
+        "tags": [],
+        "items": []
+      }
+    ]
+  },
+  "alternatives": [
+    {
+      "id": "A_PRESERVE_COLLECTIONS",
+      "label": "Preserve existing photographic collections",
+      "eligibleForApply": false,
+      "tree": [
+        {
+          "title": "Catalog",
+          "type": "COLLECTIONS",
+          "url": "/collections",
+          "resourceId": null,
+          "tags": [],
+          "items": [
+            { "title": "All Products", "type": "CATALOG", "url": "/collections/all", "resourceId": null, "tags": [], "items": [] },
+            {
+              "title": "Machines", "type": "COLLECTION", "url": "/collections/machines", "resourceId": "gid://shopify/Collection/355080962245", "tags": [],
+              "items": [
+                { "title": "Saws", "type": "COLLECTION", "url": "/collections/saws", "resourceId": "gid://shopify/Collection/364020531397", "tags": [], "items": [] },
+                { "title": "Laps", "type": "COLLECTION", "url": "/collections/flat-laps", "resourceId": "gid://shopify/Collection/364020564165", "tags": [], "items": [] },
+                { "title": "Shaping", "type": "COLLECTION", "url": "/collections/shaping", "resourceId": "gid://shopify/Collection/364020596933", "tags": [], "items": [] }
+              ]
+            },
+            { "title": "Replacement Parts", "type": "HTTP", "url": "/collections/all?view=directory#g-replacement-parts", "resourceId": null, "tags": [], "items": [] },
+            { "title": "Consumables", "type": "HTTP", "url": "/collections/all?view=directory#g-consumables", "resourceId": null, "tags": [], "items": [] },
+            { "title": "Accessories", "type": "HTTP", "url": "/collections/all?view=directory#g-accessories", "resourceId": null, "tags": [], "items": [] }
+          ]
+        }
+      ],
+      "consequences": [
+        "Preserves direct access to Saws, Flat Laps, and Shaping while grouping them under Machines.",
+        "Trade's mobile drawer renders a parent with children as a disclosure summary, so the nested Machines parent does not remain a direct /collections/machines link on mobile.",
+        "The three role-category labels cannot be applied while their anchors expose only neutral fail-closed content."
+      ]
+    },
+    {
+      "id": "B_ORIGINAL_G4_FLAT",
+      "label": "Original G4 flat hierarchy",
+      "eligibleForApply": false,
+      "tree": [
+        {
+          "title": "Catalog",
+          "type": "COLLECTIONS",
+          "url": "/collections",
+          "resourceId": null,
+          "tags": [],
+          "items": [
+            { "title": "All Products", "type": "CATALOG", "url": "/collections/all", "resourceId": null, "tags": [], "items": [] },
+            { "title": "Machines", "type": "COLLECTION", "url": "/collections/machines", "resourceId": "gid://shopify/Collection/355080962245", "tags": [], "items": [] },
+            { "title": "Replacement Parts", "type": "HTTP", "url": "/collections/all?view=directory#g-replacement-parts", "resourceId": null, "tags": [], "items": [] },
+            { "title": "Consumables", "type": "HTTP", "url": "/collections/all?view=directory#g-consumables", "resourceId": null, "tags": [], "items": [] },
+            { "title": "Accessories", "type": "HTTP", "url": "/collections/all?view=directory#g-accessories", "resourceId": null, "tags": [], "items": [] }
+          ]
+        }
+      ],
+      "consequences": [
+        "Removes the existing Saws, Laps, and Shaping collection entries from global navigation.",
+        "Promotes three category labels whose current destinations do not provide categorized content."
+      ]
+    }
+  ],
+  "recommendation": {
+    "baseAlternative": "A_PRESERVE_COLLECTIONS",
+    "decision": "PRESERVE_COLLECTIONS_ACCESSIBLE_FLAT_SUBSET_WITHHOLD_UNSUPPORTED_CATEGORIES",
+    "rationale": "Preserve every currently useful photographic collection as a directly navigable Catalog child, add one explicit All Products destination, and withhold role-category promises until current classification authority and meaningful aggregate destinations exist. The requested nested Alternative A is not eligible because Trade's mobile drawer turns Machines into a disclosure-only summary and removes its collection link.",
+    "approvedProposedTree": [
+      {
+        "id": "gid://shopify/MenuItem/629834121413",
+        "title": "Home",
+        "type": "FRONTPAGE",
+        "url": "/",
+        "resourceId": null,
+        "tags": [],
+        "items": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/629834154181",
+        "title": "Catalog",
+        "type": "COLLECTIONS",
+        "url": "/collections",
+        "resourceId": null,
+        "tags": [],
+        "items": [
+          { "title": "All Products", "type": "CATALOG", "url": "/collections/all", "resourceId": null, "tags": [], "items": [] },
+          {
+            "title": "Machines",
+            "type": "COLLECTION",
+            "url": "/collections/machines",
+            "resourceId": "gid://shopify/Collection/355080962245",
+            "tags": [],
+            "items": []
+          },
+          { "id": "gid://shopify/MenuItem/629834186949", "title": "Saws", "type": "COLLECTION", "url": "/collections/saws", "resourceId": "gid://shopify/Collection/364020531397", "tags": [], "items": [] },
+          { "id": "gid://shopify/MenuItem/629834219717", "title": "Laps", "type": "COLLECTION", "url": "/collections/flat-laps", "resourceId": "gid://shopify/Collection/364020564165", "tags": [], "items": [] },
+          { "id": "gid://shopify/MenuItem/629834252485", "title": "Shaping", "type": "COLLECTION", "url": "/collections/shaping", "resourceId": "gid://shopify/Collection/364020596933", "tags": [], "items": [] }
+        ]
+      },
+      {
+        "id": "gid://shopify/MenuItem/629841330373",
+        "title": "Manuals",
+        "type": "PAGE",
+        "url": "/pages/manuals",
+        "resourceId": "gid://shopify/Page/129898545349",
+        "tags": [],
+        "items": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/629834285253",
+        "title": "Contact",
+        "type": "PAGE",
+        "url": "/pages/contact",
+        "resourceId": "gid://shopify/Page/127975358661",
+        "tags": [],
+        "items": []
+      }
+    ],
+    "requiredRouteChecks": [
+      "/collections/all",
+      "/collections/machines",
+      "/collections/saws",
+      "/collections/flat-laps",
+      "/collections/shaping"
+    ]
+  },
+  "destinationResources": [
+    { "label": "Machines", "gid": "gid://shopify/Collection/355080962245", "handle": "machines", "route": "/collections/machines", "menuType": "COLLECTION", "authority": "Published photographic destination; membership is not compatibility authority." },
+    { "label": "Saws", "gid": "gid://shopify/Collection/364020531397", "handle": "saws", "route": "/collections/saws", "menuType": "COLLECTION", "authority": "Existing published photographic destination; no compatibility inference." },
+    { "label": "Laps", "gid": "gid://shopify/Collection/364020564165", "handle": "flat-laps", "route": "/collections/flat-laps", "menuType": "COLLECTION", "authority": "Existing published photographic destination." },
+    { "label": "Shaping", "gid": "gid://shopify/Collection/364020596933", "handle": "shaping", "route": "/collections/shaping", "menuType": "COLLECTION", "authority": "Existing published photographic destination; role boundaries remain unapproved." }
+  ],
+  "categoryAuthority": [
+    { "label": "Replacement Parts", "route": "/collections/all?view=directory#g-replacement-parts", "menuType": "HTTP", "authorityState": "EXPIRED_FAIL_CLOSED_NEUTRAL_DIRECTORY", "anchorTarget": "Browse Products", "meaningfulCategorizedContent": false, "menuEligible": false, "disposition": "PLANNED_NOT_APPROVED_FOR_APPLY" },
+    { "label": "Consumables", "route": "/collections/all?view=directory#g-consumables", "menuType": "HTTP", "authorityState": "EXPIRED_FAIL_CLOSED_NEUTRAL_DIRECTORY", "anchorTarget": "Product groups are being verified. You can still open any Product below to select its options and quantity.", "meaningfulCategorizedContent": false, "menuEligible": false, "disposition": "PLANNED_NOT_APPROVED_FOR_APPLY" },
+    { "label": "Accessories", "route": "/collections/all?view=directory#g-accessories", "menuType": "HTTP", "authorityState": "EXPIRED_FAIL_CLOSED_NEUTRAL_DIRECTORY", "anchorTarget": "Use the Product page for current options and availability.", "meaningfulCategorizedContent": false, "menuEligible": false, "disposition": "PLANNED_NOT_APPROVED_FOR_APPLY" }
+  ],
+  "duplicateSuppression": {
+    "exactAllProductsRequired": 1,
+    "queryAndFragmentAreDistinct": true,
+    "runtimeChangeRequired": false,
+    "policy": "The transition validator rejects duplicate exact /collections/all destinations. Directory query/fragment URLs do not suppress or duplicate All Products."
+  },
+  "desktopAndMobile": {
+    "desktop": "Trade mega menu supports both nested and flat Catalog links, but the approved transaction keeps all five collection destinations directly navigable.",
+    "mobile": "Trade drawer turns parents with children into disclosure-only summaries; the approved flat Catalog subset preserves direct links to Machines, Saws, Laps, and Shaping.",
+    "maximumLevels": 3,
+    "liveVerificationRequiredAfterApply": true
+  },
+  "rollback": {
+    "tree": [
+      {
+        "id": "gid://shopify/MenuItem/629834121413",
+        "title": "Home",
+        "type": "FRONTPAGE",
+        "url": "/",
+        "resourceId": null,
+        "tags": [],
+        "items": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/629834154181",
+        "title": "Catalog",
+        "type": "COLLECTIONS",
+        "url": "/collections",
+        "resourceId": null,
+        "tags": [],
+        "items": [
+          { "id": "gid://shopify/MenuItem/629834186949", "title": "Saws", "type": "COLLECTION", "url": "/collections/saws", "resourceId": "gid://shopify/Collection/364020531397", "tags": [], "items": [] },
+          { "id": "gid://shopify/MenuItem/629834219717", "title": "Laps", "type": "COLLECTION", "url": "/collections/flat-laps", "resourceId": "gid://shopify/Collection/364020564165", "tags": [], "items": [] },
+          { "id": "gid://shopify/MenuItem/629834252485", "title": "Shaping", "type": "COLLECTION", "url": "/collections/shaping", "resourceId": "gid://shopify/Collection/364020596933", "tags": [], "items": [] }
+        ]
+      },
+      { "id": "gid://shopify/MenuItem/629841330373", "title": "Manuals", "type": "PAGE", "url": "/pages/manuals", "resourceId": "gid://shopify/Page/129898545349", "tags": [], "items": [] },
+      { "id": "gid://shopify/MenuItem/629834285253", "title": "Contact", "type": "PAGE", "url": "/pages/contact", "resourceId": "gid://shopify/Page/127975358661", "tags": [], "items": [] }
+    ],
+    "separateAuthorizationRequired": true,
+    "futureAuthorizationValue": "J2G4-PHASE-D-PREVIEW-MENU-ROLLBACK-a346150610b3ddfd7e032f253449837eec1b8e8530b34cb1b1a0ebe18d80da33"
+  },
+  "authorization": {
+    "productOwnerApprovalRequired": true,
+    "futureApplyAuthorizationValue": "J2G4-PHASE-D-PREVIEW-MENU-APPLY-5e4c296c9e62bf75ead635032cf33e559ade8c0c11c9020a3b5392e57e869ae0",
+    "boundFields": [
+      "shop GID",
+      "preview menu GID and handle",
+      "predecessor identity digest",
+      "proposed semantic digest",
+      "preview theme GID and UNPUBLISHED role",
+      "production main-menu exclusion"
+    ]
+  },
+  "mutationAuthorized": false,
+  "evidence": {
+    "observedAt": "2026-11-18T15:47:38.2524874Z",
+    "freshnessLimitMinutes": 30,
+    "externalEvidenceRoot": "C:\\Users\\dajem\\AppData\\Local\\RhinoLapidary\\evidence\\j2-g4-phase-d-navigation\\2026-11-18T15-45-39.4507597Z",
+    "previewHeaderGroupMd5": "73a12cee8736b2f3935d0d777800176a",
+    "liveAuthorityAudit": "live-directory-authority-audit.json"
+  },
+  "digests": {
+    "algorithm": "SHA-256 of RFC 8259 JSON with recursively sorted object keys; arrays retain order. Predecessor includes IDs; proposed semantic digest omits generated menu-item IDs.",
+    "predecessorTreeIdentitySha256": "d1e45e55133062ca8012a1af50b2e99ff5e680be783815d09d1c92433e1dd846",
+    "proposedTreeSemanticSha256": "fac77a7d367cb372738516cb6917f696dcdeadc61cd9aaa04f6a4d539cc06f15",
+    "transitionSha256": "5e4c296c9e62bf75ead635032cf33e559ade8c0c11c9020a3b5392e57e869ae0"
+  }
+}

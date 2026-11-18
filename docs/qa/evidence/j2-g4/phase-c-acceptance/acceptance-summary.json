@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "identity": "J2_G4_PHASE_C_ACCEPTANCE_COMMITTED_SUMMARY_V1",
+  "recordedAt": "2026-11-18T15:47:38.2524874Z",
+  "externalEvidence": {
+    "root": "C:\\Users\\dajem\\AppData\\Local\\RhinoLapidary\\evidence\\j2-g4-phase-c-acceptance\\2026-11-18T15-05-13.4017093Z",
+    "acceptanceSummarySha256": "9c90e0e4a466599eb89962a7f95110890ca78678242c3d4e07588ad46adbf18b",
+    "postUploadIntegritySha256": "d234a121f0713efb4e309c4db508195a51930d3443b84560fe2fb5a50d42974a",
+    "catalogMediaResponsiveRunSha256": "2e8677facde142d889c3101a8cccb9e5d0a1b023235015142708c0a19fa98a09",
+    "cartFulfillmentRunSha256": "a1dd1b5d22901ddf3f041f142ed749279a0393a7cc5d8c0e9ca09712d695c20c",
+    "finalIdentitySha256": "4eae025bdea4db310c11d3b81969181922187e38f29d0615fad49b2424cff8b8"
+  },
+  "release": {
+    "id": "J2-G4-PHASE-C-CORRECTIVE-RC1",
+    "commit": "830737b83da8827fafc813cc2045a7a396579f5c",
+    "candidateDigest": "78e435cf53ef09e96a78e567c2d90fb39c76c37e7fd31ca5d04a7ab4e3510efe",
+    "manifestSha256": "718790ba49f8078ab1d2e3401cf4832923ac2182b5312720356bb4d23f1cbe1c"
+  },
+  "shopify": {
+    "shopGid": "gid://shopify/Shop/79279947973",
+    "previewTheme": { "id": "158631198917", "role": "UNPUBLISHED" },
+    "productionTheme": { "id": "158579622085", "role": "MAIN" },
+    "publishedLocales": ["en"]
+  },
+  "deployedIntegrity": {
+    "result": "PASS",
+    "runtimeExact": "7/7",
+    "dependenciesExact": "5/5",
+    "unrelatedAssetsExact": "457/457",
+    "unexpectedAssets": 0,
+    "deletions": 0,
+    "runtime": [
+      { "path": "assets/component-card.css", "sha256": "94fa12a3665c8144afb9de39c0ceef7dd06fa469533a455c369c1a0e3650ab7d" },
+      { "path": "assets/component-facets.css", "sha256": "8f4dce0e345f7c26a5f26c3596405835c7bc142fcca6ce4346f467c7fe60e367" },
+      { "path": "assets/component-menu-drawer.css", "sha256": "23b51f50e406ccb63c526d6d5543c1d38330fd039c9e8c74a8fdb74354777ab5" },
+      { "path": "assets/rhino-quote-mode.js", "sha256": "bdd7b79d9e398e106e0228429a590f0247e5e75c541f710d89b902f062389bf2" },
+      { "path": "snippets/card-product.liquid", "sha256": "a6a71efb0af2e52f498b3fb97dd2243503b7b3340eb2f4d98d49fb6c154da5d7" },
+      { "path": "snippets/rhino-quote-checkout.liquid", "sha256": "f1c30713b121992d3681d3c2053d885bf48629d88dab73a7d586d7e2af168782" },
+      { "path": "snippets/rhino-product-card-media-eligibility.liquid", "sha256": "734ff710c7c4dafbce26debba3b43f4c870b5c0d883812f88cc5c2b10f377eec" }
+    ]
+  },
+  "liveRuns": {
+    "catalogMediaResponsive": {
+      "startedAt": "2026-11-18T15:21:27.867Z",
+      "completedAt": "2026-11-18T15:22:20.236Z",
+      "source": "live-acceptance-results-run7.json",
+      "rawRunClassification": "FAIL_HARNESS_INCOMPLETE",
+      "completedSurfaces": ["catalog", "directory", "machine media", "navigation", "responsive matrix"],
+      "limitation": "The combined harness failed after those surfaces when an optional cart progress element was passed to getComputedStyle. It did not identify a storefront defect."
+    },
+    "cartFulfillment": {
+      "startedAt": "2026-11-18T15:22:51.012Z",
+      "completedAt": "2026-11-18T15:23:10.313Z",
+      "source": "live-cart-results-run8.json",
+      "rawRunClassification": "PASS",
+      "failures": []
+    }
+  },
+  "machineMedia": [
+    { "product": "BeadMaster 6\"", "result": "APPROVED_PHOTOGRAPH_LOADED" },
+    { "product": "EM-1 Machine", "result": "ACCESSIBLE_NEUTRAL_FALLBACK" },
+    { "product": "LapMaster 12\"", "result": "APPROVED_PHOTOGRAPH_LOADED" },
+    { "product": "LapMaster 18\"", "result": "APPROVED_PHOTOGRAPH_LOADED" },
+    { "product": "SawMaster 18\"", "result": "APPROVED_PHOTOGRAPH_LOADED" },
+    { "product": "SawMaster 24\"", "result": "ACCESSIBLE_NEUTRAL_FALLBACK" },
+    { "product": "ShapeMaster 6\"", "result": "APPROVED_PHOTOGRAPH_LOADED" },
+    { "product": "TrimMaster", "result": "APPROVED_PHOTOGRAPH_LOADED" }
+  ],
+  "acceptance": {
+    "photographicCatalog": "PASS",
+    "sortingFilteringPagination": "PASS",
+    "directoryRouting": "PASS_NEUTRAL_FAIL_CLOSED",
+    "machinesCollection": "PASS",
+    "fulfillmentNativeRadios": "PASS",
+    "storefrontSeriousOrCriticalAxeFindings": 0,
+    "responsiveWidths": [320, 390, 768, 1024, 1440],
+    "responsiveModes": ["normal", "200-percent-text", "200-percent-browser-zoom"],
+    "responsive": "PASS",
+    "cartType": "notification",
+    "cartAddIncrementDecrementRemove": "PASS",
+    "cartBadgeNotificationPage": "PASS",
+    "toastReducedMotionAndKeyboardDismissal": "PASS",
+    "cartCleared": true,
+    "overallUnpublishedPreview": "PASS"
+  },
+  "testEnvironment": {
+    "os": "Windows",
+    "node": "v24.13.0",
+    "playwright": "1.61.1",
+    "shopifyCli": "4.9.4",
+    "browser": "Playwright bundled Chromium, headless authenticated preview sessions"
+  },
+  "screenshots": [
+    "machines-run7.png",
+    "directory-run7.png",
+    "navigation-desktop-run7.png",
+    "navigation-mobile-run7.png",
+    "responsive-run7-*-normal.png",
+    "responsive-run7-*-text200.png",
+    "responsive-run7-*-zoom200.png",
+    "cart-fulfillment-run8.png"
+  ],
+  "limitations": [
+    "The Shopify-owned preview bar reported separate accessibility findings; storefront nodes reported none.",
+    "No quotation form was submitted and no Draft Order, checkout, order, or customer record was created.",
+    "The preview used notification cart mode; live drawer behavior was not claimed.",
+    "The proposed Shopify navigation hierarchy was not installed.",
+    "Theme Check retains 2100 MatchingTranslations errors and production publication remains unapproved."
+  ],
+  "historicalResultsPreserved": {
+    "phaseBExactTransport": "FAILED_EXACT_READBACK",
+    "phaseBSuccessorIntegrity": "PASS_SUCCESSOR_SEMANTIC_READBACK",
+    "initialLiveCatalog": "FAIL",
+    "initialLiveCart": "PARTIAL",
+    "initialAccessibility": "FAIL"
+  }
+}

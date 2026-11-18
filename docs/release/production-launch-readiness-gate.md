@@ -61,6 +61,24 @@ Epic C production readiness is blocked when required static or preview QA fails,
 when preview evidence is environment-blocked, when unresolved required PBIs
 remain, or when required human approvals are blank.
 
+## J2/G4 preview evidence — 2026-11-18
+
+The Phase C unpublished preview runtime is accepted. Exact deployment integrity,
+live catalog/cart/accessibility results, limitations, and preserved historical
+failures are recorded in
+`docs/project/implementation-records/j2-g4-phase-c-live-acceptance.md` and
+`docs/qa/evidence/j2-g4/phase-c-acceptance/acceptance-summary.json`.
+
+This does not make the storefront production ready. Preview navigation remains a
+separate pending Shopify configuration transaction. The governed Phase D plan is
+`data/j2-g4-preview-menu-transition.json`; it records `mutationAuthorized=false`,
+protects production `main-menu`, and withholds Replacement Parts, Consumables,
+and Accessories because current expired classification authority produces only
+neutral fail-closed directory content. Only English is published, the 2,100
+Theme Check `MatchingTranslations` errors remain unsuppressed, production
+publication is unapproved, Product compatibility/classification is not renewed,
+and every other independent production gate in this document remains unchanged.
+
 Warnings may be accepted only when they are documented in the appropriate ledger, release note, or follow-up PBI.
 
 ## Manual evidence still required

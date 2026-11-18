@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/j2-g4-preview-menu-transition.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema", "schemaVersion", "transitionId", "capturedAt", "shop", "target", "api",
+    "predecessor", "alternatives", "recommendation", "destinationResources", "categoryAuthority",
+    "duplicateSuppression", "desktopAndMobile", "rollback", "authorization", "mutationAuthorized",
+    "evidence", "digests"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "transitionId": { "const": "J2-G4-PHASE-D-PREVIEW-NAVIGATION-RC1" },
+    "capturedAt": { "type": "string", "minLength": 20 },
+    "shop": {
+      "type": "object", "additionalProperties": false,
+      "required": ["gid", "myshopifyDomain"],
+      "properties": {
+        "gid": { "const": "gid://shopify/Shop/79279947973" },
+        "myshopifyDomain": { "const": "sz5dnk-nf.myshopify.com" }
+      }
+    },
+    "target": {
+      "type": "object", "additionalProperties": false,
+      "required": ["previewMenu", "previewTheme", "protectedProductionTheme", "protectedProductionMenu", "productionMutationAllowed"],
+      "properties": {
+        "previewMenu": { "$ref": "#/$defs/menuIdentity" },
+        "previewTheme": {
+          "type": "object", "additionalProperties": false,
+          "required": ["gid", "numericId", "requiredRole", "assignedMenuHandle"],
+          "properties": {
+            "gid": { "const": "gid://shopify/OnlineStoreTheme/158631198917" },
+            "numericId": { "const": "158631198917" },
+            "requiredRole": { "const": "UNPUBLISHED" },
+            "assignedMenuHandle": { "const": "preview-primary-navigation-menu" }
+          }
+        },
+        "protectedProductionTheme": {
+          "type": "object", "additionalProperties": false,
+          "required": ["gid", "numericId", "requiredRole"],
+          "properties": {
+            "gid": { "const": "gid://shopify/OnlineStoreTheme/158579622085" },
+            "numericId": { "const": "158579622085" },
+            "requiredRole": { "const": "MAIN" }
+          }
+        },
+        "protectedProductionMenu": {
+          "type": "object", "additionalProperties": false,
+          "required": ["gid", "handle"],
+          "properties": {
+            "gid": { "const": "gid://shopify/Menu/254120886469" },
+            "handle": { "const": "main-menu" }
+          }
+        },
+        "productionMutationAllowed": { "const": false }
+      }
+    },
+    "api": {
+      "type": "object", "additionalProperties": false,
+      "required": ["apiVersion", "mutation", "requiredScope", "mutationDocument", "verifiedSchema"],
+      "properties": {
+        "apiVersion": { "const": "2026-07" },
+        "mutation": { "const": "menuUpdate" },
+        "requiredScope": { "const": "write_online_store_navigation" },
+        "mutationDocument": { "type": "string", "minLength": 40 },
+        "verifiedSchema": { "const": true }
+      }
+    },
+    "predecessor": {
+      "type": "object", "additionalProperties": false,
+      "required": ["title", "handle", "tree"],
+      "properties": {
+        "title": { "type": "string" }, "handle": { "const": "preview-primary-navigation-menu" },
+        "tree": { "$ref": "#/$defs/tree" }
+      }
+    },
+    "alternatives": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "label", "eligibleForApply", "tree", "consequences"],
+        "properties": {
+          "id": { "enum": ["A_PRESERVE_COLLECTIONS", "B_ORIGINAL_G4_FLAT"] },
+          "label": { "type": "string" }, "eligibleForApply": { "const": false },
+          "tree": { "$ref": "#/$defs/tree" },
+          "consequences": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["baseAlternative", "decision", "rationale", "approvedProposedTree", "requiredRouteChecks"],
+      "properties": {
+        "baseAlternative": { "const": "A_PRESERVE_COLLECTIONS" },
+          "decision": { "const": "PRESERVE_COLLECTIONS_ACCESSIBLE_FLAT_SUBSET_WITHHOLD_UNSUPPORTED_CATEGORIES" },
+        "rationale": { "type": "string", "minLength": 20 },
+        "approvedProposedTree": { "$ref": "#/$defs/tree" },
+        "requiredRouteChecks": { "type": "array", "minItems": 5, "items": { "type": "string", "pattern": "^/" }, "uniqueItems": true }
+      }
+    },
+    "destinationResources": {
+      "type": "array", "minItems": 4,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["label", "gid", "handle", "route", "menuType", "authority"],
+        "properties": {
+          "label": { "type": "string" }, "gid": { "type": "string", "pattern": "^gid://shopify/Collection/" },
+          "handle": { "type": "string" }, "route": { "type": "string", "pattern": "^/collections/" },
+          "menuType": { "const": "COLLECTION" }, "authority": { "type": "string" }
+        }
+      }
+    },
+    "categoryAuthority": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["label", "route", "menuType", "authorityState", "anchorTarget", "meaningfulCategorizedContent", "menuEligible", "disposition"],
+        "properties": {
+          "label": { "enum": ["Replacement Parts", "Consumables", "Accessories"] },
+          "route": { "type": "string" }, "menuType": { "const": "HTTP" },
+          "authorityState": { "const": "EXPIRED_FAIL_CLOSED_NEUTRAL_DIRECTORY" },
+          "anchorTarget": { "type": "string" }, "meaningfulCategorizedContent": { "const": false },
+          "menuEligible": { "const": false }, "disposition": { "const": "PLANNED_NOT_APPROVED_FOR_APPLY" }
+        }
+      }
+    },
+    "duplicateSuppression": {
+      "type": "object",
+      "additionalProperties": false,
+        "required": ["exactAllProductsRequired", "queryAndFragmentAreDistinct", "runtimeChangeRequired", "policy"],
+      "properties": {
+        "exactAllProductsRequired": { "const": 1 },
+        "queryAndFragmentAreDistinct": { "const": true },
+        "runtimeChangeRequired": { "const": false },
+        "policy": { "type": "string", "minLength": 20 }
+      }
+    },
+    "desktopAndMobile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["desktop", "mobile", "maximumLevels", "liveVerificationRequiredAfterApply"],
+      "properties": {
+        "desktop": { "type": "string", "minLength": 1 },
+        "mobile": { "type": "string", "minLength": 1 },
+        "maximumLevels": { "const": 3 },
+        "liveVerificationRequiredAfterApply": { "const": true }
+      }
+    },
+    "rollback": {
+      "type": "object", "additionalProperties": false,
+      "required": ["tree", "separateAuthorizationRequired", "futureAuthorizationValue"],
+      "properties": {
+        "tree": { "$ref": "#/$defs/tree" }, "separateAuthorizationRequired": { "const": true },
+        "futureAuthorizationValue": { "type": "string", "pattern": "^J2G4-PHASE-D-PREVIEW-MENU-ROLLBACK-[a-f0-9]{64}$" }
+      }
+    },
+    "authorization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["productOwnerApprovalRequired", "futureApplyAuthorizationValue", "boundFields"],
+      "properties": {
+        "productOwnerApprovalRequired": { "const": true },
+        "futureApplyAuthorizationValue": { "type": "string", "pattern": "^J2G4-PHASE-D-PREVIEW-MENU-APPLY-[a-f0-9]{64}$" },
+        "boundFields": { "type": "array", "minItems": 6, "items": { "type": "string" }, "uniqueItems": true }
+      }
+    },
+    "mutationAuthorized": { "const": false },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["observedAt", "freshnessLimitMinutes", "externalEvidenceRoot", "previewHeaderGroupMd5", "liveAuthorityAudit"],
+      "properties": {
+        "observedAt": { "type": "string" }, "freshnessLimitMinutes": { "type": "integer", "minimum": 1, "maximum": 240 },
+        "externalEvidenceRoot": { "type": "string" }, "previewHeaderGroupMd5": { "type": "string", "pattern": "^[a-f0-9]{32}$" },
+        "liveAuthorityAudit": { "type": "string" }
+      }
+    },
+    "digests": {
+      "type": "object", "additionalProperties": false,
+      "required": ["algorithm", "predecessorTreeIdentitySha256", "proposedTreeSemanticSha256", "transitionSha256"],
+      "properties": {
+        "algorithm": { "type": "string" },
+        "predecessorTreeIdentitySha256": { "$ref": "#/$defs/sha256" },
+        "proposedTreeSemanticSha256": { "$ref": "#/$defs/sha256" },
+        "transitionSha256": { "$ref": "#/$defs/sha256" }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "menuIdentity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["gid", "handle", "title"],
+      "properties": {
+        "gid": { "const": "gid://shopify/Menu/257402405061" },
+        "handle": { "const": "preview-primary-navigation-menu" },
+        "title": { "const": "Preview Primary Navigation Menu" }
+      }
+    },
+    "tree": { "type": "array", "items": { "$ref": "#/$defs/item" }, "minItems": 1 },
+    "item": {
+      "type": "object", "additionalProperties": false,
+      "required": ["title", "type", "url", "resourceId", "tags", "items"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^gid://shopify/MenuItem/" },
+        "title": { "type": "string", "minLength": 1 },
+        "type": { "enum": ["ARTICLE", "BLOG", "CATALOG", "COLLECTION", "COLLECTIONS", "CUSTOMER_ACCOUNT_PAGE", "FRONTPAGE", "HTTP", "METAOBJECT", "PAGE", "PRODUCT", "SEARCH", "SHOP_POLICY"] },
+        "url": { "type": ["string", "null"] }, "resourceId": { "type": ["string", "null"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/item" } }
+      }
+    }
+  }
+}
