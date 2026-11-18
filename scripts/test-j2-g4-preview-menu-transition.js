@@ -8,6 +8,7 @@ const {
   menuUpdateVariables,
   semanticDigest,
   validateDocument,
+  validateLiveEvidence,
 } = require('./lib/j2-g4-preview-menu-transition');
 const { validate } = require('./validate-j2-g4-preview-menu-transition');
 
@@ -63,6 +64,58 @@ function renderMenu(file, catalogChildren) {
 
 function exactAllHrefCount(html) {
   return (html.match(/href="\/collections\/all"/g) || []).length;
+}
+
+function liveEvidence(expectedState) {
+  const proposed = expectedState === 'proposed';
+  return {
+    readOnly: true,
+    shopifyMutations: 0,
+    shop: { id: sourceDocument.shop.gid, myshopifyDomain: sourceDocument.shop.myshopifyDomain },
+    previewTheme: { id: sourceDocument.target.previewTheme.gid, role: 'UNPUBLISHED' },
+    productionTheme: { id: sourceDocument.target.protectedProductionTheme.gid, role: 'MAIN' },
+    previewMenu: {
+      id: sourceDocument.target.previewMenu.gid,
+      handle: sourceDocument.target.previewMenu.handle,
+      items: clone(proposed ? sourceDocument.recommendation.approvedProposedTree : sourceDocument.predecessor.tree),
+    },
+    previewThemeAssignment: {
+      menuHandle: sourceDocument.target.previewMenu.handle,
+      menuTypeDesktop: 'mega',
+      checksumMd5: sourceDocument.evidence.previewHeaderGroupMd5,
+    },
+    productionMenu: {
+      id: sourceDocument.target.protectedProductionMenu.gid,
+      handle: sourceDocument.target.protectedProductionMenu.handle,
+    },
+    publishedLocales: [{ locale: 'en', published: true }],
+    collections: sourceDocument.destinationResources.map(({ gid, handle }) => ({ id: gid, handle })),
+    routeChecks: sourceDocument.recommendation.requiredRouteChecks.map((route) => ({
+      route, status: 200, previewThemeId: sourceDocument.target.previewTheme.numericId, photographic: true,
+    })),
+    categoryAuthorityChecks: sourceDocument.categoryAuthority.map(({ label, route }) => ({
+      label,
+      route,
+      status: 200,
+      previewThemeId: sourceDocument.target.previewTheme.numericId,
+      governed: false,
+      categorizedSectionCount: 0,
+      productLinkCount: 1,
+      meaningfulCategorizedContent: false,
+    })),
+    duplicateSuppressionCurrentMenu: {
+      desktop: { exactAllProductsCount: 1, injected: !proposed },
+      mobile: { exactAllProductsCount: 1, injected: !proposed },
+    },
+  };
+}
+
+function expectLiveReject(name, expectedState, mutate, pattern) {
+  test(name, () => {
+    const evidence = liveEvidence(expectedState === 'invalid' ? 'proposed' : expectedState);
+    mutate(evidence);
+    assert.throws(() => validateLiveEvidence(sourceDocument, evidence, expectedState), pattern);
+  });
 }
 
 test('schema and semantic validator pass', () => validate());
@@ -127,6 +180,52 @@ test('approved menu creates exact menuUpdate variables and one All Products entr
   assert.equal(countExactAllProducts(variables.items), 1);
   assert.equal(semanticDigest(variables.items), sourceDocument.digests.proposedTreeSemanticSha256);
 });
+
+test('predecessor desktop injected All Products passes live evidence validation', () => {
+  const evidence = liveEvidence('predecessor');
+  validateLiveEvidence(sourceDocument, evidence, 'predecessor');
+  assert.equal(evidence.duplicateSuppressionCurrentMenu.desktop.injected, true);
+});
+
+test('predecessor mobile injected All Products passes live evidence validation', () => {
+  const evidence = liveEvidence('predecessor');
+  validateLiveEvidence(sourceDocument, evidence, 'predecessor');
+  assert.equal(evidence.duplicateSuppressionCurrentMenu.mobile.injected, true);
+});
+
+test('proposed desktop explicit All Products passes live evidence validation', () => {
+  const evidence = liveEvidence('proposed');
+  validateLiveEvidence(sourceDocument, evidence, 'proposed');
+  assert.equal(evidence.duplicateSuppressionCurrentMenu.desktop.injected, false);
+});
+
+test('proposed mobile explicit All Products passes live evidence validation', () => {
+  const evidence = liveEvidence('proposed');
+  validateLiveEvidence(sourceDocument, evidence, 'proposed');
+  assert.equal(evidence.duplicateSuppressionCurrentMenu.mobile.injected, false);
+});
+
+expectLiveReject('predecessor rejects explicit rather than injected desktop All Products', 'predecessor', (evidence) => {
+  evidence.duplicateSuppressionCurrentMenu.desktop.injected = false;
+}, /false !== true/);
+
+expectLiveReject('proposed rejects injected rather than explicit mobile All Products', 'proposed', (evidence) => {
+  evidence.duplicateSuppressionCurrentMenu.mobile.injected = true;
+}, /true !== false/);
+
+expectLiveReject('live evidence rejects zero exact All Products links', 'proposed', (evidence) => {
+  evidence.duplicateSuppressionCurrentMenu.desktop.exactAllProductsCount = 0;
+}, /0 !== 1/);
+
+expectLiveReject('live evidence rejects two exact All Products links', 'proposed', (evidence) => {
+  evidence.duplicateSuppressionCurrentMenu.mobile.exactAllProductsCount = 2;
+}, /2 !== 1/);
+
+expectLiveReject('live evidence rejects an invalid expected state', 'invalid', () => {}, /Unknown expected state invalid/);
+
+expectLiveReject('proposed live evidence rejects semantic menu drift', 'proposed', (evidence) => {
+  evidence.previewMenu.items[1].items[1].title = 'Machines changed';
+}, /Live proposed semantic digest drift/);
 
 expectReject('duplicate destination URLs are rejected before rendering', (fixture) => {
   fixture.recommendation.approvedProposedTree[1].items.push({

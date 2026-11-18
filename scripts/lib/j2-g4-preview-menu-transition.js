@@ -186,6 +186,7 @@ function validateDocument(document) {
 }
 
 function validateLiveEvidence(document, evidence, expectedState) {
+  assert(['predecessor', 'proposed'].includes(expectedState), `Unknown expected state ${expectedState}`);
   assert.equal(evidence.readOnly, true);
   assert.equal(evidence.shopifyMutations, 0);
   assert.equal(evidence.shop.id, EXPECTED.shopGid);
@@ -234,7 +235,7 @@ function validateLiveEvidence(document, evidence, expectedState) {
     const suppression = evidence.duplicateSuppressionCurrentMenu[surface];
     assert(suppression, `Missing ${surface} duplicate-suppression evidence`);
     assert.equal(suppression.exactAllProductsCount, 1);
-    assert.equal(suppression.injected, true);
+    assert.equal(suppression.injected, expectedState === 'predecessor');
   }
 
   if (expectedState === 'predecessor') {
@@ -242,8 +243,6 @@ function validateLiveEvidence(document, evidence, expectedState) {
   } else if (expectedState === 'proposed') {
     assert.equal(semanticDigest(evidence.previewMenu.items), document.digests.proposedTreeSemanticSha256, 'Live proposed semantic digest drift');
     assert.equal(countExactAllProducts(evidence.previewMenu.items), 1);
-  } else {
-    throw new Error(`Unknown expected state ${expectedState}`);
   }
   return evidence;
 }

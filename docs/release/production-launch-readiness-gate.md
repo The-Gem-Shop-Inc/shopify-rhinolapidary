@@ -69,15 +69,21 @@ failures are recorded in
 `docs/project/implementation-records/j2-g4-phase-c-live-acceptance.md` and
 `docs/qa/evidence/j2-g4/phase-c-acceptance/acceptance-summary.json`.
 
-This does not make the storefront production ready. Preview navigation remains a
-separate pending Shopify configuration transaction. The governed Phase D plan is
-`data/j2-g4-preview-menu-transition.json`; it records `mutationAuthorized=false`,
-protects production `main-menu`, and withholds Replacement Parts, Consumables,
-and Accessories because current expired classification authority produces only
-neutral fail-closed directory content. Only English is published, the 2,100
-Theme Check `MatchingTranslations` errors remain unsuppressed, production
-publication is unapproved, Product compatibility/classification is not renewed,
-and every other independent production gate in this document remains unchanged.
+Phase E preview navigation runtime is also accepted. The exact five-link Catalog
+menu, desktop/mobile live results, preserved production menu, historical initial
+Verify failure, Phase E1 validator correction, and successful corrected Verify
+are recorded in
+`docs/project/implementation-records/j2-g4-phase-e-navigation-acceptance.md`.
+The governed transition remains `data/j2-g4-preview-menu-transition.json`; its
+committed planning artifact still records `mutationAuthorized=false`. Replacement
+Parts, Consumables, and Accessories remain withheld because expired classification
+authority still produces only neutral fail-closed directory content.
+
+These preview acceptances do not make the storefront production ready. Only
+English is published, the 2,100 Theme Check `MatchingTranslations` errors remain
+unsuppressed, the preview theme remains unpublished, production publication is
+unapproved, Product compatibility/classification is not renewed, and every other
+independent production gate in this document remains unchanged.
 
 Warnings may be accepted only when they are documented in the appropriate ledger, release note, or follow-up PBI.
 
