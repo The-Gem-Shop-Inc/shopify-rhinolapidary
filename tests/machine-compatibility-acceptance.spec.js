@@ -2,67 +2,89 @@
 const { test, expect } = require('@playwright/test');
 const { gotoUnlocked } = require('./helpers/storefront');
 
-const approvedMachines = [
+// These machines currently have published compatible products.
+const populatedMachines = [
     'em-1',
-    'lapmaster-18',
-    'sawmaster-18',
-    'sawmaster-24',
     'trimmaster',
 ];
 
-for (const handle of approvedMachines) {
-    test(`${handle}: verified machine compatibility is browseable`, async ({ page }) => {
-        await gotoUnlocked(
-            page,
-            `/products/${handle}`,
-            `compatibility ${handle}`
-        );
+// These machines have approved relationships, but all referenced
+// products are currently Draft. Do not expose those products.
+const pendingMachines = [
+    'lapmaster-18',
+    'sawmaster-18',
+    'sawmaster-24',
+];
 
-        const context = page.locator(
+async function inspectMachine(page, handle) {
+    await gotoUnlocked(
+        page,
+        `/products/${handle}`,
+        `compatibility ${handle}`
+    );
+
+    return {
+        context: page.locator(
             'main product-info .rhino-machine-contextual'
-        );
-
-        const heading = context.locator(
-            'h2[id^="OwnerContext-"]'
-        );
-
-        const cards = context.locator(
-            'li[data-rhino-owner-compatible]'
-        );
-
-        const browse = page.locator(
+        ),
+        cards: page.locator(
+            'main product-info li[data-rhino-owner-compatible]'
+        ),
+        browse: page.locator(
             'main product-info a[data-rhino-machine-browse]'
-        );
+        ),
+    };
+}
 
-        await expect(context).toBeVisible();
-        await expect(heading).toBeVisible();
-        await expect(cards.first()).toBeVisible();
-        await expect(browse).toBeVisible();
+async function verifyPublishedCompatibility(page, handle) {
+    const { context, cards, browse } =
+        await inspectMachine(page, handle);
 
-        const targetId = await heading.getAttribute('id');
+    await expect(context).toBeVisible();
+    await expect(cards.first()).toBeVisible();
+    await expect(browse).toBeVisible();
 
-        await expect(browse).toHaveAttribute(
-            'href',
-            `#${targetId}`
-        );
+    const heading = context.locator('h2[id^="OwnerContext-"]');
 
-        await browse.focus();
-        await expect(browse).toBeFocused();
+    await expect(heading).toBeVisible();
+
+    const targetId = await heading.getAttribute('id');
+
+    await expect(browse).toHaveAttribute(
+        'href',
+        `#${targetId}`
+    );
+
+    for (const card of await cards.all()) {
+        await expect(card.getByRole('link').first()).toBeVisible();
+    }
+
+    await browse.focus();
+    await expect(browse).toBeFocused();
+}
+
+for (const handle of populatedMachines) {
+    test(`${handle}: published compatible products are browseable`, async ({ page }) => {
+        await verifyPublishedCompatibility(page, handle);
     });
 }
 
-test('machine without approved compatibility cards receives no browse link', async ({ page }) => {
-    await gotoUnlocked(
-        page,
-        '/products/beadmaster',
-        'unrelated machine'
-    );
+for (const handle of pendingMachines) {
+    test(`${handle}: unpublished compatible products are not exposed`, async ({ page }) => {
+        const { context, cards, browse } =
+            await inspectMachine(page, handle);
 
-    await expect(
-        page.locator('main product-info .rhino-machine-contextual')
-    ).toHaveCount(0);
+        await expect(context).toHaveCount(0);
+        await expect(cards).toHaveCount(0);
+        await expect(browse).toHaveCount(0);
+    });
+}
 
-    await expect(
-        page.locator('main product-info a[data-rhino-machine-browse]')
-    ).toHaveCount(0);
+test('unrelated machine receives no invented compatibility', async ({ page }) => {
+    const { context, cards, browse } =
+        await inspectMachine(page, 'beadmaster');
+
+    await expect(context).toHaveCount(0);
+    await expect(cards).toHaveCount(0);
+    await expect(browse).toHaveCount(0);
 });
