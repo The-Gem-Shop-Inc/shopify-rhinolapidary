@@ -16,7 +16,25 @@ function authority(r,mode,context){return engine.parseAndRenderSync(R.compile(r)
 function test(name,fn){try{fn();tests.push({name,passed:true});}catch(e){tests.push({name,passed:false,error:e.message});console.error(name,e.stack);}}
 test('Current 119 public Products yield all 111 G links and all 114 native G Variants',()=>{const html=render(state()),ids=[...html.matchAll(/data-g-product="(\d+)"/g)].map(m=>m[1]),g=release.products.filter(p=>p.role!=='machine');assert.deepEqual(ids.slice().sort(),g.map(p=>R.number(p.productGid)).sort());assert.equal(new Set(ids).size,111);assert.equal(g.reduce((s,p)=>s+p.variantGids.length,0),114);for(const r of release.roles)assert(html.includes('id="'+r.fragment+'"'));});
 test('Three exact classes only; metadata and title never grant classification',()=>{for(const role of ['unknown','machine','consumable']){const s=state(),p=s.collection.products.find(p=>p.metafields.rhino.product_class.value==='accessory');p.metafields.rhino.product_class.value=role;p.tags=['accessory'];p.product_type='accessory';p.title='Accessory';const html=render(s);assert(html.includes('data-governed="false"'));assert(!html.includes('data-role='));assert(html.includes(p.url));}});
-test('Shopify leading-newline render output is normalized without accepting changed native class values',()=>{const ge=makeEngine({readFileSync:path=>String(path).endsWith('rhino-g-catalog-authority.liquid')?'\n'+R.compile(release):fs.readFileSync(path,'utf8')}),s=state();const html=ge.renderFileSync('rhino-g-catalog-index',s);assert(html.includes('data-governed="true"'));assert.equal((html.match(/data-g-product=/g)||[]).length,111);for(const m of release.machines)assert(html.includes('href="'+m.url+m.fragment+'"'));s.collection.products[0].metafields.rhino.product_class.value=' consumable ';const invalid=ge.renderFileSync('rhino-g-catalog-index',s);assert(invalid.includes('data-governed="false"'));assert(!invalid.includes('data-g-product='));});
+test('Shopify leading-newline render output is normalized without accepting changed native class values', () => {
+    const ge = makeEngine({readFileSync: path => String(path).endsWith('rhino-g-catalog-authority.liquid') ? '\n' + R.compile(release) : fs.readFileSync(path, 'utf8')}),
+        s = state();
+    const html = ge.renderFileSync('rhino-g-catalog-index', s);
+    assert(html.includes('data-governed="true"'));
+    assert.equal((html.match(/data-g-product=/g) || []).length, 111);
+    for (const m of release.machines) {
+        assert(
+            html.includes(
+                'href="' + m.url +
+                '" data-g-machine="' + R.number(m.productGid) + '"'
+            )
+        );
+    }
+    s.collection.products[0].metafields.rhino.product_class.value = ' consumable ';
+    const invalid = ge.renderFileSync('rhino-g-catalog-index', s);
+    assert(invalid.includes('data-governed="false"'));
+    assert(!invalid.includes('data-g-product='));
+});
 for(const [name,mutate]of [['unknown Product ID',p=>p.id=999],['changed handle',p=>p.handle='changed'],['changed class type',p=>p.metafields.rhino.product_class.type='json'],['removed publication',p=>p.published_at=null],['future publication',p=>p.published_at='2100-01-01T00:00:00Z'],['Variant added',p=>p.variants.push({id:999})],['Variant replaced',p=>p.variants[0].id=999]])test(name+' suppresses all role claims but preserves native links',()=>{const s=state();mutate(s.collection.products[0]);const html=render(s);assert(html.includes('data-governed="false"'));assert.equal((html.match(/<li><a href=/g)||[]).length,119);assert(!html.includes('data-role='));});
 
 test('Catalog growth or reduction does not invalidate approved classifications', () => {
@@ -61,13 +79,46 @@ test('Time passage does not revoke unchanged classifications', () => {
         assert(html.includes('data-role="accessory"'));
 
         // Machine context is governed independently.
-        assert(!html.includes('data-g-machine='));
+        assert.equal(
+            (html.match(/data-g-machine=/g) || []).length,
+            release.machines.length
+        );
     } finally {
         clock = saved;
     }
 });
 test('Optional SKU, media, description and resources are not directory dependencies',()=>{const s=state();for(const p of s.collection.products){p.sku='';p.images=[];p.description='';}assert.equal((render(s).match(/data-g-product=/g)||[]).length,111);});
-test('Machine entries equal G3A identities and fragments, with no family expansion',()=>{const html=render(state());assert.equal((html.match(/data-g-machine=/g)||[]).length,5);for(const m of release.machines)assert(html.includes('href="'+m.url+m.fragment+'"'));for(const h of ['jademaster','sawmaster-36','tumblemaster','em-1-parts'])assert(!html.includes('/products/'+h+'"')&&!html.includes('/collections/'+h));assert(!html.includes('Fits these machines'));});
+
+test('Machine directory uses approved native routes without stale fragments', () => {
+    const html = render(state());
+
+    const ids = [...html.matchAll(/data-g-machine="(\d+)"/g)]
+        .map(match => match[1]);
+
+    const approved = release.machines
+        .map(machine => R.number(machine.productGid));
+
+    assert.deepEqual(ids.sort(), approved.sort());
+
+    for (const machine of release.machines) {
+        assert(
+            html.includes(
+                `href="${machine.url}" data-g-machine="${R.number(machine.productGid)}"`
+            )
+        );
+
+        assert(!html.includes(`href="${machine.url}${machine.fragment}"`));
+    }
+
+    for (const handle of [
+        'jademaster',
+        'sawmaster-36',
+        'tumblemaster',
+    ]) {
+        assert(!html.includes(`href="/products/${handle}"`));
+    }
+});
+
 test('No SKU requirement, price gate, image grid, lookup graph or cart manager',()=>{const src=fs.readFileSync('snippets/rhino-g-catalog-index.liquid','utf8');for(const forbidden of ['all_products[','item.price','item.sku','card-product','compatible_machines','fetch('])assert(!src.includes(forbidden));});
 
 test('Native collection pagination and settings remain intact', () => {

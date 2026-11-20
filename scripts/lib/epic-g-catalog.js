@@ -78,22 +78,17 @@ function compile(release) {
  out.push(
      "{%- endcase -%}",
      "{%- when 'machine' -%}",
-
-     // Machine context has a separate presentation approval.
-     // Do not enable links to expired or missing machine anchors.
-     `{%- if g_now < ${Math.floor(Date.parse(release.machineExpiresAt) / 1000)} -%}`,
      "{%- case product.id -%}",
  );
 
  for (const machine of release.machines) {
   out.push(
-      `{%- when ${number(machine.productGid)} -%}${machine.fragment}`
+      `{%- when ${number(machine.productGid)} -%}eligible`
   );
  }
 
  out.push(
      "{%- endcase -%}",
-     "{%- endif -%}",
      "{%- endcase -%}"
  );
 

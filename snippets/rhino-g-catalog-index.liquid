@@ -64,15 +64,23 @@
         {%- for item in collection.products offset: g_offset limit: 50 -%}
           {%- capture needle -%}|{{ item.id }}:machine|{%- endcapture -%}
           {%- if g_members contains needle -%}
-            {%- capture fragment -%}{%- render 'rhino-g-catalog-authority', mode: 'machine', product: item -%}{%- endcapture -%}
-            {%- assign fragment = fragment | strip -%}
-            {%- if fragment != blank -%}<li><a href="{{ item.url }}{{ fragment }}" data-g-machine="{{ item.id }}">{{ item.title | escape }}</a></li>{%- endif -%}
+            {%- capture machine_status -%}
+              {%- render 'rhino-g-catalog-authority', mode: 'machine', product: item -%}
+            {%- endcapture -%}
+            {%- assign machine_status = machine_status | strip -%}
+            {%- if machine_status == 'eligible' -%}
+              <li>
+                <a href="{{ item.url }}" data-g-machine="{{ item.id }}">
+                  {{ item.title | escape }}
+                </a>
+              </li>
+            {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       {%- endfor -%}
     {%- endcapture -%}
     {%- if g_machines != blank -%}
-      <section aria-labelledby="g-machine-context"><h3 id="g-machine-context" tabindex="-1">Know your machine?</h3><p>Browse the approved compatible products on its machine page.</p><ul class="rhino-g-catalog__links" role="list">{{ g_machines }}</ul></section>
+      <section aria-labelledby="g-machine-context"><h3 id="g-machine-context" tabindex="-1">Know your machine?</h3><p>View machine details and any compatible products currently available.</p><ul class="rhino-g-catalog__links" role="list">{{ g_machines }}</ul></section>
     {%- endif -%}
   {%- else -%}
     <h2 id="g-replacement-parts" tabindex="-1">Browse Products</h2>
