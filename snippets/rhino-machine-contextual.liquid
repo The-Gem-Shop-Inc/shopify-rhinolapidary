@@ -1,0 +1,16 @@
+{%- if request.host == 'machine.local' and projection.fixture_only and projection.contextual.size > 0 -%}
+  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+  <section class="rhino-machine-facts rhino-machine-contextual" aria-labelledby="MachineContext-{{ section.id }}">
+    <h2 id="MachineContext-{{ section.id }}">{{ 'products.product.machine_context.heading' | t }}</h2>
+    <ul class="rhino-machine-contents-list" role="list">
+      {% for item in projection.contextual %}
+        {% assign context_id = section.id | append: '-context-' | append: forloop.index %}
+        <li class="rhino-machine-component" aria-describedby="Relationship-{{ context_id }} Scope-{{ context_id }}">
+          <h3 id="Relationship-{{ context_id }}">{% assign label_key = 'products.product.machine_context.' | append: item.meaning %}{{ label_key | t }}</h3>
+          {% render 'card-product', card_product: item.product, section_id: context_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true %}
+          <p id="Scope-{{ context_id }}">{{ item.scope | escape }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{%- endif -%}

@@ -1,0 +1,67 @@
+{%- comment -%}
+Generated from exact E owner responses and reconciled Product metafields.
+Receipt SHA256: 89a0a4584eb2dcaa449baa63e52b588211b55f4b03ba8c0344144384f11b443a
+No candidate, crate, optional, resource or recommendation fallback.
+{%- endcomment -%}
+{%- assign rhino_owner_now = 'now' | date: '%s' | plus: 0 -%}
+{%- assign rhino_owner_gid = 'gid://shopify/Product/' | append: product.id -%}
+{%- if template.suffix == 'machine' and product.published_at != blank and product.metafields.rhino.product_class.value == 'machine' and rhino_owner_now >= 1792095997 and rhino_owner_now < 1792700797 -%}
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905781477573' -%}
+{%- capture rhino_owner_context_items -%}
+{%- assign rhino_owner_part_56 = all_products['debris-guard'] -%}
+{%- assign rhino_owner_part_56_targets = rhino_owner_part_56.metafields.rhino.compatible_machines.value | map: 'id' | sort | join: ',' -%}
+{%- if rhino_owner_part_56.id == 8905780428997 and rhino_owner_part_56.metafields.rhino.product_class.value == 'replacement_part' and rhino_owner_part_56.metafields.rhino.compatible_machines.type == 'list.product_reference' and rhino_owner_part_56_targets == '8905781477573' -%}
+<li class="rhino-machine-component" data-rhino-owner-compatible="8905780428997" aria-describedby="OwnerRelationship-{{ section.id }}-56"><h3 id="OwnerRelationship-{{ section.id }}-56">{{ 'products.product.machine_context.compatible' | t }}</h3>
+{% assign rhino_owner_card_id = section.id | append: '-owner-56' %}{% render 'card-product', card_product: rhino_owner_part_56, section_id: rhino_owner_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+</li>
+{%- endif -%}
+{%- assign rhino_owner_part_57 = all_products['flexible-water-spout'] -%}
+{%- assign rhino_owner_part_57_targets = rhino_owner_part_57.metafields.rhino.compatible_machines.value | map: 'id' | sort | join: ',' -%}
+{%- if rhino_owner_part_57.id == 8905781182661 and rhino_owner_part_57.metafields.rhino.product_class.value == 'accessory' and rhino_owner_part_57.metafields.rhino.compatible_machines.type == 'list.product_reference' and rhino_owner_part_57_targets == '8905781477573' -%}
+<li class="rhino-machine-component" data-rhino-owner-compatible="8905781182661" aria-describedby="OwnerRelationship-{{ section.id }}-57"><h3 id="OwnerRelationship-{{ section.id }}-57">{{ 'products.product.machine_context.compatible' | t }}</h3>
+{% assign rhino_owner_card_id = section.id | append: '-owner-57' %}{% render 'card-product', card_product: rhino_owner_part_57, section_id: rhino_owner_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+</li>
+{%- endif -%}
+{%- assign rhino_owner_part_58 = all_products['lapmaster-pulleys'] -%}
+{%- assign rhino_owner_part_58_targets = rhino_owner_part_58.metafields.rhino.compatible_machines.value | map: 'id' | sort | join: ',' -%}
+{%- if rhino_owner_part_58.id == 8905783115973 and rhino_owner_part_58.metafields.rhino.product_class.value == 'replacement_part' and rhino_owner_part_58.metafields.rhino.compatible_machines.type == 'list.product_reference' and rhino_owner_part_58_targets == '8905781477573' -%}
+<li class="rhino-machine-component" data-rhino-owner-compatible="8905783115973" aria-describedby="OwnerRelationship-{{ section.id }}-58"><h3 id="OwnerRelationship-{{ section.id }}-58">{{ 'products.product.machine_context.compatible' | t }}</h3>
+{% assign rhino_owner_card_id = section.id | append: '-owner-58' %}{% render 'card-product', card_product: rhino_owner_part_58, section_id: rhino_owner_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+</li>
+{%- endif -%}
+{%- assign rhino_owner_part_59 = all_products['rotation-table'] -%}
+{%- assign rhino_owner_part_59_targets = rhino_owner_part_59.metafields.rhino.compatible_machines.value | map: 'id' | sort | join: ',' -%}
+{%- if rhino_owner_part_59.id == 8905783673029 and rhino_owner_part_59.metafields.rhino.product_class.value == 'accessory' and rhino_owner_part_59.metafields.rhino.compatible_machines.type == 'list.product_reference' and rhino_owner_part_59_targets == '8905781477573' -%}
+<li class="rhino-machine-component" data-rhino-owner-compatible="8905783673029" aria-describedby="OwnerRelationship-{{ section.id }}-59"><h3 id="OwnerRelationship-{{ section.id }}-59">{{ 'products.product.machine_context.compatible' | t }}</h3>
+{% assign rhino_owner_card_id = section.id | append: '-owner-59' %}{% render 'card-product', card_product: rhino_owner_part_59, section_id: rhino_owner_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+</li>
+{%- endif -%}
+{%- assign rhino_owner_part_60 = all_products['rotational-lock'] -%}
+{%- assign rhino_owner_part_60_targets = rhino_owner_part_60.metafields.rhino.compatible_machines.value | map: 'id' | sort | join: ',' -%}
+{%- if rhino_owner_part_60.id == 8905783771333 and rhino_owner_part_60.metafields.rhino.product_class.value == 'replacement_part' and rhino_owner_part_60.metafields.rhino.compatible_machines.type == 'list.product_reference' and rhino_owner_part_60_targets == '8905781477573' -%}
+<li class="rhino-machine-component" data-rhino-owner-compatible="8905783771333" aria-describedby="OwnerRelationship-{{ section.id }}-60"><h3 id="OwnerRelationship-{{ section.id }}-60">{{ 'products.product.machine_context.compatible' | t }}</h3>
+{% assign rhino_owner_card_id = section.id | append: '-owner-60' %}{% render 'card-product', card_product: rhino_owner_part_60, section_id: rhino_owner_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+</li>
+{%- endif -%}
+{%- assign rhino_owner_part_61 = all_products['rotational-lock-handle'] -%}
+{%- assign rhino_owner_part_61_targets = rhino_owner_part_61.metafields.rhino.compatible_machines.value | map: 'id' | sort | join: ',' -%}
+{%- if rhino_owner_part_61.id == 8905783869637 and rhino_owner_part_61.metafields.rhino.product_class.value == 'replacement_part' and rhino_owner_part_61.metafields.rhino.compatible_machines.type == 'list.product_reference' and rhino_owner_part_61_targets == '8905781477573' -%}
+<li class="rhino-machine-component" data-rhino-owner-compatible="8905783869637" aria-describedby="OwnerRelationship-{{ section.id }}-61"><h3 id="OwnerRelationship-{{ section.id }}-61">{{ 'products.product.machine_context.compatible' | t }}</h3>
+{% assign rhino_owner_card_id = section.id | append: '-owner-61' %}{% render 'card-product', card_product: rhino_owner_part_61, section_id: rhino_owner_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+</li>
+{%- endif -%}
+{%- assign rhino_owner_part_62 = all_products['lapmaster-feet'] -%}
+{%- assign rhino_owner_part_62_targets = rhino_owner_part_62.metafields.rhino.compatible_machines.value | map: 'id' | sort | join: ',' -%}
+{%- if rhino_owner_part_62.id == 8905783935173 and rhino_owner_part_62.metafields.rhino.product_class.value == 'replacement_part' and rhino_owner_part_62.metafields.rhino.compatible_machines.type == 'list.product_reference' and rhino_owner_part_62_targets == '8905781477573' -%}
+<li class="rhino-machine-component" data-rhino-owner-compatible="8905783935173" aria-describedby="OwnerRelationship-{{ section.id }}-62"><h3 id="OwnerRelationship-{{ section.id }}-62">{{ 'products.product.machine_context.compatible' | t }}</h3>
+{% assign rhino_owner_card_id = section.id | append: '-owner-62' %}{% render 'card-product', card_product: rhino_owner_part_62, section_id: rhino_owner_card_id, skip_styles: true, quick_add: 'none', show_vendor: false, show_rating: false, show_secondary_image: false, extend_height: false, rhino_contents_context: true, rhino_owner_customer_context: true %}
+</li>
+{%- endif -%}
+{%- endcapture -%}
+{%- assign rhino_owner_context_items = rhino_owner_context_items | strip -%}
+{%- if rhino_owner_context_items != blank -%}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+<section class="rhino-machine-facts rhino-machine-contextual" aria-labelledby="OwnerContext-{{ section.id }}"><h2 id="OwnerContext-{{ section.id }}">{{ 'products.product.machine_context.heading' | t }}</h2><ul class="rhino-machine-contents-list" role="list">{{ rhino_owner_context_items }}</ul></section>
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}

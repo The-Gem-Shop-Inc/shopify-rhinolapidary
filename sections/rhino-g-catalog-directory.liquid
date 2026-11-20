@@ -1,0 +1,22 @@
+{{ 'rhino-g-catalog.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'rhino-g-catalog.js' | asset_url }}" defer="defer"></script>
+
+<div class="page-width section-{{ section.id }}-padding">
+  {%- paginate collection.products by 150 -%}
+    {%- render 'rhino-g-catalog-index', collection: collection, paginate: paginate -%}
+  {%- endpaginate -%}
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Product directory",
+  "class": "section"
+}
+{% endschema %}

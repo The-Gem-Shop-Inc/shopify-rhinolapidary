@@ -1,0 +1,178 @@
+{%- liquid
+  assign rhino_breadcrumb_render = false
+  assign rhino_page_type = request.page_type
+  assign rhino_home_label = 'breadcrumbs.home' | t
+  assign rhino_search_label = 'templates.search.title' | t
+  assign rhino_cart_label = 'templates.cart.cart' | t
+  assign rhino_root_url = routes.root_url | split: '?' | first
+  assign rhino_current_url = canonical_url | default: request.path
+  assign rhino_current_url = rhino_current_url | split: '?' | first
+  assign rhino_home_absolute_url = request.origin | append: rhino_root_url
+
+  case rhino_page_type
+    when 'product', 'collection', 'search', 'page', 'blog', 'article', 'cart', 'policy'
+      assign rhino_breadcrumb_render = true
+  endcase
+
+  if template.name == 'index' or rhino_page_type == 'index' or rhino_page_type == 'password' or rhino_page_type == '404'
+    assign rhino_breadcrumb_render = false
+  endif
+
+  assign rhino_product_collection = nil
+  if rhino_page_type == 'product' and collection != blank and collection.handle != 'all'
+    for rhino_collection_candidate in product.collections
+      if rhino_collection_candidate.handle == collection.handle
+        assign rhino_product_collection = collection
+        break
+      endif
+    endfor
+  endif
+-%}
+
+{%- if rhino_breadcrumb_render -%}
+  <nav class="rhino-breadcrumb page-width" aria-label="{{ 'breadcrumbs.label' | t | escape }}">
+    <ol class="rhino-breadcrumb__list">
+      <li class="rhino-breadcrumb__item">
+        <a class="rhino-breadcrumb__link" href="{{ rhino_root_url }}">{{ rhino_home_label | escape }}</a>
+        <span class="rhino-breadcrumb__separator" aria-hidden="true">/</span>
+      </li>
+
+      {%- case rhino_page_type -%}
+        {%- when 'product' -%}
+          {%- if rhino_product_collection != blank -%}
+            <li class="rhino-breadcrumb__item">
+              <a class="rhino-breadcrumb__link" href="{{ rhino_product_collection.url | split: '?' | first }}">
+                {{ rhino_product_collection.title | escape }}
+              </a>
+              <span class="rhino-breadcrumb__separator" aria-hidden="true">/</span>
+            </li>
+          {%- endif -%}
+          <li class="rhino-breadcrumb__item rhino-breadcrumb__item--current" aria-current="page">
+            {{ product.title | escape }}
+          </li>
+        {%- when 'collection' -%}
+          <li class="rhino-breadcrumb__item rhino-breadcrumb__item--current" aria-current="page">
+            {{ collection.title | escape }}
+          </li>
+        {%- when 'search' -%}
+          <li class="rhino-breadcrumb__item rhino-breadcrumb__item--current" aria-current="page">
+            {{ rhino_search_label | escape }}
+          </li>
+        {%- when 'page' -%}
+          <li class="rhino-breadcrumb__item rhino-breadcrumb__item--current" aria-current="page">
+            {{ page.title | escape }}
+          </li>
+        {%- when 'blog' -%}
+          <li class="rhino-breadcrumb__item rhino-breadcrumb__item--current" aria-current="page">
+            {{ blog.title | escape }}
+          </li>
+        {%- when 'article' -%}
+          <li class="rhino-breadcrumb__item">
+            <a class="rhino-breadcrumb__link" href="{{ blog.url | split: '?' | first }}">{{ blog.title | escape }}</a>
+            <span class="rhino-breadcrumb__separator" aria-hidden="true">/</span>
+          </li>
+          <li class="rhino-breadcrumb__item rhino-breadcrumb__item--current" aria-current="page">
+            {{ article.title | escape }}
+          </li>
+        {%- when 'cart' -%}
+          <li class="rhino-breadcrumb__item rhino-breadcrumb__item--current" aria-current="page">
+            {{ rhino_cart_label | escape }}
+          </li>
+        {%- when 'policy' -%}
+          <li class="rhino-breadcrumb__item rhino-breadcrumb__item--current" aria-current="page">
+            {{ policy.title | default: page_title | escape }}
+          </li>
+      {%- endcase -%}
+    </ol>
+  </nav>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": {{ rhino_home_label | strip | json }},
+          "item": {{ rhino_home_absolute_url | json }}
+        }
+        {%- assign rhino_position = 2 -%}
+        {%- case rhino_page_type -%}
+          {%- when 'product' -%}
+            {%- if rhino_product_collection != blank -%}
+              ,{
+                "@type": "ListItem",
+                "position": {{ rhino_position }},
+                "name": {{ rhino_product_collection.title | strip | json }},
+                "item": {{ request.origin | append: rhino_product_collection.url | split: '?' | first | json }}
+              }
+              {%- assign rhino_position = rhino_position | plus: 1 -%}
+            {%- endif -%}
+            ,{
+              "@type": "ListItem",
+              "position": {{ rhino_position }},
+              "name": {{ product.title | strip | json }},
+              "item": {{ request.origin | append: product.url | split: '?' | first | json }}
+            }
+          {%- when 'collection' -%}
+            ,{
+              "@type": "ListItem",
+              "position": {{ rhino_position }},
+              "name": {{ collection.title | strip | json }},
+              "item": {{ request.origin | append: collection.url | split: '?' | first | json }}
+            }
+          {%- when 'search' -%}
+            ,{
+              "@type": "ListItem",
+              "position": {{ rhino_position }},
+              "name": {{ rhino_search_label | strip | json }},
+              "item": {{ request.origin | append: routes.search_url | split: '?' | first | json }}
+            }
+          {%- when 'page' -%}
+            ,{
+              "@type": "ListItem",
+              "position": {{ rhino_position }},
+              "name": {{ page.title | strip | json }},
+              "item": {{ request.origin | append: page.url | split: '?' | first | json }}
+            }
+          {%- when 'blog' -%}
+            ,{
+              "@type": "ListItem",
+              "position": {{ rhino_position }},
+              "name": {{ blog.title | strip | json }},
+              "item": {{ request.origin | append: blog.url | split: '?' | first | json }}
+            }
+          {%- when 'article' -%}
+            ,{
+              "@type": "ListItem",
+              "position": {{ rhino_position }},
+              "name": {{ blog.title | strip | json }},
+              "item": {{ request.origin | append: blog.url | split: '?' | first | json }}
+            }
+            {%- assign rhino_position = rhino_position | plus: 1 -%}
+            ,{
+              "@type": "ListItem",
+              "position": {{ rhino_position }},
+              "name": {{ article.title | strip | json }},
+              "item": {{ request.origin | append: article.url | split: '?' | first | json }}
+            }
+          {%- when 'cart' -%}
+            ,{
+              "@type": "ListItem",
+              "position": {{ rhino_position }},
+              "name": {{ rhino_cart_label | strip | json }},
+              "item": {{ request.origin | append: routes.cart_url | split: '?' | first | json }}
+            }
+          {%- when 'policy' -%}
+            ,{
+              "@type": "ListItem",
+              "position": {{ rhino_position }},
+              "name": {{ policy.title | default: page_title | strip | json }},
+              "item": {{ rhino_current_url | json }}
+            }
+        {%- endcase -%}
+      ]
+    }
+  </script>
+{%- endif -%}

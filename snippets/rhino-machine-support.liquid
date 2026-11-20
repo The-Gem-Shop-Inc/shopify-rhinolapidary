@@ -1,0 +1,32 @@
+{%- if request.host == 'machine.local' and projection.fixture_only and projection.warranty.size > 0 -%}
+  <section class="rhino-machine-facts rhino-machine-support" aria-labelledby="MachineSupport-{{ section.id }}">
+    <h2 id="MachineSupport-{{ section.id }}">{{ 'products.product.machine_support.heading' | t }}</h2>
+    {% for warranty in projection.warranty %}
+      <dl>
+        {% for role in warranty.roles %}
+          {% if role[1] %}
+            <div class="rhino-machine-fact-row">
+              {% assign role_key = 'products.product.machine_support.' | append: role[0] %}
+              <dt>{{ role_key | t }}</dt><dd>{{ role[1] | escape }}</dd>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% if warranty.duration %}
+          <div class="rhino-machine-fact-row">
+            <dt>{{ 'products.product.machine_support.duration' | t }}</dt>
+            {% assign unit_key = 'products.product.machine_support.' | append: warranty.duration.unit %}
+            <dd>{{ warranty.duration.value | escape }} {{ unit_key | t }}</dd>
+          </div>
+        {% endif %}
+        <div class="rhino-machine-fact-row"><dt>{{ 'products.product.machine_support.trigger' | t }}</dt><dd>{{ warranty.trigger | escape }}</dd></div>
+        {% if warranty.exclusions.size > 0 %}
+          <div class="rhino-machine-fact-row"><dt>{{ 'products.product.machine_support.exclusions' | t }}</dt><dd><ul>{% for line in warranty.exclusions %}<li>{{ line | escape }}</li>{% endfor %}</ul></dd></div>
+        {% endif %}
+        {% if warranty.exceptions.size > 0 %}
+          <div class="rhino-machine-fact-row"><dt>{{ 'products.product.machine_support.exceptions' | t }}</dt><dd><ul>{% for line in warranty.exceptions %}<li>{{ line | escape }}</li>{% endfor %}</ul></dd></div>
+        {% endif %}
+      </dl>
+      {% if warranty.destination %}<a class="link underlined-link" href="{{ warranty.destination | escape }}">{{ 'products.product.machine_support.destination' | t }}</a>{% endif %}
+    {% endfor %}
+  </section>
+{%- endif -%}

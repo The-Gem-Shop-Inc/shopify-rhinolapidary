@@ -1,0 +1,19 @@
+{%- if request.host == 'machine.local' and projection.fixture_only -%}
+{%- if projection.key_specs.size > 0 -%}
+  <section class="rhino-machine-facts" aria-labelledby="MachineKeySpecs-{{ section.id }}">
+    <h2 id="MachineKeySpecs-{{ section.id }}">{{ 'products.product.machine_facts.key' | t }}</h2>
+    <dl>{% for row in projection.key_specs %}{% render 'rhino-machine-specification-row', row: row %}{% endfor %}</dl>
+  </section>
+{%- endif -%}
+{%- if projection.spec_groups.size > 0 -%}
+  <section class="rhino-machine-facts" aria-labelledby="MachineSpecs-{{ section.id }}">
+    <h2 id="MachineSpecs-{{ section.id }}">{{ 'products.product.machine_facts.details' | t }}</h2>
+    {% for group in projection.spec_groups %}
+      {% if group.rows.size > 0 %}
+        <h3>{{ group.label_key | t }}</h3>
+        <dl>{% for row in group.rows %}{% render 'rhino-machine-specification-row', row: row %}{% endfor %}</dl>
+      {% endif %}
+    {% endfor %}
+  </section>
+{%- endif -%}
+{%- endif -%}

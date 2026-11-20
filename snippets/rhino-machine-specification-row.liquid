@@ -1,0 +1,17 @@
+{%- comment -%}
+  Specification row renderer for the fixture-only machine specification projection
+
+  The parent renderer is restricted to machine.local and projection.fixture_only.
+
+  Do not manufacture technical vcalues or render incomplete rows.
+{%- endcomment -%}
+
+{%- if row != blank -%}
+  {%- assign label_key = row.label_key -%}
+  {%- assign display_value = row.display | default: row.value -%}
+
+  {%- if label_key != blank and display_value != blank -%}
+    <dt>{{ label_key | t | escape }}</dt>
+    <dd>{{ display_value | escape }}</dd>
+  {%- endif -%}
+{%- endif -%}

@@ -1,0 +1,24 @@
+{% comment %}
+  Rhino browser identity assets.
+
+  The primary favicon remains managed through Shopify's native favicon setting.
+  These repository-owned assets supplement that setting for browser chrome and
+  saved mobile shortcuts.
+
+  Source PBIs: B-016, B-017
+{% endcomment %}
+
+<meta name="theme-color" content="#111111">
+<meta name="msapplication-TileColor" content="#111111">
+
+<link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="{{ 'rhino-apple-touch-icon.png' | asset_url }}"
+>
+
+<link
+        rel="mask-icon"
+        href="{{ 'rhino-pinned-tab.svg' | asset_url }}"
+        color="#B51820"
+>

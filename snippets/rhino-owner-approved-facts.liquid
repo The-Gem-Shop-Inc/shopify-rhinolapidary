@@ -1,0 +1,18 @@
+{%- comment -%}
+Generated from exact E owner responses and reconciled Product metafields.
+Receipt SHA256: 89a0a4584eb2dcaa449baa63e52b588211b55f4b03ba8c0344144384f11b443a
+No candidate, crate, optional, resource or recommendation fallback.
+{%- endcomment -%}
+{%- assign rhino_owner_now = 'now' | date: '%s' | plus: 0 -%}
+{%- assign rhino_owner_gid = 'gid://shopify/Product/' | append: product.id -%}
+{%- if template.suffix == 'machine' and product.published_at != blank and product.metafields.rhino.product_class.value == 'machine' and rhino_owner_now >= 1792095997 and rhino_owner_now < 1792700797 -%}
+
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905779937477' -%}{%- render 'rhino-owner-approved-facts-8905779937477', product: product, section: section -%}{%- endif -%}
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905780756677' -%}{%- render 'rhino-owner-approved-facts-8905780756677', product: product, section: section -%}{%- endif -%}
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905781412037' -%}{%- render 'rhino-owner-approved-facts-8905781412037', product: product, section: section -%}{%- endif -%}
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905781477573' -%}{%- render 'rhino-owner-approved-facts-8905781477573', product: product, section: section -%}{%- endif -%}
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905784131781' -%}{%- render 'rhino-owner-approved-facts-8905784131781', product: product, section: section -%}{%- endif -%}
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905784197317' -%}{%- render 'rhino-owner-approved-facts-8905784197317', product: product, section: section -%}{%- endif -%}
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905784328389' -%}{%- render 'rhino-owner-approved-facts-8905784328389', product: product, section: section -%}{%- endif -%}
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905785344197' -%}{%- render 'rhino-owner-approved-facts-8905785344197', product: product, section: section -%}{%- endif -%}
+{%- endif -%}

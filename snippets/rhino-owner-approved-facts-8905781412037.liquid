@@ -1,0 +1,66 @@
+{%- comment -%}
+Generated from exact E owner responses and reconciled Product metafields.
+Receipt SHA256: 89a0a4584eb2dcaa449baa63e52b588211b55f4b03ba8c0344144384f11b443a
+No candidate, crate, optional, resource or recommendation fallback.
+{%- endcomment -%}
+{%- assign rhino_owner_now = 'now' | date: '%s' | plus: 0 -%}
+{%- assign rhino_owner_gid = 'gid://shopify/Product/' | append: product.id -%}
+{%- if template.suffix == 'machine' and product.published_at != blank and product.metafields.rhino.product_class.value == 'machine' and rhino_owner_now >= 1792095997 and rhino_owner_now < 1792700797 -%}
+{%- if rhino_owner_gid == 'gid://shopify/Product/8905781412037' -%}
+{%- assign rhino_owner_specs_present = false -%}
+{%- assign rhino_owner_40_unit = product.metafields.rhino.input_voltage.value.unit | downcase -%}
+{%- assign rhino_owner_spec_admitted_41 = false -%}
+{%- if product.metafields.rhino.input_voltage.type == 'voltage' and product.metafields.rhino.input_voltage.value.value == 110 and rhino_owner_40_unit == 'v' -%}{%- assign rhino_owner_spec_admitted_41 = true -%}{%- assign rhino_owner_specs_present = true -%}{%- endif -%}
+{%- assign rhino_owner_41 = product.metafields.rhino.input_frequencies.value | first -%}
+{%- assign rhino_owner_41_unit = rhino_owner_41.unit | downcase -%}
+{%- assign rhino_owner_spec_admitted_42 = false -%}
+{%- if product.metafields.rhino.input_frequencies.type == 'list.frequency' and product.metafields.rhino.input_frequencies.value.size == 1 and rhino_owner_41.value == 60 and rhino_owner_41_unit == 'hz' -%}{%- assign rhino_owner_spec_admitted_42 = true -%}{%- assign rhino_owner_specs_present = true -%}{%- endif -%}
+{%- assign rhino_owner_42_unit = product.metafields.rhino.motor_power.value.unit | downcase -%}
+{%- assign rhino_owner_spec_admitted_43 = false -%}
+{%- if product.metafields.rhino.motor_power.type == 'power' and product.metafields.rhino.motor_power.value.value == 1 and rhino_owner_42_unit == 'hp' -%}{%- assign rhino_owner_spec_admitted_43 = true -%}{%- assign rhino_owner_specs_present = true -%}{%- endif -%}
+{%- assign rhino_owner_43_unit = product.metafields.rhino.motor_speed.value.unit | downcase -%}
+{%- assign rhino_owner_spec_admitted_44 = false -%}
+{%- if product.metafields.rhino.motor_speed.type == 'rotational_speed' and product.metafields.rhino.motor_speed.value.value == 1400 and rhino_owner_43_unit == 'rpm' -%}{%- assign rhino_owner_spec_admitted_44 = true -%}{%- assign rhino_owner_specs_present = true -%}{%- endif -%}
+{%- assign rhino_owner_44_unit = product.metafields.rhino.net_weight.value.unit | downcase -%}
+{%- assign rhino_owner_spec_admitted_45 = false -%}
+{%- if product.metafields.rhino.net_weight.type == 'weight' and product.metafields.rhino.net_weight.value.value == 122 and rhino_owner_44_unit == 'lb' -%}{%- assign rhino_owner_spec_admitted_45 = true -%}{%- assign rhino_owner_specs_present = true -%}{%- endif -%}
+{%- assign rhino_owner_45_unit = product.metafields.rhino.assembled_length.value.unit | downcase -%}
+{%- assign rhino_owner_spec_admitted_46 = false -%}
+{%- if product.metafields.rhino.assembled_length.type == 'dimension' and product.metafields.rhino.assembled_length.value.value == 20 and rhino_owner_45_unit == 'in' -%}{%- assign rhino_owner_spec_admitted_46 = true -%}{%- assign rhino_owner_specs_present = true -%}{%- endif -%}
+{%- assign rhino_owner_46_unit = product.metafields.rhino.assembled_width.value.unit | downcase -%}
+{%- assign rhino_owner_spec_admitted_47 = false -%}
+{%- if product.metafields.rhino.assembled_width.type == 'dimension' and product.metafields.rhino.assembled_width.value.value == 16.5 and rhino_owner_46_unit == 'in' -%}{%- assign rhino_owner_spec_admitted_47 = true -%}{%- assign rhino_owner_specs_present = true -%}{%- endif -%}
+{%- assign rhino_owner_47_unit = product.metafields.rhino.assembled_height.value.unit | downcase -%}
+{%- assign rhino_owner_spec_admitted_48 = false -%}
+{%- if product.metafields.rhino.assembled_height.type == 'dimension' and product.metafields.rhino.assembled_height.value.value == 26.375 and rhino_owner_47_unit == 'in' -%}{%- assign rhino_owner_spec_admitted_48 = true -%}{%- assign rhino_owner_specs_present = true -%}{%- endif -%}
+{%- if rhino_owner_specs_present -%}
+{%- if rhino_owner_spec_admitted_41 -%}
+<section class="rhino-machine-facts" aria-labelledby="OwnerKeySpecs-{{ section.id }}"><h2 id="OwnerKeySpecs-{{ section.id }}">{{ 'products.product.machine_facts.key' | t }}</h2><dl>
+{%- if rhino_owner_spec_admitted_41 -%}<div class="rhino-machine-fact-row" data-rhino-owner-field="input_voltage" data-rhino-owner-surface="key"><dt>{{ 'products.product.machine_facts.fields.input_voltage' | t | escape }}</dt><dd>110 V</dd></div>{%- endif -%}
+</dl></section>
+{%- endif -%}
+<section class="rhino-machine-facts" aria-labelledby="OwnerSpecs-{{ section.id }}"><h2 id="OwnerSpecs-{{ section.id }}">{{ 'products.product.machine_facts.details' | t }}</h2>
+{%- if rhino_owner_spec_admitted_41 or rhino_owner_spec_admitted_42 -%}
+<h3>{{ 'products.product.machine_facts.groups.electrical' | t }}</h3><dl>
+{%- if rhino_owner_spec_admitted_41 -%}<div class="rhino-machine-fact-row" data-rhino-owner-field="input_voltage" data-rhino-owner-surface="detail"><dt>{{ 'products.product.machine_facts.fields.input_voltage' | t | escape }}</dt><dd>110 V</dd></div>{%- endif -%}
+{%- if rhino_owner_spec_admitted_42 -%}<div class="rhino-machine-fact-row" data-rhino-owner-field="input_frequencies" data-rhino-owner-surface="detail"><dt>{{ 'products.product.machine_facts.fields.input_frequencies' | t | escape }}</dt><dd>60 Hz</dd></div>{%- endif -%}
+</dl>
+{%- endif -%}
+{%- if rhino_owner_spec_admitted_43 or rhino_owner_spec_admitted_44 -%}
+<h3>{{ 'products.product.machine_facts.groups.motor_speed' | t }}</h3><dl>
+{%- if rhino_owner_spec_admitted_43 -%}<div class="rhino-machine-fact-row" data-rhino-owner-field="motor_power" data-rhino-owner-surface="detail"><dt>{{ 'products.product.machine_facts.fields.motor_power' | t | escape }}</dt><dd>1 hp (manufacturer nameplate)</dd></div>{%- endif -%}
+{%- if rhino_owner_spec_admitted_44 -%}<div class="rhino-machine-fact-row" data-rhino-owner-field="motor_speed" data-rhino-owner-surface="detail"><dt>{{ 'products.product.machine_facts.fields.motor_speed' | t | escape }}</dt><dd>1400 rpm</dd></div>{%- endif -%}
+</dl>
+{%- endif -%}
+{%- if rhino_owner_spec_admitted_45 or rhino_owner_spec_admitted_46 or rhino_owner_spec_admitted_47 or rhino_owner_spec_admitted_48 -%}
+<h3>{{ 'products.product.machine_facts.groups.durable_measurements' | t }}</h3><dl>
+{%- if rhino_owner_spec_admitted_45 -%}<div class="rhino-machine-fact-row" data-rhino-owner-field="net_weight" data-rhino-owner-surface="detail"><dt>{{ 'products.product.machine_facts.fields.net_weight' | t | escape }}</dt><dd>122 lb</dd></div>{%- endif -%}
+{%- if rhino_owner_spec_admitted_46 -%}<div class="rhino-machine-fact-row" data-rhino-owner-field="assembled_length" data-rhino-owner-surface="detail"><dt>{{ 'products.product.machine_facts.fields.assembled_length' | t | escape }}</dt><dd>20 in</dd></div>{%- endif -%}
+{%- if rhino_owner_spec_admitted_47 -%}<div class="rhino-machine-fact-row" data-rhino-owner-field="assembled_width" data-rhino-owner-surface="detail"><dt>{{ 'products.product.machine_facts.fields.assembled_width' | t | escape }}</dt><dd>16.5 in</dd></div>{%- endif -%}
+{%- if rhino_owner_spec_admitted_48 -%}<div class="rhino-machine-fact-row" data-rhino-owner-field="assembled_height" data-rhino-owner-surface="detail"><dt>{{ 'products.product.machine_facts.fields.assembled_height' | t | escape }}</dt><dd>26.375 in</dd></div>{%- endif -%}
+</dl>
+{%- endif -%}
+</section>
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}

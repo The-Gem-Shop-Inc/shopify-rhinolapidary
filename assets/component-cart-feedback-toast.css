@@ -1,0 +1,111 @@
+cart-feedback-toast {
+  --cart-feedback-duration: 4000ms;
+  position: fixed;
+  z-index: 6;
+  right: max(1.6rem, env(safe-area-inset-right));
+  bottom: max(1.6rem, env(safe-area-inset-bottom));
+  width: min(42rem, calc(100vw - 3.2rem));
+  color: rgb(var(--color-foreground));
+}
+
+cart-feedback-toast[hidden] {
+  display: none;
+}
+
+.cart-feedback-toast__surface {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.2rem;
+  align-items: start;
+  overflow: hidden;
+  padding: 1.4rem 1.6rem 1.6rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  border-radius: var(--text-boxes-radius);
+  background: rgb(var(--color-background));
+  box-shadow: 0 0.8rem 2.4rem rgba(var(--color-foreground), 0.16);
+  animation: cart-feedback-enter 160ms ease-out both;
+}
+
+.cart-feedback-toast__message {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.cart-feedback-toast__dismiss {
+  min-width: 4.4rem;
+  min-height: 4.4rem;
+  margin: -1rem -1.2rem 0 0;
+  border: 0;
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+}
+
+.cart-feedback-toast__dismiss .svg-wrapper {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin: auto;
+}
+
+.cart-feedback-toast__progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0.3rem;
+  background: rgba(var(--color-foreground), 0.12);
+}
+
+.cart-feedback-toast__progress::after {
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background: rgb(var(--color-button));
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+cart-feedback-toast[data-timer='active'] .cart-feedback-toast__progress::after {
+  animation: cart-feedback-duration var(--cart-feedback-duration) linear both;
+}
+
+cart-feedback-toast[data-paused='true'] .cart-feedback-toast__progress::after {
+  animation-play-state: paused;
+}
+
+cart-feedback-toast[data-status='rejected'] .cart-feedback-toast__progress::after,
+cart-feedback-toast[data-status='uncertain'] .cart-feedback-toast__progress::after {
+  background: rgb(var(--color-foreground));
+}
+
+@keyframes cart-feedback-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.8rem);
+  }
+}
+
+@keyframes cart-feedback-duration {
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  cart-feedback-toast {
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: max(1rem, env(safe-area-inset-left));
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-feedback-toast__surface,
+  cart-feedback-toast[data-timer='active'] .cart-feedback-toast__progress::after {
+    animation: none;
+  }
+}

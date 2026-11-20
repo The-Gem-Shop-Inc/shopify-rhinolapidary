@@ -1,0 +1,4 @@
+{%- capture consumer_route -%}{%- render 'rhino-product-consumer-route', product: product -%}{%- endcapture -%}
+{%- if consumer_route == 'replacement_part' or consumer_route == 'consumable' or consumer_route == 'accessory' -%}
+  {{ product.description }}
+{%- endif -%}
