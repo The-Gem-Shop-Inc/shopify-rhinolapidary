@@ -25,6 +25,18 @@
       ]
     },
     {
+      "fixtureId": "search",
+      "path": "/search?q=rhino",
+      "owner": "Storefront engineering",
+      "requiredForLaunch": true,
+      "source": "theme",
+      "validatedBy": [
+        "test:smoke",
+        "test:ally",
+        "test:breadcrumbs"
+      ]
+    },
+    {
       "fixtureId": "simpleProduct",
       "path": "/products/left-moss-pad",
       "owner": "Storefront engineering",
@@ -50,6 +62,16 @@
     {
       "fixtureId": "machineProduct",
       "path": "/products/trimmaster",
+      "owner": "Storefront engineering / Epic F",
+      "requiredForLaunch": true,
+      "source": "shopify-admin",
+      "validatedBy": [
+        "validate:epic-f-batch-f1"
+      ]
+    },
+    {
+      "fixtureId": "consumableProduct",
+      "path": "/products/mr16",
       "owner": "Storefront engineering / Epic F",
       "requiredForLaunch": true,
       "source": "shopify-admin",

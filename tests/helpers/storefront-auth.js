@@ -322,9 +322,11 @@ async function submitPasswordWithRequest(page) {
     authStats.passwordSubmissions += 1;
 
     const response = await page.context().request.post(
-        storefrontUrl('/password'),
+        new URL('/password', page.url()).toString(),
         {
             form: {
+                form_type: 'storefront_password',
+                utf8: '✓',
                 password,
             },
             maxRedirects: 0,

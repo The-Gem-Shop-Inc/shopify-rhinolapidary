@@ -169,29 +169,82 @@ test('product can be added to cart and cart page shows item', async ({ page }) =
     ).toContainText(firstItem.product_title);
 });
 
-test('cart page exposes checkout entry when item exists', async ({ page }) => {
-    await seedFixtureProductViaAjax(page);
+test('cart exposes the shipping quotation workflow', async ({ page }) => {
+    const cart = await seedFixtureProductViaAjax(page);
 
-    await gotoUnlocked(page, '/cart', 'cart');
+    expect(cart.item_count).toBeGreaterThan(0);
 
-    const visibleCheckout = page.locator(
-        [
-            'button[name="checkout"]:visible',
-            'input[name="checkout"]:visible',
-            'a[href*="/checkout"]:visible',
-            'form[action="/cart"] button:visible',
-            'form[action="/cart"] input[type="submit"]:visible',
-        ].join(', ')
-    ).filter({
-        hasText: /check\s*out|checkout/i,
-    });
+    await gotoUnlocked(page, '/cart', 'shipping quotation');
 
-    await expect(
-        visibleCheckout.first(),
-        [
-            'Expected a visible checkout entry on the cart page.',
-            `Current URL: ${page.url()}`,
-            'A hidden checkout button may exist, but the customer-visible checkout entry was not found.',
-        ].join('\n')
-    ).toBeVisible();
+    const quoteMode = page.locator('rhino-quote-mode');
+    const shippingChoice = page.locator('#RhinoFulfillmentShipping');
+    const shippingPanel = page.locator('#RhinoShippingQuotePanel');
+    const pickupPanel = page.locator('#RhinoPickupPanel');
+
+    await expect(quoteMode).toBeVisible();
+    await expect(shippingChoice).toBeVisible();
+
+    // The customer must select a fulfillment route first.
+    await shippingChoice.check();
+
+    await expect(shippingChoice).toBeChecked();
+    await expect(shippingPanel).toBeVisible();
+    await expect(pickupPanel).toBeHidden();
+
+    // Shipping uses a quotation request, not native checkout.
+    const quoteForm = page.locator('#RhinoShippingQuoteForm');
+    const emailSubmit = quoteForm.locator('[data-rhino-email-submit]');
+
+    await expect(quoteForm).toBeAttached();
+    await expect(emailSubmit).toBeVisible();
+    await expect(emailSubmit).toBeEnabled();
+
+    // Draft automation is configured in this staging theme.
+    const automationEnabled = await quoteMode.getAttribute('data-automation-enabled');
+
+    if (automationEnabled === 'true') {
+        await expect(quoteForm.locator('[data-rhino-draft-submit]')).toBeVisible();
+    }
+
+    // No submission is performed by this test.
+});
+
+test('cart exposes checkout only through the pickup route when eligible items selected', async ({ page }) => {
+    const cart = await seedFixtureProductViaAjax(page);
+
+    expect(cart.item_count).toBeGreaterThan(0);
+
+    await gotoUnlocked(page, '/cart', 'pickup checkout');
+
+    const quoteMode = page.locator('rhino-quote-mode');
+    const pickupChoice = page.locator('#RhinoFulfillmentPickup');
+    const pickupPanel = page.locator('#RhinoPickupPanel');
+    const shippingPanel = page.locator('#RhinoShippingQuotePanel');
+
+    await expect(quoteMode).toBeVisible();
+    await expect(pickupChoice).toBeVisible();
+
+    await pickupChoice.check();
+
+    await expect(pickupChoice).toBeChecked();
+    await expect(pickupPanel).toBeVisible();
+    await expect(shippingPanel).toBeHidden();
+
+    const checkout = pickupPanel.locator('[data-rhino-pickup-checkout]');
+    const pickupStatus = pickupPanel.locator('[data-rhino-pickup-status]');
+
+    await expect(checkout).toBeVisible();
+    await expect(checkout).toHaveAttribute('name', 'checkout');
+    await expect(checkout).toHaveAttribute('form', 'cart');
+    await expect(pickupStatus).toBeVisible();
+
+    const policyAllowed = await quoteMode.getAttribute('data-pickup-policy-allowed');
+
+    if (policyAllowed !== 'true') {
+        // An ineligible cart must never enable pickup checkout
+        await expect(checkout).toBeDisabled();
+    }
+
+    // When policy allows pickup, live inventory verification determines whether checkout becomes enabled.
+    // Do not click checkout or create an order.
 });
