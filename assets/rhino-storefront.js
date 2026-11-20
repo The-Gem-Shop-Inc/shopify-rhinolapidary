@@ -87,3 +87,63 @@
         initPolicyColorNormalization();
     }
 })();
+
+// G3A enhances only an existing F-approved section; it never constructs Product relationships.
+(() => {
+    const selector = '[data-rhino-machine-browse]';
+
+    function enhanceMachineProductEntry() {
+        for (const info of document.querySelectorAll('main product-info')) {
+            const section = info.querySelector('.rhino-machine-contextual');
+            const target = section?.querySelector('h2[id^="OwnerContext-"]');
+            const contact = info.querySelector('a.rhino-machine-contact');
+            if (!target || !contact || !section.querySelector('[data-rhino-owner-compatible]')
+                || document.querySelectorAll('[id="' + target.id + '"]').length !== 1
+                || info.querySelector(selector)) continue;
+
+            const wrapper = document.createElement('p');
+            const link = document.createElement('a');
+            link.className = 'link underlined-link';
+            link.dataset.rhinoMachineBrowse = '';
+            link.href = '#' + target.id;
+            link.textContent = 'Browse compatible products';
+            wrapper.append(link);
+            contact.before(wrapper);
+            target.tabIndex = -1;
+
+            const offsetTarget = () => {
+                const header = document.querySelector('.section-header');
+                const height = header?.getBoundingClientRect().height || 0;
+                target.style.scrollMarginTop = (height + 16) + 'px';
+            };
+            const focusTarget = () => {
+                if (!target.isConnected) {
+                    wrapper.remove();
+                    return;
+                }
+                offsetTarget();
+                target.focus({ preventScroll: true });
+                target.scrollIntoView({ block: 'start', behavior: 'instant' });
+            };
+            link.addEventListener('click', (event) => {
+                if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey || event.button !== 0) return;
+                offsetTarget();
+                // Retain the native anchor URL/history, then place keyboard focus at its heading.
+                requestAnimationFrame(focusTarget);
+            });
+            const followFragment = () => {
+                if (window.location.hash === '#' + target.id) requestAnimationFrame(focusTarget);
+            };
+            window.addEventListener('hashchange', followFragment);
+            followFragment();
+        }
+    }
+
+    window.RhinoLapidary.enhanceMachineProductEntry = enhanceMachineProductEntry;
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', enhanceMachineProductEntry, { once: true });
+    } else enhanceMachineProductEntry();
+    document.addEventListener('shopify:section:load', enhanceMachineProductEntry);
+    window.addEventListener('pageshow', enhanceMachineProductEntry);
+    document.addEventListener('visibilitychange', enhanceMachineProductEntry);
+})();
