@@ -1,55 +1,72 @@
+
 const { test, expect } = require('@playwright/test');
 const { gotoUnlocked } = require('./helpers/storefront');
 
-test('catalog navigation remains accessible and usable', async ({ page }) => {
+test('catalog navigation supports populated and pending categories', async ({ page }) => {
     await gotoUnlocked(page, '/collections/all', 'catalog navigation');
 
-    const navigation = page.locator('[data-rhino-g-catalog-navigation]');
+    const nav = page.locator('[data-rhino-g-catalog-navigation]');
+    await expect(nav).toBeVisible();
 
-    await expect(navigation).toBeVisible();
-
-    // These destinations constitute the catalog navigation contract.
-    // Their appearance, spacing, colors, and layout are not prescribed.
-    const requiredLinks = [
+    const categories = [
         'All Products',
         'Machines',
         'Replacement Parts',
         'Consumables',
         'Accessories',
-        'Browse the text Product directory',
     ];
 
-    for (const name of requiredLinks) {
-        const link = navigation.getByRole('link', {
-            name,
-            exact: true,
-        });
+    for (const name of categories) {
+        const link = nav.getByRole('link', { name, exact: true });
 
-        // Required navigation must be available to customers.
         await expect(link).toBeVisible();
 
-        // Links must have usable internal destinations.
         const href = await link.getAttribute('href');
+        expect(href).toBeTruthy();
 
-        expect(href, `${name} must have a destination`).toBeTruthy();
+        const target = new URL(href, page.url());
 
-        const destination = new URL(href, page.url());
-        const storefront = new URL(page.url());
+        expect(target.origin).toBe(new URL(page.url()).origin);
+        expect(target.pathname).toMatch(/^\/collections(?:\/|$)/);
 
-        expect(destination.origin, `${name} must remain on the storefront`).toBe(storefront.origin);
-        expect(destination.pathname, `${name} must lead into the catalog`)
-            .toMatch(/^\/collections(?:\/|$)/);
-
-        // Keyboard users must be able to reach every link.
         await link.focus();
         await expect(link).toBeFocused();
     }
 
-    // The navigation itself must not cause horizontal overflow.
-    // This remains relevant regardless of its visual layout.
-    const overflows = await navigation.evaluate((element) => {
-        return element.scrollWidth > element.clientWidth + 1;
+    const complete = await nav.getAttribute(
+        'data-rhino-catalog-complete'
+    );
+
+    expect(['true', 'false']).toContain(complete);
+
+    const directory = nav.getByRole('link', {
+        name: 'Browse the text Product directory',
+        exact: true,
     });
 
-    expect(overflows, 'Catalog navigation must not overflow horizontally').toBe(false);
-})
+    if (complete === 'true') {
+        await expect(directory).toHaveCount(0);
+
+        for (const name of [
+            'Replacement Parts',
+            'Consumables',
+            'Accessories',
+        ]) {
+            const href = await nav.getByRole('link', {
+                name,
+                exact: true,
+            }).getAttribute('href');
+
+            const target = new URL(href, page.url());
+            expect(target.searchParams.get('view')).not.toBe('directory');
+        }
+    } else {
+        await expect(directory).toBeVisible();
+    }
+
+    const overflow = await nav.evaluate(
+        element => element.scrollWidth > element.clientWidth + 1
+    );
+
+    expect(overflow).toBe(false);
+});
