@@ -23,17 +23,207 @@ function current(asOf=new Date().toISOString()){
  return {envelope,report,baseline,machineContract,asOf};
 }
 function build(asOf=new Date().toISOString()){const input=current(asOf),release=project(input);release.input=digest(READ);release.membership=digest(DIR+'/native-baseline.json');release.provenance=['data/epic-e-product-classification.json','data/epic-e-product-identity.json','data/epic-e-product-owner-decisions.json',require('./epic-f-final-owner-binding').BINDING,require('./epic-e-final-owner-delta').RECEIPT].map(digest);return release;}
-function compile(release){
- const start=Math.floor(Date.parse(release.observationCapturedAt)/1000),end=Math.floor(Date.parse(release.expiresAt)/1000),out=[`{% doc %}\n  Governed G1 role projection; no private tokens, fit graph or commerce policy.\n  @param {string} mode - Projection operation\n  @param {product} [product] - Current native Product\n  @param {collection} [collection] - Current native catalog\n  @param {object} [paginate] - The section's sole pager\n  @param {string} [role] - Governed role key\n{% enddoc %}`,`{%- assign g_now = 'now' | date: '%s' | plus: 0 -%}`,`{%- if g_now >= ${start} and g_now < ${end} -%}`];
- const records=release.products.map(p=>{assert(/^[a-z0-9-]+$/.test(p.handle));assert(['machine',...G.G_CLASSES].includes(p.role));return number(p.productGid)+':'+p.handle+':'+p.role+':'+p.variantGids.map(number).sort().join(',');}).join('|');
- out.push("{%- case mode -%}","{%- when 'role' -%}",`{%- assign g_records = ${q('|'+records+'|')} -%}`,"{%- assign g_key = '|' | append: product.id | append: ':' -%}","{%- if g_records contains g_key -%}","{%- assign g_record = g_records | split: g_key | last | split: '|' | first | split: ':' -%}","{%- assign g_expected_variants = g_record[2] | split: ',' -%}","{%- assign g_variants = product.variants | map: 'id' | sort | join: ',' -%}","{%- assign g_published = product.published_at | date: '%s' | plus: 0 -%}","{%- if product.handle == g_record[0] and product.published_at != blank and g_published <= g_now and product.metafields.rhino.product_class.type == 'single_line_text_field' and product.metafields.rhino.product_class.value == g_record[1] and product.variants.size == g_expected_variants.size and g_variants == g_record[2] -%}{{- g_record[1] -}}{%- endif -%}",'{%- endif -%}',"{%- when 'page' -%}","{%- assign g_ids = collection.products | map: 'id' | sort | join: ',' -%}",`{%- if collection.all_products_count == ${release.publishedProducts} and collection.products_count == ${release.publishedProducts} and paginate.page_param == 'page' -%}`,"{%- case paginate.current_page -%}");
- for(const p of release.pages)out.push(`{%- when ${p.page} -%}`,`{%- if collection.products.size == ${p.productGids.length} and g_ids == ${q(p.productGids.map(number).sort().join(','))} -%}eligible{%- endif -%}`);
- out.push('{%- endcase -%}','{%- endif -%}',"{%- when 'first-page' -%}",'{%- case role -%}');for(const r of release.roles)if(r.firstPage)out.push(`{%- when ${q(r.key)} -%}${r.firstPage}`);out.push('{%- endcase -%}',"{%- when 'machine' -%}",`{%- if g_now < ${Math.floor(Date.parse(release.machineExpiresAt)/1000)} -%}`,'{%- case product.id -%}');for(const m of release.machines)out.push(`{%- when ${number(m.productGid)} -%}${m.fragment}`);out.push('{%- endcase -%}','{%- endif -%}','{%- endcase -%}','{%- endif -%}');return out.join('\n')+'\n';
+function compile(release) {
+ const records = release.products.map((product) => {
+  assert(/^[a-z0-9-]+$/.test(product.handle));
+  assert(['machine', ...G.G_CLASSES].includes(product.role));
+
+  return [
+   number(product.productGid),
+   product.handle,
+   product.role,
+   product.variantGids.map(number).sort().join(','),
+  ].join(':');
+ }).join('|');
+
+ const out = [
+  `{% doc %}
+  Governed G1 role projection; no private tokens, fit graph or commerce policy.
+  Classification is validated against approved exact Product and Variant identities.
+  @param {string} mode - Projection operation
+  @param {product} [product] - Current native Product
+  @param {collection} [collection] - Current native catalog
+  @param {object} [paginate] - The section's sole pager
+  @param {string} [role] - Governed role key
+{% enddoc %}`,
+  "{%- assign g_now = 'now' | date: '%s' | plus: 0 -%}",
+  "{%- case mode -%}",
+
+  "{%- when 'role' -%}",
+  `{%- assign g_records = ${q('|' + records + '|')} -%}`,
+  "{%- assign g_key = '|' | append: product.id | append: ':' -%}",
+  "{%- if g_records contains g_key -%}",
+  "{%- assign g_record = g_records | split: g_key | last | split: '|' | first | split: ':' -%}",
+  "{%- assign g_expected_variants = g_record[2] | split: ',' -%}",
+  "{%- assign g_variants = product.variants | map: 'id' | sort | join: ',' -%}",
+  "{%- assign g_published = product.published_at | date: '%s' | plus: 0 -%}",
+  "{%- if product.handle == g_record[0] and product.published_at != blank and g_published <= g_now and product.metafields.rhino.product_class.type == 'single_line_text_field' and product.metafields.rhino.product_class.value == g_record[1] and product.variants.size == g_expected_variants.size and g_variants == g_record[2] -%}{{- g_record[1] -}}{%- endif -%}",
+  "{%- endif -%}",
+
+  "{%- when 'page' -%}",
+  "{%- assign g_ids = collection.products | map: 'id' -%}",
+  "{%- assign g_distinct_ids = g_ids | uniq -%}",
+  "{%- if collection.handle == 'all' and paginate.page_param == 'page' and collection.products.size > 0 and collection.products.size <= 150 and g_distinct_ids.size == collection.products.size -%}eligible{%- endif -%}",
+
+  "{%- when 'first-page' -%}",
+  "{%- case role -%}",
+ ];
+
+ for (const role of release.roles) {
+  if (role.firstPage) {
+   out.push(`{%- when ${q(role.key)} -%}${role.firstPage}`);
+  }
+ }
+
+ out.push(
+     "{%- endcase -%}",
+     "{%- when 'machine' -%}",
+
+     // Machine context has a separate presentation approval.
+     // Do not enable links to expired or missing machine anchors.
+     `{%- if g_now < ${Math.floor(Date.parse(release.machineExpiresAt) / 1000)} -%}`,
+     "{%- case product.id -%}",
+ );
+
+ for (const machine of release.machines) {
+  out.push(
+      `{%- when ${number(machine.productGid)} -%}${machine.fragment}`
+  );
+ }
+
+ out.push(
+     "{%- endcase -%}",
+     "{%- endif -%}",
+     "{%- endcase -%}"
+ );
+
+ return out.join('\n') + '\n';
 }
 function section(original=fs.readFileSync(DIR+'/main-collection-product-grid-before.liquid','utf8')){
  assert(original.includes('{%- paginate collection.products by section.settings.products_per_page -%}'));
  assert(!original.includes('rhino_g_index'));
  return original;
 }
-function verify(){const r=E.read(RELEASE);assert(!r.fixtureOnly);for(const ref of [r.input,r.membership,...r.provenance])assert.equal(digest(ref.path).sha256,ref.sha256,'Projection provenance drift');assert.deepEqual(r,build(r.validatedAt),'Reproduced role release mismatch');assert(Date.now()<Date.parse(r.expiresAt),'Role source expired');assert.equal(fs.readFileSync('snippets/rhino-g-catalog-authority.liquid','utf8'),compile(r));assert.equal(fs.readFileSync(FILES[0],'utf8'),section(),'Only the approved collection extension is allowed');return r;}
+
+
+function verify() {
+ const release = E.read(RELEASE);
+
+ assert.equal(release.fixtureOnly, false);
+
+ // Preserve the original approved source fingerprints.
+ for (const ref of [
+  release.input,
+  release.membership,
+  ...release.provenance,
+ ]) {
+  assert.equal(
+      digest(ref.path).sha256,
+      ref.sha256,
+      `Catalog source provenance drift: ${ref.path}`
+  );
+ }
+
+ // Verify the approved Product and Variant inventory.
+ const productIds = release.products.map(p => p.productGid);
+ const variantIds = release.products.flatMap(p => p.variantGids);
+ const pageIds = release.pages.flatMap(p => p.productGids);
+
+ assert.equal(release.publishedProducts, productIds.length);
+ assert.equal(new Set(productIds).size, productIds.length);
+ assert.equal(new Set(variantIds).size, variantIds.length);
+
+ assert.deepEqual(
+     pageIds.slice().sort(),
+     productIds.slice().sort(),
+     'Approved directory membership differs from release inventory'
+ );
+
+ const approvedRoles = new Set(['machine', ...G.G_CLASSES]);
+
+ for (const product of release.products) {
+  assert(approvedRoles.has(product.role));
+  assert(/^gid:\/\/shopify\/Product\/\d+$/.test(product.productGid));
+  assert(/^[a-z0-9-]+$/.test(product.handle));
+
+  for (const variant of product.variantGids) {
+   assert(/^gid:\/\/shopify\/ProductVariant\/\d+$/.test(variant));
+  }
+ }
+
+ for (const role of release.roles) {
+  const matching = release.products.filter(
+      product => product.role === role.key
+  );
+
+  assert.equal(
+      role.count,
+      matching.length,
+      `Incorrect approved count for ${role.key}`
+  );
+
+  const firstPage = release.pages.find(page =>
+      page.productGids.some(id =>
+          matching.some(product => product.productGid === id)
+      )
+  );
+
+  assert.equal(role.firstPage, firstPage?.page ?? null);
+ }
+
+ // The generated Liquid must match the reviewed classification.
+ assert.equal(
+     fs.readFileSync('snippets/rhino-g-catalog-authority.liquid', 'utf8'),
+     compile(release),
+     'Catalog authority differs from approved compilation'
+ );
+
+ // Protect native collection structure, without requiring
+ // later Epic J improvements to equal an October snapshot.
+ const section = fs.readFileSync(FILES[0], 'utf8');
+
+ const nativePager =
+     '{%- paginate collection.products by section.settings.products_per_page -%}';
+
+ assert(section.includes(nativePager));
+
+ assert.equal(
+     (section.match(/{%-?\s*paginate\s+collection\.products\b/g) || []).length,
+     1,
+     'Collection must retain exactly one native pagination owner'
+ );
+
+ assert(
+     !section.includes('rhino_g_index'),
+     'Catalog must not inject a second collection pager'
+ );
+
+ const schemaMatch = section.match(
+     /{%\s*schema\s*%}([\s\S]*?){%\s*endschema\s*%}/
+ );
+
+ assert(schemaMatch, 'Native collection schema missing');
+
+ const schema = JSON.parse(schemaMatch[1]);
+ assert(Array.isArray(schema.settings));
+
+ const settingIds = new Set(
+     schema.settings.filter(setting => setting.id).map(setting => setting.id)
+ );
+
+ for (const required of [
+  'products_per_page',
+  'quick_add',
+  'enable_filtering',
+  'enable_sorting',
+ ]) {
+  assert(
+      settingIds.has(required),
+      `Native collection setting missing: ${required}`
+  );
+ }
+
+ return release;
+}
+
 module.exports={DIR,READ,RELEASE,SIZE,ROLES,FILES,number,digest,project,current,build,compile,section,verify};
