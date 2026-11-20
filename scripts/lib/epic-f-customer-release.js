@@ -71,7 +71,11 @@ function compile(state) {
   suppressedApprovedRows:state.input.rows.filter(r=>!p.rows.includes(r)).map(r=>({rowId:r.rowId,reason:E.definition(r.field.split('.').pop()).accessIntent.storefront!=='public_read'?'ADMIN_ONLY':'INCOMPLETE_CUSTOMER_RANGE'})),
   pageSummary:p.pages.map(page=>({productGid:page.productGid,handle:page.handle,specRows:page.specs.length,contentsLines:page.contents.length,compatibleCards:page.cards.length})),publicationRightsGranted:false,mediaChanged:false};
  const header=`{%- comment -%}\nGenerated from exact E owner responses and reconciled Product metafields.\nReceipt SHA256: ${receiptHash}\nNo candidate, crate, optional, resource or recommendation fallback.\n{%- endcomment -%}\n{%- assign rhino_owner_now = 'now' | date: '%s' | plus: 0 -%}\n{%- assign rhino_owner_gid = 'gid://shopify/Product/' | append: product.id -%}\n{%- if template.suffix == 'machine' and product.published_at != blank and product.metafields.rhino.product_class.value == 'machine' and rhino_owner_now >= ${starts} and rhino_owner_now < ${expires} -%}\n`;
- const facts=[header],context=[header],shards={};let index=0;
+  const contextHeader=header
+    .replace("{%- assign rhino_owner_now = 'now' | date: '%s' | plus: 0 -%}\n", '')
+    .replace(/ and rhino_owner_now >= \d+ and rhino_owner_now < \d+/, '');
+  assert.notEqual(contextHeader,header,'Expected approved context guard');
+  const facts=[header],context=[contextHeader],shards={};let index=0;
  for(const page of p.pages) {
   const factStart=facts.length,contextStart=context.length;
   facts.push(`{%- if rhino_owner_gid == ${q(page.productGid)} -%}`);
@@ -105,7 +109,7 @@ function compile(state) {
   const id=page.productGid.split('/').pop(),factBody=facts.splice(factStart).join('\n'),contextBody=context.splice(contextStart).join('\n');
   const factSnippet='rhino-owner-approved-facts-'+id;shards['snippets/'+factSnippet+'.liquid']=header+factBody+'\n{%- endif -%}\n';
   facts.push(`{%- if rhino_owner_gid == ${q(page.productGid)} -%}{%- render ${q(factSnippet)}, product: product, section: section -%}{%- endif -%}`);
-  if(page.cards.length){const contextSnippet='rhino-owner-approved-context-'+id;shards['snippets/'+contextSnippet+'.liquid']=header+contextBody+'\n{%- endif -%}\n';context.push(`{%- if rhino_owner_gid == ${q(page.productGid)} -%}{%- render ${q(contextSnippet)}, product: product, section: section -%}{%- endif -%}`);}
+  if(page.cards.length){const contextSnippet='rhino-owner-approved-context-'+id;shards['snippets/'+contextSnippet+'.liquid']=contextHeader+contextBody+'\n{%- endif -%}\n';context.push(`{%- if rhino_owner_gid == ${q(page.productGid)} -%}{%- render ${q(contextSnippet)}, product: product, section: section -%}{%- endif -%}`);}
  }
  facts.push('{%- endif -%}');context.push('{%- endif -%}');return {release,projection:p,shards,facts:facts.join('\n')+'\n',context:context.join('\n')+'\n'};
 }

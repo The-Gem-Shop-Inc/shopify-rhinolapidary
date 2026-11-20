@@ -90,16 +90,9 @@
 
 // G3A enhances only an existing F-approved section; it never constructs Product relationships.
 (() => {
-    const receiptExpiresAt = Date.parse('2026-10-22T20:26:37.102Z');
     const selector = '[data-rhino-machine-browse]';
-    const receiptCurrent = () => Number.isFinite(Date.now()) && Date.now() < receiptExpiresAt;
 
     function enhanceMachineProductEntry() {
-        if (!receiptCurrent()) {
-            document.querySelectorAll(selector).forEach((entry) => entry.parentElement.remove());
-            return;
-        }
-
         for (const info of document.querySelectorAll('main product-info')) {
             const section = info.querySelector('.rhino-machine-contextual');
             const target = section?.querySelector('h2[id^="OwnerContext-"]');
@@ -124,7 +117,7 @@
                 target.style.scrollMarginTop = (height + 16) + 'px';
             };
             const focusTarget = () => {
-                if (!receiptCurrent() || !target.isConnected) {
+                if (!target.isConnected) {
                     wrapper.remove();
                     return;
                 }
@@ -143,7 +136,6 @@
             };
             window.addEventListener('hashchange', followFragment);
             followFragment();
-            setTimeout(() => wrapper.remove(), Math.min(receiptExpiresAt - Date.now(), 2147483647));
         }
     }
 
