@@ -111,7 +111,46 @@ for (const width of [360, 390, 1440]) for (const enlarged of [false, true]) test
   for (const c of geometry.content) { expect.soft(c.left, c.class).toBeGreaterThanOrEqual(-1); expect.soft(c.right, c.class).toBeLessThanOrEqual(width + 1); }
   for (const input of await page.locator('[name="updates[]"]').all()) { await expect(input).toHaveAttribute('aria-label', /quantity/i); await expect(input).toBeEnabled(); await input.focus(); await expect(input).toBeFocused(); }
   for (const remove of await page.locator('cart-remove-button a').all()) { await expect(remove).toHaveAttribute('aria-label', /remove.*Saw Blade/i); await remove.focus(); await expect(remove).toBeFocused(); }
-  const checkout = page.locator('[name=checkout]'); await checkout.scrollIntoViewIfNeeded(); await checkout.focus(); await expect(checkout).toBeVisible(); await expect(checkout).toBeEnabled(); await expect(checkout).toBeFocused();
+
+  const quoteMode = page.locator('rhino-quote-mode');
+  const pickupChoice = quoteMode.locator('#RhinoFulfillmentPickup');
+  const shippingChoice = quoteMode.locator('#RhinoFulfillmentShipping');
+  const pickupPanel = quoteMode.locator('#RhinoPickupPanel');
+  const shippingPanel = quoteMode.locator('#RhinoShippingQuotePanel');
+  const checkout = pickupPanel.locator(
+      'button[data-rhino-pickup-checkout][name="checkout"]'
+  );
+
+  await expect(quoteMode).toBeVisible();
+  await expect(checkout).toBeAttached();
+
+  // Checkout must not appear until fulfillment is selected.
+  await expect(checkout).toBeHidden();
+
+  // Pickup reveals checkout but requires verified local availability.
+  await pickupChoice.check();
+  await expect(pickupChoice).toBeChecked();
+  await expect(pickupPanel).toBeVisible();
+  await expect(shippingPanel).toBeHidden();
+  await expect(checkout).toBeVisible();
+  await expect(checkout).toHaveAttribute('form', 'cart');
+
+  // The offline fixture does not authorize Grafton pickup.
+  await expect(checkout).toBeDisabled();
+  await expect(
+      pickupPanel.locator('[data-rhino-pickup-status]')
+  ).toBeVisible();
+
+  // A disabled checkout cannot receive keyboard focus.
+  // Verify the accessible fulfillment control instead.
+  await pickupChoice.focus();
+  await expect(pickupChoice).toBeFocused();
+
+  // Switching to shipping hides native checkout again.
+  await shippingChoice.check();
+  await expect(shippingPanel).toBeVisible();
+  await expect(pickupPanel).toBeHidden();
+
   expect(await checkout.getAttribute('form')).toBe('cart'); await expect(page.locator('.totals__total-value')).toContainText('$55.00');
   await page.locator('.cart-item [name=plus]').first().click();
   await expect(page.locator('.cart-item__error-text').first()).toHaveText('Fixture inventory quantity unavailable');

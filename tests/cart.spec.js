@@ -24,6 +24,17 @@ async function getCartState(page) {
 
                 const text = await response.text();
 
+                if (
+                    response.status === 429 &&
+                    /Verifying your connection/i.test(text)
+                ) {
+                    throw new Error(
+                        'SHOPIFY_CONNECTION_CHALLENGE: HTTP 429 on /cart.js. ' +
+                        'Live storefront acceptance is blocked by Shopify; ' +
+                        'no cart or quotation behavior has been certified by this request.'
+                    );
+                }
+
                 if (!response.ok) {
                     throw new Error(`GET /cart.js failed with ${response.status}: ${text.slice(0, 300)}`);
                 }
@@ -33,7 +44,10 @@ async function getCartState(page) {
         } catch (error) {
             lastError = error;
 
-            if (!String(error.message).includes('429')) {
+            if (
+                String(error.message).includes('SHOPIFY_CONNECTION_CHALLENGE') ||
+                !String(error.message).includes('429')
+            ) {
                 throw error;
             }
 
