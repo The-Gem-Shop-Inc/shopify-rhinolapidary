@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "2.0.0",
+  "status": "COMPLETE",
+  "baseline": "5b786d2d1ab7603817c8cab578bf4a3339d06bfa",
+  "classifications": [
+    {
+      "dependency": "Product and Variant exact GIDs",
+      "classification": "REUSED_CURRENT",
+      "policy2Treatment": "Use exact Shopify identities in coverage, registration, resources, and support."
+    },
+    {
+      "dependency": "rhino.product_class and compatibility identities",
+      "classification": "REQUIRES_ADAPTATION",
+      "policy2Treatment": "Reuse as technical classification; never promote to coverage approval."
+    },
+    {
+      "dependency": "ACTIVE and DRAFT publication visibility",
+      "classification": "REQUIRES_ADAPTATION",
+      "policy2Treatment": "Account separately; publication is not coverage."
+    },
+    {
+      "dependency": "MR16 LED Bulb and Saw Vice Plate Set Draft exclusions",
+      "classification": "REUSED_CURRENT",
+      "policy2Treatment": "Preserve commercial Draft state; do not infer coverage."
+    },
+    {
+      "dependency": "Native cart behavior",
+      "classification": "REUSED_CURRENT",
+      "policy2Treatment": "Do not alter accepted cart implementation."
+    },
+    {
+      "dependency": "Quotation and fulfillment pathways",
+      "classification": "REQUIRES_ADAPTATION",
+      "policy2Treatment": "Keep quotation separate; do not use it as support intake."
+    },
+    {
+      "dependency": "Customer account capabilities",
+      "classification": "REQUIRES_ADAPTATION",
+      "policy2Treatment": "Optional new accounts; customer history remains Epic O."
+    },
+    {
+      "dependency": "Shopify Forms and Flow assumptions",
+      "classification": "BLOCKED_PENDING_REVIEW",
+      "policy2Treatment": "Neither app is installed; no activation authorized."
+    },
+    {
+      "dependency": "Existing metafield conventions",
+      "classification": "REUSED_CURRENT",
+      "policy2Treatment": "Reuse exact identity and resource conventions when compatible; no writes."
+    },
+    {
+      "dependency": "Manuals and support resource presentation",
+      "classification": "REQUIRES_ADAPTATION",
+      "policy2Treatment": "Add revision, machine-version, and Kevin approval gates."
+    },
+    {
+      "dependency": "Production safety and release validators",
+      "classification": "REUSED_CURRENT",
+      "policy2Treatment": "Retain read-only/release safety; no deployment in this batch."
+    },
+    {
+      "dependency": "In-house repair, estimates, paid labor, repair shipment, routine RMA",
+      "classification": "SUPERSEDED",
+      "policy2Treatment": "Replace with minimal support lifecycle and Silica-Gem escalation."
+    },
+    {
+      "dependency": "Prior warranty duration, remedies, coverage, effective dates",
+      "classification": "HISTORICAL_ONLY",
+      "policy2Treatment": "Preserve for prior-purchase analysis; never authorize Policy 2.0."
+    },
+    {
+      "dependency": "Checkout insurance choice on current Basic plan",
+      "classification": "BLOCKED_PENDING_REVIEW",
+      "policy2Treatment": "Shipping-step extension entitlement is unavailable; alternate cart design would need separate authorization."
+    }
+  ]
+}

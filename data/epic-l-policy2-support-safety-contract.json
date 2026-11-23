@@ -1,0 +1,425 @@
+{
+  "schemaVersion": "2.1.0",
+  "contractId": "EPIC-L-POLICY2-SUPPORT-SAFETY",
+  "status": "PROPOSED",
+  "authoritativeSource": "L-DEC-005 through L-DEC-008, L-DEC-012, L-DEC-013, L-DEC-016, L-DEC-017, and L-DEC-019 provisional receipt",
+  "runtimeConsumer": "Future governed support intake and private case service",
+  "customerFacingAuthority": false,
+  "prohibitedCapabilities": [
+    "in-house repair intake",
+    "in-person repair",
+    "repair estimate",
+    "paid labor approval",
+    "repair shipment tracking",
+    "routine RMA",
+    "autonomous diagnostics",
+    "automated warranty denial",
+    "autonomous hazardous troubleshooting"
+  ],
+  "stateMachine": {
+    "initial": "SUBMITTED",
+    "terminal": [
+      "CLOSED"
+    ],
+    "states": [
+      "SUBMITTED",
+      "ACKNOWLEDGED",
+      "TRIAGED",
+      "WAITING_CUSTOMER",
+      "GUIDANCE_ACTIVE",
+      "PARTS_SUPPORT",
+      "MANUFACTURER_ESCALATED",
+      "CARRIER_CLAIM_ASSISTANCE",
+      "SAFETY_HOLD",
+      "RESOLVED",
+      "CLOSED",
+      "RECOVERY_REQUIRED"
+    ],
+    "manufacturerDestination": "Silica-Gem",
+    "ordinaryTransitions": [
+      {
+        "from": "SUBMITTED",
+        "to": "ACKNOWLEDGED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "ACKNOWLEDGED",
+        "to": "TRIAGED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "TRIAGED",
+        "to": "WAITING_CUSTOMER",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "TRIAGED",
+        "to": "GUIDANCE_ACTIVE",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "TRIAGED",
+        "to": "PARTS_SUPPORT",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "TRIAGED",
+        "to": "MANUFACTURER_ESCALATED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "TRIAGED",
+        "to": "CARRIER_CLAIM_ASSISTANCE",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "WAITING_CUSTOMER",
+        "to": "TRIAGED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "GUIDANCE_ACTIVE",
+        "to": "RESOLVED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "PARTS_SUPPORT",
+        "to": "RESOLVED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "MANUFACTURER_ESCALATED",
+        "to": "RESOLVED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "CARRIER_CLAIM_ASSISTANCE",
+        "to": "RESOLVED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "RESOLVED",
+        "to": "CLOSED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "SUBMITTED",
+        "to": "RECOVERY_REQUIRED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "ACKNOWLEDGED",
+        "to": "RECOVERY_REQUIRED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "TRIAGED",
+        "to": "RECOVERY_REQUIRED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "WAITING_CUSTOMER",
+        "to": "RECOVERY_REQUIRED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "GUIDANCE_ACTIVE",
+        "to": "RECOVERY_REQUIRED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "PARTS_SUPPORT",
+        "to": "RECOVERY_REQUIRED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "MANUFACTURER_ESCALATED",
+        "to": "RECOVERY_REQUIRED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "CARRIER_CLAIM_ASSISTANCE",
+        "to": "RECOVERY_REQUIRED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "RESOLVED",
+        "to": "RECOVERY_REQUIRED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      },
+      {
+        "from": "RECOVERY_REQUIRED",
+        "to": "TRIAGED",
+        "kind": "ORDINARY",
+        "guard": "NO_ACTIVE_SAFETY_HOLD"
+      }
+    ],
+    "unknownTransitionBehavior": "REJECT_FAIL_CLOSED",
+    "globalSafetyInterruption": {
+      "trigger": "HAZARDOUS_INFORMATION_RECEIVED",
+      "relevantNonterminalStates": [
+        "SUBMITTED",
+        "ACKNOWLEDGED",
+        "TRIAGED",
+        "WAITING_CUSTOMER",
+        "GUIDANCE_ACTIVE",
+        "PARTS_SUPPORT",
+        "MANUFACTURER_ESCALATED",
+        "CARRIER_CLAIM_ASSISTANCE",
+        "RECOVERY_REQUIRED",
+        "RESOLVED"
+      ],
+      "transitions": [
+        {
+          "from": "SUBMITTED",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        },
+        {
+          "from": "ACKNOWLEDGED",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        },
+        {
+          "from": "TRIAGED",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        },
+        {
+          "from": "WAITING_CUSTOMER",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        },
+        {
+          "from": "GUIDANCE_ACTIVE",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        },
+        {
+          "from": "PARTS_SUPPORT",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        },
+        {
+          "from": "MANUFACTURER_ESCALATED",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        },
+        {
+          "from": "CARRIER_CLAIM_ASSISTANCE",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        },
+        {
+          "from": "RECOVERY_REQUIRED",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        },
+        {
+          "from": "RESOLVED",
+          "to": "SAFETY_HOLD",
+          "event": "HAZARDOUS_INFORMATION_RECEIVED",
+          "kind": "SAFETY_INTERRUPT",
+          "action": "DELIVER_STOP_USE_WARNING_AND_LOCK_ORDINARY_TRANSITIONS"
+        }
+      ],
+      "entryRequirements": [
+        "hazard report time",
+        "source channel",
+        "reported symptoms",
+        "Product/Variant identity when available",
+        "immediate warning delivery evidence"
+      ],
+      "ordinaryTransitionsLockedWhileActive": true
+    },
+    "safetyHoldExit": {
+      "allowedTransitions": [
+        {
+          "from": "SAFETY_HOLD",
+          "to": "TRIAGED",
+          "kind": "AUTHORIZED_SAFETY_DISPOSITION"
+        },
+        {
+          "from": "SAFETY_HOLD",
+          "to": "MANUFACTURER_ESCALATED",
+          "kind": "AUTHORIZED_SAFETY_DISPOSITION"
+        }
+      ],
+      "authorizationRequired": true,
+      "requiredRecord": [
+        "responsibleAuthority",
+        "authorityRole",
+        "reason",
+        "evidenceRefs",
+        "disposition",
+        "dispositionAt"
+      ],
+      "allowedDispositions": [
+        "CLEARED_FOR_GOVERNED_SUPPORT",
+        "MANUFACTURER_ESCALATION_REQUIRED"
+      ],
+      "directResolutionOrClosureAllowed": false
+    },
+    "transitionGuards": {
+      "notificationDeliveryFailureBlocks": [
+        "RESOLVED",
+        "CLOSED"
+      ],
+      "activeSafetyHoldBlocksAllOrdinaryTransitions": true,
+      "recoveryMayClearSafetyHold": false,
+      "manufacturerEscalationMayCloseRhinoCase": false
+    }
+  },
+  "namedStaffContext": {
+    "names": [
+      "Avery",
+      "Kevin",
+      "Warehouse",
+      "Stephanie"
+    ],
+    "assignmentAuthority": "UNRESOLVED",
+    "note": "Names are recorded from the Product Owner brief; exact primaries, backups, and handoff procedures are not invented."
+  },
+  "routes": [
+    {
+      "category": "WARRANTY_DECISION",
+      "primary": null,
+      "backup": null,
+      "assignmentStatus": "UNRESOLVED"
+    },
+    {
+      "category": "TECHNICAL_GUIDANCE",
+      "primary": null,
+      "backup": null,
+      "assignmentStatus": "UNRESOLVED",
+      "technicalRevisionApproval": "Kevin"
+    },
+    {
+      "category": "PARTS_QUESTION",
+      "primary": null,
+      "backup": null,
+      "assignmentStatus": "UNRESOLVED"
+    },
+    {
+      "category": "MANUFACTURER_REFERRAL",
+      "primary": null,
+      "backup": null,
+      "assignmentStatus": "UNRESOLVED",
+      "destination": "Silica-Gem",
+      "handoffProcedureStatus": "UNRESOLVED"
+    },
+    {
+      "category": "SHIPPING_CLAIM",
+      "primary": null,
+      "backup": null,
+      "assignmentStatus": "UNRESOLVED"
+    }
+  ],
+  "hours": {
+    "days": "APPROVED_WEEKDAYS",
+    "timezone": "America/Chicago",
+    "start": null,
+    "end": null,
+    "status": "BLOCKED_EXACT_HOURS_UNRESOLVED",
+    "continuousMonitoring": false
+  },
+  "warningDelivery": {
+    "timing": "IMMEDIATE_ON_HAZARD_REPORT_RECEIPT",
+    "messageClass": "STATIC_APPROVED_STOP_USE_WARNING_REQUIRED",
+    "mayDiagnose": false,
+    "mayPromiseStaffResponseTime": false,
+    "deliveryEvidenceRequired": true,
+    "failureAction": "KEEP_SAFETY_HOLD_ACTIVE_AND_ENTER_NOTIFICATION_RECOVERY",
+    "continuousMonitoringImplied": false
+  },
+  "staffHandling": {
+    "occursDuringPublishedBusinessHours": true,
+    "exactHoursStatus": "UNRESOLVED",
+    "responsibleAssignmentsStatus": "UNRESOLVED",
+    "continuousMonitoring": false
+  },
+  "safety": {
+    "hazardousSymptomsAction": "STOP_USE_IMMEDIATELY",
+    "automaticInstructionLimit": "Deliver the approved stop-use warning and route to authorized human handling only.",
+    "lowRiskTroubleshooting": {
+      "manualOnly": true,
+      "kevinApprovalRequired": true,
+      "autonomousDiagnosisAllowed": false
+    },
+    "seriousIncident": {
+      "minimumProcedure": [
+        "place or retain case in SAFETY_HOLD",
+        "preserve report and exact Product/version evidence",
+        "notify the approved incident authority",
+        "record authorized disposition before leaving hold",
+        "obtain legal/manufacturer direction before public action"
+      ],
+      "comprehensiveRecallPlatform": "DEFERRED",
+      "procedureStatus": "PROPOSED",
+      "responsibleAuthority": "UNRESOLVED"
+    }
+  },
+  "manufacturerEscalation": {
+    "destination": "Silica-Gem",
+    "handoffProcedureStatus": "UNRESOLVED",
+    "rhinoCaseOwnershipRetained": true,
+    "rhinoCommunicationResponsibilityRetained": true,
+    "caseMayCloseOnReferralAlone": false,
+    "requiredEvidence": [
+      "referral time",
+      "evidence package identity",
+      "customer communication evidence",
+      "manufacturer acknowledgement when available",
+      "Rhino follow-up owner"
+    ]
+  },
+  "notifications": {
+    "deliveryEvidenceRequired": true,
+    "lostNotificationAction": "RECOVERY_REQUIRED",
+    "marketingConsentImplied": false,
+    "failedDeliveryBlocksResolution": true,
+    "failedDeliveryBlocksClosure": true,
+    "activeSafetyHoldPreservedDuringRecovery": true
+  },
+  "quotationBoundary": "Accepted J/G quotation pathways remain separate and are not a support case system."
+}

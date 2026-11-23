@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-decision-receipt.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptId",
+    "receiptStatus",
+    "recordedAt",
+    "sourceRegistry",
+    "authorityDimensions",
+    "authorityOrder",
+    "distinction",
+    "policyVersionControl",
+    "decisions",
+    "retiredAssumptions",
+    "designatedManufacturerEscalation",
+    "migrationAssessment",
+    "unresolvedProvenance"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.1.0"
+    },
+    "receiptStatus": {
+      "const": "PROVISIONAL_AUTHORITY_RECORD"
+    },
+    "sourceRegistry": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "sourceId",
+          "sourceType",
+          "title",
+          "repositoryPath",
+          "revisionIdentity",
+          "exactApprovedWordingAvailable",
+          "verificationStatus",
+          "note"
+        ]
+      }
+    },
+    "authorityDimensions": {
+      "type": "object",
+      "required": [
+        "businessIntentApproval",
+        "implementationReadiness",
+        "customerFacingLegalApproval"
+      ]
+    },
+    "policyVersionControl": {
+      "type": "object",
+      "required": [
+        "proposedPolicyVersion",
+        "lifecycleStatus",
+        "applicableFrom",
+        "applicableTo",
+        "applicabilityApproval",
+        "customerCopyReleaseAuthorized",
+        "approvalEvidenceRefs"
+      ],
+      "properties": {
+        "lifecycleStatus": {
+          "const": "DRAFT"
+        },
+        "applicabilityApproval": {
+          "const": "NOT_APPROVED"
+        },
+        "customerCopyReleaseAuthorized": {
+          "const": false
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": [
+          "decisionId",
+          "recordedBusinessIntent",
+          "owner",
+          "scope",
+          "businessIntentApproval",
+          "implementationReadiness",
+          "customerFacingLegalApproval",
+          "affectedPbis",
+          "historicalContextRefs"
+        ],
+        "properties": {
+          "decisionId": {
+            "pattern": "^L-DEC-(00[1-9]|01[0-9]|020)$"
+          },
+          "businessIntentApproval": {
+            "type": "object",
+            "required": [
+              "status",
+              "confirmedAuthority",
+              "provenanceStatus",
+              "sourceRefs",
+              "note"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "APPROVED_INTENT_ASSERTED",
+                  "NOT_APPROVED",
+                  "UNRESOLVED"
+                ]
+              },
+              "confirmedAuthority": {
+                "type": "boolean"
+              },
+              "provenanceStatus": {
+                "type": "string"
+              },
+              "sourceRefs": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          },
+          "implementationReadiness": {
+            "type": "object",
+            "required": [
+              "status",
+              "dependencies",
+              "requirements"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "COMPLETE",
+                  "PROPOSED",
+                  "BLOCKED",
+                  "BLOCKED_PENDING_REVIEW",
+                  "HUMAN_REVIEW_REQUIRED",
+                  "DEFERRED"
+                ]
+              }
+            }
+          },
+          "customerFacingLegalApproval": {
+            "type": "object",
+            "required": [
+              "status",
+              "reviewRequirement",
+              "evidenceRefs",
+              "releaseAuthorized"
+            ],
+            "properties": {
+              "status": {
+                "const": "NOT_APPROVED"
+              },
+              "evidenceRefs": {
+                "type": "array",
+                "maxItems": 0
+              },
+              "releaseAuthorized": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "designatedManufacturerEscalation": {
+      "type": "object",
+      "required": [
+        "organization",
+        "role",
+        "businessIntentStatus",
+        "implementationReadiness",
+        "customerFacingLegalApproval",
+        "sourceRefs"
+      ],
+      "properties": {
+        "organization": {
+          "const": "Silica-Gem"
+        },
+        "customerFacingLegalApproval": {
+          "const": "NOT_APPROVED"
+        }
+      }
+    },
+    "unresolvedProvenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "2.1.0",
+  "contractId": "EPIC-L-POLICY2-RESOURCE-GOVERNANCE",
+  "status": "PROPOSED",
+  "authoritativeSource": "L-DEC-011 and L-DEC-012",
+  "runtimeConsumer": "Future registration acknowledgements, support staff, and approved storefront resource presentation",
+  "customerFacingAuthority": false,
+  "categories": [
+    "MANUAL",
+    "DYNAMIC_INSTRUCTION_DOCUMENT",
+    "DIAGRAM",
+    "SETUP_GUIDE",
+    "TUTORIAL_VIDEO",
+    "SAFETY_NOTICE"
+  ],
+  "releaseRecordRequired": [
+    "resourceId",
+    "category",
+    "revisionId",
+    "sourceIdentity",
+    "applicableProductGids",
+    "applicableVariantGids",
+    "applicableMachineVersions",
+    "technicalApprovedBy",
+    "technicalApprovedAt",
+    "approvalEvidence",
+    "releaseStatus"
+  ],
+  "rules": {
+    "googleDocs": "May be an editing source; an approved customer release must have immutable revision identity.",
+    "youtube": "Requires exact video identity, approved revision, and applicable machine versions.",
+    "publicationIsApproval": false,
+    "kevinTechnicalApprovalRequired": true,
+    "unapprovedReplacementOfPublishedResource": false,
+    "existingConventions": [
+      "exact Product/Variant identity",
+      "rhino.manuals and current resource presentation conventions where compatible"
+    ]
+  },
+  "releaseStatuses": [
+    "DRAFT",
+    "TECHNICAL_REVIEW",
+    "APPROVED_INTERNAL",
+    "APPROVED_CUSTOMER_RELEASE",
+    "RETIRED",
+    "BLOCKED"
+  ],
+  "rejectedStates": [
+    "missing revision identity",
+    "missing machine applicability",
+    "publication-only approval",
+    "missing Kevin technical approval",
+    "unknown video identity"
+  ],
+  "releaseReadiness": "BLOCKED_NO_APPROVED_RESOURCES",
+  "resourceRegistry": [],
+  "customerReleaseGate": {
+    "releaseAuthorized": false,
+    "requiredConditions": [
+      "exact revision identity",
+      "exact Product/Variant and machine-version applicability",
+      "Kevin technical approval evidence",
+      "customer-copy approval where applicable",
+      "resource availability validation"
+    ],
+    "emptyRegistryBehavior": "BLOCK_RELEASE",
+    "unapprovedRevisionBehavior": "BLOCK_RELEASE"
+  }
+}

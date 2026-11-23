@@ -1,0 +1,998 @@
+{
+  "schemaVersion": "2.1.0",
+  "receiptId": "EPIC-L-POLICY2-OWNER-RECEIPT-2026-11-23",
+  "receiptStatus": "PROVISIONAL_AUTHORITY_RECORD",
+  "recordedAt": "2026-11-23",
+  "sourceRegistry": [
+    {
+      "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+      "sourceType": "EXTERNAL_PRODUCT_OWNER_TASK_BRIEF",
+      "title": "Rhino Lapidary — Epic L Policy 2.0 Architecture Reconciliation",
+      "repositoryPath": null,
+      "revisionIdentity": null,
+      "exactApprovedWordingAvailable": false,
+      "verificationStatus": "UNRESOLVED_EXTERNAL_SOURCE",
+      "note": "The task brief states that L-DEC-001 through L-DEC-020 were approved, but the original signed/versioned decision source and exact per-decision wording are not present in the repository."
+    },
+    {
+      "sourceId": "PO-REVIEW-2026-11-23-POLICY2-CORRECTIONS",
+      "sourceType": "EXTERNAL_PRODUCT_OWNER_REVIEW_BRIEF",
+      "title": "Rhino Lapidary — Epic L Policy 2.0 Architecture Review Corrections",
+      "repositoryPath": null,
+      "revisionIdentity": null,
+      "exactApprovedWordingAvailable": false,
+      "verificationStatus": "UNRESOLVED_EXTERNAL_SOURCE",
+      "note": "Authorizes architecture corrections only; it does not provide or approve final customer-facing policy wording."
+    },
+    {
+      "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+      "sourceType": "REPOSITORY_HISTORICAL_CONTEXT",
+      "title": "Epic L decision and dependency register",
+      "repositoryPath": "docs/project/epic-l-decision-and-dependency-register.md",
+      "revisionIdentity": "414288a16fe7123b06c3433f0063ba402fc35e83",
+      "exactApprovedWordingAvailable": false,
+      "verificationStatus": "VERIFIED_HISTORICAL_UNRESOLVED",
+      "note": "Historical questions and unresolved planning context only; not Policy 2.0 approval authority."
+    }
+  ],
+  "authorityDimensions": {
+    "businessIntentApproval": "Whether the Product Owner approved the internal business intent.",
+    "implementationReadiness": "Whether technical, operational, evidence, staffing, and dependency safeguards are ready.",
+    "customerFacingLegalApproval": "Whether legally reviewed customer language is authorized for release."
+  },
+  "authorityOrder": [
+    "L-DEC-001 through L-DEC-020 supplied 2026-11-23",
+    "November 7 workshop packet",
+    "PBI tracker and earlier decision register",
+    "L1A contracts",
+    "accepted J/G architecture",
+    "fresh read-only Shopify evidence",
+    "historical warranty"
+  ],
+  "distinction": "Product Owner business intent, implementation readiness, and customer-facing legal approval are independent. No status in one dimension implies approval in another.",
+  "policyVersionControl": {
+    "proposedPolicyVersion": "2.0-draft",
+    "lifecycleStatus": "DRAFT",
+    "applicableFrom": null,
+    "applicableTo": null,
+    "applicabilityApproval": "NOT_APPROVED",
+    "customerCopyReleaseAuthorized": false,
+    "approvalEvidenceRefs": []
+  },
+  "decisions": [
+    {
+      "decisionId": "L-DEC-001",
+      "recordedBusinessIntent": "Policy 2.0 is the current internal business-design authority; the prior warranty remains historical only. Manufacturer obligations, Rhino voluntary support, and legally required protections remain distinct.",
+      "owner": "Product Owner",
+      "scope": "policy authority",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Mission; Source hierarchy"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "legal review"
+        ],
+        "requirements": [
+          "versioned policy model",
+          "no customer-facing authority"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-001",
+        "L-PBI-002"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-001"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-002",
+      "recordedBusinessIntent": "Coverage is assigned by exact Product and Variant GID to MACHINE, WEAR_COMPONENT, DURABLE_COMPONENT, THIRD_PARTY_COMPONENT, EXCLUDED_SUPPLY, or HUMAN_REVIEW_REQUIRED; title, vendor, and publication are not approval.",
+      "owner": "Product Owner",
+      "scope": "coverage",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package B — Coverage classification"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "current Shopify snapshot",
+          "legal review"
+        ],
+        "requirements": [
+          "coverage matrix",
+          "human review queue"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-002",
+        "L-PBI-003"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-002"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-003",
+      "recordedBusinessIntent": "Machine registration supports service operations, but absence of registration cannot automatically deny eligibility before legal approval of eligibility rules.",
+      "owner": "Product Owner",
+      "scope": "registration eligibility",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package C — Registration contract"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "legal review"
+        ],
+        "requirements": [
+          "fail-closed denial gate",
+          "registration contract"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-004"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-003"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-004",
+      "recordedBusinessIntent": "Registration must link the registrant to exact machine identity and retain ownership-verification evidence without presuming purchase-proof exceptions that have not been approved.",
+      "owner": "Product Owner",
+      "scope": "registration evidence",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package C — Registration contract"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "PROPOSED",
+        "dependencies": [
+          "eligibility legal review",
+          "privacy design"
+        ],
+        "requirements": [
+          "ownership verification states",
+          "error recovery"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-004",
+        "L-PBI-005"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-004"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-005",
+      "recordedBusinessIntent": "Rhino does not operate an in-house or in-person repair service. Retire repair intake, estimates, paid-labor approval, repair shipment tracking, and routine RMA; Silica-Gem is the designated manufacturer escalation and authorized repair destination.",
+      "owner": "Product Owner",
+      "scope": "service model",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Mission; Work Package A — Decision reconciliation"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "Silica-Gem operating agreement verification"
+        ],
+        "requirements": [
+          "minimal support case state machine",
+          "prohibited-state validation"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED_FOR_CUSTOMER_COPY",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-009",
+        "L-PBI-010"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-005"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-006",
+      "recordedBusinessIntent": "Rhino provides carrier-claims assistance, not a repair-shipping service. Any insurance choice must fit actual checkout entitlement and receive separate approval.",
+      "owner": "Product Owner",
+      "scope": "shipping claims",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package D — Support and safety; Work Package F — Shopify capability and privacy audit"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "BLOCKED",
+        "dependencies": [
+          "checkout capability",
+          "carrier process approval"
+        ],
+        "requirements": [
+          "claims-assistance route",
+          "no checkout mutation"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-011",
+        "L-PBI-019"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-006"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-007",
+      "recordedBusinessIntent": "Support operates on approved weekdays in Central Time without implying continuous monitoring; hazardous reports must surface an urgent stop-use pathway. Exact start and end times are not present in the supplied receipt.",
+      "owner": "Product Owner",
+      "scope": "support availability",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package D — Support and safety"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "BLOCKED",
+        "dependencies": [
+          "exact approved hours",
+          "customer message legal review"
+        ],
+        "requirements": [
+          "timezone contract",
+          "non-continuous-monitoring disclaimer"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-008",
+        "L-PBI-012"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-007"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-008",
+      "recordedBusinessIntent": "Support routes warranty decisions, technical guidance, parts questions, manufacturer referrals, and shipping claims among Avery, Kevin, Warehouse, Stephanie, and approved backups. Exact primary/backup assignments require owner confirmation.",
+      "owner": "Product Owner",
+      "scope": "support ownership",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package D — Support and safety"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "HUMAN_REVIEW_REQUIRED",
+        "dependencies": [
+          "routing approval"
+        ],
+        "requirements": [
+          "named routing matrix",
+          "lost-notification recovery"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "NOT_APPLICABLE",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-008",
+        "L-PBI-009"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-008"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-009",
+      "recordedBusinessIntent": "Physical machine serial numbers and public registration identifiers are distinct; public IDs are opaque and reveal no customer identity.",
+      "owner": "Product Owner",
+      "scope": "identity",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package C — Registration contract"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "security review"
+        ],
+        "requirements": [
+          "128-bit opaque ID",
+          "serial field kept separate"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-004",
+        "L-PBI-005"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-009"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-010",
+      "recordedBusinessIntent": "Registration and support records require a seven-year retention architecture across processors, attachments, notifications, backups, deletion, export, and audit evidence; support communication is not marketing consent.",
+      "owner": "Product Owner",
+      "scope": "privacy and retention",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package F — Shopify capability and privacy audit"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "PROPOSED",
+        "dependencies": [
+          "processor selection",
+          "privacy/legal review"
+        ],
+        "requirements": [
+          "retention matrix",
+          "access and deletion controls"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-006",
+        "L-PBI-020"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-010"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-011",
+      "recordedBusinessIntent": "Govern manuals, dynamic instruction documents, diagrams, setup guides, tutorial videos, and safety notices by exact revision, machine version, and approval; source publication alone does not approve release.",
+      "owner": "Product Owner",
+      "scope": "resources",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package E — Resource governance"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "Kevin technical approval"
+        ],
+        "requirements": [
+          "resource release contract",
+          "exact YouTube identity"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED_FOR_CUSTOMER_COPY",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-007"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-011"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-012",
+      "recordedBusinessIntent": "Troubleshooting is manual-only and low risk, requires Kevin's approval for technical revisions, and immediately stops machine operation when hazardous symptoms are reported.",
+      "owner": "Product Owner",
+      "scope": "technical guidance",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package D — Support and safety"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "Kevin approval",
+          "safety message review"
+        ],
+        "requirements": [
+          "unsafe-guidance rejection",
+          "stop-use route"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED_FOR_CUSTOMER_COPY",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-009",
+        "L-PBI-012"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-012"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-013",
+      "recordedBusinessIntent": "Use a minimal support-case lifecycle for triage, guidance, parts, manufacturer escalation, carrier assistance, safety hold, resolution, and closure; unknown or prohibited states fail closed.",
+      "owner": "Product Owner",
+      "scope": "case lifecycle",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package A — Decision reconciliation; Work Package D — Support and safety"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "routing approval"
+        ],
+        "requirements": [
+          "state machine",
+          "transition validator"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "NOT_APPLICABLE",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-008",
+        "L-PBI-009"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-013"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-014",
+      "recordedBusinessIntent": "Assess Shopify Forms and Flow as optional implementation capabilities; do not install, enable, collect, or automate in this batch.",
+      "owner": "Product Owner",
+      "scope": "Shopify capabilities",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package F — Shopify capability and privacy audit"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "app entitlement",
+          "privacy architecture"
+        ],
+        "requirements": [
+          "read-only audit",
+          "activation gate"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-018",
+        "L-PBI-020"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-014"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-015",
+      "recordedBusinessIntent": "Customer account history remains an Epic O interface. Epic L registration and support cannot assume that history features already exist.",
+      "owner": "Product Owner",
+      "scope": "account boundary",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package C — Registration contract; Work Package G — PBI restructuring"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "Epic O contract"
+        ],
+        "requirements": [
+          "account-optional registration",
+          "future interface"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "NOT_APPLICABLE",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-005",
+        "L-PBI-021"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-015"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-016",
+      "recordedBusinessIntent": "No autonomous system may invent repair instructions, diagnose hazards, or make warranty eligibility decisions; governed humans remain the decision authority.",
+      "owner": "Product Owner",
+      "scope": "automation safety",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package D — Support and safety"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "routing approval"
+        ],
+        "requirements": [
+          "human-decision gate",
+          "automation restrictions"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-009",
+        "L-PBI-013"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-016"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-017",
+      "recordedBusinessIntent": "Support notifications require delivery and reconciliation evidence; failed notifications cannot silently close a case, and operational contact does not create marketing consent.",
+      "owner": "Product Owner",
+      "scope": "communications",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package F — Shopify capability and privacy audit"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "processor selection",
+          "privacy review"
+        ],
+        "requirements": [
+          "notification ledger",
+          "failure recovery"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-008",
+        "L-PBI-020"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-017"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-018",
+      "recordedBusinessIntent": "Comprehensive dealer-directory publication is deferred until each organization grants permission.",
+      "owner": "Product Owner",
+      "scope": "dealer directory",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package G — PBI restructuring"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "DEFERRED",
+        "dependencies": [
+          "dealer permission"
+        ],
+        "requirements": [
+          "permission register before publication"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED_FOR_PUBLICATION",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-022"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-018"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-019",
+      "recordedBusinessIntent": "Retain a minimal serious-safety-incident escalation and evidence procedure while deferring a comprehensive recall platform.",
+      "owner": "Product Owner",
+      "scope": "safety incidents",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package D — Support and safety; Work Package G — PBI restructuring"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "COMPLETE",
+        "dependencies": [
+          "incident owner approval",
+          "legal review"
+        ],
+        "requirements": [
+          "safety hold",
+          "serious incident escalation"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-012",
+        "L-PBI-023"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-019"
+        }
+      ]
+    },
+    {
+      "decisionId": "L-DEC-020",
+      "recordedBusinessIntent": "Defer analytics and sophisticated recall infrastructure; retain privacy-safe validation and mandatory safety handling.",
+      "owner": "Product Owner",
+      "scope": "deferred infrastructure",
+      "businessIntentApproval": {
+        "status": "APPROVED_INTENT_ASSERTED",
+        "confirmedAuthority": false,
+        "provenanceStatus": "UNRESOLVED_ORIGINAL_APPROVED_WORDING_NOT_REPOSITORY_VERIFIABLE",
+        "sourceRefs": [
+          {
+            "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+            "location": "Work Package G — PBI restructuring"
+          }
+        ],
+        "note": "The commission describes this decision set as approved, but this recorded intent is a reconciliation paraphrase until an exact versioned source receipt is supplied."
+      },
+      "implementationReadiness": {
+        "status": "DEFERRED",
+        "dependencies": [
+          "privacy review",
+          "future authorization"
+        ],
+        "requirements": [
+          "minimum operational evidence",
+          "no tracking expansion"
+        ]
+      },
+      "customerFacingLegalApproval": {
+        "status": "NOT_APPROVED",
+        "reviewRequirement": "REQUIRED",
+        "evidenceRefs": [],
+        "releaseAuthorized": false
+      },
+      "affectedPbis": [
+        "L-PBI-023",
+        "L-PBI-024"
+      ],
+      "historicalContextRefs": [
+        {
+          "sourceId": "REPO-EPIC-L-DECISION-REGISTER-2026-11-07",
+          "location": "L-DEC-020"
+        }
+      ]
+    }
+  ],
+  "retiredAssumptions": [
+    "in-house repair intake",
+    "in-person repair service",
+    "repair estimate",
+    "paid labor approval",
+    "repair shipment tracking",
+    "routine RMA workflow"
+  ],
+  "designatedManufacturerEscalation": {
+    "organization": "Silica-Gem",
+    "role": "designated manufacturer escalation and authorized repair destination",
+    "businessIntentStatus": "APPROVED_INTENT_ASSERTED",
+    "implementationReadiness": "BLOCKED_PENDING_HANDOFF_APPROVAL",
+    "customerFacingLegalApproval": "NOT_APPROVED",
+    "sourceRefs": [
+      {
+        "sourceId": "PO-DIRECTIVE-2026-11-23-EPIC-L-POLICY2",
+        "location": "Mission; Work Package A — Decision reconciliation"
+      }
+    ]
+  },
+  "migrationAssessment": [
+    {
+      "artifact": "data/epic-l-warranty-decision-packet.json",
+      "classification": "HISTORICAL_ONLY",
+      "action": "Preserve; do not use old duration, remedy, coverage, or effective-date values."
+    },
+    {
+      "artifact": "data/epic-l-service-decision-packet.json",
+      "classification": "SUPERSEDED",
+      "action": "Preserve; replace repair lifecycle with the Policy 2.0 support lifecycle."
+    },
+    {
+      "artifact": "data/epic-l-privacy-data-contract.json",
+      "classification": "REQUIRES_ADAPTATION",
+      "action": "Preserve evidence model; govern seven-year processors and support/marketing separation."
+    },
+    {
+      "artifact": "data/epic-l-admin-audit-plan.json",
+      "classification": "REUSED_CURRENT",
+      "action": "Retain read-only and no-write guardrails; supersede stale capability conclusions with fresh audit."
+    }
+  ],
+  "unresolvedProvenance": [
+    "Original versioned L-DEC-001 through L-DEC-020 approval document or signed decision receipt.",
+    "Exact approved wording for each decision.",
+    "Revision identity, approval timestamp, and durable evidence reference for the original decision source."
+  ]
+}

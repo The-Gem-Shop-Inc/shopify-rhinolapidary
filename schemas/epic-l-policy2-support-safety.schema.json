@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-support-safety.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "contractId",
+    "status",
+    "authoritativeSource",
+    "runtimeConsumer",
+    "customerFacingAuthority",
+    "prohibitedCapabilities",
+    "stateMachine",
+    "namedStaffContext",
+    "routes",
+    "hours",
+    "warningDelivery",
+    "staffHandling",
+    "safety",
+    "manufacturerEscalation",
+    "notifications",
+    "quotationBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.1.0"
+    },
+    "status": {
+      "const": "PROPOSED"
+    },
+    "customerFacingAuthority": {
+      "const": false
+    },
+    "stateMachine": {
+      "type": "object",
+      "required": [
+        "states",
+        "manufacturerDestination",
+        "ordinaryTransitions",
+        "unknownTransitionBehavior",
+        "globalSafetyInterruption",
+        "safetyHoldExit",
+        "transitionGuards"
+      ],
+      "properties": {
+        "manufacturerDestination": {
+          "const": "Silica-Gem"
+        },
+        "unknownTransitionBehavior": {
+          "const": "REJECT_FAIL_CLOSED"
+        },
+        "globalSafetyInterruption": {
+          "type": "object",
+          "required": [
+            "trigger",
+            "relevantNonterminalStates",
+            "transitions",
+            "entryRequirements",
+            "ordinaryTransitionsLockedWhileActive"
+          ],
+          "properties": {
+            "trigger": {
+              "const": "HAZARDOUS_INFORMATION_RECEIVED"
+            },
+            "ordinaryTransitionsLockedWhileActive": {
+              "const": true
+            }
+          }
+        },
+        "safetyHoldExit": {
+          "type": "object",
+          "required": [
+            "allowedTransitions",
+            "authorizationRequired",
+            "requiredRecord",
+            "allowedDispositions",
+            "directResolutionOrClosureAllowed"
+          ],
+          "properties": {
+            "authorizationRequired": {
+              "const": true
+            },
+            "directResolutionOrClosureAllowed": {
+              "const": false
+            }
+          }
+        },
+        "transitionGuards": {
+          "type": "object",
+          "required": [
+            "notificationDeliveryFailureBlocks",
+            "activeSafetyHoldBlocksAllOrdinaryTransitions",
+            "recoveryMayClearSafetyHold",
+            "manufacturerEscalationMayCloseRhinoCase"
+          ],
+          "properties": {
+            "activeSafetyHoldBlocksAllOrdinaryTransitions": {
+              "const": true
+            },
+            "recoveryMayClearSafetyHold": {
+              "const": false
+            },
+            "manufacturerEscalationMayCloseRhinoCase": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "namedStaffContext": {
+      "type": "object",
+      "required": [
+        "names",
+        "assignmentAuthority",
+        "note"
+      ],
+      "properties": {
+        "assignmentAuthority": {
+          "const": "UNRESOLVED"
+        }
+      }
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "category",
+          "primary",
+          "backup",
+          "assignmentStatus"
+        ],
+        "properties": {
+          "primary": {
+            "type": "null"
+          },
+          "backup": {
+            "type": "null"
+          },
+          "assignmentStatus": {
+            "const": "UNRESOLVED"
+          }
+        }
+      }
+    },
+    "hours": {
+      "type": "object",
+      "required": [
+        "timezone",
+        "start",
+        "end",
+        "status",
+        "continuousMonitoring"
+      ],
+      "properties": {
+        "timezone": {
+          "const": "America/Chicago"
+        },
+        "start": {
+          "type": "null"
+        },
+        "end": {
+          "type": "null"
+        },
+        "continuousMonitoring": {
+          "const": false
+        }
+      }
+    },
+    "warningDelivery": {
+      "type": "object",
+      "required": [
+        "timing",
+        "mayDiagnose",
+        "mayPromiseStaffResponseTime",
+        "deliveryEvidenceRequired",
+        "failureAction",
+        "continuousMonitoringImplied"
+      ],
+      "properties": {
+        "mayDiagnose": {
+          "const": false
+        },
+        "mayPromiseStaffResponseTime": {
+          "const": false
+        },
+        "deliveryEvidenceRequired": {
+          "const": true
+        },
+        "continuousMonitoringImplied": {
+          "const": false
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "required": [
+        "hazardousSymptomsAction",
+        "automaticInstructionLimit",
+        "lowRiskTroubleshooting",
+        "seriousIncident"
+      ],
+      "properties": {
+        "hazardousSymptomsAction": {
+          "const": "STOP_USE_IMMEDIATELY"
+        }
+      }
+    },
+    "manufacturerEscalation": {
+      "type": "object",
+      "required": [
+        "destination",
+        "handoffProcedureStatus",
+        "rhinoCaseOwnershipRetained",
+        "rhinoCommunicationResponsibilityRetained",
+        "caseMayCloseOnReferralAlone",
+        "requiredEvidence"
+      ],
+      "properties": {
+        "destination": {
+          "const": "Silica-Gem"
+        },
+        "rhinoCaseOwnershipRetained": {
+          "const": true
+        },
+        "rhinoCommunicationResponsibilityRetained": {
+          "const": true
+        },
+        "caseMayCloseOnReferralAlone": {
+          "const": false
+        }
+      }
+    },
+    "notifications": {
+      "type": "object",
+      "required": [
+        "deliveryEvidenceRequired",
+        "lostNotificationAction",
+        "marketingConsentImplied",
+        "failedDeliveryBlocksResolution",
+        "failedDeliveryBlocksClosure",
+        "activeSafetyHoldPreservedDuringRecovery"
+      ],
+      "properties": {
+        "deliveryEvidenceRequired": {
+          "const": true
+        },
+        "marketingConsentImplied": {
+          "const": false
+        },
+        "failedDeliveryBlocksResolution": {
+          "const": true
+        },
+        "failedDeliveryBlocksClosure": {
+          "const": true
+        },
+        "activeSafetyHoldPreservedDuringRecovery": {
+          "const": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "2.0.0",
+  "auditId": "EPIC-L-POLICY2-SHOPIFY-CAPABILITY-2026-11-23",
+  "status": "COMPLETE",
+  "auditDate": "2026-11-23",
+  "mode": "READ_ONLY",
+  "shopifyMutationPerformed": false,
+  "shop": {
+    "plan": "Basic",
+    "isPlus": false,
+    "timezone": "America/Chicago",
+    "customerAccounts": {
+      "requireLogin": false,
+      "state": "OPTIONAL",
+      "version": "NEW_CUSTOMER_ACCOUNTS"
+    },
+    "checkoutApiSupported": true
+  },
+  "installedApplications": [
+    "Messaging",
+    "Shopify ChatGPT MCP App",
+    "Rhino Catalog Read Audit",
+    "Shopify CLI Connector App",
+    "Rhino Quotation Drafts"
+  ],
+  "capabilities": {
+    "shopifyForms": {
+      "installed": false,
+      "status": "PROPOSED",
+      "constraints": [
+        "Installation and activation not authorized",
+        "Submissions create or match customer profiles",
+        "Custom fields may use local or customer-metafield storage",
+        "Flow integration requires both apps installed"
+      ]
+    },
+    "shopifyFlow": {
+      "installed": false,
+      "planAvailability": "AVAILABLE_ON_BASIC",
+      "status": "PROPOSED",
+      "constraints": [
+        "Installation and activation not authorized",
+        "Send HTTP Request is unavailable on Basic"
+      ]
+    },
+    "customerAccounts": {
+      "status": "REQUIRES_ADAPTATION",
+      "notes": [
+        "New customer accounts are optional",
+        "Epic O history interface is not implemented",
+        "Registration must work without account history"
+      ]
+    },
+    "privateStorage": {
+      "status": "BLOCKED",
+      "notes": [
+        "No approved private support/registration system of record was identified",
+        "Customer metafields and notifications are not a complete seven-year record architecture"
+      ]
+    },
+    "checkoutShippingOptions": {
+      "status": "BLOCKED",
+      "finding": "Checkout UI extensions on information, shipping, and payment steps require Shopify Plus; the audited shop is Basic. checkoutApiSupported does not grant this entitlement."
+    },
+    "staffAccess": {
+      "status": "BLOCKED",
+      "finding": "Read-only staffMembers query returned access denied; no staff-count or role inference is made."
+    }
+  },
+  "retentionArchitecture": {
+    "period": "P7Y",
+    "status": "BLOCKED_PENDING_PROCESSOR_REVIEW",
+    "recordClasses": [
+      {
+        "class": "registration core",
+        "processor": "UNSELECTED",
+        "retention": "7 years",
+        "exportDeletion": "REQUIRES_LEGAL_RULES"
+      },
+      {
+        "class": "support case and decisions",
+        "processor": "UNSELECTED",
+        "retention": "7 years",
+        "exportDeletion": "REQUIRES_LEGAL_RULES"
+      },
+      {
+        "class": "attachments and ownership evidence",
+        "processor": "UNSELECTED",
+        "retention": "7 years",
+        "exportDeletion": "REQUIRES_LEGAL_RULES"
+      },
+      {
+        "class": "notification delivery ledger",
+        "processor": "UNSELECTED",
+        "retention": "7 years",
+        "exportDeletion": "REQUIRES_LEGAL_RULES"
+      },
+      {
+        "class": "audit and approval evidence",
+        "processor": "UNSELECTED",
+        "retention": "7 years",
+        "exportDeletion": "REQUIRES_LEGAL_RULES"
+      },
+      {
+        "class": "backups and replicas",
+        "processor": "UNSELECTED",
+        "retention": "Must honor approved lifecycle",
+        "exportDeletion": "REQUIRES_PROCESSOR_VALIDATION"
+      }
+    ],
+    "marketingConsentSeparate": true,
+    "notificationFailureCannotCloseCase": true
+  },
+  "officialReferences": [
+    "https://shopify.dev/docs/api/checkout-ui-extensions/latest",
+    "https://help.shopify.com/en/manual/shopify-flow",
+    "https://help.shopify.com/en/manual/promoting-marketing/create-marketing/forms-app/manage",
+    "https://help.shopify.com/en/manual/promoting-marketing/create-marketing/forms-app/flow",
+    "https://shopify.dev/docs/apps/build/customer-accounts"
+  ],
+  "proposedFutureMutations": [
+    {
+      "action": "Install or configure Forms",
+      "status": "NOT_AUTHORIZED"
+    },
+    {
+      "action": "Install or configure Flow",
+      "status": "NOT_AUTHORIZED"
+    },
+    {
+      "action": "Create registration/customer metafields",
+      "status": "NOT_AUTHORIZED"
+    },
+    {
+      "action": "Alter checkout or add insurance choice",
+      "status": "NOT_AUTHORIZED"
+    },
+    {
+      "action": "Enable customer collection or marketing",
+      "status": "NOT_AUTHORIZED"
+    }
+  ]
+}

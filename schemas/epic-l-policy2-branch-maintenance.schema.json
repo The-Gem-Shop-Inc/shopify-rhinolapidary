@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-branch-maintenance.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "recordNature",
+    "recordedAt",
+    "repository",
+    "status",
+    "worktrees",
+    "absentWorktrees",
+    "commits",
+    "ancestry",
+    "remoteHeads",
+    "preservation",
+    "safeSwitching",
+    "batchObservation",
+    "latestLiveCheck",
+    "liveVerificationRequired",
+    "workspaceConsolidation"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.2.0"
+    },
+    "recordNature": {
+      "const": "HISTORICAL_RECONCILIATION_AND_WORKSPACE_CONSOLIDATION_RECORD"
+    },
+    "status": {
+      "enum": [
+        "CONSOLIDATED_PENDING_FINAL_VALIDATION",
+        "CONSOLIDATED_VALIDATED"
+      ]
+    },
+    "worktrees": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "head",
+          "purpose",
+          "allowed",
+          "historicalSnapshot"
+        ],
+        "properties": {
+          "historicalSnapshot": {
+            "const": true
+          }
+        }
+      }
+    },
+    "ancestry": {
+      "type": "object",
+      "required": [
+        "foundationIsAncestorOfIntegration",
+        "integrationProductionCommonAncestor"
+      ],
+      "properties": {
+        "foundationIsAncestorOfIntegration": {
+          "const": true
+        },
+        "integrationProductionCommonAncestor": {
+          "const": false
+        }
+      }
+    },
+    "preservation": {
+      "type": "object",
+      "required": [
+        "filesIntentionallyPreserved",
+        "filesProposedForMigration",
+        "historicalFoundationRetainedThroughAncestry"
+      ],
+      "properties": {
+        "filesIntentionallyPreserved": {
+          "type": "array",
+          "contains": {
+            "const": "docs/qa/evidence/epic-g/g3b-2026-10-19/unit-tests.json"
+          }
+        }
+      }
+    },
+    "batchObservation": {
+      "type": "object"
+    },
+    "latestLiveCheck": {
+      "type": "object",
+      "required": [
+        "observedAt",
+        "branch",
+        "head",
+        "upstream",
+        "upstreamNote",
+        "authoritativeWorkspace",
+        "porcelainEntryCount",
+        "stagedEntryCount",
+        "observationOnly",
+        "limitation"
+      ],
+      "properties": {
+        "branch": {
+          "const": "feat/epic-l-policy2-reconciliation"
+        },
+        "head": {
+          "const": "5b786d2d1ab7603817c8cab578bf4a3339d06bfa"
+        },
+        "authoritativeWorkspace": {
+          "const": "C:\\rlcc"
+        },
+        "stagedEntryCount": {
+          "const": 0
+        },
+        "observationOnly": {
+          "const": true
+        }
+      }
+    },
+    "workspaceConsolidation": {
+      "type": "object",
+      "required": [
+        "eventId",
+        "authorizedBy",
+        "observedAt",
+        "status",
+        "source",
+        "destination",
+        "collisionAssessment",
+        "migrationVerification",
+        "currentDevelopmentWorkspace",
+        "validation"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "COPIED_HASH_VERIFIED_VALIDATION_PENDING",
+            "COMPLETE_VALIDATED"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "required": [
+            "path",
+            "stateAfterTransfer",
+            "head",
+            "roleAfterTransfer",
+            "architecturePathCount"
+          ],
+          "properties": {
+            "path": {
+              "const": "C:\\rlcc-epic-l-policy2"
+            },
+            "stateAfterTransfer": {
+              "const": "DETACHED"
+            },
+            "architecturePathCount": {
+              "const": 28
+            }
+          }
+        },
+        "destination": {
+          "type": "object",
+          "required": [
+            "path",
+            "branchBeforeTransfer",
+            "branchAfterTransfer",
+            "head",
+            "upstream",
+            "roleAfterTransfer"
+          ],
+          "properties": {
+            "path": {
+              "const": "C:\\rlcc"
+            },
+            "branchAfterTransfer": {
+              "const": "feat/epic-l-policy2-reconciliation"
+            },
+            "roleAfterTransfer": {
+              "const": "AUTHORITATIVE_LOCAL_DEVELOPMENT_WORKSPACE"
+            }
+          }
+        },
+        "collisionAssessment": {
+          "type": "object",
+          "required": [
+            "sourceChangedPaths",
+            "destinationPreExistingChangedPaths",
+            "localChangePathOverlap",
+            "newArchitecturePaths",
+            "compatibleCommonBasePaths",
+            "unresolvedConflicts"
+          ],
+          "properties": {
+            "sourceChangedPaths": {
+              "const": 28
+            },
+            "destinationPreExistingChangedPaths": {
+              "const": 39
+            },
+            "newArchitecturePaths": {
+              "const": 25
+            },
+            "unresolvedConflicts": {
+              "type": "array",
+              "maxItems": 0
+            }
+          }
+        },
+        "migrationVerification": {
+          "type": "object",
+          "required": [
+            "sourceArchitectureInventory",
+            "initialCopyHashMatches",
+            "initialCopyHashMismatches",
+            "preservedDestinationInventory",
+            "preservedDestinationHashMatches",
+            "preservedDestinationHashMismatches",
+            "note"
+          ],
+          "properties": {
+            "initialCopyHashMatches": {
+              "const": 28
+            },
+            "initialCopyHashMismatches": {
+              "type": "array",
+              "maxItems": 0
+            },
+            "preservedDestinationHashMatches": {
+              "const": 39
+            },
+            "preservedDestinationHashMismatches": {
+              "type": "array",
+              "maxItems": 0
+            }
+          }
+        },
+        "currentDevelopmentWorkspace": {
+          "type": "object",
+          "required": [
+            "path",
+            "branch",
+            "head",
+            "authoritative",
+            "epicOWorkspace",
+            "temporaryRecoveryWorktree"
+          ],
+          "properties": {
+            "path": {
+              "const": "C:\\rlcc"
+            },
+            "branch": {
+              "const": "feat/epic-l-policy2-reconciliation"
+            },
+            "authoritative": {
+              "const": true
+            },
+            "epicOWorkspace": {
+              "const": "OUT_OF_SCOPE_UNTOUCHED"
+            }
+          }
+        },
+        "validation": {
+          "type": "object",
+          "required": [
+            "status",
+            "policy2",
+            "l1a",
+            "jsonParsing",
+            "diffCheck",
+            "repositoryIntegrity"
+          ]
+        }
+      }
+    },
+    "liveVerificationRequired": {
+      "type": "object",
+      "required": [
+        "beforeResume",
+        "beforeCommitOrPush",
+        "rule"
+      ]
+    }
+  }
+}

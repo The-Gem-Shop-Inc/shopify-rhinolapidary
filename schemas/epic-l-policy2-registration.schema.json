@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-registration.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "contractId",
+    "status",
+    "authoritativeSource",
+    "runtimeConsumer",
+    "customerFacingAuthority",
+    "identifier",
+    "record",
+    "states",
+    "duplicateHandling",
+    "eligibility",
+    "acknowledgement",
+    "qrHandout",
+    "tests"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.0.0"
+    },
+    "status": {
+      "const": "PROPOSED"
+    },
+    "customerFacingAuthority": {
+      "const": false
+    },
+    "identifier": {
+      "type": "object",
+      "required": [
+        "kind",
+        "minimumEntropyBits",
+        "mustNotContain"
+      ],
+      "properties": {
+        "kind": {
+          "const": "opaque_random"
+        },
+        "minimumEntropyBits": {
+          "minimum": 128
+        }
+      }
+    },
+    "eligibility": {
+      "type": "object",
+      "required": [
+        "registrationAbsentAutomaticDenial"
+      ],
+      "properties": {
+        "registrationAbsentAutomaticDenial": {
+          "const": false
+        }
+      }
+    }
+  }
+}

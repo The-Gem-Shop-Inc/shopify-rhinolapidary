@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-coverage.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "auditDate",
+    "status",
+    "authority",
+    "methodology",
+    "historicalProvisionalAudit",
+    "historicalCurrentDifference",
+    "currentAudit",
+    "activeProductApprovalRegister",
+    "priorityHumanReviewQueue",
+    "draftProducts",
+    "approvalGate"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.1.0"
+    },
+    "status": {
+      "const": "HUMAN_REVIEW_REQUIRED"
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "sourceSnapshot",
+        "customerFacingAuthority",
+        "shopifyMutated"
+      ],
+      "properties": {
+        "customerFacingAuthority": {
+          "const": false
+        },
+        "shopifyMutated": {
+          "const": false
+        }
+      }
+    },
+    "methodology": {
+      "type": "object",
+      "required": [
+        "technicalClassMayAuthorizeCoverage",
+        "physicalDescriptionMayAuthorizeCoverage",
+        "vendorMayProveManufacturer",
+        "publicationMayDetermineEligibility",
+        "missingEvidenceDefault",
+        "allActiveProductsRequireBusinessReview",
+        "customerPromiseRequires"
+      ],
+      "properties": {
+        "technicalClassMayAuthorizeCoverage": {
+          "const": false
+        },
+        "physicalDescriptionMayAuthorizeCoverage": {
+          "const": false
+        },
+        "vendorMayProveManufacturer": {
+          "const": false
+        },
+        "publicationMayDetermineEligibility": {
+          "const": false
+        },
+        "missingEvidenceDefault": {
+          "const": "HUMAN_REVIEW_REQUIRED"
+        },
+        "allActiveProductsRequireBusinessReview": {
+          "const": true
+        }
+      }
+    },
+    "historicalCurrentDifference": {
+      "type": "object",
+      "required": [
+        "historicalActiveProducts",
+        "currentActiveProducts",
+        "delta",
+        "exactHistoricalProductGidListAvailable",
+        "identifiedChangedProductGid",
+        "conclusion"
+      ]
+    },
+    "currentAudit": {
+      "type": "object",
+      "required": [
+        "products",
+        "variants",
+        "activeProducts",
+        "draftProducts",
+        "activeVariants",
+        "tentativeDispositionCounts",
+        "proposalStatusCounts",
+        "reviewPriorityCounts",
+        "businessApprovedProducts",
+        "legalApprovedProducts",
+        "customerPromiseAuthorizedProducts",
+        "humanReviewRequiredProducts"
+      ]
+    },
+    "activeProductApprovalRegister": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "productGid",
+          "variantGids",
+          "title",
+          "shopifyStatus",
+          "technicalClassificationEvidence",
+          "physicalFunctionAssessment",
+          "manufacturingSource",
+          "coverageProposal",
+          "businessApproval",
+          "legalApproval",
+          "customerPromiseAuthorized",
+          "reviewPriority",
+          "reviewReasons"
+        ],
+        "properties": {
+          "productGid": {
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "shopifyStatus": {
+            "const": "ACTIVE"
+          },
+          "manufacturingSource": {
+            "type": "object",
+            "required": [
+              "manufacturer",
+              "status",
+              "evidenceRefs",
+              "shopifyVendorUsedAsAuthority"
+            ],
+            "properties": {
+              "shopifyVendorUsedAsAuthority": {
+                "const": false
+              }
+            }
+          },
+          "coverageProposal": {
+            "type": "object",
+            "required": [
+              "disposition",
+              "candidateDispositions",
+              "status",
+              "evidenceRefs",
+              "derivedSolelyFromTechnicalClass",
+              "rationale"
+            ],
+            "properties": {
+              "disposition": {
+                "enum": [
+                  "MACHINE",
+                  "WEAR_COMPONENT",
+                  "DURABLE_COMPONENT",
+                  "THIRD_PARTY_COMPONENT",
+                  "EXCLUDED_SUPPLY",
+                  "HUMAN_REVIEW_REQUIRED"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "TENTATIVE",
+                  "UNDETERMINED"
+                ]
+              },
+              "derivedSolelyFromTechnicalClass": {
+                "const": false
+              }
+            }
+          },
+          "businessApproval": {
+            "type": "object",
+            "required": [
+              "status",
+              "approvedBy",
+              "approvedAt",
+              "evidenceRefs"
+            ]
+          },
+          "legalApproval": {
+            "type": "object",
+            "required": [
+              "status",
+              "approvedBy",
+              "approvedAt",
+              "evidenceRefs"
+            ]
+          },
+          "customerPromiseAuthorized": {
+            "const": false
+          },
+          "reviewPriority": {
+            "enum": [
+              "CRITICAL",
+              "HIGH",
+              "NORMAL"
+            ]
+          }
+        }
+      }
+    },
+    "priorityHumanReviewQueue": {
+      "type": "array"
+    },
+    "draftProducts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "productGid",
+          "variantGids",
+          "shopifyStatus",
+          "coverageDisposition",
+          "commercialExclusion",
+          "coverageAuthority",
+          "customerPromiseAuthorized"
+        ],
+        "properties": {
+          "shopifyStatus": {
+            "const": "DRAFT"
+          },
+          "coverageDisposition": {
+            "const": "UNASSESSED_DRAFT"
+          },
+          "coverageAuthority": {
+            "const": "NONE"
+          },
+          "customerPromiseAuthorized": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}

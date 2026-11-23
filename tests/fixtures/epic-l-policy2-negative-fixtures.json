@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "2.1.0",
+  "status": "COMPLETE",
+  "scenarios": [
+    {
+      "id": "decision-approval-missing",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "decisionReceipt",
+      "mutation": "DELETE_BUSINESS_APPROVAL",
+      "expectedError": "DECISION_APPROVAL_MISSING"
+    },
+    {
+      "id": "decision-approval-conflict",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "decisionReceipt",
+      "mutation": "CONFIRM_UNRESOLVED_PROVENANCE",
+      "expectedError": "DECISION_APPROVAL_CONFLICT"
+    },
+    {
+      "id": "decision-legal-release-without-evidence",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "decisionReceipt",
+      "mutation": "RELEASE_DECISION_COPY_WITHOUT_LEGAL_EVIDENCE",
+      "expectedError": "CUSTOMER_COPY_UNAPPROVED"
+    },
+    {
+      "id": "coverage-unverified-presented-approved",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "coverage",
+      "mutation": "APPROVE_COVERAGE_WITHOUT_EVIDENCE",
+      "expectedError": "COVERAGE_UNVERIFIED_APPROVED"
+    },
+    {
+      "id": "coverage-unknown-product",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "coverage",
+      "mutation": "REPLACE_WITH_UNKNOWN_PRODUCT_GID",
+      "expectedError": "COVERAGE_UNKNOWN_PRODUCT"
+    },
+    {
+      "id": "coverage-variant-product-mismatch",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "coverage",
+      "mutation": "MOVE_VARIANT_TO_WRONG_PRODUCT",
+      "expectedError": "COVERAGE_VARIANT_PRODUCT_MISMATCH"
+    },
+    {
+      "id": "coverage-technical-class-only",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "coverage",
+      "mutation": "REMOVE_INDEPENDENT_PHYSICAL_EVIDENCE",
+      "expectedError": "COVERAGE_TECHNICAL_CLASS_ONLY"
+    },
+    {
+      "id": "coverage-promise-without-approval",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "coverage",
+      "mutation": "AUTHORIZE_UNAPPROVED_CUSTOMER_PROMISE",
+      "expectedError": "COVERAGE_PROMISE_UNAUTHORIZED"
+    },
+    {
+      "id": "expired-policy-releasable",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "decisionReceipt",
+      "mutation": "RELEASE_EXPIRED_POLICY",
+      "expectedError": "POLICY_VERSION_EXPIRED"
+    },
+    {
+      "id": "duplicate-registration-overwrite",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "registration",
+      "mutation": "ALLOW_DUPLICATE_AUTOMATIC_OVERWRITE",
+      "expectedError": "REGISTRATION_DUPLICATE_OVERWRITE"
+    },
+    {
+      "id": "registration-readable-identifier",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "registration",
+      "mutation": "USE_READABLE_CUSTOMER_IDENTIFIER",
+      "expectedError": "REGISTRATION_IDENTIFIER_PRIVACY"
+    },
+    {
+      "id": "missing-resource-revision",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "resources",
+      "mutation": "MARK_EMPTY_RESOURCE_REGISTRY_READY",
+      "expectedError": "RESOURCE_RELEASE_MISSING"
+    },
+    {
+      "id": "resource-missing-kevin-approval",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "resources",
+      "mutation": "RELEASE_RESOURCE_WITHOUT_KEVIN_APPROVAL",
+      "expectedError": "RESOURCE_KEVIN_APPROVAL_MISSING"
+    },
+    {
+      "id": "hazard-interruption-missing-active-state",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "support",
+      "mutation": "REMOVE_GUIDANCE_SAFETY_INTERRUPT",
+      "expectedError": "SAFETY_INTERRUPT_COVERAGE_MISSING"
+    },
+    {
+      "id": "unauthorized-safety-hold-exit",
+      "kind": "TRANSITION_ATTEMPT",
+      "artifact": "support",
+      "mutation": "EXIT_SAFETY_HOLD_WITHOUT_AUTHORIZATION",
+      "expectedError": "SAFETY_HOLD_EXIT_UNAUTHORIZED"
+    },
+    {
+      "id": "notification-failure-closure",
+      "kind": "TRANSITION_ATTEMPT",
+      "artifact": "support",
+      "mutation": "CLOSE_AFTER_NOTIFICATION_FAILURE",
+      "expectedError": "NOTIFICATION_FAILURE_CLOSURE"
+    },
+    {
+      "id": "recovery-bypasses-safety-hold",
+      "kind": "TRANSITION_ATTEMPT",
+      "artifact": "support",
+      "mutation": "RECOVERY_DURING_ACTIVE_SAFETY_HOLD",
+      "expectedError": "SAFETY_HOLD_RECOVERY_BYPASS"
+    },
+    {
+      "id": "unknown-support-transition",
+      "kind": "TRANSITION_ATTEMPT",
+      "artifact": "support",
+      "mutation": "UNAUTHORIZED_DIRECT_CLOSE",
+      "expectedError": "INVALID_TRANSITION"
+    },
+    {
+      "id": "missing-m1-critical-dependency",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "backlog",
+      "mutation": "REMOVE_REGISTRATION_RETENTION_DEPENDENCY",
+      "expectedError": "M1_DEPENDENCY_MISSING"
+    },
+    {
+      "id": "policy-copy-releasable-without-approval",
+      "kind": "ARTIFACT_MUTATION",
+      "artifact": "decisionReceipt",
+      "mutation": "RELEASE_DRAFT_POLICY",
+      "expectedError": "CUSTOMER_COPY_UNAPPROVED"
+    }
+  ],
+  "positiveTransitionCases": [
+    {
+      "from": "GUIDANCE_ACTIVE",
+      "to": "SAFETY_HOLD",
+      "event": "HAZARDOUS_INFORMATION_RECEIVED"
+    },
+    {
+      "from": "PARTS_SUPPORT",
+      "to": "SAFETY_HOLD",
+      "event": "HAZARDOUS_INFORMATION_RECEIVED"
+    },
+    {
+      "from": "MANUFACTURER_ESCALATED",
+      "to": "SAFETY_HOLD",
+      "event": "HAZARDOUS_INFORMATION_RECEIVED"
+    },
+    {
+      "from": "RECOVERY_REQUIRED",
+      "to": "SAFETY_HOLD",
+      "event": "HAZARDOUS_INFORMATION_RECEIVED"
+    }
+  ]
+}

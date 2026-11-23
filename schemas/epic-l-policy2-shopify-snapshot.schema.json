@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-shopify-snapshot.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "auditDate",
+    "status",
+    "authority",
+    "historicalBaseline",
+    "counts",
+    "products"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.0.0"
+    },
+    "auditDate": {
+      "format": "date"
+    },
+    "status": {
+      "const": "COMPLETE"
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "source",
+        "mutationPerformed"
+      ],
+      "properties": {
+        "mutationPerformed": {
+          "const": false
+        }
+      }
+    },
+    "products": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "productGid",
+          "title",
+          "status",
+          "vendorEvidence",
+          "technicalProductClass",
+          "variants"
+        ],
+        "properties": {
+          "productGid": {
+            "pattern": "^gid://shopify/Product/[0-9]+$"
+          },
+          "status": {
+            "enum": [
+              "ACTIVE",
+              "DRAFT",
+              "ARCHIVED",
+              "UNLISTED"
+            ]
+          },
+          "variants": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "variantGid"
+              ],
+              "properties": {
+                "variantGid": {
+                  "pattern": "^gid://shopify/ProductVariant/[0-9]+$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

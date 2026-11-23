@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-backlog.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "authoritativeSource",
+    "milestonePolicy",
+    "firstImplementationBatch",
+    "firstOperationalMilestone",
+    "activationGate",
+    "remainingBacklog",
+    "deferredBoundaries",
+    "boundaries",
+    "requiredNegativeFixtures"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.1.0"
+    },
+    "status": {
+      "const": "PROPOSED"
+    },
+    "firstImplementationBatch": {
+      "type": "object",
+      "required": [
+        "mode",
+        "allowedPbis",
+        "mayBeginBeforeFinalLegalWording",
+        "realCustomerDataAllowed",
+        "customerPromisePublicationAllowed",
+        "activationClaimAllowed"
+      ],
+      "properties": {
+        "mode": {
+          "const": "PRIVATE_SYNTHETIC_DATA_ONLY"
+        },
+        "realCustomerDataAllowed": {
+          "const": false
+        },
+        "customerPromisePublicationAllowed": {
+          "const": false
+        },
+        "activationClaimAllowed": {
+          "const": false
+        }
+      }
+    },
+    "firstOperationalMilestone": {
+      "type": "array",
+      "minItems": 16,
+      "items": {
+        "type": "object",
+        "required": [
+          "pbiId",
+          "sequence",
+          "title",
+          "status",
+          "milestone",
+          "minimumOperationalRequirement",
+          "syntheticBuildAllowed",
+          "realCustomerActivationBlocked",
+          "blockingDependencies",
+          "activationEvidence"
+        ],
+        "properties": {
+          "pbiId": {
+            "pattern": "^L-PBI-\\d{3}$"
+          },
+          "milestone": {
+            "const": "M1_MINIMUM_OPERATIONAL_POLICY2"
+          },
+          "minimumOperationalRequirement": {
+            "const": true
+          },
+          "realCustomerActivationBlocked": {
+            "const": true
+          },
+          "blockingDependencies": {
+            "type": "array",
+            "items": {
+              "pattern": "^L-PBI-\\d{3}$"
+            }
+          }
+        }
+      }
+    },
+    "activationGate": {
+      "type": "object",
+      "required": [
+        "status",
+        "requiredPbis",
+        "requiredConditions"
+      ],
+      "properties": {
+        "status": {
+          "const": "BLOCKED"
+        },
+        "requiredPbis": {
+          "type": "array",
+          "minItems": 17,
+          "uniqueItems": true
+        }
+      }
+    },
+    "deferredBoundaries": {
+      "type": "object",
+      "required": [
+        "epicOAccountHistory",
+        "dealerDirectoryPublication",
+        "analytics",
+        "comprehensiveRecallInfrastructure",
+        "mandatorySeriousSafetyHandling"
+      ],
+      "properties": {
+        "mandatorySeriousSafetyHandling": {
+          "const": "M1_REQUIRED"
+        }
+      }
+    },
+    "requiredNegativeFixtures": {
+      "type": "array",
+      "minItems": 17,
+      "uniqueItems": true
+    }
+  }
+}

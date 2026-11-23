@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "2.0.0",
+  "contractId": "EPIC-L-POLICY2-REGISTRATION",
+  "status": "PROPOSED",
+  "authoritativeSource": "L-DEC-003, L-DEC-004, L-DEC-009, and approved coverage/resource registers",
+  "runtimeConsumer": "Future private registration service; optional Epic O account projection",
+  "customerFacingAuthority": false,
+  "identifier": {
+    "name": "registrationId",
+    "kind": "opaque_random",
+    "minimumEntropyBits": 128,
+    "format": "UUIDv4 or equivalent",
+    "mustNotContain": [
+      "customer ID",
+      "email",
+      "order number",
+      "serial number",
+      "Product GID"
+    ],
+    "publiclyReadable": true
+  },
+  "record": {
+    "required": [
+      "registrationId",
+      "customerReference",
+      "productGid",
+      "variantGid",
+      "productVersion",
+      "registeredAt",
+      "policyVersion",
+      "firstUseDeclaration",
+      "instructionDeliveryEvidence"
+    ],
+    "private": [
+      "customerReference",
+      "ownershipVerification",
+      "serialNumber",
+      "instructionDeliveryEvidence",
+      "auditTrail"
+    ],
+    "serialNumber": {
+      "meaning": "Physical machine serial supplied or verified separately",
+      "sameAsRegistrationId": false
+    },
+    "firstUseDeclaration": {
+      "values": [
+        "NOT_STARTED",
+        "DECLARED_DATE",
+        "UNKNOWN"
+      ],
+      "legalEffect": "No automatic eligibility denial"
+    },
+    "instructionDeliveryEvidence": {
+      "required": [
+        "resourceId",
+        "revisionId",
+        "deliveredAt",
+        "deliveryChannel",
+        "deliveryStatus"
+      ]
+    }
+  },
+  "states": [
+    "RECEIVED",
+    "IDENTITY_VERIFICATION_REQUIRED",
+    "DUPLICATE_REVIEW",
+    "ACKNOWLEDGED",
+    "RESOURCE_DELIVERY_PENDING",
+    "COMPLETE",
+    "RECOVERY_REQUIRED",
+    "REJECTED_INVALID_INPUT"
+  ],
+  "duplicateHandling": {
+    "keyCandidates": [
+      "verified serial number",
+      "verified order line and exact Product/Variant",
+      "owner-reviewed evidence"
+    ],
+    "automaticOverwrite": false,
+    "idempotentAcknowledgement": true
+  },
+  "eligibility": {
+    "registrationAbsentAutomaticDenial": false,
+    "status": "BLOCKED_PENDING_LEGAL_REVIEW"
+  },
+  "acknowledgement": {
+    "contains": [
+      "opaque registration ID",
+      "recorded machine identity",
+      "resource delivery status",
+      "support entry point"
+    ],
+    "finalPolicyLanguagePublished": false
+  },
+  "qrHandout": {
+    "status": "PROPOSED",
+    "contentContract": [
+      "registration entry URL placeholder",
+      "privacy summary placeholder",
+      "exact supported machine identity",
+      "resource revision pointer",
+      "support contact route"
+    ],
+    "publishAuthorized": false
+  },
+  "tests": [
+    "opaque identifier",
+    "duplicate enters review",
+    "unverified ownership does not overwrite",
+    "delivery failure enters recovery",
+    "registration absence does not deny"
+  ]
+}

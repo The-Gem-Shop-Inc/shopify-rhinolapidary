@@ -1,0 +1,384 @@
+{
+  "schemaVersion": "2.1.0",
+  "status": "PROPOSED",
+  "authoritativeSource": "L-DEC-001 through L-DEC-020 provisional receipt; Product Owner correction brief 2026-11-23",
+  "milestonePolicy": {
+    "name": "M1_MINIMUM_OPERATIONAL_POLICY2",
+    "rule": "No real-customer registration or support activation until every minimum operational PBI and activation evidence is complete.",
+    "minimumVersusEnhancement": "Minimum safeguards are in M1; later enhancements may improve experience but cannot substitute for privacy, safety, ownership, resource, or notification controls."
+  },
+  "firstImplementationBatch": {
+    "mode": "PRIVATE_SYNTHETIC_DATA_ONLY",
+    "allowedPbis": [
+      "L-PBI-004",
+      "L-PBI-005",
+      "L-PBI-006",
+      "L-PBI-008",
+      "L-PBI-012",
+      "L-PBI-014",
+      "L-PBI-016"
+    ],
+    "mayBeginBeforeFinalLegalWording": true,
+    "realCustomerDataAllowed": false,
+    "customerPromisePublicationAllowed": false,
+    "activationClaimAllowed": false
+  },
+  "firstOperationalMilestone": [
+    {
+      "pbiId": "L-PBI-001",
+      "sequence": 1,
+      "title": "Approve Policy 2.0 legal terms and effective rules",
+      "status": "BLOCKED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": false,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [],
+      "activationEvidence": "Approved versioned legal/customer-copy receipt"
+    },
+    {
+      "pbiId": "L-PBI-002",
+      "sequence": 2,
+      "title": "Approve coverage methodology and policy schedule",
+      "status": "HUMAN_REVIEW_REQUIRED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": false,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    },
+    {
+      "pbiId": "L-PBI-003",
+      "sequence": 3,
+      "title": "Complete coverage review for every Active Product",
+      "status": "HUMAN_REVIEW_REQUIRED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": false,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-002"
+      ],
+      "activationEvidence": "Business approval record for all 78 Active Products"
+    },
+    {
+      "pbiId": "L-PBI-006",
+      "sequence": 4,
+      "title": "Approve private seven-year retention architecture",
+      "status": "BLOCKED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [],
+      "activationEvidence": "Approved processor, access, retention, deletion/export, backup, and incident design"
+    },
+    {
+      "pbiId": "L-PBI-020",
+      "sequence": 5,
+      "title": "Approve privacy processors, access, deletion, and recovery",
+      "status": "BLOCKED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": false,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-006"
+      ],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    },
+    {
+      "pbiId": "L-PBI-014",
+      "sequence": 6,
+      "title": "Build resource revision governance",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [],
+      "activationEvidence": "Approved revision registry and Kevin technical approvals"
+    },
+    {
+      "pbiId": "L-PBI-012",
+      "sequence": 7,
+      "title": "Build immediate stop-use and serious-incident response",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-006",
+        "L-PBI-016"
+      ],
+      "activationEvidence": "Passing safety-interruption tests and approved incident owner"
+    },
+    {
+      "pbiId": "L-PBI-016",
+      "sequence": 8,
+      "title": "Build notification delivery reconciliation",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-006"
+      ],
+      "activationEvidence": "Delivery ledger and failed-notification recovery evidence"
+    },
+    {
+      "pbiId": "L-PBI-013",
+      "sequence": 9,
+      "title": "Build human warranty-decision controls",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-001",
+        "L-PBI-002",
+        "L-PBI-003"
+      ],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    },
+    {
+      "pbiId": "L-PBI-004",
+      "sequence": 10,
+      "title": "Build secure machine registration core",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-002",
+        "L-PBI-003",
+        "L-PBI-006",
+        "L-PBI-020"
+      ],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    },
+    {
+      "pbiId": "L-PBI-005",
+      "sequence": 11,
+      "title": "Build registration acknowledgement, duplicate handling, and recovery",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-004",
+        "L-PBI-006",
+        "L-PBI-016"
+      ],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    },
+    {
+      "pbiId": "L-PBI-007",
+      "sequence": 12,
+      "title": "Build governed resource delivery",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-014"
+      ],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    },
+    {
+      "pbiId": "L-PBI-008",
+      "sequence": 13,
+      "title": "Build governed support intake",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-006",
+        "L-PBI-012",
+        "L-PBI-013",
+        "L-PBI-016",
+        "L-PBI-020"
+      ],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    },
+    {
+      "pbiId": "L-PBI-009",
+      "sequence": 14,
+      "title": "Build manual-only technical guidance",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-012",
+        "L-PBI-013",
+        "L-PBI-014"
+      ],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    },
+    {
+      "pbiId": "L-PBI-010",
+      "sequence": 15,
+      "title": "Build Silica-Gem manufacturer escalation",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-008",
+        "L-PBI-012",
+        "L-PBI-016"
+      ],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    },
+    {
+      "pbiId": "L-PBI-011",
+      "sequence": 16,
+      "title": "Build carrier claims assistance",
+      "status": "PROPOSED",
+      "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
+      "minimumOperationalRequirement": true,
+      "syntheticBuildAllowed": true,
+      "realCustomerActivationBlocked": true,
+      "blockingDependencies": [
+        "L-PBI-008",
+        "L-PBI-016"
+      ],
+      "activationEvidence": "Completed PBI acceptance evidence"
+    }
+  ],
+  "activationGate": {
+    "status": "BLOCKED",
+    "requiredPbis": [
+      "L-PBI-001",
+      "L-PBI-002",
+      "L-PBI-003",
+      "L-PBI-006",
+      "L-PBI-020",
+      "L-PBI-014",
+      "L-PBI-012",
+      "L-PBI-016",
+      "L-PBI-013",
+      "L-PBI-004",
+      "L-PBI-005",
+      "L-PBI-007",
+      "L-PBI-008",
+      "L-PBI-009",
+      "L-PBI-010",
+      "L-PBI-011",
+      "L-PBI-017"
+    ],
+    "requiredConditions": [
+      "All blockingDependencies completed with evidence",
+      "Policy version applicable and customer copy legally approved",
+      "Every Active Product has business and legal coverage approval",
+      "Private retention and processor controls approved",
+      "Safety interruption and serious incident procedure operational",
+      "Resource revision and Kevin approval controls operational",
+      "Notification delivery and recovery operational",
+      "Exact staff hours, routing, and manufacturer handoff approved"
+    ]
+  },
+  "remainingBacklog": [
+    {
+      "pbiId": "L-PBI-015",
+      "title": "Registration QR handout",
+      "status": "BLOCKED",
+      "milestone": "POST_M1",
+      "minimumOperationalRequirement": false
+    },
+    {
+      "pbiId": "L-PBI-017",
+      "title": "Operational acceptance evidence",
+      "status": "PROPOSED",
+      "milestone": "M1_RELEASE_GATE",
+      "minimumOperationalRequirement": false
+    },
+    {
+      "pbiId": "L-PBI-018",
+      "title": "Forms/Flow implementation assessment",
+      "status": "BLOCKED",
+      "milestone": "POST_M1",
+      "minimumOperationalRequirement": false
+    },
+    {
+      "pbiId": "L-PBI-019",
+      "title": "Checkout insurance option",
+      "status": "BLOCKED",
+      "milestone": "DEFERRED",
+      "minimumOperationalRequirement": false
+    },
+    {
+      "pbiId": "L-PBI-021",
+      "title": "Epic O customer account history interface",
+      "status": "DEFERRED",
+      "milestone": "DEFERRED",
+      "minimumOperationalRequirement": false
+    },
+    {
+      "pbiId": "L-PBI-022",
+      "title": "Permissioned dealer directory",
+      "status": "DEFERRED",
+      "milestone": "DEFERRED",
+      "minimumOperationalRequirement": false
+    },
+    {
+      "pbiId": "L-PBI-023",
+      "title": "Comprehensive recall infrastructure",
+      "status": "DEFERRED",
+      "milestone": "DEFERRED",
+      "minimumOperationalRequirement": false
+    },
+    {
+      "pbiId": "L-PBI-024",
+      "title": "Analytics infrastructure",
+      "status": "DEFERRED",
+      "milestone": "DEFERRED",
+      "minimumOperationalRequirement": false
+    }
+  ],
+  "deferredBoundaries": {
+    "epicOAccountHistory": "DEFERRED",
+    "dealerDirectoryPublication": "DEFERRED_PENDING_PERMISSION",
+    "analytics": "DEFERRED",
+    "comprehensiveRecallInfrastructure": "DEFERRED",
+    "mandatorySeriousSafetyHandling": "M1_REQUIRED"
+  },
+  "boundaries": [
+    "Epic O owns customer account history",
+    "J/G maintenance remains out of scope absent a concrete integration defect",
+    "Dealer directory waits for organization permission",
+    "Sophisticated analytics and recall are deferred; mandatory safety handling remains",
+    "Synthetic private infrastructure may be built before legal copy approval, but no real customer data or promises may be activated"
+  ],
+  "requiredNegativeFixtures": [
+    "decision approval conflict",
+    "unverified coverage approval",
+    "invalid Product relationship",
+    "invalid Variant relationship",
+    "technical-class-only coverage",
+    "expired policy",
+    "duplicate registration",
+    "registration identifier privacy",
+    "missing resource revision",
+    "missing Kevin approval",
+    "hazardous state interruption",
+    "unauthorized safety-hold exit",
+    "lost notification closure",
+    "recovery safety bypass",
+    "invalid transition",
+    "missing milestone dependency",
+    "unapproved customer copy"
+  ]
+}

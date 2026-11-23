@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-resource-governance.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "contractId",
+    "status",
+    "authoritativeSource",
+    "runtimeConsumer",
+    "customerFacingAuthority",
+    "categories",
+    "releaseRecordRequired",
+    "rules",
+    "releaseStatuses",
+    "rejectedStates",
+    "releaseReadiness",
+    "resourceRegistry",
+    "customerReleaseGate"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.1.0"
+    },
+    "status": {
+      "const": "PROPOSED"
+    },
+    "customerFacingAuthority": {
+      "const": false
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true
+    },
+    "rules": {
+      "type": "object",
+      "required": [
+        "publicationIsApproval",
+        "kevinTechnicalApprovalRequired",
+        "unapprovedReplacementOfPublishedResource"
+      ],
+      "properties": {
+        "publicationIsApproval": {
+          "const": false
+        },
+        "kevinTechnicalApprovalRequired": {
+          "const": true
+        },
+        "unapprovedReplacementOfPublishedResource": {
+          "const": false
+        }
+      }
+    },
+    "releaseReadiness": {
+      "enum": [
+        "BLOCKED_NO_APPROVED_RESOURCES",
+        "READY_FOR_CUSTOMER_RELEASE"
+      ]
+    },
+    "resourceRegistry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "resourceId",
+          "category",
+          "revisionId",
+          "sourceIdentity",
+          "applicableProductGids",
+          "applicableVariantGids",
+          "applicableMachineVersions",
+          "technicalApprovedBy",
+          "technicalApprovedAt",
+          "approvalEvidence",
+          "releaseStatus"
+        ],
+        "properties": {
+          "technicalApprovedBy": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "releaseStatus": {
+            "enum": [
+              "DRAFT",
+              "TECHNICAL_REVIEW",
+              "APPROVED_INTERNAL",
+              "APPROVED_CUSTOMER_RELEASE",
+              "RETIRED",
+              "BLOCKED"
+            ]
+          }
+        }
+      }
+    },
+    "customerReleaseGate": {
+      "type": "object",
+      "required": [
+        "releaseAuthorized",
+        "requiredConditions",
+        "emptyRegistryBehavior",
+        "unapprovedRevisionBehavior"
+      ],
+      "properties": {
+        "releaseAuthorized": {
+          "const": false
+        },
+        "emptyRegistryBehavior": {
+          "const": "BLOCK_RELEASE"
+        },
+        "unapprovedRevisionBehavior": {
+          "const": "BLOCK_RELEASE"
+        }
+      }
+    }
+  }
+}

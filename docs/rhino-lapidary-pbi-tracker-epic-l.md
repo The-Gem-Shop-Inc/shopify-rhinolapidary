@@ -1905,3 +1905,41 @@ Every released Epic L behavior is traceable from approved source through impleme
 ### Open Product Owner questions
 
 Which PBIs comprise the first release, who accepts each evidence class, and what residual risks are acceptable?
+
+## Policy 2.0 reconciliation addendum — 2026-11-23
+
+Status: **PROPOSED**, pending Product Owner review of the full architecture diff.
+
+This addendum does not rewrite the historical PBI records above. The authoritative machine-readable successor is `data/epic-l-policy2-pbi-backlog.json`.
+
+The first Policy 2.0 operational milestone is sequenced as:
+
+1. L-PBI-001 — approved customer-facing Policy 2.0 legal terms.
+2. L-PBI-002 — approved exact Product/Variant coverage.
+3. L-PBI-004 — secure, account-optional machine registration.
+4. L-PBI-007 — revision-controlled resources with Kevin's technical approval.
+5. L-PBI-008 — governed support intake with approved hours and routing.
+6. L-PBI-010 — Silica-Gem manufacturer escalation.
+
+The in-house repair, repair-estimate, paid-labor, repair-shipment, and routine-RMA assumptions are **SUPERSEDED**. Carrier claims assistance and stocked parts support remain in scope. Customer account history remains an Epic O interface. Dealer directory publication, analytics, and comprehensive recall infrastructure are **DEFERRED**, while immediate stop-use and serious-safety-incident handling remain required.
+
+No completed J/G feature enters Epic L maintenance scope without a demonstrated integration defect.
+
+## Policy 2.0 corrective M1 addendum — 2026-11-23
+
+This section supersedes only the six-item Policy 2.0 milestone sequence immediately above. It preserves the historical PBI tracker and does not authorize activation.
+
+M1 now includes every minimum operational safeguard modeled in `data/epic-l-policy2-pbi-backlog.json`. In particular, these items are no longer post-M1 work:
+
+- L-PBI-003 — coverage human review.
+- L-PBI-005 — registration acknowledgement, duplicate handling, and recovery.
+- L-PBI-006 — private seven-year retention architecture.
+- L-PBI-012 — immediate stop-use and serious-incident response.
+- L-PBI-014 — resource revision governance.
+- L-PBI-016 — notification delivery reconciliation.
+
+Registration and support PBIs have explicit blocking dependencies on coverage, privacy, safety, resource, decision, and notification safeguards. The M1 activation gate remains **BLOCKED** until all minimum PBIs and their evidence are complete.
+
+A private synthetic-data implementation batch may begin before final legal wording. It may not collect real customer information, publish customer promises, or represent registration or support as operational.
+
+Epic O account history, dealer directory publication, analytics, and comprehensive recall infrastructure remain **DEFERRED**. Mandatory stop-use and serious-safety-incident handling are **M1_REQUIRED**.

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-dependency-reconciliation.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "baseline",
+    "classifications"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.0.0"
+    },
+    "status": {
+      "const": "COMPLETE"
+    },
+    "baseline": {
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "classifications": {
+      "type": "array",
+      "minItems": 13,
+      "items": {
+        "type": "object",
+        "required": [
+          "dependency",
+          "classification",
+          "policy2Treatment"
+        ],
+        "properties": {
+          "classification": {
+            "enum": [
+              "REUSED_CURRENT",
+              "REQUIRES_ADAPTATION",
+              "SUPERSEDED",
+              "HISTORICAL_ONLY",
+              "BLOCKED_PENDING_REVIEW"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -61,3 +61,13 @@ The genuinely blocking sequence is:
 6. L-DEC-019 before a safety-notice implementation can be considered release-ready.
 
 L-DEC-015, L-DEC-018, and the custom account/directory implementations are not prerequisites for the initial support foundation and should remain deferred unless the Product Owner changes the milestone.
+
+## Policy 2.0 supersession receipt — 2026-11-23
+
+The unresolved November 7 records above are preserved as historical planning evidence. The Product Owner's L-DEC-001 through L-DEC-020 instruction dated 2026-11-23 is recorded, without silent rewriting, in `data/epic-l-policy2-decision-receipt.json`.
+
+That receipt is a provisional internal-intent record, not confirmed durable authority: the original versioned approval source and exact per-decision wording are not present in the repository. Its business-intent assertions, implementation readiness, and customer-facing legal approval are recorded independently. It does not approve customer-facing legal language. In particular, the prior warranty cannot supply Policy 2.0 duration, remedies, effective dates, eligibility conditions, or Product coverage.
+
+The Policy 2.0 dependency classification is maintained in `data/epic-l-policy2-dependency-reconciliation.json`. The old repair-service lifecycle is **SUPERSEDED**; its evidence remains preserved for audit and prior-purchase analysis.
+
+The 2026-11-23 corrective review leaves every original L-DEC provenance state unresolved until a versioned source receipt is supplied. `PROPOSED`, `BLOCKED`, and `HUMAN_REVIEW_REQUIRED` values now describe implementation readiness only; they do not retract or confer Product Owner business approval.
