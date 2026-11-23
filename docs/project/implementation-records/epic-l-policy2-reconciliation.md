@@ -92,3 +92,11 @@ B02 implements synthetic-only registration foundations for L-PBI-004 and L-PBI-0
 Registration contract 2.1.0 replaces the inconsistent UUIDv4 example with at least 16 cryptographically secure random bytes encoded opaquely. This corrects the technical expression of the existing 128-bit entropy requirement; it does not change Product Owner business intent or customer-facing authority.
 
 Engineering implementation and deterministic acceptance do not make registration operational. Production infrastructure, security review, operational owner approval, legal approval, customer activation, Product coverage, policy copy, approved resources, support operations, and retention architecture remain blocked or incomplete.
+
+## B03 engineering progress — 2026-11-23
+
+B03 implements the private synthetic engineering portion of L-PBI-008. It adds minimized case intake for all five approved categories, explicit customer and operator authorization, optional read-only B02 registration context, B01 safety interruption at intake, governed but normally unresolved routing intent, acknowledgement/outbox reconciliation, and recoverable command orchestration.
+
+The implementation reuses the committed support state machine instead of defining parallel transitions. Hazardous information takes precedence over routing, failed or uncertain warning delivery preserves `SAFETY_HOLD` and recovery, and ambiguous information never produces an automatic safe finding. Manufacturer referral remains a proposed private intent to Silica-Gem with Rhino ownership and communication responsibility retained.
+
+Only the L-PBI-008 synthetic engineering component and tests are complete. Production processors, security review, real staff routes and backups, exact hours, notification provider, customer copy, legal approval, operational approval, and customer activation remain false. L-PBI-010, L-PBI-011, and L-PBI-013 remain incomplete, and all eight readiness blockers remain in force.

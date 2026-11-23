@@ -12,6 +12,7 @@ const { InMemoryNotificationOutbox, SyntheticNotificationTransport } = require('
 const { ResourceRevisionGovernance } = require('./resource-governance');
 const { SupportSafetyService } = require('./support-safety');
 const { MachineRegistrationService } = require('./registration');
+const { GovernedSupportIntakeService } = require('./support-intake');
 
 const READINESS_BLOCKERS = Object.freeze([
   'DECISION_PROVENANCE_UNRESOLVED',
@@ -43,8 +44,19 @@ function createB01Foundation({
   rootDir,
   registrationResourceResolver,
   registrationInterruptionHook,
+  supportRouteResolver,
+  supportRoutingAdapter,
+  supportInterruptionHook,
 } = {}) {
   const authorize = permissionAuthorizer;
+  const privateSystemActor = systemActor || {
+    actorId: 'B01_PRIVATE_SYSTEM',
+    permissions: [
+      'PRIVATE_RECORD_CREATE', 'PRIVATE_RECORD_READ', 'PRIVATE_RECORD_UPDATE', 'PRIVATE_AUDIT_READ',
+      'NOTIFICATION_QUEUE', 'NOTIFICATION_ATTEMPT', 'NOTIFICATION_RECOVERY', 'NOTIFICATION_RECONCILE',
+      'SUPPORT_CASE_CREATE', 'SAFETY_INTERRUPT', 'SAFETY_DISPOSITION',
+    ],
+  };
   const activationGate = new DisabledOperationalActivationGate(READINESS_BLOCKERS);
   const catalog = new ExactProductVariantCatalog(catalogEntries);
   const privateRecords = new InMemoryPrivateRecordStore({
@@ -81,10 +93,7 @@ function createB01Foundation({
     privateRecords,
     notifications,
     authorize,
-    systemActor: systemActor || {
-      actorId: 'B01_PRIVATE_SYSTEM',
-      permissions: ['NOTIFICATION_QUEUE', 'NOTIFICATION_ATTEMPT', 'NOTIFICATION_RECOVERY'],
-    },
+    systemActor: privateSystemActor,
     clock,
     domainEventIdFactory: identifiers.domainEventId || (() => createOpaqueIdentifier(16, 'evt_')),
     testMode,
@@ -96,19 +105,32 @@ function createB01Foundation({
     activationGate,
     catalog,
     authorize,
-    systemActor: systemActor || {
-      actorId: 'B01_PRIVATE_SYSTEM',
-      permissions: [
-        'PRIVATE_RECORD_CREATE', 'PRIVATE_RECORD_READ', 'PRIVATE_RECORD_UPDATE', 'PRIVATE_AUDIT_READ',
-        'NOTIFICATION_QUEUE', 'NOTIFICATION_ATTEMPT', 'NOTIFICATION_RECOVERY', 'NOTIFICATION_RECONCILE',
-      ],
-    },
+    systemActor: privateSystemActor,
     clock,
     registrationIdFactory: identifiers.registrationId,
     acknowledgementEventIdFactory: identifiers.acknowledgementEventId,
     duplicateReviewIdFactory: identifiers.duplicateReviewId,
     testMode,
     interruptionHook: registrationInterruptionHook,
+  });
+  const supportIntake = new GovernedSupportIntakeService({
+    privateRecords,
+    safety,
+    registration,
+    notifications,
+    activationGate,
+    catalog,
+    contract: loadSupportContract(rootDir),
+    authorize,
+    systemActor: privateSystemActor,
+    routeResolver: supportRouteResolver,
+    routingAdapter: supportRoutingAdapter,
+    clock,
+    caseReferenceFactory: identifiers.supportCaseReference,
+    acknowledgementEventIdFactory: identifiers.supportAcknowledgementEventId,
+    routingAttemptIdFactory: identifiers.supportRoutingAttemptId,
+    testMode,
+    interruptionHook: supportInterruptionHook,
   });
 
   return {
@@ -119,12 +141,15 @@ function createB01Foundation({
     resources,
     registration,
     safety,
+    supportIntake,
     ports: Object.freeze({
       registrationRecordStorage: registration,
       registrationAcknowledgementEvent: registration,
       registrationRecovery: registration,
       resourceRevisionResolution: resources,
-      supportCaseCreation: safety,
+      supportCaseCreation: supportIntake,
+      supportAcknowledgement: supportIntake,
+      supportRouting: supportIntake,
       safetyInterruption: safety,
       notificationDeliveryAndReconciliation: notifications,
       authorizedHumanDisposition: safety,

@@ -7,5 +7,6 @@ module.exports = {
   ...require('./resource-governance'),
   ...require('./support-safety'),
   ...require('./registration'),
+  ...require('./support-intake'),
   ...require('./foundation'),
 };
