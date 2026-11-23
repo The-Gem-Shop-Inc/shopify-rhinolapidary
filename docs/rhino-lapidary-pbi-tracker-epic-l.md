@@ -1951,3 +1951,11 @@ B01 provides synthetic-only engineering foundations for the successor definition
 For each of the four PBIs, the engineering component is implemented and its deterministic tests pass. Production infrastructure selection, security review, operational owner approval, legal approval, and customer activation remain incomplete. No PBI is operationally complete, and the M1 activation gate remains **BLOCKED**.
 
 B02 and B03 may consume the private record, resource resolution, notification, safety, audit, and activation ports with synthetic data. They may not accept real customer information or expose registration/support workflows until the required approvals and dependencies are complete.
+
+## Policy 2.0 B02 engineering progress addendum — 2026-11-23
+
+B02 provides synthetic engineering components for the Policy 2.0 successor definitions of L-PBI-004 and L-PBI-005. The authoritative receipt is `data/epic-l-policy2-b02-progress.json`; historical PBI definitions above remain unchanged.
+
+For both PBIs, the engineering component is implemented and deterministic tests pass. Production infrastructure selection, security review, operational owner approval, legal approval, and customer activation remain false. Neither PBI is operationally complete.
+
+The registration service uses B01 private records, notifications, resource resolution, audit, authorization, and the disabled activation gate. It creates no warranty eligibility decision and authorizes no customer promise. B03 may consume registration context only through an authorized private boundary and must not interpret a registration ID as proof of identity, ownership, or coverage.

@@ -16,11 +16,12 @@
     "eligibility",
     "acknowledgement",
     "qrHandout",
-    "tests"
+    "tests",
+    "contractMigration"
   ],
   "properties": {
     "schemaVersion": {
-      "const": "2.0.0"
+      "const": "2.1.0"
     },
     "status": {
       "const": "PROPOSED"
@@ -33,6 +34,9 @@
       "required": [
         "kind",
         "minimumEntropyBits",
+        "format",
+        "minimumRandomBytes",
+        "uuidV4SatisfiesMinimumEntropy",
         "mustNotContain"
       ],
       "properties": {
@@ -41,6 +45,15 @@
         },
         "minimumEntropyBits": {
           "minimum": 128
+        },
+        "format": {
+          "const": "CSPRNG_BASE64URL_MIN_16_BYTES"
+        },
+        "minimumRandomBytes": {
+          "minimum": 16
+        },
+        "uuidV4SatisfiesMinimumEntropy": {
+          "const": false
         }
       }
     },
@@ -53,6 +66,24 @@
         "registrationAbsentAutomaticDenial": {
           "const": false
         }
+      }
+    },
+    "contractMigration": {
+      "type": "object",
+      "required": [
+        "fromVersion",
+        "toVersion",
+        "reason",
+        "supersededText",
+        "replacementText",
+        "businessIntentChanged",
+        "customerFacingAuthorityChanged"
+      ],
+      "properties": {
+        "fromVersion": { "const": "2.0.0" },
+        "toVersion": { "const": "2.1.0" },
+        "businessIntentChanged": { "const": false },
+        "customerFacingAuthorityChanged": { "const": false }
       }
     }
   }

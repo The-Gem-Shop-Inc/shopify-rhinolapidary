@@ -11,6 +11,7 @@ const { InMemoryPrivateRecordStore } = require('./private-records');
 const { InMemoryNotificationOutbox, SyntheticNotificationTransport } = require('./notifications');
 const { ResourceRevisionGovernance } = require('./resource-governance');
 const { SupportSafetyService } = require('./support-safety');
+const { MachineRegistrationService } = require('./registration');
 
 const READINESS_BLOCKERS = Object.freeze([
   'DECISION_PROVENANCE_UNRESOLVED',
@@ -40,6 +41,8 @@ function createB01Foundation({
   systemActor,
   testMode = false,
   rootDir,
+  registrationResourceResolver,
+  registrationInterruptionHook,
 } = {}) {
   const authorize = permissionAuthorizer;
   const activationGate = new DisabledOperationalActivationGate(READINESS_BLOCKERS);
@@ -86,6 +89,27 @@ function createB01Foundation({
     domainEventIdFactory: identifiers.domainEventId || (() => createOpaqueIdentifier(16, 'evt_')),
     testMode,
   });
+  const registration = new MachineRegistrationService({
+    privateRecords,
+    notifications,
+    resources: registrationResourceResolver || resources,
+    activationGate,
+    catalog,
+    authorize,
+    systemActor: systemActor || {
+      actorId: 'B01_PRIVATE_SYSTEM',
+      permissions: [
+        'PRIVATE_RECORD_CREATE', 'PRIVATE_RECORD_READ', 'PRIVATE_RECORD_UPDATE', 'PRIVATE_AUDIT_READ',
+        'NOTIFICATION_QUEUE', 'NOTIFICATION_ATTEMPT', 'NOTIFICATION_RECOVERY', 'NOTIFICATION_RECONCILE',
+      ],
+    },
+    clock,
+    registrationIdFactory: identifiers.registrationId,
+    acknowledgementEventIdFactory: identifiers.acknowledgementEventId,
+    duplicateReviewIdFactory: identifiers.duplicateReviewId,
+    testMode,
+    interruptionHook: registrationInterruptionHook,
+  });
 
   return {
     activationGate,
@@ -93,10 +117,12 @@ function createB01Foundation({
     notifications,
     privateRecords,
     resources,
+    registration,
     safety,
     ports: Object.freeze({
-      registrationRecordStorage: privateRecords,
-      registrationAcknowledgementEvent: notifications,
+      registrationRecordStorage: registration,
+      registrationAcknowledgementEvent: registration,
+      registrationRecovery: registration,
       resourceRevisionResolution: resources,
       supportCaseCreation: safety,
       safetyInterruption: safety,

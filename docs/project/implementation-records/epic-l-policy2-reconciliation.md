@@ -84,3 +84,11 @@ The Product Owner authorized a private, synthetic-only first engineering batch a
 The delivered components are private record and audit boundaries, resource revision governance, notification reconciliation, the committed safety state machine, integration ports for B02/B03, and a disabled operational activation gate. The versioned progress receipt is `data/epic-l-policy2-b01-progress.json`; detailed design is in `docs/project/epic-l-policy2-b01-technical-architecture.md`.
 
 Engineering implementation and passing synthetic tests do not complete any operational PBI. Production infrastructure selection, security review, operational owner approval, legal approval, and customer activation remain false for all four PBIs. All eight architecture readiness blockers remain in force.
+
+## B02 engineering progress — 2026-11-23
+
+B02 implements synthetic-only registration foundations for L-PBI-004 and L-PBI-005. It adds exact machine registration, private ownership and duplicate review, acknowledgement/outbox integration, governed instruction resolution, evidence-gated completion, and interrupted-command recovery through the B01 ports.
+
+Registration contract 2.1.0 replaces the inconsistent UUIDv4 example with at least 16 cryptographically secure random bytes encoded opaquely. This corrects the technical expression of the existing 128-bit entropy requirement; it does not change Product Owner business intent or customer-facing authority.
+
+Engineering implementation and deterministic acceptance do not make registration operational. Production infrastructure, security review, operational owner approval, legal approval, customer activation, Product coverage, policy copy, approved resources, support operations, and retention architecture remain blocked or incomplete.

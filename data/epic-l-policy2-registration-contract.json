@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2.0.0",
+  "schemaVersion": "2.1.0",
   "contractId": "EPIC-L-POLICY2-REGISTRATION",
   "status": "PROPOSED",
   "authoritativeSource": "L-DEC-003, L-DEC-004, L-DEC-009, and approved coverage/resource registers",
@@ -9,7 +9,9 @@
     "name": "registrationId",
     "kind": "opaque_random",
     "minimumEntropyBits": 128,
-    "format": "UUIDv4 or equivalent",
+    "format": "CSPRNG_BASE64URL_MIN_16_BYTES",
+    "minimumRandomBytes": 16,
+    "uuidV4SatisfiesMinimumEntropy": false,
     "mustNotContain": [
       "customer ID",
       "email",
@@ -109,5 +111,15 @@
     "unverified ownership does not overwrite",
     "delivery failure enters recovery",
     "registration absence does not deny"
-  ]
+  ],
+  "contractMigration": {
+    "fromVersion": "2.0.0",
+    "toVersion": "2.1.0",
+    "recordedAt": "2026-11-23",
+    "reason": "Correct the identifier format example so it satisfies the existing requirement for at least 128 bits of random entropy.",
+    "supersededText": "UUIDv4 or equivalent",
+    "replacementText": "At least 16 cryptographically secure random bytes encoded as an opaque base64url identifier.",
+    "businessIntentChanged": false,
+    "customerFacingAuthorityChanged": false
+  }
 }

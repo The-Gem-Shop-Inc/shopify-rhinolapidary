@@ -50,39 +50,43 @@
     },
     "engineeringBatches": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 2,
+      "maxItems": 2,
       "items": {
-        "type": "object",
-        "required": [
-          "batchId",
-          "status",
-          "progressReceipt",
-          "pbiIds",
-          "testsPassing",
-          "productionInfrastructureSelected",
-          "securityReviewComplete",
-          "operationalOwnerApproval",
-          "legalApproval",
-          "customerActivationPermitted"
-        ],
-        "properties": {
-          "batchId": { "const": "EPIC-L-POLICY2-B01" },
-          "status": { "const": "ENGINEERING_FOUNDATION_IMPLEMENTED_SYNTHETIC_ONLY" },
-          "progressReceipt": { "const": "data/epic-l-policy2-b01-progress.json" },
-          "pbiIds": {
-            "type": "array",
-            "minItems": 4,
-            "maxItems": 4,
-            "uniqueItems": true,
-            "items": { "enum": ["L-PBI-006", "L-PBI-012", "L-PBI-014", "L-PBI-016"] }
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["batchId", "status", "progressReceipt", "pbiIds", "testsPassing", "productionInfrastructureSelected", "securityReviewComplete", "operationalOwnerApproval", "legalApproval", "customerActivationPermitted"],
+            "properties": {
+              "batchId": { "const": "EPIC-L-POLICY2-B01" },
+              "status": { "const": "ENGINEERING_FOUNDATION_IMPLEMENTED_SYNTHETIC_ONLY" },
+              "progressReceipt": { "const": "data/epic-l-policy2-b01-progress.json" },
+              "pbiIds": { "type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": { "enum": ["L-PBI-006", "L-PBI-012", "L-PBI-014", "L-PBI-016"] } },
+              "testsPassing": { "const": true },
+              "productionInfrastructureSelected": { "const": false },
+              "securityReviewComplete": { "const": false },
+              "operationalOwnerApproval": { "const": false },
+              "legalApproval": { "const": false },
+              "customerActivationPermitted": { "const": false }
+            }
           },
-          "testsPassing": { "const": true },
-          "productionInfrastructureSelected": { "const": false },
-          "securityReviewComplete": { "const": false },
-          "operationalOwnerApproval": { "const": false },
-          "legalApproval": { "const": false },
-          "customerActivationPermitted": { "const": false }
-        }
+          {
+            "type": "object",
+            "required": ["batchId", "status", "progressReceipt", "pbiIds", "testsPassing", "productionInfrastructureSelected", "securityReviewComplete", "operationalOwnerApproval", "legalApproval", "customerActivationPermitted"],
+            "properties": {
+              "batchId": { "const": "EPIC-L-POLICY2-B02" },
+              "status": { "const": "ENGINEERING_REGISTRATION_IMPLEMENTED_SYNTHETIC_ONLY" },
+              "progressReceipt": { "const": "data/epic-l-policy2-b02-progress.json" },
+              "pbiIds": { "type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": { "enum": ["L-PBI-004", "L-PBI-005"] } },
+              "testsPassing": { "const": true },
+              "productionInfrastructureSelected": { "const": false },
+              "securityReviewComplete": { "const": false },
+              "operationalOwnerApproval": { "const": false },
+              "legalApproval": { "const": false },
+              "customerActivationPermitted": { "const": false }
+            }
+          }
+        ]
       }
     },
     "firstOperationalMilestone": {
