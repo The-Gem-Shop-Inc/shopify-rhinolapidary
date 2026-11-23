@@ -3,8 +3,9 @@ Generated from exact E owner responses and reconciled Product metafields.
 Receipt SHA256: 89a0a4584eb2dcaa449baa63e52b588211b55f4b03ba8c0344144384f11b443a
 No candidate, crate, optional, resource or recommendation fallback.
 {%- endcomment -%}
+{%- assign rhino_owner_now = 'now' | date: '%s' | plus: 0 -%}
 {%- assign rhino_owner_gid = 'gid://shopify/Product/' | append: product.id -%}
-{%- if template.suffix == 'machine' and product.published_at != blank and product.metafields.rhino.product_class.value == 'machine' -%}
+{%- if template.suffix == 'machine' and product.published_at != blank and product.metafields.rhino.product_class.value == 'machine' and rhino_owner_now >= 1792095997 and rhino_owner_now < 1792700797 -%}
 {%- if rhino_owner_gid == 'gid://shopify/Product/8905781477573' -%}
 {%- capture rhino_owner_context_items -%}
 {%- assign rhino_owner_part_56 = all_products['debris-guard'] -%}

@@ -1,118 +1,41 @@
-
 {{ 'rhino-g-catalog-navigation.css' | asset_url | stylesheet_tag }}
 
-{%- liquid
-  assign rhino_directory_view = false
-  if template.suffix == 'directory'
-    assign rhino_directory_view = true
-  endif
-
-  assign machines = collections['machines']
-  assign parts = collections['replacement-parts']
-  assign consumables = collections['consumables']
-  assign accessories = collections['accessories']
-
-  assign rhino_catalog_complete = true
-
-  assign category_handles = 'machines,replacement-parts,consumables,accessories' | split: ','
-
-  for category_handle in category_handles
-    assign category = collections[category_handle]
-
-    if category == blank or category.products_count == 0
-      assign rhino_catalog_complete = false
-    endif
-  endfor
--%}
+{%- assign rhino_g_directory_view = false -%}
+{%- if template.suffix == 'directory' -%}
+  {%- assign rhino_g_directory_view = true -%}
+{%- endif -%}
 
 <nav
-        class="rhino-g-catalog-navigation page-width"
-        aria-labelledby="RhinoGCatalogNavigation-{{ section.id }}"
-        data-rhino-g-catalog-navigation
-        data-rhino-catalog-complete="{{ rhino_catalog_complete }}"
+  class="rhino-g-catalog-navigation page-width"
+  aria-labelledby="RhinoGCatalogNavigation-{{ section.id }}"
+  data-rhino-g-catalog-navigation
 >
-  <h2
-          id="RhinoGCatalogNavigation-{{ section.id }}"
-          class="rhino-g-catalog-navigation__title"
-  >
+  <h2 id="RhinoGCatalogNavigation-{{ section.id }}" class="rhino-g-catalog-navigation__title">
     Shop the catalog
   </h2>
-
   <ul class="rhino-g-catalog-navigation__list" role="list">
     <li>
       <a
-              href="{{ routes.all_products_collection_url }}"
-              {% if collection.handle == 'all' and rhino_directory_view == false %}
-                aria-current="page"
-              {% endif %}
+        href="{{ routes.all_products_collection_url }}"
+        {% if collection.handle == 'all' and rhino_g_directory_view == false %}aria-current="page"{% endif %}
       >All Products</a>
     </li>
-
     <li>
       <a
-              href="{{ routes.collections_url }}/machines"
-              {% if collection.handle == 'machines' %}
-                aria-current="page"
-              {% endif %}
+        href="{{ routes.collections_url }}/machines"
+        {% if collection.handle == 'machines' %}aria-current="page"{% endif %}
       >Machines</a>
     </li>
-
-    <li>
-      {%- if parts != blank and parts.products_count > 0 -%}
-        <a
-                href="{{ parts.url }}"
-                {% if collection.handle == parts.handle %}
-                  aria-current="page"
-                {% endif %}
-        >Replacement Parts</a>
-      {%- else -%}
-        <a href="{{ routes.all_products_collection_url }}?view=directory#g-replacement-parts">
-          Replacement Parts
-        </a>
-      {%- endif -%}
-    </li>
-
-    <li>
-      {%- if consumables != blank and consumables.products_count > 0 -%}
-        <a
-                href="{{ consumables.url }}"
-                {% if collection.handle == consumables.handle %}
-                  aria-current="page"
-                {% endif %}
-        >Consumables</a>
-      {%- else -%}
-        <a href="{{ routes.all_products_collection_url }}?view=directory#g-consumables">
-          Consumables
-        </a>
-      {%- endif -%}
-    </li>
-
-    <li>
-      {%- if accessories != blank and accessories.products_count > 0 -%}
-        <a
-                href="{{ accessories.url }}"
-                {% if collection.handle == accessories.handle %}
-                  aria-current="page"
-                {% endif %}
-        >Accessories</a>
-      {%- else -%}
-        <a href="{{ routes.all_products_collection_url }}?view=directory#g-accessories">
-          Accessories
-        </a>
-      {%- endif -%}
-    </li>
+    <li><a href="{{ routes.all_products_collection_url }}?view=directory#g-replacement-parts">Replacement Parts</a></li>
+    <li><a href="{{ routes.all_products_collection_url }}?view=directory#g-consumables">Consumables</a></li>
+    <li><a href="{{ routes.all_products_collection_url }}?view=directory#g-accessories">Accessories</a></li>
   </ul>
-
-  {%- unless rhino_catalog_complete -%}
-    <p class="rhino-g-catalog-navigation__directory">
-      <a
-              href="{{ routes.all_products_collection_url }}?view=directory"
-              {% if rhino_directory_view %}
-                aria-current="page"
-              {% endif %}
-      >Browse the text Product directory</a>
-    </p>
-  {%- endunless -%}
+  <p class="rhino-g-catalog-navigation__directory">
+    <a
+      href="{{ routes.all_products_collection_url }}?view=directory"
+      {% if rhino_g_directory_view %}aria-current="page"{% endif %}
+    >Browse the text Product directory</a>
+  </p>
 </nav>
 
 {% schema %}
