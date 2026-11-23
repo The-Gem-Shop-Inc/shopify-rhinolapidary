@@ -56,7 +56,7 @@ test('machine directory shortcuts resolve to native product pages', async ({ pag
 
     for (const handle of handles) {
         await expect(
-            links.locator(`[href="/products/${handle}"]`)
+            section.locator(`a[data-g-machine][href="/products/${handle}"]`)
         ).toBeVisible();
     }
 
