@@ -1967,3 +1967,11 @@ B03 provides the synthetic engineering component for the Policy 2.0 successor de
 The private service accepts the five approved support categories, isolates customer records, reads optional registration context through B02, invokes the B01 safety state machine, records normally unresolved routing intent, and reconciles acknowledgement notifications without enabling an external service. Deterministic tests pass for all five categories and retain all ten safety-interruption entry states.
 
 Engineering implementation and tests are complete only for the synthetic component. Production processor approval, security review, real staff routes and backups, published hours, notification provider, customer copy, legal approval, operational owner approval, and activation remain false. L-PBI-010 manufacturer operations, L-PBI-011 carrier operations, and L-PBI-013 warranty decisions are not completed by B03. All eight readiness blockers and the disabled activation gate remain in force.
+
+## Policy 2.0 B04 engineering progress addendum — 2026-11-23
+
+B04 provides the synthetic engineering component for the Policy 2.0 successor definition of L-PBI-013. Its separate authorization and authority model are recorded in `data/epic-l-policy2-warranty-review-contract.json`; its progress authority is `data/epic-l-policy2-b04-progress.json`. The historical L-PBI-013 definition above and the original B01–B03 authorization remain unchanged.
+
+The private workflow distinguishes evidence preparation, human review, synthetic assessment, operational decision issuance, and customer notification. Only internal review organization and explicitly synthetic assessment are implemented; operational issuance and customer notification have no permitted path. Normal human authority defaults to unresolved; synthetic authority is test-only. Policy applicability, all 78 Product coverage approvals, legal language, real staff authority, security review, production processing, issuance, notification, and activation remain incomplete.
+
+L-PBI-013 is **ENGINEERING IMPLEMENTED — SYNTHETIC ONLY**, not operationally complete. A B04 assessment cannot approve or deny coverage, clear a safety hold, resolve a support case, authorize a remedy, or send a message. All eight readiness blockers remain in force.

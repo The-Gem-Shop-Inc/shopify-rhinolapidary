@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2.1.0",
+  "schemaVersion": "2.2.0",
   "status": "PROPOSED",
   "authoritativeSource": "L-DEC-001 through L-DEC-020 provisional receipt; Product Owner correction brief 2026-11-23",
   "milestonePolicy": {
@@ -23,6 +23,21 @@
     "customerPromisePublicationAllowed": false,
     "activationClaimAllowed": false
   },
+  "subsequentEngineeringAuthorizations": [
+    {
+      "authorizationId": "EPIC-L-POLICY2-B04-AUTHORIZATION-2026-11-23",
+      "batchId": "EPIC-L-POLICY2-B04",
+      "authorizedPbis": [
+        "L-PBI-013"
+      ],
+      "mode": "PRIVATE_SYNTHETIC_DATA_ONLY",
+      "authorityContract": "data/epic-l-policy2-warranty-review-contract.json",
+      "originalFirstImplementationBatchUnchanged": true,
+      "realCustomerDataAllowed": false,
+      "operationalDecisionIssuanceAllowed": false,
+      "customerNotificationAllowed": false
+    }
+  ],
   "engineeringBatches": [
     {
       "batchId": "EPIC-L-POLICY2-B01",
@@ -62,6 +77,20 @@
       "progressReceipt": "data/epic-l-policy2-b03-progress.json",
       "pbiIds": [
         "L-PBI-008"
+      ],
+      "testsPassing": true,
+      "productionInfrastructureSelected": false,
+      "securityReviewComplete": false,
+      "operationalOwnerApproval": false,
+      "legalApproval": false,
+      "customerActivationPermitted": false
+    },
+    {
+      "batchId": "EPIC-L-POLICY2-B04",
+      "status": "ENGINEERING_WARRANTY_REVIEW_GOVERNANCE_IMPLEMENTED_SYNTHETIC_ONLY",
+      "progressReceipt": "data/epic-l-policy2-b04-progress.json",
+      "pbiIds": [
+        "L-PBI-013"
       ],
       "testsPassing": true,
       "productionInfrastructureSelected": false,

@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-warranty-review.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "contractId", "status", "authoritativeSource", "runtimeConsumer",
+    "customerFacingAuthority", "engineeringAuthorization", "authorityRoles", "authorityResolution",
+    "reviewStates", "initialState", "terminalStates", "transitions", "assessmentTypes",
+    "syntheticConclusions", "policyEvidenceRequirements", "coverageEvidenceRequirements",
+    "prohibitedCoverageAuthoritySignals", "obligationBoundaries", "supportIntegration", "issuanceGate"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "contractId": { "const": "EPIC-L-POLICY2-WARRANTY-REVIEW" },
+    "status": { "const": "PROPOSED_SYNTHETIC_ENGINEERING_ONLY" },
+    "authoritativeSource": { "type": "string", "minLength": 1 },
+    "runtimeConsumer": { "const": "scripts/lib/epic-l-policy2/warranty-review.js" },
+    "customerFacingAuthority": { "const": false },
+    "engineeringAuthorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authorizationId", "authorizedPbis", "mode", "originalFirstImplementationBatchUnchanged", "realCustomerDataAllowed", "operationalDecisionIssuanceAllowed", "customerNotificationAllowed"],
+      "properties": {
+        "authorizationId": { "const": "EPIC-L-POLICY2-B04-AUTHORIZATION-2026-11-23" },
+        "authorizedPbis": { "const": ["L-PBI-013"] },
+        "mode": { "const": "PRIVATE_SYNTHETIC_DATA_ONLY" },
+        "originalFirstImplementationBatchUnchanged": { "const": true },
+        "realCustomerDataAllowed": { "const": false },
+        "operationalDecisionIssuanceAllowed": { "const": false },
+        "customerNotificationAllowed": { "const": false }
+      }
+    },
+    "authorityRoles": {
+      "type": "array", "minItems": 9, "maxItems": 9, "uniqueItems": true,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["role", "mayPrepareEvidence", "mayRecordAssessment", "mayIssueDecision"],
+        "properties": {
+          "role": { "type": "string", "minLength": 1 },
+          "mayPrepareEvidence": { "type": "boolean" },
+          "mayRecordAssessment": { "type": "boolean" },
+          "mayIssueDecision": { "const": false }
+        }
+      }
+    },
+    "authorityResolution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["normalResolverDefault", "callerPermissionIsAuthorityEvidence", "selfAssertedRoleAccepted", "syntheticResolverAllowedOnlyInTestMode", "requiredAssessmentAuthorityFields"],
+      "properties": {
+        "normalResolverDefault": { "const": "UNRESOLVED_DENY" },
+        "callerPermissionIsAuthorityEvidence": { "const": false },
+        "selfAssertedRoleAccepted": { "const": false },
+        "syntheticResolverAllowedOnlyInTestMode": { "const": true },
+        "requiredAssessmentAuthorityFields": { "type": "array", "minItems": 6, "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "reviewStates": { "type": "array", "minItems": 11, "maxItems": 11, "uniqueItems": true, "items": { "type": "string" } },
+    "initialState": { "const": "REVIEW_REQUESTED" },
+    "terminalStates": { "const": ["REVIEW_WITHDRAWN_OR_SUPERSEDED"] },
+    "transitions": {
+      "type": "array", "minItems": 47, "maxItems": 47, "uniqueItems": true,
+      "items": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "string" } }
+    },
+    "assessmentTypes": { "type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": { "type": "string", "pattern": "^SYNTHETIC_" } },
+    "syntheticConclusions": { "type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": { "type": "string" } },
+    "policyEvidenceRequirements": { "type": "array", "minItems": 6, "items": { "type": "string" } },
+    "coverageEvidenceRequirements": { "type": "array", "minItems": 6, "items": { "type": "string" } },
+    "prohibitedCoverageAuthoritySignals": { "type": "array", "minItems": 9, "maxItems": 9, "uniqueItems": true, "items": { "type": "string" } },
+    "obligationBoundaries": {
+      "type": "object", "additionalProperties": false,
+      "required": ["manufacturerObligationsDistinct", "rhinoVoluntaryObligationsDistinct", "legallyRequiredProtectionsDistinct", "silicaGemAuthorityOverRhinoOrLegalObligations"],
+      "properties": {
+        "manufacturerObligationsDistinct": { "const": true },
+        "rhinoVoluntaryObligationsDistinct": { "const": true },
+        "legallyRequiredProtectionsDistinct": { "const": true },
+        "silicaGemAuthorityOverRhinoOrLegalObligations": { "const": false }
+      }
+    },
+    "supportIntegration": {
+      "type": "object", "additionalProperties": false,
+      "required": ["directCategory", "otherCategoriesRequireExplicitReferral", "supportCaseMutationAllowed", "safetyHoldBypassAllowed", "notificationRecoveryBypassAllowed", "rhinoOwnershipRetained"],
+      "properties": {
+        "directCategory": { "const": "WARRANTY_DECISION" },
+        "otherCategoriesRequireExplicitReferral": { "const": true },
+        "supportCaseMutationAllowed": { "const": false },
+        "safetyHoldBypassAllowed": { "const": false },
+        "notificationRecoveryBypassAllowed": { "const": false },
+        "rhinoOwnershipRetained": { "const": true }
+      }
+    },
+    "issuanceGate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["internalEvidenceAllowed", "syntheticAssessmentAllowed", "operationalDecisionAllowed", "customerNotificationAllowed", "testModeMayBypass", "readinessBlockersRequired"],
+      "properties": {
+        "internalEvidenceAllowed": { "const": true },
+        "syntheticAssessmentAllowed": { "const": true },
+        "operationalDecisionAllowed": { "const": false },
+        "customerNotificationAllowed": { "const": false },
+        "testModeMayBypass": { "const": false },
+        "readinessBlockersRequired": { "const": 8 }
+      }
+    }
+  }
+}

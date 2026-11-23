@@ -8,5 +8,6 @@ module.exports = {
   ...require('./support-safety'),
   ...require('./registration'),
   ...require('./support-intake'),
+  ...require('./warranty-review'),
   ...require('./foundation'),
 };

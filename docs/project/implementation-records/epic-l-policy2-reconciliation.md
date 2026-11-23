@@ -100,3 +100,11 @@ B03 implements the private synthetic engineering portion of L-PBI-008. It adds m
 The implementation reuses the committed support state machine instead of defining parallel transitions. Hazardous information takes precedence over routing, failed or uncertain warning delivery preserves `SAFETY_HOLD` and recovery, and ambiguous information never produces an automatic safe finding. Manufacturer referral remains a proposed private intent to Silica-Gem with Rhino ownership and communication responsibility retained.
 
 Only the L-PBI-008 synthetic engineering component and tests are complete. Production processors, security review, real staff routes and backups, exact hours, notification provider, customer copy, legal approval, operational approval, and customer activation remain false. L-PBI-010, L-PBI-011, and L-PBI-013 remain incomplete, and all eight readiness blockers remain in force.
+
+## B04 engineering progress — 2026-11-23
+
+B04 separately authorizes and implements the private synthetic engineering portion of L-PBI-013 without changing the historical `firstImplementationBatch.allowedPbis` list. It adds a nine-role authority contract, private approval-evidence records, 11-state/47-transition internal review lifecycle, policy and coverage readiness evaluation, B03 case and safety integration, synthetic assessment, reconsideration, supersession, and permanent operational issuance guards.
+
+The normal authority resolver remains unresolved and denied. Test-mode grants cannot become real authority. All 78 Active Products remain unapproved for customer promises; Policy 2.0 provenance, effective dates, applicability, legal language, and remedies remain unresolved. Synthetic assessment neither changes the support case nor issues or communicates a warranty determination.
+
+Only the L-PBI-013 synthetic engineering component and tests are complete. Real human authority, production processors and identity, security review, policy applicability, coverage approval, legal approval, operational ownership, decision issuance, customer notification, and activation remain false. All eight readiness blockers remain in force.
