@@ -10,6 +10,7 @@ const {
   createB01Foundation,
   loadSupportContract,
 } = require('./lib/epic-l-policy2');
+const { validateAll: validateArchitecture } = require('./validate-epic-l-policy2');
 
 const root = path.resolve(__dirname, '..');
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
@@ -31,11 +32,12 @@ function check(name, condition) {
 const support = loadSupportContract(root);
 const resources = readJson('data/epic-l-policy2-resource-governance.json');
 const foundation = createB01Foundation({ rootDir: root });
+const architectureBlockerCodes = validateArchitecture().readinessBlockers.map((blocker) => blocker.code);
 
 check('progress receipt schema', true);
 check('four exact PBI progress rows', JSON.stringify(progress.pbiProgress.map((row) => row.pbiId).sort()) === JSON.stringify(['L-PBI-006', 'L-PBI-012', 'L-PBI-014', 'L-PBI-016']));
 check('all operational and legal gates remain false', progress.pbiProgress.every((row) => !row.productionInfrastructureSelected && !row.securityReviewComplete && !row.operationalOwnerApproval && !row.legalApproval && !row.customerActivationPermitted));
-check('eight readiness blockers retained', JSON.stringify(progress.readinessBlockers) === JSON.stringify(READINESS_BLOCKERS));
+check('eight architecture readiness blockers retained exactly', JSON.stringify(progress.readinessBlockers) === JSON.stringify(architectureBlockerCodes) && JSON.stringify(READINESS_BLOCKERS) === JSON.stringify(architectureBlockerCodes));
 check('five private record categories', PRIVATE_RECORD_CATEGORIES.length === 5);
 check('resource categories match committed contract', JSON.stringify(RESOURCE_CATEGORIES) === JSON.stringify(resources.categories));
 check('support contract transition coverage', support.stateMachine.ordinaryTransitions.length === 23 && support.stateMachine.globalSafetyInterruption.relevantNonterminalStates.length === 10);
