@@ -1,0 +1,116 @@
+'use strict';
+
+const fs = require('node:fs');
+const path = require('node:path');
+const {
+  DisabledOperationalActivationGate,
+  ExactProductVariantCatalog,
+  createOpaqueIdentifier,
+} = require('./common');
+const { InMemoryPrivateRecordStore } = require('./private-records');
+const { InMemoryNotificationOutbox, SyntheticNotificationTransport } = require('./notifications');
+const { ResourceRevisionGovernance } = require('./resource-governance');
+const { SupportSafetyService } = require('./support-safety');
+
+const READINESS_BLOCKERS = Object.freeze([
+  'DECISION_PROVENANCE',
+  'CUSTOMER_LEGAL_COPY',
+  'ACTIVE_PRODUCT_COVERAGE_APPROVALS',
+  'PRIVATE_PROCESSOR_AND_RETENTION',
+  'SUPPORT_ROUTING_AND_HOURS',
+  'RESOURCE_RELEASES',
+  'MANUFACTURER_HANDOFF',
+  'CHECKOUT_INSURANCE_DESIGN',
+]);
+
+function permissionAuthorizer(actor, permission) {
+  return Array.isArray(actor?.permissions) && actor.permissions.includes(permission);
+}
+
+function loadSupportContract(rootDir = path.resolve(__dirname, '..', '..', '..')) {
+  return JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'epic-l-policy2-support-safety-contract.json'), 'utf8'));
+}
+
+function createB01Foundation({
+  catalogEntries = [],
+  transport = new SyntheticNotificationTransport(),
+  clock,
+  identifiers = {},
+  technicalApprovalAuthority,
+  systemActor,
+  testMode = false,
+  rootDir,
+} = {}) {
+  const authorize = permissionAuthorizer;
+  const activationGate = new DisabledOperationalActivationGate(READINESS_BLOCKERS);
+  const catalog = new ExactProductVariantCatalog(catalogEntries);
+  const privateRecords = new InMemoryPrivateRecordStore({
+    authorize,
+    clock,
+    recordIdFactory: identifiers.recordId,
+    publicReferenceFactory: identifiers.publicReference,
+    auditIdFactory: identifiers.auditId,
+  });
+  const notifications = new InMemoryNotificationOutbox({
+    transport,
+    authorize,
+    clock,
+    notificationIdFactory: identifiers.notificationId,
+    attemptIdFactory: identifiers.attemptId,
+  });
+  const resources = new ResourceRevisionGovernance({
+    catalog,
+    activationGate,
+    authorize,
+    technicalApprovalAuthority: technicalApprovalAuthority || {
+      actorId: 'KEVIN_AUTHORITY_UNRESOLVED',
+      authorityRole: 'TECHNICAL_APPROVER',
+      synthetic: false,
+    },
+    clock,
+    resourceIdFactory: identifiers.resourceId,
+    revisionIdFactory: identifiers.revisionId,
+    auditIdFactory: identifiers.resourceAuditId,
+    testMode,
+  });
+  const safety = new SupportSafetyService({
+    contract: loadSupportContract(rootDir),
+    privateRecords,
+    notifications,
+    authorize,
+    systemActor: systemActor || {
+      actorId: 'B01_PRIVATE_SYSTEM',
+      permissions: ['NOTIFICATION_QUEUE', 'NOTIFICATION_ATTEMPT', 'NOTIFICATION_RECOVERY'],
+    },
+    clock,
+    domainEventIdFactory: identifiers.domainEventId || (() => createOpaqueIdentifier(16, 'evt_')),
+    testMode,
+  });
+
+  return {
+    activationGate,
+    catalog,
+    notifications,
+    privateRecords,
+    resources,
+    safety,
+    ports: Object.freeze({
+      registrationRecordStorage: privateRecords,
+      registrationAcknowledgementEvent: notifications,
+      resourceRevisionResolution: resources,
+      supportCaseCreation: safety,
+      safetyInterruption: safety,
+      notificationDeliveryAndReconciliation: notifications,
+      authorizedHumanDisposition: safety,
+      auditEventRecording: privateRecords,
+      operationalActivationGate: activationGate,
+    }),
+  };
+}
+
+module.exports = {
+  READINESS_BLOCKERS,
+  createB01Foundation,
+  loadSupportContract,
+  permissionAuthorizer,
+};

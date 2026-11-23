@@ -76,3 +76,11 @@ No commit, push, deployment, theme publication, checkout transaction, customer r
 ## Review gates
 
 The architecture is not implementation authorization. Decision provenance, customer copy, all 78 coverage approvals, private processors, exact support routing/hours, resource releases, manufacturer handoff, insurance design, and Shopify mutations remain blocked or require human approval.
+
+## B01 engineering progress — 2026-11-23
+
+The Product Owner authorized a private, synthetic-only first engineering batch after accepting the architecture baseline. B01 implements foundations for L-PBI-006, L-PBI-014, L-PBI-016, and L-PBI-012 without changing the approved architecture authority.
+
+The delivered components are private record and audit boundaries, resource revision governance, notification reconciliation, the committed safety state machine, integration ports for B02/B03, and a disabled operational activation gate. The versioned progress receipt is `data/epic-l-policy2-b01-progress.json`; detailed design is in `docs/project/epic-l-policy2-b01-technical-architecture.md`.
+
+Engineering implementation and passing synthetic tests do not complete any operational PBI. Production infrastructure selection, security review, operational owner approval, legal approval, and customer activation remain false for all four PBIs. All eight architecture readiness blockers remain in force.

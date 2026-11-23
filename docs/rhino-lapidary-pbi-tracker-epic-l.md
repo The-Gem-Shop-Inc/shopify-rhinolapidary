@@ -1943,3 +1943,11 @@ Registration and support PBIs have explicit blocking dependencies on coverage, p
 A private synthetic-data implementation batch may begin before final legal wording. It may not collect real customer information, publish customer promises, or represent registration or support as operational.
 
 Epic O account history, dealer directory publication, analytics, and comprehensive recall infrastructure remain **DEFERRED**. Mandatory stop-use and serious-safety-incident handling are **M1_REQUIRED**.
+
+## Policy 2.0 B01 engineering progress addendum — 2026-11-23
+
+B01 provides synthetic-only engineering foundations for the successor definitions of L-PBI-006, L-PBI-014, L-PBI-016, and L-PBI-012. This addendum does not rewrite the historical PBI definitions in this document. The exact progress authority is `data/epic-l-policy2-b01-progress.json`.
+
+For each of the four PBIs, the engineering component is implemented and its deterministic tests pass. Production infrastructure selection, security review, operational owner approval, legal approval, and customer activation remain incomplete. No PBI is operationally complete, and the M1 activation gate remains **BLOCKED**.
+
+B02 and B03 may consume the private record, resource resolution, notification, safety, audit, and activation ports with synthetic data. They may not accept real customer information or expose registration/support workflows until the required approvals and dependencies are complete.
