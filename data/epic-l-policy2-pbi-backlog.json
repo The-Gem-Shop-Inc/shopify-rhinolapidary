@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2.2.0",
+  "schemaVersion": "2.3.0",
   "status": "PROPOSED",
   "authoritativeSource": "L-DEC-001 through L-DEC-020 provisional receipt; Product Owner correction brief 2026-11-23",
   "milestonePolicy": {
@@ -32,6 +32,19 @@
       ],
       "mode": "PRIVATE_SYNTHETIC_DATA_ONLY",
       "authorityContract": "data/epic-l-policy2-warranty-review-contract.json",
+      "originalFirstImplementationBatchUnchanged": true,
+      "realCustomerDataAllowed": false,
+      "operationalDecisionIssuanceAllowed": false,
+      "customerNotificationAllowed": false
+    },
+    {
+      "authorizationId": "EPIC-L-POLICY2-B05-AUTHORIZATION-2026-11-24",
+      "batchId": "EPIC-L-POLICY2-B05",
+      "authorizedPbis": [
+        "L-PBI-009"
+      ],
+      "mode": "PRIVATE_SYNTHETIC_DATA_ONLY",
+      "authorityContract": "data/epic-l-policy2-technical-guidance-contract.json",
       "originalFirstImplementationBatchUnchanged": true,
       "realCustomerDataAllowed": false,
       "operationalDecisionIssuanceAllowed": false,
@@ -91,6 +104,20 @@
       "progressReceipt": "data/epic-l-policy2-b04-progress.json",
       "pbiIds": [
         "L-PBI-013"
+      ],
+      "testsPassing": true,
+      "productionInfrastructureSelected": false,
+      "securityReviewComplete": false,
+      "operationalOwnerApproval": false,
+      "legalApproval": false,
+      "customerActivationPermitted": false
+    },
+    {
+      "batchId": "EPIC-L-POLICY2-B05",
+      "status": "ENGINEERING_TECHNICAL_GUIDANCE_IMPLEMENTED_SYNTHETIC_ONLY",
+      "progressReceipt": "data/epic-l-policy2-b05-progress.json",
+      "pbiIds": [
+        "L-PBI-009"
       ],
       "testsPassing": true,
       "productionInfrastructureSelected": false,
@@ -291,7 +318,7 @@
       "pbiId": "L-PBI-009",
       "sequence": 14,
       "title": "Build manual-only technical guidance",
-      "status": "PROPOSED",
+      "status": "ENGINEERING_IMPLEMENTED_SYNTHETIC_ONLY",
       "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
       "minimumOperationalRequirement": true,
       "syntheticBuildAllowed": true,

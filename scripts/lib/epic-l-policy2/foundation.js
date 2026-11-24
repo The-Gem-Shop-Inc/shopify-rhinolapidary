@@ -14,6 +14,7 @@ const { SupportSafetyService } = require('./support-safety');
 const { MachineRegistrationService } = require('./registration');
 const { GovernedSupportIntakeService } = require('./support-intake');
 const { WarrantyReviewService } = require('./warranty-review');
+const { TechnicalGuidanceService } = require('./technical-guidance');
 
 const READINESS_BLOCKERS = Object.freeze([
   'DECISION_PROVENANCE_UNRESOLVED',
@@ -53,6 +54,10 @@ function createB01Foundation({
   supportRoutingAdapter,
   supportInterruptionHook,
   warrantyAuthorityResolver,
+  guidanceResourceResolver,
+  guidanceResourceResolverFactory,
+  guidanceAuthorityResolver,
+  guidanceInterruptionHook,
 } = {}) {
   const authorize = permissionAuthorizer;
   const privateSystemActor = systemActor || {
@@ -154,6 +159,24 @@ function createB01Foundation({
     assessmentIdFactory: identifiers.warrantyAssessmentId,
     testMode,
   });
+  const technicalGuidance = new TechnicalGuidanceService({
+    privateRecords,
+    supportIntake,
+    safety,
+    resources,
+    activationGate,
+    catalog,
+    contract: loadPolicy2Json('epic-l-policy2-technical-guidance-contract.json', rootDir),
+    authorize,
+    systemActor: privateSystemActor,
+    resourceResolver: guidanceResourceResolver || (guidanceResourceResolverFactory ? guidanceResourceResolverFactory(resources) : undefined),
+    authorityResolver: guidanceAuthorityResolver,
+    clock,
+    guidanceIdFactory: identifiers.guidanceId,
+    selectionIdFactory: identifiers.guidanceSelectionId,
+    testMode,
+    interruptionHook: guidanceInterruptionHook,
+  });
 
   return {
     activationGate,
@@ -165,6 +188,7 @@ function createB01Foundation({
     safety,
     supportIntake,
     warrantyReview,
+    technicalGuidance,
     ports: Object.freeze({
       registrationRecordStorage: registration,
       registrationAcknowledgementEvent: registration,
@@ -177,6 +201,10 @@ function createB01Foundation({
       warrantyEvidencePreparation: warrantyReview,
       syntheticWarrantyAssessment: warrantyReview,
       warrantyDecisionIssuanceGate: warrantyReview,
+      technicalGuidanceRequest: technicalGuidance,
+      exactGuidanceResourceSelection: technicalGuidance,
+      technicalGuidanceSafetyInterruption: technicalGuidance,
+      technicalGuidanceAudit: technicalGuidance,
       safetyInterruption: safety,
       notificationDeliveryAndReconciliation: notifications,
       authorizedHumanDisposition: safety,

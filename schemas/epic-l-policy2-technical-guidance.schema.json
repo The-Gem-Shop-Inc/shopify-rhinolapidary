@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-technical-guidance.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "status", "authoritativeSource", "runtimeConsumer", "customerFacingAuthority", "engineeringAuthorization", "resourceCategories", "guidanceStates", "initialState", "terminalStates", "transitions", "authoritySeparation", "resourceSelection", "safetyPrecedence", "integrationBoundaries", "prohibitedOutputs", "operationalGate"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "contractId": { "const": "EPIC-L-POLICY2-TECHNICAL-GUIDANCE" },
+    "status": { "const": "PROPOSED_SYNTHETIC_ENGINEERING_ONLY" },
+    "authoritativeSource": { "type": "string", "minLength": 1 },
+    "runtimeConsumer": { "const": "scripts/lib/epic-l-policy2/technical-guidance.js" },
+    "customerFacingAuthority": { "const": false },
+    "engineeringAuthorization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["authorizationId", "authorizedPbis", "mode", "originalFirstImplementationBatchUnchanged", "realCustomerDataAllowed", "customerGuidanceAllowed", "resourcePublicationAllowed", "externalNotificationAllowed"],
+      "properties": {
+        "authorizationId": { "const": "EPIC-L-POLICY2-B05-AUTHORIZATION-2026-11-24" },
+        "authorizedPbis": { "const": ["L-PBI-009"] },
+        "mode": { "const": "PRIVATE_SYNTHETIC_DATA_ONLY" },
+        "originalFirstImplementationBatchUnchanged": { "const": true },
+        "realCustomerDataAllowed": { "const": false },
+        "customerGuidanceAllowed": { "const": false },
+        "resourcePublicationAllowed": { "const": false },
+        "externalNotificationAllowed": { "const": false }
+      }
+    },
+    "resourceCategories": { "const": ["MANUAL", "DYNAMIC_INSTRUCTION_DOCUMENT", "DIAGRAM", "SETUP_GUIDE", "TUTORIAL_VIDEO", "SAFETY_NOTICE"] },
+    "guidanceStates": { "type": "array", "minItems": 9, "maxItems": 9, "uniqueItems": true, "items": { "type": "string" } },
+    "initialState": { "const": "REQUESTED" },
+    "terminalStates": { "const": ["WITHDRAWN_OR_SUPERSEDED"] },
+    "transitions": {
+      "type": "array", "minItems": 32, "maxItems": 32,
+      "items": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "string" } }
+    },
+    "authoritySeparation": { "type": "object", "required": ["supportOperator", "technicalResourceApprover", "safetyDispositionAuthority", "warrantyReviewAuthority", "customerReleaseAuthority"] },
+    "resourceSelection": {
+      "type": "object",
+      "required": ["exactProductVariantRequired", "exactMachineVersionRequired", "stableResourceAndRevisionRequired", "kevinTechnicalApprovalRequired", "publishedSourceIsApproval", "fuzzyTitleMatchingAllowed", "contentGenerationAllowed", "syntheticFixturesTestModeOnly", "syntheticFixtureCustomerReleaseAuthorized", "emptyRegistryBehavior"],
+      "properties": {
+        "exactProductVariantRequired": { "const": true }, "exactMachineVersionRequired": { "const": true }, "stableResourceAndRevisionRequired": { "const": true }, "kevinTechnicalApprovalRequired": { "const": true },
+        "publishedSourceIsApproval": { "const": false }, "fuzzyTitleMatchingAllowed": { "const": false }, "contentGenerationAllowed": { "const": false }, "syntheticFixturesTestModeOnly": { "const": true }, "syntheticFixtureCustomerReleaseAuthorized": { "const": false }, "emptyRegistryBehavior": { "const": "RESOURCE_REVIEW_REQUIRED" }
+      }
+    },
+    "safetyPrecedence": {
+      "type": "object",
+      "required": ["activeSafetyHoldBlocksGuidance", "unresolvedWarningBlocksGuidance", "ambiguousDisclosureIsSafe", "newHazardUsesExistingSafetyInterruption", "staticStopUseIndependentOfResourceAvailability", "resourceSelectionMayReleaseHold", "resourceSelectionMayAuthorizeMachineOperation"],
+      "properties": {
+        "activeSafetyHoldBlocksGuidance": { "const": true }, "unresolvedWarningBlocksGuidance": { "const": true }, "ambiguousDisclosureIsSafe": { "const": false }, "newHazardUsesExistingSafetyInterruption": { "const": true }, "staticStopUseIndependentOfResourceAvailability": { "const": true }, "resourceSelectionMayReleaseHold": { "const": false }, "resourceSelectionMayAuthorizeMachineOperation": { "const": false }
+      }
+    },
+    "integrationBoundaries": {
+      "type": "object",
+      "required": ["supportCaseRequired", "technicalGuidanceCategoryPreferred", "otherCategoryRequiresExplicitReferral", "supportCaseAutoCloseAllowed", "registrationRequired", "registrationConfersGuidanceAuthority", "registrationConfersCoverage", "warrantyReviewConfersGuidanceAuthority", "guidanceMayChangeWarrantyFinding", "customerNotificationAllowed"],
+      "properties": {
+        "supportCaseRequired": { "const": true }, "technicalGuidanceCategoryPreferred": { "const": true }, "otherCategoryRequiresExplicitReferral": { "const": true }, "supportCaseAutoCloseAllowed": { "const": false }, "registrationRequired": { "const": false }, "registrationConfersGuidanceAuthority": { "const": false }, "registrationConfersCoverage": { "const": false }, "warrantyReviewConfersGuidanceAuthority": { "const": false }, "guidanceMayChangeWarrantyFinding": { "const": false }, "customerNotificationAllowed": { "const": false }
+      }
+    },
+    "prohibitedOutputs": { "type": "array", "minItems": 7, "uniqueItems": true, "items": { "type": "string" } },
+    "operationalGate": {
+      "type": "object", "required": ["customerGuidanceAllowed", "resourcePublicationAllowed", "testModeMayBypass", "readinessBlockersRequired"],
+      "properties": { "customerGuidanceAllowed": { "const": false }, "resourcePublicationAllowed": { "const": false }, "testModeMayBypass": { "const": false }, "readinessBlockersRequired": { "const": 8 } }
+    }
+  }
+}

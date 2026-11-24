@@ -108,3 +108,11 @@ B04 separately authorizes and implements the private synthetic engineering porti
 The normal authority resolver remains unresolved and denied. Test-mode grants cannot become real authority. All 78 Active Products remain unapproved for customer promises; Policy 2.0 provenance, effective dates, applicability, legal language, and remedies remain unresolved. Synthetic assessment neither changes the support case nor issues or communicates a warranty determination.
 
 Only the L-PBI-013 synthetic engineering component and tests are complete. Real human authority, production processors and identity, security review, policy applicability, coverage approval, legal approval, operational ownership, decision issuance, customer notification, and activation remain false. All eight readiness blockers remain in force.
+
+## B05 engineering progress — 2026-11-24
+
+B05 separately authorizes and implements the private synthetic engineering portion of the Policy 2.0 successor definition of L-PBI-009 without changing earlier authorization history. It adds a support-case-bound technical guidance record, exact Product/Variant/version resource resolution through B01 governance, synthetic human selection, B01 safety precedence, revision requests, reconsideration, and permanent publication and activation guards.
+
+The normal customer resource registry remains empty. The evidence queue contains nine candidates—three manuals and six diagrams—but approves zero immutable revisions, applicability mappings, Kevin production approvals, or customer releases. Observed Variant relationships are identity evidence only.
+
+Only the L-PBI-009 synthetic engineering component and tests are complete. Technical authority binding, approved resources, staff routes and hours, production processors, security review, legal approval, operational ownership, publication, customer guidance, and activation remain false. All eight readiness blockers remain in force.

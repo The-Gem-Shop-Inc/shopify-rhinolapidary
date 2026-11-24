@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-resource-approval-queue.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "queueId", "status", "asOf", "authority", "sourceEvidence", "selectionMethod", "observedVariantRelationshipAuthority", "counts", "candidates", "recommendedFirstReviewBatch", "recommendationBasis", "releaseAuthorized"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "queueId": { "const": "EPIC-L-POLICY2-B05-RESOURCE-APPROVAL-QUEUE" },
+    "status": { "const": "HUMAN_REVIEW_REQUIRED" },
+    "asOf": { "const": "2026-11-24" },
+    "authority": { "type": "string", "minLength": 1 },
+    "sourceEvidence": { "type": "array", "minItems": 4, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "selectionMethod": { "type": "string", "minLength": 1 },
+    "observedVariantRelationshipAuthority": { "type": "string", "minLength": 1 },
+    "counts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["candidates", "manuals", "diagrams", "approvedRevisions", "customerReleaseAuthorizations", "highPriority", "mediumPriority"],
+      "properties": {
+        "candidates": { "const": 9 }, "manuals": { "const": 3 }, "diagrams": { "const": 6 }, "approvedRevisions": { "const": 0 }, "customerReleaseAuthorizations": { "const": 0 }, "highPriority": { "const": 3 }, "mediumPriority": { "const": 6 }
+      }
+    },
+    "candidates": {
+      "type": "array", "minItems": 9, "maxItems": 9,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["candidateId", "sourceIdentity", "sourceReference", "sourceFilename", "category", "productGid", "observedVariantGid", "variantApplicabilityApproved", "candidateMachineVersion", "machineVersionApplicabilityApproved", "revisionIdentity", "revisionEvidence", "technicalOwnerEvidence", "kevinApprovalStatus", "customerReleaseApprovalStatus", "rightsStatus", "publicationObservation", "missingInformation", "priority", "requiredHumanDecision", "approvalStatus"],
+        "properties": {
+          "candidateId": { "pattern": "^B05-RC-00[1-9]$" },
+          "sourceIdentity": { "type": "string", "minLength": 1 }, "sourceReference": { "type": "string", "minLength": 1 }, "sourceFilename": { "type": "string", "minLength": 1 },
+          "category": { "enum": ["MANUAL", "DIAGRAM"] },
+          "productGid": { "pattern": "^gid://shopify/Product/[0-9]+$" },
+          "observedVariantGid": { "pattern": "^gid://shopify/ProductVariant/[0-9]+$" },
+          "variantApplicabilityApproved": { "const": false },
+          "candidateMachineVersion": { "type": "string", "minLength": 1 },
+          "machineVersionApplicabilityApproved": { "const": false },
+          "revisionIdentity": { "type": "null" },
+          "revisionEvidence": { "type": "string", "minLength": 1 }, "technicalOwnerEvidence": { "type": "string", "minLength": 1 },
+          "kevinApprovalStatus": { "const": "NOT_EVIDENCED" }, "customerReleaseApprovalStatus": { "const": "NOT_APPROVED" }, "rightsStatus": { "const": "NEEDS_CONFIRMATION" },
+          "publicationObservation": { "enum": ["EXISTING_SOURCE_ONLY_NOT_APPROVAL", "REPOSITORY_EVIDENCE_ONLY"] },
+          "missingInformation": { "type": "array", "minItems": 5, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "priority": { "enum": ["HIGH", "MEDIUM"] }, "requiredHumanDecision": { "type": "string", "minLength": 1 }, "approvalStatus": { "const": "HUMAN_REVIEW_REQUIRED" }
+        }
+      }
+    },
+    "recommendedFirstReviewBatch": { "const": ["B05-RC-001", "B05-RC-002", "B05-RC-003"] },
+    "recommendationBasis": { "type": "string", "minLength": 1 },
+    "releaseAuthorized": { "const": false }
+  }
+}

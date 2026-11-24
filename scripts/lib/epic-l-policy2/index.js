@@ -9,5 +9,6 @@ module.exports = {
   ...require('./registration'),
   ...require('./support-intake'),
   ...require('./warranty-review'),
+  ...require('./technical-guidance'),
   ...require('./foundation'),
 };

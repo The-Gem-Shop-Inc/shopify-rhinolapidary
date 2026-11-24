@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-b05-progress.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batchId", "status", "recordedAt", "mode", "customerFacingAuthority", "engineeringAuthorization", "authoritativeContracts", "pbiProgress", "testEvidence", "readinessBlockers", "limitations"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "batchId": { "const": "EPIC-L-POLICY2-B05" },
+    "status": { "const": "ENGINEERING_TECHNICAL_GUIDANCE_IMPLEMENTED_SYNTHETIC_ONLY" },
+    "recordedAt": { "const": "2026-11-24" },
+    "mode": { "const": "PRIVATE_SYNTHETIC_DATA_ONLY" },
+    "customerFacingAuthority": { "const": false },
+    "engineeringAuthorization": { "const": "EPIC-L-POLICY2-B05-AUTHORIZATION-2026-11-24" },
+    "authoritativeContracts": { "type": "array", "minItems": 12, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "pbiProgress": {
+      "type": "array", "minItems": 1, "maxItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["pbiId", "engineeringComponentImplemented", "testsPassing", "technicalAuthorityBindingApproved", "approvedResourcesAvailable", "realStaffRoutingApproved", "productionProcessorApproved", "securityReviewApproved", "operationalOwnerApproval", "legalApproval", "customerGuidancePermitted", "resourcePublicationPermitted", "customerActivationPermitted", "deliveredScope", "remainingScope"],
+        "properties": {
+          "pbiId": { "const": "L-PBI-009" }, "engineeringComponentImplemented": { "const": true }, "testsPassing": { "const": true },
+          "technicalAuthorityBindingApproved": { "const": false }, "approvedResourcesAvailable": { "const": false }, "realStaffRoutingApproved": { "const": false }, "productionProcessorApproved": { "const": false }, "securityReviewApproved": { "const": false }, "operationalOwnerApproval": { "const": false }, "legalApproval": { "const": false }, "customerGuidancePermitted": { "const": false }, "resourcePublicationPermitted": { "const": false }, "customerActivationPermitted": { "const": false },
+          "deliveredScope": { "type": "string", "minLength": 1 }, "remainingScope": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "testEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifactChecks", "domainScenarios", "invalidOperationsRejected", "guidanceStates", "explicitTransitions", "resourceCandidatesReviewed", "approvedResourceRevisions", "liveProviderCalls", "customerGuidanceDeliveries", "resourcePublications"],
+      "properties": {
+        "artifactChecks": { "const": 14 }, "domainScenarios": { "minimum": 31 }, "invalidOperationsRejected": { "minimum": 26 }, "guidanceStates": { "const": 9 }, "explicitTransitions": { "const": 32 }, "resourceCandidatesReviewed": { "const": 9 }, "approvedResourceRevisions": { "const": 0 }, "liveProviderCalls": { "const": 0 }, "customerGuidanceDeliveries": { "const": 0 }, "resourcePublications": { "const": 0 }
+      }
+    },
+    "readinessBlockers": { "type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": { "type": "string" } },
+    "limitations": { "type": "array", "minItems": 10, "items": { "type": "string", "minLength": 1 } }
+  }
+}
