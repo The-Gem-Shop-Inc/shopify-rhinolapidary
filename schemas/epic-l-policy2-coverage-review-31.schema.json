@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-coverage-review-31.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "artifactId", "generatedAt", "source", "sourceSchemaVersion", "status", "businessReviewAuthorities", "reviewerIdentityBindingStatus", "customerFacingAuthority", "originalMatrixMutated", "selectionRule", "selectedProductCount", "remainingActiveProductsRequiringEventualApproval", "records"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "artifactId": { "const": "EPIC-L-POLICY2-B06-COVERAGE-REVIEW-31" },
+    "generatedAt": { "const": "2026-11-25" },
+    "source": { "const": "data/epic-l-policy2-coverage-matrix.json" },
+    "sourceSchemaVersion": { "const": "2.1.0" },
+    "status": { "const": "PENDING_AVERY_OR_VERONICA_REVIEW" },
+    "businessReviewAuthorities": { "const": ["Avery", "Veronica"] },
+    "reviewerIdentityBindingStatus": { "const": "UNVERIFIED" },
+    "customerFacingAuthority": { "const": false },
+    "originalMatrixMutated": { "const": false },
+    "selectionRule": { "type": "string", "minLength": 1 },
+    "selectedProductCount": { "const": 31 },
+    "remainingActiveProductsRequiringEventualApproval": { "const": 47 },
+    "records": {
+      "type": "array", "minItems": 31, "maxItems": 31,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["productGid", "variantGids", "title", "technicalClassContext", "observedFunctionEvidence", "classificationUncertainty", "candidateDispositions", "independentManufacturingEvidence", "reviewPriority", "assignedBusinessReviewer", "proposedBusinessClassification", "reviewEvidenceReference", "reviewStatus", "legalApprovalStatus", "sourceBusinessApprovalStatus", "customerPromiseAuthorized"],
+        "properties": {
+          "productGid": { "type": "string", "pattern": "^gid://shopify/Product/[0-9]+$" },
+          "variantGids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^gid://shopify/ProductVariant/[0-9]+$" } },
+          "title": { "type": "string", "minLength": 1 },
+          "technicalClassContext": { "type": "object", "required": ["value", "sourceRef", "authority"] },
+          "observedFunctionEvidence": { "type": "object", "required": ["assessment", "status", "evidenceRefs"] },
+          "classificationUncertainty": { "type": "object", "required": ["sourceStatus", "rationale", "reviewReasons"] },
+          "candidateDispositions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["MACHINE", "WEAR_COMPONENT", "DURABLE_COMPONENT", "THIRD_PARTY_COMPONENT", "EXCLUDED_SUPPLY", "HUMAN_REVIEW_REQUIRED"] } },
+          "independentManufacturingEvidence": { "type": "object", "required": ["status", "producer", "evidenceRefs", "plainLanguage"] },
+          "reviewPriority": { "enum": ["CRITICAL", "HIGH"] },
+          "assignedBusinessReviewer": { "type": "null" },
+          "proposedBusinessClassification": { "type": "null" },
+          "reviewEvidenceReference": { "type": "null" },
+          "reviewStatus": { "const": "PENDING_BUSINESS_REVIEW" },
+          "legalApprovalStatus": { "const": "NOT_REVIEWED" },
+          "sourceBusinessApprovalStatus": { "const": "NOT_REVIEWED" },
+          "customerPromiseAuthorized": { "const": false }
+        }
+      }
+    }
+  }
+}

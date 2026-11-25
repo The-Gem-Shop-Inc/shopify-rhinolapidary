@@ -8,10 +8,11 @@
     "customerFacingAuthority", "engineeringAuthorization", "authorityRoles", "authorityResolution",
     "reviewStates", "initialState", "terminalStates", "transitions", "assessmentTypes",
     "syntheticConclusions", "policyEvidenceRequirements", "coverageEvidenceRequirements",
-    "prohibitedCoverageAuthoritySignals", "obligationBoundaries", "supportIntegration", "issuanceGate"
+    "prohibitedCoverageAuthoritySignals", "obligationBoundaries", "supportIntegration", "internalWarrantyIntent",
+    "authorityDimensions", "engineeringAcceptanceProhibitions", "contractMigration", "issuanceGate"
   ],
   "properties": {
-    "schemaVersion": { "const": "1.0.0" },
+    "schemaVersion": { "const": "1.1.0" },
     "contractId": { "const": "EPIC-L-POLICY2-WARRANTY-REVIEW" },
     "status": { "const": "PROPOSED_SYNTHETIC_ENGINEERING_ONLY" },
     "authoritativeSource": { "type": "string", "minLength": 1 },
@@ -87,6 +88,30 @@
         "safetyHoldBypassAllowed": { "const": false },
         "notificationRecoveryBypassAllowed": { "const": false },
         "rhinoOwnershipRetained": { "const": true }
+      }
+    },
+    "internalWarrantyIntent": {
+      "type": "object", "additionalProperties": true,
+      "required": ["status", "machineDuration", "durableReplacementParts", "wearComponents", "intendedStartEvent", "registrationDateAutomaticallyProvesFirstUse", "missingReceiptAutomaticDenial", "registeredAfterFirstUseAutomaticDenial", "responsibilityIntent", "priorPurchasers"],
+      "properties": {
+        "status": { "const": "BUSINESS_INTENT_RECORDED_NOT_CUSTOMER_POLICY" },
+        "intendedStartEvent": { "const": "MACHINE_REGISTRATION" },
+        "registrationDateAutomaticallyProvesFirstUse": { "const": false },
+        "missingReceiptAutomaticDenial": { "const": false },
+        "registeredAfterFirstUseAutomaticDenial": { "const": false }
+      }
+    },
+    "authorityDimensions": {
+      "type": "array", "minItems": 7, "maxItems": 7,
+      "items": { "type": "object", "required": ["dimension", "status", "blockingCustomerIssuance"] }
+    },
+    "engineeringAcceptanceProhibitions": { "type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": { "type": "string" } },
+    "contractMigration": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fromVersion", "toVersion", "recordedAt", "additive", "decisionEngineReused", "customerFacingAuthorityChanged"],
+      "properties": {
+        "fromVersion": { "const": "1.0.0" }, "toVersion": { "const": "1.1.0" }, "recordedAt": { "const": "2026-11-25" },
+        "additive": { "const": true }, "decisionEngineReused": { "const": true }, "customerFacingAuthorityChanged": { "const": false }
       }
     },
     "issuanceGate": {

@@ -1,9 +1,9 @@
 {
-  "schemaVersion": "2.1.0",
+  "schemaVersion": "2.2.0",
   "contractId": "EPIC-L-POLICY2-SUPPORT-SAFETY",
   "status": "PROPOSED",
-  "authoritativeSource": "L-DEC-005 through L-DEC-008, L-DEC-012, L-DEC-013, L-DEC-016, L-DEC-017, and L-DEC-019 provisional receipt",
-  "runtimeConsumer": "Future governed support intake and private case service",
+  "authoritativeSource": "Revision 3 Product Owner decision receipt 2026-11-25; historical L-DEC support and safety decisions",
+  "runtimeConsumer": "scripts/lib/epic-l-policy2/support-safety.js and support-intake.js",
   "customerFacingAuthority": false,
   "prohibitedCapabilities": [
     "in-house repair intake",
@@ -289,6 +289,9 @@
       "requiredRecord": [
         "responsibleAuthority",
         "authorityRole",
+        "authorityName",
+        "authorityBindingStatus",
+        "authorityEvidenceReference",
         "reason",
         "evidenceRefs",
         "disposition",
@@ -298,7 +301,22 @@
         "CLEARED_FOR_GOVERNED_SUPPORT",
         "MANUFACTURER_ESCALATION_REQUIRED"
       ],
+      "resumeOperationAdviceAuthority": "KEVIN_VERIFIED_IDENTITY_BINDING_REQUIRED",
       "directResolutionOrClosureAllowed": false
+    },
+    "resolution": {
+      "assignedOwnerConfirmationRequired": true,
+      "staffRoleLabelAloneIsAuthority": false,
+      "notificationRecoveryMustBeComplete": true,
+      "activeSafetyHoldBlocksResolution": true
+    },
+    "reopening": {
+      "fromStates": ["RESOLVED", "CLOSED"],
+      "toState": "TRIAGED",
+      "authorityName": "Kevin",
+      "verifiedIdentityBindingRequired": true,
+      "priorEventsPreserved": true,
+      "activeSafetyHoldMayBeBypassed": false
     },
     "transitionGuards": {
       "notificationDeliveryFailureBlocks": [
@@ -317,51 +335,66 @@
       "Warehouse",
       "Stephanie"
     ],
-    "assignmentAuthority": "UNRESOLVED",
-    "note": "Names are recorded from the Product Owner brief; exact primaries, backups, and handoff procedures are not invented."
+    "assignmentAuthority": "BUSINESS_ROLES_APPROVED_IDENTITIES_UNVERIFIED",
+    "note": "Business responsibilities are approved by Revision 3. Exact Shopify staff identities, permissions, and production bindings remain unverified."
   },
+  "responsibilities": [
+    { "function": "WARRANTY_DECISIONS", "roleReference": "Avery", "identityBindingStatus": "UNVERIFIED" },
+    { "function": "TECHNICAL_GUIDANCE", "roleReference": "Kevin", "identityBindingStatus": "UNVERIFIED" },
+    { "function": "PARTS_QUESTIONS", "roleReference": "Warehouse", "identityBindingStatus": "UNVERIFIED" },
+    { "function": "CARRIER_CLAIMS_AND_CUSTOMER_SERVICE_RECOVERY", "roleReference": "Stephanie", "identityBindingStatus": "UNVERIFIED" },
+    { "function": "SERIOUS_SAFETY_INCIDENT", "roleReference": "Kevin", "identityBindingStatus": "UNVERIFIED" },
+    { "function": "SAFETY_NOTIFICATION_FALLBACK", "roleReference": "Warehouse", "identityBindingStatus": "UNVERIFIED", "mayAuthorizeSafetyDisposition": false },
+    { "function": "FAILED_NOTIFICATION_RECOVERY", "roleReference": "ASSIGNED_EMPLOYEE", "fallbackRoleReference": "Stephanie", "identityBindingStatus": "UNVERIFIED" },
+    { "function": "ORDINARY_CASE_RESOLUTION", "roleReference": "ASSIGNED_CASE_OWNER", "identityBindingStatus": "PER_CASE_VERIFICATION_REQUIRED" },
+    { "function": "CASE_REOPENING", "roleReference": "Kevin", "identityBindingStatus": "VERIFIED_IDENTITY_BINDING_REQUIRED" }
+  ],
   "routes": [
     {
       "category": "WARRANTY_DECISION",
-      "primary": null,
+      "primary": "Avery",
       "backup": null,
-      "assignmentStatus": "UNRESOLVED"
+      "assignmentStatus": "BUSINESS_ROLE_APPROVED_IDENTITY_UNVERIFIED"
     },
     {
       "category": "TECHNICAL_GUIDANCE",
-      "primary": null,
+      "primary": "Kevin",
       "backup": null,
-      "assignmentStatus": "UNRESOLVED",
+      "assignmentStatus": "BUSINESS_ROLE_APPROVED_IDENTITY_UNVERIFIED",
       "technicalRevisionApproval": "Kevin"
     },
     {
       "category": "PARTS_QUESTION",
-      "primary": null,
+      "primary": "Warehouse",
       "backup": null,
-      "assignmentStatus": "UNRESOLVED"
+      "assignmentStatus": "BUSINESS_ROLE_APPROVED_IDENTITY_UNVERIFIED"
     },
     {
       "category": "MANUFACTURER_REFERRAL",
-      "primary": null,
+      "primary": "ASSIGNED_CASE_OWNER",
       "backup": null,
-      "assignmentStatus": "UNRESOLVED",
+      "assignmentStatus": "BUSINESS_ROLE_APPROVED_IDENTITY_UNVERIFIED",
       "destination": "Silica-Gem",
       "handoffProcedureStatus": "UNRESOLVED"
     },
     {
       "category": "SHIPPING_CLAIM",
-      "primary": null,
+      "primary": "Stephanie",
       "backup": null,
-      "assignmentStatus": "UNRESOLVED"
+      "assignmentStatus": "BUSINESS_ROLE_APPROVED_IDENTITY_UNVERIFIED"
     }
   ],
   "hours": {
-    "days": "APPROVED_WEEKDAYS",
+    "days": "MONDAY_THROUGH_FRIDAY",
+    "weekdays": ["Mon", "Tue", "Wed", "Thu", "Fri"],
     "timezone": "America/Chicago",
-    "start": null,
-    "end": null,
-    "status": "BLOCKED_EXACT_HOURS_UNRESOLVED",
-    "continuousMonitoring": false
+    "start": "09:00",
+    "end": "17:00",
+    "status": "BUSINESS_DIRECTION_RECORDED_NOT_PUBLISHED",
+    "continuousMonitoring": false,
+    "responseTimeGuaranteed": false,
+    "holidayCalendarConfigured": false,
+    "outsideHoursAction": "CREATE_INTERNAL_ACKNOWLEDGEMENT_INTENT_ONLY"
   },
   "warningDelivery": {
     "timing": "IMMEDIATE_ON_HAZARD_REPORT_RECEIPT",
@@ -374,8 +407,8 @@
   },
   "staffHandling": {
     "occursDuringPublishedBusinessHours": true,
-    "exactHoursStatus": "UNRESOLVED",
-    "responsibleAssignmentsStatus": "UNRESOLVED",
+    "exactHoursStatus": "BUSINESS_DIRECTION_RECORDED_NOT_PUBLISHED",
+    "responsibleAssignmentsStatus": "BUSINESS_ROLES_APPROVED_IDENTITIES_UNVERIFIED",
     "continuousMonitoring": false
   },
   "safety": {
@@ -396,22 +429,31 @@
       ],
       "comprehensiveRecallPlatform": "DEFERRED",
       "procedureStatus": "PROPOSED",
-      "responsibleAuthority": "UNRESOLVED"
+      "responsibleAuthority": "Kevin",
+      "notificationFallback": "Warehouse",
+      "identityBindingStatus": "UNVERIFIED",
+      "fallbackMayAuthorizeDisposition": false
     }
   },
   "manufacturerEscalation": {
     "destination": "Silica-Gem",
     "handoffProcedureStatus": "UNRESOLVED",
+    "agreementVerificationStatus": "EXTERNALLY_BLOCKED",
     "rhinoCaseOwnershipRetained": true,
     "rhinoCommunicationResponsibilityRetained": true,
     "caseMayCloseOnReferralAlone": false,
     "requiredEvidence": [
       "referral time",
       "evidence package identity",
+      "damage or misuse report",
+      "customer testimony evidence reference",
       "customer communication evidence",
       "manufacturer acknowledgement when available",
       "Rhino follow-up owner"
-    ]
+    ],
+    "automaticReferralAllowed": false,
+    "automaticRefundAllowed": false,
+    "silicaGemRefundLiabilityStatus": "PROPOSED_PENDING_OPERATING_AGREEMENT"
   },
   "notifications": {
     "deliveryEvidenceRequired": true,
@@ -419,7 +461,21 @@
     "marketingConsentImplied": false,
     "failedDeliveryBlocksResolution": true,
     "failedDeliveryBlocksClosure": true,
-    "activeSafetyHoldPreservedDuringRecovery": true
+    "activeSafetyHoldPreservedDuringRecovery": true,
+    "discord": {
+      "status": "PREFERRED_IF_TECHNICALLY_AND_SECURELY_FEASIBLE",
+      "directDeliveryImplemented": false,
+      "durableCaseRecord": false,
+      "prohibitedPayloads": ["customer testimony", "images", "addresses", "private evidence", "webhook credentials"]
+    }
+  },
+  "contractMigration": {
+    "fromVersion": "2.1.0",
+    "toVersion": "2.2.0",
+    "recordedAt": "2026-11-25",
+    "additive": true,
+    "businessDirectionSource": "Revision 3",
+    "customerFacingAuthorityChanged": false
   },
   "quotationBoundary": "Accepted J/G quotation pathways remain separate and are not a support case system."
 }

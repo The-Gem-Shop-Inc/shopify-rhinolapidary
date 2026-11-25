@@ -1,9 +1,9 @@
 {
-  "schemaVersion": "2.1.0",
+  "schemaVersion": "2.2.0",
   "contractId": "EPIC-L-POLICY2-REGISTRATION",
   "status": "PROPOSED",
-  "authoritativeSource": "L-DEC-003, L-DEC-004, L-DEC-009, and approved coverage/resource registers",
-  "runtimeConsumer": "Future private registration service; optional Epic O account projection",
+  "authoritativeSource": "Revision 3 Product Owner decision receipt 2026-11-25; L-DEC-003, L-DEC-004, and L-DEC-009 historical context",
+  "runtimeConsumer": "scripts/lib/epic-l-policy2/registration.js; future private registration adapter",
   "customerFacingAuthority": false,
   "identifier": {
     "name": "registrationId",
@@ -31,18 +31,49 @@
       "registeredAt",
       "policyVersion",
       "firstUseDeclaration",
+      "registrationPath",
+      "purchaseEvidence",
+      "firstUseEvidence",
       "instructionDeliveryEvidence"
     ],
     "private": [
       "customerReference",
       "ownershipVerification",
       "serialNumber",
+      "legacyPhysicalSerialEvidence",
+      "purchaseEvidence",
+      "firstUseEvidence",
       "instructionDeliveryEvidence",
       "auditTrail"
     ],
     "serialNumber": {
-      "meaning": "Physical machine serial supplied or verified separately",
-      "sameAsRegistrationId": false
+      "meaning": "Historical B02 compatibility field only; Rhino machines do not have physical serial numbers",
+      "sameAsRegistrationId": false,
+      "normalRequirement": false,
+      "duplicateDetectionAuthority": false
+    },
+    "legacyPhysicalSerialEvidence": {
+      "nullable": true,
+      "historicalEvidenceOnly": true,
+      "duplicateDetectionAuthority": false,
+      "requiredFieldsWhenPresent": ["value", "source", "verificationStatus"]
+    },
+    "registrationPath": {
+      "values": ["NEW_REGISTRATION", "PRIOR_PURCHASE_EXCEPTION", "PRIOR_REGISTRATION_EXCEPTION"],
+      "exceptionsRemainDistinct": true
+    },
+    "evidenceCollections": {
+      "purchaseEvidence": {
+        "acceptedBusinessSource": "THE_GEM_SHOP_PURCHASE_ORDER",
+        "shopifyCustomerIdentityAloneIsProof": false
+      },
+      "firstUseEvidence": {
+        "acceptedPotentialSource": "REMOTE_INSPECTION",
+        "registrationDateInferredAsFirstUse": false,
+        "remoteInspectionRequiredFields": ["inspectionId", "inspectionDate", "reviewerReference", "evidenceReference"]
+      },
+      "verificationStates": ["SUPPLIED", "PENDING_VERIFICATION", "ACCEPTED_BY_AUTHORIZED_REVIEW", "DISPUTED", "UNAVAILABLE", "EXCEPTION_REVIEW_REQUIRED"],
+      "acceptedStateRequiresHumanReview": true
     },
     "firstUseDeclaration": {
       "values": [
@@ -74,15 +105,19 @@
   ],
   "duplicateHandling": {
     "keyCandidates": [
-      "verified serial number",
-      "verified order line and exact Product/Variant",
-      "owner-reviewed evidence"
+      "explicit prior registration evidence reference",
+      "owner-reviewed conflicting ownership evidence"
     ],
+    "physicalSerialAuthority": false,
+    "sharedPurchaseEvidenceConflatesMachines": false,
+    "sameCustomerMayOwnMultipleRegistrations": true,
     "automaticOverwrite": false,
     "idempotentAcknowledgement": true
   },
   "eligibility": {
     "registrationAbsentAutomaticDenial": false,
+    "missingPurchaseEvidenceAutomaticDenial": false,
+    "registrationCompletionProvesWarrantyEligibility": false,
     "status": "BLOCKED_PENDING_LEGAL_REVIEW"
   },
   "acknowledgement": {
@@ -107,19 +142,26 @@
   },
   "tests": [
     "opaque identifier",
-    "duplicate enters review",
+    "explicit prior registration evidence enters review",
+    "historical serial does not create a duplicate",
+    "multiple registrations may share one customer",
+    "migration is idempotent",
     "unverified ownership does not overwrite",
     "delivery failure enters recovery",
     "registration absence does not deny"
   ],
   "contractMigration": {
-    "fromVersion": "2.0.0",
-    "toVersion": "2.1.0",
-    "recordedAt": "2026-11-23",
-    "reason": "Correct the identifier format example so it satisfies the existing requirement for at least 128 bits of random entropy.",
-    "supersededText": "UUIDv4 or equivalent",
-    "replacementText": "At least 16 cryptographically secure random bytes encoded as an opaque base64url identifier.",
-    "businessIntentChanged": false,
+    "fromVersion": "2.1.0",
+    "toVersion": "2.2.0",
+    "recordedAt": "2026-11-25",
+    "reason": "Apply Revision 3 registration evidence direction without deleting B02 historical fields or changing registration IDs.",
+    "supersededText": "Physical serial and verified order-line signals could initiate duplicate review.",
+    "replacementText": "Physical serial data is nullable historical evidence; explicit registration evidence and authorized ownership review govern duplicate handling.",
+    "businessIntentChanged": true,
+    "additive": true,
+    "idempotent": true,
+    "registrationIdsPreserved": true,
+    "historicalDataDiscarded": false,
     "customerFacingAuthorityChanged": false
   }
 }

@@ -169,8 +169,11 @@ function selectGuidance(foundation, guidance, commandId = 'selection-1', actor =
 
 function safeDisposition() {
   return {
-    responsibleAuthority: 'auth_syn_safety_authority_0001',
+    responsibleAuthority: 'SYNTHETIC_SAFETY_AUTHORITY',
     authorityRole: 'SYNTHETIC_SAFETY_DISPOSITION_AUTHORITY',
+    authorityName: 'Kevin',
+    authorityBindingStatus: 'VERIFIED_IDENTITY_BINDING',
+    authorityEvidenceReference: 'synthetic:authority:kevin',
     reason: 'SYNTHETIC_HAZARD_REVIEW_COMPLETED',
     evidenceRefs: ['synthetic:safety:review:1'],
     disposition: 'CLEARED_FOR_GOVERNED_SUPPORT',

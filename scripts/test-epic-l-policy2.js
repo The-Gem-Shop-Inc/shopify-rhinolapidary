@@ -155,6 +155,9 @@ const authorizedExit = {
   authorization: {
     responsibleAuthority: 'fixture-authority',
     authorityRole: 'fixture-role',
+    authorityName: 'Kevin',
+    authorityBindingStatus: 'VERIFIED_IDENTITY_BINDING',
+    authorityEvidenceReference: 'fixture-authority-evidence',
     reason: 'fixture reviewed hazard',
     evidenceRefs: ['fixture-evidence'],
     disposition: 'CLEARED_FOR_GOVERNED_SUPPORT',

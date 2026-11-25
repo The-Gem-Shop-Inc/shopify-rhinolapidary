@@ -35,6 +35,59 @@ const ACKNOWLEDGEMENT_STATES = Object.freeze([
   'RECOVERY_REQUIRED',
 ]);
 
+const REGISTRATION_CONTRACT_VERSION = '2.2.0';
+const EVIDENCE_STATUSES = Object.freeze([
+  'SUPPLIED',
+  'PENDING_VERIFICATION',
+  'ACCEPTED_BY_AUTHORIZED_REVIEW',
+  'DISPUTED',
+  'UNAVAILABLE',
+  'EXCEPTION_REVIEW_REQUIRED',
+]);
+const REGISTRATION_PATHS = Object.freeze([
+  'NEW_REGISTRATION',
+  'PRIOR_PURCHASE_EXCEPTION',
+  'PRIOR_REGISTRATION_EXCEPTION',
+]);
+
+function migrateRegistrationRecordToV22(record, { migratedAt = '2026-11-25T00:00:00.000Z' } = {}) {
+  requireValue(record && typeof record === 'object', 'REGISTRATION_RECORD_REQUIRED', 'A registration record is required for migration');
+  const migrated = clone(record);
+  const data = migrated.data && typeof migrated.data === 'object' ? migrated.data : migrated;
+  requireValue(data.registrationId, 'REGISTRATION_ID_REQUIRED', 'Migration cannot replace or invent a registration ID');
+  if (data.contractVersion === REGISTRATION_CONTRACT_VERSION) return migrated;
+
+  const legacySerial = data.serialNumber
+    ? {
+        value: data.serialNumber,
+        source: 'HISTORICAL_B02_RECORD',
+        verificationStatus: 'UNVERIFIED_HISTORICAL_EVIDENCE',
+        evidenceReference: null,
+      }
+    : null;
+  const priorContractVersion = data.contractVersion || '2.1.0';
+  data.contractVersion = REGISTRATION_CONTRACT_VERSION;
+  data.registrationPath = data.registrationPath || 'NEW_REGISTRATION';
+  data.legacyPhysicalSerialEvidence = data.legacyPhysicalSerialEvidence ?? legacySerial;
+  data.purchaseEvidence = Array.isArray(data.purchaseEvidence) ? data.purchaseEvidence : [];
+  data.firstUseEvidence = Array.isArray(data.firstUseEvidence) ? data.firstUseEvidence : [];
+  data.purchaseEvidenceAssessment = data.purchaseEvidenceAssessment || {
+    status: data.purchaseEvidence.length ? 'PENDING_VERIFICATION' : 'EXCEPTION_REVIEW_REQUIRED',
+    automaticDenial: false,
+  };
+  data.migrationHistory = Array.isArray(data.migrationHistory) ? data.migrationHistory : [];
+  if (!data.migrationHistory.some((entry) => entry.toVersion === REGISTRATION_CONTRACT_VERSION)) {
+    data.migrationHistory.push({
+      fromVersion: priorContractVersion,
+      toVersion: REGISTRATION_CONTRACT_VERSION,
+      migratedAt,
+      registrationIdPreserved: true,
+      historicalDataDiscarded: false,
+    });
+  }
+  return migrated;
+}
+
 const REGISTRATION_TRANSITIONS = Object.freeze([
   ['RECEIVED', 'IDENTITY_VERIFICATION_REQUIRED'],
   ['RECEIVED', 'DUPLICATE_REVIEW'],
@@ -140,6 +193,7 @@ class MachineRegistrationService {
         category: 'REGISTRATION',
         state: 'RECEIVED',
         data: {
+          contractVersion: REGISTRATION_CONTRACT_VERSION,
           registrationId,
           customerReference: input.customerReference,
           notificationDestinationReference: input.notificationDestinationReference,
@@ -151,6 +205,19 @@ class MachineRegistrationService {
           policyApplicabilityStatus: 'NOT_EVALUATED',
           firstUseDeclaration: clone(input.firstUseDeclaration),
           serialNumber: input.serialNumber || null,
+          legacyPhysicalSerialEvidence: input.legacyPhysicalSerialEvidence
+            ? clone(input.legacyPhysicalSerialEvidence)
+            : input.serialNumber
+              ? { value: input.serialNumber, source: 'HISTORICAL_COMPATIBILITY_INPUT', verificationStatus: 'UNVERIFIED_HISTORICAL_EVIDENCE', evidenceReference: null }
+              : null,
+          registrationPath: input.registrationPath || 'NEW_REGISTRATION',
+          purchaseEvidence: clone(input.purchaseEvidence || []),
+          firstUseEvidence: clone(input.firstUseEvidence || []),
+          purchaseEvidenceAssessment: {
+            status: (input.purchaseEvidence || []).length ? 'PENDING_VERIFICATION' : 'EXCEPTION_REVIEW_REQUIRED',
+            automaticDenial: false,
+          },
+          migrationHistory: [],
           ownershipVerification: { status: 'UNVERIFIED', evidenceRefs: [], decidedAt: null, decidedBy: null },
           duplicateSignals: clone(input.duplicateSignals || {}),
           duplicateInvestigation: null,
@@ -343,6 +410,41 @@ class MachineRegistrationService {
         },
         eventType: 'REGISTRATION_AUTHORIZED_CORRECTION',
         eventDetails: { requestedBy: actor.actorId, fields: Object.keys(correction), reason, evidenceRefs: [...evidenceRefs] },
+      });
+    });
+  }
+
+  recordEvidence({ actor, commandId, registrationId, expectedVersion, collection, evidence }) {
+    requireAuthorization(this.authorize, actor, 'REGISTRATION_EVIDENCE_REVIEW', { registrationId, collection });
+    requireValue(['purchaseEvidence', 'firstUseEvidence'].includes(collection), 'INVALID_EVIDENCE_COLLECTION', 'Registration evidence collection is invalid');
+    this.validateEvidenceRecord(evidence, collection);
+    return this.commandLedger.execute(commandId, { operation: 'recordEvidence', registrationId, expectedVersion, collection, evidence }, () => {
+      const record = this.readRecord(actor, registrationId);
+      this.requireVersion(record, expectedVersion);
+      const existing = record.data[collection] || [];
+      const sameId = existing.find((item) => item.evidenceId === evidence.evidenceId);
+      if (sameId) {
+        requireValue(stableStringify(sameId) === stableStringify(evidence), 'EVIDENCE_ID_REUSE', 'Evidence ID was already used with different content');
+        return clone(record);
+      }
+      const patch = { [collection]: [...existing, clone(evidence)] };
+      if (collection === 'purchaseEvidence') {
+        patch.purchaseEvidenceAssessment = {
+          status: evidence.verificationStatus,
+          automaticDenial: false,
+          reviewedBy: evidence.reviewedBy || null,
+          reviewedAt: evidence.reviewedAt || null,
+        };
+      }
+      return this.privateRecords.update({
+        actor: this.recordActor(actor),
+        commandId: `${commandId}:record`,
+        recordId: record.recordId,
+        expectedVersion,
+        nextState: record.state,
+        patch,
+        eventType: 'REGISTRATION_EVIDENCE_RECORDED',
+        eventDetails: { collection, evidenceId: evidence.evidenceId, verificationStatus: evidence.verificationStatus },
       });
     });
   }
@@ -590,6 +692,30 @@ class MachineRegistrationService {
     requireValue(typeof input.policyVersion === 'string' && input.policyVersion.length > 0, 'POLICY_VERSION_REQUIRED', 'A policy version reference is required');
     this.validateFirstUse(input.firstUseDeclaration);
     if (input.serialNumber !== undefined && input.serialNumber !== null) requireValue(typeof input.serialNumber === 'string' && input.serialNumber.trim().length > 0, 'INVALID_SERIAL_NUMBER', 'Serial number must be non-empty when supplied');
+    requireValue(REGISTRATION_PATHS.includes(input.registrationPath || 'NEW_REGISTRATION'), 'INVALID_REGISTRATION_PATH', 'Registration path is invalid');
+    if (input.legacyPhysicalSerialEvidence !== undefined && input.legacyPhysicalSerialEvidence !== null) this.validateLegacySerialEvidence(input.legacyPhysicalSerialEvidence);
+    requireValue(Array.isArray(input.purchaseEvidence || []), 'INVALID_PURCHASE_EVIDENCE', 'Purchase evidence must be a collection');
+    requireValue(Array.isArray(input.firstUseEvidence || []), 'INVALID_FIRST_USE_EVIDENCE', 'First use evidence must be a collection');
+    for (const evidence of input.purchaseEvidence || []) this.validateEvidenceRecord(evidence, 'purchaseEvidence');
+    for (const evidence of input.firstUseEvidence || []) this.validateEvidenceRecord(evidence, 'firstUseEvidence');
+  }
+
+  validateLegacySerialEvidence(evidence) {
+    requireValue(typeof evidence.value === 'string' && evidence.value.trim().length > 0, 'INVALID_LEGACY_SERIAL_EVIDENCE', 'Legacy physical serial evidence requires a value');
+    requireValue(typeof evidence.source === 'string' && evidence.source.length > 0, 'INVALID_LEGACY_SERIAL_EVIDENCE', 'Legacy physical serial evidence requires a source');
+  }
+
+  validateEvidenceRecord(evidence, collection) {
+    requireValue(evidence && typeof evidence.evidenceId === 'string' && evidence.evidenceId.length > 0, 'EVIDENCE_ID_REQUIRED', 'Registration evidence requires an immutable evidence ID');
+    requireValue(typeof evidence.source === 'string' && evidence.source.length > 0, 'EVIDENCE_SOURCE_REQUIRED', 'Registration evidence requires its source');
+    requireValue(EVIDENCE_STATUSES.includes(evidence.verificationStatus), 'INVALID_EVIDENCE_STATUS', 'Registration evidence verification status is invalid');
+    requireValue(typeof evidence.evidenceReference === 'string' && evidence.evidenceReference.length > 0, 'EVIDENCE_REFERENCE_REQUIRED', 'Registration evidence requires a private evidence reference');
+    if (evidence.verificationStatus === 'ACCEPTED_BY_AUTHORIZED_REVIEW') {
+      requireValue(evidence.reviewedBy && evidence.reviewedAt, 'EVIDENCE_REVIEW_AUTHORITY_REQUIRED', 'Accepted evidence requires reviewer identity and review time');
+    }
+    if (collection === 'firstUseEvidence' && evidence.source === 'REMOTE_INSPECTION') {
+      requireValue(evidence.inspectionId && evidence.inspectionDate && evidence.reviewerReference, 'REMOTE_INSPECTION_EVIDENCE_REQUIRED', 'Remote inspection evidence requires inspection identity, date, and reviewer reference');
+    }
   }
 
   validateFirstUse(declaration) {
@@ -604,25 +730,12 @@ class MachineRegistrationService {
     for (const [registrationId, recordId] of this.recordIdsByRegistration.entries()) {
       if (registrationId === record.data.registrationId) continue;
       const other = this.privateRecords.read({ actor: this.recordActor(this.systemActor), recordId });
-      if (record.data.serialNumber && other.data.serialNumber && this.normalizeSerial(record.data.serialNumber) === this.normalizeSerial(other.data.serialNumber)) {
-        matchTypes.add('PHYSICAL_SERIAL_SIGNAL');
-        registrationIds.add(registrationId);
-      }
-      const orderSignal = record.data.duplicateSignals?.verifiedOrderLineReference;
-      if (orderSignal && other.data.duplicateSignals?.verifiedOrderLineReference === orderSignal && other.data.productGid === record.data.productGid && other.data.variantGid === record.data.variantGid) {
-        matchTypes.add('ORDER_LINE_AND_MACHINE_SIGNAL');
-        registrationIds.add(registrationId);
-      }
       if (record.data.duplicateSignals?.existingRegistrationEvidenceRef === registrationId) {
         matchTypes.add('EXISTING_REGISTRATION_EVIDENCE_SIGNAL');
         registrationIds.add(registrationId);
       }
     }
     return { matchTypes: [...matchTypes], registrationIds: [...registrationIds] };
-  }
-
-  normalizeSerial(value) {
-    return value.trim().toUpperCase();
   }
 
   queueAcknowledgement(record, actor, eventId) {
@@ -800,10 +913,14 @@ class MachineRegistrationService {
 
 module.exports = {
   ACKNOWLEDGEMENT_STATES,
+  EVIDENCE_STATUSES,
   FIRST_USE_STATES,
   InMemoryOrchestrationLedger,
   MachineRegistrationService,
   OWNERSHIP_STATES,
+  REGISTRATION_CONTRACT_VERSION,
+  REGISTRATION_PATHS,
   REGISTRATION_STATES,
   REGISTRATION_TRANSITIONS,
+  migrateRegistrationRecordToV22,
 };

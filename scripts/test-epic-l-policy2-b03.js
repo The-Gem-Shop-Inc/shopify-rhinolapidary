@@ -122,6 +122,7 @@ function acknowledge(foundation, caseReference, commandId = 'support-ack-create'
 function disposition() {
   return {
     responsibleAuthority: 'SYNTHETIC_SAFETY_AUTHORITY', authorityRole: 'SYNTHETIC_INCIDENT_AUTHORITY',
+    authorityName: 'Kevin', authorityBindingStatus: 'VERIFIED_IDENTITY_BINDING', authorityEvidenceReference: 'synthetic:authority:kevin',
     reason: 'Synthetic hazard evidence reviewed', evidenceRefs: ['synthetic:safety:evidence'],
     disposition: 'CLEARED_FOR_GOVERNED_SUPPORT', dispositionAt: '2026-11-23T19:00:00.000Z',
   };

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-b06-progress.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batchId", "status", "recordedAt", "mode", "customerFacingAuthority", "engineeringAuthorization", "authorizedWorkItems", "completionDimensions", "authoritativeContracts", "testEvidence", "readinessBlockers", "remainingTechnicalBlockers", "activationEvidence"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "batchId": { "const": "EPIC-L-POLICY2-B06" },
+    "status": { "const": "ENGINEERING_OPERATIONAL_ALIGNMENT_IMPLEMENTED_SYNTHETIC_ONLY" },
+    "recordedAt": { "const": "2026-11-25" },
+    "mode": { "const": "PRIVATE_SYNTHETIC_DATA_ONLY" },
+    "customerFacingAuthority": { "const": false },
+    "engineeringAuthorization": { "const": "EPIC-L-POLICY2-B06-AUTHORIZATION-2026-11-25" },
+    "authorizedWorkItems": { "const": ["R3-001", "R3-002", "R3-003", "R3-004"] },
+    "completionDimensions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["engineeringComplete", "testsPassing", "businessDirectionRecorded", "humanCoverageMappingComplete", "legalClearance", "staffIdentityBinding", "productionProcessorApproval", "operationalActivation"],
+      "properties": {
+        "engineeringComplete": { "const": true }, "testsPassing": { "const": true }, "businessDirectionRecorded": { "const": true },
+        "humanCoverageMappingComplete": { "const": false }, "legalClearance": { "const": false }, "staffIdentityBinding": { "const": false },
+        "productionProcessorApproval": { "const": false }, "operationalActivation": { "const": false }
+      }
+    },
+    "authoritativeContracts": { "type": "array", "minItems": 8, "uniqueItems": true, "items": { "type": "string" } },
+    "testEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifactChecks", "domainScenarios", "invalidOperationsRejected", "registrationContractVersion", "supportContractVersion", "warrantyContractVersion", "projectedProducts", "preservedUnrelatedPaths", "liveProviderCalls", "customerDecisionsIssued", "customerNotificationsSent"],
+      "properties": {
+        "artifactChecks": { "const": 18 }, "domainScenarios": { "minimum": 15 }, "invalidOperationsRejected": { "minimum": 13 },
+        "registrationContractVersion": { "const": "2.2.0" }, "supportContractVersion": { "const": "2.2.0" }, "warrantyContractVersion": { "const": "1.1.0" },
+        "projectedProducts": { "const": 31 }, "preservedUnrelatedPaths": { "const": 39 }, "liveProviderCalls": { "const": 0 },
+        "customerDecisionsIssued": { "const": 0 }, "customerNotificationsSent": { "const": 0 }
+      }
+    },
+    "readinessBlockers": { "type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": { "type": "string" } },
+    "remainingTechnicalBlockers": { "type": "array", "minItems": 5, "items": { "type": "string" } },
+    "activationEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["formsActivated", "flowActivated", "discordActivated", "shopifyCustomerRecordsMutated", "supportIntakeActivated", "warrantyPublished", "resourcesPublished", "insuranceImplemented"],
+      "properties": {
+        "formsActivated": { "const": false }, "flowActivated": { "const": false }, "discordActivated": { "const": false }, "shopifyCustomerRecordsMutated": { "const": false },
+        "supportIntakeActivated": { "const": false }, "warrantyPublished": { "const": false }, "resourcesPublished": { "const": false }, "insuranceImplemented": { "const": false }
+      }
+    }
+  }
+}

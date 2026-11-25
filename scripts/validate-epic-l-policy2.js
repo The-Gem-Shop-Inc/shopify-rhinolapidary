@@ -366,7 +366,7 @@ function collectReadinessBlockers(data) {
   const coveragePending = data.coverage.activeProductApprovalRegister.filter((row) => row.businessApproval.status !== 'APPROVED' || row.legalApproval.status !== 'APPROVED').length;
   if (coveragePending) add(blockers, 'COVERAGE_APPROVAL_PENDING', `${coveragePending} Active Products require business/legal approval`);
   if (!data.resources.resourceRegistry.length) add(blockers, 'RESOURCE_APPROVAL_PENDING', 'no approved resource revisions are registered');
-  if (data.support.hours.status !== 'APPROVED' || data.support.routes.some((route) => route.assignmentStatus !== 'APPROVED')) add(blockers, 'SUPPORT_OPERATIONS_UNRESOLVED', 'exact hours and routing assignments are unresolved');
+  if (data.support.hours.status !== 'APPROVED' || data.support.routes.some((route) => route.assignmentStatus !== 'APPROVED')) add(blockers, 'SUPPORT_OPERATIONS_UNRESOLVED', 'published hours, verified staff identities, permissions, and production routing remain unresolved');
   if (data.support.manufacturerEscalation.handoffProcedureStatus !== 'APPROVED') add(blockers, 'MANUFACTURER_HANDOFF_UNRESOLVED', 'Silica-Gem handoff procedure is unresolved');
   if (data.capability.retentionArchitecture.status !== 'APPROVED') add(blockers, 'PRIVACY_RETENTION_UNRESOLVED', 'private processors and seven-year lifecycle are not approved');
   if (data.backlog.activationGate.status !== 'READY') add(blockers, 'M1_ACTIVATION_BLOCKED', 'M1 activation gate is blocked');

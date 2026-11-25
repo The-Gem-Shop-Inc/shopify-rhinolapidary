@@ -385,7 +385,7 @@ class GovernedSupportIntakeService {
     });
   }
 
-  transitionCase({ actor, commandId, caseReference, expectedVersion, toState }) {
+  transitionCase({ actor, commandId, caseReference, expectedVersion, toState, authorityProof = null }) {
     requireAuthorization(this.authorize, actor, 'SUPPORT_CASE_TRANSITION', { caseReference, toState });
     const record = this.readRecord(actor, caseReference);
     this.requireVersion(record, expectedVersion);
@@ -393,7 +393,21 @@ class GovernedSupportIntakeService {
       const acknowledgement = this.intake(record).acknowledgement;
       requireValue(acknowledgement.eventId && acknowledgement.notificationId, 'SUPPORT_ACKNOWLEDGEMENT_REQUIRED', 'Case acknowledgement state requires a persisted acknowledgement event and queued notification obligation');
     }
-    return this.safety.ordinaryTransition({ actor: this.recordActor(actor), commandId, caseRecordId: record.recordId, expectedVersion, toState });
+    return this.safety.ordinaryTransition({ actor: this.recordActor(actor), commandId, caseRecordId: record.recordId, expectedVersion, toState, authorityProof });
+  }
+
+  assignCaseOwner({ actor, commandId, caseReference, expectedVersion, ownerReference, assignmentEvidenceReference }) {
+    requireAuthorization(this.authorize, actor, 'SUPPORT_CASE_ASSIGN_OWNER', { caseReference, ownerReference });
+    const record = this.readRecord(actor, caseReference);
+    this.requireVersion(record, expectedVersion);
+    return this.safety.assignCaseOwner({ actor: this.recordActor(actor), commandId, caseRecordId: record.recordId, expectedVersion, ownerReference, assignmentEvidenceReference });
+  }
+
+  reopenCase({ actor, commandId, caseReference, expectedVersion, authorityProof }) {
+    requireAuthorization(this.authorize, actor, 'SUPPORT_CASE_REOPEN', { caseReference });
+    const record = this.readRecord(actor, caseReference);
+    this.requireVersion(record, expectedVersion);
+    return this.safety.reopenCase({ actor: this.recordActor(actor), commandId, caseRecordId: record.recordId, expectedVersion, authorityProof });
   }
 
   authorizedSafetyDisposition({ actor, commandId, caseReference, expectedVersion, toState, dispositionRecord }) {
@@ -540,7 +554,12 @@ class GovernedSupportIntakeService {
     return this.privateRecords.read({ actor: this.recordActor(actor), recordId });
   }
 
-  recordActor(actor) { return { actorId: actor?.actorId || this.systemActor.actorId, permissions: [...this.systemActor.permissions] }; }
+  recordActor(actor) {
+    return {
+      actorId: actor?.actorId || this.systemActor.actorId,
+      permissions: [...new Set([...this.systemActor.permissions, ...(actor?.permissions || [])])],
+    };
+  }
 
   requireOwner(actor, record, permission) {
     if (!actor || !this.authorize(actor, permission, record) || actor.customerReference !== this.intake(record).customerReference) throw new AuthorizationError('SUPPORT_CASE_ACCESS_DENIED', 'Support case access is not authorized');

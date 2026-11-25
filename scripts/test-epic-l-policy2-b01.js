@@ -16,7 +16,7 @@ const fullPermissions = [
   'PRIVATE_RECORD_CREATE', 'PRIVATE_RECORD_READ', 'PRIVATE_RECORD_UPDATE', 'PRIVATE_AUDIT_READ',
   'RESOURCE_REVISION_CREATE', 'RESOURCE_TECHNICAL_APPROVE', 'RESOURCE_CUSTOMER_RELEASE',
   'NOTIFICATION_QUEUE', 'NOTIFICATION_ATTEMPT', 'NOTIFICATION_RECOVERY', 'NOTIFICATION_RECONCILE',
-  'NOTIFICATION_TERMINAL_DISPOSITION', 'SUPPORT_CASE_CREATE', 'SAFETY_INTERRUPT', 'SAFETY_DISPOSITION',
+  'NOTIFICATION_TERMINAL_DISPOSITION', 'SUPPORT_CASE_CREATE', 'SUPPORT_CASE_ASSIGN_OWNER', 'SAFETY_INTERRUPT', 'SAFETY_DISPOSITION',
 ];
 
 const operator = { actorId: 'SYNTHETIC_OPERATOR', permissions: fullPermissions };
@@ -112,8 +112,11 @@ function queueNotification(foundation, commandId = 'queue-1') {
 
 function disposition(overrides = {}) {
   return {
-    responsibleAuthority: 'SYNTHETIC_AUTHORITY',
+    responsibleAuthority: 'SYNTHETIC_OPERATOR',
     authorityRole: 'SYNTHETIC_INCIDENT_DISPOSITION',
+    authorityName: 'Kevin',
+    authorityBindingStatus: 'VERIFIED_IDENTITY_BINDING',
+    authorityEvidenceReference: 'synthetic:authority:kevin',
     reason: 'Synthetic hazard evidence reviewed',
     evidenceRefs: ['synthetic:evidence:1'],
     disposition: 'CLEARED_FOR_GOVERNED_SUPPORT',
@@ -268,8 +271,13 @@ test('uncertain delivery remains unresolved until evidence reconciliation', () =
 test('all approved ordinary support transitions execute from the committed contract', () => {
   const f = makeFoundation();
   for (const [index, transition] of f.safety.contract.stateMachine.ordinaryTransitions.entries()) {
-    const record = f.safety.createCase({ actor: operator, commandId: `ordinary-create-${index}`, destinationReference: DESTINATION, initialState: transition.from });
-    const result = f.safety.ordinaryTransition({ actor: operator, commandId: `ordinary-transition-${index}`, caseRecordId: record.recordId, expectedVersion: record.version, toState: transition.to });
+    let record = f.safety.createCase({ actor: operator, commandId: `ordinary-create-${index}`, destinationReference: DESTINATION, initialState: transition.from });
+    let authorityProof = null;
+    if (transition.to === 'RESOLVED') {
+      record = f.safety.assignCaseOwner({ actor: operator, commandId: `ordinary-owner-${index}`, caseRecordId: record.recordId, expectedVersion: record.version, ownerReference: 'staff_syn_operator_0001', assignmentEvidenceReference: `synthetic:assignment:${index}` });
+      authorityProof = { action: 'CONFIRM_RESOLUTION', verified: true, actorId: operator.actorId, ownerReference: 'staff_syn_operator_0001', evidenceReference: `synthetic:resolution:${index}` };
+    }
+    const result = f.safety.ordinaryTransition({ actor: operator, commandId: `ordinary-transition-${index}`, caseRecordId: record.recordId, expectedVersion: record.version, toState: transition.to, authorityProof });
     assert.equal(result.state, transition.to);
   }
 });
@@ -351,7 +359,8 @@ test('case notification recovery clears only after evidenced reconciliation', ()
   f.notifications.reconcile({ actor: operator, commandId: 'clear-reconcile', notificationId: queued.notificationId, outcome: 'CONFIRMED', evidence: { providerReceipt: 'synthetic:reconciled' } });
   const cleared = f.safety.clearReconciledNotification({ actor: operator, commandId: 'clear-valid', caseRecordId: record.recordId, expectedVersion: blocked.version, notificationId: queued.notificationId });
   assert.deepEqual(cleared.data.unresolvedNotificationIds, []);
-  const resolved = f.safety.ordinaryTransition({ actor: operator, commandId: 'clear-resolve', caseRecordId: record.recordId, expectedVersion: cleared.version, toState: 'RESOLVED' });
+  const assigned = f.safety.assignCaseOwner({ actor: operator, commandId: 'clear-owner', caseRecordId: record.recordId, expectedVersion: cleared.version, ownerReference: 'staff_syn_operator_0001', assignmentEvidenceReference: 'synthetic:assignment:clear' });
+  const resolved = f.safety.ordinaryTransition({ actor: operator, commandId: 'clear-resolve', caseRecordId: record.recordId, expectedVersion: assigned.version, toState: 'RESOLVED', authorityProof: { action: 'CONFIRM_RESOLUTION', verified: true, actorId: operator.actorId, ownerReference: 'staff_syn_operator_0001', evidenceReference: 'synthetic:resolution:clear' } });
   assert.equal(resolved.state, 'RESOLVED');
 });
 

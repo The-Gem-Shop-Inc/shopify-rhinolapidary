@@ -49,7 +49,7 @@ const support = readJson('data/epic-l-policy2-support-safety-contract.json');
 
 check('completed packet hash is exact', sha256(receipt.source.repositoryPath) === receipt.source.sha256);
 check('prior November receipt remains the preserved 2.1.0 record', priorReceipt.schemaVersion === '2.1.0' && sha256('data/epic-l-policy2-decision-receipt.json') === 'E56CE33817AB4965705B46FE62B50D689823DBA2D519A7BD1989F00EF48099E7');
-check('B01/B02 historical contracts are unchanged in this batch', sha256('data/epic-l-policy2-registration-contract.json') === '87155A608F1E442B7DE0A61FCFB11EE1F62633E9594C4B553867A0551EC398C8' && sha256('data/epic-l-policy2-support-safety-contract.json') === 'AF25105C9084491F9D832B335E8245FC3D9550CBD016E5C94F88CDD9D71939EC');
+check('B06 successors retain explicit additive lineage from the R3 baseline contracts', registration.schemaVersion === '2.2.0' && registration.contractMigration.fromVersion === '2.1.0' && registration.contractMigration.additive === true && support.schemaVersion === '2.2.0' && support.contractMigration.fromVersion === '2.1.0' && support.contractMigration.additive === true);
 
 const expectedAreas = Array.from({ length: 10 }, (_, index) => `OPEN-${String(index + 1).padStart(2, '0')}`);
 const actualAreas = receipt.decisionAreas.map((area) => area.areaId).sort();
@@ -71,7 +71,7 @@ check('no Product acquired customer coverage authorization', coverage.currentAud
 check('B05 completion record is present and synthetic-only', b05.status === 'ENGINEERING_TECHNICAL_GUIDANCE_IMPLEMENTED_SYNTHETIC_ONLY' && b05.mode === 'PRIVATE_SYNTHETIC_DATA_ONLY' && b05.customerFacingAuthority === false && b05.testEvidence.liveProviderCalls === 0 && b05.testEvidence.resourcePublications === 0);
 check('B05 queue remains nine candidates and zero releases', resourceQueue.counts.candidates === 9 && resourceQueue.counts.approvedRevisions === 0 && resourceQueue.counts.customerReleaseAuthorizations === 0 && resourceQueue.releaseAuthorized === false);
 
-check('obsolete physical serial assumption is explicitly preserved for additive migration', registration.record.serialNumber?.sameAsRegistrationId === false && registration.duplicateHandling.keyCandidates.includes('verified serial number') && nextBacklog.items.find((item) => item.itemId === 'R3-001')?.acceptanceEvidence.some((line) => /legacyPhysicalSerialEvidence/.test(line)));
+check('obsolete physical serial assumption is retained only as additive historical evidence', registration.record.serialNumber?.sameAsRegistrationId === false && registration.record.serialNumber?.normalRequirement === false && registration.record.serialNumber?.duplicateDetectionAuthority === false && nextBacklog.items.find((item) => item.itemId === 'R3-001')?.acceptanceEvidence.some((line) => /legacyPhysicalSerialEvidence/.test(line)));
 check('recommended B06 is synthetic and non-mutating', nextBacklog.recommendedNextBatch.batchId === 'EPIC-L-POLICY2-B06' && nextBacklog.recommendedNextBatch.realCustomerDataAllowed === false && nextBacklog.recommendedNextBatch.shopifyMutationAllowed === false && nextBacklog.recommendedNextBatch.publicationAllowed === false);
 check('B06 includes additive registration, support, warranty, and exact coverage work', ['R3-001', 'R3-002', 'R3-003', 'R3-004'].every((id) => nextBacklog.recommendedNextBatch.itemIds.includes(id)));
 

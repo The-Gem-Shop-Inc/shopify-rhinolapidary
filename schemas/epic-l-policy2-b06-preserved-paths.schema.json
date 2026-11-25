@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-b06-preserved-paths.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "capturedAt", "expectedPathCount", "paths"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "capturedAt": { "const": "2026-11-25" },
+    "expectedPathCount": { "const": 39 },
+    "paths": {
+      "type": "array", "minItems": 39, "maxItems": 39,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["status", "path", "sha256"],
+        "properties": {
+          "status": { "enum": [" M", "??"] },
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[A-F0-9]{64}$" }
+        }
+      }
+    }
+  }
+}

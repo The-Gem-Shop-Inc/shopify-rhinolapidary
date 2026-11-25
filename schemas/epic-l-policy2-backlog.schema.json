@@ -19,7 +19,7 @@
   ],
   "properties": {
     "schemaVersion": {
-      "const": "2.3.0"
+      "const": "2.4.0"
     },
     "status": {
       "const": "PROPOSED"
@@ -51,8 +51,8 @@
     },
     "subsequentEngineeringAuthorizations": {
       "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
+      "minItems": 3,
+      "maxItems": 3,
       "items": {
         "oneOf": [
           {
@@ -68,14 +68,21 @@
             "properties": {
               "authorizationId": { "const": "EPIC-L-POLICY2-B05-AUTHORIZATION-2026-11-24" }, "batchId": { "const": "EPIC-L-POLICY2-B05" }, "authorizedPbis": { "const": ["L-PBI-009"] }, "mode": { "const": "PRIVATE_SYNTHETIC_DATA_ONLY" }, "authorityContract": { "const": "data/epic-l-policy2-technical-guidance-contract.json" }, "originalFirstImplementationBatchUnchanged": { "const": true }, "realCustomerDataAllowed": { "const": false }, "operationalDecisionIssuanceAllowed": { "const": false }, "customerNotificationAllowed": { "const": false }
             }
+          },
+          {
+            "type": "object", "additionalProperties": false,
+            "required": ["authorizationId", "batchId", "authorizedPbis", "mode", "authorityContract", "originalFirstImplementationBatchUnchanged", "realCustomerDataAllowed", "operationalDecisionIssuanceAllowed", "customerNotificationAllowed"],
+            "properties": {
+              "authorizationId": { "const": "EPIC-L-POLICY2-B06-AUTHORIZATION-2026-11-25" }, "batchId": { "const": "EPIC-L-POLICY2-B06" }, "authorizedPbis": { "const": ["L-PBI-003", "L-PBI-004", "L-PBI-005", "L-PBI-008", "L-PBI-012", "L-PBI-013", "L-PBI-014", "L-PBI-016"] }, "mode": { "const": "PRIVATE_SYNTHETIC_DATA_ONLY" }, "authorityContract": { "const": "data/epic-l-policy2-decision-receipt-r3.json" }, "originalFirstImplementationBatchUnchanged": { "const": true }, "realCustomerDataAllowed": { "const": false }, "operationalDecisionIssuanceAllowed": { "const": false }, "customerNotificationAllowed": { "const": false }
+            }
           }
         ]
       }
     },
     "engineeringBatches": {
       "type": "array",
-      "minItems": 5,
-      "maxItems": 5,
+      "minItems": 6,
+      "maxItems": 6,
       "items": {
         "oneOf": [
           {
@@ -150,6 +157,22 @@
               "status": { "const": "ENGINEERING_TECHNICAL_GUIDANCE_IMPLEMENTED_SYNTHETIC_ONLY" },
               "progressReceipt": { "const": "data/epic-l-policy2-b05-progress.json" },
               "pbiIds": { "type": "array", "minItems": 1, "maxItems": 1, "uniqueItems": true, "items": { "const": "L-PBI-009" } },
+              "testsPassing": { "const": true },
+              "productionInfrastructureSelected": { "const": false },
+              "securityReviewComplete": { "const": false },
+              "operationalOwnerApproval": { "const": false },
+              "legalApproval": { "const": false },
+              "customerActivationPermitted": { "const": false }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["batchId", "status", "progressReceipt", "pbiIds", "testsPassing", "productionInfrastructureSelected", "securityReviewComplete", "operationalOwnerApproval", "legalApproval", "customerActivationPermitted"],
+            "properties": {
+              "batchId": { "const": "EPIC-L-POLICY2-B06" },
+              "status": { "const": "ENGINEERING_OPERATIONAL_ALIGNMENT_IMPLEMENTED_SYNTHETIC_ONLY" },
+              "progressReceipt": { "const": "data/epic-l-policy2-b06-progress.json" },
+              "pbiIds": { "const": ["L-PBI-003", "L-PBI-004", "L-PBI-005", "L-PBI-008", "L-PBI-012", "L-PBI-013", "L-PBI-014", "L-PBI-016"] },
               "testsPassing": { "const": true },
               "productionInfrastructureSelected": { "const": false },
               "securityReviewComplete": { "const": false },

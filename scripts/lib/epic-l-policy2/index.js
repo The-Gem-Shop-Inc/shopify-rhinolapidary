@@ -10,5 +10,6 @@ module.exports = {
   ...require('./support-intake'),
   ...require('./warranty-review'),
   ...require('./technical-guidance'),
+  ...require('./coverage-review'),
   ...require('./foundation'),
 };

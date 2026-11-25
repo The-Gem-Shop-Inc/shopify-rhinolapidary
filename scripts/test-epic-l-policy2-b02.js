@@ -232,30 +232,32 @@ test('public registration handle discloses no customer, machine, serial, or conf
   assert.deepEqual(Object.keys(publicHandle).sort(), ['customerActivationPermitted', 'processingStatus', 'registrationId']);
 });
 
-test('duplicate serial signal opens privacy-preserving human review without disclosing conflicts', () => {
+test('historical physical serial evidence remains readable but has no duplicate authority', () => {
   const f = makeFoundation();
   const first = create(f, 'dup-first', { serialNumber: 'SYNTHETIC-SERIAL-DUP' }).registration.data.registrationId;
   const second = create(f, 'dup-second', { customerReference: CUSTOMER_B, notificationDestinationReference: 'dst_synthetic_destination_b_001', serialNumber: 'synthetic-serial-dup' }, customerB);
-  assert.equal(second.submissionOutcome, 'REVIEW_REQUIRED');
-  assert.equal(second.registration.state, 'DUPLICATE_REVIEW');
+  assert.equal(second.submissionOutcome, 'RECEIVED_FOR_VERIFICATION');
+  assert.equal(second.registration.state, 'IDENTITY_VERIFICATION_REQUIRED');
   assert.equal(JSON.stringify(second.registration).includes(first), false);
   const full = operatorRecord(f, second.registration.data.registrationId);
-  assert.deepEqual(full.data.duplicateInvestigation.conflictingRegistrationIds, [first]);
+  assert.equal(full.data.legacyPhysicalSerialEvidence.value, 'synthetic-serial-dup');
+  assert.equal(full.data.duplicateInvestigation, null);
   assert.equal(f.registration.getPublicHandle(second.registration.data.registrationId).processingStatus, 'REVIEW_REQUIRED');
 });
 
-test('same-customer repeated serial remains reviewable rather than auto-merged', () => {
+test('same customer may own multiple distinct registrations without serial conflation', () => {
   const f = makeFoundation();
-  create(f, 'same-first', { serialNumber: 'SYNTHETIC-SERIAL-SAME' });
+  const first = create(f, 'same-first', { serialNumber: 'SYNTHETIC-SERIAL-SAME' });
   const repeated = create(f, 'same-second', { serialNumber: 'SYNTHETIC-SERIAL-SAME' });
-  assert.equal(repeated.registration.state, 'DUPLICATE_REVIEW');
-  assert.equal(repeated.submissionOutcome, 'REVIEW_REQUIRED');
+  assert.notEqual(first.registration.data.registrationId, repeated.registration.data.registrationId);
+  assert.equal(repeated.registration.state, 'IDENTITY_VERIFICATION_REQUIRED');
+  assert.equal(repeated.submissionOutcome, 'RECEIVED_FOR_VERIFICATION');
 });
 
 test('authorized duplicate decision never auto-merges or transfers ownership', () => {
   const f = makeFoundation();
-  create(f, 'review-first', { serialNumber: 'SYNTHETIC-SERIAL-REVIEW' });
-  const duplicate = create(f, 'review-second', { customerReference: CUSTOMER_B, notificationDestinationReference: 'dst_synthetic_destination_b_002', serialNumber: 'SYNTHETIC-SERIAL-REVIEW' }, customerB).registration;
+  const first = create(f, 'review-first').registration.data.registrationId;
+  const duplicate = create(f, 'review-second', { customerReference: CUSTOMER_B, notificationDestinationReference: 'dst_synthetic_destination_b_002', duplicateSignals: { existingRegistrationEvidenceRef: first } }, customerB).registration;
   const resolved = f.registration.resolveDuplicateReview({ actor: operator, commandId: 'review-decision', registrationId: duplicate.data.registrationId, expectedVersion: duplicate.version, decision: 'LEGITIMATE_DUPLICATE', reason: 'Synthetic evidence indicates a repeated submission', evidenceRefs: ['synthetic:duplicate:decision'] });
   assert.equal(resolved.state, 'IDENTITY_VERIFICATION_REQUIRED');
   assert.equal(resolved.data.customerReference, CUSTOMER_B);
@@ -264,8 +266,8 @@ test('authorized duplicate decision never auto-merges or transfers ownership', (
 
 test('inconclusive duplicate decision remains in human review', () => {
   const f = makeFoundation();
-  create(f, 'inconclusive-first', { serialNumber: 'SYNTHETIC-SERIAL-INCONCLUSIVE' });
-  const duplicate = create(f, 'inconclusive-second', { serialNumber: 'SYNTHETIC-SERIAL-INCONCLUSIVE' }).registration;
+  const first = create(f, 'inconclusive-first').registration.data.registrationId;
+  const duplicate = create(f, 'inconclusive-second', { duplicateSignals: { existingRegistrationEvidenceRef: first } }).registration;
   const reviewed = f.registration.resolveDuplicateReview({ actor: operator, commandId: 'inconclusive-decision', registrationId: duplicate.data.registrationId, expectedVersion: duplicate.version, decision: 'INCONCLUSIVE', reason: 'Synthetic evidence cannot resolve the signal', evidenceRefs: ['synthetic:duplicate:inconclusive'] });
   assert.equal(reviewed.state, 'DUPLICATE_REVIEW');
   assert.equal(reviewed.data.duplicateInvestigation.status, 'HUMAN_REVIEW_REQUIRED');
@@ -392,8 +394,8 @@ test('synthetic complete lifecycle requires ownership, acknowledgement, and reso
 test('verified ownership does not bypass unresolved duplicate investigation at COMPLETE', () => {
   const resolver = new SyntheticResourceResolver([resource()]);
   const f = makeFoundation({ outcomes: [{ outcome: 'CONFIRMED', evidence: { providerReceipt: 'synthetic:duplicate-ack' } }], resolver });
-  create(f, 'duplicate-complete-first', { serialNumber: 'SYNTHETIC-SERIAL-COMPLETE' });
-  const registrationId = create(f, 'duplicate-complete-second', { serialNumber: 'SYNTHETIC-SERIAL-COMPLETE' }).registration.data.registrationId;
+  const first = create(f, 'duplicate-complete-first').registration.data.registrationId;
+  const registrationId = create(f, 'duplicate-complete-second', { duplicateSignals: { existingRegistrationEvidenceRef: first } }).registration.data.registrationId;
   verifyOwnership(f, registrationId, 'duplicate-complete-owner');
   let record = acknowledge(f, registrationId, 'duplicate-complete-ack-create');
   record = f.registration.attemptAcknowledgementDelivery({ actor: operator, commandId: 'duplicate-complete-ack-attempt', registrationId, expectedVersion: record.version });

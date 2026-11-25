@@ -1,8 +1,8 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "contractId": "EPIC-L-POLICY2-WARRANTY-REVIEW",
   "status": "PROPOSED_SYNTHETIC_ENGINEERING_ONLY",
-  "authoritativeSource": "Product Owner B04 directive 2026-11-23; committed Policy 2.0 architecture contracts",
+  "authoritativeSource": "Product Owner B04 directive 2026-11-23; Revision 3 business intent accepted 2026-11-25; committed Policy 2.0 architecture contracts",
   "runtimeConsumer": "scripts/lib/epic-l-policy2/warranty-review.js",
   "customerFacingAuthority": false,
   "engineeringAuthorization": {
@@ -153,6 +153,52 @@
     "safetyHoldBypassAllowed": false,
     "notificationRecoveryBypassAllowed": false,
     "rhinoOwnershipRetained": true
+  },
+  "internalWarrantyIntent": {
+    "status": "BUSINESS_INTENT_RECORDED_NOT_CUSTOMER_POLICY",
+    "machineDuration": { "value": 1, "unit": "YEAR", "customerPromiseAuthorized": false },
+    "durableReplacementParts": { "duration": { "value": 1, "unit": "YEAR" }, "preferredRemedySequence": ["AFFECTED_PART_REPLACEMENT", "MACHINE_REPLACEMENT_REVIEW"], "customerPromiseAuthorized": false },
+    "wearComponents": { "scope": ["DEFECT_PRESENT_ON_ARRIVAL", "DAMAGE_PRESENT_ON_ARRIVAL"], "shippingDamageProcess": "SEPARATE_CARRIER_PROCESS", "customerPromiseAuthorized": false },
+    "intendedStartEvent": "MACHINE_REGISTRATION",
+    "registrationDateAutomaticallyProvesFirstUse": false,
+    "missingReceiptAutomaticDenial": false,
+    "registeredAfterFirstUseAutomaticDenial": false,
+    "responsibilityIntent": {
+      "Rhino": ["REPLACEMENT_PARTS", "REMOTE_INSPECTION"],
+      "Silica-Gem": ["MANUFACTURER_REPAIR_OUTSIDE_RHINO_PARTS_PROCESS"]
+    },
+    "priorPurchasers": {
+      "transitionIntent": "PROPOSED_POLICY2_TRANSITION",
+      "alreadyInUseRegistrationExceptionsRequired": true,
+      "retroactiveApplicabilityApproved": false
+    }
+  },
+  "authorityDimensions": [
+    { "dimension": "BUSINESS_INTENT", "status": "ESTABLISHED_BY_REVISION_3", "blockingCustomerIssuance": false },
+    { "dimension": "LEGAL_APPLICABILITY", "status": "UNRESOLVED", "blockingCustomerIssuance": true },
+    { "dimension": "MANUFACTURER_AGREEMENT_COMPATIBILITY", "status": "UNRESOLVED", "blockingCustomerIssuance": true },
+    { "dimension": "EXACT_PRODUCT_COVERAGE_APPROVAL", "status": "UNRESOLVED", "blockingCustomerIssuance": true },
+    { "dimension": "CUSTOMER_COPY_APPROVAL", "status": "UNRESOLVED", "blockingCustomerIssuance": true },
+    { "dimension": "OPERATIONAL_DECISION_AUTHORITY", "status": "UNRESOLVED", "blockingCustomerIssuance": true },
+    { "dimension": "CUSTOMER_ISSUANCE_AUTHORIZATION", "status": "NOT_AUTHORIZED", "blockingCustomerIssuance": true }
+  ],
+  "engineeringAcceptanceProhibitions": [
+    "PUBLISH_ONE_YEAR_DURATION_AS_FINAL_POLICY",
+    "AUTOMATICALLY_CALCULATE_WARRANTY_ELIGIBILITY",
+    "AUTOMATICALLY_DENY_MISSING_RECEIPT",
+    "DENY_REGISTRATION_AFTER_FIRST_USE",
+    "RETROACTIVE_POLICY2_WITHOUT_APPLICABILITY_RULE",
+    "AUTHORIZE_SILICA_GEM_REFUND_WITHOUT_AGREEMENT",
+    "TREAT_TENTATIVE_CLASSIFICATION_AS_APPROVED_COVERAGE",
+    "GENERATE_OPERATIONAL_DECISION_OR_CUSTOMER_NOTIFICATION"
+  ],
+  "contractMigration": {
+    "fromVersion": "1.0.0",
+    "toVersion": "1.1.0",
+    "recordedAt": "2026-11-25",
+    "additive": true,
+    "decisionEngineReused": true,
+    "customerFacingAuthorityChanged": false
   },
   "issuanceGate": {
     "internalEvidenceAllowed": true,

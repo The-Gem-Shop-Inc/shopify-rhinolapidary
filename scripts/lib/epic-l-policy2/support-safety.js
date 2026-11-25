@@ -8,6 +8,50 @@ const {
   requireValue,
 } = require('./common');
 
+function evaluateBusinessHours(at, contractOrHours) {
+  const hours = contractOrHours?.hours || contractOrHours;
+  requireValue(hours?.timezone === 'America/Chicago', 'BUSINESS_TIMEZONE_REQUIRED', 'Business hours require the approved America/Chicago timezone');
+  const instant = at instanceof Date ? at : new Date(at);
+  requireValue(!Number.isNaN(instant.getTime()), 'INVALID_BUSINESS_TIME', 'Business hours evaluation requires a valid instant');
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+    timeZone: hours.timezone,
+    weekday: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  }).formatToParts(instant).filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
+  const weekdays = new Set(hours.weekdays || ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']);
+  const minuteOfDay = Number(parts.hour) * 60 + Number(parts.minute);
+  const [startHour, startMinute] = hours.start.split(':').map(Number);
+  const [endHour, endMinute] = hours.end.split(':').map(Number);
+  const withinSchedule = weekdays.has(parts.weekday)
+    && minuteOfDay >= startHour * 60 + startMinute
+    && minuteOfDay < endHour * 60 + endMinute;
+  return Object.freeze({
+    evaluatedAt: instant.toISOString(),
+    timezone: hours.timezone,
+    localWeekday: parts.weekday,
+    localTime: `${parts.hour}:${parts.minute}`,
+    withinSchedule,
+    holidayApplied: false,
+    responseGuarantee: false,
+    continuousStaffingAssumed: false,
+  });
+}
+
+function createOutOfHoursAcknowledgementIntent(at, contractOrHours) {
+  const evaluation = evaluateBusinessHours(at, contractOrHours);
+  if (evaluation.withinSchedule) return null;
+  return Object.freeze({
+    kind: 'OUT_OF_HOURS_ACKNOWLEDGEMENT_INTENT',
+    scheduleReference: 'MONDAY_FRIDAY_0900_1700_AMERICA_CHICAGO',
+    customerWordingApproved: false,
+    responseTimeGuaranteed: false,
+    externalMessageSent: false,
+    evaluation,
+  });
+}
+
 class SupportSafetyService {
   constructor({
     contract,
@@ -53,12 +97,16 @@ class SupportSafetyService {
         rhinoCommunicationResponsibilityRetained: true,
         continuousMonitoring: false,
         staffHandlingStatus: 'PENDING_APPROVED_BUSINESS_HOURS',
+        assignedOwnerReference: null,
+        assignmentEvidenceReference: null,
+        resolutionConfirmations: [],
+        reopenHistory: [],
         syntheticFacts: clone(syntheticFacts),
       },
     });
   }
 
-  ordinaryTransition({ actor, commandId, caseRecordId, expectedVersion, toState }) {
+  ordinaryTransition({ actor, commandId, caseRecordId, expectedVersion, toState, authorityProof = null }) {
     const current = this.privateRecords.read({ actor, recordId: caseRecordId });
     requireValue(this.contract.stateMachine.states.includes(toState), 'UNKNOWN_SUPPORT_STATE', 'Unknown support states fail closed');
     if (current.state === 'SAFETY_HOLD' || current.data.safetyHoldActive) {
@@ -70,6 +118,24 @@ class SupportSafetyService {
       requireValue(current.data.unresolvedNotificationIds.length === 0, 'UNRESOLVED_NOTIFICATION_BLOCKS_CASE_COMPLETION', 'Notification recovery must be reconciled before resolution or closure');
     }
     const patch = {};
+    if (toState === 'RESOLVED') {
+      requireValue(current.data.assignedOwnerReference, 'ASSIGNED_CASE_OWNER_REQUIRED', 'Resolution requires an assigned case owner');
+      requireValue(
+        authorityProof?.action === 'CONFIRM_RESOLUTION'
+          && authorityProof.verified === true
+          && authorityProof.actorId === actor.actorId
+          && authorityProof.ownerReference === current.data.assignedOwnerReference
+          && authorityProof.evidenceReference,
+        'ASSIGNED_OWNER_RESOLUTION_REQUIRED',
+        'Only the verified assigned case owner may confirm resolution',
+      );
+      patch.resolutionConfirmations = [...current.data.resolutionConfirmations, {
+        ownerReference: authorityProof.ownerReference,
+        actorId: authorityProof.actorId,
+        evidenceReference: authorityProof.evidenceReference,
+        confirmedAt: this.clock(),
+      }];
+    }
     if (toState === 'MANUFACTURER_ESCALATED') {
       patch.rhinoCaseOwnershipRetained = true;
       patch.rhinoCommunicationResponsibilityRetained = true;
@@ -84,6 +150,56 @@ class SupportSafetyService {
       nextState: toState,
       patch,
       eventType: 'SUPPORT_CASE_ORDINARY_TRANSITION',
+    });
+  }
+
+  assignCaseOwner({ actor, commandId, caseRecordId, expectedVersion, ownerReference, assignmentEvidenceReference }) {
+    requireAuthorization(this.authorize, actor, 'SUPPORT_CASE_ASSIGN_OWNER', { caseRecordId, ownerReference });
+    requireValue(/^staff_(?:syn_)?[A-Za-z0-9_-]{8,}$/.test(ownerReference || ''), 'OPAQUE_STAFF_REFERENCE_REQUIRED', 'Assignment requires an opaque staff reference');
+    requireValue(typeof assignmentEvidenceReference === 'string' && assignmentEvidenceReference.length > 0, 'ASSIGNMENT_EVIDENCE_REQUIRED', 'Assignment requires evidence');
+    const current = this.privateRecords.read({ actor, recordId: caseRecordId });
+    requireValue(current.state !== 'CLOSED', 'CLOSED_CASE_ASSIGNMENT_FORBIDDEN', 'A closed case cannot be reassigned without authorized reopening');
+    return this.privateRecords.update({
+      actor,
+      commandId,
+      recordId: caseRecordId,
+      expectedVersion,
+      nextState: current.state,
+      patch: { assignedOwnerReference: ownerReference, assignmentEvidenceReference },
+      eventType: 'SUPPORT_CASE_OWNER_ASSIGNED',
+      eventDetails: { ownerReference, assignmentEvidenceReference },
+    });
+  }
+
+  reopenCase({ actor, commandId, caseRecordId, expectedVersion, authorityProof }) {
+    requireAuthorization(this.authorize, actor, 'SUPPORT_CASE_REOPEN', { caseRecordId });
+    const current = this.privateRecords.read({ actor, recordId: caseRecordId });
+    requireValue(!current.data.safetyHoldActive && current.state !== 'SAFETY_HOLD', 'ACTIVE_SAFETY_HOLD', 'Reopening cannot bypass an active safety hold');
+    requireValue(['RESOLVED', 'CLOSED'].includes(current.state), 'CASE_NOT_REOPENABLE', 'Only resolved or closed cases may be reopened');
+    requireValue(
+      authorityProof?.authorityName === 'Kevin'
+        && authorityProof.verificationStatus === 'VERIFIED_IDENTITY_BINDING'
+        && authorityProof.actorId === actor.actorId
+        && authorityProof.evidenceReference,
+      'KEVIN_REOPEN_AUTHORITY_REQUIRED',
+      'Reopening requires Kevin\'s verified identity boundary and evidence',
+    );
+    return this.privateRecords.update({
+      actor,
+      commandId,
+      recordId: caseRecordId,
+      expectedVersion,
+      nextState: 'TRIAGED',
+      patch: {
+        reopenHistory: [...current.data.reopenHistory, {
+          priorState: current.state,
+          reopenedAt: this.clock(),
+          authorizedBy: authorityProof.actorId,
+          authorityName: authorityProof.authorityName,
+          evidenceReference: authorityProof.evidenceReference,
+        }],
+      },
+      eventType: 'SUPPORT_CASE_REOPENED_BY_VERIFIED_KEVIN_AUTHORITY',
     });
   }
 
@@ -242,6 +358,14 @@ class SupportSafetyService {
       requireValue(dispositionRecord && dispositionRecord[field] !== undefined && dispositionRecord[field] !== null && dispositionRecord[field] !== '', 'SAFETY_DISPOSITION_EVIDENCE_REQUIRED', `Safety disposition field ${field} is required`);
     }
     requireValue(Array.isArray(dispositionRecord.evidenceRefs) && dispositionRecord.evidenceRefs.length > 0, 'SAFETY_DISPOSITION_EVIDENCE_REQUIRED', 'Safety disposition evidence references are required');
+    requireValue(
+      dispositionRecord.authorityName === 'Kevin'
+        && dispositionRecord.authorityBindingStatus === 'VERIFIED_IDENTITY_BINDING'
+        && dispositionRecord.responsibleAuthority === actor.actorId
+        && dispositionRecord.authorityEvidenceReference,
+      'KEVIN_SAFETY_AUTHORITY_REQUIRED',
+      'Safety disposition requires Kevin\'s verified identity boundary and authority evidence',
+    );
     requireValue(this.contract.stateMachine.safetyHoldExit.allowedDispositions.includes(dispositionRecord.disposition), 'UNSUPPORTED_SAFETY_DISPOSITION', 'Safety disposition is not authorized');
     requireValue(current.data.unresolvedNotificationIds.length === 0, 'WARNING_DELIVERY_UNRESOLVED', 'A failed or uncertain stop-use warning keeps the safety hold active');
     return this.privateRecords.update({
@@ -270,4 +394,8 @@ class SupportSafetyService {
   }
 }
 
-module.exports = { SupportSafetyService };
+module.exports = {
+  SupportSafetyService,
+  createOutOfHoursAcknowledgementIntent,
+  evaluateBusinessHours,
+};

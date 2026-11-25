@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2.3.0",
+  "schemaVersion": "2.4.0",
   "status": "PROPOSED",
   "authoritativeSource": "L-DEC-001 through L-DEC-020 provisional receipt; Product Owner correction brief 2026-11-23",
   "milestonePolicy": {
@@ -45,6 +45,26 @@
       ],
       "mode": "PRIVATE_SYNTHETIC_DATA_ONLY",
       "authorityContract": "data/epic-l-policy2-technical-guidance-contract.json",
+      "originalFirstImplementationBatchUnchanged": true,
+      "realCustomerDataAllowed": false,
+      "operationalDecisionIssuanceAllowed": false,
+      "customerNotificationAllowed": false
+    },
+    {
+      "authorizationId": "EPIC-L-POLICY2-B06-AUTHORIZATION-2026-11-25",
+      "batchId": "EPIC-L-POLICY2-B06",
+      "authorizedPbis": [
+        "L-PBI-003",
+        "L-PBI-004",
+        "L-PBI-005",
+        "L-PBI-008",
+        "L-PBI-012",
+        "L-PBI-013",
+        "L-PBI-014",
+        "L-PBI-016"
+      ],
+      "mode": "PRIVATE_SYNTHETIC_DATA_ONLY",
+      "authorityContract": "data/epic-l-policy2-decision-receipt-r3.json",
       "originalFirstImplementationBatchUnchanged": true,
       "realCustomerDataAllowed": false,
       "operationalDecisionIssuanceAllowed": false,
@@ -118,6 +138,27 @@
       "progressReceipt": "data/epic-l-policy2-b05-progress.json",
       "pbiIds": [
         "L-PBI-009"
+      ],
+      "testsPassing": true,
+      "productionInfrastructureSelected": false,
+      "securityReviewComplete": false,
+      "operationalOwnerApproval": false,
+      "legalApproval": false,
+      "customerActivationPermitted": false
+    },
+    {
+      "batchId": "EPIC-L-POLICY2-B06",
+      "status": "ENGINEERING_OPERATIONAL_ALIGNMENT_IMPLEMENTED_SYNTHETIC_ONLY",
+      "progressReceipt": "data/epic-l-policy2-b06-progress.json",
+      "pbiIds": [
+        "L-PBI-003",
+        "L-PBI-004",
+        "L-PBI-005",
+        "L-PBI-008",
+        "L-PBI-012",
+        "L-PBI-013",
+        "L-PBI-014",
+        "L-PBI-016"
       ],
       "testsPassing": true,
       "productionInfrastructureSelected": false,

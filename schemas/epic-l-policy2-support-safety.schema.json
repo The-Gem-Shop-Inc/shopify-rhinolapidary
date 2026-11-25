@@ -19,11 +19,12 @@
     "safety",
     "manufacturerEscalation",
     "notifications",
-    "quotationBoundary"
+    "quotationBoundary",
+    "contractMigration"
   ],
   "properties": {
     "schemaVersion": {
-      "const": "2.1.0"
+      "const": "2.2.0"
     },
     "status": {
       "const": "PROPOSED"
@@ -115,9 +116,7 @@
         "note"
       ],
       "properties": {
-        "assignmentAuthority": {
-          "const": "UNRESOLVED"
-        }
+        "assignmentAuthority": { "const": "BUSINESS_ROLES_APPROVED_IDENTITIES_UNVERIFIED" }
       }
     },
     "routes": {
@@ -132,15 +131,11 @@
           "assignmentStatus"
         ],
         "properties": {
-          "primary": {
-            "type": "null"
-          },
+          "primary": { "type": "string", "minLength": 1 },
           "backup": {
             "type": "null"
           },
-          "assignmentStatus": {
-            "const": "UNRESOLVED"
-          }
+          "assignmentStatus": { "const": "BUSINESS_ROLE_APPROVED_IDENTITY_UNVERIFIED" }
         }
       }
     },
@@ -157,12 +152,8 @@
         "timezone": {
           "const": "America/Chicago"
         },
-        "start": {
-          "type": "null"
-        },
-        "end": {
-          "type": "null"
-        },
+        "start": { "const": "09:00" },
+        "end": { "const": "17:00" },
         "continuousMonitoring": {
           "const": false
         }
@@ -258,6 +249,16 @@
         "activeSafetyHoldPreservedDuringRecovery": {
           "const": true
         }
+      }
+    },
+    "contractMigration": {
+      "type": "object",
+      "required": ["fromVersion", "toVersion", "recordedAt", "additive", "customerFacingAuthorityChanged"],
+      "properties": {
+        "fromVersion": { "const": "2.1.0" },
+        "toVersion": { "const": "2.2.0" },
+        "additive": { "const": true },
+        "customerFacingAuthorityChanged": { "const": false }
       }
     }
   }
