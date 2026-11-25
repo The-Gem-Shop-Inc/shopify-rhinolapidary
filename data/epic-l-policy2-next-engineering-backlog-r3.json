@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "1.0.0",
+  "backlogId": "EPIC-L-POLICY2-R3-NEXT-ENGINEERING",
+  "recordedAt": "2026-11-25",
+  "activationAuthorized": false,
+  "recommendedNextBatch": {
+    "batchId": "EPIC-L-POLICY2-B06",
+    "mode": "CONTRACT_AND_SYNTHETIC_DATA_ONLY",
+    "itemIds": ["R3-001", "R3-002", "R3-003", "R3-004"],
+    "realCustomerDataAllowed": false,
+    "shopifyMutationAllowed": false,
+    "publicationAllowed": false,
+    "outcome": "Make B01-B05 contracts accurately consumable by later engineering without activating Forms, Flow, Discord, registration, support, insurance, warranty, or resources."
+  },
+  "items": [
+    {
+      "itemId": "R3-001",
+      "priority": "P0",
+      "title": "Additive registration evidence migration",
+      "type": "ENGINEERING",
+      "status": "READY_FOR_SYNTHETIC_ENGINEERING",
+      "relatedPbis": ["L-PBI-004", "L-PBI-005", "L-PBI-006"],
+      "dependsOn": [],
+      "acceptanceEvidence": [
+        "Registration contract and schema add purchase-evidence and first-use-evidence collections.",
+        "serialNumber is retained as nullable legacyPhysicalSerialEvidence and is no longer a normal duplicate key.",
+        "One customer can reference multiple immutable per-machine registration records.",
+        "Missing evidence produces human review and never automatic denial.",
+        "All historical B02 tests remain passing with additive migration tests."
+      ],
+      "activationBoundary": "Synthetic records only; no Shopify Forms, metafield, customer, or live registration mutation."
+    },
+    {
+      "itemId": "R3-002",
+      "priority": "P0",
+      "title": "Support, safety, and notification contract amendment",
+      "type": "ENGINEERING",
+      "status": "READY_FOR_SYNTHETIC_ENGINEERING",
+      "relatedPbis": ["L-PBI-008", "L-PBI-010", "L-PBI-012", "L-PBI-016"],
+      "dependsOn": [],
+      "acceptanceEvidence": [
+        "Hours encode Monday-Friday 09:00-17:00 America/Chicago with no response guarantee.",
+        "Stephanie recovery, staff-owner resolution, Kevin-authorized reopen, Kevin primary safety, and Warehouse fallback are represented as roles without inventing production identities.",
+        "SAFETY_HOLD remains private and requires authorized evidence-backed disposition.",
+        "Manufacturer referral retains Rhino ownership and follow-up and contains no private destination value.",
+        "Notification recovery and reopen transition tests pass."
+      ],
+      "activationBoundary": "No real routing destination, email, Discord webhook, referral, refund, or customer message."
+    },
+    {
+      "itemId": "R3-003",
+      "priority": "P0",
+      "title": "Non-publishable warranty intent contract",
+      "type": "ENGINEERING",
+      "status": "READY_FOR_SYNTHETIC_ENGINEERING",
+      "relatedPbis": ["L-PBI-001", "L-PBI-002", "L-PBI-013"],
+      "dependsOn": [],
+      "acceptanceEvidence": [
+        "One-year machine and durable-part duration, wear-arrival limit, registration trigger, remedy allocation, and prior-purchase exception intent are versioned.",
+        "Legal applicability, agreement verification, and customer copy remain separate false gates.",
+        "Missing purchase evidence cannot issue an automatic denial.",
+        "No operational warranty decision or customer notification becomes available."
+      ],
+      "activationBoundary": "Internal business-intent configuration only; no warranty publication or eligibility automation."
+    },
+    {
+      "itemId": "R3-004",
+      "priority": "P0",
+      "title": "Exact 31-Product coverage review projection",
+      "type": "BUSINESS_REVIEW",
+      "status": "READY_FOR_HUMAN_REVIEW",
+      "relatedPbis": ["L-PBI-002", "L-PBI-003"],
+      "dependsOn": [],
+      "acceptanceEvidence": [
+        "Projection contains exactly the 31 HUMAN_REVIEW_REQUIRED rows from the coverage matrix.",
+        "Every exact Product and Variant GID is unchanged.",
+        "Avery or Veronica records evidence and a business mapping per row.",
+        "No mapping sets customerPromiseAuthorized or substitutes Shopify Vendor for evidence."
+      ],
+      "activationBoundary": "Business mapping review only; legal approval and customer coverage remain false."
+    },
+    {
+      "itemId": "R3-005",
+      "priority": "P0",
+      "title": "Resource administration interface",
+      "type": "ENGINEERING",
+      "status": "BLOCKED_DEPENDENCY",
+      "relatedPbis": ["L-PBI-007", "L-PBI-009", "L-PBI-014"],
+      "dependsOn": ["R3-002"],
+      "acceptanceEvidence": [
+        "B05's nine candidates import without approval or publication.",
+        "Product Owner can assign document/video links to exact Product, Variant, and machine versions.",
+        "Updates create immutable revisions and retain supersession history.",
+        "Existing Kevin approval is recorded against exact revision evidence without demanding a blanket re-review.",
+        "Customer release remains a separate disabled action."
+      ],
+      "activationBoundary": "Private administration with synthetic or repository evidence only; no resource delivery or storefront publication."
+    },
+    {
+      "itemId": "R3-006",
+      "priority": "P0",
+      "title": "Basic-plan Forms-to-case proof of concept",
+      "type": "ENGINEERING",
+      "status": "BLOCKED_DEPENDENCY",
+      "relatedPbis": ["L-PBI-006", "L-PBI-008", "L-PBI-016", "L-PBI-018", "L-PBI-020"],
+      "dependsOn": ["R3-001", "R3-002"],
+      "acceptanceEvidence": [
+        "Non-production proof verifies Forms submission metaobject visibility and event/API behavior.",
+        "A minimal private app creates an opaque case and append-only case-event records in Shopify-owned storage or documents why compatible external storage is required.",
+        "Status, assignment, notes/evidence references, resolution, Kevin-authorized reopen, access checks, notification ledger, and durable history are demonstrated.",
+        "Failure and duplicate tests are preserved."
+      ],
+      "activationBoundary": "No production installation, active form, real customer data, or live staff notification."
+    },
+    {
+      "itemId": "R3-007",
+      "priority": "P0",
+      "title": "Exact staff identity and permission audit",
+      "type": "EXTERNAL_CONFIRMATION",
+      "status": "BLOCKED_EXTERNAL",
+      "relatedPbis": ["L-PBI-006", "L-PBI-008", "L-PBI-012", "L-PBI-016"],
+      "dependsOn": [],
+      "acceptanceEvidence": [
+        "Warehouse, Stephanie, Kevin, assigned employees, and designated mailbox map to exact current identities.",
+        "Customer, Content/metaobject, Forms, Flow, Files, export, deletion, app, and secret permissions are recorded with least privilege.",
+        "Primary and fallback routes are tested without exposing private destinations."
+      ],
+      "activationBoundary": "Read-only audit and role proposal; no permission or account changes."
+    },
+    {
+      "itemId": "R3-008",
+      "priority": "P1",
+      "title": "Redacted Discord alert adapter",
+      "type": "ENGINEERING",
+      "status": "BLOCKED_DEPENDENCY",
+      "relatedPbis": ["L-PBI-016"],
+      "dependsOn": ["R3-006", "R3-007"],
+      "acceptanceEvidence": [
+        "Alert is created only after a durable case record exists.",
+        "Payload is limited to opaque case ID, severity, state, and authenticated internal link.",
+        "Test proves testimony, images, addresses, contact details, evidence, and credentials cannot enter payloads.",
+        "Delivery failure creates a recoverable notification-ledger event and never closes a case."
+      ],
+      "activationBoundary": "Synthetic webhook endpoint only until security review and explicit live configuration authorization."
+    },
+    {
+      "itemId": "R3-009",
+      "priority": "P0",
+      "title": "Seven-year export, backup, deletion, and restore design",
+      "type": "ENGINEERING",
+      "status": "BLOCKED_DEPENDENCY",
+      "relatedPbis": ["L-PBI-006", "L-PBI-020"],
+      "dependsOn": ["R3-006", "R3-007"],
+      "acceptanceEvidence": [
+        "All registration, case, evidence, event, notification, audit, and resource classes are exportable.",
+        "Restore verification, backup encryption/access, deletion disposition, open-case hold, and legal exceptions are specified.",
+        "Shopify activity log is not used as the durable seven-year history."
+      ],
+      "activationBoundary": "Design and synthetic export/restore proof only; no real customer export or deletion."
+    },
+    {
+      "itemId": "R3-010",
+      "priority": "P0",
+      "title": "Silica-Gem operating procedure confirmation",
+      "type": "EXTERNAL_CONFIRMATION",
+      "status": "BLOCKED_EXTERNAL",
+      "relatedPbis": ["L-PBI-010"],
+      "dependsOn": [],
+      "acceptanceEvidence": [
+        "Acknowledgement, customer communication, non-acknowledgement escalation, Rhino follow-up, and return-to-Rhino conditions are recorded.",
+        "Refund liability and repair allocation match the compatible operating agreement.",
+        "Restricted contact destinations are provided through approved secret configuration."
+      ],
+      "activationBoundary": "No referral, refund, or private destination configuration before confirmation."
+    },
+    {
+      "itemId": "R3-011",
+      "priority": "P1",
+      "title": "Cart insurance and carrier compatibility assessment",
+      "type": "EXTERNAL_CONFIRMATION",
+      "status": "BLOCKED_EXTERNAL",
+      "relatedPbis": ["L-PBI-011", "L-PBI-019"],
+      "dependsOn": [],
+      "acceptanceEvidence": [
+        "Carrier/provider, eligibility, price, terms, claims, taxes, discounts, cancellation, refund, and order persistence are verified.",
+        "The existing quote request checkbox is distinguished from a binding selection.",
+        "The owner chooses request-for-quote or paid protection after the assessment.",
+        "Cart, quote, pickup, mobile, accessibility, and checkout-entry regressions are defined."
+      ],
+      "activationBoundary": "Assessment only; no product, charge, protection promise, app, cart, or checkout change."
+    },
+    {
+      "itemId": "R3-012",
+      "priority": "P0",
+      "title": "Operational acceptance and release gate",
+      "type": "RELEASE_GATE",
+      "status": "BLOCKED_DEPENDENCY",
+      "relatedPbis": ["L-PBI-017"],
+      "dependsOn": ["R3-004", "R3-005", "R3-006", "R3-007", "R3-009", "R3-010"],
+      "acceptanceEvidence": [
+        "Compatible operating agreement exists.",
+        "Exact policy and customer-message versions, effective date, legal compatibility, and Product coverage approvals exist.",
+        "Named operational acceptance owner approves tested staff workflows and recovery.",
+        "Product Owner gives final release authorization."
+      ],
+      "activationBoundary": "This backlog does not satisfy or authorize the release gate."
+    }
+  ]
+}

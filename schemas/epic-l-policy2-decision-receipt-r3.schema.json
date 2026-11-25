@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-decision-receipt-r3.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptId",
+    "receiptStatus",
+    "recordedAt",
+    "source",
+    "formalApprovalOverride",
+    "authoritySeparation",
+    "historicalDecisionTreatment",
+    "decisionAreas",
+    "remainingOwnerDecisions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "3.0.0" },
+    "receiptId": { "const": "EPIC-L-POLICY2-OWNER-RECEIPT-R3-2026-11-25" },
+    "receiptStatus": { "const": "BUSINESS_DIRECTION_ACCEPTED_IMPLEMENTATION_AND_ACTIVATION_GATED" },
+    "recordedAt": { "const": "2026-11-25" },
+    "source": {
+      "type": "object",
+      "required": [
+        "title",
+        "revision",
+        "completedAt",
+        "repositoryPath",
+        "sha256",
+        "exactWordingAvailable",
+        "independentlyVerified"
+      ],
+      "properties": {
+        "revision": { "const": 2 },
+        "completedAt": { "const": "2026-11-25" },
+        "repositoryPath": { "const": "docs/policy/Epic L Policy 2.0 Decision Worksheet.md" },
+        "sha256": { "pattern": "^[A-F0-9]{64}$" },
+        "exactWordingAvailable": { "const": true },
+        "independentlyVerified": { "const": false }
+      }
+    },
+    "formalApprovalOverride": {
+      "type": "object",
+      "required": ["signatureRequired", "redundantApprovalFormRequired", "directionAcceptedAsBusinessAuthority"],
+      "properties": {
+        "signatureRequired": { "const": false },
+        "redundantApprovalFormRequired": { "const": false },
+        "directionAcceptedAsBusinessAuthority": { "const": true }
+      }
+    },
+    "authoritySeparation": {
+      "type": "object",
+      "required": [
+        "businessDirectionAccepted",
+        "shopifyCapabilityProven",
+        "contractualObligationsVerified",
+        "legalOrRegulatoryClearance",
+        "operationalReadiness",
+        "customerFacingPromiseAuthorized",
+        "publicationAuthorized"
+      ],
+      "properties": {
+        "businessDirectionAccepted": { "const": true },
+        "shopifyCapabilityProven": { "const": false },
+        "contractualObligationsVerified": { "const": false },
+        "legalOrRegulatoryClearance": { "const": false },
+        "operationalReadiness": { "const": false },
+        "customerFacingPromiseAuthorized": { "const": false },
+        "publicationAuthorized": { "const": false }
+      }
+    },
+    "historicalDecisionTreatment": {
+      "type": "object",
+      "required": ["priorReceiptPath", "originalNovember19WordingVerified", "retroactivelyAltered"],
+      "properties": {
+        "priorReceiptPath": { "const": "data/epic-l-policy2-decision-receipt.json" },
+        "originalNovember19WordingVerified": { "const": false },
+        "retroactivelyAltered": { "const": false }
+      }
+    },
+    "decisionAreas": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "areaId",
+          "topic",
+          "decisionState",
+          "businessDirectionAccepted",
+          "implementationRequirements",
+          "externalConfirmationNeeded",
+          "legalOrSecurityConstraints",
+          "activationBlockers",
+          "customerFacingPromiseAuthorized"
+        ],
+        "properties": {
+          "areaId": { "pattern": "^OPEN-(0[1-9]|10)$" },
+          "decisionState": { "enum": ["ANSWERED", "PARTLY_RESOLVED", "EXTERNALLY_BLOCKED"] },
+          "businessDirectionAccepted": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "implementationRequirements": { "type": "array", "items": { "type": "string" } },
+          "externalConfirmationNeeded": { "type": "array", "items": { "type": "string" } },
+          "legalOrSecurityConstraints": { "type": "array", "items": { "type": "string" } },
+          "activationBlockers": { "type": "array", "items": { "type": "string" } },
+          "customerFacingPromiseAuthorized": { "const": false }
+        }
+      }
+    },
+    "remainingOwnerDecisions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["decision", "neededBy", "reason"],
+        "properties": {
+          "neededBy": { "enum": ["BEFORE_LIVE_CONFIGURATION", "BEFORE_PUBLICATION"] }
+        }
+      }
+    }
+  }
+}

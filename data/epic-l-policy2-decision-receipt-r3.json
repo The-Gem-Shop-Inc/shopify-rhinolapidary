@@ -1,0 +1,320 @@
+{
+  "schemaVersion": "3.0.0",
+  "receiptId": "EPIC-L-POLICY2-OWNER-RECEIPT-R3-2026-11-25",
+  "receiptStatus": "BUSINESS_DIRECTION_ACCEPTED_IMPLEMENTATION_AND_ACTIVATION_GATED",
+  "recordedAt": "2026-11-25",
+  "source": {
+    "title": "Rhino Lapidary — Epic L Policy 2.0 Outstanding Product Owner Decision Packet, Revision 2",
+    "revision": 2,
+    "completedAt": "2026-11-25",
+    "repositoryPath": "docs/policy/Epic L Policy 2.0 Decision Worksheet.md",
+    "sha256": "62ED74B0729C998AB4A09B2DACDF86E9E0B3A0B95842C267D3CCA4E7FCC289CF",
+    "exactWordingAvailable": true,
+    "independentlyVerified": false,
+    "verificationNote": "The completed packet was supplied by the Product Owner and is accepted as business direction. This receipt does not claim independent verification of the owner's statements, Shopify capability, legal clearance, contractual allocation, or operational readiness."
+  },
+  "formalApprovalOverride": {
+    "signatureRequired": false,
+    "redundantApprovalFormRequired": false,
+    "directionAcceptedAsBusinessAuthority": true,
+    "note": "The owner's explicit override of excessive formality is honored. Evidence and compatibility gates below are implementation safeguards, not a request for another signature."
+  },
+  "authoritySeparation": {
+    "businessDirectionAccepted": true,
+    "shopifyCapabilityProven": false,
+    "contractualObligationsVerified": false,
+    "legalOrRegulatoryClearance": false,
+    "operationalReadiness": false,
+    "customerFacingPromiseAuthorized": false,
+    "publicationAuthorized": false
+  },
+  "historicalDecisionTreatment": {
+    "priorReceiptPath": "data/epic-l-policy2-decision-receipt.json",
+    "originalNovember19WordingVerified": false,
+    "retroactivelyAltered": false,
+    "note": "The November 25 packet supplements the prior receipt. It does not rewrite the original November 19 decisions or claim that unavailable wording was independently verified."
+  },
+  "decisionAreas": [
+    {
+      "areaId": "OPEN-01",
+      "topic": "Warranty duration, trigger, remedies, and prior purchasers",
+      "decisionState": "ANSWERED",
+      "businessDirectionAccepted": [
+        "Machine coverage duration is one year.",
+        "Durable replacement parts use the same duration, with affected-part replacement prioritized before machine replacement.",
+        "Wear components are limited to defects or damage present on arrival; shipping damage remains a separate path.",
+        "The intended start event is machine registration.",
+        "Rhino handles replacement parts and remote inspection; Silica-Gem handles manufacturer repair work outside Rhino's replacement-part process.",
+        "Prior purchasers are intended to transition to Policy 2.0 with registration exceptions for machines already in use."
+      ],
+      "implementationRequirements": [
+        "Represent warranty intent separately from legal applicability and customer copy.",
+        "Route missing purchase evidence to human review and never automatic denial.",
+        "Preserve separate shipping-damage and manufacturer-repair paths."
+      ],
+      "externalConfirmationNeeded": [
+        "Compatible operating agreement for the proposed Silica-Gem allocation.",
+        "Exact applicability and effective-date treatment for prior purchasers."
+      ],
+      "legalOrSecurityConstraints": [
+        "Consumer-law and warranty-language compatibility review remains required.",
+        "Registration as the start event and receipt-based exclusion cannot be published or auto-enforced yet."
+      ],
+      "activationBlockers": ["LEGAL_COMPATIBILITY", "OPERATING_AGREEMENT", "FINAL_POLICY_COPY"],
+      "customerFacingPromiseAuthorized": false
+    },
+    {
+      "areaId": "OPEN-02",
+      "topic": "Registration identity and eligibility evidence",
+      "decisionState": "ANSWERED",
+      "businessDirectionAccepted": [
+        "Rhino machines do not have physical serial numbers.",
+        "The generated opaque registration ID is Rhino's authoritative registration reference and is supplied to the customer.",
+        "A The Gem Shop, Inc. purchase order is acceptable purchase evidence.",
+        "Remote inspection may establish evidence of first use.",
+        "Missing receipt is intended to exclude warranty coverage, subject to applicable legal review.",
+        "Previous-purchase and previous-registration exceptions remain distinct from new registrations."
+      ],
+      "implementationRequirements": [
+        "Use one registration record per machine and associate records to a Shopify customer without relying on a single scalar metafield.",
+        "Add purchase-evidence and first-use-evidence collections.",
+        "Deprecate the B02 physical serial field additively; retain historical values and tests as legacy evidence.",
+        "Keep missing evidence in human review rather than automatic denial."
+      ],
+      "externalConfirmationNeeded": [
+        "Exact Shopify Forms storage, customer matching, metafield, and multi-machine behavior in a non-production proof.",
+        "Exact legal treatment of missing receipts and registration timing."
+      ],
+      "legalOrSecurityConstraints": [
+        "Opaque registration identifiers must retain at least 128 bits of random entropy.",
+        "Customer association, evidence, and correction access remain private."
+      ],
+      "activationBlockers": ["ADDITIVE_REGISTRATION_MIGRATION", "SHOPIFY_STORAGE_PROOF", "LEGAL_ELIGIBILITY_REVIEW"],
+      "customerFacingPromiseAuthorized": false
+    },
+    {
+      "areaId": "OPEN-03",
+      "topic": "Exact Product coverage review",
+      "decisionState": "PARTLY_RESOLVED",
+      "businessDirectionAccepted": [
+        "Avery and Veronica are the business mapping authorities.",
+        "Review begins with the 31 Products whose physical classifications are unresolved.",
+        "Exact Product and Variant GIDs remain the identity boundary.",
+        "No separate manufacturer-evidence approver or supplier role was designated."
+      ],
+      "implementationRequirements": [
+        "Use the 31 exact rows already present in data/epic-l-policy2-coverage-matrix.json.",
+        "Record Avery or Veronica's mapping decision and evidence per exact Product and Variant identity.",
+        "Treat designation as review authority only; it grants no Product customer-coverage authorization."
+      ],
+      "externalConfirmationNeeded": [
+        "Where Shopify descriptions are insufficient, obtain manufacturer-origin or physical-function evidence tied to the exact Product or Variant."
+      ],
+      "legalOrSecurityConstraints": [
+        "Business classification and customer coverage authorization remain separate.",
+        "Legal coverage review remains required before customer promises."
+      ],
+      "activationBlockers": ["31_PRODUCT_BUSINESS_REVIEW", "COVERAGE_LEGAL_REVIEW"],
+      "customerFacingPromiseAuthorized": false
+    },
+    {
+      "areaId": "OPEN-04",
+      "topic": "Manufacturer escalation",
+      "decisionState": "EXTERNALLY_BLOCKED",
+      "businessDirectionAccepted": [
+        "Silica-Gem referral uses the internal email destination supplied by the Product Owner.",
+        "The handoff package includes damage or misuse reports and customer testimony.",
+        "Silica-Gem refund liability is the owner's proposed allocation."
+      ],
+      "implementationRequirements": [
+        "Store the referral destination only in restricted runtime configuration, never public configuration or Discord.",
+        "Retain Rhino case ownership, follow-up ownership, evidence, and customer communication tracking.",
+        "Do not submit a referral or authorize a refund automatically."
+      ],
+      "externalConfirmationNeeded": [
+        "Silica-Gem acknowledgement owner and procedure.",
+        "Silica-Gem customer communication procedure.",
+        "Operating-agreement confirmation of the proposed refund allocation and exception path."
+      ],
+      "legalOrSecurityConstraints": [
+        "Customer testimony, evidence, addresses, and personal contact destinations are restricted data.",
+        "Refund liability is not established until the operating agreement is verified."
+      ],
+      "activationBlockers": ["SILICA_GEM_PROCEDURE", "OPERATING_AGREEMENT", "RESTRICTED_DESTINATION_CONFIGURATION"],
+      "customerFacingPromiseAuthorized": false
+    },
+    {
+      "areaId": "OPEN-05",
+      "topic": "Support operations and notification recovery",
+      "decisionState": "ANSWERED",
+      "businessDirectionAccepted": [
+        "Normal hours are Monday through Friday, 9:00 a.m. to 5:00 p.m. Central.",
+        "Out-of-hours requests receive an automatic acknowledgement that states normal hours without a response guarantee.",
+        "Shopify Forms and native Shopify capabilities are preferred, with staff email notifications required.",
+        "Discord is the preferred internal escalation alert channel where technically and securely feasible.",
+        "Stephanie oversees failed-delivery recovery; staff owners confirm resolution; Kevin may authorize reopening."
+      ],
+      "implementationRequirements": [
+        "Record every case in the durable case system before any Discord alert.",
+        "Add an authorized reopen transition and preserve notification failure recovery.",
+        "Keep Discord alerts to opaque case identity, severity, state, and internal link only."
+      ],
+      "externalConfirmationNeeded": [
+        "Exact staff accounts, mailbox, Shopify roles, app permissions, and backup assignments.",
+        "Technical proof of the Forms-to-case and Discord alert paths on Basic."
+      ],
+      "legalOrSecurityConstraints": [
+        "No unapproved response-time guarantee.",
+        "Discord must not receive testimony, images, addresses, private evidence, or webhook credentials."
+      ],
+      "activationBlockers": ["CASE_SYSTEM_OF_RECORD", "STAFF_IDENTITY_AND_PERMISSIONS", "NOTIFICATION_RECOVERY_PROOF"],
+      "customerFacingPromiseAuthorized": false
+    },
+    {
+      "areaId": "OPEN-06",
+      "topic": "Safety incident governance",
+      "decisionState": "ANSWERED",
+      "businessDirectionAccepted": [
+        "Kevin is the primary serious-incident notification recipient and Warehouse is fallback.",
+        "Preserve damage images, registration references, shipping-insurance information where applicable, and remote-inspection evidence.",
+        "Public notices and newsletters remain manual.",
+        "Kevin may authorize advice that equipment can resume operation after review."
+      ],
+      "implementationRequirements": [
+        "Retain SAFETY_HOLD as a private internal case state and keep ordinary transitions locked while active.",
+        "Bind Kevin's disposition to identity, evidence, reason, time, and recorded outcome.",
+        "Do not create a customer-facing safety-hold system or public restriction process."
+      ],
+      "externalConfirmationNeeded": [
+        "Exact Kevin and Warehouse notification identities and fallback procedure.",
+        "Legal or regulatory direction for any public notice or recall event."
+      ],
+      "legalOrSecurityConstraints": [
+        "Safety evidence is private and access-restricted.",
+        "A resume-operation disposition cannot be inferred from case status or notification delivery."
+      ],
+      "activationBlockers": ["SAFETY_AUTHORITY_BINDING", "SERIOUS_INCIDENT_NOTIFICATION_PROOF"],
+      "customerFacingPromiseAuthorized": false
+    },
+    {
+      "areaId": "OPEN-07",
+      "topic": "Privacy, retention, and system of record",
+      "decisionState": "PARTLY_RESOLVED",
+      "businessDirectionAccepted": [
+        "Shopify Forms is the preferred registration and support intake application.",
+        "Registration IDs should be associated with Shopify customer records.",
+        "Warehouse, Stephanie, and the designated staff mailbox have proposed view, correction, and export responsibilities; Warehouse manages deletion.",
+        "The intended retention period is seven years, with open cases retained pending closure and applicable legal requirements.",
+        "Business-managed backup export is required; assigned employees handle ordinary contact failures and Stephanie is fallback."
+      ],
+      "implementationRequirements": [
+        "Model registrations and cases as collections of records rather than scalar customer metafields.",
+        "Provide export, restore verification, deletion disposition, access review, and notification-ledger evidence.",
+        "Separate operational contact from marketing consent."
+      ],
+      "externalConfirmationNeeded": [
+        "Exact staff identities and least-privilege Shopify and app permissions.",
+        "Forms submission storage and API visibility, file lifecycle, customer metafield behavior, and deletion/export behavior.",
+        "Processor retention, backup, recovery, and breach-response capabilities."
+      ],
+      "legalOrSecurityConstraints": [
+        "Seven-year retention and open-case exceptions require legal and privacy compatibility review.",
+        "Shopify's activity log is not a seven-year durable case history."
+      ],
+      "activationBlockers": ["PRIVACY_LIFECYCLE", "EXACT_ACCESS_MODEL", "EXPORT_AND_RESTORE_PROOF", "DURABLE_CASE_HISTORY"],
+      "customerFacingPromiseAuthorized": false
+    },
+    {
+      "areaId": "OPEN-08",
+      "topic": "Shipping insurance",
+      "decisionState": "PARTLY_RESOLVED",
+      "businessDirectionAccepted": [
+        "Present the insurance choice on the cart screen before checkout.",
+        "Stephanie confirms carrier insurance and handles carrier disputes.",
+        "Kevin handles disputes involving machine functionality through remote inspection."
+      ],
+      "implementationRequirements": [
+        "Keep the existing request-for-insurance-options field distinct from an actual insurance product or charge.",
+        "Assess a cart attribute, app block, quotation, or approved protection product only after terms and persistence are verified.",
+        "Do not modify checkout or represent coverage before approval."
+      ],
+      "externalConfirmationNeeded": [
+        "Carrier or insurance provider, eligibility, pricing, terms, claims procedure, order persistence, cancellation, refund, tax, and discount behavior.",
+        "Decision whether the cart control is a request for staff quotation or a binding paid selection."
+      ],
+      "legalOrSecurityConstraints": [
+        "No unverified insurance product, protection promise, liability exclusion, or coverage charge.",
+        "Information, shipping, and payment-step checkout UI remains unavailable on the current Basic entitlement."
+      ],
+      "activationBlockers": ["INSURANCE_MECHANISM", "CARRIER_TERMS", "LEGAL_REVIEW", "CART_COMPATIBILITY_TEST"],
+      "customerFacingPromiseAuthorized": false
+    },
+    {
+      "areaId": "OPEN-09",
+      "topic": "Technical resource administration",
+      "decisionState": "ANSWERED",
+      "businessDirectionAccepted": [
+        "The Product Owner states that existing resources were reviewed and approved by Kevin.",
+        "The priority is an administrative interface that assigns document and video links to applicable machine versions.",
+        "A second comprehensive content review is not required unless the resource changed."
+      ],
+      "implementationRequirements": [
+        "Import the B05 nine-candidate inventory and queue without publishing it.",
+        "Record exact resource revision, source, Product GID, Variant GID, machine-version applicability, approval evidence, status, and supersession history.",
+        "Make ordinary updates simple by creating a new revision and retaining prior revision evidence."
+      ],
+      "externalConfirmationNeeded": [
+        "Bind the owner's existing-approval assertion to exact immutable resource revisions and applicability entries during administration.",
+        "Confirm rights, availability, and accessibility for each release candidate when entered."
+      ],
+      "legalOrSecurityConstraints": [
+        "Repository presence or an existing URL does not itself authorize customer release.",
+        "This reconciliation does not publish any resource."
+      ],
+      "activationBlockers": ["RESOURCE_REVISION_BINDING", "RESOURCE_ADMIN_INTERFACE", "CUSTOMER_RELEASE_GATE"],
+      "customerFacingPromiseAuthorized": false
+    },
+    {
+      "areaId": "OPEN-10",
+      "topic": "Publication and operational acceptance",
+      "decisionState": "PARTLY_RESOLVED",
+      "businessDirectionAccepted": [
+        "Infrastructure should be completed before publication.",
+        "The operating agreement is intended to authorize publication rather than automatically rewrite warranty language.",
+        "Customer messaging is approved at the business level."
+      ],
+      "implementationRequirements": [
+        "Keep exact customer message versions, policy version, effective date, staff acceptance evidence, and final release authorization separately versioned.",
+        "Do not require a signature or impose a specific contractual approval ceremony."
+      ],
+      "externalConfirmationNeeded": [
+        "Compatible operating agreement.",
+        "Final operational acceptance owner.",
+        "Exact customer message versions, effective date, and final release authorization."
+      ],
+      "legalOrSecurityConstraints": [
+        "No named external legal reviewer does not mean legal clearance.",
+        "Customer promises must remain compatible with applicable law and the verified operating agreement."
+      ],
+      "activationBlockers": ["OPERATING_AGREEMENT", "EXACT_CUSTOMER_COPY", "OPERATIONAL_ACCEPTANCE_OWNER", "FINAL_RELEASE_AUTHORIZATION"],
+      "customerFacingPromiseAuthorized": false
+    }
+  ],
+  "remainingOwnerDecisions": [
+    {
+      "decision": "Name the final operational acceptance owner.",
+      "neededBy": "BEFORE_LIVE_CONFIGURATION",
+      "reason": "The owner must accept the end-to-end staff workflow and recovery evidence; this is not another policy-content decision."
+    },
+    {
+      "decision": "Approve the exact versioned customer messages, effective date, and final release authorization.",
+      "neededBy": "BEFORE_PUBLICATION",
+      "reason": "Business-level message approval is recorded, but the exact release artifacts and release event do not yet exist."
+    },
+    {
+      "decision": "After the carrier assessment, choose whether the cart insurance control is a non-binding request for a quotation or an approved paid protection selection.",
+      "neededBy": "BEFORE_LIVE_CONFIGURATION",
+      "reason": "The requested cart placement is settled; the commercial mechanism and customer promise are not."
+    }
+  ]
+}

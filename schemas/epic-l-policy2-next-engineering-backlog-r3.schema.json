@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-next-engineering-backlog-r3.schema.json",
+  "type": "object",
+  "required": ["schemaVersion", "backlogId", "recordedAt", "activationAuthorized", "recommendedNextBatch", "items"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "backlogId": { "const": "EPIC-L-POLICY2-R3-NEXT-ENGINEERING" },
+    "recordedAt": { "const": "2026-11-25" },
+    "activationAuthorized": { "const": false },
+    "recommendedNextBatch": {
+      "type": "object",
+      "required": ["batchId", "mode", "itemIds", "realCustomerDataAllowed", "shopifyMutationAllowed", "publicationAllowed"],
+      "properties": {
+        "batchId": { "const": "EPIC-L-POLICY2-B06" },
+        "mode": { "const": "CONTRACT_AND_SYNTHETIC_DATA_ONLY" },
+        "itemIds": { "type": "array", "minItems": 3 },
+        "realCustomerDataAllowed": { "const": false },
+        "shopifyMutationAllowed": { "const": false },
+        "publicationAllowed": { "const": false }
+      }
+    },
+    "items": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "required": ["itemId", "priority", "title", "type", "status", "dependsOn", "acceptanceEvidence", "activationBoundary"],
+        "properties": {
+          "priority": { "enum": ["P0", "P1", "P2"] },
+          "type": { "enum": ["ENGINEERING", "BUSINESS_REVIEW", "EXTERNAL_CONFIRMATION", "RELEASE_GATE"] },
+          "status": { "enum": ["READY_FOR_SYNTHETIC_ENGINEERING", "READY_FOR_HUMAN_REVIEW", "BLOCKED_EXTERNAL", "BLOCKED_DEPENDENCY"] },
+          "dependsOn": { "type": "array", "items": { "type": "string" } },
+          "acceptanceEvidence": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "activationBoundary": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
