@@ -1,0 +1,73 @@
+{
+  "$schema": "../schemas/epic-l-policy2-b08a-progress.schema.json",
+  "schemaVersion": "1.0.0",
+  "batchId": "EPIC-L-POLICY2-B08A",
+  "recordedAt": "2026-11-27",
+  "engineeringStatus": "PRIVATE_SUBMISSION_INGESTION_IMPLEMENTED_SYNTHETIC_ONLY",
+  "operationalStatus": "BLOCKED",
+  "r3WorkItem": {
+    "itemId": "R3-006",
+    "status": "IN_PROGRESS_BLOCKED_B08B_EXTERNAL_PROOF",
+    "historicalBacklogModified": false
+  },
+  "relatedPbis": ["L-PBI-006", "L-PBI-008", "L-PBI-016", "L-PBI-018", "L-PBI-020"],
+  "pbiStatus": {
+    "L-PBI-006": "SYNTHETIC_RECEIPT_PORT_IMPLEMENTED_PRIVACY_APPROVAL_BLOCKED",
+    "L-PBI-008": "PRIVATE_INGESTION_INTEGRATION_IMPLEMENTED_NOT_ACTIVE",
+    "L-PBI-016": "EXISTING_SYNTHETIC_RECOVERY_REUSED_NOT_OPERATIONAL",
+    "L-PBI-018": "B08B_EXTERNAL_FORMS_FLOW_ASSESSMENT_PENDING",
+    "L-PBI-020": "PRIVACY_PROCESSOR_ACCESS_DELETION_RECOVERY_APPROVAL_BLOCKED"
+  },
+  "completionDimensions": {
+    "canonicalEnvelopeImplemented": true,
+    "transportIndependentBoundaryImplemented": true,
+    "deterministicNormalizationImplemented": true,
+    "registrationIntegrationImplemented": true,
+    "supportAndSafetyIntegrationImplemented": true,
+    "deliveryIdempotencyImplemented": true,
+    "retryConvergenceImplemented": true,
+    "restrictedDiagnosticsImplemented": true,
+    "productionIdentityBound": false,
+    "shopifyFormsVerified": false,
+    "shopifyFlowVerified": false,
+    "productionPersistenceSelected": false,
+    "customerActivation": false
+  },
+  "testEvidence": {
+    "artifactChecks": 34,
+    "positiveScenarios": 22,
+    "negativeOperationRejections": 25,
+    "registrationIntegrations": 1,
+    "supportIntegrations": 2,
+    "retryConvergenceScenarios": 1,
+    "partialMutationAfterValidationFailure": 0,
+    "protectedPaths": 39
+  },
+  "readinessBlockers": [
+    "DECISION_PROVENANCE_UNRESOLVED",
+    "POLICY_CUSTOMER_COPY_NOT_APPROVED",
+    "COVERAGE_APPROVAL_PENDING",
+    "RESOURCE_APPROVAL_PENDING",
+    "SUPPORT_OPERATIONS_UNRESOLVED",
+    "MANUFACTURER_HANDOFF_UNRESOLVED",
+    "PRIVACY_RETENTION_UNRESOLVED",
+    "M1_ACTIVATION_BLOCKED"
+  ],
+  "activationEvidence": {
+    "liveProviderCalls": 0,
+    "shopifyMutations": 0,
+    "customerRegistrationsActivated": 0,
+    "supportIntakeActivated": 0,
+    "customerDecisions": 0,
+    "customerNotifications": 0,
+    "resourcePublications": 0,
+    "storefrontChanges": 0
+  },
+  "b08bDependencies": [
+    "Verify Shopify Forms storage, event, API, attachment, deletion, export, and multi-machine behavior on the actual plan.",
+    "Bind exact production customer and staff identities and least-privilege permissions.",
+    "Authorize durable production receipt and case storage with recovery, backup, retention, and deletion controls.",
+    "Prove approved staff notification routing and failed-delivery recovery with private payload restrictions.",
+    "Select the external adapter and map its verified delivery semantics to the B08A envelope without weakening the domain boundary."
+  ]
+}

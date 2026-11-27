@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-submission-envelope.schema.json",
+  "title": "Epic L Policy 2.0 external submission envelope",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["envelopeVersion", "submissionType", "delivery", "payload"],
+      "properties": {
+        "envelopeVersion": { "const": "1.0.0" },
+        "submissionType": { "const": "REGISTRATION" },
+        "delivery": { "$ref": "#/$defs/delivery" },
+        "payload": { "$ref": "#/$defs/registrationPayload" }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["envelopeVersion", "submissionType", "delivery", "payload"],
+      "properties": {
+        "envelopeVersion": { "const": "1.0.0" },
+        "submissionType": { "const": "SUPPORT" },
+        "delivery": { "$ref": "#/$defs/delivery" },
+        "payload": { "$ref": "#/$defs/supportPayload" }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "$defs": {
+    "delivery": {
+      "type": "object",
+      "required": ["transportId", "deliveryId"],
+      "properties": {
+        "transportId": { "type": "string", "minLength": 1 },
+        "deliveryId": { "type": "string", "minLength": 1 },
+        "sourceEventAt": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T" }
+      },
+      "additionalProperties": false
+    },
+    "registrationPayload": {
+      "type": "object",
+      "required": ["productGid", "variantGid", "productVersion"],
+      "properties": {
+        "productGid": { "type": "string", "pattern": "^gid://shopify/Product/[0-9]+$" },
+        "variantGid": { "type": "string", "pattern": "^gid://shopify/ProductVariant/[0-9]+$" },
+        "productVersion": { "type": "string", "minLength": 1 },
+        "firstUseDeclaration": { "type": "object" },
+        "registrationPath": { "enum": ["NEW_REGISTRATION", "PRIOR_PURCHASE_EXCEPTION", "PRIOR_REGISTRATION_EXCEPTION"] },
+        "purchaseEvidence": { "type": "array" },
+        "firstUseEvidence": { "type": "array" },
+        "legacyPhysicalSerialEvidence": { "type": ["object", "null"] },
+        "priorRegistrationReference": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "supportPayload": {
+      "type": "object",
+      "required": ["category"],
+      "properties": {
+        "category": { "enum": ["WARRANTY_DECISION", "TECHNICAL_GUIDANCE", "PARTS_QUESTION", "MANUFACTURER_REFERRAL", "SHIPPING_CLAIM"] },
+        "productGid": { "type": "string", "pattern": "^gid://shopify/Product/[0-9]+$" },
+        "variantGid": { "type": "string", "pattern": "^gid://shopify/ProductVariant/[0-9]+$" },
+        "productVersion": { "type": ["string", "null"] },
+        "registrationId": { "type": "string", "pattern": "^reg_[A-Za-z0-9_-]{16,}$" },
+        "issueSummary": { "type": "string" },
+        "evidenceRefs": { "type": "array", "items": { "type": "string" } },
+        "hazardDisclosure": { "enum": ["REPORTED", "NOT_REPORTED", "UNSURE"] },
+        "hazardEvidenceRef": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

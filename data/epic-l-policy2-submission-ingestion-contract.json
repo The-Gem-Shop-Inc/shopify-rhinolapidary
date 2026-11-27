@@ -1,0 +1,63 @@
+{
+  "$schema": "../schemas/epic-l-policy2-submission-ingestion.schema.json",
+  "schemaVersion": "1.0.0",
+  "contractId": "EPIC-L-POLICY2-B08A-SUBMISSION-INGESTION",
+  "status": "IMPLEMENTED_PRIVATE_SYNTHETIC_ONLY",
+  "envelopeVersion": "1.0.0",
+  "envelopeSchema": "schemas/epic-l-policy2-submission-envelope.schema.json",
+  "submissionTypes": ["REGISTRATION", "SUPPORT"],
+  "identityBoundary": {
+    "authoritySource": "authenticated transport context outside the envelope",
+    "callerRoleLabelsAccepted": false,
+    "productionIdentityBinding": "UNRESOLVED",
+    "syntheticAuthorityMayBecomeProductionAuthority": false
+  },
+  "derivedFields": [
+    "receipt identity",
+    "correlation identity",
+    "domain command identity",
+    "received and processing timestamps",
+    "customer and notification destination references from authenticated context",
+    "policy version",
+    "source channel",
+    "audit events"
+  ],
+  "defaults": {
+    "registration.firstUseDeclaration": { "state": "UNKNOWN", "basis": "DEFAULTED_PENDING_CUSTOMER_DETAIL" },
+    "registration.registrationPath": "NEW_REGISTRATION",
+    "registration.purchaseEvidence": [],
+    "registration.firstUseEvidence": [],
+    "support.issueSummary": "SYNTHETIC_CLARIFICATION_REQUIRED",
+    "support.hazardDisclosure": "AMBIGUOUS_REVIEW_REQUIRED"
+  },
+  "consistency": {
+    "deliveryIdentityUniqueWithinTransport": true,
+    "conflictingDeliveryRejected": true,
+    "domainCommandStableAcrossRetry": true,
+    "domainIdempotencyRequired": true,
+    "retryCanReconcileDomainSuccessAfterReceiptInterruption": true,
+    "partialInvalidSubmissionMutationAllowed": false
+  },
+  "diagnostics": {
+    "restrictedPermission": "SUBMISSION_DIAGNOSTICS_READ",
+    "payloadIncluded": false,
+    "customerContactIncluded": false,
+    "auditAppendOnly": true
+  },
+  "boundaries": {
+    "shopifyFormsVerified": false,
+    "shopifyFlowVerified": false,
+    "externalTransportEnabled": false,
+    "customerActivationPermitted": false,
+    "shopifyMutationPermitted": false,
+    "customerNotificationPermitted": false,
+    "resourceAdministrationDependency": false
+  },
+  "b08bDependencies": [
+    "Verify Forms submission storage, event, API, attachment, deletion, and export behavior on the actual Shopify plan.",
+    "Bind exact production customer and staff identities with least privilege.",
+    "Select and authorize durable production case and delivery-receipt storage with transaction and recovery semantics.",
+    "Configure approved notification destinations and prove delivery recovery without private payload leakage.",
+    "Complete privacy processor, retention, backup, restore, deletion, and incident review."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-b08a-progress.schema.json",
+  "title": "Epic L Policy 2.0 B08A engineering progress",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batchId", "recordedAt", "engineeringStatus", "operationalStatus", "r3WorkItem", "relatedPbis", "pbiStatus", "completionDimensions", "testEvidence", "readinessBlockers", "activationEvidence", "b08bDependencies"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "1.0.0" },
+    "batchId": { "const": "EPIC-L-POLICY2-B08A" },
+    "recordedAt": { "const": "2026-11-27" },
+    "engineeringStatus": { "const": "PRIVATE_SUBMISSION_INGESTION_IMPLEMENTED_SYNTHETIC_ONLY" },
+    "operationalStatus": { "const": "BLOCKED" },
+    "r3WorkItem": {
+      "type": "object",
+      "required": ["itemId", "status", "historicalBacklogModified"],
+      "properties": {
+        "itemId": { "const": "R3-006" },
+        "status": { "const": "IN_PROGRESS_BLOCKED_B08B_EXTERNAL_PROOF" },
+        "historicalBacklogModified": { "const": false }
+      },
+      "additionalProperties": false
+    },
+    "relatedPbis": { "const": ["L-PBI-006", "L-PBI-008", "L-PBI-016", "L-PBI-018", "L-PBI-020"] },
+    "pbiStatus": {
+      "type": "object",
+      "required": ["L-PBI-006", "L-PBI-008", "L-PBI-016", "L-PBI-018", "L-PBI-020"],
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
+    "completionDimensions": { "type": "object", "additionalProperties": { "type": "boolean" } },
+    "testEvidence": {
+      "type": "object",
+      "required": ["artifactChecks", "positiveScenarios", "negativeOperationRejections", "registrationIntegrations", "supportIntegrations", "retryConvergenceScenarios", "partialMutationAfterValidationFailure", "protectedPaths"],
+      "properties": {
+        "artifactChecks": { "const": 34 },
+        "positiveScenarios": { "const": 22 },
+        "negativeOperationRejections": { "const": 25 },
+        "registrationIntegrations": { "type": "integer", "minimum": 1 },
+        "supportIntegrations": { "type": "integer", "minimum": 1 },
+        "retryConvergenceScenarios": { "const": 1 },
+        "partialMutationAfterValidationFailure": { "const": 0 },
+        "protectedPaths": { "const": 39 }
+      },
+      "additionalProperties": false
+    },
+    "readinessBlockers": { "type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": { "type": "string" } },
+    "activationEvidence": { "type": "object", "additionalProperties": { "const": 0 } },
+    "b08bDependencies": { "type": "array", "minItems": 5, "items": { "type": "string", "minLength": 1 } }
+  }
+}

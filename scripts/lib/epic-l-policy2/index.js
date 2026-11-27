@@ -8,6 +8,8 @@ module.exports = {
   ...require('./resource-administration'),
   ...require('./resource-enrichment'),
   ...require('./resource-admin-fixture'),
+  ...require('./submission-ingestion'),
+  ...require('./submission-ingestion-fixture'),
   ...require('./support-safety'),
   ...require('./registration'),
   ...require('./support-intake'),
