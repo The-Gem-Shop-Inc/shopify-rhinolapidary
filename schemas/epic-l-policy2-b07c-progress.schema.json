@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-b07c-progress.schema.json",
+  "title": "Epic L Policy 2.0 B07C progress",
+  "type": "object",
+  "required": ["schemaVersion", "batchId", "engineeringStatus", "operationalStatus", "workflowMetrics", "testEvidence", "readinessBlockers", "activationEvidence"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "1.0.0" },
+    "batchId": { "const": "EPIC-L-POLICY2-B07C" },
+    "engineeringStatus": { "const": "IMPLEMENTED_PRIVATE_SYNTHETIC_ONLY" },
+    "operationalStatus": { "const": "BLOCKED" },
+    "workflowMetrics": {
+      "type": "object",
+      "required": ["manualFieldsBefore", "manualFieldsAfterExistingUnchanged", "explicitActionsBefore", "explicitActionsAfterExistingUnchanged"],
+      "properties": {
+        "manualFieldsBefore": { "const": 13 },
+        "manualFieldsAfterExistingUnchanged": { "const": 0 },
+        "explicitActionsBefore": { "const": 5 },
+        "explicitActionsAfterExistingUnchanged": { "const": 2 }
+      },
+      "additionalProperties": false
+    },
+    "testEvidence": {
+      "type": "object",
+      "required": ["artifactChecks", "positiveAssertions", "negativeOperationRejections", "browserScenarios", "axeViolations"],
+      "properties": {
+        "artifactChecks": { "const": 28 },
+        "positiveAssertions": { "const": 28 },
+        "negativeOperationRejections": { "const": 10 },
+        "browserScenarios": { "const": 6 },
+        "axeViolations": { "const": 0 }
+      },
+      "additionalProperties": false
+    },
+    "readinessBlockers": { "type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": { "type": "string" } },
+    "activationEvidence": {
+      "type": "object",
+      "required": ["liveProviderCalls", "shopifyMutations", "resourcePublications", "customerDecisions", "customerNotifications"],
+      "additionalProperties": { "const": 0 }
+    },
+    "limitations": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

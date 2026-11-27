@@ -21,7 +21,7 @@ const ADMIN_LIFECYCLE_STATES = Object.freeze([
   'SUPERSEDED',
   'RETIRED',
 ]);
-const CHANGE_STATUSES = Object.freeze(['UNCHANGED_EXISTING_UNBOUND', 'UNCHANGED_EXISTING_BOUND', 'CHANGED_CONTENT', 'NEW_DRAFT']);
+const CHANGE_STATUSES = Object.freeze(['UNCHANGED_EXISTING_UNBOUND', 'UNCHANGED_EXISTING_UNVERIFIED', 'UNCHANGED_EXISTING_BOUND', 'CHANGED_CONTENT', 'NEW_DRAFT']);
 const RIGHTS_STATUSES = Object.freeze(['UNRESOLVED', 'APPROVED_WITH_EVIDENCE', 'NOT_REQUIRED_WITH_EVIDENCE', 'REJECTED']);
 const ACCESSIBILITY_STATUSES = Object.freeze(['UNRESOLVED', 'ACCESSIBLE_WITH_EVIDENCE', 'NOT_REQUIRED_WITH_EVIDENCE', 'REMEDIATION_REQUIRED']);
 const AVAILABILITY_STATUSES = Object.freeze(['UNRESOLVED', 'SYNTHETIC_AVAILABLE', 'STALE', 'FAILED']);
@@ -51,6 +51,7 @@ class ResourceAdministrationService {
     revisionIdFactory = () => createOpaqueIdentifier(16, 'arev_'),
     auditIdFactory = () => createOpaqueIdentifier(16, 'aaud_'),
     isolatedSyntheticMode = false,
+    enrichment = null,
   }) {
     requireValue(resourceGovernance?.validateApplicability, 'RESOURCE_GOVERNANCE_REQUIRED', 'B07 requires the canonical resource governance service');
     requireValue(Array.isArray(catalogSnapshot?.products), 'CATALOG_SNAPSHOT_REQUIRED', 'B07 requires the accepted Product catalog snapshot');
@@ -68,6 +69,7 @@ class ResourceAdministrationService {
     this.audit = [];
     this.commandReceipts = new Map();
     this.isolatedSyntheticMode = true;
+    this.enrichment = enrichment;
   }
 
   execute(commandId, input, operation) {
@@ -168,40 +170,192 @@ class ResourceAdministrationService {
     });
   }
 
-  recordHistoricalApprovalAssertion({ actor, commandId, resourceId, expectedVersion, revisionId, approvalEvidenceReference, authorityLimitations = [] }) {
-    requireAuthorization(this.authorize, actor, 'RESOURCE_HISTORICAL_APPROVAL_ASSERT', { resourceId, revisionId });
-    requireValue(typeof approvalEvidenceReference === 'string' && approvalEvidenceReference.length > 0, 'APPROVAL_EVIDENCE_REQUIRED', 'Historical approval assertion requires an evidence reference');
-    requireValue(approvalEvidenceReference === HISTORICAL_APPROVAL_EVIDENCE_REFERENCE, 'UNSUPPORTED_APPROVAL_EVIDENCE', 'Historical approval must reference the recorded Product Owner assertion without fabricating Kevin evidence');
-    return this.execute(commandId, { operation: 'historicalApproval', resourceId, expectedVersion, revisionId, approvalEvidenceReference, authorityLimitations }, () => {
+  editAdministrativeDetails({ actor, commandId, resourceId, expectedVersion, revisionId, changes }) {
+    requireAuthorization(this.authorize, actor, 'RESOURCE_ADMIN_EDIT_DETAILS', { resourceId, revisionId });
+    requireValue(changes && typeof changes === 'object' && !Array.isArray(changes), 'ADMINISTRATIVE_CHANGES_REQUIRED', 'Administrative changes are required');
+    const allowed = new Set(['title', 'category', 'language', 'languageDisposition', 'editableSourceIdentity', 'proposedCustomerDeliveryLink', 'providerType', 'applicability', 'rightsDisposition', 'accessibilityDisposition', 'availabilityDisposition']);
+    requireValue(Object.keys(changes).length > 0 && Object.keys(changes).every((key) => allowed.has(key)), 'CONTENT_FIELD_REQUIRES_CONTENT_UPDATE', 'Content identity and classification cannot be changed through administrative editing');
+    return this.execute(commandId, { operation: 'editAdministrativeDetails', resourceId, expectedVersion, revisionId, changes }, () => {
       const record = this.requireResourceVersion(resourceId, expectedVersion);
-      const revision = this.requireRevision(record, revisionId);
-      requireValue(!this.technicalApprovalFor(record, revisionId, false), 'TECHNICAL_DISPOSITION_ALREADY_RECORDED', 'A revision can retain only one technical disposition');
-      requireValue(revision.changeStatus !== 'CHANGED_CONTENT' && revision.changeStatus !== 'NEW_DRAFT', 'CHANGED_CONTENT_REQUIRES_FRESH_DISPOSITION', 'Changed or new content cannot inherit historical approval');
-      requireValue(this.validImmutableRevisionIdentity(revision.immutableRevisionIdentity), 'IMMUTABLE_REVISION_IDENTITY_REQUIRED', 'Historical approval must bind to an immutable revision identity');
-      this.requireApprovedApplicability(revision.applicability);
+      const base = this.effectiveRevision(record, this.requireRevision(record, revisionId));
+      requireValue(!['SUPERSEDED', 'RETIRED'].includes(this.lifecycleFor(record, revisionId)), 'HISTORICAL_REVISION_IMMUTABLE', 'Administrative details can be edited only for an active revision');
+      const projected = { ...clone(base), ...clone(changes) };
+      this.validateDraftInput(projected, { allowEmptyApplicability: true });
       const event = {
-        eventType: 'HISTORICAL_KEVIN_APPROVAL_ASSERTED', revisionId,
-        recordedAt: this.clock(), recordedBy: actor.actorId,
-        assertedAuthorityName: 'Kevin', approvalOccurredAt: null, productionIdentityVerified: false,
-        approvalEvidenceReference, authorityLimitations: [...authorityLimitations], customerReleaseAuthorized: false,
+        eventType: 'RESOURCE_ADMINISTRATIVE_DETAILS_EDITED', revisionId, recordedAt: this.clock(), recordedBy: actor.actorId,
+        changes: clone(changes), reason: 'ROUTINE_ADMINISTRATIVE_DETAILS_UPDATED',
+        evidenceRefs: [`authenticated-action:${commandId}`], contentChanged: false, customerReleaseAuthorized: false,
       };
       return this.appendResourceEvent(record, actor, event);
     });
   }
 
-  recordFreshTechnicalDisposition({ actor, commandId, resourceId, expectedVersion, revisionId, evidenceRefs }) {
+  updateContent({ actor, commandId, resourceId, expectedVersion, baseRevisionId, input, confirmed }) {
+    requireValue(confirmed === true, 'CONTENT_REPLACEMENT_CONFIRMATION_REQUIRED', 'Content replacement requires explicit confirmation');
+    const result = this.startRevision({
+      actor, commandId, resourceId, expectedVersion, baseRevisionId,
+      input: {
+        ...clone(input),
+        changeStatus: 'CHANGED_CONTENT',
+        changeReason: input.changeReason || 'CONTENT_REPLACED_BY_ADMINISTRATOR',
+        changeEvidenceRefs: input.changeEvidenceRefs?.length ? input.changeEvidenceRefs : [`authenticated-action:${commandId}`],
+      },
+    });
+    const current = this.requireResource(resourceId);
+    const replacement = current.revisions[current.revisions.length - 1];
+    if (this.lifecycleFor(current, baseRevisionId) !== 'SUPERSEDED') {
+      return this.supersede({
+        actor,
+        commandId: `${commandId}:automatic-supersession`,
+        resourceId,
+        expectedVersion: current.version,
+        previousRevisionId: baseRevisionId,
+        replacementRevisionId: replacement.revisionId,
+        reason: 'AUTOMATIC_CONTENT_REPLACEMENT_SUPERSESSION',
+        evidenceRefs: [`authenticated-action:${commandId}`],
+      });
+    }
+    return result;
+  }
+
+  correctionFor(record, revisionId) {
+    return [...record.events].reverse().find((event) => event.revisionId === revisionId && event.eventType === 'RESOURCE_CLASSIFICATION_CORRECTED') || null;
+  }
+
+  correctClassification({ actor, commandId, resourceId, expectedVersion, revisionId, effectiveChangeStatus, reason, confirmed }) {
+    requireAuthorization(this.authorize, actor, 'RESOURCE_ADMIN_CORRECT_CLASSIFICATION', { resourceId, revisionId });
+    requireValue(confirmed === true, 'CLASSIFICATION_CORRECTION_CONFIRMATION_REQUIRED', 'Classification correction requires explicit confirmation');
+    requireValue(['UNCHANGED_EXISTING_BOUND', 'UNCHANGED_EXISTING_UNVERIFIED', 'CHANGED_CONTENT'].includes(effectiveChangeStatus), 'INVALID_CORRECTED_CLASSIFICATION', 'Corrected classification is invalid');
+    requireValue(typeof reason === 'string' && reason.trim(), 'CORRECTION_REASON_REQUIRED', 'A concise correction reason is required');
+    return this.execute(commandId, { operation: 'correctClassification', resourceId, expectedVersion, revisionId, effectiveChangeStatus, reason }, () => {
+      const record = this.requireResourceVersion(resourceId, expectedVersion);
+      const revision = this.effectiveRevision(record, this.requireRevision(record, revisionId));
+      if (effectiveChangeStatus.startsWith('UNCHANGED_')) {
+        const predecessor = revision.supersedesRevisionId ? this.effectiveRevision(record, this.requireRevision(record, revision.supersedesRevisionId)) : null;
+        const currentIdentity = revision.immutableRevisionIdentity;
+        const priorIdentity = predecessor?.immutableRevisionIdentity;
+        requireValue(!(this.validImmutableRevisionIdentity(currentIdentity) && this.validImmutableRevisionIdentity(priorIdentity) && currentIdentity !== priorIdentity), 'DEMONSTRABLE_CONTENT_CHANGE', 'Verified differing content identities cannot be corrected to unchanged');
+        if (!this.validImmutableRevisionIdentity(currentIdentity)) {
+          requireValue(effectiveChangeStatus === 'UNCHANGED_EXISTING_UNVERIFIED', 'UNCHANGED_IDENTITY_UNVERIFIED', 'Missing immutable identity must remain explicitly unverified');
+        }
+      }
+      const invalidatedEvents = record.events.filter((event) => event.revisionId === revisionId && (effectiveChangeStatus.startsWith('UNCHANGED_')
+        ? event.eventType === 'FRESH_TECHNICAL_DISPOSITION_RECORDED'
+        : ['HISTORICAL_KEVIN_APPROVAL_ASSERTED', 'HISTORICAL_APPROVAL_BOUND'].includes(event.eventType)));
+      return this.appendResourceEvent(record, actor, {
+        eventType: 'RESOURCE_CLASSIFICATION_CORRECTED', revisionId, recordedAt: this.clock(), recordedBy: actor.actorId,
+        originalClassification: revision.changeStatus, effectiveClassification: effectiveChangeStatus,
+        correctionReason: reason.trim(), invalidatedDispositionReferences: invalidatedEvents.map((event) => event.recordedAt),
+        invalidatedTechnicalEventReferences: invalidatedEvents.map((event) => `${event.eventType}|${event.recordedAt}`),
+        customerReleaseAuthorized: false,
+      });
+    });
+  }
+
+  previewEnrichment(resourceId = null) {
+    requireValue(this.enrichment, 'RESOURCE_ENRICHMENT_UNAVAILABLE', 'Resource enrichment is not configured');
+    const records = resourceId ? [this.requireResource(resourceId)] : [...this.resources.values()];
+    return records.map((record) => this.enrichment.preview(this.detail(record.resourceId)));
+  }
+
+  applyEnrichment({ actor, commandId, resourceIds = null }) {
+    requireAuthorization(this.authorize, actor, 'RESOURCE_ADMIN_APPLY_ENRICHMENT', {});
+    const ids = resourceIds || [...this.resources.keys()];
+    requireValue(Array.isArray(ids) && ids.length > 0, 'ENRICHMENT_SCOPE_REQUIRED', 'At least one resource is required');
+    return this.execute(commandId, { operation: 'applyEnrichment', resourceIds: ids }, () => {
+      const previews = ids.map((resourceId) => this.previewEnrichment(resourceId)[0]);
+      const prepared = previews.map((preview) => {
+        const record = this.requireResource(preview.resourceId);
+        const revision = record.revisions[record.revisions.length - 1];
+        const changes = Object.fromEntries(preview.suggestions.map((item) => [item.field, clone(item.value)]));
+        if (changes.language && !changes.languageDisposition) changes.languageDisposition = { basis: 'DEFAULTED', verified: false, evidenceRefs: ['POLICY_DEFAULT:en-US'] };
+        return { record, revision, changes, preview };
+      });
+      for (const item of prepared) {
+        if (!Object.keys(item.changes).length) continue;
+        const event = {
+          eventType: 'RESOURCE_ENRICHMENT_APPLIED', revisionId: item.revision.revisionId, recordedAt: this.clock(), recordedBy: actor.actorId,
+          changes: item.changes, reason: 'DETERMINISTIC_REPOSITORY_EVIDENCE_ENRICHMENT',
+          evidenceRefs: item.preview.suggestions.map((suggestion) => suggestion.basis), contentChanged: false,
+          customerReleaseAuthorized: false,
+        };
+        const current = this.requireResource(item.record.resourceId);
+        this.appendResourceEvent(current, actor, event);
+        this.autoBindPendingHistoricalApproval(actor, item.record.resourceId, item.revision.revisionId);
+      }
+      return { resourcesConsidered: previews.length, resourcesChanged: prepared.filter((item) => Object.keys(item.changes).length).length, previews };
+    });
+  }
+
+  recordHistoricalApprovalAssertion({ actor, commandId, resourceId, expectedVersion, revisionId, approvalEvidenceReference = HISTORICAL_APPROVAL_EVIDENCE_REFERENCE, authorityLimitations = [] }) {
+    requireAuthorization(this.authorize, actor, 'RESOURCE_HISTORICAL_APPROVAL_ASSERT', { resourceId, revisionId });
+    requireValue(typeof approvalEvidenceReference === 'string' && approvalEvidenceReference.length > 0, 'APPROVAL_EVIDENCE_REQUIRED', 'Historical approval assertion requires an evidence reference');
+    requireValue(approvalEvidenceReference === HISTORICAL_APPROVAL_EVIDENCE_REFERENCE, 'UNSUPPORTED_APPROVAL_EVIDENCE', 'Historical approval must reference the recorded Product Owner assertion without fabricating Kevin evidence');
+    return this.execute(commandId, { operation: 'historicalApproval', resourceId, expectedVersion, revisionId, approvalEvidenceReference, authorityLimitations }, () => {
+      const record = this.requireResourceVersion(resourceId, expectedVersion);
+      const revision = this.effectiveRevision(record, this.requireRevision(record, revisionId));
+      requireValue(!this.technicalApprovalFor(record, revisionId, false), 'TECHNICAL_DISPOSITION_ALREADY_RECORDED', 'A revision can retain only one technical disposition');
+      const effectiveStatus = this.effectiveChangeStatus(record, revision);
+      requireValue(effectiveStatus !== 'CHANGED_CONTENT' && effectiveStatus !== 'NEW_DRAFT', 'CHANGED_CONTENT_REQUIRES_FRESH_DISPOSITION', 'Changed or new content cannot inherit historical approval');
+      requireValue(revision.immutableRevisionIdentity == null || this.validImmutableRevisionIdentity(revision.immutableRevisionIdentity), 'IMMUTABLE_REVISION_IDENTITY_REQUIRED', 'A mutable URL cannot serve as immutable revision authority');
+      this.requireApprovedApplicability(revision.applicability);
+      const bindingStatus = this.validImmutableRevisionIdentity(revision.immutableRevisionIdentity) ? 'BOUND_EXACT_IDENTITY' : 'PENDING_IMMUTABLE_IDENTITY';
+      const event = {
+        eventType: 'HISTORICAL_KEVIN_APPROVAL_ASSERTED', revisionId,
+        recordedAt: this.clock(), recordedBy: actor.actorId,
+        assertedAuthorityName: 'Kevin', approvalOccurredAt: null, productionIdentityVerified: false,
+        approvalEvidenceReference, authorityLimitations: [...authorityLimitations], customerReleaseAuthorized: false,
+        bindingStatus, immutableRevisionIdentity: revision.immutableRevisionIdentity || null,
+        exactApplicability: clone(revision.applicability), authoritativeDecisionReference: HISTORICAL_APPROVAL_EVIDENCE_REFERENCE,
+      };
+      return this.appendResourceEvent(record, actor, event);
+    });
+  }
+
+  bulkConfirmHistoricalApproval({ actor, commandId, items, authorityLimitations = [] }) {
+    requireAuthorization(this.authorize, actor, 'RESOURCE_HISTORICAL_APPROVAL_ASSERT', {});
+    requireValue(Array.isArray(items) && items.length > 0, 'BULK_APPROVAL_ITEMS_REQUIRED', 'At least one unchanged resource is required');
+    requireValue(new Set(items.map((item) => `${item.resourceId}|${item.revisionId}`)).size === items.length, 'DUPLICATE_BULK_RESOURCE', 'A bulk action cannot repeat the same resource revision');
+    return this.execute(commandId, { operation: 'bulkConfirmHistoricalApproval', items, authorityLimitations }, () => {
+      const prepared = items.map((item) => {
+        const record = this.requireResourceVersion(item.resourceId, item.expectedVersion);
+        const revision = this.effectiveRevision(record, this.requireRevision(record, item.revisionId));
+        const status = this.effectiveChangeStatus(record, revision);
+        requireValue(!['CHANGED_CONTENT', 'NEW_DRAFT'].includes(status), 'CHANGED_CONTENT_REQUIRES_FRESH_DISPOSITION', 'Bulk historical confirmation is limited to unchanged content');
+        this.requireApprovedApplicability(revision.applicability);
+        requireValue(!this.technicalApprovalFor(record, revision.revisionId, false), 'TECHNICAL_DISPOSITION_ALREADY_RECORDED', 'A revision already has an effective technical disposition');
+        return { record, revision };
+      });
+      const results = [];
+      for (const { record, revision } of prepared) {
+        const bindingStatus = this.validImmutableRevisionIdentity(revision.immutableRevisionIdentity) ? 'BOUND_EXACT_IDENTITY' : 'PENDING_IMMUTABLE_IDENTITY';
+        results.push(this.appendResourceEvent(record, actor, {
+          eventType: 'HISTORICAL_KEVIN_APPROVAL_ASSERTED', revisionId: revision.revisionId, recordedAt: this.clock(), recordedBy: actor.actorId,
+          assertedAuthorityName: 'Kevin', approvalOccurredAt: null, productionIdentityVerified: false,
+          approvalEvidenceReference: HISTORICAL_APPROVAL_EVIDENCE_REFERENCE, authoritativeDecisionReference: HISTORICAL_APPROVAL_EVIDENCE_REFERENCE,
+          authorityLimitations: [...authorityLimitations], bindingStatus, immutableRevisionIdentity: revision.immutableRevisionIdentity || null,
+          exactApplicability: clone(revision.applicability), customerReleaseAuthorized: false,
+        }));
+      }
+      return { confirmed: results.length, resources: results.map((result) => result.resourceId), customerReleaseAuthorized: false };
+    });
+  }
+
+  recordFreshTechnicalDisposition({ actor, commandId, resourceId, expectedVersion, revisionId, evidenceRefs = [], notes = null }) {
     requireAuthorization(this.authorize, actor, 'RESOURCE_TECHNICAL_APPROVE', { resourceId, revisionId });
     requireValue(actor.actorId === this.resourceGovernance.technicalApprovalAuthority.actorId, 'KEVIN_APPROVAL_REQUIRED', 'Configured synthetic Kevin authority is required');
-    requireValue(Array.isArray(evidenceRefs) && evidenceRefs.length > 0, 'APPROVAL_EVIDENCE_REQUIRED', 'Fresh technical disposition requires evidence');
-    return this.execute(commandId, { operation: 'freshTechnicalDisposition', resourceId, expectedVersion, revisionId, evidenceRefs }, () => {
+    requireValue(Array.isArray(evidenceRefs), 'INVALID_APPROVAL_EVIDENCE', 'Optional approval evidence must be a collection');
+    return this.execute(commandId, { operation: 'freshTechnicalDisposition', resourceId, expectedVersion, revisionId, evidenceRefs, notes }, () => {
       const record = this.requireResourceVersion(resourceId, expectedVersion);
-      const revision = this.requireRevision(record, revisionId);
+      const revision = this.effectiveRevision(record, this.requireRevision(record, revisionId));
       requireValue(!this.technicalApprovalFor(record, revisionId, false), 'TECHNICAL_DISPOSITION_ALREADY_RECORDED', 'A revision can retain only one technical disposition');
-      requireValue(revision.changeStatus === 'CHANGED_CONTENT' || revision.changeStatus === 'NEW_DRAFT', 'FRESH_DISPOSITION_NOT_REQUIRED', 'Fresh technical disposition is reserved for new or changed content');
+      const effectiveStatus = this.effectiveChangeStatus(record, revision);
+      requireValue(effectiveStatus === 'CHANGED_CONTENT' || effectiveStatus === 'NEW_DRAFT', 'FRESH_DISPOSITION_NOT_REQUIRED', 'Fresh technical disposition is reserved for new or changed content');
       const event = {
         eventType: 'FRESH_TECHNICAL_DISPOSITION_RECORDED', revisionId,
         recordedAt: this.clock(), recordedBy: actor.actorId, authorityRole: this.resourceGovernance.technicalApprovalAuthority.authorityRole,
-        evidenceRefs: [...evidenceRefs], synthetic: true, productionIdentityVerified: false, customerReleaseAuthorized: false,
+        evidenceRefs: evidenceRefs.length ? [...evidenceRefs] : [`authenticated-technical-action:${commandId}`], notes: notes || null,
+        synthetic: true, productionIdentityVerified: false, customerReleaseAuthorized: false,
       };
       return this.appendResourceEvent(record, actor, event);
     });
@@ -212,13 +366,13 @@ class ResourceAdministrationService {
     requireValue(reason && Array.isArray(evidenceRefs) && evidenceRefs.length > 0, 'INTERNAL_APPROVAL_EVIDENCE_REQUIRED', 'Internal approval requires reason and evidence');
     return this.execute(commandId, { operation: 'approveInternal', resourceId, expectedVersion, revisionId, reason, evidenceRefs }, () => {
       const record = this.requireResourceVersion(resourceId, expectedVersion);
-      const revision = this.requireRevision(record, revisionId);
+      const revision = this.effectiveRevision(record, this.requireRevision(record, revisionId));
       requireValue(!['APPROVED_INTERNAL', 'SUPERSEDED', 'RETIRED'].includes(this.lifecycleFor(record, revisionId)), 'INVALID_INTERNAL_APPROVAL', 'Only an active unapproved revision may enter internal approval');
       const missing = this.missingRequirements(record, revision);
       requireValue(missing.length === 0, 'RESOURCE_REQUIREMENTS_INCOMPLETE', 'Resource cannot enter internal approval while evidence is missing', { missing });
       this.assertNoConflictingActiveAssignment(resourceId, revision);
       const approval = this.technicalApprovalFor(record, revisionId);
-      if (approval.eventType !== 'HISTORICAL_KEVIN_APPROVAL_ASSERTED') {
+      if (!['HISTORICAL_KEVIN_APPROVAL_ASSERTED', 'HISTORICAL_APPROVAL_BOUND'].includes(approval.eventType)) {
         requireValue(technicalActor, 'TECHNICAL_ACTOR_REQUIRED', 'Changed content approval requires the configured technical actor');
         requireAuthorization(this.authorize, technicalActor, 'RESOURCE_TECHNICAL_APPROVE', { resourceId, revisionId });
         requireValue(technicalActor.actorId === this.resourceGovernance.technicalApprovalAuthority.actorId, 'KEVIN_APPROVAL_REQUIRED', 'Configured synthetic Kevin authority is required');
@@ -238,7 +392,7 @@ class ResourceAdministrationService {
         },
       });
       this.resourceGovernance.submitTechnicalReview({ actor, resourceId, revisionId: canonical.revisionId });
-      if (approval.eventType === 'HISTORICAL_KEVIN_APPROVAL_ASSERTED') {
+      if (['HISTORICAL_KEVIN_APPROVAL_ASSERTED', 'HISTORICAL_APPROVAL_BOUND'].includes(approval.eventType)) {
         this.resourceGovernance.recordHistoricalTechnicalApprovalAssertion({
           actor, resourceId, revisionId: canonical.revisionId,
           assertion: {
@@ -285,6 +439,54 @@ class ResourceAdministrationService {
       this.requireRevision(record, revisionId);
       requireValue(!['SUPERSEDED', 'RETIRED'].includes(this.lifecycleFor(record, revisionId)), 'INVALID_RETIREMENT', 'Revision is already historical');
       return this.appendResourceEvent(record, actor, { eventType: 'RESOURCE_REVISION_RETIRED', revisionId, recordedAt: this.clock(), recordedBy: actor.actorId, reason, evidenceRefs: [...evidenceRefs] });
+    });
+  }
+
+  bulkCorrectUnchanged({ actor, commandId, items, reason, confirmed }) {
+    requireAuthorization(this.authorize, actor, 'RESOURCE_ADMIN_CORRECT_CLASSIFICATION', {});
+    requireValue(confirmed === true, 'CLASSIFICATION_CORRECTION_CONFIRMATION_REQUIRED', 'The grouped unchanged-content confirmation is required');
+    requireValue(Array.isArray(items) && items.length > 0, 'CORRECTION_ITEMS_REQUIRED', 'At least one classification is required');
+    requireValue(new Set(items.map((item) => `${item.resourceId}|${item.revisionId}`)).size === items.length, 'DUPLICATE_BULK_RESOURCE', 'A grouped correction cannot repeat the same resource revision');
+    requireValue(typeof reason === 'string' && reason.trim(), 'CORRECTION_REASON_REQUIRED', 'A correction reason is required');
+    return this.execute(commandId, { operation: 'bulkCorrectUnchanged', items, reason }, () => {
+      const prepared = items.map((item) => {
+        const record = this.requireResourceVersion(item.resourceId, item.expectedVersion);
+        const revision = this.effectiveRevision(record, this.requireRevision(record, item.revisionId));
+        requireValue(this.effectiveChangeStatus(record, revision) === 'CHANGED_CONTENT', 'CORRECTION_NOT_REQUIRED', 'Grouped correction is limited to revisions currently classified as changed');
+        const predecessor = revision.supersedesRevisionId ? this.effectiveRevision(record, this.requireRevision(record, revision.supersedesRevisionId)) : null;
+        requireValue(!(this.validImmutableRevisionIdentity(revision.immutableRevisionIdentity) && this.validImmutableRevisionIdentity(predecessor?.immutableRevisionIdentity) && revision.immutableRevisionIdentity !== predecessor.immutableRevisionIdentity), 'DEMONSTRABLE_CONTENT_CHANGE', 'Verified differing content identities cannot be corrected to unchanged');
+        const effectiveClassification = this.validImmutableRevisionIdentity(revision.immutableRevisionIdentity)
+          ? 'UNCHANGED_EXISTING_BOUND' : 'UNCHANGED_EXISTING_UNVERIFIED';
+        return { record, revision, effectiveClassification };
+      });
+      for (const item of prepared) {
+        const invalidatedEvents = item.record.events.filter((event) => event.revisionId === item.revision.revisionId && event.eventType === 'FRESH_TECHNICAL_DISPOSITION_RECORDED');
+        this.appendResourceEvent(item.record, actor, {
+          eventType: 'RESOURCE_CLASSIFICATION_CORRECTED', revisionId: item.revision.revisionId, recordedAt: this.clock(), recordedBy: actor.actorId,
+          originalClassification: item.revision.changeStatus, effectiveClassification: item.effectiveClassification,
+          correctionReason: reason.trim(), invalidatedDispositionReferences: invalidatedEvents.map((event) => event.recordedAt),
+          invalidatedTechnicalEventReferences: invalidatedEvents.map((event) => `${event.eventType}|${event.recordedAt}`), customerReleaseAuthorized: false,
+        });
+        const corrected = this.requireResource(item.record.resourceId);
+        if (item.revision.applicability.length > 0 && item.revision.applicability.every((assignment) => assignment.approvalStatus === APPROVED_APPLICABILITY)
+          && !this.technicalApprovalFor(corrected, item.revision.revisionId, false)) {
+          this.appendResourceEvent(corrected, actor, {
+            eventType: 'HISTORICAL_KEVIN_APPROVAL_ASSERTED', revisionId: item.revision.revisionId, recordedAt: this.clock(), recordedBy: actor.actorId,
+            assertedAuthorityName: 'Kevin', approvalOccurredAt: null, productionIdentityVerified: false,
+            approvalEvidenceReference: HISTORICAL_APPROVAL_EVIDENCE_REFERENCE,
+            authoritativeDecisionReference: HISTORICAL_APPROVAL_EVIDENCE_REFERENCE,
+            authorityLimitations: ['PRODUCTION_IDENTITY_UNVERIFIED', 'CUSTOMER_RELEASE_NOT_AUTHORIZED'],
+            bindingStatus: item.effectiveClassification === 'UNCHANGED_EXISTING_BOUND' ? 'BOUND_EXACT_IDENTITY' : 'PENDING_IMMUTABLE_IDENTITY',
+            immutableRevisionIdentity: item.revision.immutableRevisionIdentity || null,
+            exactApplicability: clone(item.revision.applicability), customerReleaseAuthorized: false,
+          });
+        }
+      }
+      return {
+        corrected: prepared.length,
+        corrections: prepared.map((item) => ({ resourceId: item.record.resourceId, revisionId: item.revision.revisionId, effectiveClassification: item.effectiveClassification })),
+        customerReleaseAuthorized: false,
+      };
     });
   }
 
@@ -363,6 +565,21 @@ class ResourceAdministrationService {
     });
   }
 
+  resetToOriginalCandidates({ actor, commandId, confirmed }) {
+    requireAuthorization(this.authorize, actor, 'RESOURCE_ADMIN_RESET', {});
+    requireValue(confirmed === true, 'REGISTRY_RESET_CONFIRMATION_REQUIRED', 'Reset requires explicit confirmation');
+    return this.execute(commandId, { operation: 'resetToOriginalCandidates' }, () => {
+      const priorCount = this.resources.size;
+      this.validateB05Queue();
+      const prepared = this.b05Queue.candidates.map((candidate) => this.prepareCandidate(candidate));
+      this.resources = new Map(prepared.map((record) => [record.resourceId, deepFreeze(record)]));
+      this.audit = [];
+      this.commandReceipts = new Map();
+      this.appendAudit(actor, 'RESOURCE_REGISTRY_RESET_TO_ORIGINAL_CANDIDATES', { resourceCount: prepared.length, replacedResourceCount: priorCount });
+      return { resourceCount: prepared.length, replacedResourceCount: priorCount, customerReleaseAuthorized: false };
+    });
+  }
+
   assertCustomerPublicationBlocked() {
     this.resourceGovernance.activationGate.assertPermitted('RESOURCE_CUSTOMER_RELEASE');
   }
@@ -388,7 +605,7 @@ class ResourceAdministrationService {
     const resourceId = candidate.sourceIdentity;
     const revision = deepFreeze({
       revisionId: `b05rev_${sha256(`${this.b05Queue.queueId}|${candidate.candidateId}`).slice(0, 32)}`, sequence: 1, title: candidate.sourceFilename, category: candidate.category,
-      language: null, editableSourceIdentity: candidate.sourceIdentity, proposedCustomerDeliveryLink: null,
+      language: null, languageDisposition: null, editableSourceIdentity: candidate.sourceIdentity, proposedCustomerDeliveryLink: null,
       providerType: candidate.sourceReference.startsWith('gid://shopify/GenericFile/') ? 'SHOPIFY_FILE' : 'REPOSITORY_FILE',
       immutableRevisionIdentity: candidate.revisionIdentity, changeStatus: 'UNCHANGED_EXISTING_UNBOUND',
       changeReason: 'B05_CANDIDATE_EVIDENCE_IMPORT', changeEvidenceRefs: [candidate.sourceReference],
@@ -455,6 +672,7 @@ class ResourceAdministrationService {
   buildRevision({ actor, input, revisionId, sequence, supersedesRevisionId }) {
     return deepFreeze({
       revisionId, sequence, title: input.title.trim(), category: input.category, language: input.language || null,
+      languageDisposition: input.languageDisposition ? clone(input.languageDisposition) : null,
       editableSourceIdentity: input.editableSourceIdentity.trim(), proposedCustomerDeliveryLink: input.proposedCustomerDeliveryLink || null,
       providerType: input.providerType || null,
       immutableRevisionIdentity: input.immutableRevisionIdentity || null, changeStatus: input.changeStatus,
@@ -493,13 +711,32 @@ class ResourceAdministrationService {
   }
 
   projectRevision(record, revision) {
+    const effective = this.effectiveRevision(record, revision);
+    const effectiveStatus = this.effectiveChangeStatus(record, effective);
     return {
-      ...clone(revision),
+      ...clone(effective),
+      recordedChangeStatus: revision.changeStatus,
+      changeStatus: effectiveStatus,
+      effectiveChangeStatus: effectiveStatus,
+      classificationCorrection: this.correctionFor(record, revision.revisionId),
       lifecycleStatus: this.lifecycleFor(record, revision.revisionId),
       technicalApproval: this.technicalApprovalFor(record, revision.revisionId, false),
       internalApproval: [...record.events].reverse().find((event) => event.revisionId === revision.revisionId && event.eventType === 'RESOURCE_INTERNAL_APPROVAL_RECORDED') || null,
-      missingRequirements: this.missingRequirements(record, revision),
+      missingRequirements: this.missingRequirements(record, effective),
     };
+  }
+
+  effectiveRevision(record, revision) {
+    const effective = clone(revision);
+    for (const event of record.events) {
+      if (event.revisionId !== revision.revisionId || !['RESOURCE_ADMINISTRATIVE_DETAILS_EDITED', 'RESOURCE_ENRICHMENT_APPLIED'].includes(event.eventType)) continue;
+      Object.assign(effective, clone(event.changes || {}));
+    }
+    return effective;
+  }
+
+  effectiveChangeStatus(record, revision) {
+    return this.correctionFor(record, revision.revisionId)?.effectiveClassification || revision.changeStatus;
   }
 
   lifecycleFor(record, revisionId) {
@@ -507,12 +744,18 @@ class ResourceAdministrationService {
     if (events.some((event) => event.eventType === 'RESOURCE_REVISION_RETIRED')) return 'RETIRED';
     if (events.some((event) => event.eventType === 'RESOURCE_REVISION_SUPERSEDED')) return 'SUPERSEDED';
     if (events.some((event) => event.eventType === 'RESOURCE_INTERNAL_APPROVAL_RECORDED')) return 'APPROVED_INTERNAL';
-    if (events.some((event) => ['HISTORICAL_KEVIN_APPROVAL_ASSERTED', 'FRESH_TECHNICAL_DISPOSITION_RECORDED'].includes(event.eventType))) return 'TECHNICAL_REVIEW_REQUIRED';
+    if (this.technicalApprovalFor(record, revisionId, false)) return 'TECHNICAL_REVIEW_REQUIRED';
     return 'DRAFT';
   }
 
   technicalApprovalFor(record, revisionId, required = true) {
-    const event = [...record.events].reverse().find((candidate) => candidate.revisionId === revisionId && ['HISTORICAL_KEVIN_APPROVAL_ASSERTED', 'FRESH_TECHNICAL_DISPOSITION_RECORDED'].includes(candidate.eventType));
+    const correction = this.correctionFor(record, revisionId);
+    const invalidatedFresh = new Set(correction?.invalidatedDispositionReferences || []);
+    const invalidatedEvents = new Set(correction?.invalidatedTechnicalEventReferences || []);
+    const event = [...record.events].reverse().find((candidate) => candidate.revisionId === revisionId
+      && ['HISTORICAL_APPROVAL_BOUND', 'HISTORICAL_KEVIN_APPROVAL_ASSERTED', 'FRESH_TECHNICAL_DISPOSITION_RECORDED'].includes(candidate.eventType)
+      && !invalidatedEvents.has(`${candidate.eventType}|${candidate.recordedAt}`)
+      && !(candidate.eventType === 'FRESH_TECHNICAL_DISPOSITION_RECORDED' && invalidatedFresh.has(candidate.recordedAt)));
     if (required) requireValue(event, 'TECHNICAL_APPROVAL_EVIDENCE_REQUIRED', 'Technical approval evidence is required');
     return event || null;
   }
@@ -520,7 +763,7 @@ class ResourceAdministrationService {
   missingRequirements(record, revision) {
     const missing = [];
     if (!this.validImmutableRevisionIdentity(revision.immutableRevisionIdentity)) missing.push('IMMUTABLE_REVISION_IDENTITY_REQUIRED');
-    if (!revision.proposedCustomerDeliveryLink) missing.push('PROPOSED_DELIVERY_LINK_REQUIRED');
+    if (!revision.proposedCustomerDeliveryLink) missing.push('DELIVERY_PREPARATION_PENDING');
     if (!revision.providerType) missing.push('PROVIDER_TYPE_REQUIRED');
     if (!revision.language) missing.push('LANGUAGE_DISPOSITION_REQUIRED');
     if (!revision.applicability.length) missing.push('RESOURCE_APPLICABILITY_REQUIRED');
@@ -528,8 +771,25 @@ class ResourceAdministrationService {
     if (!['APPROVED_WITH_EVIDENCE', 'NOT_REQUIRED_WITH_EVIDENCE'].includes(revision.rightsDisposition.status)) missing.push('RIGHTS_DISPOSITION_REQUIRED');
     if (!['ACCESSIBLE_WITH_EVIDENCE', 'NOT_REQUIRED_WITH_EVIDENCE'].includes(revision.accessibilityDisposition.status)) missing.push('ACCESSIBILITY_DISPOSITION_REQUIRED');
     if (revision.availabilityDisposition.status !== 'SYNTHETIC_AVAILABLE') missing.push('SYNTHETIC_AVAILABILITY_EVIDENCE_REQUIRED');
-    if (!this.technicalApprovalFor(record, revision.revisionId, false)) missing.push('TECHNICAL_APPROVAL_EVIDENCE_REQUIRED');
+    const technical = this.technicalApprovalFor(record, revision.revisionId, false);
+    if (!technical) missing.push('TECHNICAL_APPROVAL_EVIDENCE_REQUIRED');
+    else if (technical.bindingStatus === 'PENDING_IMMUTABLE_IDENTITY') missing.push('HISTORICAL_APPROVAL_BINDING_PENDING');
     return missing;
+  }
+
+  autoBindPendingHistoricalApproval(actor, resourceId, revisionId) {
+    const record = this.requireResource(resourceId);
+    const revision = this.effectiveRevision(record, this.requireRevision(record, revisionId));
+    if (!this.validImmutableRevisionIdentity(revision.immutableRevisionIdentity)) return null;
+    const pending = [...record.events].reverse().find((event) => event.revisionId === revisionId && event.eventType === 'HISTORICAL_KEVIN_APPROVAL_ASSERTED' && event.bindingStatus === 'PENDING_IMMUTABLE_IDENTITY');
+    const alreadyBound = record.events.some((event) => event.revisionId === revisionId && event.eventType === 'HISTORICAL_APPROVAL_BOUND');
+    if (!pending || alreadyBound) return null;
+    return this.appendResourceEvent(record, actor, {
+      eventType: 'HISTORICAL_APPROVAL_BOUND', revisionId, recordedAt: this.clock(), recordedBy: actor.actorId,
+      approvalEvidenceReference: pending.approvalEvidenceReference, authoritativeDecisionReference: pending.authoritativeDecisionReference,
+      bindingStatus: 'BOUND_EXACT_IDENTITY', immutableRevisionIdentity: revision.immutableRevisionIdentity,
+      exactApplicability: clone(revision.applicability), productionIdentityVerified: false, customerReleaseAuthorized: false,
+    });
   }
 
   validImmutableRevisionIdentity(value) {

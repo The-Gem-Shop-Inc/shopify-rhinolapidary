@@ -9,67 +9,65 @@
 <body>
   <a class="skip-link" href="#workspace">Skip to resource workspace</a>
   <header class="masthead">
-    <div>
-      <p class="eyebrow">Rhino Lapidary · Epic L B07</p>
-      <h1>Resource administration</h1>
-      <p>Isolated synthetic workspace for document and video evidence. Nothing here publishes to customers.</p>
-    </div>
+    <div><p class="eyebrow">Rhino Lapidary · Epic L B07C</p><h1>Resource administration</h1><p>Manage documents and videos in a private, isolated workspace. Nothing here publishes to customers.</p></div>
     <span class="boundary" role="status">Synthetic only · publication blocked</span>
   </header>
-
   <main id="workspace" tabindex="-1">
     <section class="panel filters" aria-labelledby="inventory-heading">
       <div class="section-heading">
         <div><p class="eyebrow">Inventory</p><h2 id="inventory-heading">Resources</h2></div>
-        <div class="actions"><button id="new-resource" type="button">New draft</button><button id="export-registry" class="secondary" type="button">Export backup</button><label class="file-action">Import backup<input id="import-registry" type="file" accept="application/json"></label></div>
+        <div class="actions"><button id="new-resource" type="button">New draft</button><button id="preview-enrichment" class="secondary" type="button">Review automatic updates</button><button id="export-registry" class="secondary" type="button">Export backup</button><label class="file-action">Import backup<input id="import-registry" type="file" accept="application/json"></label><button id="reset-registry" class="danger-secondary" type="button">Reset workspace</button></div>
       </div>
+      <div id="correction-review" class="callout" hidden></div>
       <form id="filter-form" class="filter-grid" role="search">
-        <label>Search<input name="search" type="search" autocomplete="off" placeholder="Title, GID, version…"></label>
+        <label>Search<input name="search" type="search" autocomplete="off" placeholder="Title, machine, or identifier"></label>
         <label>Category<select name="category"><option value="">All categories</option></select></label>
-        <label>Product<select name="productGid"><option value="">All products</option></select></label>
-        <label>Variant<select name="variantGid"><option value="">All variants</option></select></label>
+        <label>Machine<select name="productGid"><option value="">All machines</option></select></label>
+        <label>Model option<select name="variantGid"><option value="">All model options</option></select></label>
         <label>Machine version<input name="machineVersion" autocomplete="off"></label>
-        <label>Lifecycle<select name="lifecycleStatus"><option value="">All states</option><option>DRAFT</option><option>TECHNICAL_REVIEW_REQUIRED</option><option>APPROVED_INTERNAL</option><option>SUPERSEDED</option><option>RETIRED</option></select></label>
-        <label>Revision<select name="changeStatus"><option value="">Changed or unchanged</option><option>UNCHANGED_EXISTING_UNBOUND</option><option>UNCHANGED_EXISTING_BOUND</option><option>CHANGED_CONTENT</option><option>NEW_DRAFT</option></select></label>
-        <label>Evidence<select name="missingEvidence"><option value="">Any evidence state</option><option value="true">Missing evidence</option><option value="false">Complete internal evidence</option></select></label>
+        <label>Workflow state<select name="lifecycleStatus"><option value="">All states</option><option value="DRAFT">Draft</option><option value="TECHNICAL_REVIEW_REQUIRED">Technical decision recorded</option><option value="APPROVED_INTERNAL">Approved for internal use</option><option value="SUPERSEDED">Replaced</option><option value="RETIRED">Retired</option></select></label>
+        <label>Content status<select name="changeStatus"><option value="">Any content status</option><option value="UNCHANGED_EXISTING_UNBOUND">Existing; identity pending</option><option value="UNCHANGED_EXISTING_UNVERIFIED">Existing; unchanged not yet verified</option><option value="UNCHANGED_EXISTING_BOUND">Existing; identity established</option><option value="CHANGED_CONTENT">Content changed</option><option value="NEW_DRAFT">New draft</option></select></label>
+        <label>Needs attention<select name="missingEvidence"><option value="">All resources</option><option value="true">Needs attention</option><option value="false">Evidence complete</option></select></label>
       </form>
       <p id="inventory-count" class="summary" aria-live="polite"></p>
       <div id="resource-list" class="resource-list"></div>
     </section>
-
     <section id="detail-panel" class="panel detail" aria-labelledby="detail-heading">
-      <div id="detail-empty" class="empty-state"><h2 id="detail-heading">Select a resource</h2><p>Choose an inventory row to review exact applicability, missing evidence, and immutable history.</p></div>
+      <div id="detail-empty" class="empty-state"><h2 id="detail-heading">Select a resource</h2><p>Choose a resource to edit details, replace content, or review history.</p></div>
       <div id="detail-content" hidden></div>
     </section>
   </main>
-
   <dialog id="resource-dialog" aria-labelledby="dialog-heading">
     <form id="resource-form">
-      <div class="dialog-heading"><div><p class="eyebrow">Governed write</p><h2 id="dialog-heading">Create draft</h2></div><button class="icon-button" type="button" data-close aria-label="Close dialog">×</button></div>
-      <input name="resourceId" type="hidden"><input name="baseRevisionId" type="hidden"><input name="expectedVersion" type="hidden">
+      <div class="dialog-heading"><div><p id="dialog-eyebrow" class="eyebrow">Administrative details</p><h2 id="dialog-heading">Create draft</h2></div><button class="icon-button" type="button" data-close aria-label="Close dialog">×</button></div>
+      <p id="dialog-help">Language defaults to English (US). Known source, delivery, content identity, and availability evidence are filled automatically when available.</p>
+      <input name="operation" type="hidden"><input name="resourceId" type="hidden"><input name="baseRevisionId" type="hidden"><input name="expectedVersion" type="hidden">
       <div class="form-grid">
         <label for="resource-title">Title<input id="resource-title" name="title" required></label>
         <label for="resource-category">Category<select id="resource-category" name="category" required></select></label>
-        <label for="resource-language">Language<input id="resource-language" name="language" placeholder="en-US"></label>
-        <label for="resource-change-status">Change status<select id="resource-change-status" name="changeStatus" required><option>NEW_DRAFT</option><option>UNCHANGED_EXISTING_BOUND</option><option>CHANGED_CONTENT</option></select></label>
-        <label class="wide" for="editable-source">Editable source identity<input id="editable-source" name="editableSourceIdentity" required aria-describedby="source-help"><small id="source-help">Where staff edit the resource. This is separate from delivery.</small></label>
-        <label class="wide" for="proposed-delivery">Proposed customer delivery link<input id="proposed-delivery" name="proposedCustomerDeliveryLink" type="url"></label>
-        <label class="wide">Immutable revision identity<input name="immutableRevisionIdentity" placeholder="sha256:… or provider-revision:provider:id"></label>
-        <label>Provider type<select name="providerType"><option value="">Unresolved draft</option><option>REPOSITORY_FILE</option><option>SHOPIFY_FILE</option><option>GOOGLE_DOC</option><option>YOUTUBE</option><option>OTHER_PROVIDER</option></select></label>
-        <fieldset class="wide applicability-editor"><legend>Exact machine applicability</legend><p class="hint">Product and Variant GIDs come from the accepted snapshot. Machine version remains explicit.</p><div id="applicability-list"></div><button id="add-applicability" class="secondary" type="button">Add machine assignment</button></fieldset>
-        <label>Rights<select name="rightsStatus"><option>UNRESOLVED</option><option>APPROVED_WITH_EVIDENCE</option><option>NOT_REQUIRED_WITH_EVIDENCE</option><option>REJECTED</option></select></label>
-        <label>Accessibility<select name="accessibilityStatus"><option>UNRESOLVED</option><option>ACCESSIBLE_WITH_EVIDENCE</option><option>NOT_REQUIRED_WITH_EVIDENCE</option><option>REMEDIATION_REQUIRED</option></select></label>
-        <label>Availability<select name="availabilityStatus"><option>UNRESOLVED</option><option>SYNTHETIC_AVAILABLE</option><option>STALE</option><option>FAILED</option></select></label>
-        <label class="wide">Evidence references <span class="hint">one per line</span><textarea name="evidenceRefs" rows="3"></textarea></label>
-        <label class="wide">Change reason<input name="changeReason" required value="B07_ADMINISTRATIVE_DRAFT"></label>
+        <label for="resource-language">Language<input id="resource-language" name="language" value="en-US" placeholder="en-US or und"></label>
+        <fieldset class="wide applicability-editor"><legend>Machines</legend><p class="hint">Choose readable machine names; exact catalog identifiers are stored automatically. Existing observed assignments are suggestions until explicitly accepted.</p><div id="applicability-list"></div><button id="add-applicability" class="secondary" type="button">Add another machine</button></fieldset>
+        <details class="wide advanced"><summary>Advanced details</summary><div class="form-grid advanced-grid">
+          <label class="wide" for="editable-source">Source<input id="editable-source" name="editableSourceIdentity" required aria-describedby="source-help"><small id="source-help">Where the resource is edited or stored. Known inventory values are reused.</small></label>
+          <label class="wide" for="proposed-delivery">Customer delivery URL <span class="optional">optional</span><input id="proposed-delivery" name="proposedCustomerDeliveryLink" type="url"><small>Leave blank when delivery preparation is pending. No upload occurs.</small></label>
+          <label>Provider<select name="providerType"><option value="">Determine automatically</option><option value="REPOSITORY_FILE">Repository file</option><option value="SHOPIFY_FILE">Shopify File</option><option value="GOOGLE_DOC">Google document</option><option value="YOUTUBE">YouTube</option><option value="OTHER_PROVIDER">Other provider</option></select></label>
+          <label>Distribution rights<select name="rightsStatus"><option value="UNRESOLVED">Needs a decision</option><option value="APPROVED_WITH_EVIDENCE">Permission confirmed</option><option value="NOT_REQUIRED_WITH_EVIDENCE">Permission not required</option><option value="REJECTED">Do not distribute</option></select></label>
+          <label>Accessibility<select name="accessibilityStatus"><option value="UNRESOLVED">Automated review pending</option><option value="ACCESSIBLE_WITH_EVIDENCE">Meets requirements</option><option value="NOT_REQUIRED_WITH_EVIDENCE">Not applicable</option><option value="REMEDIATION_REQUIRED">Needs remediation</option></select></label>
+          <label class="wide">Optional notes or evidence <textarea name="evidenceRefs" rows="2"></textarea></label>
+        </div></details>
       </div>
-      <div id="form-error" class="error" role="alert" hidden></div>
-      <div class="dialog-actions"><button class="secondary" type="button" data-close>Cancel</button><button type="submit">Save governed revision</button></div>
+      <div id="form-error" class="error" role="alert" tabindex="-1" hidden></div>
+      <div class="dialog-actions"><button class="secondary" type="button" data-close>Cancel</button><button id="save-resource" type="submit">Save details</button></div>
     </form>
   </dialog>
-
+  <dialog id="enrichment-dialog" aria-labelledby="enrichment-heading">
+    <div class="dialog-heading"><div><p class="eyebrow">Automatic enrichment</p><h2 id="enrichment-heading">Review suggested updates</h2></div><button class="icon-button" type="button" data-enrichment-close aria-label="Close enrichment review">×</button></div>
+    <p>These values come from repository evidence. Applying them does not change resource content, approve applicability, or publish anything.</p>
+    <div id="enrichment-preview" tabindex="-1"></div>
+    <div class="dialog-actions"><button class="secondary" type="button" data-enrichment-close>Cancel</button><button id="apply-enrichment" type="button">Apply automatic updates</button></div>
+  </dialog>
   <dialog id="confirmation-dialog" aria-labelledby="confirmation-heading">
-    <form method="dialog"><h2 id="confirmation-heading">Confirm transition</h2><p id="confirmation-copy"></p><div class="dialog-actions"><button value="cancel" class="secondary">Cancel</button><button value="confirm">Confirm</button></div></form>
+    <form method="dialog"><h2 id="confirmation-heading">Confirm action</h2><p id="confirmation-copy"></p><div class="dialog-actions"><button value="cancel" class="secondary">Cancel</button><button value="confirm">Confirm</button></div></form>
   </dialog>
   <div id="notice" class="notice" role="status" aria-live="polite"></div>
   <script src="/app.js"></script>

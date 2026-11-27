@@ -9,11 +9,16 @@ const {
 const { READINESS_BLOCKERS } = require('./foundation');
 const { ResourceRevisionGovernance } = require('./resource-governance');
 const { ResourceAdministrationService } = require('./resource-administration');
+const { ResourceEnrichmentService } = require('./resource-enrichment');
 
 const PRODUCT_OWNER_PERMISSIONS = Object.freeze([
   'RESOURCE_ADMIN_IMPORT_B05',
   'RESOURCE_ADMIN_CREATE_DRAFT',
   'RESOURCE_ADMIN_CREATE_REVISION',
+  'RESOURCE_ADMIN_EDIT_DETAILS',
+  'RESOURCE_ADMIN_CORRECT_CLASSIFICATION',
+  'RESOURCE_ADMIN_APPLY_ENRICHMENT',
+  'RESOURCE_ADMIN_RESET',
   'RESOURCE_HISTORICAL_APPROVAL_ASSERT',
   'RESOURCE_ADMIN_APPROVE_INTERNAL',
   'RESOURCE_ADMIN_SUPERSEDE',
@@ -81,6 +86,7 @@ function createB07ResourceAdminSystem({
     authorize,
     clock,
     isolatedSyntheticMode: true,
+    enrichment: new ResourceEnrichmentService({ rootDir }),
     ...(factories.administration || {}),
   });
   if (importB05) administration.importB05Candidates({

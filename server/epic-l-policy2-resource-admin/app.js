@@ -6,6 +6,7 @@ const path = require('node:path');
 const { URL } = require('node:url');
 const { Policy2DomainError } = require('../../scripts/lib/epic-l-policy2/common');
 const { createB07ResourceAdminSystem } = require('../../scripts/lib/epic-l-policy2/resource-admin-fixture');
+const { AtomicRegistryStore, defaultRegistryFile } = require('./local-persistence');
 
 const SESSION_HEADER = 'x-rhino-synthetic-session';
 const SESSION_VALUE = 'B07_LOCAL_ISOLATED';
@@ -54,6 +55,7 @@ function routeRequest(system, method, pathname, query, body) {
     resources: admin.search(Object.fromEntries(query)),
     catalog: admin.catalogOptions(),
     activation: system.activation,
+    correctionCandidates: admin.search({ changeStatus: 'CHANGED_CONTENT' }).filter((item) => ['B05-RC-006', 'B05-RC-007'].includes(admin.detail(item.resourceId).origin.candidateId)),
   };
   if (method === 'GET' && pathname === '/api/resources') return admin.search(Object.fromEntries(query));
   const detail = pathname.match(/^\/api\/resources\/([^/]+)$/);
@@ -63,10 +65,20 @@ function routeRequest(system, method, pathname, query, body) {
   if (method === 'POST' && pathname === '/api/resources') return admin.createDraft({ ...body, actor: productOwner });
   const revision = pathname.match(/^\/api\/resources\/([^/]+)\/revisions$/);
   if (method === 'POST' && revision) return admin.startRevision({ ...body, actor: productOwner, resourceId: decodeURIComponent(revision[1]) });
+  const editDetails = pathname.match(/^\/api\/resources\/([^/]+)\/administrative-details$/);
+  if (method === 'POST' && editDetails) return admin.editAdministrativeDetails({ ...body, actor: productOwner, resourceId: decodeURIComponent(editDetails[1]) });
+  const contentUpdate = pathname.match(/^\/api\/resources\/([^/]+)\/content-update$/);
+  if (method === 'POST' && contentUpdate) return admin.updateContent({ ...body, actor: productOwner, resourceId: decodeURIComponent(contentUpdate[1]) });
+  const correction = pathname.match(/^\/api\/resources\/([^/]+)\/classification-correction$/);
+  if (method === 'POST' && correction) return admin.correctClassification({ ...body, actor: productOwner, resourceId: decodeURIComponent(correction[1]) });
   const historical = pathname.match(/^\/api\/resources\/([^/]+)\/historical-approval$/);
   if (method === 'POST' && historical) return admin.recordHistoricalApprovalAssertion({ ...body, actor: productOwner, resourceId: decodeURIComponent(historical[1]) });
   const technicalDisposition = pathname.match(/^\/api\/resources\/([^/]+)\/technical-disposition$/);
   if (method === 'POST' && technicalDisposition) return admin.recordFreshTechnicalDisposition({ ...body, actor: technical, resourceId: decodeURIComponent(technicalDisposition[1]) });
+  if (method === 'POST' && pathname === '/api/bulk/historical-approval') return admin.bulkConfirmHistoricalApproval({ ...body, actor: productOwner });
+  if (method === 'POST' && pathname === '/api/bulk/correct-unchanged') return admin.bulkCorrectUnchanged({ ...body, actor: productOwner });
+  if (method === 'GET' && pathname === '/api/enrichment-preview') return admin.previewEnrichment(query.get('resourceId') || null);
+  if (method === 'POST' && pathname === '/api/enrichment-apply') return admin.applyEnrichment({ ...body, actor: productOwner });
   const approve = pathname.match(/^\/api\/resources\/([^/]+)\/approve-internal$/);
   if (method === 'POST' && approve) return admin.approveInternal({ ...body, actor: productOwner, technicalActor: technical, resourceId: decodeURIComponent(approve[1]) });
   const supersede = pathname.match(/^\/api\/resources\/([^/]+)\/supersede$/);
@@ -75,12 +87,13 @@ function routeRequest(system, method, pathname, query, body) {
   if (method === 'POST' && retire) return admin.retire({ ...body, actor: productOwner, resourceId: decodeURIComponent(retire[1]) });
   if (method === 'GET' && pathname === '/api/export') return admin.exportRegistry({ actor: productOwner });
   if (method === 'POST' && pathname === '/api/import') return admin.importRegistry({ ...body, actor: productOwner });
+  if (method === 'POST' && pathname === '/api/reset') return admin.resetToOriginalCandidates({ ...body, actor: productOwner });
   if (method === 'POST' && pathname === '/api/publication') return admin.assertCustomerPublicationBlocked();
   if (method === 'POST' && pathname === '/api/storefront-mutation') return admin.attemptStorefrontMutation();
   throw Object.assign(new Error('Route not found'), { code: 'ROUTE_NOT_FOUND', status: 404 });
 }
 
-function createResourceAdminServer({ rootDir = path.resolve(__dirname, '../..'), system } = {}) {
+function createResourceAdminServer({ rootDir = path.resolve(__dirname, '../..'), system, registryStore = null } = {}) {
   const localSystem = system || createB07ResourceAdminSystem({ rootDir });
   return http.createServer(async (request, response) => {
     const url = new URL(request.url, 'http://127.0.0.1');
@@ -112,6 +125,10 @@ function createResourceAdminServer({ rootDir = path.resolve(__dirname, '../..'),
       }
       const body = ['POST', 'PUT', 'PATCH'].includes(request.method) ? await readJson(request) : {};
       const value = routeRequest(localSystem, request.method, url.pathname, url.searchParams, body);
+      if (registryStore && ['POST', 'PUT', 'PATCH', 'DELETE'].includes(request.method)) {
+        const archive = localSystem.administration.exportRegistry({ actor: localSystem.actors.productOwner });
+        registryStore.save(archive, (candidate) => localSystem.administration.validateArchive(candidate));
+      }
       return sendJson(response, 200, { data: value });
     } catch (error) {
       const status = error.status || (error.code === 'ROUTE_NOT_FOUND' ? 404 : error.name === 'AuthorizationError' || error.name === 'ActivationError' ? 403 : error.name === 'ConflictError' ? 409 : 400);
@@ -120,4 +137,25 @@ function createResourceAdminServer({ rootDir = path.resolve(__dirname, '../..'),
   });
 }
 
-module.exports = { MAX_REQUEST_BYTES, SESSION_HEADER, SESSION_VALUE, createResourceAdminServer, routeRequest };
+function createPersistentResourceAdminWorkspace({ rootDir = path.resolve(__dirname, '../..'), filePath = defaultRegistryFile() } = {}) {
+  const store = new AtomicRegistryStore({ rootDir, filePath });
+  const system = createB07ResourceAdminSystem({ rootDir, importB05: false });
+  const restored = store.loadValidated((archive) => system.administration.validateArchive(archive));
+  if (restored) {
+    system.administration.importRegistry({
+      actor: system.actors.productOwner,
+      commandId: 'B07C_LOCAL_RESTORE',
+      archive: restored.archive,
+      replaceExisting: false,
+    });
+    if (restored.restoredFromBackup) {
+      store.save(system.administration.exportRegistry({ actor: system.actors.productOwner }), (archive) => system.administration.validateArchive(archive));
+    }
+  } else {
+    system.administration.importB05Candidates({ actor: system.actors.productOwner, commandId: 'B07C_INITIAL_B05_IMPORT' });
+    store.save(system.administration.exportRegistry({ actor: system.actors.productOwner }), (archive) => system.administration.validateArchive(archive));
+  }
+  return { system, store, restoredFromBackup: restored?.restoredFromBackup === true };
+}
+
+module.exports = { MAX_REQUEST_BYTES, SESSION_HEADER, SESSION_VALUE, createPersistentResourceAdminWorkspace, createResourceAdminServer, routeRequest };

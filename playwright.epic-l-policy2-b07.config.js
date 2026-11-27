@@ -1,6 +1,10 @@
 'use strict';
 
 const { defineConfig } = require('@playwright/test');
+const os = require('node:os');
+const path = require('node:path');
+
+const dataFile = path.join(os.tmpdir(), `rhino-b07-playwright-${process.pid}.json`);
 
 module.exports = defineConfig({
   testDir: './tests',
@@ -16,7 +20,7 @@ module.exports = defineConfig({
     trace: 'retain-on-failure',
   },
   webServer: {
-    command: 'node server/epic-l-policy2-resource-admin/server.js --synthetic --port 4177',
+    command: `node server/epic-l-policy2-resource-admin/server.js --synthetic --port 4177 --data-file "${dataFile}"`,
     url: 'http://127.0.0.1:4177',
     reuseExistingServer: false,
     timeout: 20_000,

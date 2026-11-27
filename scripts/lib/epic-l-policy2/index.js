@@ -6,6 +6,7 @@ module.exports = {
   ...require('./notifications'),
   ...require('./resource-governance'),
   ...require('./resource-administration'),
+  ...require('./resource-enrichment'),
   ...require('./resource-admin-fixture'),
   ...require('./support-safety'),
   ...require('./registration'),
