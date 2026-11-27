@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-r3-engineering-progress.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "receiptId", "recordedAt", "historicalBacklog", "historicalBacklogModified", "workItems", "pbiStatus", "m1OperationallyReady"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "receiptId": { "const": "EPIC-L-POLICY2-R3-ENGINEERING-PROGRESS-2026-11-27" },
+    "recordedAt": { "const": "2026-11-27" },
+    "historicalBacklog": { "const": "data/epic-l-policy2-next-engineering-backlog-r3.json" },
+    "historicalBacklogModified": { "const": false },
+    "workItems": { "type": "array", "minItems": 1, "maxItems": 1, "items": { "type": "object", "required": ["itemId", "engineeringStatus", "operationalStatus", "batchId", "relatedPbis", "resourcePublicationComplete", "humanResourceApprovalComplete", "customerReleaseAuthorized", "evidence"], "properties": { "itemId": { "const": "R3-005" }, "engineeringStatus": { "const": "IMPLEMENTED_PRIVATE_SYNTHETIC_ONLY" }, "operationalStatus": { "const": "BLOCKED" }, "batchId": { "const": "EPIC-L-POLICY2-B07" }, "relatedPbis": { "const": ["L-PBI-007", "L-PBI-009", "L-PBI-014"] }, "resourcePublicationComplete": { "const": false }, "humanResourceApprovalComplete": { "const": false }, "customerReleaseAuthorized": { "const": false }, "evidence": { "type": "array", "minItems": 3, "items": { "type": "string" } } }, "additionalProperties": false } },
+    "pbiStatus": { "type": "object", "required": ["L-PBI-014", "L-PBI-009", "L-PBI-007"], "additionalProperties": { "type": "string" } },
+    "m1OperationallyReady": { "const": false }
+  }
+}

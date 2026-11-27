@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0.0",
+  "contractId": "EPIC-L-POLICY2-RESOURCE-ADMINISTRATION",
+  "batchId": "EPIC-L-POLICY2-B07",
+  "workItemId": "R3-005",
+  "status": "ENGINEERING_IMPLEMENTED_PRIVATE_SYNTHETIC_ONLY",
+  "mode": "ISOLATED_SYNTHETIC_RESOURCE_ADMINISTRATION",
+  "customerFacingAuthority": false,
+  "productionIdentityBound": false,
+  "canonicalGovernanceService": "ResourceRevisionGovernance",
+  "administrationService": "ResourceAdministrationService",
+  "catalogSource": "data/epic-l-policy2-shopify-product-snapshot-2026-11-23.json",
+  "b05QueueSource": "data/epic-l-policy2-resource-approval-queue.json",
+  "b05QueueSha256": "C5A3196BCF2BAB4FA09F0C702A5A0148DD173D263D32F47FA9D52157DF6CED2A",
+  "inventory": {
+    "candidateCount": 9,
+    "highPriorityManuals": 3,
+    "mediumPriorityDiagrams": 6,
+    "approvedCustomerReleases": 0,
+    "importDeterministic": true,
+    "importIdempotent": true,
+    "observedApplicabilityRemainsUnapproved": true
+  },
+  "revisionRules": {
+    "stableLogicalResourceIdentity": true,
+    "immutableRevisionIdentityRequiredForInternalApproval": true,
+    "mutableUrlAloneAcceptedAsRevisionIdentity": false,
+    "contentChangeCreatesNewRevision": true,
+    "technicalApprovalInheritedAfterChange": false,
+    "historicalOverwriteAllowed": false,
+    "historicalDeletionAllowed": false,
+    "supersessionAndRetirementRetainEvidence": true
+  },
+  "applicabilityRules": {
+    "exactProductGidRequired": true,
+    "exactVariantGidRequired": true,
+    "variantProductRelationshipValidated": true,
+    "machineVersionRequired": true,
+    "multipleAssignmentsSupported": true,
+    "draftProductMayBecomeApprovedApplicability": false,
+    "duplicateActiveAssignmentAllowed": false,
+    "observedAndApprovedApplicabilityDistinct": true
+  },
+  "historicalApproval": {
+    "assertionSource": "repository-evidence:data/epic-l-policy2-decision-receipt-r3.json#OPEN-09",
+    "assertedAuthorityName": "Kevin",
+    "approvalTimestampFabricated": false,
+    "productionIdentityVerified": false,
+    "exactRevisionAndApplicabilityRequired": true,
+    "changedContentRequiresFreshDisposition": true,
+    "customerReleaseAuthorized": false
+  },
+  "evidence": {
+    "rightsIndependent": true,
+    "accessibilityIndependent": true,
+    "languageIndependent": true,
+    "availabilityIndependent": true,
+    "availabilityMode": "DETERMINISTIC_SYNTHETIC_ONLY",
+    "productionAvailabilityVerified": false,
+    "futureProviderVerificationRequired": true
+  },
+  "persistence": {
+    "runtimeModel": "IN_MEMORY_DEMONSTRATION_STORE",
+    "businessBackup": "VALIDATED_DIGESTED_EXPORT_IMPORT",
+    "productionDurabilityClaimed": false,
+    "privacyRetentionReadinessClaimed": false,
+    "optimisticConcurrency": true,
+    "idempotentCommands": true,
+    "appendOnlyAudit": true
+  },
+  "interface": {
+    "framework": "NODE_HTTP_AND_ACCESSIBLE_NATIVE_HTML",
+    "defaultAddress": "http://127.0.0.1:4177",
+    "loopbackOnly": true,
+    "explicitSyntheticFlagRequired": true,
+    "hostValidation": true,
+    "originValidationForWrites": true,
+    "syntheticSessionRequired": true,
+    "requestBodyLimitBytes": 1000000
+  },
+  "activationBoundary": {
+    "customerPublication": false,
+    "storefrontMutation": false,
+    "shopifyMutation": false,
+    "liveProviderRequest": false,
+    "customerDecision": false,
+    "customerNotification": false,
+    "syntheticModeMayActivateProduction": false
+  }
+}

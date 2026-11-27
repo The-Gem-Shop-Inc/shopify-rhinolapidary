@@ -44,11 +44,12 @@ class ResourceRevisionGovernance {
     this.resourceIdFactory = resourceIdFactory;
     this.revisionIdFactory = revisionIdFactory;
     this.auditIdFactory = auditIdFactory;
+    this.testMode = testMode;
     this.resources = new Map();
     this.audit = [];
   }
 
-  createRevision({ actor, resourceId, category, sourceIdentity, applicability, customerCopyApproval = false }) {
+  createRevision({ actor, resourceId, category, sourceIdentity, applicability, customerCopyApproval = false, administrativeMetadata = null }) {
     requireAuthorization(this.authorize, actor, 'RESOURCE_REVISION_CREATE', { resourceId, category });
     requireValue(RESOURCE_CATEGORIES.includes(category), 'UNSUPPORTED_RESOURCE_CATEGORY', 'Unsupported resource category', { category });
     requireValue(typeof sourceIdentity === 'string' && sourceIdentity.length > 0, 'EDITING_SOURCE_IDENTITY_REQUIRED', 'Editing source identity is required');
@@ -65,6 +66,7 @@ class ResourceRevisionGovernance {
       releaseStatus: 'DRAFT',
       technicalApproval: null,
       customerCopyApproval,
+      administrativeMetadata: administrativeMetadata ? clone(administrativeMetadata) : null,
       supersedesRevisionId: null,
       supersededByRevisionId: null,
     });
@@ -96,6 +98,35 @@ class ResourceRevisionGovernance {
           approvedAt: this.clock(),
           evidenceRefs: [...approvalEvidence],
           synthetic: this.technicalApprovalAuthority.synthetic === true,
+        },
+      };
+    });
+  }
+
+  recordHistoricalTechnicalApprovalAssertion({ actor, resourceId, revisionId, assertion }) {
+    requireAuthorization(this.authorize, actor, 'RESOURCE_HISTORICAL_APPROVAL_ASSERT', { resourceId, revisionId });
+    requireValue(this.testMode === true, 'HISTORICAL_ASSERTION_REQUIRES_ISOLATED_MODE', 'Historical approval assertions are accepted only in explicit isolated mode');
+    requireValue(assertion?.authorityName === 'Kevin', 'KEVIN_ASSERTION_REQUIRED', 'Historical approval assertion must identify Kevin as the asserted authority');
+    requireValue(typeof assertion.approvalEvidenceReference === 'string' && assertion.approvalEvidenceReference.length > 0, 'APPROVAL_EVIDENCE_REQUIRED', 'Historical approval assertion requires an evidence reference');
+    requireValue(assertion.immutableRevisionIdentity && assertion.exactApplicability === true, 'EXACT_APPROVAL_BINDING_REQUIRED', 'Historical approval assertion requires exact immutable revision and applicability binding');
+    return this.changeRevision(actor, resourceId, revisionId, 'RESOURCE_HISTORICAL_APPROVAL_ASSERTION_RECORDED', (revision) => {
+      requireValue(revision.releaseStatus === 'TECHNICAL_REVIEW', 'RESOURCE_NOT_IN_TECHNICAL_REVIEW', 'Resource must be in technical review before recording historical approval');
+      requireValue(revision.administrativeMetadata?.immutableRevisionIdentity === assertion.immutableRevisionIdentity, 'EXACT_APPROVAL_BINDING_REQUIRED', 'Historical approval identity must match the governed revision metadata');
+      return {
+        ...revision,
+        releaseStatus: 'APPROVED_INTERNAL',
+        technicalApproval: {
+          kind: 'PRODUCT_OWNER_HISTORICAL_ASSERTION',
+          assertedAuthorityName: 'Kevin',
+          assertedBy: actor.actorId,
+          recordedAt: this.clock(),
+          approvedAt: null,
+          approvalEvidenceReference: assertion.approvalEvidenceReference,
+          immutableRevisionIdentity: assertion.immutableRevisionIdentity,
+          exactApplicability: true,
+          productionIdentityVerified: false,
+          customerReleaseAuthorized: false,
+          authorityLimitations: [...(assertion.authorityLimitations || [])],
         },
       };
     });

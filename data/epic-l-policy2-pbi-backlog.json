@@ -69,6 +69,21 @@
       "realCustomerDataAllowed": false,
       "operationalDecisionIssuanceAllowed": false,
       "customerNotificationAllowed": false
+    },
+    {
+      "authorizationId": "EPIC-L-POLICY2-B07-AUTHORIZATION-2026-11-27",
+      "batchId": "EPIC-L-POLICY2-B07",
+      "authorizedPbis": [
+        "L-PBI-007",
+        "L-PBI-009",
+        "L-PBI-014"
+      ],
+      "mode": "PRIVATE_SYNTHETIC_DATA_ONLY",
+      "authorityContract": "data/epic-l-policy2-resource-administration-contract.json",
+      "originalFirstImplementationBatchUnchanged": true,
+      "realCustomerDataAllowed": false,
+      "operationalDecisionIssuanceAllowed": false,
+      "customerNotificationAllowed": false
     }
   ],
   "engineeringBatches": [
@@ -166,6 +181,22 @@
       "operationalOwnerApproval": false,
       "legalApproval": false,
       "customerActivationPermitted": false
+    },
+    {
+      "batchId": "EPIC-L-POLICY2-B07",
+      "status": "ENGINEERING_RESOURCE_ADMINISTRATION_IMPLEMENTED_SYNTHETIC_ONLY",
+      "progressReceipt": "data/epic-l-policy2-b07-progress.json",
+      "pbiIds": [
+        "L-PBI-007",
+        "L-PBI-009",
+        "L-PBI-014"
+      ],
+      "testsPassing": true,
+      "productionInfrastructureSelected": false,
+      "securityReviewComplete": false,
+      "operationalOwnerApproval": false,
+      "legalApproval": false,
+      "customerActivationPermitted": false
     }
   ],
   "firstOperationalMilestone": [
@@ -237,7 +268,7 @@
       "pbiId": "L-PBI-014",
       "sequence": 6,
       "title": "Build resource revision governance",
-      "status": "PROPOSED",
+      "status": "ENGINEERING_RESOURCE_ADMINISTRATION_IMPLEMENTED_SYNTHETIC_ONLY",
       "milestone": "M1_MINIMUM_OPERATIONAL_POLICY2",
       "minimumOperationalRequirement": true,
       "syntheticBuildAllowed": true,

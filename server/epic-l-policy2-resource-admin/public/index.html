@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Policy 2.0 Resource Administration</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to resource workspace</a>
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Rhino Lapidary · Epic L B07</p>
+      <h1>Resource administration</h1>
+      <p>Isolated synthetic workspace for document and video evidence. Nothing here publishes to customers.</p>
+    </div>
+    <span class="boundary" role="status">Synthetic only · publication blocked</span>
+  </header>
+
+  <main id="workspace" tabindex="-1">
+    <section class="panel filters" aria-labelledby="inventory-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Inventory</p><h2 id="inventory-heading">Resources</h2></div>
+        <div class="actions"><button id="new-resource" type="button">New draft</button><button id="export-registry" class="secondary" type="button">Export backup</button><label class="file-action">Import backup<input id="import-registry" type="file" accept="application/json"></label></div>
+      </div>
+      <form id="filter-form" class="filter-grid" role="search">
+        <label>Search<input name="search" type="search" autocomplete="off" placeholder="Title, GID, version…"></label>
+        <label>Category<select name="category"><option value="">All categories</option></select></label>
+        <label>Product<select name="productGid"><option value="">All products</option></select></label>
+        <label>Variant<select name="variantGid"><option value="">All variants</option></select></label>
+        <label>Machine version<input name="machineVersion" autocomplete="off"></label>
+        <label>Lifecycle<select name="lifecycleStatus"><option value="">All states</option><option>DRAFT</option><option>TECHNICAL_REVIEW_REQUIRED</option><option>APPROVED_INTERNAL</option><option>SUPERSEDED</option><option>RETIRED</option></select></label>
+        <label>Revision<select name="changeStatus"><option value="">Changed or unchanged</option><option>UNCHANGED_EXISTING_UNBOUND</option><option>UNCHANGED_EXISTING_BOUND</option><option>CHANGED_CONTENT</option><option>NEW_DRAFT</option></select></label>
+        <label>Evidence<select name="missingEvidence"><option value="">Any evidence state</option><option value="true">Missing evidence</option><option value="false">Complete internal evidence</option></select></label>
+      </form>
+      <p id="inventory-count" class="summary" aria-live="polite"></p>
+      <div id="resource-list" class="resource-list"></div>
+    </section>
+
+    <section id="detail-panel" class="panel detail" aria-labelledby="detail-heading">
+      <div id="detail-empty" class="empty-state"><h2 id="detail-heading">Select a resource</h2><p>Choose an inventory row to review exact applicability, missing evidence, and immutable history.</p></div>
+      <div id="detail-content" hidden></div>
+    </section>
+  </main>
+
+  <dialog id="resource-dialog" aria-labelledby="dialog-heading">
+    <form id="resource-form">
+      <div class="dialog-heading"><div><p class="eyebrow">Governed write</p><h2 id="dialog-heading">Create draft</h2></div><button class="icon-button" type="button" data-close aria-label="Close dialog">×</button></div>
+      <input name="resourceId" type="hidden"><input name="baseRevisionId" type="hidden"><input name="expectedVersion" type="hidden">
+      <div class="form-grid">
+        <label for="resource-title">Title<input id="resource-title" name="title" required></label>
+        <label for="resource-category">Category<select id="resource-category" name="category" required></select></label>
+        <label for="resource-language">Language<input id="resource-language" name="language" placeholder="en-US"></label>
+        <label for="resource-change-status">Change status<select id="resource-change-status" name="changeStatus" required><option>NEW_DRAFT</option><option>UNCHANGED_EXISTING_BOUND</option><option>CHANGED_CONTENT</option></select></label>
+        <label class="wide" for="editable-source">Editable source identity<input id="editable-source" name="editableSourceIdentity" required aria-describedby="source-help"><small id="source-help">Where staff edit the resource. This is separate from delivery.</small></label>
+        <label class="wide" for="proposed-delivery">Proposed customer delivery link<input id="proposed-delivery" name="proposedCustomerDeliveryLink" type="url"></label>
+        <label class="wide">Immutable revision identity<input name="immutableRevisionIdentity" placeholder="sha256:… or provider-revision:provider:id"></label>
+        <label>Provider type<select name="providerType"><option value="">Unresolved draft</option><option>REPOSITORY_FILE</option><option>SHOPIFY_FILE</option><option>GOOGLE_DOC</option><option>YOUTUBE</option><option>OTHER_PROVIDER</option></select></label>
+        <fieldset class="wide applicability-editor"><legend>Exact machine applicability</legend><p class="hint">Product and Variant GIDs come from the accepted snapshot. Machine version remains explicit.</p><div id="applicability-list"></div><button id="add-applicability" class="secondary" type="button">Add machine assignment</button></fieldset>
+        <label>Rights<select name="rightsStatus"><option>UNRESOLVED</option><option>APPROVED_WITH_EVIDENCE</option><option>NOT_REQUIRED_WITH_EVIDENCE</option><option>REJECTED</option></select></label>
+        <label>Accessibility<select name="accessibilityStatus"><option>UNRESOLVED</option><option>ACCESSIBLE_WITH_EVIDENCE</option><option>NOT_REQUIRED_WITH_EVIDENCE</option><option>REMEDIATION_REQUIRED</option></select></label>
+        <label>Availability<select name="availabilityStatus"><option>UNRESOLVED</option><option>SYNTHETIC_AVAILABLE</option><option>STALE</option><option>FAILED</option></select></label>
+        <label class="wide">Evidence references <span class="hint">one per line</span><textarea name="evidenceRefs" rows="3"></textarea></label>
+        <label class="wide">Change reason<input name="changeReason" required value="B07_ADMINISTRATIVE_DRAFT"></label>
+      </div>
+      <div id="form-error" class="error" role="alert" hidden></div>
+      <div class="dialog-actions"><button class="secondary" type="button" data-close>Cancel</button><button type="submit">Save governed revision</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="confirmation-dialog" aria-labelledby="confirmation-heading">
+    <form method="dialog"><h2 id="confirmation-heading">Confirm transition</h2><p id="confirmation-copy"></p><div class="dialog-actions"><button value="cancel" class="secondary">Cancel</button><button value="confirm">Confirm</button></div></form>
+  </dialog>
+  <div id="notice" class="notice" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

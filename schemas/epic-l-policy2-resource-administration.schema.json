@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-resource-administration.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "batchId", "workItemId", "status", "mode", "customerFacingAuthority", "productionIdentityBound", "canonicalGovernanceService", "administrationService", "catalogSource", "b05QueueSource", "b05QueueSha256", "inventory", "revisionRules", "applicabilityRules", "historicalApproval", "evidence", "persistence", "interface", "activationBoundary"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "contractId": { "const": "EPIC-L-POLICY2-RESOURCE-ADMINISTRATION" },
+    "batchId": { "const": "EPIC-L-POLICY2-B07" },
+    "workItemId": { "const": "R3-005" },
+    "status": { "const": "ENGINEERING_IMPLEMENTED_PRIVATE_SYNTHETIC_ONLY" },
+    "mode": { "const": "ISOLATED_SYNTHETIC_RESOURCE_ADMINISTRATION" },
+    "customerFacingAuthority": { "const": false },
+    "productionIdentityBound": { "const": false },
+    "canonicalGovernanceService": { "const": "ResourceRevisionGovernance" },
+    "administrationService": { "const": "ResourceAdministrationService" },
+    "catalogSource": { "const": "data/epic-l-policy2-shopify-product-snapshot-2026-11-23.json" },
+    "b05QueueSource": { "const": "data/epic-l-policy2-resource-approval-queue.json" },
+    "b05QueueSha256": { "pattern": "^[A-F0-9]{64}$" },
+    "inventory": { "type": "object", "required": ["candidateCount", "highPriorityManuals", "mediumPriorityDiagrams", "approvedCustomerReleases", "importDeterministic", "importIdempotent", "observedApplicabilityRemainsUnapproved"], "properties": { "candidateCount": { "const": 9 }, "highPriorityManuals": { "const": 3 }, "mediumPriorityDiagrams": { "const": 6 }, "approvedCustomerReleases": { "const": 0 }, "importDeterministic": { "const": true }, "importIdempotent": { "const": true }, "observedApplicabilityRemainsUnapproved": { "const": true } }, "additionalProperties": false },
+    "revisionRules": { "$ref": "#/$defs/booleanRules" },
+    "applicabilityRules": { "$ref": "#/$defs/booleanRules" },
+    "historicalApproval": { "type": "object", "required": ["assertionSource", "assertedAuthorityName", "approvalTimestampFabricated", "productionIdentityVerified", "exactRevisionAndApplicabilityRequired", "changedContentRequiresFreshDisposition", "customerReleaseAuthorized"], "properties": { "assertionSource": { "type": "string" }, "assertedAuthorityName": { "const": "Kevin" }, "approvalTimestampFabricated": { "const": false }, "productionIdentityVerified": { "const": false }, "exactRevisionAndApplicabilityRequired": { "const": true }, "changedContentRequiresFreshDisposition": { "const": true }, "customerReleaseAuthorized": { "const": false } }, "additionalProperties": false },
+    "evidence": { "$ref": "#/$defs/mixedRules" },
+    "persistence": { "$ref": "#/$defs/mixedRules" },
+    "interface": { "$ref": "#/$defs/mixedRules" },
+    "activationBoundary": { "type": "object", "minProperties": 7, "additionalProperties": { "const": false } }
+  },
+  "$defs": {
+    "booleanRules": { "type": "object", "minProperties": 6, "additionalProperties": { "type": "boolean" } },
+    "mixedRules": { "type": "object", "minProperties": 5, "additionalProperties": { "type": ["string", "boolean", "integer"] } }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-b07-progress.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batchId", "status", "recordedAt", "mode", "customerFacingAuthority", "engineeringAuthorization", "authorizedWorkItems", "relatedPbis", "completionDimensions", "testEvidence", "readinessBlockers", "remainingHumanEvidence", "activationEvidence"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "batchId": { "const": "EPIC-L-POLICY2-B07" },
+    "status": { "const": "ENGINEERING_RESOURCE_ADMINISTRATION_IMPLEMENTED_SYNTHETIC_ONLY" },
+    "recordedAt": { "const": "2026-11-27" },
+    "mode": { "const": "PRIVATE_SYNTHETIC_DATA_ONLY" },
+    "customerFacingAuthority": { "const": false },
+    "engineeringAuthorization": { "const": "EPIC-L-POLICY2-B07-AUTHORIZATION-2026-11-27" },
+    "authorizedWorkItems": { "const": ["R3-005"] },
+    "relatedPbis": { "const": ["L-PBI-007", "L-PBI-009", "L-PBI-014"] },
+    "completionDimensions": { "type": "object", "required": ["engineeringComplete", "testsPassing", "resourceAdministrationInterfaceComplete", "humanResourceEvidenceComplete", "productionIdentityBinding", "productionPersistenceSelected", "resourcePublicationComplete", "operationalActivation"], "additionalProperties": { "type": "boolean" } },
+    "testEvidence": { "type": "object", "required": ["positiveDomainAndIntegrationAssertions", "invalidOrUnauthorizedOperationsRejected", "browserScenarios", "browserScenariosPassing", "axeViolations", "b05CandidatesImported", "highPriorityCandidates", "mediumPriorityCandidates", "exportImportRoundTrips", "protectedUnrelatedPaths", "liveProviderCalls", "shopifyMutations", "resourcePublications", "customerDecisionsIssued", "customerNotificationsSent"], "additionalProperties": { "type": "integer", "minimum": 0 } },
+    "readinessBlockers": { "type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": { "type": "string" } },
+    "remainingHumanEvidence": { "type": "array", "minItems": 5, "items": { "type": "string" } },
+    "activationEvidence": { "type": "object", "minProperties": 12, "additionalProperties": { "const": false } }
+  }
+}

@@ -5,6 +5,8 @@ module.exports = {
   ...require('./private-records'),
   ...require('./notifications'),
   ...require('./resource-governance'),
+  ...require('./resource-administration'),
+  ...require('./resource-admin-fixture'),
   ...require('./support-safety'),
   ...require('./registration'),
   ...require('./support-intake'),

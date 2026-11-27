@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhinolapidary.com/schemas/epic-l-policy2-b07-recovery.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "recoveryId", "recordedAt", "startingHead", "startingWorktreePathCount", "protectedManifest", "protectedPathsPassing", "protectedPathsFailing", "temporarySnapshot", "candidates", "recoveredCapabilities", "defectsFound", "unrelatedCandidateWorkFound", "candidateFilesExcluded"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "recoveryId": { "const": "EPIC-L-POLICY2-B07-RECOVERY-2026-11-27" },
+    "recordedAt": { "const": "2026-11-27" },
+    "startingHead": { "const": "c15bca170e5bd3719ddf800a6e86699455ae5d27" },
+    "startingWorktreePathCount": { "const": 51 },
+    "protectedManifest": { "const": "data/epic-l-policy2-b06-preserved-paths.json" },
+    "protectedPathsPassing": { "const": 39 },
+    "protectedPathsFailing": { "const": 0 },
+    "temporarySnapshot": { "type": "object", "additionalProperties": { "type": "boolean" }, "required": ["outsideRepository", "candidateFilesOnly", "published", "committed", "byteAndHashVerified"] },
+    "candidates": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "initialStatus", "tracked", "initialBytes", "initialSha256", "classification"],
+        "properties": {
+          "path": { "type": "string" },
+          "initialStatus": { "enum": [" M", "??"] },
+          "tracked": { "type": "boolean" },
+          "initialBytes": { "type": "integer", "minimum": 1 },
+          "initialSha256": { "pattern": "^[A-F0-9]{64}$" },
+          "classification": { "enum": ["REUSABLE_WITHOUT_MODIFICATION", "REUSABLE_WITH_CORRECTIONS", "INCOMPLETE", "ARCHITECTURALLY_UNSUITABLE", "OUTSIDE_AUTHORIZED_SCOPE"] }
+        }
+      }
+    },
+    "recoveredCapabilities": { "type": "array", "minItems": 5, "items": { "type": "string" } },
+    "defectsFound": { "type": "array", "minItems": 5, "items": { "type": "string" } },
+    "unrelatedCandidateWorkFound": { "const": false },
+    "candidateFilesExcluded": { "type": "array", "maxItems": 0 }
+  }
+}

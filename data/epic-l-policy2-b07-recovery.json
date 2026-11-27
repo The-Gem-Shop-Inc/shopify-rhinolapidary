@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0.0",
+  "recoveryId": "EPIC-L-POLICY2-B07-RECOVERY-2026-11-27",
+  "recordedAt": "2026-11-27",
+  "startingHead": "c15bca170e5bd3719ddf800a6e86699455ae5d27",
+  "startingWorktreePathCount": 51,
+  "protectedManifest": "data/epic-l-policy2-b06-preserved-paths.json",
+  "protectedPathsPassing": 39,
+  "protectedPathsFailing": 0,
+  "temporarySnapshot": {
+    "outsideRepository": true,
+    "candidateFilesOnly": true,
+    "published": false,
+    "committed": false,
+    "byteAndHashVerified": true
+  },
+  "candidates": [
+    { "path": "scripts/lib/epic-l-policy2/index.js", "initialStatus": " M", "tracked": true, "initialBytes": 493, "initialSha256": "C4F37FF0712CC17CEC9DEC68C7B558F012D88CC1ABF84772DA56FE04D840E9F1", "classification": "REUSABLE_WITHOUT_MODIFICATION" },
+    { "path": "scripts/lib/epic-l-policy2/resource-governance.js", "initialStatus": " M", "tracked": true, "initialBytes": 11367, "initialSha256": "CE6AE93F7565996AA195E195BAC21F95A15919258C4721A39F3C3958A3C6DCD8", "classification": "REUSABLE_WITH_CORRECTIONS" },
+    { "path": "playwright.epic-l-policy2-b07.config.js", "initialStatus": "??", "tracked": false, "initialBytes": 613, "initialSha256": "08CF53FE0784CBED585F44C58114E95C3A125C35E4DFD15C566E1E739504D36B", "classification": "REUSABLE_WITHOUT_MODIFICATION" },
+    { "path": "scripts/lib/epic-l-policy2/resource-admin-fixture.js", "initialStatus": "??", "tracked": false, "initialBytes": 3408, "initialSha256": "523A4224DA59C0D7FCA1814B812A1FB8BA1319F8127102EBBCB7F9566CEC77AF", "classification": "REUSABLE_WITHOUT_MODIFICATION" },
+    { "path": "scripts/lib/epic-l-policy2/resource-administration.js", "initialStatus": "??", "tracked": false, "initialBytes": 38799, "initialSha256": "0B0FD8971386805A38068E516FB4C02C5F6111BD68C314A067809671454B8BCA", "classification": "REUSABLE_WITH_CORRECTIONS" },
+    { "path": "scripts/test-epic-l-policy2-b07.js", "initialStatus": "??", "tracked": false, "initialBytes": 22187, "initialSha256": "E30D9B8A5CE89472A84D79763E855D67CFE1A571EBF400FDA51B87A9749645DC", "classification": "REUSABLE_WITH_CORRECTIONS" },
+    { "path": "server/epic-l-policy2-resource-admin/app.js", "initialStatus": "??", "tracked": false, "initialBytes": 6519, "initialSha256": "CA265E785DC3AEC7C20F7881A32530ED3C22ECCEC879E2687AED25D2BEBDDEFB", "classification": "REUSABLE_WITH_CORRECTIONS" },
+    { "path": "server/epic-l-policy2-resource-admin/public/app.js", "initialStatus": "??", "tracked": false, "initialBytes": 16268, "initialSha256": "E95F02BBA9961EDDE1A344BBFAA5F02DAF75F0FB01506A4C665B8ADD69BBF067", "classification": "REUSABLE_WITH_CORRECTIONS" },
+    { "path": "server/epic-l-policy2-resource-admin/public/index.html", "initialStatus": "??", "tracked": false, "initialBytes": 6488, "initialSha256": "B7D116D96524174CA6FB22023163E259A55145CAC66B569B3CA5B8A1C3AC04C4", "classification": "REUSABLE_WITH_CORRECTIONS" },
+    { "path": "server/epic-l-policy2-resource-admin/public/styles.css", "initialStatus": "??", "tracked": false, "initialBytes": 4873, "initialSha256": "882AEDD0EB1914CA905F5C633C801A476107C2A2D3AD2D3B1A4979794807F6A5", "classification": "REUSABLE_WITH_CORRECTIONS" },
+    { "path": "server/epic-l-policy2-resource-admin/server.js", "initialStatus": "??", "tracked": false, "initialBytes": 894, "initialSha256": "3AC666DE7CDDB5FEB330E2075EA07216AE7E728D005C2B8BF4C8B036EF4172E0", "classification": "REUSABLE_WITHOUT_MODIFICATION" },
+    { "path": "tests/epic-l-policy2-b07-resource-admin.spec.js", "initialStatus": "??", "tracked": false, "initialBytes": 5307, "initialSha256": "A85030C093BC41F622D5AA879EFD3B047465D742B59173A59EEFE448398897CB", "classification": "REUSABLE_WITH_CORRECTIONS" }
+  ],
+  "recoveredCapabilities": [
+    "exact nine-candidate B05 import",
+    "draft and immutable revision workflow",
+    "exact applicability validation",
+    "historical and fresh technical evidence",
+    "retirement and supersession",
+    "registry export and import",
+    "isolated loopback interface",
+    "domain and browser acceptance tests"
+  ],
+  "defectsFound": [
+    "server request bodies could override server-selected actors and resource identities",
+    "write Origin and Host validation were absent",
+    "browser import could not restore into the normal nonempty demonstration registry",
+    "B05 administrative revision IDs were not deterministic across fresh systems",
+    "approved applicability did not reject non-Active catalog Products",
+    "historical approval accepted an arbitrary nonempty evidence reference",
+    "duplicate active assignments inside one logical resource were not rejected",
+    "interface supported only one machine assignment and exposed no supersession action",
+    "browser tests contained ambiguous exact-label locators and shared-server assumptions",
+    "archive and restricted-key validation required strengthening"
+  ],
+  "unrelatedCandidateWorkFound": false,
+  "candidateFilesExcluded": []
+}
